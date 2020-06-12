@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+			 version="2.2">
+
+	<persistence-unit name="nl.buildforce.sequoia.jpa" transaction-type="RESOURCE_LOCAL">
+		<!--<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.AddressDeepProtected</class>-->
+		<!--<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.AddressDeepTreeProtections</class>-->
+		<!--<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.AdministrativeDivisionDescriptionKey</class>-->
+		<!--<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.AdministrativeInformation</class>-->
+		<!--<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.ChangeInformation</class>-->
+		<!--<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.CollectionFirstLevelComplex</class>-->
+		<!--<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.CollectionInnerComplex</class>-->
+		<!--<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.CollectionNestedComplex</class>-->
+		<!--<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.CollectionPartOfComplex</class>-->
+		<!--<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.CollectionSecondLevelComplex</class>-->
+		<!--<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.CommunicationData</class>-->
+		<!--<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.CountryKey</class>-->
+		<!--<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.InhouseAddress</class>-->
+		<!--<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.InhouseAddressWithGroup</class>-->
+		<!--<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.InhouseAddressWithProtection</class>-->
+		<!--<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.InhouseAddressWithThreeProtections</class>-->
+		<!--<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.JoinComplex</class>-->
+		<!--<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.PostalAddressData</class>-->
+		<!--<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.PostalAddressDataWithGroup</class>-->
+
+		<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.AccessRightsConverter</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.AdministrativeDivision</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.AdministrativeDivisionDescription</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.BestOrganization</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.BusinessPartner</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.BusinessPartnerProtected</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.BusinessPartnerRole</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.BusinessPartnerRoleProtected</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.BusinessPartnerRoleWithGroup</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.BusinessPartnerWithGroups</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.ByteConverter</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.Collection</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.CollectionDeep</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.Comment</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.Country</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.DateConverter</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.DateTimeConverter</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.DeepProtectedExample</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.DummyEmbeddedToIgnore</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.DummyToBeIgnored</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.InhouseAddressTable</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.JoinRelation</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.JoinSource</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.JoinTarget</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.Membership</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.Organization</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.OrganizationImage</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.Person</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.PersonDeepProtected</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.PersonDeepProtectedHidden</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.PersonImage</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.StringConverter</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.SupportRelationship</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.Team</class>
+		<properties>
+			<property name="eclipse.weaving" value="true"/>
+			<property name="eclipselink.logging.level" value="WARNING" />
+			<property name="eclipselink.logging.level.sql" value="WARNING"  />
+			<property name="eclipselink.logging.parameters" value="true" />
+			<property name="eclipselink.logging.timestamp" value="true" />
+			<property name="eclipselink.persistence-context.flush-mode" value="commit" />
+			<property name="eclipselink.weaving" value="static" />
+			<property name="hibernate.create_empty_composites.enabled" value ="true"/>
+			<property name="hibernate.format_sql" value="true"/>
+			<property name="hibernate.show_sql" value = "true" />
+			<property name="javax.persistence.validation.mode" value="NONE" />
+			<property name="openjpa.ConnectionFactoryProperties" value="PrintParameters=true"/>
+			<property name="openjpa.DynamicEnhancementAgent" value="true"/>
+			<property name="openjpa.RuntimeUnenhancedClasses" value="unsupported"/>
+		</properties>
+	</persistence-unit>
+	<persistence-unit name="error">
+		<!--<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.AccessRightsConverter</class>-->
+		<!--<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.AddressDeepProtected</class>-->
+		<!--<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.CountryKey</class>-->
+		<!--<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.DateConverter</class>-->
+		<!--<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.InhouseAddressWithProtection</class>-->
+		<!--<class>nl.buildforce.sequoia.jpa.processor.core.testmodel.StringConverter</class>-->
+
+		<class>nl.buildforce.sequoia.jpa.processor.core.errormodel.CollectionAttributeProtected</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.errormodel.ComplexProtectedNoPath</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.errormodel.ComplexProtectedWrongPath</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.errormodel.EmbeddedKeyPartOfGroup</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.errormodel.KeyPartOfGroup</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.errormodel.MandatoryPartOfGroup</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.errormodel.NavigationAttributeProtected</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.errormodel.NavigationPropertyPartOfGroup</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.errormodel.PersonDeepCollectionProtected</class>
+		<class>nl.buildforce.sequoia.jpa.processor.core.errormodel.Team</class>
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+		<properties>
+			<property name="eclipselink.logging.level" value="WARNING" />
+			<property name="eclipselink.logging.level.metadata" value="ALL"/>
+			<property name="eclipselink.logging.level.sql" value="WARNING" />
+			<property name="eclipselink.logging.parameters" value="true" />
+			<property name="eclipselink.logging.timestamp" value="true" />
+			<property name="eclipselink.persistence-context.flush-mode" value="commit" />
+			<property name="eclipselink.weaving" value="static" />
+			<property name="openjpa.ConnectionFactoryProperties" value="PrintParameters=true"/>
+			<property name="openjpa.DynamicEnhancementAgent" value="true"/>
+			<property name="openjpa.RuntimeUnenhancedClasses" value="unsupported"/>
+		</properties>
+	</persistence-unit>
+</persistence>
