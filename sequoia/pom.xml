@@ -9,6 +9,12 @@
   <name>Sequoia JPA processor</name>
   <url>https://github.com/Buildforce/olingo-jpa-processor-v4</url>
 
+  <parent>
+    <groupId>nl.buildforce.odata4-jpa</groupId>
+    <artifactId>OData4-jpa-parent</artifactId>
+    <version>1</version>
+  </parent>
+
   <modules>
     <module>odata4-jpa-annotation</module>
     <module>odata4-jpa-coverage</module>

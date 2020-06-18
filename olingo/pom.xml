@@ -2,14 +2,20 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>nl.buildforce.odata4-jpa</groupId>
+    <artifactId>OData4-jpa-parent</artifactId>
+    <version>1</version>
+  </parent>
+
   <groupId>nl.buildforce.olingo</groupId>
   <artifactId>Olingo-parent</artifactId>
   <version>4.8.1</version>
   <packaging>pom</packaging>
+
   <name>Olingo-ODataV4 CapSelUI5</name>
   <url>http://olingo.apache.org</url>
   <inceptionYear>2020</inceptionYear>
-
   <modules>
     <module>lib</module>
   </modules>
@@ -26,17 +32,17 @@
     </repository>
   </distributionManagement>
   <properties>
+    <maven.plugin.api.version>3.6.3</maven.plugin.api.version>
+    <netty.version>4.1.50.Final</netty.version>
+    <maven.bundle.plugin.version>2.5.3</maven.bundle.plugin.version>
+    <maven.plugin.tools.version>3.6.0</maven.plugin.tools.version>
     <commons.codec.version>1.14</commons.codec.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <commons.io.version>2.7</commons.io.version>
     <jackson.version>2.11.0</jackson.version>
-    <maven.bundle.plugin.version>2.5.3</maven.bundle.plugin.version>
-    <maven.plugin.api.version>3.6.3</maven.plugin.api.version>
-    <maven.plugin.tools.version>3.6.0</maven.plugin.tools.version>
-    <netty.version>4.1.50.Final</netty.version>
     <olingo.deploy.skip>true</olingo.deploy.skip>
-    <project.build.source>1.8</project.build.source>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <sl4j.version>2.0.0-alpha1</sl4j.version>
+    <project.build.source>1.8</project.build.source>
   </properties>
   <dependencyManagement>
     <dependencies>
