@@ -1,17 +1,12 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
-  <!--<groupId>nl.buildforce.sequoia</groupId>
-  <artifactId>sequoia</artifactId>
-  <version>0.3.8.0</version>-->
-
     <groupId>nl.buildforce.sequoia</groupId>
-    <artifactId>sequoia</artifactId>
+    <artifactId>Sequoia-parent</artifactId>
     <version>0.3.8-M0</version>
-
   <packaging>pom</packaging>
-  <name>Sequoia</name>
+  <name>Sequoia JPA processor</name>
   <url>https://github.com/Buildforce/olingo-jpa-processor-v4</url>
 
   <modules>
@@ -29,17 +24,18 @@
     </repository>
   </distributionManagement>
   <properties>
-    <jakarta.persistence.api>3.0.0-RC2</jakarta.persistence.api>
-    <maven.compiler.version>3.8.1</maven.compiler.version>
+    <coveralls.version>4.3.0</coveralls.version>
+    <derby.version>10.15.2.0</derby.version>
+    <eclipselink.prstnc.version>3.0.0-M1</eclipselink.prstnc.version>
     <jackson.version>2.11.0</jackson.version>
     <jacoco.version>0.8.5</jacoco.version>
-    <derby.version>10.15.2.0</derby.version>
-    <project.build.source>1.8</project.build.source>
-    <coveralls.version>4.3.0</coveralls.version>
+    <jakarta-servlet.version>5.0.0-M1</jakarta-servlet.version>
+    <jakarta.persistence.api>3.0.0-RC2</jakarta.persistence.api>
     <jpa-processor.version>0.3.8-M0</jpa-processor.version>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <eclipselink.prstnc.version>3.0.0-M1</eclipselink.prstnc.version>
+    <maven.compiler.version>3.8.1</maven.compiler.version>
     <odata.version>4.8.1</odata.version>
+    <project.build.source>1.8</project.build.source>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <build>
     <pluginManagement>

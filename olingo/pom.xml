@@ -2,33 +2,14 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>org.apache</groupId>
-    <artifactId>apache</artifactId>
-    <version>16</version>
-  </parent>
-  <groupId>org.apache.olingo</groupId>
-  <artifactId>odata-parent</artifactId>
+  <groupId>nl.buildforce.olingo</groupId>
+  <artifactId>Olingo-parent</artifactId>
   <version>4.8.1</version>
   <packaging>pom</packaging>
   <name>Olingo-ODataV4 CapSelUI5</name>
   <url>http://olingo.apache.org</url>
-  <inceptionYear>2013</inceptionYear>
-  <licenses>
-    <license>
-      <name>The Apache Software License, Version 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
-  <mailingLists>
-    <mailingList>
-      <name>Apache Olingo Developers Mailinglist</name>
-      <subscribe>mailto:dev-subscribe@olingo.apache.org</subscribe>
-      <post>mailto:dev@olingo.apache.org</post>
-      <archive>http://mail-archives.apache.org/mod_mbox/odata-dev/</archive>
-    </mailingList>
-  </mailingLists>
+  <inceptionYear>2020</inceptionYear>
+
   <modules>
     <module>lib</module>
   </modules>
@@ -40,26 +21,22 @@
   <distributionManagement>
     <repository>
       <id>bintray-serioussoftware-repo</id>
-      <name>serioussoftware-repo</name>
+      <name>serioussoftware-maven3</name>
       <url>https://api.bintray.com/maven/serioussoftware/repo/Olingo/;publish=1</url>
     </repository>
   </distributionManagement>
   <properties>
-    <servlet.version>4.0.1</servlet.version>
-    <netty.version>4.1.50.Final</netty.version>
-    <maven.bundle.plugin.version>2.5.3</maven.bundle.plugin.version>
-    <maven.plugin.tools.version>3.6.0</maven.plugin.tools.version>
     <commons.codec.version>1.14</commons.codec.version>
-    <maven-plugin-plugin.version>3.6.0</maven-plugin-plugin.version>
-    <jackson.version>2.11.0</jackson.version>
-    <olingo.deploy.skip>true</olingo.deploy.skip>
-    <sl4j.version>2.0.0-alpha1</sl4j.version>
-    <project.build.source>1.8</project.build.source>
-    <jackson-databind.version>2.11.0</jackson-databind.version>
-    <maven.plugin.api.version>3.6.3</maven.plugin.api.version>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <additionalparam>-Xdoclint:none</additionalparam>
     <commons.io.version>2.7</commons.io.version>
+    <jackson.version>2.11.0</jackson.version>
+    <maven.bundle.plugin.version>2.5.3</maven.bundle.plugin.version>
+    <maven.plugin.api.version>3.6.3</maven.plugin.api.version>
+    <maven.plugin.tools.version>3.6.0</maven.plugin.tools.version>
+    <netty.version>4.1.50.Final</netty.version>
+    <olingo.deploy.skip>true</olingo.deploy.skip>
+    <project.build.source>1.8</project.build.source>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <sl4j.version>2.0.0-alpha1</sl4j.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -108,11 +85,6 @@
         <artifactId>slf4j-api</artifactId>
         <version>${sl4j.version}</version>
       </dependency>
-      <!--<dependency>
-        <groupId>javax.servlet</groupId>
-        <artifactId>javax.servlet-api</artifactId>
-        <version>${servlet.version}</version>
-      </dependency>-->
       <dependency>
         <groupId>jakarta.servlet</groupId>
         <artifactId>jakarta.servlet-api</artifactId>
@@ -322,26 +294,26 @@
                   <goal>aggregate-jar</goal>
                 </goals>
                 <configuration>
-                  <excludePackageNames>org.apache.olingo.commons.core:org.apache.olingo.commons.core.*:org.apache.olingo.client.core:org.apache.olingo.client.core.*:org.apache.olingo.server.core:org.apache.olingo.server.core.*:org.apache.olingo.fit:org.apache.olingo.fit.*:org.apache.olingo.server.sample:org.apache.olingo.server.sample.*:org.apache.olingo.server.tecsvc:org.apache.olingo.server.tecsvc.*</excludePackageNames>
+                  <excludePackageNames>nl.buildforce.olingo.commons.core:nl.buildforce.olingo.commons.core.*:nl.buildforce.olingo.client.core:nl.buildforce.olingo.client.core.*:nl.buildforce.olingo.server.core:nl.buildforce.olingo.server.core.*:nl.buildforce.olingo.fit:nl.buildforce.olingo.fit.*:nl.buildforce.olingo.server.sample:nl.buildforce.olingo.server.sample.*:nl.buildforce.olingo.server.tecsvc:nl.buildforce.olingo.server.tecsvc.*</excludePackageNames>
                   <additionalJOptions>
                     <additionalJOption>-quiet</additionalJOption>
                   </additionalJOptions>
                   <groups>
                     <group>
                       <title>OData Client</title>
-                      <packages>org.apache.olingo.client.api:org.apache.olingo.client.api.*</packages>
+                      <packages>nl.buildforce.olingo.client.api:nl.buildforce.olingo.client.api.*</packages>
                     </group>
                     <group>
                       <title>OData Client Proxy</title>
-                      <packages>org.apache.olingo.ext.proxy:org.apache.olingo.ext.proxy.*</packages>
+                      <packages>nl.buildforce.olingo.ext.proxy:nl.buildforce.olingo.ext.proxy.*</packages>
                     </group>
                     <group>
                       <title>OData Server</title>
-                      <packages>org.apache.olingo.server.api:org.apache.olingo.server.api.*</packages>
+                      <packages>nl.buildforce.olingo.server.api:nl.buildforce.olingo.server.api.*</packages>
                     </group>
                     <group>
                       <title>OData Commons</title>
-                      <packages>org.apache.olingo.commons.api:org.apache.olingo.commons.api.*</packages>
+                      <packages>nl.buildforce.olingo.commons.api:nl.buildforce.olingo.commons.api.*</packages>
                     </group>
                   </groups>
                 </configuration>

@@ -28,8 +28,8 @@
   <name>${project.artifactId}</name>
 
   <parent>
-    <groupId>org.apache.olingo</groupId>
-    <artifactId>odata-parent</artifactId>
+    <groupId>nl.buildforce.olingo</groupId>
+    <artifactId>Olingo-parent</artifactId>
     <version>4.8.1</version>
     <relativePath>..</relativePath>
   </parent>

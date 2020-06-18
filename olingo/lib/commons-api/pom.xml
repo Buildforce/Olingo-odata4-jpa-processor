@@ -28,7 +28,7 @@
   <name>${project.artifactId}</name>
 
   <parent>
-    <groupId>org.apache.olingo</groupId>
+    <groupId>nl.buildforce.olingo</groupId>
     <artifactId>OData4-lib</artifactId>
     <version>4.8.1</version>
     <relativePath>..</relativePath>
@@ -59,7 +59,7 @@
         <configuration>
           <instructions>
             <Export-Package>
-              org.apache.olingo.commons.api*
+              nl.buildforce.olingo.commons.api*
             </Export-Package>
             <Import-Package>
               *

@@ -28,7 +28,7 @@
   <name>${project.artifactId}</name>
 
   <parent>
-    <groupId>org.apache.olingo</groupId>
+    <groupId>nl.buildforce.olingo</groupId>
     <artifactId>OData4-lib</artifactId>
     <version>4.8.1</version>
     <relativePath>..</relativePath>
@@ -36,7 +36,7 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.apache.olingo</groupId>
+      <groupId>nl.buildforce.olingo</groupId>
       <artifactId>odata-commons-api</artifactId>
       <version>${project.version}</version>
     </dependency>
@@ -74,10 +74,10 @@
         <configuration>
           <instructions>
             <Export-Package>
-              org.apache.olingo.commons.core,
-              org.apache.olingo.commons.core.edm,
-              org.apache.olingo.commons.core.edm.provider,
-              org.apache.olingo.commons.core.edm.primitivetype,
+              nl.buildforce.olingo.commons.core,
+              nl.buildforce.olingo.commons.core.edm,
+              nl.buildforce.olingo.commons.core.edm.provider,
+              nl.buildforce.olingo.commons.core.edm.primitivetype,
             </Export-Package>
             <Import-Package>
               *
