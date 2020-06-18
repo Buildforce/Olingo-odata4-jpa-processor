@@ -14,11 +14,11 @@
 
 	<name>odata4-jpa-processor</name>
 	<properties>
-		<javax-servlet.version>5.0.0-M1</javax-servlet.version>
+		<jakarta-servlet.version>5.0.0-M1</jakarta-servlet.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
-		<dependency>
+		<!--<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-annotations</artifactId>
 			<version>${jackson.version}</version>
@@ -27,19 +27,21 @@
 			<groupId>com.fasterxml.jackson.dataformat</groupId>
 			<artifactId>jackson-dataformat-xml</artifactId>
 			<version>${jackson.version}</version>
-		</dependency>
+		</dependency>-->
 		<dependency>
 			<groupId>jakarta.servlet</groupId>
 			<artifactId>jakarta.servlet-api</artifactId>
-			<version>${javax-servlet.version}</version>
+			<version>${jakarta-servlet.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
+
+		<!--<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>4.0.1</version>
 			<scope>provided</scope>
-		</dependency>		<dependency>
+		</dependency>-->
+		<dependency>
 			<groupId>org.apache.olingo</groupId>
 			<artifactId>odata-server-api</artifactId>
 			<version>${odata.version}</version>
@@ -49,11 +51,11 @@
 			<artifactId>odata-server-core</artifactId>
 			<version>${odata.version}</version>
 		</dependency>
-		<dependency>
+		<!--<dependency>
 			<groupId>nl.buildforce.sequoia</groupId>
 			<artifactId>odata4-jpa-annotation</artifactId>
 			<version>${project.version}</version>
-		</dependency>
+		</dependency>-->
 		<dependency>
 			<groupId>nl.buildforce.sequoia</groupId>
 			<artifactId>odata4-jpa-metadata</artifactId>

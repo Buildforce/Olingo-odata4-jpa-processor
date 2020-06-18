@@ -46,6 +46,7 @@
   </modules>
 
   <properties>
+    <jakarta-servlet.version>5.0.0-M1</jakarta-servlet.version>
     <cobertura.skip>true</cobertura.skip>
     <!-- exclude proxy tests by default -->
     <exclude.regex>.*proxy.*</exclude.regex>
