@@ -1,0 +1,141 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements. See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership. The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License. You may obtain a copy of the License at
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+package nl.buildforce.olingo.server.core.uri.queryoption.apply;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+import nl.buildforce.olingo.commons.api.edm.EdmAnnotation;
+import nl.buildforce.olingo.commons.api.edm.EdmElement;
+import nl.buildforce.olingo.commons.api.edm.EdmNavigationProperty;
+import nl.buildforce.olingo.commons.api.edm.EdmProperty;
+import nl.buildforce.olingo.commons.api.edm.EdmStructuredType;
+import nl.buildforce.olingo.commons.api.edm.EdmTerm;
+import nl.buildforce.olingo.commons.api.edm.EdmType;
+import nl.buildforce.olingo.commons.api.edm.FullQualifiedName;
+import nl.buildforce.olingo.commons.api.edm.constants.EdmTypeKind;
+
+/** A dynamic structured type used to incorporate dynamic properties containing aggregations. */
+public class DynamicStructuredType implements EdmStructuredType, Cloneable {
+
+  private final EdmStructuredType startType;
+  private Map<String, EdmProperty> properties;
+
+  public DynamicStructuredType(EdmStructuredType startType) {
+    this.startType = startType;
+  }
+
+  public DynamicStructuredType addProperty(EdmProperty property) {
+    if (properties == null) {
+      properties = new LinkedHashMap<>();
+    }
+    properties.put(property.getName(), property);
+    return this;
+  }
+
+  @Override
+  public EdmElement getProperty(String name) {
+    EdmElement property = startType.getProperty(name);
+    return property == null ?
+        properties == null ? null : properties.get(name) :
+        property;
+  }
+
+  @Override
+  public List<String> getPropertyNames() {
+    if (properties == null || properties.isEmpty()) {
+      return startType.getPropertyNames();
+    } else {
+      List<String> names = new ArrayList<>(startType.getPropertyNames());
+      names.addAll(properties.keySet());
+      return Collections.unmodifiableList(names);
+    }
+  }
+
+  @Override
+  public EdmProperty getStructuralProperty(String name) {
+    EdmProperty property = startType.getStructuralProperty(name);
+    return property == null ?
+        properties == null ? null : properties.get(name) :
+        property;
+  }
+
+  @Override
+  public EdmNavigationProperty getNavigationProperty(String name) {
+    return startType.getNavigationProperty(name);
+  }
+
+  @Override
+  public List<String> getNavigationPropertyNames() {
+    return startType.getNavigationPropertyNames();
+  }
+
+  @Override
+  public String getNamespace() {
+    return startType.getNamespace();
+  }
+
+  @Override
+  public String getName() {
+    return startType.getName();
+  }
+
+  @Override
+  public FullQualifiedName getFullQualifiedName() {
+    return startType.getFullQualifiedName();
+  }
+
+  @Override
+  public EdmTypeKind getKind() {
+    return startType.getKind();
+  }
+
+  @Override
+  public EdmAnnotation getAnnotation(EdmTerm term, String qualifier) {
+    return startType.getAnnotation(term, qualifier);
+  }
+
+  @Override
+  public List<EdmAnnotation> getAnnotations() {
+    return startType.getAnnotations();
+  }
+
+  @Override
+  public EdmStructuredType getBaseType() {
+    return startType.getBaseType();
+  }
+
+  @Override
+  public boolean compatibleTo(EdmType targetType) {
+    return startType.compatibleTo(targetType);
+  }
+
+  @Override
+  public boolean isOpenType() {
+    return startType.isOpenType();
+  }
+
+  @Override
+  public boolean isAbstract() {
+    return startType.isAbstract();
+  }
+}

@@ -1,6 +1,6 @@
-package nl.buildforce.sequoia.jpa.processor.test;
+package nl.buildforce.sequoia.processor.test;
 
-import nl.buildforce.sequoia.jpa.processor.core.testmodel.*;
+import nl.buildforce.sequoia.processor.core.testmodel.*;
 import org.eclipse.persistence.internal.jpa.EJBQueryImpl;
 import org.eclipse.persistence.queries.DatabaseQuery;
 import org.junit.jupiter.api.*;
@@ -29,7 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class TestCriteriaBuilder {
-  protected static final String PUNIT_NAME = "nl.buildforce.sequoia.jpa";
+  protected static final String PUNIT_NAME = "nl.buildforce.sequoia";
   private static EntityManagerFactory emf;
   private EntityManager em;
   private CriteriaBuilder cb;

@@ -1,7 +1,7 @@
-package nl.buildforce.sequoia.jpa.processor.test;
+package nl.buildforce.sequoia.processor.test;
 
-import nl.buildforce.sequoia.jpa.processor.core.testmodel.AdministrativeDivision;
-import nl.buildforce.sequoia.jpa.processor.core.testmodel.DataSourceHelper;
+import nl.buildforce.sequoia.processor.core.testmodel.AdministrativeDivision;
+import nl.buildforce.sequoia.processor.core.testmodel.DataSourceHelper;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -32,7 +32,7 @@ import static org.eclipse.persistence.config.EntityManagerProperties.NON_JTA_DAT
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class TestFunctions {
-  protected static final String PUNIT_NAME = "nl.buildforce.sequoia.jpa";
+  protected static final String PUNIT_NAME = "nl.buildforce.sequoia";
   private static EntityManagerFactory emf;
   private static DataSource ds;
 
@@ -60,7 +60,7 @@ public class TestFunctions {
   @Disabled
   @Test
   public void TestProcedure() throws SQLException {
-    StoredProcedureQuery pc = em.createStoredProcedureQuery("\"OLINGO\".\"org.apache.olingo.jpa::Siblings\"");
+    StoredProcedureQuery pc = em.createStoredProcedureQuery("\"OLINGO\".\"nl.buildforce.olingo::Siblings\"");
 
     pc.registerStoredProcedureParameter("CodePublisher", String.class, ParameterMode.IN);
     pc.setParameter("CodePublisher", "Eurostat");
@@ -159,7 +159,7 @@ public class TestFunctions {
     Query d = em.createNativeQuery("DROP FUNCTION IS_PRIME");
     String sqlString = "CREATE FUNCTION IS_PRIME(number Integer) RETURNS Integer " +
             "PARAMETER STYLE JAVA NO SQL LANGUAGE JAVA " +
-            "EXTERNAL NAME 'nl.buildforce.sequoia.jpa.processor.core.test_udf.isPrime'";
+            "EXTERNAL NAME 'nl.buildforce.sequoia.processor.core.test_udf.isPrime'";
     Query q = em.createNativeQuery(sqlString);
     d.executeUpdate();
     q.executeUpdate();

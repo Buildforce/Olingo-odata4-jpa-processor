@@ -1,11 +1,11 @@
-package nl.buildforce.sequoia.jpa.processor.test;
+package nl.buildforce.sequoia.processor.test;
 
-import nl.buildforce.sequoia.jpa.processor.core.testmodel.AdministrativeDivision;
-import nl.buildforce.sequoia.jpa.processor.core.testmodel.AdministrativeDivisionDescription;
-import nl.buildforce.sequoia.jpa.processor.core.testmodel.BusinessPartner;
-import nl.buildforce.sequoia.jpa.processor.core.testmodel.BusinessPartnerRole;
-import nl.buildforce.sequoia.jpa.processor.core.testmodel.Country;
-import nl.buildforce.sequoia.jpa.processor.core.testmodel.DataSourceHelper;
+import nl.buildforce.sequoia.processor.core.testmodel.AdministrativeDivision;
+import nl.buildforce.sequoia.processor.core.testmodel.AdministrativeDivisionDescription;
+import nl.buildforce.sequoia.processor.core.testmodel.BusinessPartner;
+import nl.buildforce.sequoia.processor.core.testmodel.BusinessPartnerRole;
+import nl.buildforce.sequoia.processor.core.testmodel.Country;
+import nl.buildforce.sequoia.processor.core.testmodel.DataSourceHelper;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -28,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class TestAssociations {
-  protected static final String PUNIT_NAME = "nl.buildforce.sequoia.jpa";
+  protected static final String PUNIT_NAME = "nl.buildforce.sequoia";
   private static EntityManagerFactory emf;
   private EntityManager em;
   private CriteriaBuilder cb;

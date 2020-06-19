@@ -1,12 +1,12 @@
-package nl.buildforce.sequoia.jpa.metadata.api;
+package nl.buildforce.sequoia.metadata.api;
 
-import nl.buildforce.sequoia.jpa.metadata.core.edm.mapper.exception.ODataJPAModelException;
-import nl.buildforce.sequoia.jpa.metadata.core.edm.mapper.extension.IntermediateEntityContainerAccess;
-import nl.buildforce.sequoia.jpa.metadata.core.edm.mapper.extension.IntermediateEntitySetAccess;
-import nl.buildforce.sequoia.jpa.metadata.core.edm.mapper.extension.IntermediateEntityTypeAccess;
-import nl.buildforce.sequoia.jpa.metadata.core.edm.mapper.extension.IntermediateNavigationPropertyAccess;
-import nl.buildforce.sequoia.jpa.metadata.core.edm.mapper.extension.IntermediatePropertyAccess;
-import nl.buildforce.sequoia.jpa.metadata.core.edm.mapper.extension.IntermediateReferenceList;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.extension.IntermediateEntityContainerAccess;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.extension.IntermediateEntitySetAccess;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.extension.IntermediateEntityTypeAccess;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.extension.IntermediateNavigationPropertyAccess;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.extension.IntermediatePropertyAccess;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.extension.IntermediateReferenceList;
 
 public abstract class JPAEdmMetadataPostProcessor {
 

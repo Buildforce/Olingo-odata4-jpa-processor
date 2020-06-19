@@ -1,4 +1,4 @@
-package nl.buildforce.sequoia.jpa.metadata.api;
+package nl.buildforce.sequoia.metadata.api;
 
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
