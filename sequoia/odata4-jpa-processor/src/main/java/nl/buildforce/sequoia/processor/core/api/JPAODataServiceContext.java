@@ -46,7 +46,7 @@ public final class JPAODataServiceContext implements JPAODataGetContext, JPAODat
   private            List<EdmxReference> references = new ArrayList<>();
   //@formatter:on
 
-  public static Builder with() { return new Builder(); }
+  //public static Builder with() { return new Builder(); }
 
     /**
      * @deprecated will be removed with 1.0.0; use newly created builder (<code>JPAODataServiceContext.with()</code>)
@@ -84,7 +84,7 @@ public final class JPAODataServiceContext implements JPAODataGetContext, JPAODat
     jpaEdm = new JPAEdmProvider(namespace_pUnit, emf.get().getMetamodel(), null, packageName);
   }
 
-  private JPAODataServiceContext(final Builder builder) throws ODataJPAException, ODataJPAFilterException {
+/*  private JPAODataServiceContext(final Builder builder) throws ODataJPAException, ODataJPAFilterException {
     jpaODataGetHandler = null;
 
     errorProcessor = builder.errorProcessor;
@@ -112,7 +112,7 @@ public final class JPAODataServiceContext implements JPAODataGetContext, JPAODat
     jpaEdm = (emf.isPresent()) ?
             new JPAEdmProvider(namespace_pUnit, emf.get().getMetamodel(), postProcessor, packageName)
             : jpaEdm;
-  }
+  }*/
 
   @Override
   public JPACUDRequestHandler getCUDRequestHandler() { return null /*jpaCUDRequestHandler*/; }
@@ -250,7 +250,7 @@ public final class JPAODataServiceContext implements JPAODataGetContext, JPAODat
     this.packageName = packageName;
   }
 
-  @Deprecated
+/*  @Deprecated
   public static class Builder {
     // format: OFF
     private      JPAODataDatabaseProcessor databaseProcessor;
@@ -273,33 +273,33 @@ public final class JPAODataServiceContext implements JPAODataGetContext, JPAODat
       return new JPAODataServiceContext(this);
     }
 
-    /**
+    *//**
      * A database processor allows database specific implementations for search and odata function with function import
      * that are implemented as database functions.<br>
      * In case no database processor is provided and non could be determined via an data source
      * {@link JPADefaultDatabaseProcessor} is used.
      * @param databaseProcessor
      * @return
-     */
+     *//*
     public Builder setDatabaseProcessor(final JPAODataDatabaseProcessor databaseProcessor) {
       this.databaseProcessor = databaseProcessor;
       return this;
     }
 
-    /**
+    *//**
      * The data source is used to create an entity manager factory if not provided, see
      * {@link Builder#setEntityManagerFactory(EntityManagerFactory)}, and to determine the type of
      * database used to select an integrated database processor, in case the database processor was not set via
      * {@link Builder#setDatabaseProcessor(JPAODataDatabaseProcessor)}}.
      * @param ds
      * @return
-     */
+     *//*
     public Builder setDataSource(final DataSource ds) {
       builderDs = ds;
       return this;
     }
 
-    /**
+    *//**
      * Allows to provide an Olingo error processor. The error processor allows to enrich an error response. See
      * <a
      * href="http://docs.oasis-open.org/odata/odata-json-format/v4.0/errata03/os/odata-json-format-v4.0-errata03-os-complete.html#_Toc453766668"
@@ -308,72 +308,72 @@ public final class JPAODataServiceContext implements JPAODataGetContext, JPAODat
      * href="http://docs.oasis-open.org/odata/odata-atom-format/v4.0/cs02/odata-atom-format-v4.0-cs02.html#_Toc372792829">Atom
      * Error Response</a>.
      * @param errorProcessor
-     */
+     *//*
     public Builder setErrorProcessor(final ErrorProcessor errorProcessor) {
       this.errorProcessor = errorProcessor;
       return this;
     }
 
-    /**
+    *//**
      *
      * @param postProcessor
      * @return
-     */
+     *//*
     public Builder setMetadataPostProcessor(final JPAEdmMetadataPostProcessor postProcessor) {
       this.postProcessor = postProcessor;
       return this;
     }
 
-    /**
+    *//**
      *
      * @param jpaOperationConverter
      * @return
-     */
+     *//*
     public Builder setOperationConverter(final JPAODataDatabaseOperations jpaOperationConverter) {
       operationConverter = jpaOperationConverter;
       return this;
     }
 
-    /**
+    *//**
      * Register a provider that is able to decides based on a given query if the server like to return only a sub set of
      * the requested results as well as a $skiptoken.
      * @param provider
-     */
+     *//*
     public Builder setPagingProvider(final JPAODataPagingProvider provider) {
       pagingProvider = provider;
       return this;
     }
 
-    /**
+    *//**
      * The name of the persistence-unit to be used. It is taken to create a entity manager factory
      * ({@link Builder#setEntityManagerFactory(EntityManagerFactory)}), if not provided and
      * as namespace of the OData service, in case the default name builder shall be used.
      * @param pUnit
      * @return
-     */
+     *//*
     public Builder setPUnit(final String pUnit) {
       namespace_pUnit = pUnit;
       return this;
     }
 
-    /**
+    *//**
      *
      * @param references
      * @return
-     */
+     *//*
     public Builder setReferences(final List<EdmxReference> references) {
       this.references = references;
       return this;
     }
 
-    /**
+    *//**
      * Name of the top level package to look for
      * <ul>
      * <li> Enumeration Types
      * <li> Java class based Functions
      * </ul>
      * @param packageName
-     */
+     *//*
     public Builder setTypePackage(final String... packageName) {
       this.packageName = packageName;
       return this;
@@ -384,29 +384,29 @@ public final class JPAODataServiceContext implements JPAODataGetContext, JPAODat
       return this;
     }
 
-    /**
+    *//**
      * Set an externally created entity manager factory.<br>
      * This is necessary e.g. in case a spring based service shall run without a <code>persistence.xml</code>.
      * @param emf
      * @return
-     */
+     *//*
     public Builder setEntityManagerFactory(final EntityManagerFactory emf) {
       builderEmf = Optional.of(emf);
       return this;
     }
 
-    /**
+    *//**
      * Set a custom EDM name builder {@link JPAEdmNameBuilder}. If non is provided {@link JPADefaultEdmNameBuilder} is
      * used, which uses the provided persistence-unit name ({@link JPAODataServiceContext.Builder#setPUnit}) as
      * namespace.
      * @param nameBuilder
      * @return
-     */
-    /*public Builder setEdmNameBuilder(final JPAEdmNameBuilder nameBuilder) {
+     *//*
+    *//*public Builder setEdmNameBuilder(final JPAEdmNameBuilder nameBuilder) {
       this.nameBuilder = nameBuilder;
       return this;
-    }*/
-  }
+    }*//*
+  }*/
 
 /*  static class JPADebugSupportWrapper implements DebugSupport {
 
