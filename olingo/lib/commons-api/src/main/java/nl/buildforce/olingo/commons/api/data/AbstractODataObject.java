@@ -19,6 +19,7 @@
 package nl.buildforce.olingo.commons.api.data;
 
 import java.net.URI;
+import java.util.Objects;
 
 /**
  * Abstract OData object with basic values (<code>id</code>, <code>baseURI</code>, <code>title</code>).
@@ -93,9 +94,9 @@ public abstract class AbstractODataObject extends Annotatable {
 
     AbstractODataObject other = (AbstractODataObject) o;
     return getAnnotations().equals(other.getAnnotations())
-        && (baseURI == null ? other.baseURI == null : baseURI.equals(other.baseURI))
-        && (id == null ? other.id == null : id.equals(other.id))
-        && (title == null ? other.title == null : title.equals(other.title));
+        && (Objects.equals(baseURI, other.baseURI))
+        && (Objects.equals(id, other.id))
+        && (Objects.equals(title, other.title));
   }
 
   @Override

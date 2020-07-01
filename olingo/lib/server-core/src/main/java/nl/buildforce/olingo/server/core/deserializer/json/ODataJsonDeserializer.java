@@ -1,44 +1,14 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements. See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership. The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License. You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
 package nl.buildforce.olingo.server.core.deserializer.json;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.math.BigDecimal;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
-import nl.buildforce.olingo.server.api.ServiceMetadata;
-import nl.buildforce.olingo.server.api.deserializer.DeserializerResult;
-import nl.buildforce.olingo.server.api.deserializer.ODataDeserializer;
-import nl.buildforce.olingo.server.core.deserializer.DeserializerResultImpl;
-import nl.buildforce.olingo.server.core.serializer.utils.ContentTypeHelper;
-import org.apache.commons.io.IOUtils;
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import nl.buildforce.olingo.commons.api.Constants;
 import nl.buildforce.olingo.commons.api.IConstants;
 import nl.buildforce.olingo.commons.api.constants.Constantsv00;
@@ -69,46 +39,29 @@ import nl.buildforce.olingo.commons.api.edm.EdmType;
 import nl.buildforce.olingo.commons.api.edm.EdmTypeDefinition;
 import nl.buildforce.olingo.commons.api.edm.FullQualifiedName;
 import nl.buildforce.olingo.commons.api.edm.constants.EdmTypeKind;
-/*//import org.apache.olingo.commons.api.edm.geo.Geospatial;
-import org.apache.olingo.commons.api.edm.geo.GeospatialCollection;
-import org.apache.olingo.commons.api.edm.geo.LineString;
-import org.apache.olingo.commons.api.edm.geo.MultiLineString;
-import org.apache.olingo.commons.api.edm.geo.MultiPoint;
-import org.apache.olingo.commons.api.edm.geo.MultiPolygon;
-import org.apache.olingo.commons.api.edm.geo.Point;
-import org.apache.olingo.commons.api.edm.geo.Polygon;
-import org.apache.olingo.commons.api.edm.geo.SRID;*/
 import nl.buildforce.olingo.commons.api.format.ContentType;
+import nl.buildforce.olingo.server.api.ServiceMetadata;
 import nl.buildforce.olingo.server.api.deserializer.DeserializerException;
 import nl.buildforce.olingo.server.api.deserializer.DeserializerException.MessageKeys;
+import nl.buildforce.olingo.server.api.deserializer.DeserializerResult;
+import nl.buildforce.olingo.server.api.deserializer.ODataDeserializer;
 import nl.buildforce.olingo.server.api.serializer.SerializerException;
+import nl.buildforce.olingo.server.core.deserializer.DeserializerResultImpl;
 import nl.buildforce.olingo.server.core.deserializer.helper.ExpandTreeBuilder;
 import nl.buildforce.olingo.server.core.deserializer.helper.ExpandTreeBuilderImpl;
+import nl.buildforce.olingo.server.core.serializer.utils.ContentTypeHelper;
+import org.apache.commons.io.IOUtils;
 
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.*;
+import java.util.Map.Entry;
 
 public class ODataJsonDeserializer implements ODataDeserializer {
-
-  /*private static final Map<String, Class<? extends Geospatial>> jsonNameToGeoDataType;
-  static {
-    Map<String, Class<? extends Geospatial>> temp = new HashMap<>();
-    temp.put(Constants.ELEM_POINT, Point.class);
-    temp.put(Constants.ELEM_MULTIPOINT, MultiPoint.class);
-    temp.put(Constants.ELEM_LINESTRING, LineString.class);
-    temp.put("MultiLineString", MultiLineString.class);
-    temp.put(Constants.ELEM_POLYGON, Polygon.class);
-    temp.put("MultiPolygon", MultiPolygon.class);
-    temp.put("GeometryCollection", GeospatialCollection.class);
-    jsonNameToGeoDataType = Collections.unmodifiableMap(temp);
-  }*/
 
   private static final String ODATA_ANNOTATION_MARKER = "@";
   private static final String ODATA_CONTROL_INFORMATION_PREFIX = "@odata.";
@@ -116,13 +69,13 @@ public class ODataJsonDeserializer implements ODataDeserializer {
 
   private final boolean isIEEE754Compatible;
   private ServiceMetadata serviceMetadata;
-  private IConstants constants;
+  private final IConstants constants;
 
   public ODataJsonDeserializer(ContentType contentType) {
     this(contentType, null, new Constantsv00());
   }
 
-  public ODataJsonDeserializer(ContentType contentType, ServiceMetadata serviceMetadata) {
+public ODataJsonDeserializer(ContentType contentType, ServiceMetadata serviceMetadata) {
     isIEEE754Compatible = ContentTypeHelper.isODataIEEE754Compatible(contentType);
     this.serviceMetadata = serviceMetadata;
     constants = new Constantsv00();
@@ -308,7 +261,7 @@ public class ODataJsonDeserializer implements ODataDeserializer {
       throws DeserializerException {
 	  Map<String, Parameter> parameters = new HashMap<>();
 	  ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-	  byte[] inputContent = null;
+	  byte[] inputContent;
     try {
     	IOUtils.copy(stream, byteArrayOutputStream);
     	// copy the content of input stream to reuse it
@@ -436,7 +389,7 @@ public class ODataJsonDeserializer implements ODataDeserializer {
    * @param edmEntityType edm entity type which for which the json node is consumed
    * @param node json node which is consumed
    * @param entity entity instance which is filled
-   * @throws DeserializerException if an exception during consumation occurs
+   * @throws DeserializerException if an exception during digest occurs
    */
   private void consumeRemainingJsonNodeFields(EdmEntityType edmEntityType, ObjectNode node,
                                               Entity entity) throws DeserializerException {
@@ -884,6 +837,7 @@ public class ODataJsonDeserializer implements ODataDeserializer {
         DeserializerException.MessageKeys.INVALID_VALUE_FOR_PROPERTY, name);
   }*/
 
+/*
   private double getDoubleValue(String value) throws EdmPrimitiveTypeException {
     BigDecimal bigDecimalValue = new BigDecimal(value);
     Double result = bigDecimalValue.doubleValue();
@@ -895,19 +849,20 @@ public class ODataJsonDeserializer implements ODataDeserializer {
     }
     return result;
   }
+*/
 
   /**
    * Returns the primitive type's default class or the manually mapped class if present.
    * @param mapping
-   * @param edmPrimitiveType
+   * @param primitiveType
    * @return the java class to be used during deserialization
    */
-  private Class<?> getJavaClassForPrimitiveType(EdmMapping mapping, EdmPrimitiveType type) {
-    EdmPrimitiveType edmPrimitiveType =
-        type.getKind() == EdmTypeKind.ENUM ? ((EdmEnumType) type).getUnderlyingType() : type
-            .getKind() == EdmTypeKind.DEFINITION ? ((EdmTypeDefinition) type).getUnderlyingType() : type;
-    return mapping == null || mapping.getMappedJavaClass() == null ? edmPrimitiveType.getDefaultType() : mapping
-        .getMappedJavaClass();
+  private Class<?> getJavaClassForPrimitiveType(EdmMapping mapping, EdmPrimitiveType primitiveType) {
+    return (mapping == null || mapping.getMappedJavaClass() == null) ?
+            (primitiveType.getKind() == EdmTypeKind.ENUM ?
+                    ((EdmEnumType) primitiveType).getUnderlyingType() : primitiveType.getKind() == EdmTypeKind.DEFINITION ?
+                    ((EdmTypeDefinition) primitiveType).getUnderlyingType() : primitiveType).getDefaultType()
+            : mapping.getMappedJavaClass();
   }
 
   /**
@@ -1058,9 +1013,7 @@ public class ODataJsonDeserializer implements ODataDeserializer {
       if (jsonNode != null) {
         if (jsonNode.isArray()) {
           ArrayNode arrayNode = (ArrayNode) jsonNode;
-          Iterator<JsonNode> it = arrayNode.iterator();
-          while (it.hasNext()) {
-            JsonNode next = it.next();
+          for (JsonNode next : arrayNode) {
             if (next.has(key)) {
               parsedValues.add(new URI(next.get(key).asText()));
             }

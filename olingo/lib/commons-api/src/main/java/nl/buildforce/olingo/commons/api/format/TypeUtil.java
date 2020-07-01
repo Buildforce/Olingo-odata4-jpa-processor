@@ -43,12 +43,7 @@ final class TypeUtil {
 
   /** Creates a parameter map with predictable order. */
   static Map<String, String> createParameterMap() {
-    return new TreeMap<String, String>(new Comparator<String>() {
-      @Override
-      public int compare(String o1, String o2) {
-        return o1.compareToIgnoreCase(o2);
-      }
-    });
+    return new TreeMap<String, String>((o1, o2) -> o1.compareToIgnoreCase(o2));
   }
 
   /**

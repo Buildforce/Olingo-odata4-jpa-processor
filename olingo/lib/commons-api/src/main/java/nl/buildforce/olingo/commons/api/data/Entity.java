@@ -21,6 +21,7 @@ package nl.buildforce.olingo.commons.api.data;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Data representation for a single entity.
@@ -236,20 +237,16 @@ public class Entity extends Linked {
   @Override
   public boolean equals(Object o) {
     return super.equals(o)
-        && (eTag == null ? ((Entity) o).eTag == null : eTag.equals(((Entity) o).eTag))
-        && (type == null ? ((Entity) o).type == null : type.equals(((Entity) o).type))
-        && (readLink == null ? ((Entity) o).readLink == null : readLink.equals(((Entity) o).readLink))
-        && (editLink == null ? ((Entity) o).editLink == null : editLink.equals(((Entity) o).editLink))
+        && (Objects.equals(eTag, ((Entity) o).eTag))
+        && (Objects.equals(type, ((Entity) o).type))
+        && (Objects.equals(readLink, ((Entity) o).readLink))
+        && (Objects.equals(editLink, ((Entity) o).editLink))
         && mediaEditLinks.equals(((Entity) o).mediaEditLinks)
         && operations.equals(((Entity) o).operations)
         && properties.equals(((Entity) o).properties)
-        && (mediaContentSource == null ?
-            ((Entity) o).mediaContentSource == null :
-            mediaContentSource.equals(((Entity) o).mediaContentSource))
-        && (mediaContentType == null ?
-            ((Entity) o).mediaContentType == null :
-            mediaContentType.equals(((Entity) o).mediaContentType))
-        && (mediaETag == null ? ((Entity) o).mediaETag == null : mediaETag.equals(((Entity) o).mediaETag));
+        && (Objects.equals(mediaContentSource, ((Entity) o).mediaContentSource))
+        && (Objects.equals(mediaContentType, ((Entity) o).mediaContentType))
+        && (Objects.equals(mediaETag, ((Entity) o).mediaETag));
   }
 
   @Override

@@ -1,50 +1,30 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements. See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership. The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License. You may obtain a copy of the License at
- * 
- * http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
 package nl.buildforce.olingo.server.core.uri.parser;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import nl.buildforce.olingo.commons.api.Constants;
 import nl.buildforce.olingo.commons.api.edm.Edm;
 import nl.buildforce.olingo.commons.api.edm.EdmEntityType;
 import nl.buildforce.olingo.commons.api.edm.EdmStructuredType;
 import nl.buildforce.olingo.commons.api.edm.EdmType;
 import nl.buildforce.olingo.commons.api.ex.ODataRuntimeException;
 import nl.buildforce.olingo.server.api.OData;
-import nl.buildforce.olingo.server.api.uri.UriResourceAction;
-import nl.buildforce.olingo.server.api.uri.UriResourceEntitySet;
-import nl.buildforce.olingo.server.api.uri.UriResourceFunction;
-import nl.buildforce.olingo.server.api.uri.UriResourcePartTyped;
-import nl.buildforce.olingo.server.api.uri.queryoption.ApplyOption;
-import nl.buildforce.olingo.server.api.uri.queryoption.ExpandItem;
-import nl.buildforce.olingo.server.core.uri.UriInfoImpl;
-import nl.buildforce.olingo.server.core.uri.UriResourceStartingTypeFilterImpl;
-import nl.buildforce.olingo.server.core.uri.queryoption.apply.DynamicStructuredType;
 import nl.buildforce.olingo.server.api.uri.UriInfo;
 import nl.buildforce.olingo.server.api.uri.UriInfoKind;
 import nl.buildforce.olingo.server.api.uri.UriResource;
+import nl.buildforce.olingo.server.api.uri.UriResourceAction;
 import nl.buildforce.olingo.server.api.uri.UriResourceCount;
+import nl.buildforce.olingo.server.api.uri.UriResourceEntitySet;
+import nl.buildforce.olingo.server.api.uri.UriResourceFunction;
+import nl.buildforce.olingo.server.api.uri.UriResourcePartTyped;
 import nl.buildforce.olingo.server.api.uri.UriResourceRef;
 import nl.buildforce.olingo.server.api.uri.UriResourceValue;
 import nl.buildforce.olingo.server.api.uri.queryoption.AliasQueryOption;
 import nl.buildforce.olingo.server.api.uri.queryoption.ApplyItem;
+import nl.buildforce.olingo.server.api.uri.queryoption.ApplyOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.ExpandItem;
 import nl.buildforce.olingo.server.api.uri.queryoption.ExpandOption;
 import nl.buildforce.olingo.server.api.uri.queryoption.FilterOption;
 import nl.buildforce.olingo.server.api.uri.queryoption.OrderByItem;
@@ -54,6 +34,8 @@ import nl.buildforce.olingo.server.api.uri.queryoption.SearchOption;
 import nl.buildforce.olingo.server.api.uri.queryoption.SelectOption;
 import nl.buildforce.olingo.server.api.uri.queryoption.SystemQueryOption;
 import nl.buildforce.olingo.server.api.uri.queryoption.SystemQueryOptionKind;
+import nl.buildforce.olingo.server.core.uri.UriInfoImpl;
+import nl.buildforce.olingo.server.core.uri.UriResourceStartingTypeFilterImpl;
 import nl.buildforce.olingo.server.core.uri.parser.UriTokenizer.TokenKind;
 import nl.buildforce.olingo.server.core.uri.parser.search.SearchParser;
 import nl.buildforce.olingo.server.core.uri.queryoption.AliasQueryOptionImpl;
@@ -71,17 +53,18 @@ import nl.buildforce.olingo.server.core.uri.queryoption.SkipOptionImpl;
 import nl.buildforce.olingo.server.core.uri.queryoption.SkipTokenOptionImpl;
 import nl.buildforce.olingo.server.core.uri.queryoption.SystemQueryOptionImpl;
 import nl.buildforce.olingo.server.core.uri.queryoption.TopOptionImpl;
+import nl.buildforce.olingo.server.core.uri.queryoption.apply.DynamicStructuredType;
 import nl.buildforce.olingo.server.core.uri.validator.UriValidationException;
 
 public class Parser {
-  private static final String ATOM = "atom";
-  private static final String JSON = "json";
-  private static final String XML = "xml";
-  private static final String DOLLAR = "$";
   private static final String AT = "@";
-  private static final String NULL = "null";
+  private static final String ATOM = "atom";
+  private static final String DOLLAR = "$";
   private static final String ENTITY = "$entity";
   private static final String HTTP = "http";
+  private static final String JSON = "json";
+  private static final String NULL = "null";
+  private static final String XML = "xml";
 
   private final Edm edm;
   private final OData odata;
@@ -91,7 +74,7 @@ public class Parser {
     this.odata = odata;
   }
 
-  public UriInfo parseUri(String path, String query, String fragment, String baseUri)
+  public UriInfo parseUri(String path, String query, String baseUri)
       throws UriParserException, UriValidationException {
 
     UriInfoImpl contextUriInfo = new UriInfoImpl();
@@ -142,15 +125,14 @@ public class Parser {
       ensureLastSegment(firstSegment, 1, numberOfSegments);
       contextUriInfo.setKind(UriInfoKind.service);
 
-    } else if ("$batch".equals(firstSegment)) {
+    } else if (firstSegment.startsWith("$batch")) {
       ensureLastSegment(firstSegment, 1, numberOfSegments);
       contextUriInfo.setKind(UriInfoKind.batch);
 
-    } else if ("$metadata".equals(firstSegment)) {
+    } else if (firstSegment.startsWith(Constants.METADATA)) {
       ensureLastSegment(firstSegment, 1, numberOfSegments);
       contextUriInfo.setKind(UriInfoKind.metadata);
-      contextUriInfo.setFragment(fragment);
-
+      //contextUriInfo.setFragment(fragment);
     } else if ("$all".equals(firstSegment)) {
       ensureLastSegment(firstSegment, 1, numberOfSegments);
       contextUriInfo.setKind(UriInfoKind.all);
@@ -180,7 +162,7 @@ public class Parser {
           ensureLastSegment(typeCastSegment, 2, numberOfSegments);
           contextType = resourcePathParser.parseDollarEntityTypeCast(typeCastSegment);
           contextUriInfo = (UriInfoImpl) new Parser(edm, odata).
-              parseUri("/" + idOptionText, query, fragment, baseUri);
+              parseUri("/" + idOptionText, query, baseUri);
           contextUriInfo.setEntityTypeCast((EdmEntityType) contextType);
         } else {
           /*
@@ -188,7 +170,7 @@ public class Parser {
             http://localhost:8080/odata-server-tecsvc/odata.svc/$entity?$id=ESAllPrim(32527)
            */
           contextUriInfo = (UriInfoImpl) new Parser(edm, odata).
-                  parseUri("/" + idOptionText, query, fragment, baseUri);
+                  parseUri("/" + idOptionText, query, baseUri);
         }
         contextType = contextUriInfo.getEntityTypeCast();
         contextUriInfo.setKind(UriInfoKind.entityId);
@@ -298,7 +280,7 @@ public class Parser {
   }
 
   private QueryOption parseOption(String optionName, String optionValue)
-      throws UriParserException, UriValidationException {
+      throws UriParserException/*, UriValidationException*/ {
     if (optionName.startsWith(DOLLAR)) {
       SystemQueryOptionKind kind = SystemQueryOptionKind.get(optionName);
       if (kind == null) {

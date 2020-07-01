@@ -33,9 +33,9 @@
     <coveralls.version>4.3.0</coveralls.version>
     <derby.version>10.15.2.0</derby.version>
     <eclipselink.prstnc.version>3.0.0-M1</eclipselink.prstnc.version>
-    <jackson.version>2.11.0</jackson.version>
+    <!--<jackson.version>2.11.1</jackson.version>-->
     <jacoco.version>0.8.5</jacoco.version>
-    <jakarta-servlet.version>5.0.0-M1</jakarta-servlet.version>
+    <!--<jakarta-servlet.version>5.0.0-M1</jakarta-servlet.version>-->
     <jakarta.persistence.api>3.0.0-RC2</jakarta.persistence.api>
     <jpa-processor.version>0.3.8-M0</jpa-processor.version>
     <maven.compiler.version>3.8.1</maven.compiler.version>

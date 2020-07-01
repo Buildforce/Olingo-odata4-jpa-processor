@@ -79,10 +79,6 @@
               *
             </Import-Package>
             <!-- workaround due to the current server-api server-core interdependency -->
-            <DynamicImport-Package>
-              nl.buildforce.olingo.netty.server.core,
-              nl.buildforce.olingo.server.core
-            </DynamicImport-Package>
           </instructions>
         </configuration>
       </plugin>

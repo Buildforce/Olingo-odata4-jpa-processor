@@ -19,6 +19,7 @@
 package nl.buildforce.olingo.commons.api.edm;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * A full qualified name of any element in the EDM consists of a name and a namespace.
@@ -90,8 +91,8 @@ public final class FullQualifiedName implements Serializable {
     }
 
     FullQualifiedName that = (FullQualifiedName) o;
-    return (namespace == null ? that.namespace == null : namespace.equals(that.namespace))
-        && (name == null ? that.name == null : name.equals(that.name));
+    return (Objects.equals(namespace, that.namespace))
+        && (Objects.equals(name, that.name));
   }
 
   @Override

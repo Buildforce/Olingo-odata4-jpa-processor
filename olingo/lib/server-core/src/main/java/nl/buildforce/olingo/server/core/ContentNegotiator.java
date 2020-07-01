@@ -123,12 +123,8 @@ public final class ContentNegotiator {
           charsets = getAcceptCharset(formatParameters.get(ContentType.PARAMETER_CHARSET));
         }
         result = getAcceptedType(formatTypes, supportedContentTypes, charsets);
-      } catch (IllegalArgumentException e) {
+      } catch (IllegalArgumentException | AcceptHeaderContentNegotiatorException e) {
         throw new AcceptHeaderContentNegotiatorException(
-            "Unsupported $format=" + formatString, e,
-            AcceptHeaderContentNegotiatorException.MessageKeys.UNSUPPORTED_FORMAT_OPTION, formatString);
-      } catch (AcceptHeaderContentNegotiatorException e) {
-        throw new AcceptHeaderContentNegotiatorException (
             "Unsupported $format=" + formatString, e,
             AcceptHeaderContentNegotiatorException.MessageKeys.UNSUPPORTED_FORMAT_OPTION, formatString);
       } catch (ContentNegotiatorException e) {

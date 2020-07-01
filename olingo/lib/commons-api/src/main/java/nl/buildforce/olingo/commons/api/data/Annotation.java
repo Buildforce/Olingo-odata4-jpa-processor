@@ -18,6 +18,8 @@
  */
 package nl.buildforce.olingo.commons.api.data;
 
+import java.util.Objects;
+
 /**
  * Represents an instance annotation.
  */
@@ -44,7 +46,7 @@ public class Annotation extends Valuable {
   @Override
   public boolean equals(Object o) {
     return super.equals(o)
-        && (term == null ? ((Annotation) o).term == null : term.equals(((Annotation) o).term));
+        && (Objects.equals(term, ((Annotation) o).term));
   }
 
   @Override

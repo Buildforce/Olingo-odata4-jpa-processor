@@ -18,6 +18,8 @@
  */
 package nl.buildforce.olingo.commons.api.data;
 
+import java.util.Objects;
+
 /**
  * Data representation for a parameter.
  */
@@ -60,7 +62,7 @@ public class Parameter extends Valuable {
   @Override
   public boolean equals(Object o) {
     return super.equals(o)
-        && (name == null ? ((Parameter) o).name == null : name.equals(((Parameter) o).name));
+        && (Objects.equals(name, ((Parameter) o).name));
   }
 
   @Override

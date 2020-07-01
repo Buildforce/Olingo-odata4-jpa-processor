@@ -136,11 +136,7 @@ public class ODataXmlSerializer extends AbstractODataSerializer {
       outputStream.close();
 
       return SerializerResultImpl.with().content(buffer.getInputStream()).build();
-    } catch (XMLStreamException e) {
-      cachedException =
-          new SerializerException(IO_EXCEPTION_TEXT, e, SerializerException.MessageKeys.IO_EXCEPTION);
-      throw cachedException;
-    } catch (IOException e) {
+    } catch (XMLStreamException | IOException e) {
       cachedException =
           new SerializerException(IO_EXCEPTION_TEXT, e, SerializerException.MessageKeys.IO_EXCEPTION);
       throw cachedException;
@@ -182,11 +178,7 @@ public class ODataXmlSerializer extends AbstractODataSerializer {
       outputStream.close();
 
       return SerializerResultImpl.with().content(buffer.getInputStream()).build();
-    } catch (XMLStreamException e) {
-      cachedException =
-          new SerializerException(IO_EXCEPTION_TEXT, e, SerializerException.MessageKeys.IO_EXCEPTION);
-      throw cachedException;
-    } catch (IOException e) {
+    } catch (XMLStreamException | IOException e) {
       cachedException =
           new SerializerException(IO_EXCEPTION_TEXT, e, SerializerException.MessageKeys.IO_EXCEPTION);
       throw cachedException;
@@ -270,11 +262,7 @@ public class ODataXmlSerializer extends AbstractODataSerializer {
       outputStream.close();
 
       return SerializerResultImpl.with().content(buffer.getInputStream()).build();
-    } catch (XMLStreamException e) {
-      cachedException =
-          new SerializerException(IO_EXCEPTION_TEXT, e, SerializerException.MessageKeys.IO_EXCEPTION);
-      throw cachedException;
-    } catch (IOException e) {
+    } catch (XMLStreamException | IOException e) {
       cachedException =
           new SerializerException(IO_EXCEPTION_TEXT, e, SerializerException.MessageKeys.IO_EXCEPTION);
       throw cachedException;
@@ -365,11 +353,7 @@ public class ODataXmlSerializer extends AbstractODataSerializer {
       outputStream.close();
 
       return SerializerResultImpl.with().content(buffer.getInputStream()).build();
-    } catch (XMLStreamException e) {
-      cachedException =
-          new SerializerException(IO_EXCEPTION_TEXT, e, SerializerException.MessageKeys.IO_EXCEPTION);
-      throw cachedException;
-    } catch (IOException e) {
+    } catch (XMLStreamException | IOException e) {
       cachedException =
           new SerializerException(IO_EXCEPTION_TEXT, e, SerializerException.MessageKeys.IO_EXCEPTION);
       throw cachedException;
@@ -1055,7 +1039,7 @@ public class ODataXmlSerializer extends AbstractODataSerializer {
       outputStream.close();
 
       return SerializerResultImpl.with().content(buffer.getInputStream()).build();
-    } catch (XMLStreamException e) {
+    } catch (XMLStreamException | IOException e) {
       cachedException = new SerializerException(IO_EXCEPTION_TEXT, e,
           SerializerException.MessageKeys.IO_EXCEPTION);
       throw cachedException;
@@ -1063,10 +1047,6 @@ public class ODataXmlSerializer extends AbstractODataSerializer {
       cachedException = new SerializerException("Wrong value for property!", e,
           SerializerException.MessageKeys.WRONG_PROPERTY_VALUE,
           property.getName(), property.getValue().toString());
-      throw cachedException;
-    } catch (IOException e) {
-      cachedException =
-          new SerializerException(IO_EXCEPTION_TEXT, e, SerializerException.MessageKeys.IO_EXCEPTION);
       throw cachedException;
     } finally {
       closeCircleStreamBufferOutput(outputStream, cachedException);
@@ -1123,11 +1103,7 @@ public class ODataXmlSerializer extends AbstractODataSerializer {
       outputStream.close();
 
       return SerializerResultImpl.with().content(buffer.getInputStream()).build();
-    } catch (XMLStreamException e) {
-      cachedException =
-          new SerializerException(IO_EXCEPTION_TEXT, e, SerializerException.MessageKeys.IO_EXCEPTION);
-      throw cachedException;
-    } catch (IOException e) {
+    } catch (XMLStreamException | IOException e) {
       cachedException =
           new SerializerException(IO_EXCEPTION_TEXT, e, SerializerException.MessageKeys.IO_EXCEPTION);
       throw cachedException;
@@ -1172,7 +1148,7 @@ public class ODataXmlSerializer extends AbstractODataSerializer {
       outputStream.close();
 
       return SerializerResultImpl.with().content(buffer.getInputStream()).build();
-    } catch (XMLStreamException e) {
+    } catch (XMLStreamException | IOException e) {
       cachedException = new SerializerException(IO_EXCEPTION_TEXT, e,
           SerializerException.MessageKeys.IO_EXCEPTION);
       throw cachedException;
@@ -1180,10 +1156,6 @@ public class ODataXmlSerializer extends AbstractODataSerializer {
       cachedException = new SerializerException("Wrong value for property!", e,
           SerializerException.MessageKeys.WRONG_PROPERTY_VALUE,
           property.getName(), property.getValue().toString());
-      throw cachedException;
-    } catch (IOException e) {
-      cachedException =
-          new SerializerException(IO_EXCEPTION_TEXT, e, SerializerException.MessageKeys.IO_EXCEPTION);
       throw cachedException;
     } finally {
       closeCircleStreamBufferOutput(outputStream, cachedException);
@@ -1230,11 +1202,7 @@ public class ODataXmlSerializer extends AbstractODataSerializer {
       writer.close();
       outputStream.close();
       return SerializerResultImpl.with().content(buffer.getInputStream()).build();
-    } catch (XMLStreamException e) {
-      cachedException =
-          new SerializerException(IO_EXCEPTION_TEXT, e, SerializerException.MessageKeys.IO_EXCEPTION);
-      throw cachedException;
-    } catch (IOException e) {
+    } catch (XMLStreamException | IOException e) {
       cachedException =
           new SerializerException(IO_EXCEPTION_TEXT, e, SerializerException.MessageKeys.IO_EXCEPTION);
       throw cachedException;
@@ -1265,11 +1233,7 @@ public class ODataXmlSerializer extends AbstractODataSerializer {
       outputStream.close();
 
       return SerializerResultImpl.with().content(buffer.getInputStream()).build();
-    } catch (XMLStreamException e) {
-      cachedException =
-          new SerializerException(IO_EXCEPTION_TEXT, e, SerializerException.MessageKeys.IO_EXCEPTION);
-      throw cachedException;
-    } catch (IOException e) {
+    } catch (XMLStreamException | IOException e) {
       cachedException =
           new SerializerException(IO_EXCEPTION_TEXT, e, SerializerException.MessageKeys.IO_EXCEPTION);
       throw cachedException;
@@ -1333,11 +1297,7 @@ public class ODataXmlSerializer extends AbstractODataSerializer {
       outputStream.close();
 
       return SerializerResultImpl.with().content(buffer.getInputStream()).build();
-    } catch (XMLStreamException e) {
-      cachedException =
-          new SerializerException(IO_EXCEPTION_TEXT, e, SerializerException.MessageKeys.IO_EXCEPTION);
-      throw cachedException;
-    } catch (IOException e) {
+    } catch (XMLStreamException | IOException e) {
       cachedException =
           new SerializerException(IO_EXCEPTION_TEXT, e, SerializerException.MessageKeys.IO_EXCEPTION);
       throw cachedException;

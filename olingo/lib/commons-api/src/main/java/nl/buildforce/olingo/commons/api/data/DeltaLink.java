@@ -19,6 +19,7 @@
 package nl.buildforce.olingo.commons.api.data;
 
 import java.net.URI;
+import java.util.Objects;
 
 /**
  * A delta link.
@@ -88,9 +89,9 @@ public class DeltaLink extends Annotatable {
 
     DeltaLink other = (DeltaLink) o;
     return getAnnotations().equals(other.getAnnotations())
-        && (source == null ? other.source == null : source.equals(other.source))
-        && (relationship == null ? other.relationship == null : relationship.equals(other.relationship))
-        && (target == null ? other.target == null : target.equals(other.target));
+        && (Objects.equals(source, other.source))
+        && (Objects.equals(relationship, other.relationship))
+        && (Objects.equals(target, other.target));
   }
 
   @Override

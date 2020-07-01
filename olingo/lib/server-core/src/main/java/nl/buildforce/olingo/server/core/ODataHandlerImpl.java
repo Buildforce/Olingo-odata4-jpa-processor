@@ -140,7 +140,7 @@ public class ODataHandlerImpl implements ODataHandler {
     int measurementUriParser = debugger.startRuntimeMeasurement("Parser", "parseUri");
     try {
       uriInfo = new Parser(serviceMetadata.getEdm(), odata)
-          .parseUri(request.getRawODataPath(), request.getRawQueryPath(), null, request.getRawBaseUri());
+          .parseUri(request.getRawODataPath(), request.getRawQueryPath(), request.getRawBaseUri());
     } catch (ODataLibraryException e) {
       debugger.stopRuntimeMeasurement(measurementUriParser);
       debugger.stopRuntimeMeasurement(measurementHandle);
@@ -184,8 +184,6 @@ public class ODataHandlerImpl implements ODataHandler {
       FormatOption formatOption = getFormatOption(request, uriInfo);
       requestedContentType = ContentNegotiator.doContentNegotiation(formatOption, request,
           getCustomContentTypeSupport(), RepresentationType.ERROR);
-    } catch (AcceptHeaderContentNegotiatorException e) {
-      requestedContentType = ContentType.JSON;
     } catch (ContentNegotiatorException e) {
       requestedContentType = ContentType.JSON;
     }

@@ -95,8 +95,6 @@ public class AcceptCharset {
     for (String value : values) {
       try {
         result.add(new AcceptCharset(value.trim()));
-      } catch (UnsupportedCharsetException e) {
-        exceptionList.add(e);
       } catch (IllegalArgumentException e) {
         exceptionList.add(e);
       }
@@ -151,15 +149,12 @@ public class AcceptCharset {
    * @param toSort list which is sorted and hence re-arranged
    */
   private static void sort(List<AcceptCharset> toSort) {
-    toSort.sort(new Comparator<AcceptCharset>() {
-      @Override
-      public int compare(AcceptCharset a1, AcceptCharset a2) {
-        int compare = a2.getQuality().compareTo(a1.getQuality());
-        if (compare != 0) {
-          return compare;
-        }
-        return a2.getParameters().size() - a1.getParameters().size();
+    toSort.sort((a1, a2) -> {
+      int compare = a2.getQuality().compareTo(a1.getQuality());
+      if (compare != 0) {
+        return compare;
       }
+      return a2.getParameters().size() - a1.getParameters().size();
     });
   }
 

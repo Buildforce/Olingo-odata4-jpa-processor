@@ -19,6 +19,7 @@
 package nl.buildforce.olingo.commons.api.data;
 
 import java.util.List;
+import java.util.Objects;
 
 //import org.apache.olingo.commons.api.edm.geo.Geospatial;
 
@@ -183,9 +184,9 @@ public abstract class Valuable extends Annotatable {
 
     Valuable other = (Valuable) o;
     return getAnnotations().equals(other.getAnnotations())
-        && (valueType == null ? other.valueType == null : valueType.equals(other.valueType))
-        && (value == null ? other.value == null : value.equals(other.value))
-        && (type == null ? other.type == null : type.equals(other.type));
+        && (Objects.equals(valueType, other.valueType))
+        && (Objects.equals(value, other.value))
+        && (Objects.equals(type, other.type));
   }
 
   @Override

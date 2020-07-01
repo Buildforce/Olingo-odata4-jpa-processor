@@ -230,25 +230,22 @@ public final class AcceptType {
    * @param toSort list which is sorted and hence re-arranged
    */
   private static void sort(List<AcceptType> toSort) {
-    toSort.sort(new Comparator<AcceptType>() {
-        @Override
-        public int compare(AcceptType a1, AcceptType a2) {
-            int compare = a2.getQuality().compareTo(a1.getQuality());
-            if (compare != 0) {
-                return compare;
-            }
-            compare = (a1.getType().equals(TypeUtil.MEDIA_TYPE_WILDCARD) ? 1 : 0)
-                    - (a2.getType().equals(TypeUtil.MEDIA_TYPE_WILDCARD) ? 1 : 0);
-            if (compare != 0) {
-                return compare;
-            }
-            compare = (a1.getSubtype().equals(TypeUtil.MEDIA_TYPE_WILDCARD) ? 1 : 0)
-                    - (a2.getSubtype().equals(TypeUtil.MEDIA_TYPE_WILDCARD) ? 1 : 0);
-            if (compare != 0) {
-                return compare;
-            }
-            return a2.getParameters().size() - a1.getParameters().size();
+    toSort.sort((a1, a2) -> {
+        int compare = a2.getQuality().compareTo(a1.getQuality());
+        if (compare != 0) {
+            return compare;
         }
+        compare = (a1.getType().equals(TypeUtil.MEDIA_TYPE_WILDCARD) ? 1 : 0)
+                - (a2.getType().equals(TypeUtil.MEDIA_TYPE_WILDCARD) ? 1 : 0);
+        if (compare != 0) {
+            return compare;
+        }
+        compare = (a1.getSubtype().equals(TypeUtil.MEDIA_TYPE_WILDCARD) ? 1 : 0)
+                - (a2.getSubtype().equals(TypeUtil.MEDIA_TYPE_WILDCARD) ? 1 : 0);
+        if (compare != 0) {
+            return compare;
+        }
+        return a2.getParameters().size() - a1.getParameters().size();
     });
   }
 

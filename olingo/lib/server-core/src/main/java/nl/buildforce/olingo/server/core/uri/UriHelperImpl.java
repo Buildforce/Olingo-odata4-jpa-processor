@@ -151,7 +151,7 @@ public class UriHelperImpl implements UriHelper {
 
     try {
       List<UriResource> uriResourceParts =
-          new Parser(edm, new ODataImpl()).parseUri(oDataPath, null, null, rawServiceRoot).getUriResourceParts();
+          new Parser(edm, new ODataImpl()).parseUri(oDataPath, null, rawServiceRoot).getUriResourceParts();
       if (uriResourceParts.size() == 1 && uriResourceParts.get(0).getKind() == UriResourceKind.entitySet) {
         UriResourceEntitySet entityUriResource = (UriResourceEntitySet) uriResourceParts.get(0);
 

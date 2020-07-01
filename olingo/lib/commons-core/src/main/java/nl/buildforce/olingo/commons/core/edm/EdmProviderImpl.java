@@ -629,7 +629,7 @@ public class EdmProviderImpl extends AbstractEdm {
               isEntityPreviousTypeCompatibleToBindingParam(bindingParameterTypeName, parameter) ||
               isComplexPreviousTypeCompatibleToBindingParam(bindingParameterTypeName, parameter, 
                   isBindingParameterCollection))
-              && isBindingParameterCollection.booleanValue() == parameter.isCollection()) {
+              && isBindingParameterCollection == parameter.isCollection()) {
             addOperationsAnnotations(action, actionName);
             return new EdmActionImpl(this, actionName, action);
           }
@@ -717,8 +717,8 @@ public class EdmProviderImpl extends AbstractEdm {
       String paramPropertyTypeName = property.getTypeAsFQNObject().getFullQualifiedNameAsString();
       if ((complexType != null && complexType.getBaseType() != null && 
           complexType.getBaseTypeFQN().getFullQualifiedNameAsString().equals(paramPropertyTypeName)) || 
-          paramPropertyTypeName.equals(bindingParameterTypeName.getFullQualifiedNameAsString()) && 
-          isBindingParameterCollection.booleanValue() == property.isCollection()) {
+          paramPropertyTypeName.equals(bindingParameterTypeName.getFullQualifiedNameAsString()) &&
+                  isBindingParameterCollection == property.isCollection()) {
         return true;
       }
     }
@@ -766,7 +766,7 @@ public class EdmProviderImpl extends AbstractEdm {
               ||isEntityPreviousTypeCompatibleToBindingParam(bindingParameterTypeName, bindingParameter) ||
               isComplexPreviousTypeCompatibleToBindingParam(bindingParameterTypeName, bindingParameter, 
                   isBindingParameterCollection))
-              && isBindingParameterCollection.booleanValue() == bindingParameter.isCollection()
+              && isBindingParameterCollection == bindingParameter.isCollection()
               && parameterNamesCopy.size() == providerParameters.size() - 1) {
 
             List<String> providerParameterNames = new ArrayList<String>();

@@ -663,8 +663,8 @@ public class ODataDispatcher {
   private void checkMethods(HttpMethod requestMethod, HttpMethod... allowedMethods)
       throws ODataHandlerException {
     //Check if the request method is one of the allowed ones
-    for (int i = 0; i < allowedMethods.length; i++) {
-      if (requestMethod == allowedMethods[i]) {
+    for (HttpMethod allowedMethod : allowedMethods) {
+      if (requestMethod == allowedMethod) {
         return;
       }
     }

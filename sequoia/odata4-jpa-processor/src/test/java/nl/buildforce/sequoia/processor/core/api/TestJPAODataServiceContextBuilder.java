@@ -7,25 +7,14 @@ import nl.buildforce.sequoia.metadata.core.edm.mapper.extension.IntermediateNavi
 import nl.buildforce.sequoia.metadata.core.edm.mapper.extension.IntermediatePropertyAccess;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.extension.IntermediateReferenceList;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.impl.JPADefaultEdmNameBuilder;
-import nl.buildforce.sequoia.processor.core.api.example.JPAExamplePagingProvider;
-import nl.buildforce.sequoia.processor.core.database.JPADefaultDatabaseProcessor;
-import nl.buildforce.sequoia.processor.core.database.JPAODataDatabaseOperations;
 import nl.buildforce.sequoia.processor.core.testmodel.DataSourceHelper;
-import nl.buildforce.olingo.commons.api.edm.FullQualifiedName;
-import nl.buildforce.olingo.commons.api.edmx.EdmxReference;
 import nl.buildforce.olingo.commons.api.ex.ODataException;
-import nl.buildforce.olingo.server.api.processor.ErrorProcessor;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import javax.sql.DataSource;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
