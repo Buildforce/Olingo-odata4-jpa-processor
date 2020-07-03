@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>nl.buildforce.odata4-jpa</groupId>
@@ -14,35 +14,21 @@
   <packaging>pom</packaging>
 
   <name>Olingo-ODataV4 CapSelUI5</name>
-  <url>http://olingo.apache.org</url>
-  <inceptionYear>2020</inceptionYear>
+
   <modules>
-    <module>lib</module>
+    <module>commons-api</module>
+    <module>commons-core</module>
+    <module>server-api</module>
+    <module>server-core</module>
   </modules>
-  <scm>
-    <connection>scm:git:git://gitbox.apache.org/repos/asf/olingo-odata4.git</connection>
-    <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/olingo-odata4.git</developerConnection>
-    <url>https://gitbox.apache.org/repos/asf?p=olingo-odata4.git</url>
-  </scm>
-  <distributionManagement>
-    <repository>
-      <id>bintray-serioussoftware-repo</id>
-      <name>serioussoftware-maven3</name>
-      <url>https://api.bintray.com/maven/serioussoftware/repo/Olingo/;publish=1</url>
-    </repository>
-  </distributionManagement>
+
   <properties>
-    <maven.plugin.api.version>3.6.3</maven.plugin.api.version>
-    <netty.version>4.1.50.Final</netty.version>
-    <maven.bundle.plugin.version>2.5.3</maven.bundle.plugin.version>
-    <maven.plugin.tools.version>3.6.0</maven.plugin.tools.version>
     <commons.codec.version>1.14</commons.codec.version>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <commons.io.version>2.7</commons.io.version>
-    <!--<jackson.version>2.11.1</jackson.version>-->
-    <olingo.deploy.skip>true</olingo.deploy.skip>
-    <sl4j.version>2.0.0-alpha1</sl4j.version>
-    <project.build.source>1.8</project.build.source>
+    <maven.bundle.plugin.version>2.5.3</maven.bundle.plugin.version>
+    <maven.plugin.api.version>3.6.3</maven.plugin.api.version>
+    <maven.plugin.tools.version>3.6.0</maven.plugin.tools.version>
+    <!--<sl4j.version>2.0.0-alpha1</sl4j.version>-->
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -66,31 +52,33 @@
         <artifactId>jackson-databind</artifactId>
         <version>${jackson.version}</version>
       </dependency>
-      <dependency>
+<!--      <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
         <artifactId>jackson-annotations</artifactId>
         <version>${jackson.version}</version>
-      </dependency>
+      </dependency>-->
       <dependency>
         <groupId>com.fasterxml.jackson.dataformat</groupId>
         <artifactId>jackson-dataformat-xml</artifactId>
         <version>${jackson.version}</version>
       </dependency>
-      <dependency>
+<!--      <dependency>
         <groupId>com.fasterxml.jackson.jaxrs</groupId>
         <artifactId>jackson-jaxrs-json-provider</artifactId>
         <version>${jackson.version}</version>
-      </dependency>
+      </dependency>-->
       <dependency>
         <groupId>javax.xml.stream</groupId>
         <artifactId>stax-api</artifactId>
         <version>${stax.api.version}</version>
       </dependency>
+<!--
       <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
         <version>${sl4j.version}</version>
       </dependency>
+-->
       <dependency>
         <groupId>jakarta.servlet</groupId>
         <artifactId>jakarta.servlet-api</artifactId>
@@ -119,14 +107,28 @@
         <version>2.0.2-beta</version>
         <scope>test</scope>
       </dependency>
-      <dependency>
+<!--      <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-simple</artifactId>
         <version>${sl4j.version}</version>
         <scope>test</scope>
-      </dependency>
+      </dependency>-->
     </dependencies>
   </dependencyManagement>
+
+  <scm>
+    <connection>scm:git:git://gitbox.apache.org/repos/asf/olingo-odata4.git</connection>
+    <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/olingo-odata4.git</developerConnection>
+    <url>https://gitbox.apache.org/repos/asf?p=olingo-odata4.git</url>
+  </scm>
+  <distributionManagement>
+    <repository>
+      <id>bintray-serioussoftware-repo</id>
+      <name>serioussoftware-maven3</name>
+      <url>https://api.bintray.com/maven/serioussoftware/repo/Olingo/;publish=1</url>
+    </repository>
+  </distributionManagement>
+
   <build>
     <finalName>${project.name}-${project.version}</finalName>
     <pluginManagement>
@@ -179,7 +181,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-plugin-plugin</artifactId>
-          <version>3.6.0</version>
+          <version>${maven.plugin.tools.version}</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
@@ -279,11 +281,23 @@
       </plugin>
     </plugins>
   </build>
+
   <profiles>
     <profile>
-      <id>apache.deploy</id>
+      <id>build.fast</id>
       <properties>
-        <olingo.deploy.skip>false</olingo.deploy.skip>
+        <pmd.skip>true</pmd.skip>
+        <rat.skip>true</rat.skip>
+        <checkstyle.skip>true</checkstyle.skip>
+        <exclude.regex>.*(proxy|client).*</exclude.regex>
+      </properties>
+    </profile>
+    <profile>
+      <id>build.quality</id>
+      <properties>
+        <cobertura.skip>false</cobertura.skip>
+        <!-- nothing excluded -->
+        <exclude.regex></exclude.regex>
       </properties>
     </profile>
   </profiles>

@@ -29,7 +29,7 @@
 
   <parent>
     <groupId>nl.buildforce.olingo</groupId>
-    <artifactId>OData4-lib</artifactId>
+    <artifactId>Olingo-parent</artifactId>
     <version>4.8.1</version>
     <relativePath>..</relativePath>
   </parent>

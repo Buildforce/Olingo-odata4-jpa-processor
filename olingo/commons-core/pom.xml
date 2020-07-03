@@ -23,8 +23,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>OData4-lib</artifactId>
-  <packaging>pom</packaging>
+  <artifactId>odata-commons-core</artifactId>
+  <packaging>bundle</packaging>
   <name>${project.artifactId}</name>
 
   <parent>
@@ -34,23 +34,28 @@
     <relativePath>..</relativePath>
   </parent>
 
-  <modules>
-    <module>commons-api</module>
-    <module>commons-core</module>
-    <!--<module>client-api</module>-->
-    <!--<module>client-core</module>-->
-    <module>server-api</module>
-    <module>server-core</module>
-    <!--<module>server-core-ext</module>-->
-    <!--<module>server-test</module>-->
-  </modules>
+  <dependencies>
+    <dependency>
+      <groupId>nl.buildforce.olingo</groupId>
+      <artifactId>odata-commons-api</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+   <dependency>
+      <groupId>commons-codec</groupId>
+      <artifactId>commons-codec</artifactId>
+    </dependency>
 
-  <properties>
-    <!--<jakarta-servlet.version>5.0.0-M1</jakarta-servlet.version>-->
-    <cobertura.skip>true</cobertura.skip>
-    <!-- exclude proxy tests by default -->
-    <exclude.regex>.*proxy.*</exclude.regex>
-  </properties>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+       <dependency>
+          <groupId>org.mockito</groupId>
+          <artifactId>mockito-all</artifactId>
+          <scope>test</scope>
+        </dependency>
+  </dependencies>
 
   <build>
     <plugins>
@@ -61,26 +66,25 @@
           <skip>false</skip>
         </configuration>
       </plugin>-->
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+    		<version>${maven.bundle.plugin.version}</version>
+        <extensions>true</extensions>
+        <configuration>
+          <instructions>
+            <Export-Package>
+              nl.buildforce.olingo.commons.core,
+              nl.buildforce.olingo.commons.core.edm,
+              nl.buildforce.olingo.commons.core.edm.provider,
+              nl.buildforce.olingo.commons.core.edm.primitivetype,
+            </Export-Package>
+            <Import-Package>
+              *
+            </Import-Package>
+          </instructions>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
-
-  <profiles>
-    <profile>
-      <id>build.fast</id>
-      <properties>
-        <pmd.skip>true</pmd.skip>
-        <rat.skip>true</rat.skip>
-        <checkstyle.skip>true</checkstyle.skip>
-        <exclude.regex>.*(proxy|client).*</exclude.regex>
-      </properties>
-    </profile>
-    <profile>
-      <id>build.quality</id>
-      <properties>
-        <cobertura.skip>false</cobertura.skip>
-        <!-- nothing excluded -->
-        <exclude.regex></exclude.regex>
-      </properties>
-    </profile>
-  </profiles>
 </project>
