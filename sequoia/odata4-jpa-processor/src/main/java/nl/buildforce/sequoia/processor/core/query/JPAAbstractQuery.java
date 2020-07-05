@@ -52,9 +52,9 @@ public abstract class JPAAbstractQuery {
   protected final EntityManager em;
   protected final JPAEntityType jpaEntity;
   protected final JPAServiceDocument sd;
-  protected final OData odata;
+  //protected final OData odata;
   protected final Optional<JPAODataClaimProvider> claimsProvider;
-  protected JPAServiceDebugger debugger = new EmptyDebugger();
+  // protected JPAServiceDebugger debugger = new EmptyDebugger();
   protected List<String> groups = Collections.emptyList();
 
   public JPAAbstractQuery(final OData odata, final JPAServiceDocument sd, final JPAEntityType jpaEntityType,
@@ -67,16 +67,16 @@ public abstract class JPAAbstractQuery {
     this.claimsProvider = claimsProvider;
   }
 
-  public JPAAbstractQuery(final OData odata, final JPAServiceDocument sd, final JPAEntityType jpaEntityType,
+/*  public JPAAbstractQuery(final OData odata, final JPAServiceDocument sd, final JPAEntityType jpaEntityType,
       final EntityManager em, final JPAServiceDebugger debugger, final Optional<JPAODataClaimProvider> claimsProvider) {
     this.em = em;
     this.cb = em.getCriteriaBuilder();
     this.sd = sd;
     this.jpaEntity = jpaEntityType;
-    this.debugger = debugger;
+    // this.debugger = debugger;
     this.odata = odata;
     this.claimsProvider = claimsProvider;
-  }
+  }*/
 
   public JPAAbstractQuery(final OData odata, final JPAServiceDocument sd, final EdmEntityType edmEntityType,
       final EntityManager em, final Optional<JPAODataClaimProvider> claimsProvider) {
@@ -99,7 +99,7 @@ public abstract class JPAAbstractQuery {
       this.sd = sd;
     em = requestContext.getEntityManager();
     cb = em.getCriteriaBuilder();
-    debugger = requestContext.getDebugger();
+    // debugger = requestContext.getDebugger();
     claimsProvider = requestContext.getClaimsProvider();
     groups = groupsProvider.isPresent() ? groupsProvider.get().getGroups() : Collections.emptyList();
   }
@@ -132,9 +132,11 @@ public abstract class JPAAbstractQuery {
 
   public abstract AbstractQuery<?> getQuery();
 
+/*
   public JPAServiceDebugger getDebugger() {
     return debugger;
   }
+*/
 
   protected abstract Locale getLocale();
 

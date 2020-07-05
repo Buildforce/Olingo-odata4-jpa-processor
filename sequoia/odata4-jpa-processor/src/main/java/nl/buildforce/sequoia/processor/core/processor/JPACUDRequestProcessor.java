@@ -78,7 +78,7 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
 
   public void clearFields(final ODataRequest request, ODataResponse response) throws ODataJPAProcessException {
 
-    final int handle = debugger.startRuntimeMeasurement(this, "clearFields");
+    //final int handle = debugger.startRuntimeMeasurement(this, "clearFields");
     final JPACUDRequestHandler handler = requestContext.getCUDRequestHandler();
     final EdmEntitySetInfo edmEntitySetInfo = Util.determineTargetEntitySetAndKeys(uriInfo.getUriResourceParts());
 
@@ -91,32 +91,32 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
     if (!foreignTransaction)
       ownTransaction = requestContext.getTransactionFactory().createTransaction();
     try {
-      final int updateHandle = debugger.startRuntimeMeasurement(handler, DEBUG_UPDATE_ENTITY);
+      // final int updateHandle = debugger.startRuntimeMeasurement(handler, DEBUG_UPDATE_ENTITY);
       handler.updateEntity(requestEntity, em, determineHttpVerb(request, uriInfo.getUriResourceParts()));
       if (!foreignTransaction)
         handler.validateChanges(em);
-      debugger.stopRuntimeMeasurement(updateHandle);
+      // debugger.stopRuntimeMeasurement(updateHandle);
     } catch (ODataJPAProcessException e) {
       if (!foreignTransaction)
         ownTransaction.rollback();
-      debugger.stopRuntimeMeasurement(handle);
+      // debugger.stopRuntimeMeasurement(handle);
       throw e;
     } catch (Exception e) {
       if (!foreignTransaction)
         ownTransaction.rollback();
-      debugger.stopRuntimeMeasurement(handle);
+      // debugger.stopRuntimeMeasurement(handle);
       throw new ODataJPAProcessorException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
     }
     if (!foreignTransaction)
       ownTransaction.commit();
-    debugger.stopRuntimeMeasurement(handle);
+    // debugger.stopRuntimeMeasurement(handle);
     response.setStatusCode(HttpStatusCode.NO_CONTENT.getStatusCode());
   }
 
   public void createEntity(final ODataRequest request, final ODataResponse response, final ContentType requestFormat,
       final ContentType responseFormat) throws ODataApplicationException, ODataLibraryException {
 
-    final int handle = debugger.startRuntimeMeasurement(this, DEBUG_CREATE_ENTITY);
+    // final int handle = debugger.startRuntimeMeasurement(this, DEBUG_CREATE_ENTITY);
     final JPACUDRequestHandler handler = requestContext.getCUDRequestHandler();
 
     final EdmEntitySetInfo edmEntitySetInfo = Util.determineModifyEntitySetAndKeys(uriInfo.getUriResourceParts());
@@ -132,20 +132,20 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
     if (!foreignTransaction)
       ownTransaction = requestContext.getTransactionFactory().createTransaction();
     try {
-      final int createHandle = debugger.startRuntimeMeasurement(handler, DEBUG_CREATE_ENTITY);
+      // final int createHandle = debugger.startRuntimeMeasurement(handler, DEBUG_CREATE_ENTITY);
       result = handler.createEntity(requestEntity, em);
       if (!foreignTransaction)
         handler.validateChanges(em);
-      debugger.stopRuntimeMeasurement(createHandle);
+      // debugger.stopRuntimeMeasurement(createHandle);
     } catch (ODataJPAProcessException e) {
       if (!foreignTransaction)
         ownTransaction.rollback();
-      debugger.stopRuntimeMeasurement(handle);
+      // debugger.stopRuntimeMeasurement(handle);
       throw e;
     } catch (Exception e) {
       if (!foreignTransaction)
         ownTransaction.rollback();
-      debugger.stopRuntimeMeasurement(handle);
+      // debugger.stopRuntimeMeasurement(handle);
       throw new ODataJPAProcessorException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
     }
 
@@ -153,7 +153,7 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
         && !(result instanceof Map<?, ?>)) {
       if (!foreignTransaction)
         ownTransaction.rollback();
-      debugger.stopRuntimeMeasurement(handle);
+      // debugger.stopRuntimeMeasurement(handle);
       throw new ODataJPAProcessorException(ODataJPAProcessorException.MessageKeys.WRONG_RETURN_TYPE, HttpStatusCode.INTERNAL_SERVER_ERROR, result
           .getClass().toString(), requestEntity.getEntityType().getTypeClass().toString());
     }
@@ -162,7 +162,7 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
       ownTransaction.commit();
 
     createCreateResponse(request, response, responseFormat, requestEntity, edmEntitySetInfo, result);
-    debugger.stopRuntimeMeasurement(handle);
+    // debugger.stopRuntimeMeasurement(handle);
   }
 
   /*
@@ -171,7 +171,7 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
    * DELETE http://host/service/Products(0)/Category/$ref
    */
   public void deleteEntity(final ODataRequest request, final ODataResponse response) throws ODataJPAProcessException {
-    final int handle = debugger.startRuntimeMeasurement(this, "deleteEntity");
+    // final int handle = debugger.startRuntimeMeasurement(this, "deleteEntity");
     final JPACUDRequestHandler handler = requestContext.getCUDRequestHandler();
     final JPAEntityType et;
     final Map<String, Object> jpaKeyPredicates = new HashMap<>();
@@ -202,20 +202,20 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
     if (!foreignTransaction)
       ownTransaction = requestContext.getTransactionFactory().createTransaction();
     try {
-      final int deleteHandle = debugger.startRuntimeMeasurement(handler, "deleteEntity");
+      // final int deleteHandle = debugger.startRuntimeMeasurement(handler, "deleteEntity");
       handler.deleteEntity(requestEntity, em);
       if (!foreignTransaction)
         handler.validateChanges(em);
-      debugger.stopRuntimeMeasurement(deleteHandle);
+      // debugger.stopRuntimeMeasurement(deleteHandle);
     } catch (ODataJPAProcessException e) {
       if (!foreignTransaction)
         ownTransaction.rollback();
-      debugger.stopRuntimeMeasurement(handle);
+      // debugger.stopRuntimeMeasurement(handle);
       throw e;
     } catch (Throwable e) { // NOSONAR
       if (!foreignTransaction)
         ownTransaction.rollback();
-      debugger.stopRuntimeMeasurement(handle);
+      // debugger.stopRuntimeMeasurement(handle);
       throw new ODataJPAProcessorException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
     }
     if (!foreignTransaction)
@@ -223,13 +223,13 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
 
     // 4. configure the response object
     response.setStatusCode(HttpStatusCode.NO_CONTENT.getStatusCode());
-    debugger.stopRuntimeMeasurement(handle);
+    // debugger.stopRuntimeMeasurement(handle);
   }
 
   public void updateEntity(final ODataRequest request, final ODataResponse response, final ContentType requestFormat,
       final ContentType responseFormat) throws ODataJPAProcessException, ODataLibraryException {
 
-    final int handle = debugger.startRuntimeMeasurement(this, DEBUG_UPDATE_ENTITY);
+    // final int handle = debugger.startRuntimeMeasurement(this, DEBUG_UPDATE_ENTITY);
     final JPACUDRequestHandler handler = requestContext.getCUDRequestHandler();
     final EdmEntitySetInfo edmEntitySetInfo = Util.determineModifyEntitySetAndKeys(uriInfo.getUriResourceParts());
     final Entity odataEntity = helper.convertInputStream(odata, request, requestFormat, uriInfo.getUriResourceParts());
@@ -261,26 +261,26 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
       // update request. The service MUST NOT treat an update request containing an If-Match header as an insert.
       // A PUT or PATCH request MUST NOT be treated as an update if an If-None-Match header is specified with a value of
       // "*".
-      final int updateHandle = debugger.startRuntimeMeasurement(handler, DEBUG_UPDATE_ENTITY);
+      // final int updateHandle = debugger.startRuntimeMeasurement(handler, DEBUG_UPDATE_ENTITY);
       updateResult = handler.updateEntity(requestEntity, em, determineHttpVerb(request, uriInfo.getUriResourceParts()));
       if (!foreignTransaction)
         handler.validateChanges(em);
-      debugger.stopRuntimeMeasurement(updateHandle);
+      // debugger.stopRuntimeMeasurement(updateHandle);
     } catch (ODataJPAProcessException e) {
       if (!foreignTransaction)
         ownTransaction.rollback();
-      debugger.stopRuntimeMeasurement(handle);
+      // debugger.stopRuntimeMeasurement(handle);
       throw e;
     } catch (Throwable e) {
       if (!foreignTransaction)
         ownTransaction.rollback();
-      debugger.stopRuntimeMeasurement(handle);
+      // debugger.stopRuntimeMeasurement(handle);
       throw new ODataJPAProcessorException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
     }
     if (updateResult == null) {
       if (!foreignTransaction)
         ownTransaction.rollback();
-      debugger.stopRuntimeMeasurement(handle);
+      // debugger.stopRuntimeMeasurement(handle);
       throw new ODataJPAProcessorException(ODataJPAProcessorException.MessageKeys.RETURN_NULL, HttpStatusCode.INTERNAL_SERVER_ERROR);
     }
     if (updateResult.getModifiedEntity() != null && !requestEntity.getEntityType().getTypeClass().isInstance(
@@ -289,7 +289,7 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
       // instance of a sub class even so the super class was requested.
       if (!foreignTransaction)
         ownTransaction.rollback();
-      debugger.stopRuntimeMeasurement(handle);
+      // debugger.stopRuntimeMeasurement(handle);
       throw new ODataJPAProcessorException(ODataJPAProcessorException.MessageKeys.WRONG_RETURN_TYPE, HttpStatusCode.INTERNAL_SERVER_ERROR,
           updateResult.getModifiedEntity().getClass().toString(), requestEntity.getEntityType().getTypeClass()
               .toString());
@@ -301,7 +301,7 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
           edmEntitySetInfo.getEdmEntitySet(), updateResult.getModifiedEntity());
     } else
       createUpdateResponse(request, response, responseFormat, requestEntity, edmEntitySetInfo, updateResult);
-    debugger.stopRuntimeMeasurement(handle);
+    // debugger.stopRuntimeMeasurement(handle);
   }
 
   private HttpMethod determineHttpVerb(final ODataRequest request, List<UriResource> resourceParts) {

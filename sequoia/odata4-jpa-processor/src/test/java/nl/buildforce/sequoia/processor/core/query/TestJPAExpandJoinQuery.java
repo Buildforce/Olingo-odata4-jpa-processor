@@ -62,7 +62,7 @@ public class TestJPAExpandJoinQuery extends TestBase {
 
     when(sessionContext.getEdmProvider()).thenReturn(helper.edmProvider);
     when(sessionContext.getOperationConverter()).thenReturn(new JPADefaultDatabaseProcessor());
-    when(requestContext.getDebugger()).thenReturn(debugger);
+//    when(requestContext.getDebugger()).thenReturn(debugger);
     when(requestContext.getClaimsProvider()).thenReturn(Optional.empty());
     when(requestContext.getEntityManager()).thenReturn(em);
   }

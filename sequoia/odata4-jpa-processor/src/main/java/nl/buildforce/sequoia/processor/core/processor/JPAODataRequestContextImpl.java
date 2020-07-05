@@ -31,9 +31,9 @@ public final class JPAODataRequestContextImpl implements JPAODataCRUDRequestCont
   // format: OFF
   private Optional<JPAODataClaimProvider> claims = Optional.empty();
   private Optional<JPAODataGroupProvider> groups = Optional.empty();
-  private                          String debugFormat;
-  private              JPAServiceDebugger debugger;
-  private          JPADebugSupportWrapper debugSupport;
+//  private                          String debugFormat;
+//  private              JPAServiceDebugger debugger;
+//  private          JPADebugSupportWrapper debugSupport;
   private                   EntityManager em;
   private            JPACUDRequestHandler jpaCUDRequestHandler;
   private                    JPAODataPage page;
@@ -42,16 +42,21 @@ public final class JPAODataRequestContextImpl implements JPAODataCRUDRequestCont
   private                 UriInfoResource uriInfo;
   // format: ON
 
-  public JPAODataRequestContextImpl() {
+/*  public JPAODataRequestContextImpl() {
     // Provide all data via setter
+  }*/
+
+  public JPAODataRequestContextImpl(EntityManager em, JPACUDRequestHandler jpaCUDRequestHandler) {
+    this.em = em;
+    this.jpaCUDRequestHandler = jpaCUDRequestHandler;
   }
 
-  public JPAODataRequestContextImpl(final UriInfoResource uriInfo, final JPAODataRequestContextAccess context) {
+ public JPAODataRequestContextImpl(final UriInfoResource uriInfo, final JPAODataRequestContextAccess context) {
     this(uriInfo, null, context);
   }
 
-  JPAODataRequestContextImpl(final JPAODataPage page, final JPASerializer serializer,
-      final JPAODataRequestContextAccess context) throws JPAIllegalAccessException {
+   JPAODataRequestContextImpl(final JPAODataPage page, final JPASerializer serializer, final JPAODataRequestContextAccess context)
+           throws JPAIllegalAccessException {
     copyContextValues(context);
     this.serializer = serializer;
     this.jpaCUDRequestHandler = new JPADefaultCUDRequestHandler();
@@ -138,15 +143,17 @@ public final class JPAODataRequestContextImpl implements JPAODataCRUDRequestCont
     this.uriInfo = Objects.requireNonNull(uriInfo);
   }
 
+/*
   @Override
   public JPAServiceDebugger getDebugger() {
     if (debugger == null) initDebugger();
     return debugger;
   }
+*/
 
-  public void setDebugFormat(String debugFormat) { this.debugFormat = debugFormat; }
+  // public void setDebugFormat(String debugFormat) { this.debugFormat = debugFormat; }
 
-  private void initDebugger() {
+/*  private void initDebugger() {
     // see org.apache.olingo.server.core.debug.ServerCoreDebugger
     boolean isDebugMode = false;
     debugger = new JPAEmptyDebugger();
@@ -160,14 +167,14 @@ public final class JPAODataRequestContextImpl implements JPAODataCRUDRequestCont
         debugger = new JPACoreDebugger();
       debugSupport.setDebugger(debugger);
     }
-  }
+  }*/
 
   private void copyContextValues(final JPAODataRequestContextAccess context) {
     this.claims = context.getClaimsProvider();
     this.groups = context.getGroupsProvider();
     this.em = context.getEntityManager();
     this.jpaCUDRequestHandler = context.getCUDRequestHandler();
-    this.debugger = context.getDebugger();
+    // this.debugger = context.getDebugger();
   }
 
   private void createDefaultTransactionFactory() {
@@ -238,10 +245,10 @@ public final class JPAODataRequestContextImpl implements JPAODataCRUDRequestCont
     }
   }
 
-  public JPADebugSupportWrapper getDebugSupport() {
+/*  public JPADebugSupportWrapper getDebugSupport() {
     if (debugger == null)
       initDebugger();
     return debugSupport;
-  }
+  }*/
 
 }

@@ -307,7 +307,7 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
 
     // TODO Functions and orderBy: Part 1 - 11.5.3.1 Invoking a Function
 
-    final int handle = debugger.startRuntimeMeasurement(this, "createOrderByList");
+    // final int handle = debugger.startRuntimeMeasurement(this, "createOrderByList");
     final List<Order> orders = new ArrayList<>();
     if (orderByOption != null) {
       try {
@@ -349,14 +349,14 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
           }
         }
       } catch (ODataJPAModelException e) {
-        debugger.stopRuntimeMeasurement(handle);
+        // debugger.stopRuntimeMeasurement(handle);
         throw new ODataJPAQueryException(e, HttpStatusCode.BAD_REQUEST);
       }
     }
       // Ensure results get ordered by primary key. By this it is ensured that the results will match the sub-select
       // results for $expand with $skip and $top
 
-    debugger.stopRuntimeMeasurement(handle);
+    // debugger.stopRuntimeMeasurement(handle);
     return orders;
   }
 
@@ -398,7 +398,7 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
       final Collection<JPAPath> requestedProperties, final From<?, ?> target, final List<String> groups)
       throws ODataApplicationException { // NOSONAR Allow subclasses to throw an exception
 
-    final int handle = debugger.startRuntimeMeasurement(this, "createSelectClause");
+    // final int handle = debugger.startRuntimeMeasurement(this, "createSelectClause");
     final List<Selection<?>> selections = new ArrayList<>();
 
     // Build select clause
@@ -409,20 +409,20 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
         selections.add(p);
       }
     }
-    debugger.stopRuntimeMeasurement(handle);
+    // debugger.stopRuntimeMeasurement(handle);
     return selections;
   }
 
   protected jakarta.persistence.criteria.Expression<Boolean> createWhere(final UriInfoResource uriInfo,
       final List<JPANavigationPropertyInfo> navigationInfo) throws ODataApplicationException {
 
-    final int handle = debugger.startRuntimeMeasurement(this, "createWhere");
+    // final int handle = debugger.startRuntimeMeasurement(this, "createWhere");
     jakarta.persistence.criteria.Expression<Boolean> whereCondition;
     // Given keys: Organizations('1')/Roles(...)
     try {
       whereCondition = createKeyWhere(navigationInfo);
     } catch (ODataApplicationException e) {
-      debugger.stopRuntimeMeasurement(handle);
+      // debugger.stopRuntimeMeasurement(handle);
       throw e;
     }
 
@@ -433,7 +433,7 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
       whereCondition = addWhereClause(whereCondition, navigationInfo.get(navigationInfo.size() - 1).getFilterCompiler()
           .compile());
     } catch (ExpressionVisitException e) {
-      debugger.stopRuntimeMeasurement(handle);
+      // debugger.stopRuntimeMeasurement(handle);
       throw new ODataJPAQueryException(ODataJPAQueryException.MessageKeys.QUERY_PREPARATION_FILTER_ERROR,
           HttpStatusCode.BAD_REQUEST, e);
     }
@@ -443,7 +443,7 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
           context.getDatabaseProcessor().createSearchWhereClause(cb, this.cq, target, jpaEntity, uriInfo
               .getSearchOption()));
 
-    debugger.stopRuntimeMeasurement(handle);
+    // debugger.stopRuntimeMeasurement(handle);
     return whereCondition;
   }
 

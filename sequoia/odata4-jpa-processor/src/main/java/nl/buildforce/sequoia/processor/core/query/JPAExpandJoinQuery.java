@@ -94,16 +94,16 @@ public final class JPAExpandJoinQuery extends JPAAbstractJoinQuery {
    */
   @Override
   public JPAExpandQueryResult execute() throws ODataApplicationException {
-    final int handle = debugger.startRuntimeMeasurement(this, "execute");
+    // final int handle = debugger.startRuntimeMeasurement(this, "execute");
 
     long skip = 0;
     long top = Long.MAX_VALUE;
     try {
       tupleQuery = createTupleQuery();
 
-      final int resultHandle = debugger.startRuntimeMeasurement(tupleQuery, "getResultList");
+      // final int resultHandle = debugger.startRuntimeMeasurement(tupleQuery, "getResultList");
       final List<Tuple> intermediateResult = tupleQuery.getResultList();
-      debugger.stopRuntimeMeasurement(resultHandle);
+      // debugger.stopRuntimeMeasurement(resultHandle);
       if (uriResource.getTopOption() != null || uriResource.getSkipOption() != null) {
         // Simplest solution for the problem. Read all and throw away, what is not requested
         if (uriResource.getSkipOption() != null)
@@ -115,7 +115,7 @@ public final class JPAExpandJoinQuery extends JPAAbstractJoinQuery {
 
       final Set<JPAPath> requestedSelection = new HashSet<>();
       buildSelectionAddNavigationAndSelect(uriResource, requestedSelection, uriResource.getSelectOption());
-      debugger.stopRuntimeMeasurement(handle);
+      // debugger.stopRuntimeMeasurement(handle);
       return new JPAExpandQueryResult(result, count(), jpaEntity, requestedSelection);
 
     } catch (JPANoSelectionException e) {
@@ -281,7 +281,7 @@ public final class JPAExpandJoinQuery extends JPAAbstractJoinQuery {
   }
 
   private Map<String, Long> count() throws ODataApplicationException {
-    final int handle = debugger.startRuntimeMeasurement(this, "count");
+    //final int handle = debugger.startRuntimeMeasurement(this, "count");
     final List<UriResource> uriResourceParts = uriResource.getUriResourceParts();
     if (uriResource.getCountOption() != null
         || uriResourceParts != null
@@ -307,7 +307,7 @@ public final class JPAExpandJoinQuery extends JPAAbstractJoinQuery {
       List<Tuple> intermediateResult = query.getResultList();
       return convertCountResult(intermediateResult);
     }
-    debugger.stopRuntimeMeasurement(handle);
+    // debugger.stopRuntimeMeasurement(handle);
     return null;
   }
 
@@ -335,7 +335,7 @@ public final class JPAExpandJoinQuery extends JPAAbstractJoinQuery {
   }
 
   private TypedQuery<Tuple> createTupleQuery() throws ODataApplicationException, JPANoSelectionException {
-    final int handle = debugger.startRuntimeMeasurement(this, "createTupleQuery");
+    // final int handle = debugger.startRuntimeMeasurement(this, "createTupleQuery");
 
     final Set<JPAPath> selectionPath = buildSelectionPathList(this.uriResource);
     final Map<String, From<?, ?>> joinTables = createFromClause(new ArrayList<>(1),
@@ -354,13 +354,13 @@ public final class JPAExpandJoinQuery extends JPAAbstractJoinQuery {
     // TODO group by also at $expand
     final TypedQuery<Tuple> query = em.createQuery(cq);
 
-    debugger.stopRuntimeMeasurement(handle);
+    // debugger.stopRuntimeMeasurement(handle);
     return query;
   }
 
   private Expression<Boolean> createWhere() throws ODataApplicationException {
 
-    final int handle = debugger.startRuntimeMeasurement(this, "createWhere");
+    // final int handle = debugger.startRuntimeMeasurement(this, "createWhere");
 
     Expression<Boolean> whereCondition;
     // Given keys: Organizations('1')/Roles(...)
@@ -370,10 +370,10 @@ public final class JPAExpandJoinQuery extends JPAAbstractJoinQuery {
       whereCondition = addWhereClause(whereCondition, createExpandWhere());
       whereCondition = addWhereClause(whereCondition, createProtectionWhere(claimsProvider));
     } catch (ODataApplicationException e) {
-      debugger.stopRuntimeMeasurement(handle);
+      // // debugger.stopRuntimeMeasurement(handle);
       throw e;
     }
-    debugger.stopRuntimeMeasurement(handle);
+    // // debugger.stopRuntimeMeasurement(handle);
     return whereCondition;
   }
 

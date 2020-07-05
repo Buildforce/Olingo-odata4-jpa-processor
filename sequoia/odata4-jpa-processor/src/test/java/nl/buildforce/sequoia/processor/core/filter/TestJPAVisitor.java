@@ -37,8 +37,8 @@ public class TestJPAVisitor {
 
     when(compiler.getConverter()).thenReturn(converter);
     when(compiler.getParent()).thenReturn(query);
-    when(compiler.getDebugger()).thenReturn(mock(JPAServiceDebugger.class));
-    when(query.getDebugger()).thenReturn(mock(JPAServiceDebugger.class));
+//    when(compiler.getDebugger()).thenReturn(mock(JPAServiceDebugger.class));
+//    when(query.getDebugger()).thenReturn(mock(JPAServiceDebugger.class));
 
     cut = new JPAVisitor(compiler);
   }

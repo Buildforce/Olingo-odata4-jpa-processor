@@ -150,10 +150,10 @@ public class JPAODataGetHandler {
 
     final ODataHttpHandler handler = odata.createHandler(odata.createServiceMetadata(jpaEdm, jpaEdm.getReferences()));
     serviceContext.getEdmProvider().setRequestLocales(request.getLocales());
-    requestContext.setDebugFormat(request.getParameter(DebugSupport.ODATA_DEBUG_QUERY_PARAMETER));
+    // requestContext.setDebugFormat(request.getParameter(DebugSupport.ODATA_DEBUG_QUERY_PARAMETER));
     setCUDHandler();
     final HttpServletRequest mappedRequest = prepareRequestMapping(request, serviceContext.getMappingPath());
-    handler.register(requestContext.getDebugSupport());
+    // handler.register(requestContext.getDebugSupport());
     handler.register(new JPAODataRequestProcessor(serviceContext, requestContext));
     handler.register(new JPAODataBatchProcessor(requestContext));
     handler.register(serviceContext.getEdmProvider().getServiceDocument());

@@ -57,19 +57,19 @@ public class JPACollectionJoinQuery extends JPAAbstractJoinQuery {
 
   @Override
   public JPACollectionQueryResult execute() throws ODataApplicationException {
-    final int handle = debugger.startRuntimeMeasurement(this, "executeStandardQuery");
+    // final int handle = debugger.startRuntimeMeasurement(this, "executeStandardQuery");
     try {
       final TypedQuery<Tuple> tupleQuery = createTupleQuery();
-      final int resultHandle = debugger.startRuntimeMeasurement(tupleQuery, "getResultList");
+      //final int resultHandle = debugger.startRuntimeMeasurement(tupleQuery, "getResultList");
       final List<Tuple> intermediateResult = tupleQuery.getResultList();
-      debugger.stopRuntimeMeasurement(resultHandle);
+      // debugger.stopRuntimeMeasurement(resultHandle);
 
       Map<String, List<Tuple>> result = convertResult(intermediateResult, association, 0, Long.MAX_VALUE);
 
       try {
         final Set<JPAPath> requestedSelection = new HashSet<>();
         buildSelectionAddNavigationAndSelect(uriResource, requestedSelection, uriResource.getSelectOption());
-        debugger.stopRuntimeMeasurement(handle);
+        // debugger.stopRuntimeMeasurement(handle);
         return new JPACollectionQueryResult(result, new HashMap<>(1), jpaEntity, this.association,
             requestedSelection);
       } catch (ODataJPAModelException e) {
@@ -157,7 +157,7 @@ public class JPACollectionJoinQuery extends JPAAbstractJoinQuery {
       throws ODataApplicationException { // NOSONAR Allow
     // subclasses to throw an exception
 
-    final int handle = debugger.startRuntimeMeasurement(this, "createSelectClause");
+    // final int handle = debugger.startRuntimeMeasurement(this, "createSelectClause");
     final List<Selection<?>> selections = new ArrayList<>();
     // Based on an error in Eclipse Link first the join columns have to be selected. Otherwise the alias is assigned to
     // the wrong column. E.g. if Organization Comment shall be read Eclipse Link automatically selects also the Order
@@ -174,7 +174,7 @@ public class JPACollectionJoinQuery extends JPAAbstractJoinQuery {
       }
     }
 
-    debugger.stopRuntimeMeasurement(handle);
+    // debugger.stopRuntimeMeasurement(handle);
     return selections;
   }
 
@@ -260,7 +260,7 @@ public class JPACollectionJoinQuery extends JPAAbstractJoinQuery {
   }
 
   private TypedQuery<Tuple> createTupleQuery() throws ODataApplicationException, JPANoSelectionException {
-    final int handle = debugger.startRuntimeMeasurement(this, "createTupleQuery");
+    // final int handle = debugger.startRuntimeMeasurement(this, "createTupleQuery");
 
     final Collection<JPAPath> selectionPath = buildSelectionPathList(this.uriResource);
     final Map<String, From<?, ?>> joinTables = createFromClause(new ArrayList<>(1), selectionPath,
@@ -277,13 +277,13 @@ public class JPACollectionJoinQuery extends JPAAbstractJoinQuery {
     cq.orderBy(orderBy);
 
     final TypedQuery<Tuple> query = em.createQuery(cq);
-    debugger.stopRuntimeMeasurement(handle);
+    // debugger.stopRuntimeMeasurement(handle);
     return query;
   }
 
   private Expression<Boolean> createWhere() throws ODataApplicationException {
 
-    final int handle = debugger.startRuntimeMeasurement(this, "createWhere");
+    // final int handle = debugger.startRuntimeMeasurement(this, "createWhere");
 
     Expression<Boolean> whereCondition;
     // Given keys: Organizations('1')/Roles(...)
@@ -291,7 +291,7 @@ public class JPACollectionJoinQuery extends JPAAbstractJoinQuery {
       whereCondition = createKeyWhere(navigationInfo);
       whereCondition = addWhereClause(whereCondition, createBoundary(navigationInfo, keyBoundary));
     } catch (ODataApplicationException e) {
-      debugger.stopRuntimeMeasurement(handle);
+      // debugger.stopRuntimeMeasurement(handle);
       throw e;
     }
 
@@ -300,13 +300,13 @@ public class JPACollectionJoinQuery extends JPAAbstractJoinQuery {
         try {
           whereCondition = addWhereClause(whereCondition, info.getFilterCompiler().compile());
         } catch (ExpressionVisitException e) {
-          debugger.stopRuntimeMeasurement(handle);
+          // debugger.stopRuntimeMeasurement(handle);
           throw new ODataJPAQueryException(ODataJPAQueryException.MessageKeys.QUERY_PREPARATION_FILTER_ERROR,
               HttpStatusCode.BAD_REQUEST, e);
         }
       }
     }
-    debugger.stopRuntimeMeasurement(handle);
+    // debugger.stopRuntimeMeasurement(handle);
     return whereCondition;
   }
 

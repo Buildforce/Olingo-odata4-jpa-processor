@@ -119,7 +119,7 @@ public abstract class TestJPAModifyProcessor {
     factory = mock(JPAODataTransactionFactory.class);
 
     when(sessionContext.getEdmProvider()).thenReturn(jpaEdm);
-    when(requestContext.getDebugger()).thenReturn(debugger);
+    // when(requestContext.getDebugger()).thenReturn(debugger);
     when(requestContext.getEntityManager()).thenReturn(em);
     when(requestContext.getUriInfo()).thenReturn(uriInfo);
     when(requestContext.getSerializer()).thenReturn(serializer);

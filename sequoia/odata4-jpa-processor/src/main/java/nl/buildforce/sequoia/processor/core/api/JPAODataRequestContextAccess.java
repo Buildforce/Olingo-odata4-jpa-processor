@@ -23,7 +23,7 @@ public interface JPAODataRequestContextAccess {
 
   JPACUDRequestHandler getCUDRequestHandler();
 
-  JPAServiceDebugger getDebugger();
+  // JPAServiceDebugger getDebugger();
 
   JPAODataTransactionFactory getTransactionFactory();
 

@@ -52,7 +52,7 @@ public final class JPAODataBatchProcessor implements BatchProcessor {
   public void processBatch(final BatchFacade facade, final ODataRequest request, final ODataResponse response)
       throws ODataApplicationException, ODataLibraryException {
 
-    final int handle = requestContext.getDebugger().startRuntimeMeasurement(this, "processBatch");
+    // final int handle = requestContext.getDebugger().startRuntimeMeasurement(this, "processBatch");
     final String boundary = facade.extractBoundaryFromContentType(request.getHeader(HttpHeader.CONTENT_TYPE));
     final BatchOptions options = BatchOptions.with()
         .rawBaseUri(request.getRawBaseUri())
@@ -72,7 +72,7 @@ public final class JPAODataBatchProcessor implements BatchProcessor {
     response.setHeader(HttpHeader.CONTENT_TYPE, ContentType.MULTIPART_MIXED + ";boundary=" + responseBoundary);
     response.setContent(responseContent);
     response.setStatusCode(HttpStatusCode.ACCEPTED.getStatusCode());
-    requestContext.getDebugger().stopRuntimeMeasurement(handle);
+    // requestContext.getDebugger().stopRuntimeMeasurement(handle);
   }
 
   /**
@@ -103,7 +103,7 @@ public final class JPAODataBatchProcessor implements BatchProcessor {
      * To keep things simple, we dispatch the requests within the Change Set
      * to the other processor interfaces.
      */
-    final int handle = requestContext.getDebugger().startRuntimeMeasurement(this, "processChangeSet");
+    // final int handle = requestContext.getDebugger().startRuntimeMeasurement(this, "processChangeSet");
     final List<ODataResponse> responses = new ArrayList<>();
     try {
       final JPAODataTransactionFactory.JPAODataTransaction t = requestContext.getTransactionFactory().createTransaction();
@@ -142,27 +142,27 @@ public final class JPAODataBatchProcessor implements BatchProcessor {
              * ODataResponsePart and setting the second parameter
              * "isChangeSet" to false.
              */
-            requestContext.getDebugger().stopRuntimeMeasurement(handle);
+            // requestContext.getDebugger().stopRuntimeMeasurement(handle);
             // TODO odata.continue-on-error header
             return new ODataResponsePart(response, false);
           }
         }
         requestContext.getCUDRequestHandler().validateChanges(requestContext.getEntityManager());
         t.commit();
-        requestContext.getDebugger().stopRuntimeMeasurement(handle);
+        // requestContext.getDebugger().stopRuntimeMeasurement(handle);
         return new ODataResponsePart(responses, true);
       } catch (ODataApplicationException | ODataLibraryException e) {
         // The batch request is malformed or the processor implementation is not correct.
         // Throwing an exception will stop the whole batch request not only the Change Set!
         t.rollback();
-        requestContext.getDebugger().stopRuntimeMeasurement(handle);
+        // requestContext.getDebugger().stopRuntimeMeasurement(handle);
         throw e;
       } catch (RollbackException e) {
         if (e.getCause() instanceof OptimisticLockException) {
-          requestContext.getDebugger().stopRuntimeMeasurement(handle);
+          // requestContext.getDebugger().stopRuntimeMeasurement(handle);
           throw new ODataJPAProcessorException(e.getCause().getCause(), HttpStatusCode.PRECONDITION_FAILED);
         }
-        requestContext.getDebugger().stopRuntimeMeasurement(handle);
+        // requestContext.getDebugger().stopRuntimeMeasurement(handle);
         throw new ODataJPAProcessorException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
       }
     } catch (ODataJPATransactionException e) {

@@ -63,13 +63,13 @@ public final class JPANavigationRequestProcessor extends JPAAbstractGetRequestPr
   public <K extends Comparable<K>> void retrieveData(final ODataRequest request, final ODataResponse response,
                                                      final ContentType responseFormat) throws ODataJPAException, ODataApplicationException, SerializerException {
 
-    final int handle = debugger.startRuntimeMeasurement(this, "retrieveData");
+    // final int handle = debugger.startRuntimeMeasurement(this, "retrieveData");
     // Create a JPQL Query and execute it
     JPAJoinQuery query;
     try {
       query = new JPAJoinQuery(odata, sessionContext, request.getAllHeaders(), requestContext);
     } catch (ODataException e) {
-      debugger.stopRuntimeMeasurement(handle);
+      // // debugger.stopRuntimeMeasurement(handle);
       throw new ODataJPAProcessorException(ODataJPAProcessorException.MessageKeys.QUERY_PREPARATION_ERROR, HttpStatusCode.INTERNAL_SERVER_ERROR, e);
     }
 
@@ -78,15 +78,15 @@ public final class JPANavigationRequestProcessor extends JPAAbstractGetRequestPr
     final Optional<JPAKeyBoundary> keyBoundary = result.getKeyBoundary(requestContext, query.getNavigationInfo());
     result.putChildren(readExpandEntities(request.getAllHeaders(), query.getNavigationInfo(), uriInfo, keyBoundary));
     // Convert tuple result into an OData Result
-    final int converterHandle = debugger.startRuntimeMeasurement(this, "convertResult");
+    // final int converterHandle = debugger.startRuntimeMeasurement(this, "convertResult");
     EntityCollection entityCollection;
     try {
       entityCollection = result.asEntityCollection(new JPATupleChildConverter(sd, odata.createUriHelper(),
           serviceMetadata)).get(JPAExpandResult.ROOT_RESULT_KEY);
-      debugger.stopRuntimeMeasurement(converterHandle);
+      // debugger.stopRuntimeMeasurement(converterHandle);
     } catch (ODataApplicationException e) {
-      debugger.stopRuntimeMeasurement(converterHandle);
-      debugger.stopRuntimeMeasurement(handle);
+      // debugger.stopRuntimeMeasurement(converterHandle);
+      // debugger.stopRuntimeMeasurement(handle);
       throw new ODataJPAProcessorException(ODataJPAProcessorException.MessageKeys.QUERY_RESULT_CONV_ERROR, HttpStatusCode.INTERNAL_SERVER_ERROR, e);
     }
     // Set Next Link
@@ -124,16 +124,16 @@ public final class JPANavigationRequestProcessor extends JPAAbstractGetRequestPr
       response.setStatusCode(HttpStatusCode.NOT_FOUND.getStatusCode());
     // 200 OK indicates that either a result was found or that the a Entity Collection query had no result
     else if (entityCollection.getEntities() != null) {
-      final int serializerHandle = debugger.startRuntimeMeasurement(serializer, "serialize");
+      // final int serializerHandle = debugger.startRuntimeMeasurement(serializer, "serialize");
       final SerializerResult serializerResult = serializer.serialize(request, entityCollection);
-      debugger.stopRuntimeMeasurement(serializerHandle);
+      // debugger.stopRuntimeMeasurement(serializerHandle);
       createSuccesResponse(response, responseFormat, serializerResult);
     } else {
       // A request returns 204 No Content if the requested resource has the null value, or if the service applies a
       // return=minimal preference. In this case, the response body MUST be empty.
       response.setStatusCode(HttpStatusCode.NO_CONTENT.getStatusCode());
     }
-    debugger.stopRuntimeMeasurement(handle);
+    // debugger.stopRuntimeMeasurement(handle);
   }
 
   private URI buildNextLink(final JPAODataPage page) throws ODataJPAProcessorException {
@@ -241,7 +241,7 @@ public final class JPANavigationRequestProcessor extends JPAAbstractGetRequestPr
                                                                       final List<JPANavigationPropertyInfo> parentHops, final UriInfoResource uriResourceInfo,
                                                                       final Optional<JPAKeyBoundary> keyBoundary) throws ODataJPAException, ODataApplicationException {
 
-    final int handle = debugger.startRuntimeMeasurement(this, "readExpandEntities");
+    // final int handle = debugger.startRuntimeMeasurement(this, "readExpandEntities");
     final Map<JPAAssociationPath, JPAExpandResult> allExpResults =
         new HashMap<>();
     // x/a?$expand=b/c($expand=d,e/f)&$filter=...&$top=3&$orderBy=...
@@ -274,7 +274,7 @@ public final class JPANavigationRequestProcessor extends JPAAbstractGetRequestPr
       final JPAExpandResult expandResult = collectionQuery.execute();
       allExpResults.put(item.getExpandAssociation(), expandResult);
     }
-    debugger.stopRuntimeMeasurement(handle);
+    // debugger.stopRuntimeMeasurement(handle);
     return allExpResults;
   }
 

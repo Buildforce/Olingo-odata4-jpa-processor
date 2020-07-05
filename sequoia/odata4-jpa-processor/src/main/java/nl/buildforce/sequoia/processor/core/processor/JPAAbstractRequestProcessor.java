@@ -26,7 +26,7 @@ abstract class JPAAbstractRequestProcessor {
   protected final UriInfoResource uriInfo;
   protected final JPASerializer serializer;
   protected final OData odata;
-  protected final JPAServiceDebugger debugger;
+  // protected final JPAServiceDebugger debugger;
   protected int successStatusCode = HttpStatusCode.OK.getStatusCode();
   protected final JPAODataRequestContextAccess requestContext;
 
@@ -40,7 +40,7 @@ abstract class JPAAbstractRequestProcessor {
     this.uriInfo = requestContext.getUriInfo();
     this.serializer = requestContext.getSerializer();
     this.odata = odata;
-    this.debugger = requestContext.getDebugger();
+//    this.debugger = requestContext.getDebugger();
     this.requestContext = requestContext;
   }
 

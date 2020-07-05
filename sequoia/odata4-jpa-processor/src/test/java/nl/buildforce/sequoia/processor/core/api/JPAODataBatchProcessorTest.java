@@ -78,7 +78,7 @@ public class JPAODataBatchProcessorTest {
     cut.init(odata, serviceMetadata);
     requests = new ArrayList<>();
     requests.add(request);
-    when(requestContext.getDebugger()).thenReturn(new JPAEmptyDebugger());
+    // when(requestContext.getDebugger()).thenReturn(new JPAEmptyDebugger());
   }
 
   @Test

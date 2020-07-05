@@ -33,7 +33,7 @@ interface JPAFilterCompilerAccess {
 
   From<?, ?> getRoot();
 
-  JPAServiceDebugger getDebugger();
+  // JPAServiceDebugger getDebugger();
 
   JPAAssociationPath getAssociation();
 

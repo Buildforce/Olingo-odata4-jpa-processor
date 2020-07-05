@@ -46,8 +46,8 @@ public final class JPAProcessorFactory {
   public JPACUDRequestProcessor createCUDRequestProcessor(final UriInfo uriInfo, final ContentType responseFormat,
       final JPAODataRequestContextAccess context, final Map<String, List<String>> header) throws ODataJPAException, SerializerException {
 
-    final JPAODataRequestContextAccess requestContext = new JPAODataRequestContextImpl(uriInfo, serializerFactory
-        .createCUDSerializer(responseFormat, uriInfo, Optional.ofNullable(header.get(HttpHeader.ODATA_MAX_VERSION))),
+    final JPAODataRequestContextAccess requestContext = new JPAODataRequestContextImpl(uriInfo,
+            serializerFactory.createCUDSerializer(responseFormat, uriInfo, Optional.ofNullable(header.get(HttpHeader.ODATA_MAX_VERSION))),
         context);
 
     return new JPACUDRequestProcessor(odata, serviceMetadata, sessionContext, requestContext,

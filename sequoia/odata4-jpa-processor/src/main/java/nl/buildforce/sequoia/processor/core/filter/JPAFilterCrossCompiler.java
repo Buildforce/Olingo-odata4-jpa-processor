@@ -90,16 +90,16 @@ public final class JPAFilterCrossCompiler extends JPAAbstractFilter {
   @Override
   @SuppressWarnings("unchecked")
   public Expression<Boolean> compile() throws ExpressionVisitException, ODataApplicationException {
-    final int handle = parent.getDebugger().startRuntimeMeasurement("JPAFilterCrossCompiler", "compile");
+    // final int handle = parent.getDebugger().startRuntimeMeasurement("JPAFilterCrossCompiler", "compile");
 
     if (expression == null) {
-      parent.getDebugger().stopRuntimeMeasurement(handle);
+      // parent.getDebugger().stopRuntimeMeasurement(handle);
       return null;
     }
     final ExpressionVisitor<JPAOperator> visitor = new JPAVisitor(this);
     final Expression<Boolean> finalExpression = (Expression<Boolean>) expression.accept(visitor).get();
 
-    parent.getDebugger().stopRuntimeMeasurement(handle);
+    // parent.getDebugger().stopRuntimeMeasurement(handle);
     return finalExpression;
   }
 
@@ -113,10 +113,10 @@ public final class JPAFilterCrossCompiler extends JPAAbstractFilter {
     return converter;
   }
 
-  @Override
+  /*@Override
   public JPAServiceDebugger getDebugger() {
     return parent.getDebugger();
-  }
+  }*/
 
   @Override
   public EntityManager getEntityManager() {
