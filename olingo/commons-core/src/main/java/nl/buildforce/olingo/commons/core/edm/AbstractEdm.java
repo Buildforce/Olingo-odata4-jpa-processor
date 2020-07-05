@@ -48,57 +48,57 @@ public abstract class AbstractEdm implements Edm {
   private boolean isPreviousES;
 
   private final Map<FullQualifiedName, EdmEntityContainer> entityContainers =
-      Collections.synchronizedMap(new HashMap<FullQualifiedName, EdmEntityContainer>());
+      Collections.synchronizedMap(new HashMap<>());
 
   private final Map<FullQualifiedName, EdmEnumType> enumTypes =
-      Collections.synchronizedMap(new HashMap<FullQualifiedName, EdmEnumType>());
+      Collections.synchronizedMap(new HashMap<>());
 
   private final Map<FullQualifiedName, EdmTypeDefinition> typeDefinitions =
-      Collections.synchronizedMap(new HashMap<FullQualifiedName, EdmTypeDefinition>());
+      Collections.synchronizedMap(new HashMap<>());
 
   private final Map<FullQualifiedName, EdmEntityType> entityTypes =
-      Collections.synchronizedMap(new HashMap<FullQualifiedName, EdmEntityType>());
+      Collections.synchronizedMap(new HashMap<>());
 
   private final Map<FullQualifiedName, EdmComplexType> complexTypes =
-      Collections.synchronizedMap(new HashMap<FullQualifiedName, EdmComplexType>());
+      Collections.synchronizedMap(new HashMap<>());
 
   private final Map<FullQualifiedName, EdmAction> unboundActions =
-      Collections.synchronizedMap(new HashMap<FullQualifiedName, EdmAction>());
+      Collections.synchronizedMap(new HashMap<>());
 
   private final Map<FullQualifiedName, List<EdmFunction>> unboundFunctionsByName =
-      Collections.synchronizedMap(new HashMap<FullQualifiedName, List<EdmFunction>>());
+      Collections.synchronizedMap(new HashMap<>());
 
   private final Map<FunctionMapKey, EdmFunction> unboundFunctionsByKey =
-      Collections.synchronizedMap(new HashMap<FunctionMapKey, EdmFunction>());
+      Collections.synchronizedMap(new HashMap<>());
 
   private final Map<ActionMapKey, EdmAction> boundActions =
-      Collections.synchronizedMap(new HashMap<ActionMapKey, EdmAction>());
+      Collections.synchronizedMap(new HashMap<>());
 
   private final Map<FunctionMapKey, EdmFunction> boundFunctions =
-      Collections.synchronizedMap(new HashMap<FunctionMapKey, EdmFunction>());
+      Collections.synchronizedMap(new HashMap<>());
 
   private final Map<FullQualifiedName, EdmTerm> terms =
-      Collections.synchronizedMap(new HashMap<FullQualifiedName, EdmTerm>());
+      Collections.synchronizedMap(new HashMap<>());
 
   private final Map<TargetQualifierMapKey, EdmAnnotations> annotationGroups =
-      Collections.synchronizedMap(new HashMap<TargetQualifierMapKey, EdmAnnotations>());
+      Collections.synchronizedMap(new HashMap<>());
 
-  private Map<String, String> aliasToNamespaceInfo = null;
+  private Map<String, String> aliasToNamespaceInfo;
   
   private final Map<FullQualifiedName, EdmEntityType> entityTypesWithAnnotations =
-      Collections.synchronizedMap(new HashMap<FullQualifiedName, EdmEntityType>());
+      Collections.synchronizedMap(new HashMap<>());
   
   private final Map<FullQualifiedName, EdmEntityType> entityTypesDerivedFromES =
-      Collections.synchronizedMap(new HashMap<FullQualifiedName, EdmEntityType>());
+      Collections.synchronizedMap(new HashMap<>());
   
   private final Map<FullQualifiedName, EdmComplexType> complexTypesWithAnnotations =
-      Collections.synchronizedMap(new HashMap<FullQualifiedName, EdmComplexType>());
+      Collections.synchronizedMap(new HashMap<>());
   
   private final Map<FullQualifiedName, EdmComplexType> complexTypesDerivedFromES =
-      Collections.synchronizedMap(new HashMap<FullQualifiedName, EdmComplexType>());
+      Collections.synchronizedMap(new HashMap<>());
 
-  private Map<String, List<CsdlAnnotation>> annotationMap = 
-      new HashMap<String, List<CsdlAnnotation>>();
+  private Map<String, List<CsdlAnnotation>> annotationMap =
+          new HashMap<>();
   
   @Override
   public List<EdmSchema> getSchemas() {
@@ -126,7 +126,7 @@ public abstract class AbstractEdm implements Edm {
     Map<String, EdmSchema> localSchemas = createSchemas();
     schemas = Collections.synchronizedMap(localSchemas);
 
-    schemaList = Collections.unmodifiableList(new ArrayList<EdmSchema>(schemas.values()));
+    schemaList = Collections.unmodifiableList(new ArrayList<>(schemas.values()));
   }
 
   private void loadAliasToNamespaceInfo() {
@@ -469,7 +469,7 @@ public abstract class AbstractEdm implements Edm {
       boundFunctions.put(key, function);
     } else {
       if (!unboundFunctionsByName.containsKey(functionName)) {
-        unboundFunctionsByName.put(functionName, new ArrayList<EdmFunction>());
+        unboundFunctionsByName.put(functionName, new ArrayList<>());
       }
       unboundFunctionsByName.get(functionName).add(function);
 
@@ -521,7 +521,7 @@ public abstract class AbstractEdm implements Edm {
   @Override
   public List<EdmFunction> getBoundFunctionsWithBindingType(FullQualifiedName bindingParameterTypeName,
       Boolean isBindingParameterCollection){
-    List<EdmFunction> functions = new ArrayList<EdmFunction>();
+    List<EdmFunction> functions = new ArrayList<>();
     for (EdmSchema schema:getSchemas()) {
       for (EdmFunction function: schema.getFunctions()) {
         if (function.isBound()) {

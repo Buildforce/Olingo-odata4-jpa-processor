@@ -25,7 +25,7 @@ import java.util.List;
  */
 public class CsdlFunction extends CsdlOperation {
 
-  private boolean isComposable = false;
+  private boolean isComposable;
 
   /**
    * Is composable.

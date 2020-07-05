@@ -25,7 +25,7 @@ import nl.buildforce.olingo.server.api.uri.UriResourceKind;
 
 public abstract class UriResourceTypedImpl extends UriResourceImpl implements UriResourcePartTyped {
 
-  private EdmType typeFilter = null;
+  private EdmType typeFilter;
 
   public UriResourceTypedImpl(UriResourceKind kind) {
     super(kind);

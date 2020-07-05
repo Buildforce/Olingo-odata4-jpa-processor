@@ -196,8 +196,8 @@ public class UriTokenizer {
 
   private final String parseString;
 
-  private int startIndex = 0;
-  private int index = 0;
+  private int startIndex;
+  private int index;
 
   private int savedStartIndex;
   private int savedIndex;

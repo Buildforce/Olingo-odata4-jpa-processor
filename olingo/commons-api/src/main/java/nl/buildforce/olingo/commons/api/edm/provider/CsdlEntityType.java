@@ -29,7 +29,7 @@ public class CsdlEntityType extends CsdlStructuralType {
 
   private List<CsdlPropertyRef> key;
 
-  private boolean hasStream = false;
+  private boolean hasStream;
 
   /**
    * Has stream.

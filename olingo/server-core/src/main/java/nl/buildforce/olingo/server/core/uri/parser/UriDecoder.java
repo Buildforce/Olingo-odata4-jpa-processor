@@ -29,7 +29,7 @@ import nl.buildforce.olingo.server.core.uri.queryoption.CustomQueryOptionImpl;
 public class UriDecoder {
 
   private static final String ACCEPT_FORM_ENCODING = "odata-accept-forms-encoding";
-  private static boolean formEncoding = false;
+  private static boolean formEncoding;
   
   public static boolean isFormEncoding() {
     return formEncoding;

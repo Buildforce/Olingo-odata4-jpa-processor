@@ -180,7 +180,7 @@ public class BatchResponseSerializer {
   private static class BodyBuilder {
     private static final Charset CHARSET_ISO_8859_1 = Charset.forName("iso-8859-1");
     private ByteBuffer buffer = ByteBuffer.allocate(BUFFER_SIZE);
-    private boolean isClosed = false;
+    private boolean isClosed;
 
     public byte[] getContent() {
       isClosed = true;

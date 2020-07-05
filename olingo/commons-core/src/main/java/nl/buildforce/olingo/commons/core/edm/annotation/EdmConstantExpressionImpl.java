@@ -36,7 +36,7 @@ public class EdmConstantExpressionImpl extends AbstractEdmExpression implements 
 
   private final CsdlConstantExpression csdlExp;
 
-  private boolean built = false;
+  private boolean built;
   private Object primitive;
   private String enumTypeName;
   private List<String> enumMembers;

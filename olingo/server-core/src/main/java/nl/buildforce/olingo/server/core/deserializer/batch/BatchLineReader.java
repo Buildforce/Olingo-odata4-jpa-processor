@@ -38,12 +38,12 @@ public class BatchLineReader {
   public static final String DOUBLE_DASH = "--";
   public static final String CRLF = "\r\n";
   private Charset currentCharset = DEFAULT_CHARSET;
-  private String currentBoundary = null;
+  private String currentBoundary;
   private ReadState readState = new ReadState();
   private InputStream reader;
   private byte[] buffer;
-  private int offset = 0;
-  private int limit = 0;
+  private int offset;
+  private int limit;
 
   public BatchLineReader(InputStream reader) {
     this(reader, BUFFER_SIZE);
@@ -189,7 +189,7 @@ public class BatchLineReader {
    * Read state indicator (whether currently the <code>body</code> or <code>header</code> part is read).
    */
   private static class ReadState {
-    private int state = 0;
+    private int state;
 
     public void foundLinebreak() {
       state++;

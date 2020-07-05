@@ -96,7 +96,7 @@ public final class ContentNegotiator {
     String acceptCharset = request.getHeader(HttpHeader.ACCEPT_CHARSET);
     List<AcceptCharset> charsets = null;
       
-    ContentType result = null;
+    ContentType result;
 
     if (formatOption != null && formatOption.getFormat() != null) {
       String formatString = formatOption.getFormat().trim();

@@ -36,16 +36,16 @@ public class CsdlNavigationProperty extends CsdlAbstractEdmItem implements CsdlN
 
   private String partner;
 
-  private boolean containsTarget = false;
+  private boolean containsTarget;
 
-  private List<CsdlReferentialConstraint> referentialConstraints = new ArrayList<CsdlReferentialConstraint>();
+  private List<CsdlReferentialConstraint> referentialConstraints = new ArrayList<>();
 
   // Facets
   private boolean nullable = true;
 
   private CsdlOnDelete onDelete;
 
-  private List<CsdlAnnotation> annotations = new ArrayList<CsdlAnnotation>();
+  private List<CsdlAnnotation> annotations = new ArrayList<>();
 
   @Override
   public String getName() {

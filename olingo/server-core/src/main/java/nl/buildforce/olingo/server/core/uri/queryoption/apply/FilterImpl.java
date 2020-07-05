@@ -26,7 +26,7 @@ import nl.buildforce.olingo.server.api.uri.queryoption.apply.Filter;
  */
 public class FilterImpl implements Filter {
 
-  private FilterOption filterOption = null;
+  private FilterOption filterOption;
 
   @Override
   public Kind getKind() {

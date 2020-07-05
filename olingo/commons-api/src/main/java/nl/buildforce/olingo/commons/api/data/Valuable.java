@@ -28,8 +28,8 @@ import java.util.Objects;
  */
 public abstract class Valuable extends Annotatable {
 
-  private ValueType valueType = null;
-  private Object value = null;
+  private ValueType valueType;
+  private Object value;
   private String type;
 
   /**

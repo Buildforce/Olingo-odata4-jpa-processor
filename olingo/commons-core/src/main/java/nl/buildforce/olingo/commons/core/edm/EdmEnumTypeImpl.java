@@ -95,8 +95,8 @@ public class EdmEnumTypeImpl extends EdmTypeImpl implements EdmEnumType {
    * preserving the order for the case of implicit value assignments.
    */
   private void createEdmMembers() {
-    Map<String, EdmMember> membersMapLocal = new LinkedHashMap<String, EdmMember>();
-    List<String> memberNamesLocal = new ArrayList<String>();
+    Map<String, EdmMember> membersMapLocal = new LinkedHashMap<>();
+    List<String> memberNamesLocal = new ArrayList<>();
     if (enumType.getMembers() != null) {
       for (CsdlEnumMember member : enumType.getMembers()) {
         membersMapLocal.put(member.getName(), new EdmMemberImpl(edm, member));

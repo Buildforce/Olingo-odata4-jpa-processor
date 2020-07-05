@@ -73,7 +73,7 @@ public class BatchReferenceRewriter {
 
   private String getODataPath(ODataRequest request, ODataResponse response)
       throws BatchDeserializerException {
-    String resourceUri = null;
+    String resourceUri;
 
     if (request.getMethod() == HttpMethod.POST) {
       // Create entity

@@ -38,11 +38,11 @@ public class CircleStreamBuffer {
   private static final int DEFAULT_CAPACITY = 8192;
   private static final int MAX_CAPACITY = DEFAULT_CAPACITY * 32;
 
-  private int currentAllocateCapacity = DEFAULT_CAPACITY;
+  private int currentAllocateCapacity;
 
   private boolean writeMode = true;
-  private boolean writeClosed = false;
-  private boolean readClosed = false;
+  private boolean writeClosed;
+  private boolean readClosed;
 
   private Queue<ByteBuffer> bufferQueue = new LinkedBlockingQueue<>();
   private ByteBuffer currentWriteBuffer;

@@ -30,8 +30,7 @@ import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Path;
 import jakarta.persistence.criteria.Predicate;
-import java.util.ArrayList;
-import java.util.Collection;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;

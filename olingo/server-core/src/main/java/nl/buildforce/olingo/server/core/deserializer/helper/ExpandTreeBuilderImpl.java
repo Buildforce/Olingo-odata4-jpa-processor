@@ -30,7 +30,7 @@ public class ExpandTreeBuilderImpl extends ExpandTreeBuilder {
 
   private final Map<String, ExpandTreeBuilder> childBuilderCache = new HashMap<>();
   private final ExpandItemImpl parentItem;
-  private ExpandOptionImpl expandOption = null;
+  private ExpandOptionImpl expandOption;
 
   private ExpandTreeBuilderImpl(ExpandItemImpl parentItem) {
     this.parentItem = parentItem;

@@ -58,22 +58,22 @@ public class EdmEntityContainerImpl extends AbstractEdmNamed implements EdmEntit
 
   private List<EdmSingleton> singletons;
   private final Map<String, EdmSingleton> singletonCache = Collections.synchronizedMap(
-      new LinkedHashMap<String, EdmSingleton>());
+          new LinkedHashMap<>());
   private List<EdmEntitySet> entitySets;
   private final Map<String, EdmEntitySet> entitySetCache = Collections.synchronizedMap(
-      new LinkedHashMap<String, EdmEntitySet>());
+          new LinkedHashMap<>());
   private List<EdmActionImport> actionImports;
   private final Map<String, EdmActionImport> actionImportCache = Collections.synchronizedMap(
-      new LinkedHashMap<String, EdmActionImport>());
+          new LinkedHashMap<>());
   private List<EdmFunctionImport> functionImports;
   private final Map<String, EdmFunctionImport> functionImportCache = Collections.synchronizedMap(
-      new LinkedHashMap<String, EdmFunctionImport>());
-	  private boolean isAnnotationsIncluded = false;
+          new LinkedHashMap<>());
+	  private boolean isAnnotationsIncluded;
   private final Map<String, EdmEntitySet> entitySetWithAnnotationsCache = Collections.synchronizedMap(
-      new LinkedHashMap<String, EdmEntitySet>());
+          new LinkedHashMap<>());
   private final Map<String, EdmSingleton> singletonWithAnnotationsCache = Collections.synchronizedMap(
-      new LinkedHashMap<String, EdmSingleton>());
-  private boolean isSingletonAnnotationsIncluded = false;
+          new LinkedHashMap<>());
+  private boolean isSingletonAnnotationsIncluded;
   private final String SLASH = "/";
   private final String DOT = ".";
 
@@ -296,7 +296,7 @@ public class EdmEntityContainerImpl extends AbstractEdmNamed implements EdmEntit
     String containerName = null;
     try {
       List<CsdlEntitySet> entitySets = provider.getEntityContainer() != null ?
-              provider.getEntityContainer().getEntitySets() : new ArrayList<CsdlEntitySet>();
+              provider.getEntityContainer().getEntitySets() : new ArrayList<>();
       for (CsdlEntitySet entitySet : entitySets) {
         entitySetName = entitySet.getName();
         String entityTypeName = entitySet.getTypeFQN().getFullQualifiedNameAsString();
@@ -834,7 +834,7 @@ public class EdmEntityContainerImpl extends AbstractEdmNamed implements EdmEntit
   protected void loadAllEntitySets() {
     loadContainer();
     List<CsdlEntitySet> providerEntitySets = container.getEntitySets();
-    List<EdmEntitySet> entitySetsLocal = new ArrayList<EdmEntitySet>();
+    List<EdmEntitySet> entitySetsLocal = new ArrayList<>();
 
     if (providerEntitySets != null) {
       for (CsdlEntitySet entitySet : providerEntitySets) {
@@ -855,7 +855,7 @@ public class EdmEntityContainerImpl extends AbstractEdmNamed implements EdmEntit
   protected void loadAllFunctionImports() {
     loadContainer();
     List<CsdlFunctionImport> providerFunctionImports = container.getFunctionImports();
-    ArrayList<EdmFunctionImport> functionImportsLocal = new ArrayList<EdmFunctionImport>();
+    ArrayList<EdmFunctionImport> functionImportsLocal = new ArrayList<>();
 
     if (providerFunctionImports != null) {
       for (CsdlFunctionImport functionImport : providerFunctionImports) {
@@ -871,7 +871,7 @@ public class EdmEntityContainerImpl extends AbstractEdmNamed implements EdmEntit
   protected void loadAllSingletons() {
     loadContainer();
     List<CsdlSingleton> providerSingletons = container.getSingletons();
-    List<EdmSingleton> singletonsLocal = new ArrayList<EdmSingleton>();
+    List<EdmSingleton> singletonsLocal = new ArrayList<>();
 
     if (providerSingletons != null) {
       for (CsdlSingleton singleton : providerSingletons) {
@@ -887,7 +887,7 @@ public class EdmEntityContainerImpl extends AbstractEdmNamed implements EdmEntit
   protected void loadAllActionImports() {
     loadContainer();
     List<CsdlActionImport> providerActionImports = container.getActionImports();
-    List<EdmActionImport> actionImportsLocal = new ArrayList<EdmActionImport>();
+    List<EdmActionImport> actionImportsLocal = new ArrayList<>();
 
     if (providerActionImports != null) {
       for (CsdlActionImport actionImport : providerActionImports) {

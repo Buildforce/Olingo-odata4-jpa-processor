@@ -62,7 +62,7 @@ public class ODataHttpHandlerImpl implements ODataHttpHandler {
   private final ODataHandlerImpl handler;
   // private final ServerCoreDebugger debugger;
 
-  private int split = 0;
+  private int split;
 
   public ODataHttpHandlerImpl(OData odata, ServiceMetadata serviceMetadata) {
     // debugger = new ServerCoreDebugger(odata);

@@ -28,9 +28,9 @@ import nl.buildforce.olingo.server.api.uri.UriResourceKind;
 
 public abstract class UriResourceWithKeysImpl extends UriResourceImpl implements UriResourcePartTyped {
 
-  private EdmType collectionTypeFilter = null;
-  protected List<UriParameter> keyPredicates = null;
-  private EdmType entryTypeFilter = null;
+  private EdmType collectionTypeFilter;
+  protected List<UriParameter> keyPredicates;
+  private EdmType entryTypeFilter;
 
   public UriResourceWithKeysImpl(UriResourceKind kind) {
     super(kind);

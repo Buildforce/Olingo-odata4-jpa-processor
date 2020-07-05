@@ -36,7 +36,7 @@ public final class ContextURL {
 
   private String entitySetOrSingletonOrType;
 
-  private boolean isCollection = false;
+  private boolean isCollection;
 
   private String derivedEntity;
 

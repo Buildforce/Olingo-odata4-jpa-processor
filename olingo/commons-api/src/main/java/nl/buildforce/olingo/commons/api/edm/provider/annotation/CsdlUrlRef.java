@@ -31,7 +31,7 @@ import nl.buildforce.olingo.commons.api.edm.provider.CsdlAnnotation;
 public class CsdlUrlRef extends CsdlDynamicExpression implements CsdlAnnotatable {
 
   private CsdlExpression value;
-  private List<CsdlAnnotation> annotations = new ArrayList<CsdlAnnotation>();
+  private List<CsdlAnnotation> annotations = new ArrayList<>();
 
   @Override
   public List<CsdlAnnotation> getAnnotations() {

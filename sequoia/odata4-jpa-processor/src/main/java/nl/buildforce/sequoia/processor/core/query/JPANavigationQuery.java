@@ -39,11 +39,11 @@ import java.util.Locale;
 import java.util.Optional;
 
 public abstract class JPANavigationQuery extends JPAAbstractQuery {
-  protected From<?, ?> queryJoinTable = null;
+  protected From<?, ?> queryJoinTable;
   protected Subquery<?> subQuery;
   protected final JPAAbstractQuery parentQuery;
   protected UriResourceKind aggregationType;
-  protected From<?, ?> queryRoot = null;
+  protected From<?, ?> queryRoot;
   protected final From<?, ?> from;
   protected final JPAAssociationPath association;
   protected JPAFilterElementCompiler filterCompiler;

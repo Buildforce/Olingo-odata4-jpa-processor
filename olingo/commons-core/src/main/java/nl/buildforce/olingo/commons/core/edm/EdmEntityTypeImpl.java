@@ -37,12 +37,12 @@ import nl.buildforce.olingo.commons.api.edm.provider.CsdlPropertyRef;
 public class EdmEntityTypeImpl extends AbstractEdmStructuredType implements EdmEntityType {
 
   private CsdlEntityType entityType;
-  private boolean baseTypeChecked = false;
+  private boolean baseTypeChecked;
   private final boolean hasStream;
   protected EdmEntityType entityBaseType;
-  private final List<String> keyPredicateNames = Collections.synchronizedList(new ArrayList<String>());
+  private final List<String> keyPredicateNames = Collections.synchronizedList(new ArrayList<>());
   private final Map<String, EdmKeyPropertyRef> keyPropertyRefs =
-      Collections.synchronizedMap(new LinkedHashMap<String, EdmKeyPropertyRef>());
+      Collections.synchronizedMap(new LinkedHashMap<>());
   private List<EdmKeyPropertyRef> keyPropertyRefsList;
 
   public EdmEntityTypeImpl(Edm edm, FullQualifiedName name, CsdlEntityType entityType) {
@@ -62,7 +62,7 @@ public class EdmEntityTypeImpl extends AbstractEdmStructuredType implements EdmE
           || (baseType.isAbstract() && ((EdmEntityType) baseType).getKeyPropertyRefs().isEmpty())) {
         List<CsdlPropertyRef> key = entityType.getKey();
         if (key != null) {
-          List<EdmKeyPropertyRef> edmKey = new ArrayList<EdmKeyPropertyRef>();
+          List<EdmKeyPropertyRef> edmKey = new ArrayList<>();
           for (CsdlPropertyRef ref : key) {
             edmKey.add(new EdmKeyPropertyRefImpl(this, ref));
           }
@@ -116,7 +116,7 @@ public class EdmEntityTypeImpl extends AbstractEdmStructuredType implements EdmE
   public List<EdmKeyPropertyRef> getKeyPropertyRefs() {
     checkBaseType();
     if (keyPropertyRefsList == null) {
-      keyPropertyRefsList = new ArrayList<EdmKeyPropertyRef>(keyPropertyRefs.values());
+      keyPropertyRefsList = new ArrayList<>(keyPropertyRefs.values());
     }
     if (keyPropertyRefsList.isEmpty() && entityBaseType != null) {
       return entityBaseType.getKeyPropertyRefs();

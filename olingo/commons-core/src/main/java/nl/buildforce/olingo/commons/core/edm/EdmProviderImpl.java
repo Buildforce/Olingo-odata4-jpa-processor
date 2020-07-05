@@ -63,10 +63,10 @@ public class EdmProviderImpl extends AbstractEdm {
 
   private final CsdlEdmProvider provider;
   private final Map<FullQualifiedName, List<CsdlAction>> actionsMap =
-      Collections.synchronizedMap(new HashMap<FullQualifiedName, List<CsdlAction>>());
+      Collections.synchronizedMap(new HashMap<>());
   private final Map<FullQualifiedName, List<CsdlFunction>> functionsMap =
-      Collections.synchronizedMap(new HashMap<FullQualifiedName, List<CsdlFunction>>());
-  private List<CsdlSchema> termSchemaDefinition = new ArrayList<CsdlSchema>();
+      Collections.synchronizedMap(new HashMap<>());
+  private List<CsdlSchema> termSchemaDefinition = new ArrayList<>();
 
   private final String SLASH = "/";
   private final String DOT = ".";
@@ -259,7 +259,7 @@ public class EdmProviderImpl extends AbstractEdm {
         getAnnotationsMap().put(annotationGrp.getTarget(), annotationGrp.getAnnotations());
       } else {
         List<CsdlAnnotation> annotations = getAnnotationsMap().get(annotationGrp.getTarget());
-        List<CsdlAnnotation> newAnnotations = new ArrayList<CsdlAnnotation>();
+        List<CsdlAnnotation> newAnnotations = new ArrayList<>();
         for (CsdlAnnotation annotation : annotationGrp.getAnnotations()) {
           if (!compareAnnotations(annotations, annotation)) {
             newAnnotations.add(annotation);
@@ -319,7 +319,7 @@ public class EdmProviderImpl extends AbstractEdm {
     String schemaName = null;
     String entitySetName = null;
     List<CsdlEntitySet> entitySets = csdlEntityContainer != null ? 
-        csdlEntityContainer.getEntitySets() : new ArrayList<CsdlEntitySet>();
+        csdlEntityContainer.getEntitySets() : new ArrayList<>();
     if (structuralType instanceof CsdlComplexType) {
       removeAnnotationsAddedToCTNavPropFromES(structuralType, typeName, csdlEntityContainer, navProperties, entitySets);
     } else {
@@ -769,7 +769,7 @@ public class EdmProviderImpl extends AbstractEdm {
               && isBindingParameterCollection == bindingParameter.isCollection()
               && parameterNamesCopy.size() == providerParameters.size() - 1) {
 
-            List<String> providerParameterNames = new ArrayList<String>();
+            List<String> providerParameterNames = new ArrayList<>();
             for (int i = 1; i < providerParameters.size(); i++) {
               providerParameterNames.add(providerParameters.get(i).getName());
             }

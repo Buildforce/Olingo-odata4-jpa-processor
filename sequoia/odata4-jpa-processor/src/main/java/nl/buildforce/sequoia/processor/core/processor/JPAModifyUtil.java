@@ -37,7 +37,7 @@ import java.util.Objects;
  */
 public final class JPAModifyUtil {
 
-  private JPAStructuredType st = null;
+  private JPAStructuredType st;
 
   /**
    * Create a filled instance of a JPA entity key.

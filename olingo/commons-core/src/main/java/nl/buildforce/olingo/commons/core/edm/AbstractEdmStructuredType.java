@@ -67,7 +67,7 @@ public abstract class AbstractEdmStructuredType extends EdmTypeImpl implements E
   @Override
   public List<String> getPropertyNames() {
     if (propertyNames == null) {
-      List<String> localPropertyNames = new ArrayList<String>();
+      List<String> localPropertyNames = new ArrayList<>();
       checkBaseType();
       if (baseType != null) {
         localPropertyNames.addAll(baseType.getPropertyNames());
@@ -81,7 +81,7 @@ public abstract class AbstractEdmStructuredType extends EdmTypeImpl implements E
   @Override
   public List<String> getNavigationPropertyNames() {
     if (navigationPropertyNames == null) {
-      ArrayList<String> localNavigatinPropertyNames = new ArrayList<String>();
+      ArrayList<String> localNavigatinPropertyNames = new ArrayList<>();
       checkBaseType();
       if (baseType != null) {
         localNavigatinPropertyNames.addAll(baseType.getNavigationPropertyNames());
@@ -147,7 +147,7 @@ public abstract class AbstractEdmStructuredType extends EdmTypeImpl implements E
 
   public Map<String, EdmProperty> getProperties() {
     if (properties == null) {
-      Map<String, EdmProperty> localPorperties = new LinkedHashMap<String, EdmProperty>();
+      Map<String, EdmProperty> localPorperties = new LinkedHashMap<>();
       List<CsdlProperty> structureTypeProperties = providerStructuredType.getProperties();
       for (CsdlProperty property : structureTypeProperties) {
         localPorperties.put(property.getName(), new EdmPropertyImpl(edm, property));
@@ -160,7 +160,7 @@ public abstract class AbstractEdmStructuredType extends EdmTypeImpl implements E
   public Map<String, EdmNavigationProperty> getNavigationProperties() {
     if (navigationProperties == null) {
       Map<String, EdmNavigationProperty> localNavigationProperties =
-          new LinkedHashMap<String, EdmNavigationProperty>();
+              new LinkedHashMap<>();
       List<CsdlNavigationProperty> structuredTypeNavigationProperties =
           providerStructuredType.getNavigationProperties();
 

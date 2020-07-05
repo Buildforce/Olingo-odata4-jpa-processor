@@ -18,7 +18,6 @@
  */
 package nl.buildforce.olingo.commons.api.format;
 
-import java.util.Comparator;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
@@ -43,7 +42,7 @@ final class TypeUtil {
 
   /** Creates a parameter map with predictable order. */
   static Map<String, String> createParameterMap() {
-    return new TreeMap<String, String>((o1, o2) -> o1.compareToIgnoreCase(o2));
+    return new TreeMap<>((s, str) -> s.compareToIgnoreCase(str));
   }
 
   /**

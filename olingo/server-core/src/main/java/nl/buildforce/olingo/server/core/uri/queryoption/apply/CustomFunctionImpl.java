@@ -30,7 +30,7 @@ import nl.buildforce.olingo.server.api.uri.UriParameter;
  */
 public class CustomFunctionImpl implements CustomFunction {
 
-  private EdmFunction function = null;
+  private EdmFunction function;
   private List<UriParameter> parameters;
 
   @Override

@@ -26,7 +26,7 @@ import nl.buildforce.olingo.server.api.uri.queryoption.apply.Expand;
  */
 public class ExpandImpl implements Expand {
 
-  private ExpandOption expandOption = null;
+  private ExpandOption expandOption;
 
   @Override
   public Kind getKind() {

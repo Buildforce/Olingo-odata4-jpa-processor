@@ -26,7 +26,7 @@ import nl.buildforce.olingo.server.api.uri.queryoption.apply.Search;
  */
 public class SearchImpl implements Search {
 
-  private SearchOption searchOption = null;
+  private SearchOption searchOption;
 
   @Override
   public Kind getKind() {

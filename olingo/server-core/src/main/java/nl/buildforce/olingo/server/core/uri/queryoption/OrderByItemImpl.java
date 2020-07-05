@@ -25,7 +25,7 @@ public class OrderByItemImpl implements OrderByItem {
 
   private Expression expression;
   // default sort order is ascending
-  private boolean descending = false;
+  private boolean descending;
 
   @Override
   public boolean isDescending() {

@@ -264,7 +264,7 @@ public class UriInfoImpl implements UriInfo {
 
   @Override
   public List<SystemQueryOption> getSystemQueryOptions() {
-    return Collections.unmodifiableList(new ArrayList<SystemQueryOption>(systemQueryOptions.values()));
+    return Collections.unmodifiableList(new ArrayList<>(systemQueryOptions.values()));
   }
 
   public UriInfoImpl addAlias(AliasQueryOption alias) {
@@ -288,7 +288,7 @@ public class UriInfoImpl implements UriInfo {
 
   @Override
   public List<AliasQueryOption> getAliases() {
-    return Collections.unmodifiableList(new ArrayList<AliasQueryOption>(aliases.values()));
+    return Collections.unmodifiableList(new ArrayList<>(aliases.values()));
   }
 
   public UriInfoImpl addCustomQueryOption(CustomQueryOption option) {

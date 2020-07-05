@@ -35,7 +35,7 @@ public class EntityCollectionSerializerOptions {
   private String id;
   private ODataContentWriteErrorCallback odataContentWriteErrorCallback;
   private String xml10InvalidCharReplacement;
-  private boolean isFullRepresentation = false;
+  private boolean isFullRepresentation;
 
   /** Gets the {@link ContextURL}. */
   public ContextURL getContextURL() {

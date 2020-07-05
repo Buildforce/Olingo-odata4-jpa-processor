@@ -12,17 +12,11 @@ import nl.buildforce.sequoia.processor.core.api.JPAODataTransactionFactory;
 // import nl.buildforce.sequoia.processor.core.api.JPAServiceDebugger;
 import nl.buildforce.sequoia.processor.core.exception.JPAIllegalAccessException;
 import nl.buildforce.sequoia.processor.core.serializer.JPASerializer;
-import nl.buildforce.olingo.server.api.OData;
-import nl.buildforce.olingo.server.api.ODataResponse;
-// import nl.buildforce.olingo.server.api.debug.DebugInformation;
-// import nl.buildforce.olingo.server.api.debug.DebugSupport;
-// import nl.buildforce.olingo.server.api.debug.RuntimeMeasurement;
 import nl.buildforce.olingo.server.api.uri.UriInfo;
 import nl.buildforce.olingo.server.api.uri.UriInfoResource;
 
 import jakarta.persistence.EntityManager;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 

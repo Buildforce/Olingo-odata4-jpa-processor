@@ -29,11 +29,11 @@ import java.util.Objects;
  */
 public class EntityCollection extends AbstractEntityCollection {
 
-  private final List<Entity> entities = new ArrayList<Entity>();
+  private final List<Entity> entities = new ArrayList<>();
   private Integer count;
   private URI next;
   private URI deltaLink;
-  private final List<Operation> operations = new ArrayList<Operation>();
+  private final List<Operation> operations = new ArrayList<>();
   
   /**
    * Sets number of entries.

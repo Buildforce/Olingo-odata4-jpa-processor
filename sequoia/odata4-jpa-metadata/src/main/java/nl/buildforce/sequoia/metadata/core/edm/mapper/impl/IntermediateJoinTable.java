@@ -14,8 +14,8 @@ class IntermediateJoinTable implements JPAJoinTable {
   private final IntermediateNavigationProperty intermediateProperty;
   private final JoinTable jpaJoinTable;
   private final IntermediateStructuredType sourceType;
-  private List<IntermediateJoinColumn> joinColumns = null;
-  private List<IntermediateJoinColumn> inverseJoinColumns = null;
+  private List<IntermediateJoinColumn> joinColumns;
+  private List<IntermediateJoinColumn> inverseJoinColumns;
   private final JPAEntityType jpaEntityType;
 
   IntermediateJoinTable(final IntermediateNavigationProperty intermediateProperty, final JoinTable jpaJoinTable,

@@ -18,10 +18,10 @@ public final class JPANavigationPropertyInfo {
   private final UriResourcePartTyped navigationTarget;
   private JPAAssociationPath associationPath;
   private final List<UriParameter> keyPredicates;
-  private From<?, ?> fromClause = null;
+  private From<?, ?> fromClause;
   private final UriInfoResource uriInfo;
-  private JPAEntityType entityType = null;
-  private JPAFilterCompiler filterCompiler = null;
+  private JPAEntityType entityType;
+  private JPAFilterCompiler filterCompiler;
 
   /**
    *

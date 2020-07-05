@@ -43,8 +43,8 @@ import java.util.List;
 public class SearchTokenizer {
 
   private static abstract class State implements SearchQueryToken {
-    private Token token = null;
-    private boolean finished = false;
+    private Token token;
+    private boolean finished;
 
     protected static final char QUOTATION_MARK = '\"';
     protected static final char PHRASE_ESCAPE_CHAR = '\\';
@@ -402,8 +402,8 @@ public class SearchTokenizer {
   }
 
   private class SearchPhraseState extends LiteralState {
-    private boolean closed = false;
-    private boolean escaped = false;
+    private boolean closed;
+    private boolean escaped;
 
     public SearchPhraseState(char c) throws SearchTokenizerException {
       super(Token.PHRASE, c);

@@ -421,7 +421,7 @@ public class ODataXmlSerializer extends AbstractODataSerializer {
     boolean cycle = false;
     if (expand != null) {
       if (ancestors == null) {
-        ancestors = new HashSet<String>();
+        ancestors = new HashSet<>();
       }
       cycle = !ancestors.add(getEntityId(entity, entityType, name));
     }
@@ -600,7 +600,7 @@ public class ODataXmlSerializer extends AbstractODataSerializer {
                                  XMLStreamWriter writer, Linked linked, ExpandOption expand)
           throws XMLStreamException, SerializerException {
     boolean all = ExpandSelectHelper.isAll(select);
-    Set<String> selected = all ? new HashSet<String>() :
+    Set<String> selected = all ? new HashSet<>() :
         ExpandSelectHelper.getSelectedPropertyNames(select.getSelectItems());
     addKeyPropertiesToSelected(selected, type);
     Set<List<String>> expandedPaths = ExpandSelectHelper.getExpandedItemsPath(expand);
