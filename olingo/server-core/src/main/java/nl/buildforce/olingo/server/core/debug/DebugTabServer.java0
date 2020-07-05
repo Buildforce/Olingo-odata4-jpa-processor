@@ -42,7 +42,7 @@ public class DebugTabServer implements DebugTab {
 
   @Override
   public void appendJson(JsonGenerator gen) throws IOException {
-    DebugResponseHelperImpl.appendJsonTable(gen, serverEnvironmentVariables);
+    // DebugResponseHelperImpl.appendJsonTable(gen, serverEnvironmentVariables);
   }
 
   @Override

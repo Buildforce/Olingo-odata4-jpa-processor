@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import nl.buildforce.olingo.server.api.debug.RuntimeMeasurement;
+// import nl.buildforce.olingo.server.api.debug.RuntimeMeasurement;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 

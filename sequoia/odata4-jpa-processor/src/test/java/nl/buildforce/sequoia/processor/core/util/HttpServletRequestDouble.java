@@ -1,7 +1,7 @@
 package nl.buildforce.sequoia.processor.core.util;
 
 import nl.buildforce.olingo.commons.api.http.HttpMethod;
-import nl.buildforce.olingo.server.api.debug.DebugSupport;
+// import nl.buildforce.olingo.server.api.debug.DebugSupport;
 
 import jakarta.servlet.AsyncContext;
 import jakarta.servlet.DispatcherType;
@@ -149,8 +149,8 @@ public class HttpServletRequestDouble implements HttpServletRequest {
 
     @Override
     public String getParameter(final String name) {
-        if (DebugSupport.ODATA_DEBUG_QUERY_PARAMETER.equals(name))
-            return debugFormat;
+        /*if (DebugSupport.ODATA_DEBUG_QUERY_PARAMETER.equals(name))
+            return debugFormat;*/
         return null;
     }
 

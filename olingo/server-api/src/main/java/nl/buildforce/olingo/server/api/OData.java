@@ -27,7 +27,7 @@ import nl.buildforce.olingo.commons.api.edm.provider.CsdlEdmProvider;
 import nl.buildforce.olingo.commons.api.edmx.EdmxReference;
 import nl.buildforce.olingo.commons.api.ex.ODataRuntimeException;
 import nl.buildforce.olingo.commons.api.format.ContentType;
-import nl.buildforce.olingo.server.api.debug.DebugResponseHelper;
+// import nl.buildforce.olingo.server.api.debug.DebugResponseHelper;
 import nl.buildforce.olingo.server.api.deserializer.DeserializerException;
 import nl.buildforce.olingo.server.api.deserializer.FixedFormatDeserializer;
 import nl.buildforce.olingo.server.api.deserializer.ODataDeserializer;
@@ -207,7 +207,7 @@ public abstract class OData {
    * @param debugFormat format to be used
    * @return a debug-response helper
    */
-  public abstract DebugResponseHelper createDebugResponseHelper(String debugFormat);
+  // public abstract DebugResponseHelper createDebugResponseHelper(String debugFormat);
 
   /**
    * Creates a new serializer object capable of working without EDM information

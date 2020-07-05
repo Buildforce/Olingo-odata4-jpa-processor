@@ -6,7 +6,7 @@ import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAExceptio
 import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import nl.buildforce.sequoia.processor.core.api.JPAODataCRUDContextAccess;
 import nl.buildforce.sequoia.processor.core.api.JPAODataRequestContextAccess;
-import nl.buildforce.sequoia.processor.core.api.JPAServiceDebugger;
+// import nl.buildforce.sequoia.processor.core.api.JPAServiceDebugger;
 import nl.buildforce.sequoia.processor.core.database.JPADefaultDatabaseProcessor;
 import nl.buildforce.sequoia.processor.core.util.TestBase;
 import nl.buildforce.sequoia.processor.core.util.TestHelper;
@@ -58,7 +58,7 @@ public class TestJPAExpandJoinQuery extends TestBase {
     orgBoundary = Optional.of(new JPAKeyBoundary(1, orgPair));
     adminPair = new JPAKeyPair(helper.getJPAEntityType("AdministrativeDivisions").getKey());
     adminBoundary = Optional.of(new JPAKeyBoundary(1, adminPair));
-    JPAServiceDebugger debugger = mock(JPAServiceDebugger.class);
+    // JPAServiceDebugger debugger = mock(JPAServiceDebugger.class);
 
     when(sessionContext.getEdmProvider()).thenReturn(helper.edmProvider);
     when(sessionContext.getOperationConverter()).thenReturn(new JPADefaultDatabaseProcessor());

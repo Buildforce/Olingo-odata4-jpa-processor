@@ -47,12 +47,12 @@ import nl.buildforce.olingo.server.api.ODataResponse;
 import nl.buildforce.olingo.server.api.ODataServerError;
 import nl.buildforce.olingo.server.api.OlingoExtension;
 import nl.buildforce.olingo.server.api.ServiceMetadata;
-import nl.buildforce.olingo.server.api.debug.DebugSupport;
+// import nl.buildforce.olingo.server.api.debug.DebugSupport;
 import nl.buildforce.olingo.server.api.deserializer.DeserializerException;
 import nl.buildforce.olingo.server.api.etag.CustomETagSupport;
 import nl.buildforce.olingo.server.api.processor.Processor;
 import nl.buildforce.olingo.server.api.serializer.CustomContentTypeSupport;
-import nl.buildforce.olingo.server.core.debug.ServerCoreDebugger;
+// import nl.buildforce.olingo.server.core.debug.ServerCoreDebugger;
 
 public class ODataHttpHandlerImpl implements ODataHttpHandler {
 
@@ -60,13 +60,13 @@ public class ODataHttpHandlerImpl implements ODataHttpHandler {
   private static final String REQUESTMAPPING = "requestMapping";
 
   private final ODataHandlerImpl handler;
-  private final ServerCoreDebugger debugger;
+  // private final ServerCoreDebugger debugger;
 
   private int split = 0;
 
   public ODataHttpHandlerImpl(OData odata, ServiceMetadata serviceMetadata) {
-    debugger = new ServerCoreDebugger(odata);
-    handler = new ODataHandlerImpl(odata, serviceMetadata, debugger);
+    // debugger = new ServerCoreDebugger(odata);
+    handler = new ODataHandlerImpl(odata, serviceMetadata/*, debugger*/);
   }
 
   @Override
@@ -79,9 +79,9 @@ public class ODataHttpHandlerImpl implements ODataHttpHandler {
     ODataRequest odRequest = new ODataRequest();
     Exception exception = null;
     ODataResponse odResponse;
-    debugger.resolveDebugMode(request);
+    // debugger.resolveDebugMode(request);
 
-    int processMethodHandle = debugger.startRuntimeMeasurement("ODataHttpHandlerImpl", "process");
+    // int processMethodHandle = debugger.startRuntimeMeasurement("ODataHttpHandlerImpl", "process");
     try {
       fillODataRequest(odRequest, request, split);
 
@@ -91,9 +91,9 @@ public class ODataHttpHandlerImpl implements ODataHttpHandler {
       exception = e;
       odResponse = handleException(odRequest, e);
     }
-    debugger.stopRuntimeMeasurement(processMethodHandle);
+    // debugger.stopRuntimeMeasurement(processMethodHandle);
 
-    if (debugger.isDebugMode()) {
+/*    if (debugger.isDebugMode()) {
       Map<String, String> serverEnvironmentVariables = createEnvironmentVariablesMap(request);
       if (exception == null) {
         // This is to ensure that we have access to the thrown OData Exception
@@ -102,7 +102,7 @@ public class ODataHttpHandlerImpl implements ODataHttpHandler {
       odResponse =
           debugger.createDebugResponse(odRequest, odResponse, exception, handler.getUriInfo(),
               serverEnvironmentVariables);
-    }
+    }*/
 
     convertToHttp(response, odResponse);
   }
@@ -205,24 +205,24 @@ public class ODataHttpHandlerImpl implements ODataHttpHandler {
   
   private ODataRequest fillODataRequest(ODataRequest odRequest, HttpServletRequest httpRequest,
                                         int split) throws ODataLibraryException {
-    int requestHandle = debugger.startRuntimeMeasurement("ODataHttpHandlerImpl", "fillODataRequest");
+    // int requestHandle = debugger.startRuntimeMeasurement("ODataHttpHandlerImpl", "fillODataRequest");
     try {
       odRequest.setBody(httpRequest.getInputStream());
       odRequest.setProtocol(httpRequest.getProtocol());
       odRequest.setMethod(extractMethod(httpRequest));
-      int innerHandle = debugger.startRuntimeMeasurement("ODataHttpHandlerImpl", "copyHeaders");
+      // int innerHandle = debugger.startRuntimeMeasurement("ODataHttpHandlerImpl", "copyHeaders");
       copyHeaders(odRequest, httpRequest);
-      debugger.stopRuntimeMeasurement(innerHandle);
-      innerHandle = debugger.startRuntimeMeasurement("ODataHttpHandlerImpl", "fillUriInformation");
+      // debugger.stopRuntimeMeasurement(innerHandle);
+      // innerHandle = debugger.startRuntimeMeasurement("ODataHttpHandlerImpl", "fillUriInformation");
       fillUriInformation(odRequest, httpRequest, split);
-      debugger.stopRuntimeMeasurement(innerHandle);
+      // debugger.stopRuntimeMeasurement(innerHandle);
 
       return odRequest;
     } catch (IOException e) {
       throw new DeserializerException("An I/O exception occurred.", e,
           DeserializerException.MessageKeys.IO_EXCEPTION);
     } finally {
-      debugger.stopRuntimeMeasurement(requestHandle);
+      // debugger.stopRuntimeMeasurement(requestHandle);
     }
   }
   
@@ -340,8 +340,8 @@ public class ODataHttpHandlerImpl implements ODataHttpHandler {
     handler.register(customConcurrencyControlSupport);
   }
 
-  @Override
+  /*@Override
   public void register(DebugSupport debugSupport) {
     debugger.setDebugSupportProcessor(debugSupport);
-  }
+  }*/
 }

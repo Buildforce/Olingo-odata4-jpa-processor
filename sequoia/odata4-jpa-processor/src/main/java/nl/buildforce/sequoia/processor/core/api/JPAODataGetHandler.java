@@ -8,7 +8,7 @@ import nl.buildforce.sequoia.processor.core.exception.ODataJPAFilterException;
 import nl.buildforce.sequoia.processor.core.processor.JPAODataRequestContextImpl;
 import nl.buildforce.olingo.server.api.OData;
 import nl.buildforce.olingo.server.api.ODataHttpHandler;
-import nl.buildforce.olingo.server.api.debug.DebugSupport;
+// import nl.buildforce.olingo.server.api.debug.DebugSupport;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;

@@ -4,7 +4,7 @@ import nl.buildforce.sequoia.processor.core.api.JPAODataTransactionFactory.JPAOD
 import nl.buildforce.sequoia.processor.core.exception.ODataJPAProcessException;
 import nl.buildforce.sequoia.processor.core.exception.ODataJPAProcessorException;
 import nl.buildforce.sequoia.processor.core.exception.ODataJPATransactionException;
-import nl.buildforce.sequoia.processor.core.processor.JPAEmptyDebugger;
+// import nl.buildforce.sequoia.processor.core.processor.JPAEmptyDebugger;
 import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
 import nl.buildforce.olingo.server.api.OData;
 import nl.buildforce.olingo.server.api.ODataApplicationException;

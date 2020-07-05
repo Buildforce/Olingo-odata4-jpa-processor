@@ -21,7 +21,7 @@ package nl.buildforce.olingo.server.api;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import nl.buildforce.olingo.server.api.debug.DebugSupport;
+// import nl.buildforce.olingo.server.api.debug.DebugSupport;
 import nl.buildforce.olingo.server.api.etag.CustomETagSupport;
 import nl.buildforce.olingo.server.api.serializer.CustomContentTypeSupport;
 
@@ -51,7 +51,7 @@ public interface ODataHttpHandler extends ODataHandler {
    * Registers the debug support handler.
    * @param debugSupport handler to register
    */
-  void register(DebugSupport debugSupport);
+  // void register(DebugSupport debugSupport);
 
   /**
    * Registers a service implementation for modifying the standard list of supported

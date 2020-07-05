@@ -10,7 +10,7 @@ import nl.buildforce.sequoia.processor.core.api.JPAODataRequestContextAccess;
 import nl.buildforce.sequoia.processor.core.api.JPAODataTransactionFactory;
 import nl.buildforce.sequoia.processor.core.api.JPAAbstractCUDRequestHandler;
 import nl.buildforce.sequoia.processor.core.api.JPAODataTransactionFactory.JPAODataTransaction;
-import nl.buildforce.sequoia.processor.core.api.JPAServiceDebugger;
+// import nl.buildforce.sequoia.processor.core.api.JPAServiceDebugger;
 import nl.buildforce.sequoia.processor.core.exception.ODataJPAProcessorException;
 import nl.buildforce.sequoia.processor.core.exception.ODataJPASerializerException;
 import nl.buildforce.sequoia.processor.core.modify.JPAConversionHelper;
@@ -95,7 +95,7 @@ public abstract class TestJPAModifyProcessor {
   protected final List<UriResource> pathParts = new ArrayList<>();
   protected SerializerResult serializerResult;
   protected final List<String> header = new ArrayList<>();
-  protected JPAServiceDebugger debugger;
+  // protected JPAServiceDebugger debugger;
   protected JPAODataTransactionFactory factory;
 
   @BeforeEach
@@ -115,7 +115,7 @@ public abstract class TestJPAModifyProcessor {
     em = mock(EntityManager.class);
     transaction = mock(JPAODataTransaction.class);
     serializerResult = mock(SerializerResult.class);
-    debugger = mock(JPAServiceDebugger.class);
+    // debugger = mock(JPAServiceDebugger.class);
     factory = mock(JPAODataTransactionFactory.class);
 
     when(sessionContext.getEdmProvider()).thenReturn(jpaEdm);

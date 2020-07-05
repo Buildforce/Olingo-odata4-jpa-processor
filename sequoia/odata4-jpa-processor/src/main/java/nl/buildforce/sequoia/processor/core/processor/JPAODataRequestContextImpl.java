@@ -9,14 +9,14 @@ import nl.buildforce.sequoia.processor.core.api.JPAODataGroupProvider;
 import nl.buildforce.sequoia.processor.core.api.JPAODataPage;
 import nl.buildforce.sequoia.processor.core.api.JPAODataRequestContextAccess;
 import nl.buildforce.sequoia.processor.core.api.JPAODataTransactionFactory;
-import nl.buildforce.sequoia.processor.core.api.JPAServiceDebugger;
+// import nl.buildforce.sequoia.processor.core.api.JPAServiceDebugger;
 import nl.buildforce.sequoia.processor.core.exception.JPAIllegalAccessException;
 import nl.buildforce.sequoia.processor.core.serializer.JPASerializer;
 import nl.buildforce.olingo.server.api.OData;
 import nl.buildforce.olingo.server.api.ODataResponse;
-import nl.buildforce.olingo.server.api.debug.DebugInformation;
-import nl.buildforce.olingo.server.api.debug.DebugSupport;
-import nl.buildforce.olingo.server.api.debug.RuntimeMeasurement;
+// import nl.buildforce.olingo.server.api.debug.DebugInformation;
+// import nl.buildforce.olingo.server.api.debug.DebugSupport;
+// import nl.buildforce.olingo.server.api.debug.RuntimeMeasurement;
 import nl.buildforce.olingo.server.api.uri.UriInfo;
 import nl.buildforce.olingo.server.api.uri.UriInfoResource;
 
@@ -42,9 +42,9 @@ public final class JPAODataRequestContextImpl implements JPAODataCRUDRequestCont
   private                 UriInfoResource uriInfo;
   // format: ON
 
-/*  public JPAODataRequestContextImpl() {
+  public JPAODataRequestContextImpl() {
     // Provide all data via setter
-  }*/
+  }
 
   public JPAODataRequestContextImpl(EntityManager em, JPACUDRequestHandler jpaCUDRequestHandler) {
     this.em = em;
@@ -185,49 +185,49 @@ public final class JPAODataRequestContextImpl implements JPAODataCRUDRequestCont
 
   }
 
-  private static class JPADebugSupportWrapper implements DebugSupport {
+ /* private static class JPADebugSupportWrapper implements DebugSupport {
 
     private final DebugSupport debugSupport;
-    private JPAServiceDebugger debugger;
+    // private JPAServiceDebugger debugger;
 
     public JPADebugSupportWrapper(final DebugSupport debugSupport) {
       this.debugSupport = debugSupport;
     }
 
-    /*
+    *//*
      * (non-Javadoc)
      *
 
      * @see org.apache.olingo.server.api.debug.DebugSupport#createDebugResponse(java.lang.String,
      * org.apache.olingo.server.api.debug.DebugInformation)
-     */
-    @Override
+     *//*
+    *//*@Override
     public ODataResponse createDebugResponse(final String debugFormat, final DebugInformation debugInfo) {
       joinRuntimeInfo(debugInfo);
       return debugSupport.createDebugResponse(debugFormat, debugInfo);
-    }
+    }*//*
 
-    /*
+    *//*
      * (non-Javadoc)
      *
 
      * @see org.apache.olingo.server.api.debug.DebugSupport#init(org.apache.olingo.server.api.OData)
-     */
+     *//*
     @Override
     public void init(final OData odata) { debugSupport.init(odata); }
 
-    /*
+    *//*
      * (non-Javadoc)
      *
 
      * @see org.apache.olingo.server.api.debug.DebugSupport#isUserAuthorized()
-     */
+     *//*
     @Override
     public boolean isUserAuthorized() { return debugSupport.isUserAuthorized(); }
 
-    void setDebugger(final JPAServiceDebugger debugger) { this.debugger = debugger; }
+    // void setDebugger(final JPAServiceDebugger debugger) { this.debugger = debugger; }
 
-    private void joinRuntimeInfo(final DebugInformation debugInfo) {
+*//*    private void joinRuntimeInfo(final DebugInformation debugInfo) {
       // Olingo create a tree for runtime measurement in DebugTabRuntime.add(final RuntimeMeasurement
       // runtimeMeasurement). The current algorithm (V4.3.0) not working well for batch requests if the own runtime info
       // is just appended (addAll), so insert sorted:
@@ -242,8 +242,8 @@ public final class JPAODataRequestContextImpl implements JPAODataCRUDRequestCont
         olingoInfo.add(startIndex, m);
         startIndex += 1;
       }
-    }
-  }
+    }*//*
+  }*/
 
 /*  public JPADebugSupportWrapper getDebugSupport() {
     if (debugger == null)

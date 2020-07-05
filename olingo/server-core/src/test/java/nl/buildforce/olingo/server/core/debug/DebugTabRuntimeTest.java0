@@ -22,7 +22,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
 
-import nl.buildforce.olingo.server.api.debug.RuntimeMeasurement;
+// import nl.buildforce.olingo.server.api.debug.RuntimeMeasurement;
 import org.junit.Test;
 
 public class DebugTabRuntimeTest extends AbstractDebugTabTest {

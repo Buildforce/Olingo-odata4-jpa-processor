@@ -47,7 +47,7 @@ import nl.buildforce.olingo.server.api.serializer.SerializerException;
 import nl.buildforce.olingo.server.api.uri.UriInfo;
 import nl.buildforce.olingo.server.api.uri.queryoption.FormatOption;
 import nl.buildforce.olingo.server.api.uri.queryoption.SystemQueryOptionKind;
-import nl.buildforce.olingo.server.core.debug.ServerCoreDebugger;
+// import nl.buildforce.olingo.server.core.debug.ServerCoreDebugger;
 import nl.buildforce.olingo.server.core.uri.parser.Parser;
 import nl.buildforce.olingo.server.core.uri.parser.UriParserException;
 import nl.buildforce.olingo.server.core.uri.parser.UriParserSemanticException;
@@ -61,7 +61,7 @@ public class ODataHandlerImpl implements ODataHandler {
   private final OData odata;
   private final ServiceMetadata serviceMetadata;
   private final List<Processor> processors = new LinkedList<>();
-  private final ServerCoreDebugger debugger;
+//  private final ServerCoreDebugger debugger;
 
   private CustomContentTypeSupport customContentTypeSupport;
   private CustomETagSupport customETagSupport;
@@ -69,10 +69,10 @@ public class ODataHandlerImpl implements ODataHandler {
   private UriInfo uriInfo;
   private Exception lastThrownException;
 
-  public ODataHandlerImpl(OData odata, ServiceMetadata serviceMetadata, ServerCoreDebugger debugger) {
+  public ODataHandlerImpl(OData odata, ServiceMetadata serviceMetadata/*, ServerCoreDebugger debugger*/) {
     this.odata = odata;
     this.serviceMetadata = serviceMetadata;
-    this.debugger = debugger;
+//    this.debugger = debugger;
 
     register(new DefaultRedirectProcessor());
     register(new DefaultProcessor());
@@ -80,7 +80,7 @@ public class ODataHandlerImpl implements ODataHandler {
 
   public ODataResponse process(ODataRequest request) {
     ODataResponse response = new ODataResponse();
-    int responseHandle = debugger.startRuntimeMeasurement("ODataHandler", "process");
+    // int responseHandle = debugger.startRuntimeMeasurement("ODataHandler", "process");
     try {
       processInternal(request, response);
     } catch (UriValidationException e) {
@@ -120,57 +120,57 @@ public class ODataHandlerImpl implements ODataHandler {
       ODataServerError serverError = ODataExceptionHelper.createServerErrorObject(e);
       handleException(request, response, serverError, e);
     }
-    debugger.stopRuntimeMeasurement(responseHandle);
+    // // debugger.stopRuntimeMeasurement(responseHandle);
     return response;
   }
 
   private void processInternal(ODataRequest request, ODataResponse response)
       throws ODataApplicationException, ODataLibraryException {
-    int measurementHandle = debugger.startRuntimeMeasurement("ODataHandler", "processInternal");
+    // int measurementHandle = debugger.startRuntimeMeasurement("ODataHandler", "processInternal");
 
     response.setHeader(HttpHeader.ODATA_VERSION, ODataServiceVersion.V40.toString());
     
     try {
       validateODataVersion(request);
     } catch (ODataHandlerException e) {
-      debugger.stopRuntimeMeasurement(measurementHandle);
+      // debugger.stopRuntimeMeasurement(measurementHandle);
       throw e;
     }
 
-    int measurementUriParser = debugger.startRuntimeMeasurement("Parser", "parseUri");
+    // int measurementUriParser = debugger.startRuntimeMeasurement("Parser", "parseUri");
     try {
       uriInfo = new Parser(serviceMetadata.getEdm(), odata)
           .parseUri(request.getRawODataPath(), request.getRawQueryPath(), request.getRawBaseUri());
     } catch (ODataLibraryException e) {
-      debugger.stopRuntimeMeasurement(measurementUriParser);
-      debugger.stopRuntimeMeasurement(measurementHandle);
+      // debugger.stopRuntimeMeasurement(measurementUriParser);
+      // debugger.stopRuntimeMeasurement(measurementHandle);
       throw e;
     }
-    debugger.stopRuntimeMeasurement(measurementUriParser);
+    // debugger.stopRuntimeMeasurement(measurementUriParser);
 
-    int measurementUriValidator = debugger.startRuntimeMeasurement("UriValidator", "validate");
+    // int measurementUriValidator = debugger.startRuntimeMeasurement("UriValidator", "validate");
     HttpMethod method = request.getMethod();
     try {
       new UriValidator().validate(uriInfo, method);
     } catch (UriValidationException e) {
-      debugger.stopRuntimeMeasurement(measurementUriValidator);
-      debugger.stopRuntimeMeasurement(measurementHandle);
+      // debugger.stopRuntimeMeasurement(measurementUriValidator);
+      // debugger.stopRuntimeMeasurement(measurementHandle);
       throw e;
     }
-    debugger.stopRuntimeMeasurement(measurementUriValidator);
+    // debugger.stopRuntimeMeasurement(measurementUriValidator);
 
-    int measurementDispatcher = debugger.startRuntimeMeasurement("ODataDispatcher", "dispatch");
+    // int measurementDispatcher = debugger.startRuntimeMeasurement("ODataDispatcher", "dispatch");
     try {
       new ODataDispatcher(uriInfo, this).dispatch(request, response);
     } finally {
-      debugger.stopRuntimeMeasurement(measurementDispatcher);
-      debugger.stopRuntimeMeasurement(measurementHandle);
+      // debugger.stopRuntimeMeasurement(measurementDispatcher);
+      // debugger.stopRuntimeMeasurement(measurementHandle);
     }
   }
 
   public void handleException(ODataRequest request, ODataResponse response,
                               ODataServerError serverError, Exception exception) {
-    int measurementHandle = debugger.startRuntimeMeasurement("ODataHandler", "handleException");
+    // int measurementHandle = debugger.startRuntimeMeasurement("ODataHandler", "handleException");
     lastThrownException = exception;
     ErrorProcessor exceptionProcessor;
     try {
@@ -187,10 +187,10 @@ public class ODataHandlerImpl implements ODataHandler {
     } catch (ContentNegotiatorException e) {
       requestedContentType = ContentType.JSON;
     }
-    int measurementError = debugger.startRuntimeMeasurement("ErrorProcessor", "processError");
+    // int measurementError = debugger.startRuntimeMeasurement("ErrorProcessor", "processError");
     exceptionProcessor.processError(request, response, serverError, requestedContentType);
-    debugger.stopRuntimeMeasurement(measurementError);
-    debugger.stopRuntimeMeasurement(measurementHandle);
+    // debugger.stopRuntimeMeasurement(measurementError);
+    // debugger.stopRuntimeMeasurement(measurementHandle);
   }
 
   /**

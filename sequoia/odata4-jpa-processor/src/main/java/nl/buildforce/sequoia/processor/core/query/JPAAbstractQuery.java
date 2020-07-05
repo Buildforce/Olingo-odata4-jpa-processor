@@ -12,12 +12,12 @@ import nl.buildforce.sequoia.processor.core.api.JPAODataCRUDContextAccess;
 import nl.buildforce.sequoia.processor.core.api.JPAODataClaimProvider;
 import nl.buildforce.sequoia.processor.core.api.JPAODataGroupProvider;
 import nl.buildforce.sequoia.processor.core.api.JPAODataRequestContextAccess;
-import nl.buildforce.sequoia.processor.core.api.JPAServiceDebugger;
+// import nl.buildforce.sequoia.processor.core.api.JPAServiceDebugger;
 import nl.buildforce.olingo.commons.api.edm.EdmEntityType;
 import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
 import nl.buildforce.olingo.server.api.OData;
 import nl.buildforce.olingo.server.api.ODataApplicationException;
-import nl.buildforce.olingo.server.api.debug.RuntimeMeasurement;
+// import nl.buildforce.olingo.server.api.debug.RuntimeMeasurement;
 import nl.buildforce.olingo.server.api.uri.UriParameter;
 import nl.buildforce.sequoia.processor.core.exception.ODataJPAQueryException;
 
@@ -52,7 +52,7 @@ public abstract class JPAAbstractQuery {
   protected final EntityManager em;
   protected final JPAEntityType jpaEntity;
   protected final JPAServiceDocument sd;
-  //protected final OData odata;
+  protected final OData odata;
   protected final Optional<JPAODataClaimProvider> claimsProvider;
   // protected JPAServiceDebugger debugger = new EmptyDebugger();
   protected List<String> groups = Collections.emptyList();
@@ -272,7 +272,7 @@ public abstract class JPAAbstractQuery {
   }
 
   // TODO clean-up
-  private static class EmptyDebugger implements JPAServiceDebugger {
+/*  private static class EmptyDebugger implements JPAServiceDebugger {
 
     @Override
     public int startRuntimeMeasurement(final Object instance, String methodName) {
@@ -289,6 +289,6 @@ public abstract class JPAAbstractQuery {
       return new ArrayList<>();
     }
 
-  }
+  }*/
 
 }

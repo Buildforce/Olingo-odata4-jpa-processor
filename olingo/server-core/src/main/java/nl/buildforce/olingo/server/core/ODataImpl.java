@@ -34,7 +34,7 @@ import nl.buildforce.olingo.server.api.OData;
 import nl.buildforce.olingo.server.api.ServiceMetadata;
 import nl.buildforce.olingo.server.api.ODataHandler;
 import nl.buildforce.olingo.server.api.ODataHttpHandler;
-import nl.buildforce.olingo.server.api.debug.DebugResponseHelper;
+// import nl.buildforce.olingo.server.api.debug.DebugResponseHelper;
 import nl.buildforce.olingo.server.api.deserializer.DeserializerException;
 import nl.buildforce.olingo.server.api.deserializer.FixedFormatDeserializer;
 import nl.buildforce.olingo.server.api.deserializer.ODataDeserializer;
@@ -47,8 +47,8 @@ import nl.buildforce.olingo.server.api.serializer.FixedFormatSerializer;
 import nl.buildforce.olingo.server.api.serializer.ODataSerializer;
 import nl.buildforce.olingo.server.api.serializer.SerializerException;
 import nl.buildforce.olingo.server.api.uri.UriHelper;
-import nl.buildforce.olingo.server.core.debug.DebugResponseHelperImpl;
-import nl.buildforce.olingo.server.core.debug.ServerCoreDebugger;
+// import nl.buildforce.olingo.server.core.debug.DebugResponseHelperImpl;
+// import nl.buildforce.olingo.server.core.debug.ServerCoreDebugger;
 import nl.buildforce.olingo.server.core.deserializer.FixedFormatDeserializerImpl;
 import nl.buildforce.olingo.server.core.deserializer.json.ODataJsonDeserializer;
 import nl.buildforce.olingo.server.core.deserializer.xml.ODataXmlDeserializer;
@@ -174,7 +174,7 @@ public class ODataImpl extends OData {
 
   @Override
   public ODataHandler createRawHandler(ServiceMetadata serviceMetadata) {
-    return new ODataHandlerImpl(this, serviceMetadata, new ServerCoreDebugger(this));
+    return new ODataHandlerImpl(this, serviceMetadata/*, new ServerCoreDebugger(this)*/);
   }
 
   @Override
@@ -244,12 +244,12 @@ public class ODataImpl extends OData {
     return new PreferencesImpl(preferHeaders);
   }
 
-  @Override
+  /*@Override
   public DebugResponseHelper createDebugResponseHelper(String debugFormat) {
     // TODO: What should we do with invalid formats?
     // TODO: Support more debug formats
     return new DebugResponseHelperImpl(debugFormat);
-  }
+  }*/
 
   @Override
   public ODataDeserializer createDeserializer(ContentType contentType, List<String> versions)

@@ -69,7 +69,7 @@ public final class JPANavigationRequestProcessor extends JPAAbstractGetRequestPr
     try {
       query = new JPAJoinQuery(odata, sessionContext, request.getAllHeaders(), requestContext);
     } catch (ODataException e) {
-      // // debugger.stopRuntimeMeasurement(handle);
+      // // // debugger.stopRuntimeMeasurement(handle);
       throw new ODataJPAProcessorException(ODataJPAProcessorException.MessageKeys.QUERY_PREPARATION_ERROR, HttpStatusCode.INTERNAL_SERVER_ERROR, e);
     }
 
@@ -83,10 +83,10 @@ public final class JPANavigationRequestProcessor extends JPAAbstractGetRequestPr
     try {
       entityCollection = result.asEntityCollection(new JPATupleChildConverter(sd, odata.createUriHelper(),
           serviceMetadata)).get(JPAExpandResult.ROOT_RESULT_KEY);
-      // debugger.stopRuntimeMeasurement(converterHandle);
+      // // debugger.stopRuntimeMeasurement(converterHandle);
     } catch (ODataApplicationException e) {
-      // debugger.stopRuntimeMeasurement(converterHandle);
-      // debugger.stopRuntimeMeasurement(handle);
+      // // debugger.stopRuntimeMeasurement(converterHandle);
+      // // debugger.stopRuntimeMeasurement(handle);
       throw new ODataJPAProcessorException(ODataJPAProcessorException.MessageKeys.QUERY_RESULT_CONV_ERROR, HttpStatusCode.INTERNAL_SERVER_ERROR, e);
     }
     // Set Next Link
@@ -126,14 +126,14 @@ public final class JPANavigationRequestProcessor extends JPAAbstractGetRequestPr
     else if (entityCollection.getEntities() != null) {
       // final int serializerHandle = debugger.startRuntimeMeasurement(serializer, "serialize");
       final SerializerResult serializerResult = serializer.serialize(request, entityCollection);
-      // debugger.stopRuntimeMeasurement(serializerHandle);
+      // // debugger.stopRuntimeMeasurement(serializerHandle);
       createSuccesResponse(response, responseFormat, serializerResult);
     } else {
       // A request returns 204 No Content if the requested resource has the null value, or if the service applies a
       // return=minimal preference. In this case, the response body MUST be empty.
       response.setStatusCode(HttpStatusCode.NO_CONTENT.getStatusCode());
     }
-    // debugger.stopRuntimeMeasurement(handle);
+    // // debugger.stopRuntimeMeasurement(handle);
   }
 
   private URI buildNextLink(final JPAODataPage page) throws ODataJPAProcessorException {
@@ -274,7 +274,7 @@ public final class JPANavigationRequestProcessor extends JPAAbstractGetRequestPr
       final JPAExpandResult expandResult = collectionQuery.execute();
       allExpResults.put(item.getExpandAssociation(), expandResult);
     }
-    // debugger.stopRuntimeMeasurement(handle);
+    // // debugger.stopRuntimeMeasurement(handle);
     return allExpResults;
   }
 

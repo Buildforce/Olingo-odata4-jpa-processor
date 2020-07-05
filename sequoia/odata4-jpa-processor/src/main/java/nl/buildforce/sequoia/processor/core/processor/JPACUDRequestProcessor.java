@@ -95,21 +95,21 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
       handler.updateEntity(requestEntity, em, determineHttpVerb(request, uriInfo.getUriResourceParts()));
       if (!foreignTransaction)
         handler.validateChanges(em);
-      // debugger.stopRuntimeMeasurement(updateHandle);
+      // // debugger.stopRuntimeMeasurement(updateHandle);
     } catch (ODataJPAProcessException e) {
       if (!foreignTransaction)
         ownTransaction.rollback();
-      // debugger.stopRuntimeMeasurement(handle);
+      // // debugger.stopRuntimeMeasurement(handle);
       throw e;
     } catch (Exception e) {
       if (!foreignTransaction)
         ownTransaction.rollback();
-      // debugger.stopRuntimeMeasurement(handle);
+      // // debugger.stopRuntimeMeasurement(handle);
       throw new ODataJPAProcessorException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
     }
     if (!foreignTransaction)
       ownTransaction.commit();
-    // debugger.stopRuntimeMeasurement(handle);
+    // // debugger.stopRuntimeMeasurement(handle);
     response.setStatusCode(HttpStatusCode.NO_CONTENT.getStatusCode());
   }
 
@@ -136,16 +136,16 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
       result = handler.createEntity(requestEntity, em);
       if (!foreignTransaction)
         handler.validateChanges(em);
-      // debugger.stopRuntimeMeasurement(createHandle);
+      // // debugger.stopRuntimeMeasurement(createHandle);
     } catch (ODataJPAProcessException e) {
       if (!foreignTransaction)
         ownTransaction.rollback();
-      // debugger.stopRuntimeMeasurement(handle);
+      // // debugger.stopRuntimeMeasurement(handle);
       throw e;
     } catch (Exception e) {
       if (!foreignTransaction)
         ownTransaction.rollback();
-      // debugger.stopRuntimeMeasurement(handle);
+      // // debugger.stopRuntimeMeasurement(handle);
       throw new ODataJPAProcessorException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
     }
 
@@ -153,7 +153,7 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
         && !(result instanceof Map<?, ?>)) {
       if (!foreignTransaction)
         ownTransaction.rollback();
-      // debugger.stopRuntimeMeasurement(handle);
+      // // debugger.stopRuntimeMeasurement(handle);
       throw new ODataJPAProcessorException(ODataJPAProcessorException.MessageKeys.WRONG_RETURN_TYPE, HttpStatusCode.INTERNAL_SERVER_ERROR, result
           .getClass().toString(), requestEntity.getEntityType().getTypeClass().toString());
     }
@@ -162,7 +162,7 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
       ownTransaction.commit();
 
     createCreateResponse(request, response, responseFormat, requestEntity, edmEntitySetInfo, result);
-    // debugger.stopRuntimeMeasurement(handle);
+    // // debugger.stopRuntimeMeasurement(handle);
   }
 
   /*
@@ -206,16 +206,16 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
       handler.deleteEntity(requestEntity, em);
       if (!foreignTransaction)
         handler.validateChanges(em);
-      // debugger.stopRuntimeMeasurement(deleteHandle);
+      // // debugger.stopRuntimeMeasurement(deleteHandle);
     } catch (ODataJPAProcessException e) {
       if (!foreignTransaction)
         ownTransaction.rollback();
-      // debugger.stopRuntimeMeasurement(handle);
+      // // debugger.stopRuntimeMeasurement(handle);
       throw e;
     } catch (Throwable e) { // NOSONAR
       if (!foreignTransaction)
         ownTransaction.rollback();
-      // debugger.stopRuntimeMeasurement(handle);
+      // // debugger.stopRuntimeMeasurement(handle);
       throw new ODataJPAProcessorException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
     }
     if (!foreignTransaction)
@@ -223,7 +223,7 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
 
     // 4. configure the response object
     response.setStatusCode(HttpStatusCode.NO_CONTENT.getStatusCode());
-    // debugger.stopRuntimeMeasurement(handle);
+    // // debugger.stopRuntimeMeasurement(handle);
   }
 
   public void updateEntity(final ODataRequest request, final ODataResponse response, final ContentType requestFormat,
@@ -265,22 +265,22 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
       updateResult = handler.updateEntity(requestEntity, em, determineHttpVerb(request, uriInfo.getUriResourceParts()));
       if (!foreignTransaction)
         handler.validateChanges(em);
-      // debugger.stopRuntimeMeasurement(updateHandle);
+      // // debugger.stopRuntimeMeasurement(updateHandle);
     } catch (ODataJPAProcessException e) {
       if (!foreignTransaction)
         ownTransaction.rollback();
-      // debugger.stopRuntimeMeasurement(handle);
+      // // debugger.stopRuntimeMeasurement(handle);
       throw e;
     } catch (Throwable e) {
       if (!foreignTransaction)
         ownTransaction.rollback();
-      // debugger.stopRuntimeMeasurement(handle);
+      // // debugger.stopRuntimeMeasurement(handle);
       throw new ODataJPAProcessorException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
     }
     if (updateResult == null) {
       if (!foreignTransaction)
         ownTransaction.rollback();
-      // debugger.stopRuntimeMeasurement(handle);
+      // // debugger.stopRuntimeMeasurement(handle);
       throw new ODataJPAProcessorException(ODataJPAProcessorException.MessageKeys.RETURN_NULL, HttpStatusCode.INTERNAL_SERVER_ERROR);
     }
     if (updateResult.getModifiedEntity() != null && !requestEntity.getEntityType().getTypeClass().isInstance(
@@ -289,7 +289,7 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
       // instance of a sub class even so the super class was requested.
       if (!foreignTransaction)
         ownTransaction.rollback();
-      // debugger.stopRuntimeMeasurement(handle);
+      // // debugger.stopRuntimeMeasurement(handle);
       throw new ODataJPAProcessorException(ODataJPAProcessorException.MessageKeys.WRONG_RETURN_TYPE, HttpStatusCode.INTERNAL_SERVER_ERROR,
           updateResult.getModifiedEntity().getClass().toString(), requestEntity.getEntityType().getTypeClass()
               .toString());
@@ -301,7 +301,7 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
           edmEntitySetInfo.getEdmEntitySet(), updateResult.getModifiedEntity());
     } else
       createUpdateResponse(request, response, responseFormat, requestEntity, edmEntitySetInfo, updateResult);
-    // debugger.stopRuntimeMeasurement(handle);
+    // // debugger.stopRuntimeMeasurement(handle);
   }
 
   private HttpMethod determineHttpVerb(final ODataRequest request, List<UriResource> resourceParts) {

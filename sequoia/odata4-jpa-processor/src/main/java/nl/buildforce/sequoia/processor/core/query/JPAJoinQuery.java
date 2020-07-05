@@ -86,7 +86,7 @@ public class JPAJoinQuery extends JPAAbstractJoinQuery implements JPACountQuery 
       if (whereClause != null)
         countQuery.where(whereClause);
       countQuery.select(cb.countDistinct(target));
-      // debugger.stopRuntimeMeasurement(handle);
+      // // debugger.stopRuntimeMeasurement(handle);
       return em.createQuery(countQuery).getSingleResult();
     } catch (JPANoSelectionException e) {
       return 0L;
@@ -122,13 +122,13 @@ public class JPAJoinQuery extends JPAAbstractJoinQuery implements JPACountQuery 
       // final int resultHandle = debugger.startRuntimeMeasurement(tq, "getResultList");
       final List<Tuple> intermediateResult = tq.getResultList();
 
-      // debugger.stopRuntimeMeasurement(resultHandle);
+      // // debugger.stopRuntimeMeasurement(resultHandle);
       result.put(ROOT_RESULT_KEY, intermediateResult);
 
-      // debugger.stopRuntimeMeasurement(handle);
+      // // debugger.stopRuntimeMeasurement(handle);
       return returnResult(selectionPath, result);
     } catch (JPANoSelectionException e) {
-      // debugger.stopRuntimeMeasurement(handle);
+      // // debugger.stopRuntimeMeasurement(handle);
       return returnEmptyResult(selectionPath);
     }
   }
@@ -153,7 +153,7 @@ public class JPAJoinQuery extends JPAAbstractJoinQuery implements JPACountQuery 
       groupBy.add(ExpressionUtil.convertToCriteriaPath(joinTables, root, jpaPath.getPath()));
     }
 
-    // debugger.stopRuntimeMeasurement(handle);
+    // // debugger.stopRuntimeMeasurement(handle);
     return groupBy;
   }
 

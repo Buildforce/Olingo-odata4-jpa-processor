@@ -37,8 +37,8 @@ import nl.buildforce.olingo.server.api.ODataResponse;
 import org.apache.commons.io.IOUtils;
 import nl.buildforce.olingo.commons.api.ex.ODataRuntimeException;
 import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
-import nl.buildforce.olingo.server.api.debug.DebugInformation;
-import nl.buildforce.olingo.server.api.debug.DebugSupport;
+// import nl.buildforce.olingo.server.api.debug.DebugInformation;
+// import nl.buildforce.olingo.server.api.debug.DebugSupport;
 import nl.buildforce.olingo.server.api.debug.DefaultDebugSupport;
 import org.junit.Before;
 import org.junit.Test;
@@ -123,7 +123,7 @@ public class ServerCoreDebuggerTest {
     defaultDebugger.resolveDebugMode(request);
 
     int handle = defaultDebugger.startRuntimeMeasurement("someClass", "someMethod");
-    defaultDebugger.stopRuntimeMeasurement(handle);
+    default debugger.stopRuntimeMeasurement(handle);
     assertEquals(0, handle);
 
     assertThat(IOUtils.toString(defaultDebugger.createDebugResponse(null, null, null, null, null).getContent()),
