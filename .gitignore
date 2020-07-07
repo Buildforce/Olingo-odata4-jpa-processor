@@ -1,7 +1,6 @@
 # --- EclipseIDE stuff START
 .settings/
 .metadata
-bin/
 tmp/
 *.tmp
 *.bak
@@ -11,17 +10,11 @@ tmp/
 local.properties
 .loadpath
 
-# Eclipse Core
-.project
-
 # External tool builders
 .externalToolBuilders/
 
 # Locally stored "Eclipse launch configurations"
 #*.launch
-
-# JDT-specific (Eclipse Java Development Tools)
-.classpath
 
 # Java annotation processor (APT)
 .factorypath
@@ -36,7 +29,6 @@ local.properties
 
 # --- Maven stuff START
 mvn-repo/
-target/
 **/target/
 /target/
 pom.xml.tag
@@ -63,9 +55,39 @@ buildNumber.properties
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-*.iml
-
 # Derby (JavaDB)
 /.idea/
 testdb
+
+# sbt
+# (may want to keep parts of 'project')
+bin/
+project/
+target/
+build/
+
+# eclipse
+build
+.classpath
+.project
+.settings
+.worksheet
+
+# intellij idea
 *.log
+*.iml
+*.ipr
+*.iws
+.idea
+
+# mac
+.DS_Store
+
+# other?
+.history
+.scala_dependencies
+.cache
+.cache-main
+
+#general
+*.class
