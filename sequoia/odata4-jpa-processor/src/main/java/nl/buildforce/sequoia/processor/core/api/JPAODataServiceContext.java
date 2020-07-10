@@ -27,7 +27,7 @@ import java.util.Optional;
 /**
  *
  */
-public final class JPAODataServiceContext implements JPAODataGetContext, JPAODataCRUDContextAccess {
+public final class JPAODataServiceContext implements /*JPAODataGetContext,*/ JPAODataCRUDContextAccess {
   //@formatter:off
   private final       JPAODataGetHandler jpaODataGetHandler;
   // --Commented out by Inspection (''20-05-01 19:16):private           JPACUDRequestHandler jpaCUDRequestHandler;
@@ -244,12 +244,12 @@ public final class JPAODataServiceContext implements JPAODataGetContext, JPAODat
    * @deprecated will be removed with 1.0.0; use newly created builder (<code>JPAODataServiceContext.with()</code>)
    * instead
    */
-  @Deprecated
+  /*@Deprecated
   @Override
   public void setTypePackage(final String... packageName) {
     this.packageName = packageName;
   }
-
+*/
 /*  @Deprecated
   public static class Builder {
     // format: OFF

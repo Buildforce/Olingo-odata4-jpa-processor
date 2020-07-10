@@ -48,16 +48,6 @@ public class TestJPAODataGetHandler extends TestBase {
   }
 
   @Test
-  public void testPropertiesInstanceWithPunit() throws ODataJPAFilterException {
-    cut = new JPAODataGetHandler(PUNIT_NAME);
-    assertNotNull(cut.getJPAODataContext());
-    assertNull(cut.ds);
-    assertFalse(cut.emf.isPresent());
-    assertNotNull(cut.odata);
-    assertNotNull(cut.namespace);
-  }
-
-  @Test
   public void testCanCreateInstanceWithPunitAndDs() throws ODataJPAFilterException {
     final DataSource ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_DERBY);
       new JPAODataGetHandler(PUNIT_NAME, ds);
@@ -67,7 +57,7 @@ public class TestJPAODataGetHandler extends TestBase {
   public void testPropertiesInstanceWithPunitAndDs() throws ODataJPAFilterException {
     final DataSource ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_DERBY);
     cut = new JPAODataGetHandler(PUNIT_NAME, ds);
-    assertNotNull(cut.getJPAODataContext());
+    // assertNotNull(cut.getJPAODataContext());
     assertNotNull(cut.ds);
     assertNotNull(cut.emf);
     assertNotNull(cut.odata);
@@ -75,7 +65,7 @@ public class TestJPAODataGetHandler extends TestBase {
     assertNotNull(cut.jpaMetamodel);
   }
 
-  @Test
+  /*@Test
   public void testProcessWithoutEntityManager() throws ODataJPAFilterException, ODataJPAModelException {
     final DataSource ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_DERBY);
     cut = new JPAODataGetHandler(PUNIT_NAME, ds);
@@ -115,7 +105,7 @@ public class TestJPAODataGetHandler extends TestBase {
   public void testGetSessionContext() throws ODataJPAFilterException {
     cut = new JPAODataGetHandler(PUNIT_NAME);
     assertNotNull(cut.getJPAODataContext());
-  }
+  }*/
 
   @Test
   public void testGetRequestContext() throws  ODataJPAFilterException {
@@ -177,7 +167,7 @@ public class TestJPAODataGetHandler extends TestBase {
     cut.process(request, response);
     assertEquals(200, response.getStatus());
   }
-*/
+
   @Test
   public void testProcessWithEm() throws ODataJPAFilterException, ODataJPAModelException {
     cut = new JPAODataGetHandler(PUNIT_NAME);
@@ -186,7 +176,7 @@ public class TestJPAODataGetHandler extends TestBase {
     assertEquals(200, response.getStatus());
   }
 
-/*  @Test
+  @Test
   public void testMappingPathInSessionContextCreatesMapper() throws ODataException {
     final OData odata = mock(OData.class);
     final ODataHttpHandler handler = mock(ODataHttpHandler.class);

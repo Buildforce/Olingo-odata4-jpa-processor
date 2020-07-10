@@ -64,6 +64,7 @@ public class JPAODataGetHandler {
     odata = OData.newInstance();
   }
 
+  // Used by DemoOdataJPAWebContainer
   public JPAODataGetHandler(final JPAODataCRUDContextAccess serviceContext) {
     this(serviceContext, OData.newInstance());
   }
@@ -83,9 +84,9 @@ public class JPAODataGetHandler {
     this.odata = odata;
   }
 
-  public JPAODataGetContext getJPAODataContext() {
+  /*public JPAODataGetContext getJPAODataContext() {
     return serviceContext;
-  }
+  }*/
 
   public JPAODataRequestContext getJPAODataRequestContext() {
     return requestContext;
