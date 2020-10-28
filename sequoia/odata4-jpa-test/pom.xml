@@ -5,16 +5,16 @@
   <parent>
     <groupId>nl.buildforce.sequoia</groupId>
     <artifactId>Sequoia-parent</artifactId>
-    <version>0.3.8-M0</version>
+    <version>0.0.0</version>
   </parent>
   <artifactId>odata4-jpa-test</artifactId>
   <name>odata4-jpa-test</name>
-  <distributionManagement>
+  <!--<distributionManagement>
     <repository>
       <id>internal</id>
       <url>file://${project.build.directory}/mvn-repo</url>
     </repository>
-  </distributionManagement>
+  </distributionManagement>-->
   <dependencies>
     <dependency>
       <groupId>com.h2database</groupId>
@@ -25,7 +25,7 @@
     <dependency>
       <groupId>nl.buildforce.sequoia</groupId>
       <artifactId>odata4-jpa-annotation</artifactId>
-      <version>${jpa-processor.version}</version>
+      <version>${odata4-jpa.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.commons</groupId>
