@@ -12,6 +12,7 @@
         <module>sequoia</module>
     </modules>
     <properties>
+        <jpa-processor.version>0.3.8-M0</jpa-processor.version>
         <jakarta-servlet.version>5.0.0</jakarta-servlet.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jackson.version>2.11.3</jackson.version>
