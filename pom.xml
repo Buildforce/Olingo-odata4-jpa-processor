@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>nl.buildforce.odata4-jpa</groupId>
-  <artifactId>OData4-jpa-parent</artifactId>
-  <version>1</version>
-  <packaging>pom</packaging>
-  <modules>
-    <module>olingo</module>
-    <module>sequoia</module>
-  </modules>
-  <properties>
-    <jakarta-servlet.version>5.0.0-M1</jakarta-servlet.version>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <jackson.version>2.11.1</jackson.version>
-    <project.build.source>1.8</project.build.source>
-  </properties>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>nl.buildforce.odata4-jpa</groupId>
+    <artifactId>OData4-jpa-parent</artifactId>
+    <version>1</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>olingo</module>
+        <module>sequoia</module>
+    </modules>
+    <properties>
+        <jakarta-servlet.version>5.0.0</jakarta-servlet.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jackson.version>2.11.3</jackson.version>
+        <project.build.source>1.8</project.build.source>
+    </properties>
 </project>

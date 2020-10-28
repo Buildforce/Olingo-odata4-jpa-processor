@@ -27,10 +27,10 @@ import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.channels.WritableByteChannel;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-
 import nl.buildforce.olingo.commons.api.ex.ODataRuntimeException;
 import nl.buildforce.olingo.commons.api.format.ContentType;
 import nl.buildforce.olingo.commons.api.http.HttpHeader;
@@ -178,7 +178,7 @@ public class BatchResponseSerializer {
    * Builder class to create the body and the header.
    */
   private static class BodyBuilder {
-    private static final Charset CHARSET_ISO_8859_1 = Charset.forName("iso-8859-1");
+    private static final Charset CHARSET_ISO_8859_1 = StandardCharsets.ISO_8859_1;
     private ByteBuffer buffer = ByteBuffer.allocate(BUFFER_SIZE);
     private boolean isClosed;
 

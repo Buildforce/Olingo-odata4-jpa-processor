@@ -66,8 +66,8 @@ public final class JPAODataBatchProcessor implements BatchProcessor {
       responseParts.add(facade.handleBatchRequest(part));
     }
     final String responseBoundary = "batch_" + UUID.randomUUID().toString();
-    final InputStream responseContent = odata.createFixedFormatSerializer().batchResponse(responseParts,
-        responseBoundary);
+    final InputStream responseContent =
+            odata.createFixedFormatSerializer().batchResponse(responseParts, responseBoundary);
 
     response.setHeader(HttpHeader.CONTENT_TYPE, ContentType.MULTIPART_MIXED + ";boundary=" + responseBoundary);
     response.setContent(responseContent);

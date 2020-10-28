@@ -1,5 +1,6 @@
 package nl.buildforce.sequoia.processor.core.api.example;
 
+import nl.buildforce.olingo.commons.api.http.HttpMethod;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAssociationPath;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAEntityType;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAException;
@@ -12,8 +13,6 @@ import nl.buildforce.sequoia.processor.core.processor.JPARequestLink;
 import nl.buildforce.sequoia.processor.core.testmodel.*;
 import nl.buildforce.sequoia.processor.core.util.TestBase;
 import nl.buildforce.sequoia.processor.core.util.TestHelper;
-import nl.buildforce.olingo.commons.api.http.HttpMethod;
-import nl.buildforce.sequoia.processor.core.testmodel.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -207,8 +206,8 @@ public class JPAExampleCUDRequestHandlerTest extends TestBase {
     data.put("name1", "Example SE");
     keys.put("iD", id);
 
-    ODataJPAProcessException exception = assertThrows(ODataJPAProcessException.class, () -> cut.updateEntity(
-        requestEntity, em, HttpMethod.PATCH));
+    ODataJPAProcessException exception = assertThrows(ODataJPAProcessException.class,
+            () -> cut.updateEntity(requestEntity, em, HttpMethod.PATCH));
 
     assertEquals(404, exception.getStatusCode());
 

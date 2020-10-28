@@ -23,8 +23,8 @@
   </modules>
 
   <properties>
-    <commons.codec.version>1.14</commons.codec.version>
-    <commons.io.version>2.7</commons.io.version>
+    <commons.codec.version>1.15</commons.codec.version>
+    <commons.io.version>2.8.0</commons.io.version>
     <maven.bundle.plugin.version>2.5.3</maven.bundle.plugin.version>
     <maven.plugin.api.version>3.6.3</maven.plugin.api.version>
     <maven.plugin.tools.version>3.6.0</maven.plugin.tools.version>
@@ -98,7 +98,7 @@
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
-        <version>4.13</version>
+        <version>4.13.1</version>
         <scope>test</scope>
       </dependency>
       <dependency>

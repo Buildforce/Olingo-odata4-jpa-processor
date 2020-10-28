@@ -30,7 +30,7 @@
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
-      <version>3.10</version>
+      <version>3.11</version>
     </dependency>
     <dependency>
       <groupId>org.apache.derby</groupId>
@@ -50,7 +50,7 @@
     <dependency>
       <groupId>org.flywaydb</groupId>
       <artifactId>flyway-core</artifactId>
-      <version>6.5.0</version>
+      <version>7.1.0</version>
     </dependency>
     <dependency>
       <groupId>org.hsqldb</groupId>
@@ -60,12 +60,12 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
-      <version>5.7.0-M1</version>
+      <version>5.7.0</version>
     </dependency>
     <dependency>
       <groupId>org.junit.platform</groupId>
       <artifactId>junit-platform-launcher</artifactId>
-      <version>1.7.0-M1</version>
+      <version>1.7.0</version>
     </dependency>
     <dependency>
       <groupId>org.mockito</groupId>
@@ -89,7 +89,7 @@
         <dependency>
           <groupId>org.eclipse.persistence</groupId>
           <artifactId>eclipselink</artifactId>
-          <version>${eclipselink.prstnc.version}</version>
+          <version>${eclipselink.version}</version>
         </dependency>
       </dependencies>
     </profile>
