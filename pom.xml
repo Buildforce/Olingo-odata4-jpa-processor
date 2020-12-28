@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-         xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>nl.buildforce.odata4-jpa</groupId>
     <artifactId>OData4-jpa-parent</artifactId>
-    <version>0</version>
+    <version>0.0.1</version>
     <modules>
         <module>olingo</module>
         <module>sequoia</module>
     </modules>
     <packaging>pom</packaging>
     <properties>
-        <odata4-jpa.version>0.0.0</odata4-jpa.version>
+        <odata4-jpa.version>0.0.1</odata4-jpa.version>
         <jackson.version>2.11.3</jackson.version>
         <jakarta-servlet.version>5.0.0</jakarta-servlet.version>
         <project.build.source>1.8</project.build.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    <distributionManagement>
+    <repository>
+        <id>bintray-serioussoftware-repo</id>
+        <name>serioussoftware-maven3</name>
+        <url>https://api.bintray.com/maven/serioussoftware/repo1/OData4-jpa-parent/;publish=1</url>
+    </repository>
+    </distributionManagement>
 </project>
