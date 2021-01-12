@@ -22,12 +22,11 @@ package nl.buildforce.olingo.commons.api.http;
  * Supported HTTP methods.
  */
 public enum HttpMethod {
-
   GET,
   POST,
   PUT,
   PATCH,
-  MERGE,
+  /*MERGE,*/
   DELETE,
   HEAD
 

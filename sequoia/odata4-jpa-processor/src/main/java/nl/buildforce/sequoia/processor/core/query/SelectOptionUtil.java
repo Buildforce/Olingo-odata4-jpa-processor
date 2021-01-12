@@ -10,7 +10,6 @@ import nl.buildforce.olingo.server.api.uri.UriResource;
 import nl.buildforce.olingo.server.api.uri.queryoption.SelectItem;
 import nl.buildforce.olingo.server.api.uri.queryoption.SelectOption;
 
-import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 /**

@@ -23,7 +23,7 @@ package nl.buildforce.olingo.commons.api;
  */
 public interface IConstants {
   
-  public String getMetadata();
+  //public String getMetadata();
   
   public String getType();
   

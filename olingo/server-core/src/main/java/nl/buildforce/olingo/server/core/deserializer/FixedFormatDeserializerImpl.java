@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import nl.buildforce.olingo.commons.api.data.Parameter;
@@ -70,7 +71,7 @@ public class FixedFormatDeserializerImpl implements FixedFormatDeserializer {
     }
     try {
       StringWriter writer = new StringWriter();
-      InputStreamReader reader = new InputStreamReader(content, "UTF-8");
+      InputStreamReader reader = new InputStreamReader(content, StandardCharsets.UTF_8);
       int c = -1;
       while ((c = reader.read()) != -1) {
         writer.append((char) c);

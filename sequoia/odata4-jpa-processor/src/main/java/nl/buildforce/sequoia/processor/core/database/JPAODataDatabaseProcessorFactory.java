@@ -17,7 +17,6 @@ public class JPAODataDatabaseProcessorFactory {
       try (Connection connection = ds.getConnection()) {
         final DatabaseMetaData dbMetadata = connection.getMetaData();
         switch (dbMetadata.getDatabaseProductName()) {
-          case PRODUCT_NAME_SAP_HANA: return new JPA_HANA_DatabaseProcessor();
           case PRODUCT_NAME_HSQLDB:
           case PRODUCT_NAME_H2: return new JPA_HSQLDB_DatabaseProcessor();
           default: return new JPADefaultDatabaseProcessor();

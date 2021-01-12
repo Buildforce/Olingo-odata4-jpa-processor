@@ -22,7 +22,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import nl.buildforce.olingo.commons.api.data.EntityMediaObject;
@@ -65,12 +65,7 @@ public class FixedFormatSerializerImpl implements FixedFormatSerializer {
 
   @Override
   public InputStream count(Integer count) throws SerializerException {
-    try {
-      return new ByteArrayInputStream(count.toString().getBytes("UTF-8"));
-    } catch (UnsupportedEncodingException e) {
-      throw new SerializerException("UTF-8 is nott supprted as an encoding", e,
-          SerializerException.MessageKeys.UNSUPPORTED_ENCODING, "UTF-8");
-    }
+      return new ByteArrayInputStream(count.toString().getBytes(StandardCharsets.UTF_8));
   }
 
   @Override
@@ -80,13 +75,11 @@ public class FixedFormatSerializerImpl implements FixedFormatSerializer {
       String result = type.valueToString(value,
           options.isNullable(), options.getMaxLength(),
           options.getPrecision(), options.getScale(), options.isUnicode());
-      return new ByteArrayInputStream(result.getBytes("UTF-8"));
+      return new ByteArrayInputStream(result.getBytes(StandardCharsets.UTF_8));
     } catch (EdmPrimitiveTypeException e) {
       throw new SerializerException("Error in primitive-value formatting.", e,
           SerializerException.MessageKeys.WRONG_PRIMITIVE_VALUE,
           type.getFullQualifiedName().getFullQualifiedNameAsString(), value.toString());
-    } catch (UnsupportedEncodingException e) {
-      throw new SerializerException("Encoding exception.", e, SerializerException.MessageKeys.IO_EXCEPTION);
     }
   }
 

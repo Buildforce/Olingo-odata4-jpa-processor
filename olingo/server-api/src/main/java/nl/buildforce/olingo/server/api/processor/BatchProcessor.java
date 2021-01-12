@@ -18,14 +18,14 @@
  */
 package nl.buildforce.olingo.server.api.processor;
 
-import java.util.List;
-
 import nl.buildforce.olingo.server.api.ODataApplicationException;
 import nl.buildforce.olingo.server.api.ODataLibraryException;
 import nl.buildforce.olingo.server.api.ODataRequest;
 import nl.buildforce.olingo.server.api.ODataResponse;
 import nl.buildforce.olingo.server.api.batch.BatchFacade;
 import nl.buildforce.olingo.server.api.deserializer.batch.ODataResponsePart;
+
+import java.util.List;
 
 /**
  * Processor interface for handling a single instance of an Entity Type.

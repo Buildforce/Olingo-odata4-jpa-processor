@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
   <parent>
     <groupId>nl.buildforce.odata4-jpa</groupId>
     <artifactId>OData4-jpa-parent</artifactId>
@@ -9,7 +10,7 @@
 
   <groupId>nl.buildforce.olingo</groupId>
   <artifactId>Olingo-parent</artifactId>
-  <version>0.0.1</version>
+  <version>${odata4-jpa.version}</version>
   <packaging>pom</packaging>
 
   <name>Olingo-ODataV4 CapSelUI5</name>
@@ -27,7 +28,7 @@
     <maven.bundle.plugin.version>2.5.3</maven.bundle.plugin.version>
     <maven.plugin.api.version>3.6.3</maven.plugin.api.version>
     <maven.plugin.tools.version>3.6.0</maven.plugin.tools.version>
-    <!--<sl4j.version>2.0.0-alpha1</sl4j.version>-->
+    <!--<odata4-jpa.version>0.0.2</odata4-jpa.version>-->
   </properties>
   <dependencyManagement>
     <dependencies>

@@ -21,6 +21,7 @@ package nl.buildforce.olingo.server.core.deserializer.batch;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -132,13 +133,13 @@ public class BatchRequestTransformator {
       String charsetValue = contentType.getParameter(ContentType.PARAMETER_CHARSET);
       if (charsetValue == null) {
         if (contentType.isCompatible(ContentType.APPLICATION_JSON) || contentType.getSubtype().contains("xml")) {
-          return Charset.forName("UTF-8");
+          return StandardCharsets.UTF_8;
         }
       } else {
         return Charset.forName(charsetValue);
       }
     }
-    return Charset.forName("ISO-8859-1");
+    return StandardCharsets.ISO_8859_1;
   }
 
   private void validateForbiddenHeader(BatchQueryOperation operation) throws BatchDeserializerException {

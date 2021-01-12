@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
     <groupId>nl.buildforce.sequoia</groupId>
     <artifactId>Sequoia-parent</artifactId>
-    <version>0.0.1</version>
+    <version>${odata4-jpa.version}</version>
   <packaging>pom</packaging>
   <name>Sequoia JPA processor</name>
   <url>https://github.com/Buildforce/Olingo-odata4-jpa-processor</url>
@@ -36,6 +36,7 @@
     <jakarta.persistence.api>3.0.0</jakarta.persistence.api>
     <maven.compiler.version>3.8.1</maven.compiler.version>
     <odata.version>0.0.1</odata.version>
+    <odata4-jpa.version>0.0.1</odata4-jpa.version>
   </properties>
   <build>
     <pluginManagement>

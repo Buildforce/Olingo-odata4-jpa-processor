@@ -62,10 +62,12 @@ public final class Constantsv00 implements IConstants{
 
    public static final String JSON_DELTA_LINK = "@odata.deltaLink";
 
+/*
   @Override
   public String getMetadata() {
     return JSON_METADATA;
   }
+*/
 
   @Override
   public String getType() {

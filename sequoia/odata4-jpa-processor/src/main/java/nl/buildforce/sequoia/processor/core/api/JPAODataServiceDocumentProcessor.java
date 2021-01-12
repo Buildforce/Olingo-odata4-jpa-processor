@@ -14,7 +14,6 @@ import nl.buildforce.olingo.server.api.etag.ServiceMetadataETagSupport;
 import nl.buildforce.olingo.server.api.processor.DefaultProcessor;
 import nl.buildforce.olingo.server.api.processor.ServiceDocumentProcessor;
 import nl.buildforce.olingo.server.api.serializer.ODataSerializer;
-import nl.buildforce.olingo.server.api.uri.UriInfo;
 
 public class JPAODataServiceDocumentProcessor implements ServiceDocumentProcessor {
 
@@ -34,11 +33,11 @@ public class JPAODataServiceDocumentProcessor implements ServiceDocumentProcesso
 
   /**
    * This is a copy from @see
-   * {@link DefaultProcessor#readServiceDocument(ODataRequest, ODataResponse, UriInfo, ContentType)}
+   * {@link DefaultProcessor#readServiceDocument(ODataRequest, ODataResponse, ContentType)}
    * 
    */
   @Override
-  public void readServiceDocument(final ODataRequest request, final ODataResponse response, final UriInfo uriInfo,
+  public void readServiceDocument(final ODataRequest request, final ODataResponse response, /*final UriInfo uriInfo,*/
       final ContentType requestedContentType) throws ODataLibraryException {
     String uri = serviceContext.useAbsoluteContextURL() ? request.getRawBaseUri() : null;
     boolean isNotModified = false;

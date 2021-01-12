@@ -98,7 +98,7 @@ public class ODataDispatcher {
       ContentType requestedContentType = ContentNegotiator.doContentNegotiation(uriInfo.getFormatOption(),
           request, handler.getCustomContentTypeSupport(), RepresentationType.METADATA);
       handler.selectProcessor(MetadataProcessor.class)
-          .readMetadata(request, response, uriInfo, requestedContentType);
+          .readMetadata(request, response, /*uriInfo,*/ requestedContentType);
       break;
 
     case service:
@@ -110,7 +110,7 @@ public class ODataDispatcher {
         ContentType serviceContentType = ContentNegotiator.doContentNegotiation(uriInfo.getFormatOption(),
             request, handler.getCustomContentTypeSupport(), RepresentationType.SERVICE);
         handler.selectProcessor(ServiceDocumentProcessor.class)
-            .readServiceDocument(request, response, uriInfo, serviceContentType);
+            .readServiceDocument(request, response, /*uriInfo,*/ serviceContentType);
       }
       break;
 

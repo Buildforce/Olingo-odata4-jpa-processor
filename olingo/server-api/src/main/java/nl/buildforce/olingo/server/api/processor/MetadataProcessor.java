@@ -23,7 +23,6 @@ import nl.buildforce.olingo.server.api.ODataApplicationException;
 import nl.buildforce.olingo.server.api.ODataLibraryException;
 import nl.buildforce.olingo.server.api.ODataRequest;
 import nl.buildforce.olingo.server.api.ODataResponse;
-import nl.buildforce.olingo.server.api.uri.UriInfo;
 
 /**
  * Processor interface for handling the metadata document.
@@ -39,6 +38,6 @@ public interface MetadataProcessor extends Processor {
    * @throws ODataApplicationException if the service implementation encounters a failure
    * @throws ODataLibraryException
    */
-  void readMetadata(ODataRequest request, ODataResponse response, UriInfo uriInfo, ContentType responseFormat)
+  void readMetadata(ODataRequest request, ODataResponse response, /*UriInfo uriInfo,*/ ContentType responseFormat)
       throws ODataApplicationException, ODataLibraryException;
 }
