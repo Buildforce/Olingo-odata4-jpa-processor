@@ -4,7 +4,7 @@
   <parent>
     <groupId>nl.buildforce.sequoia</groupId>
     <artifactId>Sequoia-parent</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
   </parent>
   <artifactId>odata4-jpa-test</artifactId>
   <name>odata4-jpa-test</name>
@@ -91,11 +91,6 @@
           <version>${eclipselink.version}</version>
         </dependency>
       </dependencies>
-    </profile>
-
-    <profile>
-      <id>hibernate</id>
-      <activation />
     </profile>
   </profiles>
 </project>

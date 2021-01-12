@@ -5,8 +5,7 @@
   <parent>
     <groupId>nl.buildforce.olingo</groupId>
     <artifactId>Olingo-parent</artifactId>
-    <version>0.0.1</version>
-    <relativePath>..</relativePath>
+    <version>0.0.2</version>
   </parent>
 
   <artifactId>odata-commons-api</artifactId>
