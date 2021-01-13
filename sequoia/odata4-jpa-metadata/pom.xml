@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>nl.buildforce.sequoia</groupId>
@@ -28,22 +29,27 @@
             <artifactId>jakarta.persistence-api</artifactId>
             <version>${jakarta.persistence.api}</version>
         </dependency>
+
+        <!--
         <dependency>
             <groupId>nl.buildforce.olingo</groupId>
             <artifactId>odata-server-core</artifactId>
             <version>${odata.version}</version>
             <scope>runtime</scope>
         </dependency>
+
         <dependency>
             <groupId>nl.buildforce.olingo</groupId>
             <artifactId>odata-commons-api</artifactId>
             <version>${odata.version}</version>
-        </dependency>
+        </dependency> -->
+
         <dependency>
             <groupId>nl.buildforce.olingo</groupId>
             <artifactId>odata-server-api</artifactId>
             <version>${odata.version}</version>
         </dependency>
+
         <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-xml</artifactId>

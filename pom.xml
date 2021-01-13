@@ -12,7 +12,7 @@
     <packaging>pom</packaging>
     <properties>
         <odata4-jpa.version>0.0.2</odata4-jpa.version>
-        <jackson.version>2.11.3</jackson.version>
+        <jackson.version>2.12.1</jackson.version>
         <jakarta-servlet.version>5.0.0</jakarta-servlet.version>
         <project.build.source>1.8</project.build.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -21,7 +21,7 @@
     <repository>
         <id>bintray-serioussoftware-repo</id>
         <name>serioussoftware-maven3</name>
-        <url>https://api.bintray.com/maven/serioussoftware/repo1/OData4-jpa-parent/;publish=1</url>
+        <url>https://api.bintray.com/maven/serioussoftware/repo1/OData4-JPA/;publish=1</url>
     </repository>
     </distributionManagement>
 </project>
