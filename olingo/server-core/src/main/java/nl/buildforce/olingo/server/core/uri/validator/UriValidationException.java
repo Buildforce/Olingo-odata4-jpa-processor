@@ -24,7 +24,7 @@ public class UriValidationException extends ODataLibraryException {
 
   private static final long serialVersionUID = -3179078078053564742L;
 
-  public static enum MessageKeys implements MessageKey {
+  public enum MessageKeys implements MessageKey {
     /** parameter: unsupported query option */
     UNSUPPORTED_QUERY_OPTION,
     /** parameter: unsupported uri kind */

@@ -28,8 +28,8 @@ import nl.buildforce.olingo.server.api.ODataRequest;
  * Represents a distinct MIME part of a Batch Request body - either a Change Set or a Query Operation
  */
 public class BatchRequestPart {
-  private List<ODataRequest> requests;
-  private boolean isChangeSet;
+  private final List<ODataRequest> requests;
+  private final boolean isChangeSet;
 
   /**
    * Creates a new instance of BachRequestPart.

@@ -29,7 +29,7 @@ public class EdmIfImpl extends AbstractEdmAnnotatableDynamicExpression implement
   private EdmExpression guard;
   private EdmExpression _then;
   private EdmExpression _else;
-  private CsdlIf csdlExp;
+  private final CsdlIf csdlExp;
 
   public EdmIfImpl(Edm edm, CsdlIf csdlExp) {
     super(edm, "If", csdlExp);

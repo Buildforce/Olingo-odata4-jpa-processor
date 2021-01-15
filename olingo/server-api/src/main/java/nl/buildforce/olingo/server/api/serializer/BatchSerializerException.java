@@ -34,8 +34,7 @@ public class BatchSerializerException extends SerializerException {
     }
   }
 
-  public BatchSerializerException(String developmentMessage, MessageKey messageKey,
-                                  String... parameters) {
+  public BatchSerializerException(String developmentMessage, MessageKey messageKey, String... parameters) {
     super(developmentMessage, messageKey, parameters);
   }
 

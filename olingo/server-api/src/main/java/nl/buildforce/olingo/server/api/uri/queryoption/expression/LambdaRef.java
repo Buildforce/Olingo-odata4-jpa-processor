@@ -26,6 +26,6 @@ public interface LambdaRef extends Expression {
   /**
    * @return Name of the lambda variable
    */
-  public String getVariableName();
+  String getVariableName();
 
 }

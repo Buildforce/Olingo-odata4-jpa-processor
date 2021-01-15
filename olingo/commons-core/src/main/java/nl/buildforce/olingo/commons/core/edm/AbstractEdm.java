@@ -97,7 +97,7 @@ public abstract class AbstractEdm implements Edm {
   private final Map<FullQualifiedName, EdmComplexType> complexTypesDerivedFromES =
       Collections.synchronizedMap(new HashMap<>());
 
-  private Map<String, List<CsdlAnnotation>> annotationMap =
+  private final Map<String, List<CsdlAnnotation>> annotationMap =
           new HashMap<>();
   
   @Override

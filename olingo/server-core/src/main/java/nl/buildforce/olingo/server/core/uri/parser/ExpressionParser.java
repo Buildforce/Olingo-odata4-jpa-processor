@@ -162,7 +162,7 @@ public class ExpressionParser {
   private final OData odata;
 
   private UriTokenizer tokenizer;
-  private Deque<UriResourceLambdaVariable> lambdaVariables = new ArrayDeque<>();
+  private final Deque<UriResourceLambdaVariable> lambdaVariables = new ArrayDeque<>();
   private EdmType referringType;
   private Collection<String> crossjoinEntitySetNames;
   private Map<String, AliasQueryOption> aliases;

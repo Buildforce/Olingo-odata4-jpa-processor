@@ -26,11 +26,11 @@ public interface QueryOption {
   /**
    * @return Name of query option
    */
-  public String getName();
+  String getName();
 
   /**
    * @return Value of query option
    */
-  public String getText();
+  String getText();
 
 }

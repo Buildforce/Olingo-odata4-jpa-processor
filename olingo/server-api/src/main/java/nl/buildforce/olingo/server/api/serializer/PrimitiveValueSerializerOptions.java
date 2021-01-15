@@ -70,7 +70,7 @@ public class PrimitiveValueSerializerOptions {
   /** Builder of OData serializer options. */
   public static final class Builder {
 
-    private PrimitiveValueSerializerOptions options;
+    private final PrimitiveValueSerializerOptions options;
 
     private Builder() {
       options = new PrimitiveValueSerializerOptions();

@@ -31,21 +31,21 @@ public interface Member extends Expression {
    * @return UriInfoResource object describing the whole path used to access an data value
    * (this includes for example the usage of $root and $it inside the URI)
    */
-  public UriInfoResource getResourcePath();
+  UriInfoResource getResourcePath();
 
   /**
    * @return Type
    */
-  public EdmType getType();
+  EdmType getType();
 
   /**
    * @return The used type filter ahead of the path
    */
-  public EdmType getStartTypeFilter();
+  EdmType getStartTypeFilter();
 
   /**
    * @return true if the accessed data is a collection, otherwise false
    */
-  public boolean isCollection();
+  boolean isCollection();
 
 }

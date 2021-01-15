@@ -31,7 +31,7 @@ public class ODataApplicationException extends ODataException {
 
   private static final long serialVersionUID = 5358683245923127425L;
   private int statusCode = HttpStatusCode.INTERNAL_SERVER_ERROR.getStatusCode();
-  private Locale locale;
+  private final Locale locale;
   private String oDataErrorCode;
 
   /**

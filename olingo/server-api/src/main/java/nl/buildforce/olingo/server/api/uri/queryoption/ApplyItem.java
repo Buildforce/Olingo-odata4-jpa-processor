@@ -24,7 +24,7 @@ package nl.buildforce.olingo.server.api.uri.queryoption;
 public interface ApplyItem {
 
   /** The kind of the transformation. */
-  public enum Kind {
+  enum Kind {
     AGGREGATE,
     BOTTOM_TOP,
     COMPUTE,

@@ -28,7 +28,7 @@ import nl.buildforce.olingo.commons.core.edm.AbstractEdmAnnotatable;
 public class EdmPropertyValueImpl extends AbstractEdmAnnotatable implements EdmPropertyValue {
 
   private EdmExpression value;
-  private CsdlPropertyValue csdlExp;
+  private final CsdlPropertyValue csdlExp;
 
   public EdmPropertyValueImpl(Edm edm, CsdlPropertyValue csdlExp) {
     super(edm, csdlExp);

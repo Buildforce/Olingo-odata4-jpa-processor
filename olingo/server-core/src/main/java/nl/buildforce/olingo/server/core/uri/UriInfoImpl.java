@@ -61,17 +61,17 @@ public class UriInfoImpl implements UriInfo {
   private UriInfoKind kind;
 
   // for $entity
-  private List<String> entitySetNames = new ArrayList<>();
+  private final List<String> entitySetNames = new ArrayList<>();
   // for $entity
   private EdmEntityType entityTypeCast;
 
   private UriResource lastResourcePart;
-  private List<UriResource> pathParts = new ArrayList<>();
+  private final List<UriResource> pathParts = new ArrayList<>();
 
-  private Map<SystemQueryOptionKind, SystemQueryOption> systemQueryOptions =
+  private final Map<SystemQueryOptionKind, SystemQueryOption> systemQueryOptions =
       new EnumMap<>(SystemQueryOptionKind.class);
-  private Map<String, AliasQueryOption> aliases = new HashMap<>();
-  private List<CustomQueryOption> customQueryOptions = new ArrayList<>();
+  private final Map<String, AliasQueryOption> aliases = new HashMap<>();
+  private final List<CustomQueryOption> customQueryOptions = new ArrayList<>();
 
   private String fragment;
 

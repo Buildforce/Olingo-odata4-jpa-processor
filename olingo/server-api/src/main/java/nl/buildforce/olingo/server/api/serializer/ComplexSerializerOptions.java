@@ -60,7 +60,7 @@ public class ComplexSerializerOptions {
   /** Builder of OData serializer options. */
   public static final class Builder {
 
-    private ComplexSerializerOptions options;
+    private final ComplexSerializerOptions options;
 
     private Builder() {
       options = new ComplexSerializerOptions();

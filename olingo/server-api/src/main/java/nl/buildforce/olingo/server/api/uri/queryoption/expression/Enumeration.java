@@ -33,11 +33,11 @@ public interface Enumeration extends Expression {
   /**
    * @return A list of enumeration values
    */
-  public List<String> getValues();
+  List<String> getValues();
 
   /**
    * @return The enumeration type used before the enumeration values
    */
-  public EdmEnumType getType();
+  EdmEnumType getType();
 
 }

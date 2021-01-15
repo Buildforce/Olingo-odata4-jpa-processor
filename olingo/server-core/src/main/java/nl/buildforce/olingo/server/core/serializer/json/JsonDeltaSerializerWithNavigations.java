@@ -526,8 +526,8 @@ public class JsonDeltaSerializerWithNavigations implements EdmDeltaSerializer {
                 innerOptions == null ? null : innerOptions.getExpandOption(),
                 innerOptions == null ? null : innerOptions.getSelectOption(),
                 innerOptions == null ? null : innerOptions.getCountOption(),
-                innerOptions == null ? false : innerOptions.hasCountPath(),
-                innerOptions == null ? false : innerOptions.isRef(),
+                    innerOptions != null && innerOptions.hasCountPath(),
+                    innerOptions != null && innerOptions.isRef(),
                     navEntitySetName != null ? navEntitySetName : name + "/" + property.getName(), 
                         json, isFullRepresentation);
           } else {

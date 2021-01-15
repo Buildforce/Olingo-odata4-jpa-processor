@@ -34,32 +34,32 @@ public interface Preferences {
    * @param name name of the preference
    * @return {@link Preference} or <code>null</code> if no such preference has been set
    */
-  public Preference getPreference(String name);
+  Preference getPreference(String name);
 
   /** Whether the preference <code>odata.allow-entityreferences</code> has been set. */
-  public boolean hasAllowEntityReferences();
+  boolean hasAllowEntityReferences();
 
   /**
    * Gets the value of the <code>url</code> parameter of the preference
    * <code>odata.callback</code> or <code>null</code> if not set or the URI is not valid.
    * @return the callback URI
    */
-  public URI getCallback();
+  URI getCallback();
 
   /** Whether the preference <code>odata.continue-on-error</code> has been set. */
-  public boolean hasContinueOnError();
+  boolean hasContinueOnError();
 
   /**
    * Gets the value of the preference <code>odata.maxpagesize</code>
    * or <code>null</code> if not set or an invalid value has been set.
    * @return the page size for server-driven paging
    */
-  public Integer getMaxPageSize();
+  Integer getMaxPageSize();
 
   /** Whether the preference <code>odata.track-changes</code> has been set. */
-  public boolean hasTrackChanges();
+  boolean hasTrackChanges();
 
-  public enum Return {
+  enum Return {
     REPRESENTATION, MINIMAL
   }
 
@@ -67,10 +67,10 @@ public interface Preferences {
    * Gets the value of the preference <code>return</code> or <code>null</code> if not set
    * or the value is not valid.
    */
-  public Return getReturn();
+  Return getReturn();
 
   /** Whether the preference <code>respond-async</code> has been set. */
-  public boolean hasRespondAsync();
+  boolean hasRespondAsync();
 
   /**
    * Gets the value of the preference <code>wait</code> or <code>null</code> if not set
@@ -78,10 +78,10 @@ public interface Preferences {
    * @return the number of seconds the client is prepared to wait for the service
    * to process the request synchronously
    */
-  public Integer getWait();
+  Integer getWait();
 
   /** Generic preference object. */
-  public class Preference {
+  class Preference {
     private final String value;
     private final Map<String, String> parameters;
 

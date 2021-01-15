@@ -29,7 +29,7 @@ import nl.buildforce.olingo.server.api.uri.queryoption.expression.Expression;
 public interface BottomTop extends ApplyItem {
 
   /** Pre-defined method for partial aggregration. */
-  public enum Method { BOTTOM_COUNT, BOTTOM_PERCENT, BOTTOM_SUM, TOP_COUNT, TOP_PERCENT, TOP_SUM }
+  enum Method { BOTTOM_COUNT, BOTTOM_PERCENT, BOTTOM_SUM, TOP_COUNT, TOP_PERCENT, TOP_SUM }
 
   /**
    * Gets the partial-aggregation method.

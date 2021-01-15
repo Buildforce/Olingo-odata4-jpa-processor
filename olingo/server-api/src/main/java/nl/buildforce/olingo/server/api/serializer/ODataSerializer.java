@@ -34,7 +34,7 @@ import nl.buildforce.olingo.server.api.ServiceMetadata;
 public interface ODataSerializer {
 
   /** The default character set is UTF-8. */
-  public static final String DEFAULT_CHARSET =  Constants.UTF8;
+  String DEFAULT_CHARSET =  Constants.UTF8;
 
   /**
    * Writes the service document into an InputStream.

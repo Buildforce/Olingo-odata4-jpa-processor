@@ -26,7 +26,7 @@ import nl.buildforce.olingo.server.api.ODataLibraryException;
 public class PreconditionException extends ODataLibraryException {
   private static final long serialVersionUID = -8112658467394158700L;
 
-  public static enum MessageKeys implements MessageKey {
+  public enum MessageKeys implements MessageKey {
     /** no parameter */
     MISSING_HEADER,
     /** no parameter */

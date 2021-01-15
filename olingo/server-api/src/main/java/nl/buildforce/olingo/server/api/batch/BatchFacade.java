@@ -47,7 +47,7 @@
     * @throws ODataApplicationException
     * @throws ODataLibraryException
     */
-   public ODataResponse handleODataRequest(ODataRequest request)
+   ODataResponse handleODataRequest(ODataRequest request)
        throws ODataApplicationException, ODataLibraryException;
 
    /**
@@ -57,7 +57,7 @@
     * @throws ODataApplicationException
     * @throws ODataLibraryException
     */
-   public ODataResponsePart handleBatchRequest(BatchRequestPart request)
+   ODataResponsePart handleBatchRequest(BatchRequestPart request)
        throws ODataApplicationException, ODataLibraryException;
 
    /**
@@ -68,6 +68,6 @@
     * @throws ODataApplicationException
     * @throws ODataLibraryException
     */
-   public String extractBoundaryFromContentType(String contentType)
+   String extractBoundaryFromContentType(String contentType)
        throws ODataApplicationException, ODataLibraryException;
  }

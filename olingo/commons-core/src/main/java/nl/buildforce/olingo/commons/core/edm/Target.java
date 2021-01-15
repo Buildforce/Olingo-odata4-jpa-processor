@@ -27,8 +27,8 @@ import nl.buildforce.olingo.commons.api.edm.FullQualifiedName;
  */
 public class Target {
 
-  private String targetName;
-  private FullQualifiedName entityContainer;
+  private final String targetName;
+  private final FullQualifiedName entityContainer;
 
   public Target(String target, EdmEntityContainer defaultContainer) {
     String[] bindingTargetParts = target.split("/");

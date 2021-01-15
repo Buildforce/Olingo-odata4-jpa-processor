@@ -42,8 +42,8 @@ public interface ETagHelper {
    * @param ifNoneMatchHeaders the If-None-Match header values
    * @return whether a "Not Modified" response should be used
    */
-  public boolean checkReadPreconditions(String eTag,
-      Collection<String> ifMatchHeaders, Collection<String> ifNoneMatchHeaders)
+  boolean checkReadPreconditions(String eTag,
+                                 Collection<String> ifMatchHeaders, Collection<String> ifNoneMatchHeaders)
           throws PreconditionException;
 
   /**
@@ -60,7 +60,7 @@ public interface ETagHelper {
    * @param ifMatchHeaders the If-Match header values
    * @param ifNoneMatchHeaders the If-None-Match header values
    */
-  public void checkChangePreconditions(String eTag,
-      Collection<String> ifMatchHeaders, Collection<String> ifNoneMatchHeaders)
+  void checkChangePreconditions(String eTag,
+                                Collection<String> ifMatchHeaders, Collection<String> ifNoneMatchHeaders)
           throws PreconditionException;
 }

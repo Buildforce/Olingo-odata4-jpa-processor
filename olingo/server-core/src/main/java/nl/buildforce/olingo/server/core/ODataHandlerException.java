@@ -24,7 +24,7 @@ import nl.buildforce.olingo.server.api.ODataLibraryException;
 public class ODataHandlerException extends ODataLibraryException {
   private static final long serialVersionUID = -907752788975531134L;
 
-  public static enum MessageKeys implements MessageKey {
+  public enum MessageKeys implements MessageKey {
     /** parameters: HTTP method, HTTP method */
     AMBIGUOUS_XHTTP_METHOD,
     /** parameter: HTTP method */

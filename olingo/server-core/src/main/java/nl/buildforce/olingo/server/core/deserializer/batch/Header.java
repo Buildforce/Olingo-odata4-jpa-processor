@@ -134,7 +134,7 @@ public class Header implements Iterable<HeaderField>, Cloneable {
   @Override
   public Iterator<HeaderField> iterator() {
     return new Iterator<HeaderField>() {
-      Iterator<String> keyIterator = headers.keySet().iterator();
+      final Iterator<String> keyIterator = headers.keySet().iterator();
 
       @Override
       public boolean hasNext() {

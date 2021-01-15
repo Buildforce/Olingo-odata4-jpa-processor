@@ -34,13 +34,13 @@ public enum UnaryOperatorKind {
    */
   NOT("not");
 
-  private String syntax;
+  private final String syntax;
 
   /**
    * Constructor for enumeration value
-   * @param Syntax used in the URI
+   * @param syntax used in the URI
    */
-  private UnaryOperatorKind(String syntax) {
+  UnaryOperatorKind(String syntax) {
     this.syntax = syntax;
   }
 

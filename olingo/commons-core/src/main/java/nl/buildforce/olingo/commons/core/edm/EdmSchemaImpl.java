@@ -54,16 +54,16 @@ public class EdmSchemaImpl extends AbstractEdmAnnotatable implements EdmSchema {
 
   protected final String namespace;
   private final String alias;
-  private List<EdmEnumType> enumTypes;
-  private List<EdmEntityType> entityTypes;
-  private List<EdmComplexType> complexTypes;
-  private List<EdmAction> actions;
-  private List<EdmFunction> functions;
-  private List<EdmTypeDefinition> typeDefinitions;
-  private List<EdmTerm> terms;
-  private List<EdmAnnotations> annotationGroups;
-  private List<EdmAnnotation> annotations;
-  private EdmEntityContainer entityContainer;
+  private final List<EdmEnumType> enumTypes;
+  private final List<EdmEntityType> entityTypes;
+  private final List<EdmComplexType> complexTypes;
+  private final List<EdmAction> actions;
+  private final List<EdmFunction> functions;
+  private final List<EdmTypeDefinition> typeDefinitions;
+  private final List<EdmTerm> terms;
+  private final List<EdmAnnotations> annotationGroups;
+  private final List<EdmAnnotation> annotations;
+  private final EdmEntityContainer entityContainer;
 
   public EdmSchemaImpl(EdmProviderImpl edm, CsdlEdmProvider provider, CsdlSchema schema) {
     super(edm, schema);

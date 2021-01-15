@@ -29,7 +29,7 @@ import nl.buildforce.olingo.server.api.uri.queryoption.apply.Aggregate;
  */
 public class AggregateImpl implements Aggregate {
 
-  private List<AggregateExpression> expressions = new ArrayList<>();
+  private final List<AggregateExpression> expressions = new ArrayList<>();
 
   @Override
   public Kind getKind() {

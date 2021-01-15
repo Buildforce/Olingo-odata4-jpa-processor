@@ -36,7 +36,7 @@ public class EdmRecordImpl extends AbstractEdmAnnotatableDynamicExpression imple
 
   private List<EdmPropertyValue> propertyValues;
   private EdmStructuredType type;
-  private CsdlRecord record;
+  private final CsdlRecord record;
 
   public EdmRecordImpl(Edm edm, CsdlRecord csdlExp) {
     super(edm, "Record", csdlExp);

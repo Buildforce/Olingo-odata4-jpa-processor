@@ -28,7 +28,7 @@ import nl.buildforce.olingo.commons.api.edm.provider.CsdlPropertyRef;
 public class EdmKeyPropertyRefImpl implements EdmKeyPropertyRef {
 
   private final CsdlPropertyRef ref;
-  private EdmEntityType edmEntityType;
+  private final EdmEntityType edmEntityType;
   private EdmProperty property;
 
   public EdmKeyPropertyRefImpl(EdmEntityType edmEntityType, CsdlPropertyRef ref) {

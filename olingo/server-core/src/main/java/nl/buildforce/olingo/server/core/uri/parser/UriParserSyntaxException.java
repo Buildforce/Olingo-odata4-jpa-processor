@@ -23,7 +23,7 @@ public class UriParserSyntaxException extends UriParserException {
 
   private static final long serialVersionUID = 5887744747812478226L;
 
-  public static enum MessageKeys implements MessageKey {
+  public enum MessageKeys implements MessageKey {
     /** parameter: segment */
     MUST_BE_LAST_SEGMENT,
     /** parameter: query-option name */

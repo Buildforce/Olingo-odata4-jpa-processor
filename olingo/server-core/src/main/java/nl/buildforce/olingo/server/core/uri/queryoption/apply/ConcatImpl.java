@@ -29,7 +29,7 @@ import nl.buildforce.olingo.server.api.uri.queryoption.apply.Concat;
  */
 public class ConcatImpl implements Concat {
 
-  private List<ApplyOption> options = new ArrayList<>();
+  private final List<ApplyOption> options = new ArrayList<>();
 
   @Override
   public Kind getKind() {

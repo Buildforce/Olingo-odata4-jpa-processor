@@ -114,7 +114,7 @@ public class ODataJsonSerializer extends AbstractODataSerializer {
   private final boolean isIEEE754Compatible;
   private final boolean isODataMetadataNone;
   private final boolean isODataMetadataFull;
-  private IConstants constants;
+  private final IConstants constants;
 
   public ODataJsonSerializer(ContentType contentType, IConstants constants) {
     isIEEE754Compatible = ContentTypeHelper.isODataIEEE754Compatible(contentType);
@@ -200,7 +200,7 @@ public class ODataJsonSerializer extends AbstractODataSerializer {
                                            EntityCollectionSerializerOptions options) throws SerializerException {
     OutputStream outputStream = null;
     SerializerException cachedException = null;
-    boolean pagination = false;
+    // boolean pagination = false;
     
     CircleStreamBuffer buffer = new CircleStreamBuffer();
     outputStream = buffer.getOutputStream();
@@ -251,7 +251,7 @@ public class ODataJsonSerializer extends AbstractODataSerializer {
       throws SerializerException {
 
     SerializerException cachedException;
-    boolean pagination = false;
+    // boolean pagination = false;
     try {
       JsonGenerator json = new JsonFactory().createGenerator(outputStream);
       json.writeStartObject();
@@ -298,7 +298,7 @@ public class ODataJsonSerializer extends AbstractODataSerializer {
           options == null ? null : options.getExpand(),
           null,
           options == null ? null : options.getSelect(),
-          options == null ? false : options.getWriteOnlyReferences(),
+              options != null && options.getWriteOnlyReferences(),
           null, name,
           json);
 
@@ -580,8 +580,8 @@ public class ODataJsonSerializer extends AbstractODataSerializer {
             childExpand, levels,
             innerOptions == null ? null : innerOptions.getSelectOption(),
             innerOptions == null ? null : innerOptions.getCountOption(),
-            innerOptions == null ? false : innerOptions.hasCountPath(),
-            innerOptions == null ? false : innerOptions.isRef(),
+                  innerOptions != null && innerOptions.hasCountPath(),
+                  innerOptions != null && innerOptions.isRef(),
             ancestors, name,
             json);
         }
@@ -1306,14 +1306,14 @@ public class ODataJsonSerializer extends AbstractODataSerializer {
   public SerializerResult referenceCollection(ServiceMetadata metadata, EdmEntitySet edmEntitySet,
                                               AbstractEntityCollection entityCollection, ReferenceCollectionSerializerOptions options)
       throws SerializerException {
-    OutputStream outputStream = null;
+    // OutputStream outputStream = null;
     SerializerException cachedException = null;
-    boolean pagination = false ;
+    // boolean pagination = false ;
 
     ContextURL contextURL = checkContextURL(options == null ? null : options.getContextURL());
     CircleStreamBuffer buffer = new CircleStreamBuffer();
     UriHelper uriHelper = new UriHelperImpl();
-    outputStream = buffer.getOutputStream();
+    OutputStream outputStream = buffer.getOutputStream();
     try (JsonGenerator json = new JsonFactory().createGenerator(outputStream)) {
       json.writeStartObject();
 

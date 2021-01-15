@@ -30,11 +30,11 @@ public interface Unary extends Expression {
    * @return The used binary operator
    * @see UnaryOperatorKind
    */
-  public Expression getOperand();
+  Expression getOperand();
 
   /**
    * @return Expression sub tree to which the operator applies
    */
-  public UnaryOperatorKind getOperator();
+  UnaryOperatorKind getOperator();
 
 }

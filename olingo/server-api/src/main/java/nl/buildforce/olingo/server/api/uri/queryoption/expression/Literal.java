@@ -29,7 +29,7 @@ public interface Literal extends Expression {
   /**
    * @return Literal
    */
-  public String getText();
+  String getText();
 
   /**
    * Numeric literals without an dot and without an e return the smallest possible Edm Integer type.
@@ -39,6 +39,6 @@ public interface Literal extends Expression {
    *
    * @return Type of the literal if detected. The type of the literal is guessed by the parser.
    */
-  public EdmType getType();
+  EdmType getType();
   
 }

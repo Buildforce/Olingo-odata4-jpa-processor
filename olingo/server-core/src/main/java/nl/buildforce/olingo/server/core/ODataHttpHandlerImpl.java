@@ -78,7 +78,6 @@ public class ODataHttpHandlerImpl implements ODataHttpHandler {
   @Override
   public void process(HttpServletRequest request, HttpServletResponse response) {
     ODataRequest odRequest = new ODataRequest();
-    Exception exception = null;
     ODataResponse odResponse;
     // debugger.resolveDebugMode(request);
 
@@ -89,7 +88,7 @@ public class ODataHttpHandlerImpl implements ODataHttpHandler {
       odResponse = process(odRequest);
       // ALL future methods after process must not throw exceptions!
     } catch (Exception e) {
-      exception = e;
+      // exception = e;
       odResponse = handleException(odRequest, e);
     }
     // debugger.stopRuntimeMeasurement(processMethodHandle);

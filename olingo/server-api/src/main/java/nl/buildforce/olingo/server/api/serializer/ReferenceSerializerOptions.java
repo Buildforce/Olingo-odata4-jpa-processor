@@ -40,7 +40,7 @@ public final class ReferenceSerializerOptions {
 
   /** Builder of OData serializer options. */
   public static final class Builder {
-    private ReferenceSerializerOptions options;
+    private final ReferenceSerializerOptions options;
 
     public Builder() {
       options = new ReferenceSerializerOptions();

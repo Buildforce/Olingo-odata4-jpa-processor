@@ -32,7 +32,7 @@ import nl.buildforce.olingo.commons.core.edm.primitivetype.EdmPrimitiveTypeFacto
 
 public class EdmTypeDefinitionImpl extends EdmTypeImpl implements EdmTypeDefinition {
 
-  private CsdlTypeDefinition typeDefinition;
+  private final CsdlTypeDefinition typeDefinition;
   private EdmPrimitiveType edmPrimitiveTypeInstance;
 
   public EdmTypeDefinitionImpl(Edm edm, FullQualifiedName typeDefinitionName,

@@ -21,7 +21,7 @@ package nl.buildforce.olingo.server.api.deserializer.batch;
 import nl.buildforce.olingo.server.api.deserializer.DeserializerException;
 
 public class BatchDeserializerException extends DeserializerException {
-  public static enum MessageKeys implements MessageKey {
+  public enum MessageKeys implements MessageKey {
     /** parameter: line */
     INVALID_BOUNDARY,
     /** parameter: line */

@@ -55,7 +55,7 @@ public enum MethodKind {
   ISOF("isof"),
   SUBSTRINGOF("substringof");
 
-  private String syntax;
+  private final String syntax;
 
   /**
    * Constructor for enumeration value

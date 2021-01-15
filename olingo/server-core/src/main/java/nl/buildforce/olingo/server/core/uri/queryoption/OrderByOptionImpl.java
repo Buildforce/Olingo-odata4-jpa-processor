@@ -28,7 +28,7 @@ import nl.buildforce.olingo.server.api.uri.queryoption.SystemQueryOptionKind;
 
 public class OrderByOptionImpl extends SystemQueryOptionImpl implements OrderByOption {
 
-  private List<OrderByItem> orders = new ArrayList<>();
+  private final List<OrderByItem> orders = new ArrayList<>();
 
   public OrderByOptionImpl() {
     setKind(SystemQueryOptionKind.ORDERBY);

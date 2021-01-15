@@ -36,14 +36,14 @@ public final class JPAODataServiceContext implements /*JPAODataGetContext,*/ JPA
   private    JPAEdmMetadataPostProcessor postProcessor;
   private         JPAODataPagingProvider pagingProvider;
 
-  private final JPAODataDatabaseProcessor databaseProcessor;
-  private Optional<EntityManagerFactory> emf;
-  private                 JPAEdmProvider jpaEdm;
-  private                         String mappingPath;
-  private final                   String namespace_pUnit;
+  private final  JPAODataDatabaseProcessor databaseProcessor;
+  private   Optional<EntityManagerFactory> emf;
+  private                   JPAEdmProvider jpaEdm;
+  private                           String mappingPath;
+  private final                     String namespace_pUnit;
   private final JPAODataDatabaseOperations operationConverter;
-  private                       String[] packageName;
-  private            List<EdmxReference> references = new ArrayList<>();
+  private                         String[] packageName;
+  private final        List<EdmxReference> references = new ArrayList<>();
   //@formatter:on
 
   //public static Builder with() { return new Builder(); }

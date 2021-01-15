@@ -35,7 +35,7 @@ public class BatchReferenceRewriter {
   private static final String REG_EX_REFERENCE = "\\$(.*)(/.*)?";
   private static final Pattern REFERENCE_PATTERN = Pattern.compile(REG_EX_REFERENCE);
 
-  private Map<String, String> contentIdMapping = new HashMap<>();
+  private final Map<String, String> contentIdMapping = new HashMap<>();
 
   public String getReferenceInURI(ODataRequest request) {
     Matcher matcher = REFERENCE_PATTERN.matcher(removeSlash(removeSlash(request.getRawODataPath(), true), false));

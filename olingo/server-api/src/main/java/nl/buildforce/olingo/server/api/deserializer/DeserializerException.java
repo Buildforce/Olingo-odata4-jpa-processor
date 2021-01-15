@@ -26,7 +26,7 @@ public class DeserializerException extends ODataLibraryException {
   private static final long serialVersionUID = 6341270437497060906L;
 
   /** Keys for exception texts in the resource bundle. */
-  public static enum MessageKeys implements MessageKey {
+  public enum MessageKeys implements MessageKey {
     NOT_IMPLEMENTED,
     IO_EXCEPTION,
     /** parameter: format */

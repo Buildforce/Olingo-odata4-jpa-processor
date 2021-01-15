@@ -29,7 +29,7 @@ import nl.buildforce.olingo.server.api.uri.queryoption.SystemQueryOptionKind;
 
 public class ApplyOptionImpl extends SystemQueryOptionImpl implements ApplyOption {
 
-  private List<ApplyItem> transformations = new ArrayList<>();
+  private final List<ApplyItem> transformations = new ArrayList<>();
   private EdmStructuredType edmStructuredType;
 
   public ApplyOptionImpl() {

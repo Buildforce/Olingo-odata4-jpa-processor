@@ -31,7 +31,7 @@ import nl.buildforce.olingo.commons.api.edm.provider.annotation.CsdlExpression;
 
 public class EdmApplyImpl extends AbstractEdmAnnotatableDynamicExpression implements EdmApply {
 
-  private CsdlApply csdlExp;
+  private final CsdlApply csdlExp;
 
   private String function;
   private List<EdmExpression> parameters;

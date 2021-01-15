@@ -29,7 +29,7 @@ import nl.buildforce.olingo.commons.api.http.HttpMethod;
  */
 public class ODataRequest {
   private HttpMethod method;
-  private HttpHeaders headers = new HttpHeaders();
+  private final HttpHeaders headers = new HttpHeaders();
   private InputStream body;
   private String rawQueryPath;
   private String rawRequestUri;

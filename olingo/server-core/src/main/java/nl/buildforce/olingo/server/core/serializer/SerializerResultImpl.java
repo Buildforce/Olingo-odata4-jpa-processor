@@ -35,7 +35,7 @@ public class SerializerResultImpl implements SerializerResult {
   }
 
   public static class SerializerResultBuilder {
-    private SerializerResultImpl result = new SerializerResultImpl();
+    private final SerializerResultImpl result = new SerializerResultImpl();
 
     public SerializerResultBuilder content(InputStream input) {
       result.content = input;

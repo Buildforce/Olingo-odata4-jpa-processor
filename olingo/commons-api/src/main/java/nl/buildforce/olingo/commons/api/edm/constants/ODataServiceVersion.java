@@ -119,7 +119,7 @@ public enum ODataServiceVersion {
 
   private final String version;
 
-  private ODataServiceVersion(String version) {
+  ODataServiceVersion(String version) {
     this.version = version;
   }
 

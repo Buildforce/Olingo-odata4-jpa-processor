@@ -43,8 +43,8 @@ public abstract class ODataLibraryException extends ODataException {
     String getKey();
   }
 
-  private MessageKey messageKey;
-  private Object[] parameters;
+  private final MessageKey messageKey;
+  private final Object[] parameters;
 
   protected ODataLibraryException(String developmentMessage, MessageKey messageKey,
                                   String... parameters) {
@@ -131,8 +131,8 @@ public abstract class ODataLibraryException extends ODataException {
 
   /** Error message text and {@link Locale} used for it. */
   public static class ODataErrorMessage {
-    private String message;
-    private Locale locale;
+    private final String message;
+    private final Locale locale;
 
     public ODataErrorMessage(String message, Locale usedLocale) {
       this.message = message;

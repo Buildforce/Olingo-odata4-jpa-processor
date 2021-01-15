@@ -88,9 +88,7 @@ public class MemberImpl implements Member {
   public boolean isCollection() {
     UriInfoImpl uriInfo = (UriInfoImpl) path;
     UriResource lastResourcePart = uriInfo.getLastResourcePart();
-    return lastResourcePart instanceof UriResourcePartTyped ?
-        ((UriResourcePartTyped) lastResourcePart).isCollection() :
-        false;
+    return lastResourcePart instanceof UriResourcePartTyped && ((UriResourcePartTyped) lastResourcePart).isCollection();
   }
 
   @Override

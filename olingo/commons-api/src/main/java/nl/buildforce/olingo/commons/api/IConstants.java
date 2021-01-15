@@ -24,38 +24,22 @@ package nl.buildforce.olingo.commons.api;
 public interface IConstants {
   
   //public String getMetadata();
-  
-  public String getType();
-  
-  public String getId();
-  
-  public String getReadLink();
+  String getAssociationLink();
+  String getBind();
+  String getContext();
+  String getCount();
+  String getDeltaLink();
+  String getEditLink();
+  String getEtag();
+  String getId();
+  String getMediaContentType();
+  String getMediaEditLink();
+  String getMediaEtag();
+  String getMediaReadLink();
+  String getMetadataEtag();
+  String getNavigationLink();
+  String getNextLink();
+  String getReadLink();
+  String getType();
 
-  public String getEditLink();
-  
-  public String getContext();
-  
-  public String getEtag();
-  
-  public String getMediaEtag();
-  
-  public String getMediaContentType();
-  
-  public String getMediaReadLink();
-  
-  public String getMediaEditLink();
-  
-  public String getMetadataEtag();
-  
-  public String getBind();
-  
-  public String getAssociationLink();
-  
-  public String getNavigationLink();
-  
-  public String getCount();
-  
-  public String getNextLink();
-  
-  public String getDeltaLink();
 }

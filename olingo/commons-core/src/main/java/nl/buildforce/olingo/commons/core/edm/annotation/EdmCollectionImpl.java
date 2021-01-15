@@ -31,7 +31,7 @@ import nl.buildforce.olingo.commons.api.edm.provider.annotation.CsdlExpression;
 public class EdmCollectionImpl extends AbstractEdmDynamicExpression implements EdmCollection {
 
   private List<EdmExpression> items;
-  private CsdlCollection csdlCollection;
+  private final CsdlCollection csdlCollection;
 
   public EdmCollectionImpl(Edm edm, CsdlCollection csdlExp) {
     super(edm, "Collection");

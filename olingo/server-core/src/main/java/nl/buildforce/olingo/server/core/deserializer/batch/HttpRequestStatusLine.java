@@ -42,7 +42,7 @@ public class HttpRequestStatusLine {
 
   private HttpMethod method;
   private String httpVersion;
-  private String rawServiceResolutionUri;
+  private final String rawServiceResolutionUri;
   private String rawQueryPath;
   private String rawODataPath;
   private String rawBaseUri;

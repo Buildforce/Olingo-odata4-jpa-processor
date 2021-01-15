@@ -33,7 +33,7 @@ public abstract class AbstractEdmLogicalOrComparisonExpression
 
   private EdmExpression left;
   private EdmExpression right;
-  private CsdlLogicalOrComparisonExpression csdlExp;
+  private final CsdlLogicalOrComparisonExpression csdlExp;
 
   public AbstractEdmLogicalOrComparisonExpression(Edm edm, CsdlLogicalOrComparisonExpression csdlExp) {
     super(edm, csdlExp.getType().toString(), csdlExp);

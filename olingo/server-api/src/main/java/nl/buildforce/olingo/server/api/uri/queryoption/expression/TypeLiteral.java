@@ -28,6 +28,6 @@ public interface TypeLiteral extends Expression {
   /**
    * @return Type defined by the type literal
    */
-  public EdmType getType();
+  EdmType getType();
 
 }

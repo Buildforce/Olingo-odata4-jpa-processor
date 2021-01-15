@@ -36,7 +36,7 @@ import nl.buildforce.olingo.commons.api.edm.provider.CsdlPropertyRef;
 
 public class EdmEntityTypeImpl extends AbstractEdmStructuredType implements EdmEntityType {
 
-  private CsdlEntityType entityType;
+  private final CsdlEntityType entityType;
   private boolean baseTypeChecked;
   private final boolean hasStream;
   protected EdmEntityType entityBaseType;

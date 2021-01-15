@@ -29,11 +29,11 @@ public interface Method extends Expression {
    * @return The used method
    * @see MethodKind
    */
-  public MethodKind getMethod();
+  MethodKind getMethod();
 
   /**
    * @return The list of expression tree which form the actual method parameters
    */
-  public List<Expression> getParameters();
+  List<Expression> getParameters();
 
 }

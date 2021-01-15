@@ -70,7 +70,7 @@ public final class BatchOptions {
    * BatchOptions builder
    */
   public static class Builder {
-    private BatchOptions options;
+    private final BatchOptions options;
 
     /** Initializes the options builder. */
     public Builder() {

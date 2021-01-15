@@ -28,7 +28,7 @@ public class EdmLabeledElementImpl
     extends AbstractEdmAnnotatableDynamicExpression implements EdmLabeledElement {
 
   private EdmExpression value;
-  private CsdlLabeledElement csdlLableledElement;
+  private final CsdlLabeledElement csdlLableledElement;
 
   public EdmLabeledElementImpl(Edm edm, CsdlLabeledElement csdlExp) {
     super(edm, "LabeledElement", csdlExp);

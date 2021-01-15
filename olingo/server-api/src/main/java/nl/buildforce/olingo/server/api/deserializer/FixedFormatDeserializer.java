@@ -35,21 +35,21 @@ public interface FixedFormatDeserializer {
    * @param content the binary data as input stream
    * @return the binary data
    */
-  public byte[] binary(InputStream content) throws DeserializerException;
+  byte[] binary(InputStream content) throws DeserializerException;
 
   /**
    * Reads primitive-type data from an InputStream.
    * @param content the textual value as input stream
    * @param property EDM property
    */
-  public Object primitiveValue(InputStream content, EdmProperty property) throws DeserializerException;
+  Object primitiveValue(InputStream content, EdmProperty property) throws DeserializerException;
 
   /**
    * Reads parameter data (in URI syntax) from a String.
    * @param content the textual value as String
    * @param parameter EDM parameter
    */
-  public Parameter parameter(String content, EdmParameter parameter) throws DeserializerException;
+  Parameter parameter(String content, EdmParameter parameter) throws DeserializerException;
 
   /**
    * Reads batch data from an InputStream.
@@ -58,6 +58,6 @@ public interface FixedFormatDeserializer {
    * @param options options for the deserializer
    * @return a list of batch-request parts
    */
-  public List<BatchRequestPart> parseBatchRequest(InputStream content, String boundary, BatchOptions options)
+  List<BatchRequestPart> parseBatchRequest(InputStream content, String boundary, BatchOptions options)
       throws BatchDeserializerException;
 }

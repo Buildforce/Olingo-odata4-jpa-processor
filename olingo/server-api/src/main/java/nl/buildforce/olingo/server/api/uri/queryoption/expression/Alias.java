@@ -29,6 +29,6 @@ public interface Alias extends Expression {
   /**
    * @return Name of the used alias
    */
-  public String getParameterName();
+  String getParameterName();
 
 }

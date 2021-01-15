@@ -40,9 +40,9 @@ public class BatchLineReader {
   public static final String CRLF = "\r\n";
   private Charset currentCharset = DEFAULT_CHARSET;
   private String currentBoundary;
-  private ReadState readState = new ReadState();
-  private InputStream reader;
-  private byte[] buffer;
+  private final ReadState readState = new ReadState();
+  private final InputStream reader;
+  private final byte[] buffer;
   private int offset;
   private int limit;
 

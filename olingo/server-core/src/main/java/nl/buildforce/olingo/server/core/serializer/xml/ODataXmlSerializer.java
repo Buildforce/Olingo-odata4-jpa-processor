@@ -662,8 +662,8 @@ public class ODataXmlSerializer extends AbstractODataSerializer {
             childExpand, levels,
             innerOptions == null ? null : innerOptions.getSelectOption(),
             innerOptions == null ? null : innerOptions.getCountOption(),
-            innerOptions == null ? false : innerOptions.hasCountPath(),
-            innerOptions == null ? false : innerOptions.isRef(),                                    
+                  innerOptions != null && innerOptions.hasCountPath(),
+                  innerOptions != null && innerOptions.isRef(),
             xml10InvalidCharReplacement, ancestors, name, writer);
           writer.writeEndElement();
           writer.writeEndElement();

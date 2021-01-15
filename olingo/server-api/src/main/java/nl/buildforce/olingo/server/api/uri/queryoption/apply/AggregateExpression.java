@@ -31,7 +31,7 @@ import nl.buildforce.olingo.server.api.uri.queryoption.expression.Expression;
 public interface AggregateExpression {
 
   /** Standard aggregation method. */
-  public enum StandardMethod { SUM, MIN, MAX, AVERAGE, COUNT_DISTINCT }
+  enum StandardMethod { SUM, MIN, MAX, AVERAGE, COUNT_DISTINCT }
 
   /**
    * Gets the path prefix and the path segment.

@@ -23,7 +23,7 @@ public class UriParserSemanticException extends UriParserException {
 
   private static final long serialVersionUID = 3850285860949809622L;
 
-  public static enum MessageKeys implements MessageKey {
+  public enum MessageKeys implements MessageKey {
     /** parameters: function-import name, function parameters */
     FUNCTION_NOT_FOUND,
     /** parameter: resource part */

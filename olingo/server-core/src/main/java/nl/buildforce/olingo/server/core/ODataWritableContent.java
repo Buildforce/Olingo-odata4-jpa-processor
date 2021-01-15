@@ -50,7 +50,7 @@ import nl.buildforce.olingo.server.core.serializer.xml.ODataXmlSerializer;
  * org.apache.olingo.server.api.ODataContentWriteErrorCallback is called.
  */
 public class ODataWritableContent implements ODataContent {
-  private StreamContent streamContent;
+  private final StreamContent streamContent;
 
   private static abstract class StreamContent {
     protected EntityIterator iterator;
@@ -94,7 +94,7 @@ public class ODataWritableContent implements ODataContent {
   }
 
   private static class StreamContentForJson extends StreamContent {
-    private ODataJsonSerializer jsonSerializer;
+    private final ODataJsonSerializer jsonSerializer;
 
     public StreamContentForJson(EntityIterator iterator, EdmEntityType entityType,
         ODataJsonSerializer jsonSerializer, ServiceMetadata metadata,
@@ -120,7 +120,7 @@ public class ODataWritableContent implements ODataContent {
   }
   
   private static class StreamContentForMedia extends StreamContent {
-	    private FixedFormatSerializerImpl fixedFormatSerializer;
+	    private final FixedFormatSerializerImpl fixedFormatSerializer;
 
 	    public StreamContentForMedia(EntityMediaObject mediaEntity, 
 	    		FixedFormatSerializerImpl fixedFormatSerializer) {
@@ -142,7 +142,7 @@ public class ODataWritableContent implements ODataContent {
 	  }
 
   private static class StreamContentForXml extends StreamContent {
-    private ODataXmlSerializer xmlSerializer;
+    private final ODataXmlSerializer xmlSerializer;
 
     public StreamContentForXml(EntityIterator iterator, EdmEntityType entityType,
         ODataXmlSerializer xmlSerializer, ServiceMetadata metadata,
@@ -193,7 +193,7 @@ public class ODataWritableContent implements ODataContent {
   }
 
   public static class WriteErrorContext implements ODataContentWriteErrorContext {
-    private ODataLibraryException exception;
+    private final ODataLibraryException exception;
 
     public WriteErrorContext(ODataLibraryException exception) {
       this.exception = exception;

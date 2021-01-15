@@ -766,7 +766,7 @@ public class EdmEntityContainerImpl extends AbstractEdmNamed implements EdmEntit
 
   private boolean isPropertyComplex(CsdlProperty propertyName) {
     try {
-      return provider.getComplexType(propertyName.getTypeAsFQNObject()) != null ? true : false;
+      return provider.getComplexType(propertyName.getTypeAsFQNObject()) != null;
     } catch (ODataException e) {
       throw new EdmException(e);
     }

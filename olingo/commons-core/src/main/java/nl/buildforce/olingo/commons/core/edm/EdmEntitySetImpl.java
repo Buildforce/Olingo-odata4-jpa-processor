@@ -25,7 +25,7 @@ import nl.buildforce.olingo.commons.api.edm.provider.CsdlEntitySet;
 
 public class EdmEntitySetImpl extends AbstractEdmBindingTarget implements EdmEntitySet {
 
-  private CsdlEntitySet entitySet;
+  private final CsdlEntitySet entitySet;
 
   public EdmEntitySetImpl(Edm edm, EdmEntityContainer container, CsdlEntitySet entitySet) {
     super(edm, container, entitySet);

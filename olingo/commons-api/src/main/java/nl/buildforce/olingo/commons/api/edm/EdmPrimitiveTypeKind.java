@@ -43,25 +43,9 @@ public enum EdmPrimitiveTypeKind {
   Int32,
   Int64,
   String,
-  Stream/*,
-  Geography,
-  GeographyPoint,
-  GeographyLineString,
-  GeographyPolygon,
-  GeographyMultiPoint,
-  GeographyMultiLineString,
-  GeographyMultiPolygon,
-  GeographyCollection,
-  Geometry,
-  GeometryPoint,
-  GeometryLineString,
-  GeometryPolygon,
-  GeometryMultiPoint,
-  GeometryMultiLineString,
-  GeometryMultiPolygon,
-  GeometryCollection*/;
+  Stream;
 
-  private static Map<String, EdmPrimitiveTypeKind> VALUES_BY_NAME;
+  private static final Map<String, EdmPrimitiveTypeKind> VALUES_BY_NAME;
 
   static {
     Map<String, EdmPrimitiveTypeKind> valuesByName = new HashMap<>();

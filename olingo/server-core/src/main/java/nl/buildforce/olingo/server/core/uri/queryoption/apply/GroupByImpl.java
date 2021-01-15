@@ -31,7 +31,7 @@ import nl.buildforce.olingo.server.api.uri.queryoption.apply.GroupByItem;
 public class GroupByImpl implements GroupBy {
 
   private ApplyOption applyOption;
-  private List<GroupByItem> groupByItems = new ArrayList<>();
+  private final List<GroupByItem> groupByItems = new ArrayList<>();
 
   @Override
   public Kind getKind() {

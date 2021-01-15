@@ -32,22 +32,22 @@ public interface Binary extends Expression {
    * @return binary operator kind
    * @see BinaryOperatorKind
    */
-  public BinaryOperatorKind getOperator();
+  BinaryOperatorKind getOperator();
 
   /**
    * @return Expression sub tree of the left operand
    */
-  public Expression getLeftOperand();
+  Expression getLeftOperand();
 
   /**
    * @return Expression sub tree of the right operand
    */
-  public Expression getRightOperand();
+  Expression getRightOperand();
   
   /**
    * 
    * @return list of expressions of the right operand
    */
-  public List<Expression> getExpressions();
+  List<Expression> getExpressions();
 
 }
