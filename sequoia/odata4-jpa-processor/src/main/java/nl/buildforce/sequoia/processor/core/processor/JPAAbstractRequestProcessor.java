@@ -49,7 +49,7 @@ abstract class JPAAbstractRequestProcessor {
 
     response.setContent(serializerResult.getContent());
     response.setStatusCode(successStatusCode);
-    response.setHeader(HttpHeader.CONTENT_TYPE, responseFormat.toContentTypeString());
+    response.setHeader(HttpHeader.CONTENT_TYPE, responseFormat.toString());
   }
 
 }

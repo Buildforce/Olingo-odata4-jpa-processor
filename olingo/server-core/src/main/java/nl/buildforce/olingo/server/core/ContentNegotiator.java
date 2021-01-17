@@ -37,7 +37,7 @@ import nl.buildforce.olingo.server.api.uri.queryoption.FormatOption;
 public final class ContentNegotiator {
 
   private static final String ATOM = "atom";
-  private static final String JSON = "json";
+  private static final String JSON = ContentType.JSON;
   private static final String APPLICATION_JSON = "application/json";
   private static final String XML = "xml";
   private static final String METADATA = "METADATA";
@@ -46,7 +46,7 @@ public final class ContentNegotiator {
 
   private static final List<ContentType> DEFAULT_SUPPORTED_CONTENT_TYPES =
       Collections.unmodifiableList(Arrays.asList(
-          ContentType.JSON,
+          ContentType.CT_JSON,
           ContentType.JSON_NO_METADATA,
           ContentType.APPLICATION_JSON,
           ContentType.JSON_FULL_METADATA,
@@ -163,7 +163,7 @@ public final class ContentNegotiator {
         throw new ContentNegotiatorException(
             "unsupported accept content type: " + requestedContentType + " != " + supportedContentTypes,
             ContentNegotiatorException.MessageKeys.UNSUPPORTED_CONTENT_TYPE,
-            requestedContentType.toContentTypeString());
+            requestedContentType.toString());
       }
     }
     return result;
@@ -202,7 +202,7 @@ public final class ContentNegotiator {
         XML.equalsIgnoreCase(formatString) ? ContentType.APPLICATION_XML :
           ATOM.equalsIgnoreCase(formatString) ? ContentType.APPLICATION_ATOM_XML : null;
     } else {
-      return JSON.equalsIgnoreCase(formatString) ? ContentType.JSON :
+      return JSON.equalsIgnoreCase(formatString) ? ContentType.CT_JSON :
           XML.equalsIgnoreCase(formatString) ? ContentType.APPLICATION_XML :
               ATOM.equalsIgnoreCase(formatString) ? ContentType.APPLICATION_ATOM_XML : 
                 APPLICATION_JSON.equalsIgnoreCase(formatString)? ContentType.APPLICATION_JSON: null;
@@ -276,7 +276,7 @@ public final class ContentNegotiator {
       }
     }
     throw new ContentNegotiatorException("unsupported content type: " + contentType,
-        ContentNegotiatorException.MessageKeys.UNSUPPORTED_CONTENT_TYPE, contentType.toContentTypeString());
+        ContentNegotiatorException.MessageKeys.UNSUPPORTED_CONTENT_TYPE, contentType.toString());
   }
 
   public static boolean isSupported(ContentType contentType,
@@ -290,4 +290,5 @@ public final class ContentNegotiator {
     }
     return false;
   }
+
 }

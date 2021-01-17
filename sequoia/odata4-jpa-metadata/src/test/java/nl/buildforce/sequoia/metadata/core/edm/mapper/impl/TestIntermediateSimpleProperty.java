@@ -1,5 +1,6 @@
 package nl.buildforce.sequoia.metadata.core.edm.mapper.impl;
 
+import nl.buildforce.olingo.commons.api.format.ContentType;
 import nl.buildforce.sequoia.metadata.api.JPAEdmMetadataPostProcessor;
 import nl.buildforce.sequoia.metadata.core.edm.annotation.EdmProtectedBy;
 import nl.buildforce.sequoia.metadata.core.edm.annotation.EdmProtections;
@@ -257,7 +258,7 @@ public class TestIntermediateSimpleProperty extends TestMappingRoot {
 
   @Test
   public void checkGetNoPropertyMapperForClob() throws ODataJPAModelException {
-    Attribute<?, ?> jpaAttribute = helper.getAttribute(helper.getEntityType(Comment.class), "text");
+    Attribute<?, ?> jpaAttribute = helper.getAttribute(helper.getEntityType(Comment.class), ContentType.TEXT);
     IntermediateSimpleProperty property = new IntermediateSimpleProperty(new JPADefaultEdmNameBuilder(PUNIT_NAME),
         jpaAttribute,
         helper.schema);

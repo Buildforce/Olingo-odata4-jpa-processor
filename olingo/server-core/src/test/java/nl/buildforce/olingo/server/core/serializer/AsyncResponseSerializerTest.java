@@ -37,7 +37,7 @@ public class AsyncResponseSerializerTest {
   public void simpleResponse() throws Exception {
     ODataResponse response = new ODataResponse();
     response.setStatusCode(HttpStatusCode.OK.getStatusCode());
-    response.setHeader(HttpHeader.CONTENT_TYPE, ContentType.APPLICATION_JSON.toContentTypeString());
+    response.setHeader(HttpHeader.CONTENT_TYPE, ContentType.APPLICATION_JSON.toString());
     response.setHeader(HttpHeader.CONTENT_LENGTH, String.valueOf(200));
 
     response.setContent(IOUtils.toInputStream("Walter Winter" + CRLF));
@@ -55,7 +55,7 @@ public class AsyncResponseSerializerTest {
   public void biggerResponse() throws Exception {
     ODataResponse response = new ODataResponse();
     response.setStatusCode(HttpStatusCode.ACCEPTED.getStatusCode());
-    response.setHeader(HttpHeader.CONTENT_TYPE, ContentType.APPLICATION_JSON.toContentTypeString());
+    response.setHeader(HttpHeader.CONTENT_TYPE, ContentType.APPLICATION_JSON.toString());
     response.setHeader(HttpHeader.CONTENT_LENGTH, String.valueOf(0));
 
     String testData = testData(20000);
@@ -79,4 +79,5 @@ public class AsyncResponseSerializerTest {
 
     return result.toString();
   }
+
 }

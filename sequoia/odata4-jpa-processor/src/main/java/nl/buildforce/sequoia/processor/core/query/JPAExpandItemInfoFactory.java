@@ -1,6 +1,12 @@
 package nl.buildforce.sequoia.processor.core.query;
 
-import nl.buildforce.olingo.server.api.uri.*;
+import nl.buildforce.olingo.server.api.uri.UriInfoResource;
+import nl.buildforce.olingo.server.api.uri.UriResource;
+import nl.buildforce.olingo.server.api.uri.UriResourceEntitySet;
+import nl.buildforce.olingo.server.api.uri.UriResourceNavigation;
+import nl.buildforce.olingo.server.api.uri.UriResourceProperty;
+import nl.buildforce.olingo.server.api.uri.UriResourcePartTyped;
+import nl.buildforce.olingo.server.api.uri.UriResourceComplexProperty;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAssociationPath;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAttribute;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPACollectionAttribute;
@@ -18,8 +24,13 @@ import nl.buildforce.olingo.server.api.uri.queryoption.ExpandOption;
 import nl.buildforce.olingo.server.api.uri.queryoption.SelectItem;
 import nl.buildforce.olingo.server.api.uri.queryoption.SelectOption;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map.Entry;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 
 public final class JPAExpandItemInfoFactory {
 
@@ -28,7 +39,7 @@ public final class JPAExpandItemInfoFactory {
   private static final int PROPERTY_INDEX = 2;
 
   public List<JPAExpandItemInfo> buildExpandItemInfo(final JPAServiceDocument sd, final UriInfoResource uriResourceInfo,
-      final List<JPANavigationPropertyInfo> grandParentHops) throws ODataApplicationException {
+                                                     final List<JPANavigationPropertyInfo> grandParentHops) throws ODataApplicationException {
 
     final List<JPAExpandItemInfo> itemList = new ArrayList<>();
     final List<UriResource> startResourceList = uriResourceInfo.getUriResourceParts();
@@ -191,4 +202,5 @@ public final class JPAExpandItemInfoFactory {
     }
     return false;
   }
+
 }

@@ -46,7 +46,7 @@ public class ServerErrorSerializerTest {
   final ODataSerializer ser;
 
   public ServerErrorSerializerTest() throws SerializerException {
-    ser = OData.newInstance().createSerializer(ContentType.JSON);
+    ser = OData.newInstance().createSerializer(ContentType.CT_JSON);
   }
 
   @Test
@@ -177,4 +177,5 @@ public class ServerErrorSerializerTest {
     assertEquals("targetDetail", tree.get("@Common.additionalTargets").get(0).get("targetDetail").textValue());
     assertEquals("url", tree.get("@Common.longtextUrl").textValue());
   }
+
 }

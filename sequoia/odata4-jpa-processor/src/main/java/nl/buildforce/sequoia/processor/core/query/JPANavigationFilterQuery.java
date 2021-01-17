@@ -23,7 +23,12 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.Expression;
 import jakarta.persistence.criteria.From;
 import jakarta.persistence.criteria.Subquery;
-import java.util.*;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 public final class JPANavigationFilterQuery extends JPANavigationQuery {
   private final List<UriParameter> keyPredicates;

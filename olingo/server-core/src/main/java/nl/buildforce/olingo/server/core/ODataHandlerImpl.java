@@ -185,7 +185,7 @@ public class ODataHandlerImpl implements ODataHandler {
       requestedContentType = ContentNegotiator.doContentNegotiation(formatOption, request,
           getCustomContentTypeSupport(), RepresentationType.ERROR);
     } catch (ContentNegotiatorException e) {
-      requestedContentType = ContentType.JSON;
+      requestedContentType = ContentType.CT_JSON;
     }
     // int measurementError = debugger.startRuntimeMeasurement("ErrorProcessor", "processError");
     exceptionProcessor.processError(request, response, serverError, requestedContentType);
@@ -280,4 +280,5 @@ public class ODataHandlerImpl implements ODataHandler {
   public UriInfo getUriInfo() {
     return uriInfo;
   }
+
 }

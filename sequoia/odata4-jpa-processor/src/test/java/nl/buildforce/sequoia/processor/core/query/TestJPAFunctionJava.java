@@ -116,7 +116,7 @@ public class TestJPAFunctionJava {
     when(edmReturn.getType()).thenReturn(edmType);
     when(edmType.getKind()).thenReturn(EdmTypeKind.PRIMITIVE);
 
-    cut.retrieveData(request, response, ContentType.JSON);
+    cut.retrieveData(request, response, ContentType.CT_JSON);
     assertEquals(1, TestFunctionParameter.calls);
   }
 
@@ -139,7 +139,7 @@ public class TestJPAFunctionJava {
     when(edmReturn.getType()).thenReturn(edmType);
     when(edmType.getKind()).thenReturn(EdmTypeKind.PRIMITIVE);
 
-    cut.retrieveData(request, response, ContentType.JSON);
+    cut.retrieveData(request, response, ContentType.CT_JSON);
     assertEquals(5, TestFunctionParameter.param1);
     assertEquals(7, TestFunctionParameter.param2);
   }

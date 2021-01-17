@@ -32,7 +32,7 @@ public class ContentTypeTest {
 
   @Test
   public void create() {
-    assertEquals("a/b", ContentType.create("a/b").toContentTypeString());
+    assertEquals("a/b", ContentType.create("a/b").toString());
     assertEquals(ContentType.create("a/b;c=d;x=y"), ContentType.create("a/b;x=y;c=d"));
     assertEquals(ContentType.create("a/b;c=d;x=y"), ContentType.create("a/b; x=y; c=d"));
     assertEquals(ContentType.create("A/B"), ContentType.create("a/b"));
@@ -96,7 +96,7 @@ public class ContentTypeTest {
     ContentType ct2 = ContentType.create("a/b;charset=utf-8");
 
     assertNotEquals(ct1, ct2);
-    assertEquals(ct1.getType(), ct2.getType());
+    assertEquals(ct1.getMainType(), ct2.getMainType());
     assertEquals(ct1.getSubtype(), ct2.getSubtype());
     assertEquals("utf8", ct1.getParameters().get(ContentType.PARAMETER_CHARSET));
     assertEquals("utf-8", ct2.getParameters().get(ContentType.PARAMETER_CHARSET));
@@ -109,7 +109,7 @@ public class ContentTypeTest {
   public void toContentTypeString() {
     assertEquals("application/json;a=b;c=d",
         ContentType.create(ContentType.create(ContentType.APPLICATION_JSON, "a", "b"), "c", "d")
-            .toContentTypeString());
+            .toString());
   }
 
   private void createWrong(String value) {
@@ -120,4 +120,5 @@ public class ContentTypeTest {
       assertNotNull(e);
     }
   }
+
 }

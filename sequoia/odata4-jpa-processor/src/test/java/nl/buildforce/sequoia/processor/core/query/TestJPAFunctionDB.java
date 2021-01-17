@@ -113,7 +113,7 @@ public class TestJPAFunctionDB {
     when(edmFunction.getReturnType()).thenReturn(edmReturnType);
     when(edmReturnType.getType()).thenReturn(new EdmBoolean());
 
-    cut.retrieveData(request, response, ContentType.JSON);
+    cut.retrieveData(request, response, ContentType.CT_JSON);
     verify(dbProcessor, times(1)).executeFunctionQuery(eq(uriResources), eq(function), eq(em));
   }
 
@@ -130,7 +130,7 @@ public class TestJPAFunctionDB {
     when(edmFunction.getReturnType()).thenReturn(edmReturnType);
     when(edmReturnType.getType()).thenReturn(new EdmBoolean());
 
-    cut.retrieveData(request, response, ContentType.JSON);
+    cut.retrieveData(request, response, ContentType.CT_JSON);
     verify(dbProcessor, times(1)).executeFunctionQuery(eq(uriResources), eq(function), eq(em));
   }
 

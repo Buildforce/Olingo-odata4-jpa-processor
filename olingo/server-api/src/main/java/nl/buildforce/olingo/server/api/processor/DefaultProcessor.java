@@ -79,7 +79,7 @@ public class DefaultProcessor implements MetadataProcessor, ServiceDocumentProce
                 ODataSerializer serializer = odata.createSerializer(requestedContentType);
                 response.setContent(serializer.serviceDocument(serviceMetadata, null).getContent());
                 response.setStatusCode(HttpStatusCode.OK.getStatusCode());
-                response.setHeader(HttpHeader.CONTENT_TYPE, requestedContentType.toContentTypeString());
+                response.setHeader(HttpHeader.CONTENT_TYPE, requestedContentType.toString());
             }
         }
     }
@@ -109,7 +109,7 @@ public class DefaultProcessor implements MetadataProcessor, ServiceDocumentProce
                 ODataSerializer serializer = odata.createSerializer(requestedContentType);
                 response.setContent(serializer.metadataDocument(serviceMetadata).getContent());
                 response.setStatusCode(HttpStatusCode.OK.getStatusCode());
-                response.setHeader(HttpHeader.CONTENT_TYPE, requestedContentType.toContentTypeString());
+                response.setHeader(HttpHeader.CONTENT_TYPE, requestedContentType.toString());
             }
         }
     }
@@ -122,14 +122,15 @@ public class DefaultProcessor implements MetadataProcessor, ServiceDocumentProce
             ODataSerializer serializer = odata.createSerializer(requestedContentType);
             response.setContent(serializer.error(serverError).getContent());
             response.setStatusCode(serverError.getStatusCode());
-            response.setHeader(HttpHeader.CONTENT_TYPE, requestedContentType.toContentTypeString());
+            response.setHeader(HttpHeader.CONTENT_TYPE, requestedContentType.toString());
         } catch (Exception e) {
             // This should never happen but to be sure we have this catch here to prevent sending a stacktrace to a client.
             String responseContent =
                     "{\"error\":{\"code\":null,\"message\":\"An unexpected exception occurred during error processing\"}}";
             response.setContent(new ByteArrayInputStream(responseContent.getBytes(StandardCharsets.UTF_8)));
             response.setStatusCode(HttpStatusCode.INTERNAL_SERVER_ERROR.getStatusCode());
-            response.setHeader(HttpHeader.CONTENT_TYPE, ContentType.APPLICATION_JSON.toContentTypeString());
+            response.setHeader(HttpHeader.CONTENT_TYPE, ContentType.APPLICATION_JSON.toString());
         }
     }
+
 }

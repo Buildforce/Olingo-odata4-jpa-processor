@@ -109,71 +109,13 @@ public interface Constants {
   
   String ATTR_NAME = "name";
 
-  String ATTR_REF = "ref";
-
   String ATTR_TARGET = "target";
 
-  String ATTR_SRSNAME = "srsName";
-
-  QName QNAME_ATTR_SRSNAME = new QName(NS_GML, ATTR_SRSNAME);
-
-  String ELEM_POINT = "Point";
-
-  String ELEM_MULTIPOINT = "MultiPoint";
-
-  String ELEM_POINTMEMBERS = "pointMembers";
-
-  QName QNAME_POINTMEMBERS = new QName(NS_GML, ELEM_POINTMEMBERS);
-
-  String ELEM_LINESTRING = "LineString";
-
-  QName QNAME_LINESTRING = new QName(NS_GML, ELEM_LINESTRING);
-
-  String ELEM_MULTILINESTRING = "MultiCurve";
-
-  String ELEM_LINESTRINGMEMBERS = "curveMembers";
-
-  String ELEM_POLYGON = "Polygon";
-
-  QName QNAME_POLYGON = new QName(NS_GML, ELEM_POLYGON);
-
-  String ELEM_POLYGON_EXTERIOR = "exterior";
-
-  QName QNAME_POLYGON_EXTERIOR = new QName(NS_GML, ELEM_POLYGON_EXTERIOR);
-
-  String ELEM_POLYGON_INTERIOR = "interior";
-
-  QName QNAME_POLYGON_INTERIOR = new QName(NS_GML, ELEM_POLYGON_INTERIOR);
-
-  String ELEM_POLYGON_LINEARRING = "LinearRing";
-
-  String ELEM_MULTIPOLYGON = "MultiSurface";
-
-  String ELEM_SURFACEMEMBERS = "surfaceMembers";
-
-  String ELEM_GEOCOLLECTION = "MultiGeometry";
-
-  String ELEM_GEOMEMBERS = "geometryMembers";
-
-  QName QNAME_GEOMEMBERS = new QName(NS_GML, ELEM_GEOMEMBERS);
-
-  String ELEM_POS = "pos";
-
-  String ELEM_PROPERTY = "property";
-
-  String ELEM_LINKS = "links";
-
-  String ELEM_URI = "uri";
-
   String ELEM_REASON = "reason";
-
-  String ELEM_DELETED_LINK = "deleted-link";
 
   String ATTR_SOURCE = "source";
 
   String ATTR_RELATIONSHIP = "relationship";
-
-  String ANNOTATION = "annotation";
 
   // JSON stuff
   String JSON_METADATA = "odata.metadata";
@@ -221,12 +163,6 @@ public interface Constants {
   String JSON_URL = "url";
   
   String JSON_TITLE = "title";
-
-  String JSON_COORDINATES = "coordinates";
-
-  String JSON_GEOMETRIES = "geometries";
-
-  String JSON_CRS = "crs";
 
   String JSON_NAME = "name";
 
@@ -314,25 +250,26 @@ public interface Constants {
   String CANONICAL_FUNCTION_URIENCODE = "odata.uriEncode";
 
   String MEDIA_EDIT_LINK_TYPE = "*/*";
-  String ENTITY_NAVIGATION_LINK_TYPE = ContentType.APPLICATION_ATOM_XML_ENTRY.toContentTypeString();
-  String ENTITY_SET_NAVIGATION_LINK_TYPE = ContentType.APPLICATION_ATOM_XML_FEED.toContentTypeString();
-  String ASSOCIATION_LINK_TYPE = ContentType.APPLICATION_XML.toContentTypeString();
-  String ENTITY_COLLECTION_BINDING_LINK_TYPE = ContentType.APPLICATION_XML.toContentTypeString();
-  String ENTITY_BINDING_LINK_TYPE = ContentType.APPLICATION_XML.toContentTypeString();
+  String ENTITY_NAVIGATION_LINK_TYPE = ContentType.APPLICATION_ATOM_XML_ENTRY.toString();
+  String ENTITY_SET_NAVIGATION_LINK_TYPE = ContentType.APPLICATION_ATOM_XML_FEED.toString();
+  String ASSOCIATION_LINK_TYPE = ContentType.APPLICATION_XML.toString();
+  String ENTITY_COLLECTION_BINDING_LINK_TYPE = ContentType.APPLICATION_XML.toString();
+  String ENTITY_BINDING_LINK_TYPE = ContentType.APPLICATION_XML.toString();
   
  //For v4.01 Delta
   
-  String LINK = "/$link";
-  String DELETEDLINK = "/$deletedLink";
-  String DELTA = "/$delta";
-  String DELTAVALUE = "delta";
   String AT = "@";
   String DELETEDENTITY = "/$deletedEntity";
+  String DELETEDLINK = "/$deletedLink";
+  String DELTA = "/$delta";
   String DELTALINK = "@deltaLink";
-  String HASH = "#";
-  String REMOVED = "removed";
+  String DELTAVALUE = "delta";
   String ENTITY = "/$entity";
-  String REASON = "Reason";
+  String HASH = "#";
   String ID = "@id";
+  String LINK = "/$link";
   String NEXTLINK = "@nextLink";
+  String REASON = "Reason";
+  String REMOVED = "removed";
+
 }

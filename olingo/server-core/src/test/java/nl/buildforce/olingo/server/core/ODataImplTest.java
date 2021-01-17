@@ -38,7 +38,7 @@ public class ODataImplTest {
   @Test
   public void serializerSupportedFormats() throws SerializerException {
     assertNotNull(odata.createSerializer(ContentType.JSON_NO_METADATA));
-    assertNotNull(odata.createSerializer(ContentType.JSON));
+    assertNotNull(odata.createSerializer(ContentType.CT_JSON));
     assertNotNull(odata.createSerializer(ContentType.APPLICATION_JSON));
     assertNotNull(odata.createSerializer(ContentType.JSON_FULL_METADATA));
     List<String> versions = new ArrayList<String>();
@@ -49,7 +49,7 @@ public class ODataImplTest {
   @Test
   public void deserializerSupportedFormats() throws DeserializerException {
     assertNotNull(odata.createDeserializer(ContentType.JSON_NO_METADATA));
-    assertNotNull(odata.createDeserializer(ContentType.JSON));
+    assertNotNull(odata.createDeserializer(ContentType.CT_JSON));
     assertNotNull(odata.createDeserializer(ContentType.JSON_FULL_METADATA));
     assertNotNull(odata.createDeserializer(ContentType.APPLICATION_JSON));
     List<String> versions = new ArrayList<String>();
@@ -108,4 +108,5 @@ public class ODataImplTest {
   public void serializer() throws SerializerException {
     odata.createSerializer(null);
   }
+
 }

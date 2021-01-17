@@ -1,5 +1,10 @@
 package nl.buildforce.sequoia.processor.core.converter;
 
+import nl.buildforce.olingo.commons.api.data.ComplexValue;
+import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
+import nl.buildforce.olingo.server.api.ODataApplicationException;
+import nl.buildforce.olingo.server.api.ServiceMetadata;
+import nl.buildforce.olingo.server.api.uri.UriHelper;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAssociationAttribute;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAttribute;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAPath;
@@ -7,17 +12,17 @@ import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAServiceDocument;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAStructuredType;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import nl.buildforce.sequoia.processor.core.exception.ODataJPAQueryException;
-import nl.buildforce.olingo.commons.api.data.ComplexValue;
-import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
-import nl.buildforce.olingo.server.api.ODataApplicationException;
-import nl.buildforce.olingo.server.api.ServiceMetadata;
-import nl.buildforce.olingo.server.api.uri.UriHelper;
 
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Tuple;
 import jakarta.persistence.TupleElement;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map.Entry;
+import java.util.Map;
 
 public class JPATupleCollectionConverter extends JPATupleResultConverter {
 
@@ -27,7 +32,7 @@ public class JPATupleCollectionConverter extends JPATupleResultConverter {
 
   @Override
   public Map<String, List<Object>> getResult(final JPAExpandResult dbResult,
-      final Collection<JPAPath> requestedSelection) throws ODataApplicationException {
+                                             final Collection<JPAPath> requestedSelection) throws ODataApplicationException {
 
     jpaQueryResult = dbResult;
     final JPACollectionResult jpaResult = (JPACollectionResult) dbResult;

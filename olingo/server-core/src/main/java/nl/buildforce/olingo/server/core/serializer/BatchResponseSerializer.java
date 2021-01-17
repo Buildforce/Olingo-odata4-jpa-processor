@@ -150,7 +150,7 @@ public class BatchResponseSerializer {
 
   private void appendBodyPartHeader(ODataResponse response, BodyBuilder builder,
                                     boolean isChangeSet) throws BatchSerializerException {
-    appendHeader(HttpHeader.CONTENT_TYPE, ContentType.APPLICATION_HTTP.toContentTypeString(), builder);
+    appendHeader(HttpHeader.CONTENT_TYPE, ContentType.APPLICATION_HTTP.toString(), builder);
     appendHeader(BatchParserCommon.CONTENT_TRANSFER_ENCODING, BatchParserCommon.BINARY_ENCODING, builder);
 
     if (isChangeSet) {
@@ -214,9 +214,8 @@ public class BatchResponseSerializer {
       return append(String.valueOf(statusCode));
     }
 
-    public BodyBuilder append(Body body) {
+    public void append(Body body) {
       put(body.getContent());
-      return this;
     }
 
     @Override
@@ -274,4 +273,5 @@ public class BatchResponseSerializer {
       }
     }
   }
+
 }

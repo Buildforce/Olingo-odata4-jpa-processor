@@ -147,7 +147,7 @@ public final class AcceptType {
    */
   public static List<AcceptType> fromContentType(ContentType contentType) {
     return Collections.singletonList(new AcceptType(
-        contentType.getType(), contentType.getSubtype(), contentType.getParameters(), 1F));
+        contentType.getMainType(), contentType.getSubtype(), contentType.getParameters(), 1F));
   }
 
   public String getType() {
@@ -196,7 +196,7 @@ public final class AcceptType {
     if (type.equals(TypeUtil.MEDIA_TYPE_WILDCARD)) {
       return true;
     }
-    if (!type.equalsIgnoreCase(contentType.getType())) {
+    if (!type.equalsIgnoreCase(contentType.getMainType())) {
       return false;
     }
     if (subtype.equals(TypeUtil.MEDIA_TYPE_WILDCARD)) {

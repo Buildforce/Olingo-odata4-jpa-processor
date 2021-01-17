@@ -568,7 +568,7 @@ public class ODataXmlDeserializer implements ODataDeserializer {
           } else if (Constants.QNAME_ATOM_ELEM_CONTENT.equals(event.asStartElement().getName())) {
             Attribute contenttype = event.asStartElement()
                 .getAttributeByName(QName.valueOf(Constants.ATTR_TYPE));
-            if (contenttype == null || ContentType.APPLICATION_XML.toContentTypeString()
+            if (contenttype == null || ContentType.APPLICATION_XML.toString()
                 .equals(contenttype.getValue())) {
               properties(reader, skipBeforeFirstStartElement(reader), entity, resolvedType);
             } else {
@@ -888,4 +888,5 @@ public class ODataXmlDeserializer implements ODataDeserializer {
           edmStructuredTypeToAssign.getBaseType());
     }
   }  
+
 }

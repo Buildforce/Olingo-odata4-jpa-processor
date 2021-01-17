@@ -71,7 +71,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
     RequestHandleSpy spy = new RequestHandleSpy();
     when(requestContext.getCUDRequestHandler()).thenReturn(spy);
 
-    processor.createEntity(request, response, ContentType.JSON, ContentType.JSON);
+    processor.createEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON);
 
     assertTrue(spy.called);
   }
@@ -84,7 +84,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
     RequestHandleSpy spy = new RequestHandleSpy();
     when(requestContext.getCUDRequestHandler()).thenReturn(spy);
 
-    processor.createEntity(request, response, ContentType.JSON, ContentType.JSON);
+    processor.createEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON);
 
     assertEquals("Organization", spy.et.getExternalName());
   }
@@ -105,7 +105,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
         ArgumentMatchers.any(
             List.class))).thenReturn(attributes);
 
-    processor.createEntity(request, response, ContentType.JSON, ContentType.JSON);
+    processor.createEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON);
 
     assertNotNull(spy.jpaAttributes);
     assertEquals(1, spy.jpaAttributes.size());
@@ -124,7 +124,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
     RequestHandleSpy spy = new RequestHandleSpy();
     when(requestContext.getCUDRequestHandler()).thenReturn(spy);
 
-    processor.createEntity(request, response, ContentType.JSON, ContentType.JSON);
+    processor.createEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON);
 
     assertNotNull(spy.headers);
     assertEquals(1, spy.headers.size());
@@ -143,7 +143,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
     when(requestContext.getCUDRequestHandler()).thenReturn(spy);
     when(requestContext.getClaimsProvider()).thenReturn(claims);
 
-    processor.createEntity(request, response, ContentType.JSON, ContentType.JSON);
+    processor.createEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON);
 
     assertNotNull(spy.claims);
     assertTrue(spy.claims.isPresent());
@@ -163,7 +163,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
     when(requestContext.getCUDRequestHandler()).thenReturn(spy);
     when(requestContext.getGroupsProvider()).thenReturn(groups);
 
-    processor.createEntity(request, response, ContentType.JSON, ContentType.JSON);
+    processor.createEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON);
 
     assertNotNull(spy.groups);
     assertFalse(spy.groups.isEmpty());
@@ -180,7 +180,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
 
     when(em.getTransaction().isActive()).thenThrow(new IllegalStateException("Transaction is not accessible when using JTA with JPA-compliant transaction access enabled"));
 
-    processor.createEntity(request, response, ContentType.JSON, ContentType.JSON);
+    processor.createEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON);
   }
 
   @Test
@@ -195,7 +195,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
         HttpStatusCode.BAD_REQUEST)).when(handler).createEntity(any(JPARequestEntity.class), any(EntityManager.class));
 
     try {
-      processor.createEntity(request, response, ContentType.JSON, ContentType.JSON);
+      processor.createEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON);
     } catch (ODataApplicationException | ODataLibraryException e) {
         assertTrue(true);
       return;
@@ -215,7 +215,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
         EntityManager.class));
 
     try {
-      processor.createEntity(request, response, ContentType.JSON, ContentType.JSON);
+      processor.createEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON);
     } catch (ODataApplicationException | ODataLibraryException e) {
         assertTrue(true);
       return;
@@ -231,7 +231,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
     RequestHandleSpy spy = new RequestHandleSpy();
     when(requestContext.getCUDRequestHandler()).thenReturn(spy);
 
-    processor.createEntity(request, response, ContentType.JSON, ContentType.JSON);
+    processor.createEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON);
 
     assertEquals(LOCATION_HEADER, response.getHeader(HttpHeader.LOCATION));
   }
@@ -244,7 +244,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
     RequestHandleSpy spy = new RequestHandleSpy();
     when(requestContext.getCUDRequestHandler()).thenReturn(spy);
 
-    processor.createEntity(request, response, ContentType.JSON, ContentType.JSON);
+    processor.createEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON);
 
     assertEquals(LOCATION_HEADER, response.getHeader(HttpHeader.ODATA_ENTITY_ID));
   }
@@ -257,7 +257,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
     RequestHandleSpy spy = new RequestHandleSpy();
     when(requestContext.getCUDRequestHandler()).thenReturn(spy);
 
-    processor.createEntity(request, response, ContentType.JSON, ContentType.JSON);
+    processor.createEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON);
 
     assertEquals(HttpStatusCode.NO_CONTENT.getStatusCode(), response.getStatusCode());
   }
@@ -270,7 +270,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
     RequestHandleSpy spy = new RequestHandleSpy();
     when(requestContext.getCUDRequestHandler()).thenReturn(spy);
 
-    processor.createEntity(request, response, ContentType.JSON, ContentType.JSON);
+    processor.createEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON);
 
     assertEquals("return=minimal", response.getHeader(HttpHeader.PREFERENCE_APPLIED));
   }
@@ -281,7 +281,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareRepresentationRequest(new RequestHandleSpy());
 
-    processor.createEntity(request, response, ContentType.JSON, ContentType.JSON);
+    processor.createEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON);
 
     assertEquals(HttpStatusCode.CREATED.getStatusCode(), response.getStatusCode());
   }
@@ -292,7 +292,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareRepresentationRequest(new RequestHandleMapResultSpy());
 
-    processor.createEntity(request, response, ContentType.JSON, ContentType.JSON);
+    processor.createEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON);
 
     assertEquals(HttpStatusCode.CREATED.getStatusCode(), response.getStatusCode());
   }
@@ -303,7 +303,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareRepresentationRequest(new RequestHandleSpy());
 
-    processor.createEntity(request, response, ContentType.JSON, ContentType.JSON);
+    processor.createEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON);
     byte[] act = new byte[100];
     response.getContent().read(act);
     String s = new String(act).trim();
@@ -316,7 +316,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareRepresentationRequest(new RequestHandleMapResultSpy());
 
-    processor.createEntity(request, response, ContentType.JSON, ContentType.JSON);
+    processor.createEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON);
     byte[] act = new byte[100];
     response.getContent().read(act);
     String s = new String(act).trim();
@@ -329,7 +329,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareRepresentationRequest(new RequestHandleSpy());
 
-    processor.createEntity(request, response, ContentType.JSON, ContentType.JSON);
+    processor.createEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON);
 
     assertEquals(LOCATION_HEADER, response.getHeader(HttpHeader.LOCATION));
   }
@@ -340,7 +340,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
     ODataResponse response = new ODataResponse();
     ODataRequest request = prepareRepresentationRequest(new RequestHandleMapResultSpy());
 
-    processor.createEntity(request, response, ContentType.JSON, ContentType.JSON);
+    processor.createEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON);
 
     assertEquals(LOCATION_HEADER, response.getHeader(HttpHeader.LOCATION));
   }
@@ -353,7 +353,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
     RequestHandleSpy spy = new RequestHandleSpy();
     when(requestContext.getCUDRequestHandler()).thenReturn(spy);
 
-    processor.createEntity(request, response, ContentType.JSON, ContentType.JSON);
+    processor.createEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON);
     assertEquals(1, spy.noValidateCalls);
   }
 
@@ -366,7 +366,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
     when(requestContext.getCUDRequestHandler()).thenReturn(spy);
     when(factory.hasActiveTransaction()).thenReturn(Boolean.TRUE);
 
-    processor.createEntity(request, response, ContentType.JSON, ContentType.JSON);
+    processor.createEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON);
     assertEquals(0, spy.noValidateCalls);
   }
 
@@ -382,7 +382,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
         HttpStatusCode.BAD_REQUEST)).when(handler).createEntity(any(JPARequestEntity.class), any(EntityManager.class));
 
     assertThrows(ODataApplicationException.class,
-        () -> processor.createEntity(request, response, ContentType.JSON, ContentType.JSON));
+        () -> processor.createEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON));
     verify(handler, never()).validateChanges(em);
   }
 
@@ -398,7 +398,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
         HttpStatusCode.BAD_REQUEST)).when(handler).validateChanges(em);
 
     assertThrows(ODataApplicationException.class,
-        () -> processor.createEntity(request, response, ContentType.JSON, ContentType.JSON));
+        () -> processor.createEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON));
     verify(transaction, never()).commit();
     verify(transaction, times(1)).rollback();
   }
@@ -414,7 +414,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
     doThrow(new RuntimeException("Test")).when(handler).createEntity(any(), any());
 
     assertThrows(ODataApplicationException.class,
-        () -> processor.createEntity(request, response, ContentType.JSON, ContentType.JSON));
+        () -> processor.createEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON));
     verify(transaction, never()).commit();
     verify(transaction, times(1)).rollback();
   }
@@ -429,7 +429,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
     when(handler.createEntity(any(), any())).thenReturn(result);
 
     assertThrows(ODataException.class,
-        () -> processor.createEntity(request, response, ContentType.JSON, ContentType.JSON));
+        () -> processor.createEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON));
     verify(transaction, never()).commit();
     verify(transaction, times(1)).rollback();
   }
@@ -442,7 +442,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
     RequestHandleSpy spy = new RequestHandleSpy();
     when(requestContext.getCUDRequestHandler()).thenReturn(spy);
 
-    processor.createEntity(request, response, ContentType.JSON, ContentType.JSON);
+    processor.createEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON);
     verify(transaction, times(1)).commit();
   }
 
@@ -476,7 +476,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
     pathParts.add(uriChild);
 
     processor = new JPACUDRequestProcessor(odata, serviceMetadata, sessionContext, requestContext, convHelper);
-    processor.createEntity(request, response, ContentType.JSON, ContentType.JSON);
+    processor.createEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON);
 
     assertNotNull(spy.requestEntity.getKeys());
     assertEquals("DE6", spy.requestEntity.getKeys().get("divisionCode"));
@@ -537,7 +537,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
     // return serviceMetadata.getEdm().getEntityType(es.getODataEntityType().getExternalFQN());
     // nl.buildforce.sequoia.BusinessPartnerRole
     processor = new JPACUDRequestProcessor(odata, serviceMetadata, sessionContext, requestContext, convHelper);
-    processor.createEntity(request, response, ContentType.JSON, ContentType.JSON);
+    processor.createEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON);
 
     assertNotNull(spy.requestEntity.getKeys());
     assertEquals("Test", spy.requestEntity.getKeys().get("iD"));
@@ -659,4 +659,5 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
       return result;
     }
   }
+
 }

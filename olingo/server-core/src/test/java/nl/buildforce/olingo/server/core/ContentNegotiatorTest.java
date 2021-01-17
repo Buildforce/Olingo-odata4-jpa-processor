@@ -43,24 +43,24 @@ import org.junit.Test;
 
 public class ContentNegotiatorTest {
 
-  static final private String ACCEPT_CASE_MIN = ContentType.JSON.toContentTypeString();
+  static final private String ACCEPT_CASE_MIN = ContentType.CT_JSON.toString();
   static final private String ACCEPT_CASE_MIN_UTF8 = "application/json;charset=UTF-8;odata.metadata=minimal";
   static final private String ACCEPT_CASE_MIN_UTF81 = "application/json;charset=utf-8;odata.metadata=minimal";
   static final private String ACCEPT_CASE_ISO_8859_1 = "application/json;charset=ISO-8859-1";
-  static final private String ACCEPT_CASE_FULL = ContentType.JSON_FULL_METADATA.toContentTypeString();
-  static final private String ACCEPT_CASE_NONE = ContentType.JSON_NO_METADATA.toContentTypeString();
+  static final private String ACCEPT_CASE_FULL = ContentType.JSON_FULL_METADATA.toString();
+  static final private String ACCEPT_CASE_NONE = ContentType.JSON_NO_METADATA.toString();
   static final private String ACCEPT_CASE_MIN_UTF8_IEEE754 =
       "application/json;charset=UTF-8;odata.metadata=minimal;IEEE754Compatible=true";
   static final private String ACCEPT_CASE_MIN_IEEE754 = ACCEPT_CASE_MIN + ";IEEE754Compatible=true";
   String ACCEPT_CASE_MIN_IEEE754_1 = ACCEPT_CASE_MIN + ";IEEE754Compatible=false";
   static final private String ACCEPT_CASE_MIN_IEEE754_FAIL = ACCEPT_CASE_MIN + ";IEEE754Compatible=xyz";
   static final private String ACCEPT_CASE_JSONQ = "application/json;q=0.2";
-  static final private String ACCEPT_CASE_XML = ContentType.APPLICATION_XML.toContentTypeString();
-  static final private String ACCEPT_CASE_JSON = ContentType.APPLICATION_JSON.toContentTypeString();
+  static final private String ACCEPT_CASE_XML = ContentType.APPLICATION_XML.toString();
+  static final private String ACCEPT_CASE_JSON = ContentType.APPLICATION_JSON.toString();
   static final private String ACCEPT_CASE_WILDCARD1 = "*/*";
   static final private String ACCEPT_CASE_WILDCARD2 = "application/*";
   static final private String ACCEPT_CASE_JSON_IEEE754 = ACCEPT_CASE_JSON + ";IEEE754Compatible=true";
-  static final private String ACCEPT_CASE_MULTIPART_MIXED = ContentType.MULTIPART_MIXED.toContentTypeString();
+  static final private String ACCEPT_CASE_MULTIPART_MIXED = ContentType.MULTIPART_MIXED.toString();
 
   //@formatter:off (Eclipse formatter)
   //CHECKSTYLE:OFF (Maven checkstyle)
@@ -68,8 +68,8 @@ public class ContentNegotiatorTest {
   String[][] casesServiceDocument = {
       /* expected                     $format           accept                          modified content types */
       { ACCEPT_CASE_MIN,              null,             null,                           null                  },
-      { ACCEPT_CASE_MIN,              "json",           null,                           null                  },
-      { ACCEPT_CASE_MIN,              "json",           ACCEPT_CASE_JSONQ,              null                  },
+      { ACCEPT_CASE_MIN,              ContentType.JSON,           null,                           null                  },
+      { ACCEPT_CASE_MIN,              ContentType.JSON,           ACCEPT_CASE_JSONQ,              null                  },
       { ACCEPT_CASE_NONE,             ACCEPT_CASE_NONE, null,                           null                  },
       { "a/a",                        "a/a",            null,                           "a/a"                 },
       { ACCEPT_CASE_MIN,              null,             ACCEPT_CASE_JSONQ,              null                  },
@@ -80,7 +80,7 @@ public class ContentNegotiatorTest {
       { "a/a;x=y",                    "a/a",            ACCEPT_CASE_WILDCARD1,          "a/a;x=y"             },
       { "a/a;v=w;x=y",                null,             "a/a;x=y",                      "a/a;b=c,a/a;v=w;x=y" },
       { "a/a;v=w;x=y",                "a/a;x=y",        null,                           "a/a;b=c,a/a;v=w;x=y" },
-      { ACCEPT_CASE_MIN,              "json",           ACCEPT_CASE_MIN,                null                  },
+      { ACCEPT_CASE_MIN,              ContentType.JSON,           ACCEPT_CASE_MIN,                null                  },
       { ACCEPT_CASE_FULL,             null,             ACCEPT_CASE_FULL,               ACCEPT_CASE_FULL      },
       { ACCEPT_CASE_MIN_UTF8,         null,             ACCEPT_CASE_MIN_UTF8,           null                  },
       { ACCEPT_CASE_MIN_IEEE754,      null,             ACCEPT_CASE_MIN_IEEE754,        null                  },
@@ -102,8 +102,8 @@ public class ContentNegotiatorTest {
       { ACCEPT_CASE_XML,        null,             ACCEPT_CASE_WILDCARD2, null             },
       { "a/a",                  "a/a",            null,                  "a/a,b/b"        },
       { "a/a;x=y",              "a/a",            ACCEPT_CASE_WILDCARD1, "a/a;x=y"        },
-      { ACCEPT_CASE_JSON,       "json",           ACCEPT_CASE_JSON_IEEE754, null          },
-      { ACCEPT_CASE_JSON,       "json",           ACCEPT_CASE_WILDCARD1,   null           },
+      { ACCEPT_CASE_JSON,       ContentType.JSON,           ACCEPT_CASE_JSON_IEEE754, null          },
+      { ACCEPT_CASE_JSON,       ContentType.JSON,           ACCEPT_CASE_WILDCARD1,   null           },
       { ACCEPT_CASE_JSON,       "application/json",ACCEPT_CASE_JSON_IEEE754, null         },
       { ACCEPT_CASE_JSON_IEEE754,null,            ACCEPT_CASE_JSON_IEEE754, null          },
       { ACCEPT_CASE_JSON,        null,            ACCEPT_CASE_JSON,         null          }
@@ -141,7 +141,7 @@ public class ContentNegotiatorTest {
   String[][] casesAcceptCharset = {
       /* expected               $format           accept                 modified content types  acceptCharset*/
       { ACCEPT_CASE_MIN_UTF8,    null,             null,                  null,                    "utf-8"    },
-      { ACCEPT_CASE_MIN_UTF8,   "json",           ACCEPT_CASE_MIN_UTF8,   null,                    "utf-8"    },
+      { ACCEPT_CASE_MIN_UTF8,   ContentType.JSON,           ACCEPT_CASE_MIN_UTF8,   null,                    "utf-8"    },
       { ACCEPT_CASE_MIN_UTF8,    null,            ACCEPT_CASE_ISO_8859_1, null,                    "utf-8"    },
       { ACCEPT_CASE_MIN_UTF81,   null,            ACCEPT_CASE_ISO_8859_1, null,                    "utf-8"    },
       { ACCEPT_CASE_MIN_UTF81,   null,           "application/json;charset=abc", null,             "utf-8"    },
@@ -153,7 +153,7 @@ public class ContentNegotiatorTest {
   String[][] casesAcceptCharsetFail = {
       /* expected               $format           accept                 modified content types   acceptCharset*/
       { null,                   null,             null,                   null,                     "ISO-8859-1" },
-      { null,                   "json",           ACCEPT_CASE_MIN_UTF8,   null,                     "abc"        },
+      { null,                   ContentType.JSON,           ACCEPT_CASE_MIN_UTF8,   null,                     "abc"        },
       { null,                   null,             ACCEPT_CASE_ISO_8859_1, null,                     "utf<8"      },
       { null,                   null,             ACCEPT_CASE_MIN_UTF8, null,                       "utf-8;abc=xyz"},
       { null,                   null,             ACCEPT_CASE_MIN_UTF8, null,                       "utf-8;q=1<"  },
@@ -239,7 +239,7 @@ public class ContentNegotiatorTest {
 
   @Test
   public void checkSupport() throws Exception {
-    ContentNegotiator.checkSupport(ContentType.JSON, null, RepresentationType.ENTITY);
+    ContentNegotiator.checkSupport(ContentType.CT_JSON, null, RepresentationType.ENTITY);
     ContentNegotiator.checkSupport(ContentType.TEXT_PLAIN, null, RepresentationType.VALUE);
     try {
       ContentNegotiator.checkSupport(ContentType.APPLICATION_SVG_XML, null, RepresentationType.ENTITY);

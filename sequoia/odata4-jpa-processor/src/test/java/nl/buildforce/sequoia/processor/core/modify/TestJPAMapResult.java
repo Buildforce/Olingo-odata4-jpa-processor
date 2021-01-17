@@ -11,7 +11,13 @@ import nl.buildforce.sequoia.processor.core.util.TestBase;
 import org.junit.jupiter.api.BeforeEach;
 
 import java.sql.Timestamp;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -261,4 +267,5 @@ public class TestJPAMapResult extends TestJPACreateResult {
 
     cut = new JPAMapResult(et, (Map<String, Object>) jpaEntity, headers, converter);
   }
+
 }

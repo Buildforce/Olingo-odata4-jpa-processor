@@ -245,7 +245,7 @@ public abstract class TestJPAModifyProcessor {
     header.add(content);
 
     Entity odataEntity = mock(Entity.class);
-    when(convHelper.convertInputStream(same(odata), same(request), same(ContentType.JSON), any(List.class)))
+    when(convHelper.convertInputStream(same(odata), same(request), same(ContentType.CT_JSON), any(List.class)))
         .thenReturn(odataEntity);
     when(convHelper.convertKeyToLocal(ArgumentMatchers.eq(odata), ArgumentMatchers.eq(request), ArgumentMatchers.eq(
         ets), ArgumentMatchers.any(JPAEntityType.class), ArgumentMatchers.any())).thenReturn(LOCATION_HEADER);

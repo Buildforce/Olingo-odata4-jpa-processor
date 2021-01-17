@@ -41,7 +41,7 @@ final class TypeUtil {
   private TypeUtil() { /* static helper class */}
 
   /** Creates a parameter map with predictable order. */
-  static Map<String, String> createParameterMap() {
+  static TreeMap<String, String> createParameterMap() {
     return new TreeMap<>((s, str) -> s.compareToIgnoreCase(str));
   }
 
@@ -87,13 +87,12 @@ final class TypeUtil {
     if (parameter.isEmpty()) {
       throw new IllegalArgumentException("An empty parameter is not allowed.");
     }
-    String[] keyValue = parameter.trim().split(PARAMETER_KEY_VALUE_SEPARATOR);
+    String[] keyValue = parameter.trim().toLowerCase(Locale.ENGLISH).split(PARAMETER_KEY_VALUE_SEPARATOR);
     if (keyValue.length != 2) {
       throw new IllegalArgumentException("Parameter '" + parameter + "' must have exactly one '"
           + PARAMETER_KEY_VALUE_SEPARATOR + "' that separates the name and the value.");
     }
     validateParameterNameAndValue(keyValue[0], keyValue[1]);
-    keyValue[0] = keyValue[0].toLowerCase(Locale.ENGLISH);
     return keyValue;
   }
 
@@ -120,4 +119,5 @@ final class TypeUtil {
       throw new IllegalArgumentException("Value of parameter '" + parameterName + "' starts with whitespace.");
     }
   }
+
 }

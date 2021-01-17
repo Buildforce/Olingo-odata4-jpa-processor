@@ -36,7 +36,7 @@ public class ODataJsonDeserializerBasicTest {
   private final ODataDeserializer deserializer;
 
   public ODataJsonDeserializerBasicTest() throws DeserializerException {
-    deserializer = OData.newInstance().createDeserializer(ContentType.JSON);
+    deserializer = OData.newInstance().createDeserializer(ContentType.CT_JSON);
   }
 
   @Test
@@ -143,4 +143,5 @@ public class ODataJsonDeserializerBasicTest {
         "}";
     deserializer.entityReferences(new ByteArrayInputStream(entityString.getBytes()));
   }
+
 }

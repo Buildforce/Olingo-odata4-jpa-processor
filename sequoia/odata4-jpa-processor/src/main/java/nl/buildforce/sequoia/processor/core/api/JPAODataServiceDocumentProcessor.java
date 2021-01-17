@@ -62,8 +62,9 @@ public class JPAODataServiceDocumentProcessor implements ServiceDocumentProcesso
         ODataSerializer serializer = odata.createSerializer(requestedContentType);
         response.setContent(serializer.serviceDocument(serviceMetadata, uri).getContent());
         response.setStatusCode(HttpStatusCode.OK.getStatusCode());
-        response.setHeader(HttpHeader.CONTENT_TYPE, requestedContentType.toContentTypeString());
+        response.setHeader(HttpHeader.CONTENT_TYPE, requestedContentType.toString());
       }
     }
   }
+
 }

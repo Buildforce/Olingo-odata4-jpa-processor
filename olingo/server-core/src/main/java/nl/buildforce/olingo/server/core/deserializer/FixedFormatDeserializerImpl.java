@@ -122,7 +122,7 @@ public class FixedFormatDeserializerImpl implements FixedFormatDeserializer {
       return result;
     } else {
       // The content is a JSON array or object.
-      return new ODataJsonDeserializer(ContentType.JSON).parameter(content, parameter);
+      return new ODataJsonDeserializer(ContentType.CT_JSON).parameter(content, parameter);
     }
   }
 
@@ -134,4 +134,5 @@ public class FixedFormatDeserializerImpl implements FixedFormatDeserializer {
 
     return parser.parseBatchRequest(content, boundary, options);
   }
+
 }

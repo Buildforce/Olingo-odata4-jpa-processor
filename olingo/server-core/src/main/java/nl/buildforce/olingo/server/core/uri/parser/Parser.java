@@ -10,6 +10,7 @@ import nl.buildforce.olingo.commons.api.edm.EdmEntityType;
 import nl.buildforce.olingo.commons.api.edm.EdmStructuredType;
 import nl.buildforce.olingo.commons.api.edm.EdmType;
 import nl.buildforce.olingo.commons.api.ex.ODataRuntimeException;
+import nl.buildforce.olingo.commons.api.format.ContentType;
 import nl.buildforce.olingo.server.api.OData;
 import nl.buildforce.olingo.server.api.uri.UriInfo;
 import nl.buildforce.olingo.server.api.uri.UriInfoKind;
@@ -62,7 +63,7 @@ public class Parser {
   private static final String DOLLAR = "$";
   private static final String ENTITY = "$entity";
   private static final String HTTP = "http";
-  private static final String JSON = "json";
+  private static final String JSON = ContentType.JSON;
   private static final String NULL = "null";
   private static final String XML = "xml";
 
@@ -488,4 +489,5 @@ public class Parser {
           optionName, optionValue);
     }
   }
+
 }
