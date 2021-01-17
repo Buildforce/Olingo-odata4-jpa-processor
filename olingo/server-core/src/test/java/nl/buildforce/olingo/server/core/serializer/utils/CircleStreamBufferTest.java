@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 import org.junit.Test;
 
@@ -32,7 +33,7 @@ import org.junit.Test;
  */
 public class CircleStreamBufferTest {
 
-  private static final Charset DEFAULT_CHARSET = Charset.forName("utf-8");
+  private static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 
   @Test
   public void testSimpleWriteReadSignBySign() throws Exception {
@@ -306,4 +307,5 @@ public class CircleStreamBufferTest {
 
     return b.toString();
   }
+
 }

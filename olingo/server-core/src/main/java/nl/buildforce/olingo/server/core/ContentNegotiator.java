@@ -18,6 +18,7 @@
  */
 package nl.buildforce.olingo.server.core;
 
+import java.nio.charset.StandardCharsets;
 import java.nio.charset.UnsupportedCharsetException;
 import java.util.Arrays;
 import java.util.Collections;
@@ -229,13 +230,13 @@ public final class ContentNegotiator {
         String charSetValue = acceptedType.getParameter(ContentType.PARAMETER_CHARSET);
         if (charset != null) {
           if ("*".equals(charset.toString())) {
-            contentType = ContentType.create(contentType, ContentType.PARAMETER_CHARSET, "utf-8");
+            contentType = ContentType.create(contentType, ContentType.PARAMETER_CHARSET, StandardCharsets.UTF_8.name());
           } else {
             contentType = ContentType.create(contentType, ContentType.PARAMETER_CHARSET, charset.toString());
           }
         } else if (charSetValue != null) {
-          if ("utf8".equalsIgnoreCase(charSetValue) || "utf-8".equalsIgnoreCase(charSetValue)) {
-            contentType = ContentType.create(contentType, ContentType.PARAMETER_CHARSET, "utf-8");
+          if ("utf8".equalsIgnoreCase(charSetValue) || StandardCharsets.UTF_8.name().equalsIgnoreCase(charSetValue)) {
+            contentType = ContentType.create(contentType, ContentType.PARAMETER_CHARSET, StandardCharsets.UTF_8.name());
           } else {
             if (CHARSET_PATTERN.matcher(charSetValue).matches()) {
               throw new ContentNegotiatorException("Unsupported accept-header-charset = " + charSetValue,

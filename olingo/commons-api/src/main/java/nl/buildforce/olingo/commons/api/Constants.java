@@ -18,6 +18,8 @@
  */
 package nl.buildforce.olingo.commons.api;
 
+import java.nio.charset.StandardCharsets;
+
 import javax.xml.XMLConstants;
 import javax.xml.namespace.QName;
 
@@ -29,7 +31,7 @@ import nl.buildforce.olingo.commons.api.format.ContentType;
 public interface Constants {
 
   // Other stuff
-  String UTF8 = "UTF-8";
+  String UTF8 = StandardCharsets.UTF_8.name();
 
   String METADATA = "$metadata";
 

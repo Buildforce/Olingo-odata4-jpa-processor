@@ -21,7 +21,6 @@ public class CountQueryMatcher implements ArgumentMatcher<JPACountQuery> {
           executed = true; // Query can be used only once but matcher is called twice
           return extCountResult == query.countResults();
         } catch (ODataApplicationException e) {
-          System.out.print(e.getMessage());
           return false;
         }
       }

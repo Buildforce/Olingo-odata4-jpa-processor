@@ -113,7 +113,7 @@ public class BatchBodyPart implements BatchPart {
 
   private boolean isContentTypeMultiPartMixed(String contentType) {
     try {
-      BatchParserCommon.parseContentType(contentType, ContentType.MULTIPART_MIXED, 0);
+      BatchParserCommon.parseContentType2(contentType, ContentType.MULTIPART_MIXED, 0);
       return true;
     } catch (BatchDeserializerException e) {
       return false;
@@ -137,4 +137,5 @@ public class BatchBodyPart implements BatchPart {
   public List<BatchQueryOperation> getRequests() {
     return requests;
   }
+
 }

@@ -107,17 +107,6 @@ public final class ContentType {
     this.parameters = Collections.emptyMap();
   }
 
-
-  private String validateMainType(String type) throws IllegalArgumentException {
-    if (type == null || type.isEmpty() || MEDIA_TYPE_WILDCARD.equals(type)) {
-      throw new IllegalArgumentException("Illegal type '" + type + "'.");
-    }
-    if (type.indexOf(TypeUtil.WHITESPACE_CHAR) >= 0) {
-      throw new IllegalArgumentException("Illegal whitespace found for type '" + type + "'.");
-    }
-    return type.toLowerCase();
-  }
-
   /**
    * Creates a content type from an existing content type and an additional parameter as key-value pair.
    * @param contentType    an existing content type
@@ -149,6 +138,16 @@ public final class ContentType {
     Map<String, String> parameters = new HashMap<>();
     parse(format.toLowerCase(), typeSubtype, parameters);
     return new ContentType(typeSubtype.get(0), typeSubtype.get(1), parameters);
+  }
+
+  private String validateMainType(String type) throws IllegalArgumentException {
+    if (type == null || type.isEmpty() || MEDIA_TYPE_WILDCARD.equals(type)) {
+      throw new IllegalArgumentException("Illegal type '" + type + "'.");
+    }
+    if (type.indexOf(TypeUtil.WHITESPACE_CHAR) >= 0) {
+      throw new IllegalArgumentException("Illegal whitespace found for type '" + type + "'.");
+    }
+    return type.toLowerCase();
   }
 
   /**

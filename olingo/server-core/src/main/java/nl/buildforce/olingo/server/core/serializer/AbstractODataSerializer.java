@@ -36,12 +36,10 @@ public abstract class AbstractODataSerializer implements ODataSerializer {
       try {
         outputStream.close();
       } catch (IOException e) {
-        if (cachedException != null) {
-          throw cachedException;
-        } else {
-          throw new SerializerException(IO_EXCEPTION_TEXT, e, MessageKeys.IO_EXCEPTION);
-        }
+        if (cachedException == null) throw new SerializerException(IO_EXCEPTION_TEXT, e, MessageKeys.IO_EXCEPTION);
+        else throw cachedException;
       }
     }
   }
+
 }

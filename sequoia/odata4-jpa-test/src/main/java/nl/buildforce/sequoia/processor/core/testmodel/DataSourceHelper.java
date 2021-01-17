@@ -61,9 +61,9 @@ public class DataSourceHelper {
         return null;
     }
 
-    System.out.println("Selected DB " + ds.getUrl());
     Flyway flyway = Flyway.configure().dataSource(ds).schemas(DB_SCHEMA).load();
     flyway.migrate();
     return ds;
   }
+
 }

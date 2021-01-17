@@ -160,7 +160,7 @@ public class BatchResponseSerializerTest {
 
     ODataResponse response = new ODataResponse();
     response.setStatusCode(HttpStatusCode.OK.getStatusCode());
-    response.setHeader(HttpHeader.CONTENT_TYPE, ContentType.create(ContentType.TEXT_PLAIN, ContentType.PARAMETER_CHARSET, "UTF-8").toString());
+    response.setHeader(HttpHeader.CONTENT_TYPE, ContentType.create(ContentType.TEXT_PLAIN, ContentType.PARAMETER_CHARSET, StandardCharsets.UTF_8.name()).toString());
     response.setContent(IOUtils.toInputStream("Wälter Winter" + CRLF, StandardCharsets.UTF_8));
     parts.add(new ODataResponsePart(Collections.singletonList(response), false));
 

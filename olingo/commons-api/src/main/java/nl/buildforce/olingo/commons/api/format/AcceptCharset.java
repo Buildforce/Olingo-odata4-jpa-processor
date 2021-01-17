@@ -18,6 +18,7 @@
  */
 package nl.buildforce.olingo.commons.api.format;
 
+import java.nio.charset.StandardCharsets;
 import java.nio.charset.UnsupportedCharsetException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -35,7 +36,7 @@ public class AcceptCharset {
   private final Map<String, String> parameters;
   private final Float quality;
   private static final String UTF8_CHARSET = "utf8";
-  private static final String UTF8_CHARSET1 = "utf-8";
+  private static final String UTF8_CHARSET1 = StandardCharsets.UTF_8.name();
   
   private AcceptCharset(String charset) {
     parameters = TypeUtil.createParameterMap();

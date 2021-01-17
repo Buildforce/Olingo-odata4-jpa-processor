@@ -20,22 +20,16 @@ package nl.buildforce.olingo.server.core.deserializer.batch;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import org.junit.Test;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 public class BatchLineReaderTest {
 
@@ -272,16 +266,17 @@ public class BatchLineReaderTest {
     String contentString = reader.readLine()  // initial part up to '\n'
         + reader.readLine()  // second part from '\n' to '\r'
         + reader.readLine();  // the rest
-    assertArrayEquals(content, contentString.getBytes(Charset.forName("ISO-8859-1")));
+    assertArrayEquals(content, contentString.getBytes(StandardCharsets.ISO_8859_1));
     assertNull(reader.readLine());
     reader.close();
   }
 
   private BatchLineReader create(String inputString) throws IOException {
-    return new BatchLineReader(new ByteArrayInputStream(inputString.getBytes("UTF-8")));
+    return new BatchLineReader(new ByteArrayInputStream(inputString.getBytes(StandardCharsets.UTF_8.name())));
   }
 
   private BatchLineReader create(String inputString, int bufferSize) throws IOException {
-    return new BatchLineReader(new ByteArrayInputStream(inputString.getBytes("UTF-8")), bufferSize);
+    return new BatchLineReader(new ByteArrayInputStream(inputString.getBytes(StandardCharsets.UTF_8.name())), bufferSize);
   }
+
 }
