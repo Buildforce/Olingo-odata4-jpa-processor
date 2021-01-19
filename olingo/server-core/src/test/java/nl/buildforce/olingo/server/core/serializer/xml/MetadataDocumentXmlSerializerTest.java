@@ -27,6 +27,7 @@ import static org.mockito.Mockito.when;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -124,7 +125,7 @@ public class MetadataDocumentXmlSerializerTest {
     assertEquals("<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
         + "<edmx:Edmx Version=\"4.0\" xmlns:edmx=\"http://docs.oasis-open.org/odata/ns/edmx\">"
         + "<edmx:DataServices></edmx:DataServices></edmx:Edmx>",
-        IOUtils.toString(serializer.metadataDocument(metadata).getContent()));
+        IOUtils.toString(serializer.metadataDocument(metadata).getContent(), StandardCharsets.UTF_8));
   }
 
   /** Writes simplest (empty) Schema. */
@@ -145,7 +146,7 @@ public class MetadataDocumentXmlSerializerTest {
         + "<Schema xmlns=\"http://docs.oasis-open.org/odata/ns/edm\" Namespace=\"MyNamespace\"></Schema>"
         + "</edmx:DataServices>"
         + "</edmx:Edmx>",
-        IOUtils.toString(metadata));
+        IOUtils.toString(metadata, StandardCharsets.UTF_8));
   }
   
   /** Test if annotations on EnumType Members are added as children of the Member element
@@ -425,7 +426,7 @@ public class MetadataDocumentXmlSerializerTest {
     CsdlEdmProvider provider = new LocalProvider();
     ServiceMetadata serviceMetadata = new ServiceMetadataImpl(provider, Collections.emptyList(), null);
     InputStream metadataStream = serializer.metadataDocument(serviceMetadata).getContent();
-    String metadata = IOUtils.toString(metadataStream);
+    String metadata = IOUtils.toString(metadataStream, StandardCharsets.UTF_8);
     assertNotNull(metadata);
     return metadata;
   }
@@ -478,7 +479,7 @@ public class MetadataDocumentXmlSerializerTest {
     when(schema.getComplexTypes()).thenReturn(complexTypes);
 
     InputStream metadataStream = serializer.metadataDocument(serviceMetadata).getContent();
-    String metadata = IOUtils.toString(metadataStream);
+    String metadata = IOUtils.toString(metadataStream, StandardCharsets.UTF_8);
     assertTrue(metadata.contains("<ComplexType Name=\"ComplexType\" Abstract=\"true\" OpenType=\"true\">"
         + "<Property Name=\"prop1\" Type=\"Edm.String\"></Property>"
         + "<Property Name=\"prop2\" Type=\"Edm.String\"></Property>"

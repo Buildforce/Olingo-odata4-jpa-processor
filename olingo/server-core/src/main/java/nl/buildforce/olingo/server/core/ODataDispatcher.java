@@ -689,7 +689,7 @@ public class ODataDispatcher {
     }
     ContentType contentType;
     try {
-      contentType = ContentType.create(contentTypeHeader);
+      contentType = new ContentType(contentTypeHeader);
     } catch (IllegalArgumentException e) {
       throw new ODataHandlerException("Illegal content type.", e,
           ODataHandlerException.MessageKeys.INVALID_CONTENT_TYPE, contentTypeHeader);

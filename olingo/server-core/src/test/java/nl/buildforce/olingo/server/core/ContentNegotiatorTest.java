@@ -19,7 +19,6 @@
 package nl.buildforce.olingo.server.core;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -248,13 +247,15 @@ public class ContentNegotiatorTest {
       assertEquals(ContentNegotiatorException.MessageKeys.UNSUPPORTED_CONTENT_TYPE, e.getMessageKey());
     }
 
-    ContentNegotiator.checkSupport(ContentType.create("a/b"), createCustomContentTypeSupport("a/b"),
-        RepresentationType.ENTITY);
-    ContentNegotiator.checkSupport(ContentType.create(ContentType.create("a/b"), "c", "d"),
+    ContentNegotiator.checkSupport(new ContentType("a/b"), createCustomContentTypeSupport("a/b"), RepresentationType.ENTITY);
+    ContentNegotiator.checkSupport(ContentType.create(
+        new ContentType("a/b"), "c", "d"),
         createCustomContentTypeSupport("a/b"),
         RepresentationType.ENTITY);
     try {
-      ContentNegotiator.checkSupport(ContentType.create("a/b"), createCustomContentTypeSupport("a/b;c=d"),
+      ContentNegotiator.checkSupport(
+          new ContentType("a/b"),
+          createCustomContentTypeSupport("a/b;c=d"),
           RepresentationType.ENTITY);
       fail("Exception expected.");
     } catch (ContentNegotiatorException e) {
@@ -288,17 +289,15 @@ public class ContentNegotiatorTest {
           formatOption, request, customContentTypeSupport, representationType);
     assertNotNull(requestedContentType);
     if (useCase[0] != null) {
-      assertEquals(ContentType.create(useCase[0]), requestedContentType);
+      assertEquals(new ContentType(useCase[0]), requestedContentType);
     }
   }
 
   private CustomContentTypeSupport createCustomContentTypeSupport(String contentTypeString) {
     String[] contentTypes = contentTypeString.split(",");
 
-    List<ContentType> types = new ArrayList<ContentType>();
-    for (String contentType : contentTypes) {
-      types.add(ContentType.create(contentType));
-    }
+    List<ContentType> types = new ArrayList<>();
+    for (String contentType : contentTypes) { types.add(new ContentType(contentType)); }
 
     CustomContentTypeSupport customContentTypeSupport = mock(CustomContentTypeSupport.class);
     when(customContentTypeSupport.modifySupportedContentTypes(
@@ -332,13 +331,13 @@ public class ContentNegotiatorTest {
   
   @Test
   public void testSupportedTypes() throws ContentNegotiatorException, IllegalArgumentException {
-    assertTrue(ContentNegotiator.isSupported(ContentType.create("a/b"), 
+    assertTrue(ContentNegotiator.isSupported(new ContentType("a/b"),
         createCustomContentTypeSupport("a/b"), RepresentationType.ENTITY));
-    assertFalse(ContentNegotiator.isSupported(ContentType.create("a/b"), 
+    assertFalse(ContentNegotiator.isSupported(new ContentType("a/b"),
         createCustomContentTypeSupport("x/y"), RepresentationType.ENTITY));
-    assertTrue(ContentNegotiator.isSupported(ContentType.create("a/b"), 
+    assertTrue(ContentNegotiator.isSupported(new ContentType("a/b"),
         createCustomContentTypeSupport("a/b"), RepresentationType.BATCH));
-    assertTrue(ContentNegotiator.isSupported(ContentType.create("a/b"), 
+    assertTrue(ContentNegotiator.isSupported(new ContentType("a/b"),
         createCustomContentTypeSupport("a/b"), RepresentationType.BINARY));
   }
   

@@ -5,23 +5,25 @@
     <groupId>nl.buildforce.odata4-jpa</groupId>
     <artifactId>OData4-jpa-parent</artifactId>
     <version>0.0.2</version>
+    <packaging>pom</packaging>
+
     <modules>
         <module>olingo</module>
         <module>sequoia</module>
     </modules>
-    <packaging>pom</packaging>
     <properties>
-        <odata4-jpa.version>0.0.2</odata4-jpa.version>
         <jackson.version>2.12.1</jackson.version>
         <jakarta-servlet.version>5.0.0</jakarta-servlet.version>
+        <odata4-jpa.version>0.0.2</odata4-jpa.version>
         <project.build.source>1.8</project.build.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
     <distributionManagement>
-    <repository>
-        <id>bintray-serioussoftware-repo</id>
-        <name>serioussoftware-maven3</name>
-        <url>https://api.bintray.com/maven/serioussoftware/repo1/OData4-JPA/;publish=1</url>
-    </repository>
+        <repository>
+            <id>bintray-serioussoftware-repo</id>
+            <name>serioussoftware-maven3</name>
+            <url>https://api.bintray.com/maven/serioussoftware/repo1/OData4-JPA/;publish=1</url>
+        </repository>
     </distributionManagement>
 </project>

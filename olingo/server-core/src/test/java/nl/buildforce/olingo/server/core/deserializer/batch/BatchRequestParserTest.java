@@ -16,6 +16,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class BatchRequestParserTest {
@@ -79,7 +80,7 @@ public class BatchRequestParserTest {
                 Assert.assertEquals(SERVICE_ROOT + "/" + PROPERTY_URI, request.getRawRequestUri());
                 Assert.assertEquals("", request.getRawQueryPath()); // No query parameter
 
-                Assert.assertEquals("{\"value\":\"€ MODIFIED\"}" + CRLF, IOUtils.toString(request.getBody()));
+                Assert.assertEquals("{\"value\":\"€ MODIFIED\"}" + CRLF, IOUtils.toString(request.getBody(), StandardCharsets.UTF_8));
             } else {
                 Assert.assertEquals(HttpMethod.GET, request.getMethod());
 
@@ -173,7 +174,7 @@ public class BatchRequestParserTest {
         final String boundary = "batch_1.2+34:2j)0?";
         String batch = "--" + boundary + CRLF + GET_REQUEST + "--" + boundary + "--";
         List<BatchRequestPart> batchRequestParts = new BatchParser().parseBatchRequest(
-                IOUtils.toInputStream(batch),
+                IOUtils.toInputStream(batch, StandardCharsets.UTF_8),
                 boundary,
                 BatchOptions.with().isStrict(true).rawBaseUri(SERVICE_ROOT).build());
 

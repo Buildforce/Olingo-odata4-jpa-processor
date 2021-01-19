@@ -38,8 +38,8 @@ public class AcceptTypeTest {
     assertEquals(1, atl.size());
     assertEquals("*/*", atl.get(0).toString());
 
-    assertTrue(atl.get(0).matches(ContentType.create("a/a")));
-    assertTrue(atl.get(0).matches(ContentType.create("b/b")));
+    assertTrue(atl.get(0).matches(new ContentType("a/a")));
+    assertTrue(atl.get(0).matches(new ContentType("b/b")));
   }
 
   @Test
@@ -49,17 +49,17 @@ public class AcceptTypeTest {
     assertEquals(1, atl.size());
     assertEquals("a/*", atl.get(0).toString());
 
-    assertTrue(atl.get(0).matches(ContentType.create("a/a")));
-    assertFalse(atl.get(0).matches(ContentType.create("b/b")));
+    assertTrue(atl.get(0).matches(new ContentType("a/a")));
+    assertFalse(atl.get(0).matches(new ContentType("b/b")));
   }
 
   @Test
   public void singleAcceptType() {
-    assertTrue(AcceptType.create("a/a").get(0).matches(ContentType.create("a/a")));
-    assertTrue(AcceptType.create("a/a;q=0.2").get(0).matches(ContentType.create("a/a")));
-    assertFalse(AcceptType.create("a/a;x=y;q=0.2").get(0).matches(ContentType.create("a/a")));
-    assertTrue(AcceptType.create("a/a;x=y;q=0.2").get(0).matches(ContentType.create("a/a;x=y")));
-    assertTrue(AcceptType.create("a/a; q=0.2").get(0).matches(ContentType.create("a/a")));
+    assertTrue(AcceptType.create("a/a").get(0).matches(new ContentType("a/a")));
+    assertTrue(AcceptType.create("a/a;q=0.2").get(0).matches(new ContentType("a/a")));
+    assertFalse(AcceptType.create("a/a;x=y;q=0.2").get(0).matches(new ContentType("a/a")));
+    assertTrue(AcceptType.create("a/a;x=y;q=0.2").get(0).matches(new ContentType("a/a;x=y")));
+    assertTrue(AcceptType.create("a/a; q=0.2").get(0).matches(new ContentType("a/a")));
 
     assertEquals("a/a;q=0.2;x=y", AcceptType.create("a/a;x=y;q=0.2").get(0).toString());
   }
@@ -70,8 +70,8 @@ public class AcceptTypeTest {
 
     atl = AcceptType.create("b/b,*/*,a/a,c/*");
     assertNotNull(atl);
-    assertTrue(atl.get(0).matches(ContentType.create("b/b")));
-    assertTrue(atl.get(1).matches(ContentType.create("a/a")));
+    assertTrue(atl.get(0).matches(new ContentType("b/b")));
+    assertTrue(atl.get(1).matches(new ContentType("a/a")));
     assertEquals("c", atl.get(2).getType());
     assertEquals(TypeUtil.MEDIA_TYPE_WILDCARD, atl.get(2).getSubtype());
     assertEquals(TypeUtil.MEDIA_TYPE_WILDCARD, atl.get(3).getType());
@@ -79,23 +79,23 @@ public class AcceptTypeTest {
 
     atl = AcceptType.create("a/a;q=0.3,*/*;q=0.1,b/b;q=0.2");
     assertNotNull(atl);
-    assertTrue(atl.get(0).matches(ContentType.create("a/a")));
-    assertTrue(atl.get(1).matches(ContentType.create("b/b")));
+    assertTrue(atl.get(0).matches(new ContentType("a/a")));
+    assertTrue(atl.get(1).matches(new ContentType("b/b")));
     assertEquals(TypeUtil.MEDIA_TYPE_WILDCARD, atl.get(2).getType());
     assertEquals(TypeUtil.MEDIA_TYPE_WILDCARD, atl.get(2).getSubtype());
 
     atl = AcceptType.create("a/a;q=0.3,*/*;q=0.3");
     assertNotNull(atl);
-    assertTrue(atl.get(0).matches(ContentType.create("a/a")));
+    assertTrue(atl.get(0).matches(new ContentType("a/a")));
     assertEquals(TypeUtil.MEDIA_TYPE_WILDCARD, atl.get(1).getType());
     assertEquals(TypeUtil.MEDIA_TYPE_WILDCARD, atl.get(1).getSubtype());
 
     atl = AcceptType.create("a/a;x=y;q=0.1,b/b;x=y;q=0.3");
     assertNotNull(atl);
-    assertTrue(atl.get(0).matches(ContentType.create("b/b;x=y")));
-    assertFalse(atl.get(0).matches(ContentType.create("b/b;x=z")));
-    assertTrue(atl.get(1).matches(ContentType.create("a/a;x=y")));
-    assertFalse(atl.get(1).matches(ContentType.create("a/a;x=z")));
+    assertTrue(atl.get(0).matches(new ContentType("b/b;x=y")));
+    assertFalse(atl.get(0).matches(new ContentType("b/b;x=z")));
+    assertTrue(atl.get(1).matches(new ContentType("a/a;x=y")));
+    assertFalse(atl.get(1).matches(new ContentType("a/a;x=z")));
 
     atl = AcceptType.create("a/a; q=0.3, */*; q=0.1, b/b; q=0.2");
     assertNotNull(atl);
@@ -231,12 +231,9 @@ public class AcceptTypeTest {
     assertEquals(ContentType.JSON, acceptType.getSubtype());
     assertEquals("utf-8", acceptType.getParameter(ContentType.PARAMETER_CHARSET));
     
-    assertTrue(acceptType.matches(ContentType.create("application/json;"
-        + "odata.metadata=minimal;charset=utf-8")));
-    assertFalse(acceptType.matches(ContentType.create("application/atom+xml;"
-        + "odata.metadata=minimal;charset=utf-8")));
-    assertFalse(acceptType.matches(ContentType.create("application/json;"
-        + "odata.metadata=minimal")));
+    assertTrue(acceptType.matches(new ContentType("application/json;" + "odata.metadata=minimal;charset=utf-8")));
+    assertFalse(acceptType.matches(new ContentType("application/atom+xml;" + "odata.metadata=minimal;charset=utf-8")));
+    assertFalse(acceptType.matches(new ContentType("application/json;" + "odata.metadata=minimal")));
   }
   
   @Test

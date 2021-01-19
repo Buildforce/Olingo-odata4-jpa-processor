@@ -20,12 +20,12 @@ package nl.buildforce.olingo.commons.api.format;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map.Entry;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Objects;
+import java.util.TreeMap;
 
 import static nl.buildforce.olingo.commons.api.format.TypeUtil.MEDIA_TYPE_WILDCARD;
 
@@ -59,10 +59,10 @@ public final class ContentType {
   public static final String VALUE_ODATA_METADATA_MINIMAL = "minimal";
   public static final String VALUE_ODATA_METADATA_NONE = "none";
 
-  public static final ContentType APPLICATION_JSON = new ContentType(APPLICATION, ContentType.JSON);
-  public static final ContentType CT_JSON = create(ContentType.APPLICATION_JSON, PARAMETER_ODATA_METADATA, VALUE_ODATA_METADATA_MINIMAL);
-  public static final ContentType JSON_FULL_METADATA = create(ContentType.APPLICATION_JSON, PARAMETER_ODATA_METADATA, VALUE_ODATA_METADATA_FULL);
-  public static final ContentType JSON_NO_METADATA = create(ContentType.APPLICATION_JSON, PARAMETER_ODATA_METADATA, VALUE_ODATA_METADATA_NONE);
+  public static final ContentType APPLICATION_JSON = new ContentType(APPLICATION, JSON);
+  public static final ContentType CT_JSON = create(APPLICATION_JSON, PARAMETER_ODATA_METADATA, VALUE_ODATA_METADATA_MINIMAL);
+  public static final ContentType JSON_FULL_METADATA = create(APPLICATION_JSON, PARAMETER_ODATA_METADATA, VALUE_ODATA_METADATA_FULL);
+  public static final ContentType JSON_NO_METADATA = create(APPLICATION_JSON, PARAMETER_ODATA_METADATA, VALUE_ODATA_METADATA_NONE);
 
   public static final ContentType APPLICATION_ATOM_SVC = new ContentType(APPLICATION, "atomsvc+xml");
   public static final ContentType APPLICATION_ATOM_XML = new ContentType(APPLICATION, "atom+xml");
@@ -86,7 +86,7 @@ public final class ContentType {
 
   private final String mainType;
   private final String subtype;
-  private final Map<String, String> parameters;
+  private final TreeMap<String, String> parameters = new TreeMap<String, String>((s, str) -> s.compareToIgnoreCase(str));
 
   /**
    * Creates a content type from type, subtype, and parameters.
@@ -97,14 +97,12 @@ public final class ContentType {
   private ContentType(String type, String subtype, Map<String, String> parameters) {
     this.mainType = validateMainType(type);
     this.subtype = validateMainType(subtype);
-    this.parameters = TypeUtil.createParameterMap();
     this.parameters.putAll(parameters);
   }
 
   private ContentType(String type, String subtype) {
     this.mainType = validateMainType(type);
     this.subtype = validateMainType(subtype);
-    this.parameters = Collections.emptyMap();
   }
 
   /**
@@ -127,17 +125,17 @@ public final class ContentType {
    * <code>Media Type</code> format as defined in RFC 7231, chapter 3.1.1.1.
    *
    * @param format a string in format as defined in RFC 7231, chapter 3.1.1.1
-   * @return a new {@link ContentType} object
    * @throws IllegalArgumentException if input string is not parseable
    */
-  public static ContentType create(String format) throws IllegalArgumentException {
-    if (format == null) {
-      throw new IllegalArgumentException("Parameter format MUST NOT be NULL.");
-    }
-    List<String> typeSubtype = new ArrayList<>();
-    Map<String, String> parameters = new HashMap<>();
-    parse(format.toLowerCase(), typeSubtype, parameters);
-    return new ContentType(typeSubtype.get(0), typeSubtype.get(1), parameters);
+  public ContentType(String format) throws IllegalArgumentException {
+    if (format != null) {
+      List<String> typeSubtype = new ArrayList<>();
+      parse(format.toLowerCase(), typeSubtype, parameters);
+      this.parameters.putAll(parameters);
+
+      mainType = validateMainType(typeSubtype.get(0));
+      subtype = validateMainType(typeSubtype.get(1));
+    } else throw new IllegalArgumentException("Parameter format MUST NOT be NULL.");
   }
 
   private String validateMainType(String type) throws IllegalArgumentException {
@@ -161,7 +159,7 @@ public final class ContentType {
    */
   public static ContentType parse(String format) {
     try {
-      return ContentType.create(format);
+      return new ContentType(format);
     } catch (IllegalArgumentException e) {
       return null;
     }
@@ -169,12 +167,11 @@ public final class ContentType {
 
   private static void parse(String format, List<String> typeSubtype, Map<String, String> parameters)
       throws IllegalArgumentException {
-    String[] typesAndParameters = format.split(TypeUtil.PARAMETER_SEPARATOR, 2);
-    String types = typesAndParameters[0];
-    String params = (typesAndParameters.length > 1 ? typesAndParameters[1] : null);
+    String[] typesAndParameter = format.split(TypeUtil.PARAMETER_SEPARATOR, 2);
+    String params = (typesAndParameter.length > 1) ? typesAndParameter[1] : null;
 
-    if (types.contains(TypeUtil.TYPE_SUBTYPE_SEPARATOR)) {
-      String[] tokens = types.split(TypeUtil.TYPE_SUBTYPE_SEPARATOR);
+    if (typesAndParameter[0].contains(TypeUtil.TYPE_SUBTYPE_SEPARATOR)) {
+      String[] tokens = typesAndParameter[0].split(TypeUtil.TYPE_SUBTYPE_SEPARATOR);
       if (tokens.length == 2) {
         if (tokens[0] == null || tokens[0].isEmpty()) {
           throw new IllegalArgumentException("No type found in format '" + format + "'.");

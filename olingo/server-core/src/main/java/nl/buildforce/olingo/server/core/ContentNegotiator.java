@@ -105,8 +105,7 @@ public final class ContentNegotiator {
       boolean isCharsetInFormat;
       List<AcceptType> formatTypes;
       try {
-      formatTypes = AcceptType.fromContentType(contentType == null ?
-          ContentType.create(formatOption.getFormat()) : contentType);
+      formatTypes = AcceptType.fromContentType(contentType == null ? new ContentType(formatOption.getFormat()) : contentType);
       } catch (IllegalArgumentException e) {
         throw new AcceptHeaderContentNegotiatorException(
             "Unsupported $format=" + formatString, e,

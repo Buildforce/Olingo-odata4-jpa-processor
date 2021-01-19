@@ -32,10 +32,10 @@ public class ContentTypeTest {
 
   @Test
   public void create() {
-    assertEquals("a/b", ContentType.create("a/b").toString());
-    assertEquals(ContentType.create("a/b;c=d;x=y"), ContentType.create("a/b;x=y;c=d"));
-    assertEquals(ContentType.create("a/b;c=d;x=y"), ContentType.create("a/b; x=y; c=d"));
-    assertEquals(ContentType.create("A/B"), ContentType.create("a/b"));
+    assertEquals("a/b", new ContentType("a/b").toString());
+    assertEquals(new ContentType("a/b;c=d;x=y"), new ContentType("a/b;x=y;c=d"));
+    assertEquals(new ContentType("a/b;c=d;x=y"), new ContentType("a/b; x=y; c=d"));
+    assertEquals(new ContentType("a/b"), new ContentType("a/b"));
   }
 
   @Test
@@ -61,21 +61,21 @@ public class ContentTypeTest {
 
   @Test
   public void createWithParameter() {
-    assertEquals(ContentType.create("a/b;c=d"), ContentType.create(ContentType.create("a/b"), "c", "d"));
-    assertEquals(ContentType.create("a/b;e=f;c=d"), ContentType.create(
-        ContentType.create(ContentType.create("a/b"), "c", "d"), "e", "f"));
-    assertEquals(ContentType.create("a/b;e=f;c=d"), ContentType.create(
-        ContentType.create(ContentType.create("A/B"), "C", "D"), "E", "F"));
+    assertEquals(new ContentType("a/b;c=d"), ContentType.create(new ContentType("a/b"), "c", "d"));
+    assertEquals(new ContentType("a/b;e=f;c=d"), ContentType.create(
+        ContentType.create(new ContentType("a/b"), "c", "d"), "e", "f"));
+    assertEquals(new ContentType("a/b;e=f;c=d"), ContentType.create(
+        ContentType.create(new ContentType("a/b"), "C", "D"), "E", "F"));
   }
 
   @Test
   public void createAndModify() {
-    ContentType ct1 = ContentType.create("a/b");
-    assertEquals(ContentType.create("a/b;c=d"), ContentType.create(ct1, "c", "d"));
+    ContentType ct1 = new ContentType("a/b");
+    assertEquals(new ContentType("a/b;c=d"), ContentType.create(ct1, "c", "d"));
 
-    ContentType ct2 = ContentType.create("a/b;c=d");
-    assertEquals(ContentType.create("a/b;c=d;e=f"), ContentType.create(ct2, "e", "f"));
-    assertEquals(ContentType.create("a/b;c=g"), ContentType.create(ct2, "c", "g"));
+    ContentType ct2 = new ContentType("a/b;c=d");
+    assertEquals(new ContentType("a/b;c=d;e=f"), ContentType.create(ct2, "e", "f"));
+    assertEquals(new ContentType("a/b;c=g"), ContentType.create(ct2, "c", "g"));
 
       assertNotEquals(ContentType.create(ct2, "c", "g"), ct2);
   }
@@ -92,8 +92,8 @@ public class ContentTypeTest {
 
   @Test
   public void charsetUtf8() {
-    ContentType ct1 = ContentType.create("a/b;charset=utf8");
-    ContentType ct2 = ContentType.create("a/b;charset=utf-8");
+    ContentType ct1 = new ContentType("a/b;charset=utf8");
+    ContentType ct2 = new ContentType("a/b;charset=utf-8");
 
     assertNotEquals(ct1, ct2);
     assertEquals(ct1.getMainType(), ct2.getMainType());
@@ -114,7 +114,7 @@ public class ContentTypeTest {
 
   private void createWrong(String value) {
     try {
-      ContentType.create(value);
+      new ContentType(value);
       fail("Expected exception not thrown.");
     } catch (IllegalArgumentException e) {
       assertNotNull(e);

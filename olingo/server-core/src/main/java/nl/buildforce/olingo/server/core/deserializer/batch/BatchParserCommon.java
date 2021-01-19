@@ -97,7 +97,7 @@ public class BatchParserCommon {
     }
     ContentType type;
     try {
-      type = ContentType.create(contentType);
+      type = new ContentType(contentType);
     } catch (IllegalArgumentException e) {
       throw new BatchDeserializerException("Invalid content type.", e,
           BatchDeserializerException.MessageKeys.INVALID_CONTENT_TYPE, Integer.toString(line));
@@ -126,7 +126,7 @@ public class BatchParserCommon {
           throws BatchDeserializerException {
     ContentType type;
     try {
-      type = ContentType.create(contentType);
+      type = new ContentType(contentType);
     } catch (IllegalArgumentException e) {
       throw new BatchDeserializerException("Invalid content type.", e,
               BatchDeserializerException.MessageKeys.INVALID_CONTENT_TYPE, Integer.toString(line));
