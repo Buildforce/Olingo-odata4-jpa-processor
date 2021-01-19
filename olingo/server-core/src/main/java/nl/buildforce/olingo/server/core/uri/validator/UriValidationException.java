@@ -82,4 +82,5 @@ public class UriValidationException extends ODataLibraryException {
   protected String getBundleName() {
     return DEFAULT_SERVER_BUNDLE_NAME;
   }
+
 }

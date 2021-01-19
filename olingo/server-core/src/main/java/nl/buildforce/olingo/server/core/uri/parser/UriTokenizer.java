@@ -148,9 +148,11 @@ public class UriTokenizer {
     EndswithMethod,
     FloorMethod,
     FractionalsecondsMethod,
+/*
     GeoDistanceMethod,
     GeoIntersectsMethod,
     GeoLengthMethod,
+*/
     HourMethod,
     IndexofMethod,
     IsofMethod,
@@ -574,6 +576,7 @@ public class UriTokenizer {
     case FractionalsecondsMethod:
       found = nextMethod("fractionalseconds");
       break;
+/*
     case GeoDistanceMethod:
       found = nextMethod("geo.distance");
       break;
@@ -583,6 +586,7 @@ public class UriTokenizer {
     case GeoLengthMethod:
       found = nextMethod("geo.length");
       break;
+*/
     case HourMethod:
       found = nextMethod("hour");
       break;
@@ -1138,273 +1142,6 @@ public class UriTokenizer {
   }
 
   /**
-   * Moves past a geo prefix if found; otherwise leaves the index unchanged.
-   * @return whether a geo prefix has been found at the current index
-   */
-  private boolean nextGeoPrefix(boolean isGeography) {
-    return nextConstantIgnoreCase(isGeography ? "geography" : "geometry");
-  }
-
-  /**
-   * Moves past an SRID if found; otherwise leaves the index unchanged.
-   * @return whether an SRID has been found at the current index
-   */
-  private boolean nextSrid() {
-    int lastGoodIndex = index;
-    if (nextConstantIgnoreCase("SRID") && nextCharacter('=') && nextDigit()) {
-      // The digit checked above is mandatory, four more digits are optional.
-      nextDigit();
-      nextDigit();
-      nextDigit();
-      nextDigit();
-      return true;
-    } else {
-      index = lastGoodIndex;
-      return false;
-    }
-  }
-
-  /**
-   * Moves past a geo position if found; otherwise leaves the index unchanged.
-   * @return whether a geo position has been found at the current index
-   */
-  private boolean nextPosition() {
-    int lastGoodIndex = index;
-    if ((nextDoubleValue() || nextDecimalValue() || nextIntegerValue(true))
-        && nextCharacter(' ')
-        && (nextDoubleValue() || nextDecimalValue() || nextIntegerValue(true))) {
-      return true;
-    } else {
-      index = lastGoodIndex;
-      return false;
-    }
-  }
-
-  /**
-   * Moves past a geo-point data instance if found; otherwise leaves the index unchanged.
-   * @return whether a geo-point data instance has been found at the current index
-   */
-  private boolean nextPointData() {
-    int lastGoodIndex = index;
-    if (nextCharacter('(') && nextPosition() && nextCharacter(')')) {
-      return true;
-    } else {
-      index = lastGoodIndex;
-      return false;
-    }
-  }
-
-  private boolean nextPoint() {
-    return nextConstantIgnoreCase("Point") && nextPointData();
-  }
-
-  private boolean nextGeoPoint(boolean isGeography) {
-    return nextGeoPrefix(isGeography) && nextCharacter('\'')
-        && nextSrid() && nextCharacter(';') && nextPoint()
-        && nextCharacter('\'');
-  }
-
-  /**
-   * Moves past geo LineString data if found; otherwise leaves the index unchanged.
-   * @param isRing whether the line is a closed ring (in that case it must have at least four positions,
-   *               and the last position must have the same coordinates as the first position)
-   * @return whether geo LineString data has been found at the current index
-   */
-  private boolean nextLineStringData(boolean isRing) {
-    int lastGoodIndex = index;
-    if (nextCharacter('(') && nextPosition()) {
-      int count = 1;
-      String firstPosition = isRing ? parseString.substring(lastGoodIndex + 1, index) : null;
-      int positionStart = -1;
-      while (nextCharacter(',')) {
-        positionStart = index;
-        if (nextPosition()) {
-          count++;
-        } else {
-          index = lastGoodIndex;
-          return false;
-        }
-      }
-      if (count < (isRing ? 4 : 2)) {
-        index = lastGoodIndex;
-        return false;
-      }
-      if (isRing) {
-        String lastPosition = parseString.substring(positionStart, index);
-        if (!lastPosition.equals(firstPosition)) {
-          index = lastGoodIndex;
-          return false;
-        }
-      }
-      if (!nextCharacter(')')) {
-        index = lastGoodIndex;
-        return false;
-      }
-      return true;
-    } else {
-      index = lastGoodIndex;
-      return false;
-    }
-  }
-
-  private boolean nextLineString() {
-    return nextConstantIgnoreCase("LineString") && nextLineStringData(false);
-  }
-
-  private boolean nextGeoLineString(boolean isGeography) {
-    return nextGeoPrefix(isGeography) && nextCharacter('\'')
-        && nextSrid() && nextCharacter(';') && nextLineString() 
-        && nextCharacter('\'');
-  }
-
-  /**
-   * Moves past geo polygon data if found; otherwise leaves the index unchanged.
-   * @return whether geo polygon data have been found at the current index
-   */
-  private boolean nextPolygonData() {
-    int lastGoodIndex = index;
-    if (nextCharacter('(') && nextLineStringData(true)) {
-      // The polygon can have holes, described by further rings.
-      while (nextCharacter(',')) {
-        if (!nextLineStringData(true)) {
-          index = lastGoodIndex;
-          return false;
-        }
-      }
-      if (!nextCharacter(')')) {
-        index = lastGoodIndex;
-        return false;
-      }
-      return true;
-    } else {
-      index = lastGoodIndex;
-      return false;
-    }
-  }
-
-  private boolean nextPolygon() {
-    return nextConstantIgnoreCase("Polygon") && nextPolygonData();
-  }
-
-  private boolean nextGeoPolygon(boolean isGeography) {
-    return nextGeoPrefix(isGeography) && nextCharacter('\'')
-        && nextSrid() && nextCharacter(';') && nextPolygon() 
-        && nextCharacter('\'');
-  }
-
-  private boolean nextMultiPoint() {
-    if (nextConstantIgnoreCase("MultiPoint") && nextCharacter('(') && nextPointData()) {
-      while (nextCharacter(',')) {
-        if (!nextPointData()) {
-          return false;
-        }
-      }
-    }
-    return nextCharacter(')');
-  }
-
-  private boolean nextGeoMultiPoint(boolean isGeography) {
-    return nextGeoPrefix(isGeography) && nextCharacter('\'')
-        && nextSrid() && nextCharacter(';') && nextMultiPoint()
-        && nextCharacter('\'');
-  }
-
-  private boolean nextMultiLineString() {
-    if (nextConstantIgnoreCase("MultiLineString") && nextCharacter('(') && nextLineStringData(false)) {
-      while (nextCharacter(',')) {
-        if (!nextLineStringData(false)) {
-          return false;
-        }
-      }
-    }
-    return nextCharacter(')');
-  }
-
-  private boolean nextGeoMultiLineString(boolean isGeography) {
-    return nextGeoPrefix(isGeography) && nextCharacter('\'')
-        && nextSrid() && nextCharacter(';') && nextMultiLineString()
-        && nextCharacter('\'');
-  }
-
-  private boolean nextMultiPolygon() {
-    if (nextConstantIgnoreCase("MultiPolygon") && nextCharacter('(') && nextPolygonData()) {
-      while (nextCharacter(',')) {
-        if (!nextPolygonData()) {
-          return false;
-        }
-      }
-    }
-    return nextCharacter(')');
-  }
-
-  private boolean nextGeoMultiPolygon(boolean isGeography) {
-    return nextGeoPrefix(isGeography) && nextCharacter('\'')
-        && nextSrid() && nextCharacter(';') && nextMultiPolygon()
-        && nextCharacter('\'');
-  }
-
-  /**
-   * Moves past geo data if found; otherwise leaves the index unchanged.
-   * @return whether geo data has been found at the current index
-   */
-  private boolean nextGeo() {
-    int lastGoodIndex = index;
-    if (nextPoint()) {
-      return true;
-    } else {
-      index = lastGoodIndex;
-    }
-    if (nextLineString()) {
-      return true;
-    } else {
-      index = lastGoodIndex;
-    }
-    if (nextPolygon()) {
-      return true;
-    } else {
-      index = lastGoodIndex;
-    }
-    if (nextMultiPoint()) {
-      return true;
-    } else {
-      index = lastGoodIndex;
-    }
-    if (nextMultiLineString()) {
-      return true;
-    } else {
-      index = lastGoodIndex;
-    }
-    if (nextMultiPolygon()) {
-      return true;
-    } else {
-      index = lastGoodIndex;
-    }
-    if (nextCollection()) {
-      return true;
-    } else {
-      index = lastGoodIndex;
-      return false;
-    }
-  }
-
-  private boolean nextCollection() {
-    if (nextConstantIgnoreCase("Collection") && nextCharacter('(') && nextGeo()) {
-      while (nextCharacter(',')) {
-        if (!nextGeo()) {
-          return false;
-        }
-      }
-    }
-    return nextCharacter(')');
-  }
-
-  private boolean nextGeoCollection(boolean isGeography) {
-    return nextGeoPrefix(isGeography) && nextCharacter('\'')
-        && nextSrid() && nextCharacter(';') && nextCollection()
-        && nextCharacter('\'');
-  }
-
-  /**
    * Moves past a JSON string if found; otherwise leaves the index unchanged.
    * @return whether a JSON string has been found at the current index
    */
@@ -1542,4 +1279,5 @@ public class UriTokenizer {
     }
     return false;
   }
+
 }

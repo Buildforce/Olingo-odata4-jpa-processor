@@ -207,7 +207,7 @@ public abstract class AbstractEdm implements Edm {
     setIsPreviousES(false);
     return entityType;
   }
-  
+
   protected EdmEntityType getEntityTypeWithAnnotations(FullQualifiedName namespaceOrAliasFQN,
                                                        boolean isEntityDerivedFromES) {
     this.isEntityDerivedFromES = isEntityDerivedFromES;
@@ -243,7 +243,7 @@ public abstract class AbstractEdm implements Edm {
     this.isComplexDerivedFromES = false;
     return complexType;
   }
-  
+
   @Override
   public EdmComplexType getComplexType(FullQualifiedName namespaceOrAliasFQN) {
     FullQualifiedName fqn = resolvePossibleAlias(namespaceOrAliasFQN);
@@ -270,7 +270,7 @@ public abstract class AbstractEdm implements Edm {
     setIsPreviousES(false);
     return complexType;
   }
-  
+
   @Override
   public EdmAction getUnboundAction(FullQualifiedName actionName) {
     FullQualifiedName fqn = resolvePossibleAlias(actionName);
@@ -555,4 +555,5 @@ public abstract class AbstractEdm implements Edm {
   protected Map<String, List<CsdlAnnotation>> getAnnotationsMap() {
     return annotationMap;
   }
+
 }

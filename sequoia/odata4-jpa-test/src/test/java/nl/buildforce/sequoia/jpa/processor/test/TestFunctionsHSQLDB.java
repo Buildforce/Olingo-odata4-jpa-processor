@@ -49,7 +49,6 @@ public class TestFunctionsHSQLDB {
     cb = em.getCriteriaBuilder();
   }
 
-  // @Ignore
   @Test
   public void TestScalarFunctionsWhere() {
     CreateUDFHSQLDB();

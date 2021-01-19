@@ -13,7 +13,6 @@
     <artifactId>Olingo-parent</artifactId>
     <version>0.0.2</version>
     <packaging>pom</packaging>
-
     <name>Olingo-ODataV4 CapSelUI5</name>
 
     <modules>
@@ -23,13 +22,26 @@
         <module>server-core</module>
     </modules>
 
+    <scm>
+        <connection>scm:git:git://gitbox.apache.org/repos/asf/olingo-odata4.git</connection>
+        <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/olingo-odata4.git</developerConnection>
+        <url>https://gitbox.apache.org/repos/asf?p=olingo-odata4.git</url>
+    </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>bintray-serioussoftware-repo</id>
+            <name>serioussoftware-maven3</name>
+            <url>https://api.bintray.com/maven/serioussoftware/repo1/OData4-JPA/;publish=1</url>
+        </repository>
+    </distributionManagement>
+
     <properties>
         <commons.codec.version>1.15</commons.codec.version>
         <commons.io.version>2.8.0</commons.io.version>
         <maven.bundle.plugin.version>2.5.3</maven.bundle.plugin.version>
         <maven.plugin.api.version>3.6.3</maven.plugin.api.version>
         <maven.plugin.tools.version>3.6.0</maven.plugin.tools.version>
-        <!--<odata4-jpa.version>0.0.2</odata4-jpa.version>-->
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -53,28 +65,11 @@
                 <artifactId>jackson-databind</artifactId>
                 <version>${jackson.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>com.fasterxml.jackson.dataformat</groupId>
                 <artifactId>jackson-dataformat-xml</artifactId>
                 <version>${jackson.version}</version>
             </dependency>
-            <!--      <dependency>
-                    <groupId>com.fasterxml.jackson.jaxrs</groupId>
-                    <artifactId>jackson-jaxrs-json-provider</artifactId>
-                    <version>${jackson.version}</version>
-                  </dependency>
-                  <dependency>
-                    <groupId>javax.xml.stream</groupId>
-                    <artifactId>stax-api</artifactId>
-                    <version>${stax.api.version}</version>
-                  </dependency>
-                  <dependency>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                    <version>${sl4j.version}</version>
-                  </dependency>
-            -->
             <dependency>
                 <groupId>jakarta.servlet</groupId>
                 <artifactId>jakarta.servlet-api</artifactId>
@@ -103,27 +98,8 @@
                 <version>2.0.2-beta</version>
                 <scope>test</scope>
             </dependency>
-            <!--      <dependency>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-simple</artifactId>
-                    <version>${sl4j.version}</version>
-                    <scope>test</scope>
-                  </dependency>-->
         </dependencies>
     </dependencyManagement>
-
-    <scm>
-        <connection>scm:git:git://gitbox.apache.org/repos/asf/olingo-odata4.git</connection>
-        <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/olingo-odata4.git</developerConnection>
-        <url>https://gitbox.apache.org/repos/asf?p=olingo-odata4.git</url>
-    </scm>
-    <distributionManagement>
-        <repository>
-            <id>bintray-serioussoftware-repo</id>
-            <name>serioussoftware-maven3</name>
-            <url>https://api.bintray.com/maven/serioussoftware/repo1/OData4-JPA/;publish=1</url>
-        </repository>
-    </distributionManagement>
 
     <build>
         <finalName>${project.name}-${project.version}</finalName>
@@ -186,6 +162,7 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+
         <plugins>
             <plugin>
                 <artifactId>maven-source-plugin</artifactId>

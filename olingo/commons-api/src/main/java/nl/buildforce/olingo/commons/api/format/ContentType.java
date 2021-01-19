@@ -46,9 +46,9 @@ import static nl.buildforce.olingo.commons.api.format.TypeUtil.MEDIA_TYPE_WILDCA
  * Once created a {@link ContentType} is <b>IMMUTABLE</b>.
  */
 public final class ContentType {
-  public static final String APPLICATION = "application";
+  static final String APPLICATION = "application";
   public static final String JSON = "json";
-  public static final String MULTIPART = "multipart";
+  private static final String MULTIPART = "multipart";
   public static final String TEXT = "text";
 
   public static final String PARAMETER_CHARSET = "charset";
@@ -60,16 +60,16 @@ public final class ContentType {
   public static final String VALUE_ODATA_METADATA_NONE = "none";
 
   public static final ContentType APPLICATION_JSON = new ContentType(APPLICATION, JSON);
-  public static final ContentType CT_JSON = create(APPLICATION_JSON, PARAMETER_ODATA_METADATA, VALUE_ODATA_METADATA_MINIMAL);
-  public static final ContentType JSON_FULL_METADATA = create(APPLICATION_JSON, PARAMETER_ODATA_METADATA, VALUE_ODATA_METADATA_FULL);
-  public static final ContentType JSON_NO_METADATA = create(APPLICATION_JSON, PARAMETER_ODATA_METADATA, VALUE_ODATA_METADATA_NONE);
+  public static final ContentType CT_JSON =new ContentType(APPLICATION_JSON, PARAMETER_ODATA_METADATA, VALUE_ODATA_METADATA_MINIMAL);
+  public static final ContentType JSON_FULL_METADATA =new ContentType(APPLICATION_JSON, PARAMETER_ODATA_METADATA, VALUE_ODATA_METADATA_FULL);
+  public static final ContentType JSON_NO_METADATA =new ContentType(APPLICATION_JSON, PARAMETER_ODATA_METADATA, VALUE_ODATA_METADATA_NONE);
 
   public static final ContentType APPLICATION_ATOM_SVC = new ContentType(APPLICATION, "atomsvc+xml");
   public static final ContentType APPLICATION_ATOM_XML = new ContentType(APPLICATION, "atom+xml");
-  public static final ContentType APPLICATION_ATOM_XML_ENTRY = create(APPLICATION_ATOM_XML, "type", "entry");
-  // public static final ContentType APPLICATION_ATOM_XML_ENTRY_UTF8 = create(APPLICATION_ATOM_XML_ENTRY, PARAMETER_CHARSET, "utf-8");
-  public static final ContentType APPLICATION_ATOM_XML_FEED = create(APPLICATION_ATOM_XML, "type", "feed");
-  // public static final ContentType APPLICATION_ATOM_XML_FEED_UTF8 = create(APPLICATION_ATOM_XML_FEED, PARAMETER_CHARSET, "utf-8");
+  public static final ContentType APPLICATION_ATOM_XML_ENTRY =new ContentType(APPLICATION_ATOM_XML, "type", "entry");
+  // public static final ContentType APPLICATION_ATOM_XML_ENTRY_UTF8 =new ContentType(APPLICATION_ATOM_XML_ENTRY, PARAMETER_CHARSET, "utf-8");
+  public static final ContentType APPLICATION_ATOM_XML_FEED =new ContentType(APPLICATION_ATOM_XML, "type", "feed");
+  // public static final ContentType APPLICATION_ATOM_XML_FEED_UTF8 =new ContentType(APPLICATION_ATOM_XML_FEED, PARAMETER_CHARSET, "utf-8");
   public static final ContentType APPLICATION_OCTET_STREAM = new ContentType(APPLICATION, "octet-stream");
   public static final ContentType APPLICATION_XML = new ContentType(APPLICATION, "xml");
 
@@ -86,19 +86,7 @@ public final class ContentType {
 
   private final String mainType;
   private final String subtype;
-  private final TreeMap<String, String> parameters = new TreeMap<String, String>((s, str) -> s.compareToIgnoreCase(str));
-
-  /**
-   * Creates a content type from type, subtype, and parameters.
-   * @param type       type
-   * @param subtype    subtype
-   * @param parameters parameters as map from names to values
-   */
-  private ContentType(String type, String subtype, Map<String, String> parameters) {
-    this.mainType = validateMainType(type);
-    this.subtype = validateMainType(subtype);
-    this.parameters.putAll(parameters);
-  }
+  private final TreeMap<String, String> parameters = new TreeMap<>(String::compareToIgnoreCase);
 
   private ContentType(String type, String subtype) {
     this.mainType = validateMainType(type);
@@ -112,12 +100,14 @@ public final class ContentType {
    * @param parameterValue the value of the additional parameter
    * @return a new {@link ContentType} object
    */
-  public static ContentType create(ContentType contentType, String parameterName, String parameterValue) throws IllegalArgumentException {
+  public ContentType(ContentType contentType, String parameterName, String parameterValue) throws IllegalArgumentException {
     TypeUtil.validateParameterNameAndValue(parameterName, parameterValue);
 
-    ContentType type = new ContentType(contentType.mainType, contentType.subtype, contentType.parameters);
-    type.parameters.put(parameterName.toLowerCase(Locale.ENGLISH), parameterValue.toLowerCase(Locale.ENGLISH));
-    return type;
+    mainType = contentType.mainType;
+    subtype = contentType.subtype;
+     parameters.putAll(contentType.parameters);
+
+    parameters.put(parameterName.toLowerCase(Locale.ENGLISH), parameterValue.toLowerCase(Locale.ENGLISH));
   }
 
   /**
@@ -131,14 +121,13 @@ public final class ContentType {
     if (format != null) {
       List<String> typeSubtype = new ArrayList<>();
       parse(format.toLowerCase(), typeSubtype, parameters);
-      this.parameters.putAll(parameters);
 
       mainType = validateMainType(typeSubtype.get(0));
       subtype = validateMainType(typeSubtype.get(1));
     } else throw new IllegalArgumentException("Parameter format MUST NOT be NULL.");
   }
 
-  private String validateMainType(String type) throws IllegalArgumentException {
+    private String validateMainType(String type) throws IllegalArgumentException {
     if (type == null || type.isEmpty() || MEDIA_TYPE_WILDCARD.equals(type)) {
       throw new IllegalArgumentException("Illegal type '" + type + "'.");
     }
@@ -152,7 +141,7 @@ public final class ContentType {
    * Parses the given input string (<code>format</code>) and returns created {@link ContentType} if input was valid or
    * return <code>NULL</code> if input was not parseable.
    *
-   * For the definition of the supported format see {@link #create(String)}.
+   * For the definition of the supported format see .
    *
    * @param format a string in format as defined in RFC 7231, chapter 3.1.1.1
    * @return a new <code>ContentType</code> object
@@ -218,7 +207,7 @@ public final class ContentType {
    * @return the value of the parameter or <code>null</code> if the parameter is not present
    */
   public String getParameter(String name) {
-    return parameters.get(name.toLowerCase(Locale.ROOT));
+    return parameters.get(name/*.toLowerCase(Locale.ROOT)*/);
   }
 
   /**

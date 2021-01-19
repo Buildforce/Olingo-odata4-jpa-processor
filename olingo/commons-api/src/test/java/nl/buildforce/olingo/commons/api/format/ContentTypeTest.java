@@ -19,7 +19,6 @@
 package nl.buildforce.olingo.commons.api.format;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -61,23 +60,23 @@ public class ContentTypeTest {
 
   @Test
   public void createWithParameter() {
-    assertEquals(new ContentType("a/b;c=d"), ContentType.create(new ContentType("a/b"), "c", "d"));
-    assertEquals(new ContentType("a/b;e=f;c=d"), ContentType.create(
-        ContentType.create(new ContentType("a/b"), "c", "d"), "e", "f"));
-    assertEquals(new ContentType("a/b;e=f;c=d"), ContentType.create(
-        ContentType.create(new ContentType("a/b"), "C", "D"), "E", "F"));
+    assertEquals(new ContentType("a/b;c=d"), new ContentType(new ContentType("a/b"), "c", "d"));
+    assertEquals(new ContentType("a/b;e=f;c=d"), new ContentType(
+        new ContentType(new ContentType("a/b"), "c", "d"), "e", "f"));
+    assertEquals(new ContentType("a/b;e=f;c=d"), new ContentType(
+        new ContentType(new ContentType("a/b"), "C", "D"), "E", "F"));
   }
 
   @Test
   public void createAndModify() {
     ContentType ct1 = new ContentType("a/b");
-    assertEquals(new ContentType("a/b;c=d"), ContentType.create(ct1, "c", "d"));
+    assertEquals(new ContentType("a/b;c=d"), new ContentType(ct1, "c", "d"));
 
     ContentType ct2 = new ContentType("a/b;c=d");
-    assertEquals(new ContentType("a/b;c=d;e=f"), ContentType.create(ct2, "e", "f"));
-    assertEquals(new ContentType("a/b;c=g"), ContentType.create(ct2, "c", "g"));
+    assertEquals(new ContentType("a/b;c=d;e=f"), new ContentType(ct2, "e", "f"));
+    assertEquals(new ContentType("a/b;c=g"), new ContentType(ct2, "c", "g"));
 
-      assertNotEquals(ContentType.create(ct2, "c", "g"), ct2);
+      assertNotEquals(new ContentType(ct2, "c", "g"), ct2);
   }
 
   @Test
@@ -108,7 +107,7 @@ public class ContentTypeTest {
   @Test
   public void toContentTypeString() {
     assertEquals("application/json;a=b;c=d",
-        ContentType.create(ContentType.create(ContentType.APPLICATION_JSON, "a", "b"), "c", "d")
+        new ContentType(new ContentType(ContentType.APPLICATION_JSON, "a", "b"), "c", "d")
             .toString());
   }
 

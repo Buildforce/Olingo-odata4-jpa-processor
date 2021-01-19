@@ -131,9 +131,11 @@ public class ExpressionParser {
     temp.put(TokenKind.EndswithMethod, MethodKind.ENDSWITH);
     temp.put(TokenKind.FloorMethod, MethodKind.FLOOR);
     temp.put(TokenKind.FractionalsecondsMethod, MethodKind.FRACTIONALSECONDS);
+/*
     temp.put(TokenKind.GeoDistanceMethod, MethodKind.GEODISTANCE);
     temp.put(TokenKind.GeoIntersectsMethod, MethodKind.GEOINTERSECTS);
     temp.put(TokenKind.GeoLengthMethod, MethodKind.GEOLENGTH);
+*/
     temp.put(TokenKind.HourMethod, MethodKind.HOUR);
     temp.put(TokenKind.IndexofMethod, MethodKind.INDEXOF);
     temp.put(TokenKind.LengthMethod, MethodKind.LENGTH);
@@ -472,8 +474,8 @@ public class ExpressionParser {
     }
   }
 
-  private EdmPrimitiveTypeKind determineIntegerType(String intValueAsString) throws UriParserSyntaxException {
-    EdmPrimitiveTypeKind typeKind = null;
+  private EdmPrimitiveTypeKind determineIntegerType(String intValueAsString) {
+    EdmPrimitiveTypeKind typeKind;
     try {
       long value = Long.parseLong(intValueAsString);
       if (value >= Byte.MIN_VALUE && value <= Byte.MAX_VALUE) {
@@ -733,7 +735,7 @@ public class ExpressionParser {
     ParserHelper.requireNext(tokenizer, TokenKind.SLASH);
     ParserHelper.requireNext(tokenizer, TokenKind.ODataIdentifier);
     String name = tokenizer.getText();
-    UriResourcePartTyped resource = null;
+    UriResourcePartTyped resource;
     EdmEntitySet entitySet = edm.getEntityContainer().getEntitySet(name);
     if (entitySet == null) {
       EdmSingleton singleton = edm.getEntityContainer().getSingleton(name);
@@ -1188,7 +1190,7 @@ public class ExpressionParser {
     return type;
   }
 
-  private boolean isType(EdmType type, EdmPrimitiveTypeKind... kinds) throws UriParserException {
+  private boolean isType(EdmType type, EdmPrimitiveTypeKind... kinds) {
     if (type == null) {
       return true;
     }
@@ -1379,4 +1381,5 @@ public class ExpressionParser {
           filterType.getFullQualifiedName().getFullQualifiedNameAsString());
     }
   }
+
 }

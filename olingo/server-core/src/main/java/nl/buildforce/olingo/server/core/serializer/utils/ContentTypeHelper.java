@@ -22,10 +22,6 @@ import nl.buildforce.olingo.commons.api.format.ContentType;
 
 public class ContentTypeHelper {
 
-  private ContentTypeHelper() {
-    // Private constructor for utility classes
-  }
-
   public static boolean isODataMetadataNone(ContentType contentType) {
     return contentType.isCompatible(ContentType.APPLICATION_JSON)
         && ContentType.VALUE_ODATA_METADATA_NONE.equalsIgnoreCase(
@@ -42,4 +38,5 @@ public class ContentTypeHelper {
     return Boolean.TRUE.toString().equalsIgnoreCase(
         contentType.getParameter(ContentType.PARAMETER_IEEE754_COMPATIBLE));
   }
+
 }
