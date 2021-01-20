@@ -2,13 +2,11 @@ package nl.buildforce.sequoia.processor.core.testobjects;
 
 import nl.buildforce.sequoia.metadata.core.edm.annotation.EdmAction;
 import nl.buildforce.sequoia.metadata.core.edm.annotation.EdmFunction.ReturnType;
-// import nl.buildforce.sequoia.metadata.core.edm.annotation.EdmGeospatial;
 import nl.buildforce.sequoia.metadata.core.edm.annotation.EdmParameter;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.extension.ODataAction;
 import nl.buildforce.sequoia.processor.core.testmodel.BusinessPartnerRole;
 import nl.buildforce.sequoia.processor.core.testmodel.ChangeInformation;
 import nl.buildforce.sequoia.processor.core.testmodel.Person;
-// import org.apache.olingo.commons.api.edm.geo.Geospatial.Dimension;
 
 import jakarta.persistence.EntityManager;
 
@@ -75,14 +73,6 @@ public class TestJavaActions implements ODataAction {
   public List<ChangeInformation> returnEmbeddableCollection() {
     return Collections.singletonList(new ChangeInformation());
   }
-
-  /*@EdmAction(returnType = @ReturnType(maxLength = 60,
-      srid = @EdmGeospatial(dimension = Dimension.GEOGRAPHY, srid = "4326")))
-  public String calculateLocation(
-      @EdmParameter(name = "String", maxLength = 100,
-          srid = @EdmGeospatial(dimension = Dimension.GEOGRAPHY, srid = "4326")) String a) {
-    return "";
-  }*/
 
   @EdmAction()
   public void unboundWithOutParameter() {

@@ -936,9 +936,6 @@ public class ODataXmlSerializer extends AbstractODataSerializer {
       }
       writePrimitiveValue(type, property.asPrimitive(),
           isNullable, maxLength, precision, scale, isUnicode, xml10InvalidCharReplacement, writer);
-    } else if (property.isGeospatial()) {
-      throw new SerializerException("Property type not yet supported!",
-          SerializerException.MessageKeys.UNSUPPORTED_PROPERTY_TYPE, property.getName());
     } else if (property.isEnum()) {
       writer.writeAttribute(METADATA, NS_METADATA, Constants.ATTR_TYPE,
           "#" + type.getFullQualifiedName().getFullQualifiedNameAsString());
@@ -1346,4 +1343,5 @@ public class ODataXmlSerializer extends AbstractODataSerializer {
     }
     return result.toString();
   }
+
 }

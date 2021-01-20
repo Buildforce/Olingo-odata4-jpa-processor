@@ -27,10 +27,6 @@ public enum ValueType {
    */
   PRIMITIVE, 
   /**
-   * Geospatial value
-   */
-  GEOSPATIAL, 
-  /**
    * Enum type
    */
   ENUM, 
@@ -46,10 +42,6 @@ public enum ValueType {
    * Collection of primitive values
    */
   COLLECTION_PRIMITIVE(PRIMITIVE),
-  /**
-   * Collection of geospatial values
-   */
-  COLLECTION_GEOSPATIAL(GEOSPATIAL),
   /**
    * Collection of enum values
    */
@@ -80,4 +72,5 @@ public enum ValueType {
   public ValueType getBaseType() {
     return baseType;
   }
+
 }

@@ -20,8 +20,6 @@ package nl.buildforce.olingo.commons.api.edm.annotation;
 
 import java.util.List;
 
-//import org.apache.olingo.commons.api.edm.geo.Geospatial;
-
 /**
  * Represents a constant expression
  */
@@ -46,12 +44,6 @@ public interface EdmConstantExpression extends EdmExpression {
    * @return enum type name or null
    */
   String getEnumTypeName();
-
-  /*
-   * Return the geospatial object or null if this expression is of type primitive or enum.
-   * @return geospatial object or null
-   */
-  //Geospatial asGeospatial();
 
   /**
    * Returns the value of the expression as String.

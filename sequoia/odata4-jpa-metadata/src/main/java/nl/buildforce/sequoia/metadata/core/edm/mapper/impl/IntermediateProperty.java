@@ -15,7 +15,6 @@ import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelExc
 import nl.buildforce.sequoia.metadata.core.edm.mapper.extension.IntermediatePropertyAccess;
 import nl.buildforce.olingo.commons.api.edm.EdmPrimitiveTypeKind;
 import nl.buildforce.olingo.commons.api.edm.FullQualifiedName;
-// import org.apache.olingo.commons.api.edm.geo.SRID;
 import nl.buildforce.olingo.commons.api.edm.provider.CsdlAnnotation;
 import nl.buildforce.olingo.commons.api.edm.provider.CsdlMapping;
 import nl.buildforce.olingo.commons.api.edm.provider.CsdlProperty;

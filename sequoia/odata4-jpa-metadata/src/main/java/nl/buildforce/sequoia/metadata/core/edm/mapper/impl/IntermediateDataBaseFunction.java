@@ -11,7 +11,6 @@ import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAParameter;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import nl.buildforce.olingo.commons.api.edm.EdmPrimitiveTypeKind;
 import nl.buildforce.olingo.commons.api.edm.FullQualifiedName;
-// import org.apache.olingo.commons.api.edm.geo.SRID;
 import nl.buildforce.olingo.commons.api.edm.provider.CsdlParameter;
 import nl.buildforce.olingo.commons.api.edm.provider.CsdlReturnType;
 

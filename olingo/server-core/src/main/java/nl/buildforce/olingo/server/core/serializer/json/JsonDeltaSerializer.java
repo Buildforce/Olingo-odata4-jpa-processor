@@ -374,9 +374,6 @@ public class JsonDeltaSerializer implements EdmDeltaSerializer {
     if (property.isPrimitive()) {
       writePrimitiveValue(property.getName(), type, property.asPrimitive(),
           isNullable, maxLength, precision, scale, isUnicode, json);
-    } else if (property.isGeospatial()) {
-      throw new SerializerException("Property type not yet supported!",
-          SerializerException.MessageKeys.UNSUPPORTED_PROPERTY_TYPE, property.getName());
     } else if (property.isEnum()) {
       writePrimitiveValue(property.getName(), type, property.asEnum(),
           isNullable, maxLength, precision, scale, isUnicode, json);
@@ -547,4 +544,5 @@ public class JsonDeltaSerializer implements EdmDeltaSerializer {
       }
     }
   }
+
 }

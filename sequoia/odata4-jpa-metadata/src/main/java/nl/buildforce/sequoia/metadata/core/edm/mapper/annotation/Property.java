@@ -3,7 +3,6 @@ package nl.buildforce.sequoia.metadata.core.edm.mapper.annotation;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import nl.buildforce.olingo.commons.api.edm.FullQualifiedName;
-// import org.apache.olingo.commons.api.edm.geo.SRID;
 import nl.buildforce.olingo.commons.api.edm.provider.CsdlProperty;
 
 import java.util.Objects;
@@ -65,9 +64,4 @@ public class Property extends CsdlProperty {
     return super.setUnicode(unicode);
   }
 
-  /*@JacksonXmlProperty(localName = "SRID", isAttribute = true)
-  void setSrid(final String srid) {
-    Objects.requireNonNull(srid);
-    super.setSrid(SRID.valueOf(srid));
-  }*/
 }

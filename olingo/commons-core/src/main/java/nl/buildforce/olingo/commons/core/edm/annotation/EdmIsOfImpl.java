@@ -23,7 +23,6 @@ import nl.buildforce.olingo.commons.api.edm.EdmException;
 import nl.buildforce.olingo.commons.api.edm.EdmType;
 import nl.buildforce.olingo.commons.api.edm.annotation.EdmExpression;
 import nl.buildforce.olingo.commons.api.edm.annotation.EdmIsOf;
-//import org.apache.olingo.commons.api.edm.geo.SRID;
 import nl.buildforce.olingo.commons.api.edm.provider.annotation.CsdlIsOf;
 import nl.buildforce.olingo.commons.core.edm.EdmTypeInfo;
 

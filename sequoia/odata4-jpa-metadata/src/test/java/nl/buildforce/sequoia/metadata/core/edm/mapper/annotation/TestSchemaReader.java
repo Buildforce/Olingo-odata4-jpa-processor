@@ -1,7 +1,6 @@
 package nl.buildforce.sequoia.metadata.core.edm.mapper.annotation;
 
 import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
-// import org.apache.olingo.commons.api.edm.geo.SRID;
 import nl.buildforce.olingo.commons.api.edm.provider.CsdlAction;
 import nl.buildforce.olingo.commons.api.edm.provider.CsdlComplexType;
 import nl.buildforce.olingo.commons.api.edm.provider.CsdlEnumMember;
@@ -412,4 +411,5 @@ public class TestSchemaReader {
     assertFalse(actReturn.isNullable());
     assertTrue(actReturn.isCollection());
   }
+
 }

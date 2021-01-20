@@ -4,7 +4,6 @@ import nl.buildforce.sequoia.metadata.core.edm.annotation.EdmFunction.ReturnType
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAOperation;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAOperationResultParameter;
 import nl.buildforce.olingo.commons.api.edm.FullQualifiedName;
-// import org.apache.olingo.commons.api.edm.geo.SRID;
 
 class IntermediateOperationResultParameter implements JPAOperationResultParameter {
   /**

@@ -66,15 +66,6 @@ public enum EdmPrimitiveTypeKind {
   }
 
   /**
-   * Checks if is a geospatial type.
-   *
-   * @return <tt>true</tt> if is geospatial type; <tt>false</tt> otherwise.
-   */
-  public boolean isGeospatial() {
-    return name().startsWith("Geo");
-  }
-
-  /**
    * Returns the {@link FullQualifiedName} for this type kind.
    *
    * @return {@link FullQualifiedName}

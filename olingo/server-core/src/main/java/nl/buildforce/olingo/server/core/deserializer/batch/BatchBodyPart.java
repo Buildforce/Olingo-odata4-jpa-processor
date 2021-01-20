@@ -58,13 +58,12 @@ public class BatchBodyPart implements BatchPart {
           Integer.toString(headers.getLineNumber()));
     }
 
-    boolean changeSet = false;
     for (String contentType : contentTypes) {
       if (isContentTypeMultiPartMixed(contentType)) {
-        changeSet = true;
+        return true;
       }
     }
-    return changeSet;
+    return false;
   }
 
   private List<BatchQueryOperation> consumeRequest(List<Line> remainingMessage)
@@ -111,14 +110,16 @@ public class BatchBodyPart implements BatchPart {
     return requestList;
   }
 
-  private boolean isContentTypeMultiPartMixed(String contentType) {
+  private boolean isContentTypeMultiPartMixed(String contentType) throws BatchDeserializerException {
+    ContentType type;
     try {
-      BatchParserCommon.parseContentType2(contentType, ContentType.MULTIPART_MIXED, 0);
-      return true;
-    } catch (BatchDeserializerException e) {
-      return false;
+        type = new ContentType(contentType);
+      } catch (IllegalArgumentException e) {
+        throw new BatchDeserializerException("Invalid content type.", e,
+                BatchDeserializerException.MessageKeys.INVALID_CONTENT_TYPE, Integer.toString(0));
+      }
+      return type.isCompatible(ContentType.MULTIPART_MIXED);
     }
-  }
 
   @Override
   public Header getHeaders() {

@@ -21,8 +21,6 @@ package nl.buildforce.olingo.commons.api.edm.provider;
 import java.util.ArrayList;
 import java.util.List;
 
-//import org.apache.olingo.commons.api.edm.geo.SRID;
-
 /**
  * The type Csdl term.
  */

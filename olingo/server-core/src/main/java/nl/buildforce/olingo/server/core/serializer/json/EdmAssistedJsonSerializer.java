@@ -259,8 +259,7 @@ public class EdmAssistedJsonSerializer implements EdmAssistedSerializer {
         primitiveValue(json, (EdmPrimitiveType) itemType, typeName, edmProperty, item);
         break;
 
-      case COLLECTION_GEOSPATIAL:
-      case COLLECTION_ENUM:
+        case COLLECTION_ENUM:
         throw new SerializerException("Geo and enum types are not supported.", MessageKeys.NOT_IMPLEMENTED);
 
       case COLLECTION_COMPLEX:
@@ -356,7 +355,7 @@ public class EdmAssistedJsonSerializer implements EdmAssistedSerializer {
       primitiveValue(json, (EdmPrimitiveType) type, typeName, edmProperty, value.asPrimitive());
     } else if (value.isComplex()) {
       complexValue(json, (EdmComplexType) type, typeName, value.asComplex());
-    } else if (value.isEnum() || value.isGeospatial()) {
+    } else if (value.isEnum()) {
       throw new SerializerException("Geo and enum types are not supported.", MessageKeys.NOT_IMPLEMENTED);
     }
   }

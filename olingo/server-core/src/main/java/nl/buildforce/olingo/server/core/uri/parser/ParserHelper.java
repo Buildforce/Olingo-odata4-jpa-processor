@@ -521,8 +521,7 @@ public class ParserHelper {
         EdmPrimitiveTypeKind kind = entry.getValue();
         if ((kind == EdmPrimitiveTypeKind.Date || kind == EdmPrimitiveTypeKind.DateTimeOffset
             || kind == EdmPrimitiveTypeKind.TimeOfDay || kind == EdmPrimitiveTypeKind.Duration
-            || kind == EdmPrimitiveTypeKind.Binary
-            || kind.isGeospatial())
+            || kind == EdmPrimitiveTypeKind.Binary)
             && odata.createPrimitiveTypeInstance(kind).equals(type)) {
           return tokenizer.next(entry.getKey());
         }
@@ -638,4 +637,5 @@ public class ParserHelper {
       }
     }
   }
+
 }

@@ -10,7 +10,6 @@ import nl.buildforce.sequoia.processor.core.testmodel.AccessRights;
 import nl.buildforce.sequoia.processor.core.testmodel.ChangeInformation;
 import nl.buildforce.sequoia.processor.core.testmodel.Person;
 import nl.buildforce.sequoia.processor.core.testmodel.PostalAddressData;
-// import org.apache.olingo.commons.api.edm.geo.Geospatial.Dimension;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;

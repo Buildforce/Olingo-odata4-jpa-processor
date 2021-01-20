@@ -28,7 +28,6 @@ import nl.buildforce.olingo.commons.api.edm.EdmPrimitiveType;
 import nl.buildforce.olingo.commons.api.edm.EdmPrimitiveTypeException;
 import nl.buildforce.olingo.commons.api.edm.EdmPrimitiveTypeKind;
 import nl.buildforce.olingo.commons.api.edm.annotation.EdmConstantExpression;
-//import org.apache.olingo.commons.api.edm.geo.Geospatial;
 import nl.buildforce.olingo.commons.api.edm.provider.annotation.CsdlConstantExpression;
 import nl.buildforce.olingo.commons.core.edm.primitivetype.EdmPrimitiveTypeFactory;
 
@@ -40,7 +39,6 @@ public class EdmConstantExpressionImpl extends AbstractEdmExpression implements 
   private Object primitive;
   private String enumTypeName;
   private List<String> enumMembers;
-  // private Geospatial geospatial;
 
   public EdmConstantExpressionImpl(Edm edm, CsdlConstantExpression constExprConstruct) {
     super(edm, constExprConstruct.getType().toString());
@@ -170,11 +168,4 @@ public class EdmConstantExpressionImpl extends AbstractEdmExpression implements 
     return enumTypeName;
   }
 
- /* @Override
-  public Geospatial asGeospatial() {
-    if (!built) {
-      build();
-    }
-    return geospatial;
-  }*/
 }

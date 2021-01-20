@@ -21,7 +21,6 @@ package nl.buildforce.olingo.commons.api.edm.provider.annotation;
 import java.util.ArrayList;
 import java.util.List;
 
-//import org.apache.olingo.commons.api.edm.geo.SRID;
 import nl.buildforce.olingo.commons.api.edm.provider.CsdlAnnotatable;
 import nl.buildforce.olingo.commons.api.edm.provider.CsdlAnnotation;
 

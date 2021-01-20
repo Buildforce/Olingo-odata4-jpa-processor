@@ -28,7 +28,6 @@ import nl.buildforce.olingo.commons.api.edm.EdmTerm;
 import nl.buildforce.olingo.commons.api.edm.EdmType;
 import nl.buildforce.olingo.commons.api.edm.FullQualifiedName;
 import nl.buildforce.olingo.commons.api.edm.TargetType;
-//import org.apache.olingo.commons.api.edm.geo.SRID;
 import nl.buildforce.olingo.commons.api.edm.provider.CsdlTerm;
 
 public class EdmTermImpl extends AbstractEdmNamed implements EdmTerm {

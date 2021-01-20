@@ -72,4 +72,5 @@ public abstract class AbstractEdmAnnotatable implements EdmAnnotatable {
     }
     return annotations;
   }
+
 }

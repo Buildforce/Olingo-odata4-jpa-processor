@@ -23,7 +23,6 @@ import nl.buildforce.olingo.commons.api.edm.EdmException;
 import nl.buildforce.olingo.commons.api.edm.EdmMapping;
 import nl.buildforce.olingo.commons.api.edm.EdmParameter;
 import nl.buildforce.olingo.commons.api.edm.EdmType;
-//import org.apache.olingo.commons.api.edm.geo.SRID;
 import nl.buildforce.olingo.commons.api.edm.provider.CsdlParameter;
 
 public class EdmParameterImpl extends AbstractEdmNamed implements EdmParameter {

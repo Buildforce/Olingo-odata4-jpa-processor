@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nl.buildforce.olingo.commons.api.edm.FullQualifiedName;
-//import org.apache.olingo.commons.api.edm.geo.SRID;
 
 /**
  * The type Csdl return type.

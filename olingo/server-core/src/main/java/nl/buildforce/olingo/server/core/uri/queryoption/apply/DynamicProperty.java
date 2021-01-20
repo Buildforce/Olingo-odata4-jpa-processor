@@ -27,7 +27,6 @@ import nl.buildforce.olingo.commons.api.edm.EdmProperty;
 import nl.buildforce.olingo.commons.api.edm.EdmTerm;
 import nl.buildforce.olingo.commons.api.edm.EdmType;
 import nl.buildforce.olingo.commons.api.edm.constants.EdmTypeKind;
-//import org.apache.olingo.commons.api.edm.geo.SRID;
 
 /** A dynamic EDM property containing an aggregation. */
 public class DynamicProperty implements EdmProperty {

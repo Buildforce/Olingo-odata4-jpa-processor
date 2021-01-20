@@ -21,8 +21,6 @@ package nl.buildforce.olingo.commons.api.data;
 import java.util.List;
 import java.util.Objects;
 
-//import org.apache.olingo.commons.api.edm.geo.Geospatial;
-
 /**
  * Defines a value with an according type.
  */
@@ -66,15 +64,6 @@ public abstract class Valuable extends Annotatable {
   }
 
   /**
-   * Check if Valuable contains a GEOSPATIAL or COLLECTION_GEOSPATIAL ValueType
-   *
-   * @return true if ValueType is a GEOSPATIAL or COLLECTION_GEOSPATIAL, otherwise false
-   */
-  public boolean isGeospatial() {
-    return valueType == ValueType.GEOSPATIAL || valueType == ValueType.COLLECTION_GEOSPATIAL;
-  }
-
-  /**
    * Check if Valuable contains a ENUM or COLLECTION_ENUM ValueType
    *
    * @return true if ValueType is a ENUM or COLLECTION_ENUM, otherwise false
@@ -109,15 +98,6 @@ public abstract class Valuable extends Annotatable {
   public Object asPrimitive() {
     return isPrimitive() && !isCollection() ? value : null;
   }
-
-  /*
-   * Get the value in its geospatial representation or null if it is not based on a geospatial ValueType
-   *
-   * @return geospatial representation or null if it is not based on a geospatial ValueType
-   */
-  /*public Geospatial asGeospatial() {
-    return isGeospatial() && !isCollection() ? (Geospatial) value : null;
-  }*/
 
   /**
    * Get the value in its enum representation or null if it is not based on a enum ValueType
@@ -202,4 +182,5 @@ public abstract class Valuable extends Annotatable {
   public String toString() {
     return value == null ? "null" : value.toString();
   }
+
 }

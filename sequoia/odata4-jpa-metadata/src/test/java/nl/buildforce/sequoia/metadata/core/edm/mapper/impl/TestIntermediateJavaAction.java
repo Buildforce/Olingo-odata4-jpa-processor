@@ -8,7 +8,7 @@ import nl.buildforce.sequoia.metadata.core.edm.mapper.testobjects.ExampleJavaAct
 import nl.buildforce.sequoia.metadata.core.edm.mapper.testobjects.ExampleJavaEmConstructor;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.testobjects.ExampleJavaPrivateConstructor;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.testobjects.ExampleJavaTwoParameterConstructor;
-// import org.apache.olingo.commons.api.edm.geo.Geospatial.Dimension;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -346,4 +346,5 @@ public class TestIntermediateJavaAction extends TestMappingRoot {
     }
     return null;
   }
+
 }

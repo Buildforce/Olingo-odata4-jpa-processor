@@ -22,7 +22,6 @@ import nl.buildforce.olingo.commons.api.edm.Edm;
 import nl.buildforce.olingo.commons.api.edm.EdmException;
 import nl.buildforce.olingo.commons.api.edm.EdmReturnType;
 import nl.buildforce.olingo.commons.api.edm.EdmType;
-//import org.apache.olingo.commons.api.edm.geo.SRID;
 import nl.buildforce.olingo.commons.api.edm.provider.CsdlReturnType;
 
 public class EdmReturnTypeImpl implements EdmReturnType {

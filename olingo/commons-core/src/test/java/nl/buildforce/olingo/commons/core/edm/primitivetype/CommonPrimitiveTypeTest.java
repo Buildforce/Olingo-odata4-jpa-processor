@@ -31,16 +31,7 @@ import java.util.UUID;
 import nl.buildforce.olingo.commons.api.edm.EdmPrimitiveType;
 import nl.buildforce.olingo.commons.api.edm.EdmPrimitiveTypeKind;
 import nl.buildforce.olingo.commons.api.edm.constants.EdmTypeKind;
-/*
-//import org.apache.olingo.commons.api.edm.geo.Geospatial;
-import org.apache.olingo.commons.api.edm.geo.GeospatialCollection;
-import org.apache.olingo.commons.api.edm.geo.LineString;
-import org.apache.olingo.commons.api.edm.geo.MultiLineString;
-import org.apache.olingo.commons.api.edm.geo.MultiPoint;
-import org.apache.olingo.commons.api.edm.geo.MultiPolygon;
-import org.apache.olingo.commons.api.edm.geo.Point;
-import org.apache.olingo.commons.api.edm.geo.Polygon;
-*/
+
 import org.junit.Test;
 
 public class CommonPrimitiveTypeTest extends PrimitiveTypeBaseTest {
@@ -104,41 +95,7 @@ public class CommonPrimitiveTypeTest extends PrimitiveTypeBaseTest {
     assertEquals(Byte.class, EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.SByte).getDefaultType());
     assertEquals(Float.class, EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.Single).getDefaultType());
     assertEquals(String.class, EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.String).getDefaultType());
-    assertEquals(Calendar.class,
-        EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.TimeOfDay).getDefaultType());
-
-    /*assertEquals(Geospatial.class,
-        EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.Geography).getDefaultType());
-    assertEquals(Point.class,
-        EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.GeographyPoint).getDefaultType());
-    assertEquals(LineString.class,
-        EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.GeographyLineString).getDefaultType());
-    assertEquals(Polygon.class,
-        EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.GeographyPolygon).getDefaultType());
-    assertEquals(MultiPoint.class,
-        EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.GeographyMultiPoint).getDefaultType());
-    assertEquals(MultiLineString.class,
-        EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.GeographyMultiLineString).getDefaultType());
-    assertEquals(MultiPolygon.class,
-        EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.GeographyMultiPolygon).getDefaultType());
-    assertEquals(GeospatialCollection.class,
-        EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.GeographyCollection).getDefaultType());
-    assertEquals(Geospatial.class,
-        EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.Geometry).getDefaultType());
-    assertEquals(Point.class,
-        EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.GeometryPoint).getDefaultType());
-    assertEquals(LineString.class,
-        EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.GeometryLineString).getDefaultType());
-    assertEquals(Polygon.class,
-        EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.GeometryPolygon).getDefaultType());
-    assertEquals(MultiPoint.class,
-        EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.GeometryMultiPoint).getDefaultType());
-    assertEquals(MultiLineString.class,
-        EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.GeometryMultiLineString).getDefaultType());
-    assertEquals(MultiPolygon.class,
-        EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.GeometryMultiPolygon).getDefaultType());
-    assertEquals(GeospatialCollection.class,
-        EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.GeometryCollection).getDefaultType());*/
+    assertEquals(Calendar.class, EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.TimeOfDay).getDefaultType());
   }
 
   @Test

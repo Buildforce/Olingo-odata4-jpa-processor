@@ -2,7 +2,6 @@ package nl.buildforce.sequoia.metadata.core.edm.mapper.annotation;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-// import org.apache.olingo.commons.api.edm.geo.SRID;
 import nl.buildforce.olingo.commons.api.edm.provider.CsdlTerm;
 
 import java.util.ArrayList;
@@ -75,9 +74,4 @@ class Term extends CsdlTerm {
     return super.setScale(scale);
   }
 
-  /*@JacksonXmlProperty(localName = "SRID", isAttribute = true)
-  void setSrid(final String srid) {
-    if (srid != null)
-      super.setSrid(SRID.valueOf(srid));
-  }*/
 }

@@ -48,7 +48,6 @@ import nl.buildforce.olingo.commons.api.edm.FullQualifiedName;
 import nl.buildforce.olingo.commons.api.edm.annotation.EdmConstantExpression;
 import nl.buildforce.olingo.commons.api.edm.annotation.EdmExpression.EdmExpressionType;
 import nl.buildforce.olingo.commons.api.edm.constants.EdmTypeKind;
-//import org.apache.olingo.commons.api.edm.geo.SRID;
 import nl.buildforce.olingo.commons.api.edm.provider.CsdlAction;
 import nl.buildforce.olingo.commons.api.edm.provider.CsdlActionImport;
 import nl.buildforce.olingo.commons.api.edm.provider.CsdlAliasInfo;

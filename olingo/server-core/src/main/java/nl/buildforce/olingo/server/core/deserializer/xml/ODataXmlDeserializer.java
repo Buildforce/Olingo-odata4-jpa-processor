@@ -57,7 +57,6 @@ import nl.buildforce.olingo.commons.api.edm.EdmType;
 import nl.buildforce.olingo.commons.api.edm.FullQualifiedName;
 import nl.buildforce.olingo.commons.api.format.ContentType;
 import nl.buildforce.olingo.commons.core.edm.EdmTypeInfo;
-// import org.apache.olingo.commons.core.edm.primitivetype.AbstractGeospatialType;
 import nl.buildforce.olingo.server.api.ServiceMetadata;
 import nl.buildforce.olingo.server.api.deserializer.DeserializerResult;
 import nl.buildforce.olingo.server.api.deserializer.ODataDeserializer;

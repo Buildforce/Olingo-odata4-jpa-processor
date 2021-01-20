@@ -26,7 +26,6 @@ import nl.buildforce.olingo.commons.api.edm.EdmPrimitiveTypeKind;
 import nl.buildforce.olingo.commons.api.edm.EdmTypeDefinition;
 import nl.buildforce.olingo.commons.api.edm.FullQualifiedName;
 import nl.buildforce.olingo.commons.api.edm.constants.EdmTypeKind;
-//import org.apache.olingo.commons.api.edm.geo.SRID;
 import nl.buildforce.olingo.commons.api.edm.provider.CsdlTypeDefinition;
 import nl.buildforce.olingo.commons.core.edm.primitivetype.EdmPrimitiveTypeFactory;
 

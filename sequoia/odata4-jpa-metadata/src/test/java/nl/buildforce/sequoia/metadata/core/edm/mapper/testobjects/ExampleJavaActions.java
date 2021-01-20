@@ -11,7 +11,6 @@ import nl.buildforce.sequoia.processor.core.testmodel.BusinessPartnerRole;
 import nl.buildforce.sequoia.processor.core.testmodel.ChangeInformation;
 import nl.buildforce.sequoia.processor.core.testmodel.Person;
 import nl.buildforce.sequoia.processor.core.testmodel.PostalAddressData;
-// import org.apache.olingo.commons.api.edm.geo.Geospatial.Dimension;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

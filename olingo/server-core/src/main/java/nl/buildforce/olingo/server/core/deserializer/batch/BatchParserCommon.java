@@ -111,36 +111,6 @@ public class BatchParserCommon {
     }
   }
 
-  /**
-   * Get the content type based on <code>contentType</code> parameter.
-   * If this content type is not compatible to the expected ContentType a
-   * BatchDeserializerException is thrown.
-   *
-   * @param contentType content type string which is parsed
-   * @param expected content type to which the parsed must be compatible
-   * @param line parsed line
-   * @return the parsed content type or if not compatible or parseable an exception is thrown (never returns null)
-   * @throws BatchDeserializerException
-   */
-  public static ContentType parseContentType2(String contentType, ContentType expected, int line)
-          throws BatchDeserializerException {
-    ContentType type;
-    try {
-      type = new ContentType(contentType);
-    } catch (IllegalArgumentException e) {
-      throw new BatchDeserializerException("Invalid content type.", e,
-              BatchDeserializerException.MessageKeys.INVALID_CONTENT_TYPE, Integer.toString(line));
-    }
-    if (type.isCompatible(expected)) {
-      return type;
-    } else {
-      throw new BatchDeserializerException("Content type is not the expected content type",
-              BatchDeserializerException.MessageKeys.UNEXPECTED_CONTENT_TYPE,
-              Integer.toString(line), expected.toString(), type.toString());
-    }
-  }
-
-
   public static List<List<Line>> splitMessageByBoundary(List<Line> message, String boundary)
       throws BatchDeserializerException {
     List<List<Line>> messageParts = new LinkedList<>();

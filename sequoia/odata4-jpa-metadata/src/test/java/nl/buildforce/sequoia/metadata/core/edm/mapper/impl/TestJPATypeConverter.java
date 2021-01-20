@@ -3,7 +3,7 @@ package nl.buildforce.sequoia.metadata.core.edm.mapper.impl;
 // import nl.buildforce.sequoia.metadata.core.edm.annotation.EdmGeospatial;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import nl.buildforce.olingo.commons.api.edm.EdmPrimitiveTypeKind;
-// import org.apache.olingo.commons.api.edm.geo.Geospatial.Dimension;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -312,19 +312,5 @@ public class TestJPATypeConverter {
     assertThrows(ODataJPAModelException.class,
         () -> JPATypeConverter.convertToEdmSimpleType(BigInteger.class, buildTimeAttribute(TemporalType.TIME)));
   }
-
-  /*@Test
-  public void checkThrowsExceptionOnUnknownGeographyType() {
-
-    assertThrows(ODataJPAModelException.class,
-        () -> JPATypeConverter.convertToEdmSimpleType(BigInteger.class, buildDimensionAttribute(Dimension.GEOGRAPHY)));
-  }
-
-  @Test
-  public void checkThrowsExceptionOnUnknownGeometryType() {
-
-    assertThrows(ODataJPAModelException.class,
-        () -> JPATypeConverter.convertToEdmSimpleType(BigInteger.class, buildDimensionAttribute(Dimension.GEOMETRY)));
-  }*/
 
 }

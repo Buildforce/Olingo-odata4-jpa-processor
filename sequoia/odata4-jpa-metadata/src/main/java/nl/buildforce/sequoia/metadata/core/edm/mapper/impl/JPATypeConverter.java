@@ -1,19 +1,8 @@
 package nl.buildforce.sequoia.metadata.core.edm.mapper.impl;
 
-//import nl.buildforce.sequoia.metadata.core.edm.annotation.EdmGeospatial;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAttribute;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import nl.buildforce.olingo.commons.api.edm.EdmPrimitiveTypeKind;
-/*import org.apache.olingo.commons.api.edm.geo.Geospatial.Dimension;
-import org.locationtech.jts.geom.Geometry;
-import org.locationtech.jts.geom.GeometryCollection;
-import org.locationtech.jts.geom.LineString;
-import org.locationtech.jts.geom.MultiLineString;
-import org.locationtech.jts.geom.MultiPoint;
-import org.locationtech.jts.geom.MultiPolygon;
-import org.locationtech.jts.geom.Point;
-import org.locationtech.jts.geom.Polygon;
-*/
 
 import jakarta.persistence.Lob;
 import jakarta.persistence.Temporal;
@@ -262,13 +251,5 @@ public final class JPATypeConverter {
         }
         return false;
     }
-
-    /*private static boolean isGeography(final Attribute<?, ?> currentAttribute) {
-        return currentAttribute != null && getDimension(currentAttribute) == Dimension.GEOGRAPHY;
-    }
-
-    private static boolean isGeometry(final Attribute<?, ?> currentAttribute) {
-        return currentAttribute != null && getDimension(currentAttribute) == Dimension.GEOMETRY;
-    }*/
 
 }

@@ -18,8 +18,6 @@
  */
 package nl.buildforce.olingo.commons.api.edm;
 
-//import org.apache.olingo.commons.api.edm.geo.SRID;
-
 /**
  * An {@link EdmReturnType} of an {@link EdmOperation}.
  */

@@ -20,8 +20,6 @@ package nl.buildforce.olingo.commons.api.edm;
 
 import java.util.List;
 
-//import org.apache.olingo.commons.api.edm.geo.SRID;
-
 /**
  * An {@link EdmTerm} defines a term in a vocabulary.
  */

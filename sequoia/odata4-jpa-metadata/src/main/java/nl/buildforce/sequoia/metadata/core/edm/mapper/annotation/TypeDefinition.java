@@ -2,7 +2,6 @@ package nl.buildforce.sequoia.metadata.core.edm.mapper.annotation;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-// import org.apache.olingo.commons.api.edm.geo.SRID;
 import nl.buildforce.olingo.commons.api.edm.provider.CsdlTypeDefinition;
 
 @JsonIgnoreProperties(ignoreUnknown = true)

@@ -692,15 +692,9 @@ public ODataJsonDeserializer(ContentType contentType, ServiceMetadata serviceMet
     if (isValidNull(name, isNullable, jsonNode)) {
       return null;
     }
-    boolean isGeoType = type.getName().startsWith("Geo");
-    if (!isGeoType) {
-      checkForValueNode(name, jsonNode);
-    }
+    checkForValueNode(name, jsonNode);
     checkJsonTypeBasedOnPrimitiveType(name, type, jsonNode);
     try {
-      /*if (isGeoType) {
-        return readPrimitiveGeoValue(name, type, (ObjectNode) jsonNode);
-      }*/
       return type.valueOfString(jsonNode.asText(),
           isNullable, maxLength, precision, scale, isUnicode,
           getJavaClassForPrimitiveType(mapping, type));
@@ -808,8 +802,7 @@ public ODataJsonDeserializer(ContentType contentType, ServiceMetadata serviceMet
       valid = matchTextualCase(jsonNode, primKind)
           || matchNumberCase(jsonNode, primKind)
           || matchBooleanCase(jsonNode, primKind)
-          || matchIEEENumberCase(jsonNode, primKind)
-          || jsonNode.isObject() && name.startsWith("Geo");
+          || matchIEEENumberCase(jsonNode, primKind);
     }
     if (!valid) {
       throw new DeserializerException(

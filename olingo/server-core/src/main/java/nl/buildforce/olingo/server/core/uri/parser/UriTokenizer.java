@@ -415,50 +415,6 @@ public class UriTokenizer {
       found = nextEnumValue();
       break;
 
-    // Geo Values
-    /*case GeographyPoint:
-      found = nextGeoPoint(true);
-      break;
-    case GeometryPoint:
-      found = nextGeoPoint(false);
-      break;
-    case GeographyLineString:
-      found = nextGeoLineString(true);
-      break;
-    case GeometryLineString:
-      found = nextGeoLineString(false);
-      break;
-    case GeographyPolygon:
-      found = nextGeoPolygon(true);
-      break;
-    case GeometryPolygon:
-      found = nextGeoPolygon(false);
-      break;
-    case GeographyMultiPoint:
-      found = nextGeoMultiPoint(true);
-      break;
-    case GeometryMultiPoint:
-      found = nextGeoMultiPoint(false);
-      break;
-    case GeographyMultiLineString:
-      found = nextGeoMultiLineString(true);
-      break;
-    case GeometryMultiLineString:
-      found = nextGeoMultiLineString(false);
-      break;
-    case GeographyMultiPolygon:
-      found = nextGeoMultiPolygon(true);
-      break;
-    case GeometryMultiPolygon:
-      found = nextGeoMultiPolygon(false);
-      break;
-    case GeographyCollection:
-      found = nextGeoCollection(true);
-      break;
-    case GeometryCollection:
-      found = nextGeoCollection(false);
-      break;*/
-
     // Complex or Collection Value
     case jsonArrayOrObject:
       found = nextJsonArrayOrObject();
@@ -576,17 +532,6 @@ public class UriTokenizer {
     case FractionalsecondsMethod:
       found = nextMethod("fractionalseconds");
       break;
-/*
-    case GeoDistanceMethod:
-      found = nextMethod("geo.distance");
-      break;
-    case GeoIntersectsMethod:
-      found = nextMethod("geo.intersects");
-      break;
-    case GeoLengthMethod:
-      found = nextMethod("geo.length");
-      break;
-*/
     case HourMethod:
       found = nextMethod("hour");
       break;

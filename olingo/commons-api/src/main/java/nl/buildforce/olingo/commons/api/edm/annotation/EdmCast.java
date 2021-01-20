@@ -20,7 +20,6 @@ package nl.buildforce.olingo.commons.api.edm.annotation;
 
 import nl.buildforce.olingo.commons.api.edm.EdmAnnotatable;
 import nl.buildforce.olingo.commons.api.edm.EdmType;
-//import org.apache.olingo.commons.api.edm.geo.SRID;
 
 /**
  * Represents an edm:Cast expression.
