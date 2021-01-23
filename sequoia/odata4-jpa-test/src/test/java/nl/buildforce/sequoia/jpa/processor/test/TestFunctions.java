@@ -1,4 +1,4 @@
-package nl.buildforce.sequoia.processor.test;
+package nl.buildforce.sequoia.jpa.processor.test;
 
 import nl.buildforce.sequoia.processor.core.testmodel.AdministrativeDivision;
 import nl.buildforce.sequoia.processor.core.testmodel.DataSourceHelper;

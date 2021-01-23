@@ -1,15 +1,10 @@
 package nl.buildforce.sequoia.processor.core.processor;
 
-import nl.buildforce.olingo.commons.api.data.*;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAOperation;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAException;
-import nl.buildforce.sequoia.processor.core.api.JPAODataCRUDContextAccess;
-import nl.buildforce.sequoia.processor.core.api.JPAODataRequestContextAccess;
-import nl.buildforce.sequoia.processor.core.converter.JPAComplexResultConverter;
-import nl.buildforce.sequoia.processor.core.converter.JPAEntityResultConverter;
-import nl.buildforce.sequoia.processor.core.exception.ODataJPAProcessorException;
-import nl.buildforce.sequoia.processor.core.exception.ODataJPASerializerException;
-import nl.buildforce.sequoia.processor.core.serializer.JPAOperationSerializer;
+import nl.buildforce.olingo.commons.api.data.Annotatable;
+import nl.buildforce.olingo.commons.api.data.ComplexValue;
+import nl.buildforce.olingo.commons.api.data.EntityCollection;
+import nl.buildforce.olingo.commons.api.data.Property;
+import nl.buildforce.olingo.commons.api.data.ValueType;
 import nl.buildforce.olingo.commons.api.edm.EdmComplexType;
 import nl.buildforce.olingo.commons.api.edm.EdmEntityType;
 import nl.buildforce.olingo.commons.api.edm.EdmType;
@@ -22,6 +17,16 @@ import nl.buildforce.olingo.server.api.ODataResponse;
 import nl.buildforce.olingo.server.api.serializer.SerializerException;
 import nl.buildforce.olingo.server.api.serializer.SerializerResult;
 import nl.buildforce.olingo.server.api.uri.UriHelper;
+
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAOperation;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAException;
+import nl.buildforce.sequoia.processor.core.api.JPAODataCRUDContextAccess;
+import nl.buildforce.sequoia.processor.core.api.JPAODataRequestContextAccess;
+import nl.buildforce.sequoia.processor.core.converter.JPAComplexResultConverter;
+import nl.buildforce.sequoia.processor.core.converter.JPAEntityResultConverter;
+import nl.buildforce.sequoia.processor.core.exception.ODataJPAProcessorException;
+import nl.buildforce.sequoia.processor.core.exception.ODataJPASerializerException;
+import nl.buildforce.sequoia.processor.core.serializer.JPAOperationSerializer;
 
 import java.net.URISyntaxException;
 import java.util.ArrayList;

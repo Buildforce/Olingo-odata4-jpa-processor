@@ -1,19 +1,36 @@
 package nl.buildforce.sequoia.processor.core.filter;
 
-import nl.buildforce.olingo.server.api.uri.queryoption.*;
-import nl.buildforce.olingo.server.api.uri.queryoption.expression.*;
-import nl.buildforce.sequoia.processor.core.query.JPAAbstractQuery;
-import nl.buildforce.sequoia.processor.core.query.JPACollectionFilterQuery;
-import nl.buildforce.sequoia.processor.core.query.JPANavigationFilterQuery;
-import nl.buildforce.sequoia.processor.core.query.JPANavigationPropertyInfo;
-import nl.buildforce.sequoia.processor.core.query.JPANavigationQuery;
-
 import nl.buildforce.olingo.commons.api.edm.EdmType;
 import nl.buildforce.olingo.server.api.ODataApplicationException;
 import nl.buildforce.olingo.server.api.uri.UriInfoResource;
 import nl.buildforce.olingo.server.api.uri.UriResource;
 import nl.buildforce.olingo.server.api.uri.UriResourceKind;
 import nl.buildforce.olingo.server.api.uri.UriResourceProperty;
+import nl.buildforce.olingo.server.api.uri.queryoption.ApplyOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.CountOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.CustomQueryOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.DeltaTokenOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.ExpandOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.FilterOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.FormatOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.IdOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.OrderByOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.SearchOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.SelectOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.SkipOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.SkipTokenOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.TopOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.expression.BinaryOperatorKind;
+import nl.buildforce.olingo.server.api.uri.queryoption.expression.ExpressionVisitor;
+import nl.buildforce.olingo.server.api.uri.queryoption.expression.Member;
+import nl.buildforce.olingo.server.api.uri.queryoption.expression.MethodKind;
+import nl.buildforce.olingo.server.api.uri.queryoption.expression.VisitableExpression;
+
+import nl.buildforce.sequoia.processor.core.query.JPAAbstractQuery;
+import nl.buildforce.sequoia.processor.core.query.JPACollectionFilterQuery;
+import nl.buildforce.sequoia.processor.core.query.JPANavigationFilterQuery;
+import nl.buildforce.sequoia.processor.core.query.JPANavigationPropertyInfo;
+import nl.buildforce.sequoia.processor.core.query.JPANavigationQuery;
 
 import jakarta.persistence.criteria.Expression;
 import jakarta.persistence.criteria.From;

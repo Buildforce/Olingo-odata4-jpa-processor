@@ -36,7 +36,7 @@ import nl.buildforce.olingo.server.api.uri.queryoption.SelectOption;
 public interface UriHelper {
 
   /**
-   * Builds the select-list part of a {@link org.apache.olingo.commons.api.data.ContextURL ContextURL}.
+   * Builds the select-list part of a {@link nl.buildforce.olingo.commons.api.data.ContextURL ContextURL}.
    * @param type the {@link EdmStructuredType}
    * @param expand the $expand option
    * @param select the $select option
@@ -46,7 +46,7 @@ public interface UriHelper {
       throws SerializerException;
 
   /**
-   * Builds the key-predicate part of a {@link org.apache.olingo.commons.api.data.ContextURL ContextURL}.
+   * Builds the key-predicate part of a {@link nl.buildforce.olingo.commons.api.data.ContextURL ContextURL}.
    * @param keys the keys as a list of {@link UriParameter} instances
    * @return a String with the key predicate
    */
@@ -84,4 +84,5 @@ public interface UriHelper {
    * @throws DeserializerException in case the entity-id is malformed
    */
   UriResourceEntitySet parseEntityId(Edm edm, String entityId, String rawServiceRoot) throws DeserializerException;
+
 }

@@ -27,7 +27,7 @@ import nl.buildforce.olingo.commons.api.edm.provider.CsdlAnnotation;
 
 /**
  * The edm:PropertyValue element supplies a value to a property on the type instantiated by an 
- * edm:Record expression (See {@link org.apache.olingo.commons.api.edm.annotation.EdmRecord}). 
+ * edm:Record expression (See {@link nl.buildforce.olingo.commons.api.edm.annotation.EdmRecord}).
  * The value is obtained by evaluating an expression.
  */
 public class CsdlPropertyValue extends CsdlAbstractEdmItem implements CsdlAnnotatable {
@@ -117,4 +117,5 @@ public class CsdlPropertyValue extends CsdlAbstractEdmItem implements CsdlAnnota
       annotations.hashCode());
     return result;
   }
+
 }

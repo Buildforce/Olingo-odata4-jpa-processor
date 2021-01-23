@@ -1,6 +1,28 @@
 package nl.buildforce.sequoia.processor.core.processor;
 
-import nl.buildforce.olingo.server.api.*;
+import nl.buildforce.olingo.commons.api.data.ComplexValue;
+import nl.buildforce.olingo.commons.api.data.Entity;
+import nl.buildforce.olingo.commons.api.data.EntityCollection;
+import nl.buildforce.olingo.commons.api.data.Property;
+import nl.buildforce.olingo.commons.api.ex.ODataException;
+import nl.buildforce.olingo.commons.api.format.ContentType;
+import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
+
+import nl.buildforce.olingo.server.api.OData;
+import nl.buildforce.olingo.server.api.ODataApplicationException;
+import nl.buildforce.olingo.server.api.ODataRequest;
+import nl.buildforce.olingo.server.api.ODataResponse;
+
+import nl.buildforce.olingo.server.api.ServiceMetadata;
+import nl.buildforce.olingo.server.api.serializer.SerializerException;
+import nl.buildforce.olingo.server.api.serializer.SerializerResult;
+import nl.buildforce.olingo.server.api.uri.UriInfoResource;
+import nl.buildforce.olingo.server.api.uri.UriResource;
+import nl.buildforce.olingo.server.api.uri.UriResourceKind;
+import nl.buildforce.olingo.server.api.uri.UriResourcePartTyped;
+import nl.buildforce.olingo.server.api.uri.queryoption.CountOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.SystemQueryOptionKind;
+
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAssociationPath;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAException;
 import nl.buildforce.sequoia.processor.core.api.JPAODataCRUDContextAccess;
@@ -20,21 +42,6 @@ import nl.buildforce.sequoia.processor.core.query.JPAJoinQuery;
 import nl.buildforce.sequoia.processor.core.query.JPAKeyBoundary;
 import nl.buildforce.sequoia.processor.core.query.JPANavigationPropertyInfo;
 import nl.buildforce.sequoia.processor.core.query.Util;
-import nl.buildforce.olingo.commons.api.data.ComplexValue;
-import nl.buildforce.olingo.commons.api.data.Entity;
-import nl.buildforce.olingo.commons.api.data.EntityCollection;
-import nl.buildforce.olingo.commons.api.data.Property;
-import nl.buildforce.olingo.commons.api.ex.ODataException;
-import nl.buildforce.olingo.commons.api.format.ContentType;
-import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
-import nl.buildforce.olingo.server.api.serializer.SerializerException;
-import nl.buildforce.olingo.server.api.serializer.SerializerResult;
-import nl.buildforce.olingo.server.api.uri.UriInfoResource;
-import nl.buildforce.olingo.server.api.uri.UriResource;
-import nl.buildforce.olingo.server.api.uri.UriResourceKind;
-import nl.buildforce.olingo.server.api.uri.UriResourcePartTyped;
-import nl.buildforce.olingo.server.api.uri.queryoption.CountOption;
-import nl.buildforce.olingo.server.api.uri.queryoption.SystemQueryOptionKind;
 
 import java.net.URI;
 import java.net.URISyntaxException;

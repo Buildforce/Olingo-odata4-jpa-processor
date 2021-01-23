@@ -1,6 +1,12 @@
 package nl.buildforce.sequoia.processor.core.filter;
 
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.*;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAssociationPath;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAttribute;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPACollectionAttribute;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPADescriptionAttribute;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAElement;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAEntityType;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAPath;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import nl.buildforce.sequoia.processor.core.exception.ODataJPAFilterException;
 import nl.buildforce.sequoia.processor.core.query.Util;
@@ -24,7 +30,7 @@ public class JPAMemberOperator implements JPAOperator {
   private final JPAAssociationPath association;
 
   JPAMemberOperator(final JPAEntityType jpaEntityType, final From<?, ?> parent,
-      final Member member, final JPAAssociationPath association, final List<String> list)
+                    final Member member, final JPAAssociationPath association, final List<String> list)
       throws ODataApplicationException {
 
     this.member = member;

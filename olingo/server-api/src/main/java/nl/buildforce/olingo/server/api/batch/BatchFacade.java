@@ -28,10 +28,10 @@
   * <p>Provides methods to process {@link ODataRequest}s and {@link BatchRequestPart}s
   * in the context of a batch request.</p>
   *
-  * <p>Within a {@link org.apache.olingo.server.api.processor.BatchProcessor BatchProcessor} implementation
+  * <p>Within a {@link nl.buildforce.olingo.server.api.processor.BatchProcessor BatchProcessor} implementation
  * BatchRequestParts should be passed to {@link #handleBatchRequest(BatchRequestPart)}.
   * Only if the BatchRequestPart represents a change set, the request will be delegated to
-  * {@link org.apache.olingo.server.api.processor.BatchProcessor#processChangeSet(BatchFacade, java.util.List)}.
+  * {@link nl.buildforce.olingo.server.api.processor.BatchProcessor#processChangeSet(BatchFacade, java.util.List)}.
   * Otherwise the requests will be directly executed.</p>
   *
   * <p>The processor implementation could use {@link #handleODataRequest(ODataRequest)} to process
@@ -70,4 +70,5 @@
     */
    String extractBoundaryFromContentType(String contentType)
        throws ODataApplicationException, ODataLibraryException;
+
  }

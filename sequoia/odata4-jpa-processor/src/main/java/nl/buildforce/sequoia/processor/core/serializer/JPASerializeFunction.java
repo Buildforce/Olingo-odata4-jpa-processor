@@ -1,7 +1,5 @@
 package nl.buildforce.sequoia.processor.core.serializer;
 
-import nl.buildforce.olingo.server.api.uri.*;
-import nl.buildforce.sequoia.processor.core.exception.ODataJPASerializerException;
 import nl.buildforce.olingo.commons.api.data.Annotatable;
 import nl.buildforce.olingo.commons.api.data.EntityCollection;
 import nl.buildforce.olingo.commons.api.edm.EdmType;
@@ -10,6 +8,13 @@ import nl.buildforce.olingo.commons.api.format.ContentType;
 import nl.buildforce.olingo.server.api.ODataRequest;
 import nl.buildforce.olingo.server.api.serializer.SerializerException;
 import nl.buildforce.olingo.server.api.serializer.SerializerResult;
+import nl.buildforce.olingo.server.api.uri.UriInfo;
+import nl.buildforce.olingo.server.api.uri.UriResource;
+import nl.buildforce.olingo.server.api.uri.UriResourceAction;
+import nl.buildforce.olingo.server.api.uri.UriResourceFunction;
+import nl.buildforce.olingo.server.api.uri.UriResourcePartTyped;
+
+import nl.buildforce.sequoia.processor.core.exception.ODataJPASerializerException;
 
 import java.util.List;
 import java.util.Optional;

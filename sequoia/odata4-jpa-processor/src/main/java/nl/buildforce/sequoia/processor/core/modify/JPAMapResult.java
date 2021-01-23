@@ -1,13 +1,19 @@
 package nl.buildforce.sequoia.processor.core.modify;
 
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.*;
+import nl.buildforce.olingo.server.api.ODataApplicationException;
+
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAssociationPath;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAttribute;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPACollectionAttribute;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAElement;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAEntityType;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAPath;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import nl.buildforce.sequoia.processor.core.converter.JPAExpandResult;
 import nl.buildforce.sequoia.processor.core.converter.JPATuple;
 import nl.buildforce.sequoia.processor.core.converter.JPATupleChildConverter;
 import nl.buildforce.sequoia.processor.core.exception.ODataJPAProcessorException;
 import nl.buildforce.sequoia.processor.core.processor.JPARequestEntity;
-import nl.buildforce.olingo.server.api.ODataApplicationException;
 
 import jakarta.persistence.Tuple;
 import java.util.ArrayList;

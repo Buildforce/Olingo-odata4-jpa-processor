@@ -18,22 +18,21 @@
  */
 package nl.buildforce.olingo.server.api.deserializer;
 
-import java.io.InputStream;
-
 import nl.buildforce.olingo.commons.api.edm.EdmAction;
 import nl.buildforce.olingo.commons.api.edm.EdmEntityType;
 import nl.buildforce.olingo.commons.api.edm.EdmProperty;
+
+import java.io.InputStream;
 
 /**
  * Deserializer on OData server side.
  */
 public interface ODataDeserializer {
-
   /**
-   * Deserializes an entity stream into an {@link org.apache.olingo.commons.api.data.Entity Entity} object.
+   * Deserializes an entity stream into an {@link nl.buildforce.olingo.commons.api.data.Entity Entity} object.
    * Validates: property types, no double properties, correct json types.
-   * Returns a deserialized {@link org.apache.olingo.commons.api.data.Entity Entity} object and an
-   * {@link org.apache.olingo.server.api.uri.queryoption.ExpandOption ExpandOption} object.
+   * Returns a deserialized {@link nl.buildforce.olingo.commons.api.data.Entity Entity} object and an
+   * {@link nl.buildforce.olingo.server.api.uri.queryoption.ExpandOption ExpandOption} object.
    * @param stream
    * @param edmEntityType
    * @return {@link DeserializerResult#getEntity()} and {@link DeserializerResult#getExpandTree()}
@@ -42,7 +41,7 @@ public interface ODataDeserializer {
   DeserializerResult entity(InputStream stream, EdmEntityType edmEntityType) throws DeserializerException;
 
   /**
-   * Deserializes an entity collection stream into an {@link org.apache.olingo.commons.api.data.EntityCollection
+   * Deserializes an entity collection stream into an {@link nl.buildforce.olingo.commons.api.data.EntityCollection
    * EntityCollection} object.
    * @param stream
    * @param edmEntityType
@@ -78,4 +77,5 @@ public interface ODataDeserializer {
    * @throws DeserializerException
    */
   DeserializerResult entityReferences(InputStream stream) throws DeserializerException;
+
 }

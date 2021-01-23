@@ -1,6 +1,10 @@
 package nl.buildforce.sequoia.processor.core.query;
 
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.*;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAssociationPath;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAEntityType;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAOnConditionItem;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAPath;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAServiceDocument;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import nl.buildforce.sequoia.processor.core.exception.ODataJPAQueryException;
 import nl.buildforce.sequoia.processor.core.filter.JPAFilterElementCompiler;
@@ -152,4 +156,5 @@ public final class JPACollectionFilterQuery extends JPANavigationQuery {
       throw new ODataJPAQueryException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
     }
   }
+
 }

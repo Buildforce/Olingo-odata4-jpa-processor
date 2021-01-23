@@ -1,4 +1,4 @@
-package nl.buildforce.sequoia.processor.test;
+package nl.buildforce.sequoia.jpa.processor.test;
 
 import nl.buildforce.sequoia.processor.core.testmodel.*;
 import org.eclipse.persistence.internal.jpa.EJBQueryImpl;
@@ -281,4 +281,5 @@ public class TestCriteriaBuilder {
         cb.and(cb.equal(adminRoot3.get("codeID"), org1.get("address").get("regionCodeID")),
             cb.equal(adminRoot3.get("divisionCode"), org1.get("address").get("region"))));
   }
+
 }

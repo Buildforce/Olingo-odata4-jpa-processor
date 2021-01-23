@@ -43,7 +43,7 @@ public class CsdlMapping implements EdmMapping {
   
   /**
    * Sets the class to be used during deserialization to transform an EDM primitive type into this java class. To see
-   * which classes work for which primitive type refer to {@link org.apache.olingo.commons.api.edm.EdmPrimitiveType}.
+   * which classes work for which primitive type refer to {@link nl.buildforce.olingo.commons.api.edm.EdmPrimitiveType}.
    * @param mappedJavaClass class to which is mapped
    * @return this for method chaining
    */

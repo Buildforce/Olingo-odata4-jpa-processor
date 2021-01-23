@@ -1,16 +1,22 @@
 package nl.buildforce.sequoia.processor.core.filter;
 
-import nl.buildforce.olingo.server.api.uri.queryoption.expression.*;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAEntityType;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAPath;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
-import nl.buildforce.sequoia.processor.core.exception.ODataJPAFilterException;
-import nl.buildforce.sequoia.processor.core.query.Util;
 import nl.buildforce.olingo.commons.api.edm.EdmEnumType;
 import nl.buildforce.olingo.commons.api.edm.EdmType;
 import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
 import nl.buildforce.olingo.server.api.ODataApplicationException;
 import nl.buildforce.olingo.server.api.uri.UriResourceKind;
+import nl.buildforce.olingo.server.api.uri.queryoption.expression.BinaryOperatorKind;
+import nl.buildforce.olingo.server.api.uri.queryoption.expression.ExpressionVisitor;
+import nl.buildforce.olingo.server.api.uri.queryoption.expression.Literal;
+import nl.buildforce.olingo.server.api.uri.queryoption.expression.Member;
+import nl.buildforce.olingo.server.api.uri.queryoption.expression.MethodKind;
+import nl.buildforce.olingo.server.api.uri.queryoption.expression.UnaryOperatorKind;
+
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAEntityType;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAPath;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
+import nl.buildforce.sequoia.processor.core.exception.ODataJPAFilterException;
+import nl.buildforce.sequoia.processor.core.query.Util;
 
 import java.util.ArrayList;
 import java.util.List;

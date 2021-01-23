@@ -91,9 +91,7 @@ public final class JPATypeConverter {
                 && (isScalarType(type)
                 || type.equals(Byte[].class)
                 || type.equals(Blob.class)
-                || type.equals(Clob.class)
-                /*|| isGeography(currentAttribute)
-                || isGeometry(currentAttribute)*/);
+                || type.equals(Clob.class));
     }
 
     public static boolean isScalarType(final Class<?> type) {
@@ -121,17 +119,17 @@ public final class JPATypeConverter {
     }
 
     /**
-     * For supported java types see {@link org.apache.olingo.commons.api.edm.EdmPrimitiveType}. In addition, since 4.7.1,
+     * For supported java types see {@link nl.buildforce.olingo.commons.api.edm.EdmPrimitiveType}. In addition, since 4.7.1,
      * also some types from the java.time package are supported, see:
      * <ul>
      * <li>For EdmDate: LocalDate, see
-     * {@link org.apache.olingo.commons.core.edm.primitivetype.EdmDate#internalValueToString
+     * {@link nl.buildforce.olingo.commons.core.edm.primitivetype.EdmDate#internalValueToString
      * EdmDate.internalValueToString}</li>
      * <li>For EdmTimeOfDay: LocalTime, see
-     * {@link org.apache.olingo.commons.core.edm.primitivetype.EdmTimeOfDay#internalValueToString
+     * {@link nl.buildforce.olingo.commons.core.edm.primitivetype.EdmTimeOfDay#internalValueToString
      * EdmTimeOfDay.internalValueToString}</li>
      * <li>For EdmDateTimeOffset: ZonedDateTime, see
-     * {@link org.apache.olingo.commons.core.edm.primitivetype.EdmDateTimeOffset#internalValueToString
+     * {@link nl.buildforce.olingo.commons.core.edm.primitivetype.EdmDateTimeOffset#internalValueToString
      * EdmDateTimeOffset.internalValueToString}</li>
      * </ul>     * @param type
      * @return

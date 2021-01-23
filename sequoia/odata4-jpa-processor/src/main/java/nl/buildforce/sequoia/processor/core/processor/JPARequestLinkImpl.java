@@ -1,13 +1,18 @@
 package nl.buildforce.sequoia.processor.core.processor;
 
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.*;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
-import nl.buildforce.sequoia.processor.core.exception.ODataJPAProcessorException;
-import nl.buildforce.sequoia.processor.core.modify.JPAConversionHelper;
 import nl.buildforce.olingo.commons.api.edm.EdmPrimitiveType;
 import nl.buildforce.olingo.commons.api.edm.EdmPrimitiveTypeException;
 import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
 import nl.buildforce.olingo.server.api.OData;
+
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAssociationPath;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAttribute;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAEntityType;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAOnConditionItem;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAPath;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
+import nl.buildforce.sequoia.processor.core.exception.ODataJPAProcessorException;
+import nl.buildforce.sequoia.processor.core.modify.JPAConversionHelper;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

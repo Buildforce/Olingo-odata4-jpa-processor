@@ -2,7 +2,12 @@ package nl.buildforce.sequoia.processor.core.filter;
 
 import nl.buildforce.olingo.server.api.ODataApplicationException;
 import nl.buildforce.olingo.server.api.uri.UriInfoResource;
-import nl.buildforce.olingo.server.api.uri.queryoption.expression.*;
+
+import nl.buildforce.olingo.server.api.uri.queryoption.expression.BinaryOperatorKind;
+import nl.buildforce.olingo.server.api.uri.queryoption.expression.ExpressionVisitException;
+import nl.buildforce.olingo.server.api.uri.queryoption.expression.ExpressionVisitor;
+import nl.buildforce.olingo.server.api.uri.queryoption.expression.Literal;
+import nl.buildforce.olingo.server.api.uri.queryoption.expression.Member;
 
 public final class JPAFilterExpression implements JPAVisitableExpression {
   private final Literal literal;
@@ -37,4 +42,5 @@ public final class JPAFilterExpression implements JPAVisitableExpression {
         + ", type= " + member.getType()
         + "]]";
   }
+
 }
