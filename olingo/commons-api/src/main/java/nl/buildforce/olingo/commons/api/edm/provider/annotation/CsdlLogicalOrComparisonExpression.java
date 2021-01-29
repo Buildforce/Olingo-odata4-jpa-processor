@@ -192,4 +192,5 @@ public class CsdlLogicalOrComparisonExpression extends CsdlDynamicExpression imp
       annotations.hashCode());
     return result;
   }
+
 }

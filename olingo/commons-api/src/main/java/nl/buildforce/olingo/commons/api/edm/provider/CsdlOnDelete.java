@@ -64,4 +64,5 @@ public class CsdlOnDelete extends CsdlAbstractEdmItem implements CsdlAnnotatable
     this.annotations = annotations;
     return this;
   }
+
 }

@@ -5,12 +5,12 @@ import jakarta.persistence.Embeddable;
 import java.io.Serializable;
 
 @Embeddable
-public class CountryKey implements Serializable {
+public class CountryKey /*implements Serializable*/ {
   /**
    *
 
    */
-  private static final long serialVersionUID = 229175464207091262L;
+  // private static final long serialVersionUID = 229175464207091262L;
 
   @Column(name = "\"ISOCode\"")
   private String code;

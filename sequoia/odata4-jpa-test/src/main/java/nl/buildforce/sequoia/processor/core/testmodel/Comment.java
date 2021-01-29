@@ -15,8 +15,8 @@ import java.sql.Clob;
 @EdmIgnore
 @Entity
 @Table(schema = "\"OLINGO\"", name = "\"Comment\"")
-public class Comment implements Serializable {
-  private static final long serialVersionUID = 1L;
+public class Comment /*implements Serializable*/ {
+  // private static final long serialVersionUID = 1L;
 
   @Id
   @Column(name = "\"BusinessPartnerID\"")

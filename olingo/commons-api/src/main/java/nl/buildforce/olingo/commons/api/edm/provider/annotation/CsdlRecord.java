@@ -131,4 +131,5 @@ public class CsdlRecord extends CsdlDynamicExpression implements CsdlAnnotatable
       annotations.hashCode());
     return result;
   }
+
 }

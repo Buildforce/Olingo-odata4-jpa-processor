@@ -236,4 +236,5 @@ public abstract class CsdlStructuralType extends CsdlAbstractEdmItem implements 
     this.annotations = annotations;
     return this;
   }
+
 }

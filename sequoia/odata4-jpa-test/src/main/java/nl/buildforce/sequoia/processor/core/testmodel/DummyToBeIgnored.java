@@ -31,11 +31,11 @@ import java.math.BigDecimal;
 })
 @Table(schema = "\"OLINGO\"", name = "\"DummyToBeIgnored\"")
 @EdmIgnore
-public class DummyToBeIgnored implements Serializable {
+public class DummyToBeIgnored /*implements Serializable*/ {
 
   @Id
   private String ID;
-  private static final long serialVersionUID = 1L;
+  // private static final long serialVersionUID = 1L;
 
   @Convert(converter = ByteConverter.class)
   private byte uuid;

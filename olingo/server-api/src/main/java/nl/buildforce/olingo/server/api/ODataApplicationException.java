@@ -29,7 +29,7 @@ import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
  */
 public class ODataApplicationException extends ODataException {
 
-  private static final long serialVersionUID = 5358683245923127425L;
+  //     private static final long serialVersionUID = 5358683245923127425L;
   private int statusCode = HttpStatusCode.INTERNAL_SERVER_ERROR.getStatusCode();
   private final Locale locale;
   private String oDataErrorCode;
@@ -121,4 +121,5 @@ public class ODataApplicationException extends ODataException {
   public String getODataErrorCode() {
     return oDataErrorCode;
   }
+
 }

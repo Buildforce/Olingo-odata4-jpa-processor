@@ -71,7 +71,7 @@ public class BatchDeserializerException extends DeserializerException {
     }
   }
 
-  private static final long serialVersionUID = -907752788975531134L;
+  //     private static final long serialVersionUID = -907752788975531134L;
 
   /**
    * Creates batch deserializer exception.
@@ -95,4 +95,5 @@ public class BatchDeserializerException extends DeserializerException {
                                     MessageKey messageKey, String... parameters) {
     super(developmentMessage, cause, messageKey, parameters);
   }
+
 }

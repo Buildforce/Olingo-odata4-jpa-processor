@@ -22,7 +22,7 @@ import nl.buildforce.olingo.server.api.ODataLibraryException;
 
 public class UriValidationException extends ODataLibraryException {
 
-  private static final long serialVersionUID = -3179078078053564742L;
+  //     private static final long serialVersionUID = -3179078078053564742L;
 
   public enum MessageKeys implements MessageKey {
     /** parameter: unsupported query option */

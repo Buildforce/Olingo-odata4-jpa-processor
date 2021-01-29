@@ -12,7 +12,7 @@ public class ODataJPAUtilException extends ODataJPAProcessException {
    *
 
    */
-  private static final long serialVersionUID = -7188499882306858747L;
+  // private static final long serialVersionUID = -7188499882306858747L;
 
   public enum MessageKeys implements ODataJPAMessageKey {
     UNKNOWN_NAVI_PROPERTY,

@@ -152,4 +152,5 @@ public class CsdlConstantExpression extends CsdlExpression {
     result = prime * result + ((value == null) ? 0 : value.hashCode());
     return result;
   }
+
 }

@@ -261,4 +261,5 @@ public abstract class CsdlDynamicExpression extends CsdlExpression {
   public CsdlUrlRef asUrlRef() {
     return isUrlRef() ? (CsdlUrlRef) this : null;
   }
+
 }

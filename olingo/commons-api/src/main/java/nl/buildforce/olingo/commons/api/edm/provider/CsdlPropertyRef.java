@@ -62,4 +62,5 @@ public class CsdlPropertyRef extends CsdlAbstractEdmItem implements CsdlNamed {
     this.alias = alias;
     return this;
   }
+
 }

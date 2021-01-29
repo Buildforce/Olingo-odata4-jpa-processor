@@ -241,4 +241,5 @@ public class CsdlNavigationProperty extends CsdlAbstractEdmItem implements CsdlN
     this.annotations = annotations;
     return this;
   }
+
 }

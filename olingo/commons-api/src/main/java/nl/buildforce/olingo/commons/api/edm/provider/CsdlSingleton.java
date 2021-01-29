@@ -69,4 +69,5 @@ public class CsdlSingleton extends CsdlBindingTarget {
     this.mapping = mapping;
     return this;
   }
+
 }

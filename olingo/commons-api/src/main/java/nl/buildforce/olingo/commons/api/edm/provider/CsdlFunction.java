@@ -82,4 +82,5 @@ public class CsdlFunction extends CsdlOperation {
     this.annotations = annotations;
     return this;
   }
+
 }

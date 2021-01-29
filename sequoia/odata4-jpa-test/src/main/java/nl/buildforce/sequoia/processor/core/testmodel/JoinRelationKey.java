@@ -5,13 +5,13 @@ import jakarta.persistence.Embeddable;
 import java.io.Serializable;
 
 @Embeddable
-public class JoinRelationKey implements Serializable {
+public class JoinRelationKey /*implements Serializable*/ {
 
   /**
    *
 
    */
-  private static final long serialVersionUID = 5206755977104102088L;
+  // private static final long serialVersionUID = 5206755977104102088L;
 
   @Column(name = "\"SourceID\"")
   private Integer sourceID;

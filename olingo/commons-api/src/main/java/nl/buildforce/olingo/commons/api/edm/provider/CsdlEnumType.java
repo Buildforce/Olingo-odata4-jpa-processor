@@ -178,4 +178,5 @@ public class CsdlEnumType extends CsdlAbstractEdmItem implements CsdlNamed, Csdl
     this.annotations = annotations;
     return this;
   }
+
 }

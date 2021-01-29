@@ -8,12 +8,6 @@
   </parent>
   <artifactId>odata4-jpa-test</artifactId>
   <name>odata4-jpa-test</name>
-  <!--<distributionManagement>
-    <repository>
-      <id>internal</id>
-      <url>file://${project.build.directory}/mvn-repo</url>
-    </repository>
-  </distributionManagement>-->
   <dependencies>
     <dependency>
       <groupId>com.h2database</groupId>
@@ -26,11 +20,13 @@
       <artifactId>odata4-jpa-annotation</artifactId>
       <version>${odata4-jpa.version}</version>
     </dependency>
+
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
       <version>3.11</version>
     </dependency>
+
     <dependency>
       <groupId>org.apache.derby</groupId>
       <artifactId>derby</artifactId>

@@ -24,7 +24,7 @@ import nl.buildforce.olingo.server.api.ODataLibraryException;
  * This exception is thrown for invalid precondition error cases.
  */
 public class PreconditionException extends ODataLibraryException {
-  private static final long serialVersionUID = -8112658467394158700L;
+  //     private static final long serialVersionUID = -8112658467394158700L;
 
   public enum MessageKeys implements MessageKey {
     /** no parameter */
@@ -54,4 +54,5 @@ public class PreconditionException extends ODataLibraryException {
   protected String getBundleName() {
     return DEFAULT_SERVER_BUNDLE_NAME;
   }
+
 }

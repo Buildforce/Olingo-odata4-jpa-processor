@@ -384,4 +384,5 @@ public class CsdlSchema extends CsdlAbstractEdmItem implements CsdlAnnotatable {
     this.annotations = annotations;
     return this;
   }
+
 }

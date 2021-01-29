@@ -3,12 +3,12 @@ package nl.buildforce.sequoia.processor.core.testmodel;
 import jakarta.persistence.Id;
 import java.io.Serializable;
 
-public class BusinessPartnerRoleKey implements Serializable {
+public class BusinessPartnerRoleKey /*implements Serializable*/ {
 
   /**
    *
    */
-  private static final long serialVersionUID = -2350388598203342905L;
+  // private static final long serialVersionUID = -2350388598203342905L;
 
   @Id
   private String businessPartnerID;

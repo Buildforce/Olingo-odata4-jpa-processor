@@ -23,7 +23,7 @@ package nl.buildforce.olingo.commons.api.ex;
  */
 public class ODataRuntimeException extends RuntimeException {
 
-  private static final long serialVersionUID = 5492375572049190883L;
+  //     private static final long serialVersionUID = 5492375572049190883L;
 
   /**
    * Create with <code>message</code>.

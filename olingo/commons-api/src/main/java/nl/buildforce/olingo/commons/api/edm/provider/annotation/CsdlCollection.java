@@ -83,4 +83,5 @@ public class CsdlCollection extends CsdlDynamicExpression {
     result = prime * result + ((items == null) ? 0 : items.hashCode());
     return result;
   }
+
 }

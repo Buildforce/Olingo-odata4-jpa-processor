@@ -32,7 +32,7 @@ public class TranslatedExceptionsTest {
   private static final String DEV = "devMessage";
 
   private static class TestException extends ODataLibraryException {
-    private static final long serialVersionUID = -7199975861656921724L;
+    //     private static final long serialVersionUID = -7199975861656921724L;
 
     public static enum Keys implements MessageKey {
       BASIC, ONEPARAM, TWOPARAM, NOMESSAGE, ONLY_ROOT, ONLY_GERMAN;
@@ -172,4 +172,5 @@ public class TranslatedExceptionsTest {
         500, Locale.ENGLISH, new RuntimeException("Error"), "500");
     assertNotNull(exp);
   }
+
 }

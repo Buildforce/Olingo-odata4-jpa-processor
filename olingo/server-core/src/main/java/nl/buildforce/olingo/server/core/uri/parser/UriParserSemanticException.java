@@ -21,7 +21,7 @@ package nl.buildforce.olingo.server.core.uri.parser;
 /** Exception thrown during URI parsing in cases where an URI part is invalid according to the Entity Data Model. */
 public class UriParserSemanticException extends UriParserException {
 
-  private static final long serialVersionUID = 3850285860949809622L;
+  //     private static final long serialVersionUID = 3850285860949809622L;
 
   public enum MessageKeys implements MessageKey {
     /** parameters: function-import name, function parameters */
@@ -95,4 +95,5 @@ public class UriParserSemanticException extends UriParserException {
                                     String... parameters) {
     super(developmentMessage, cause, messageKey, parameters);
   }
+
 }

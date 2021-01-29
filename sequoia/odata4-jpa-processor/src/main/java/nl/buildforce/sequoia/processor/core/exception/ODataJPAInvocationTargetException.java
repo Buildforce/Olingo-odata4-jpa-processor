@@ -8,7 +8,7 @@ import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
  */
 public class ODataJPAInvocationTargetException extends ODataJPAProcessException {
 
-  private static final long serialVersionUID = 2410838419178517426L;
+  //     private static final long serialVersionUID = 2410838419178517426L;
   private static final String BUNDLE_NAME = "processor-exceptions-i18n";
   private final String path;
 

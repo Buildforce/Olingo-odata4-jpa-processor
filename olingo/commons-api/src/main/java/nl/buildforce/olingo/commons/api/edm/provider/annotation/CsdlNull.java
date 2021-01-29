@@ -78,4 +78,5 @@ public class CsdlNull extends CsdlDynamicExpression implements CsdlAnnotatable {
       annotations.hashCode());
     return result;
   }
+
 }

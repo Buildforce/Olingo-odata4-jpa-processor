@@ -445,7 +445,7 @@ public class EdmImplCachingTest {
       EdmSchema schema = mock(EdmSchema.class);
       when(schema.getNamespace()).thenReturn(NAME1.getNamespace());
       return new HashMap<String, EdmSchema>() {
-        private static final long serialVersionUID = 3109256773218160485L;
+        //     private static final long serialVersionUID = 3109256773218160485L;
 
         {
           put("", schema);
@@ -477,4 +477,5 @@ public class EdmImplCachingTest {
       return null;
     }
   }
+
 }

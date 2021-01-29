@@ -102,4 +102,5 @@ public class CsdlAnnotations extends CsdlAbstractEdmItem implements CsdlAnnotata
     }
     return result;
   }
+
 }

@@ -21,7 +21,7 @@ package nl.buildforce.olingo.server.core.uri.parser;
 /** Exception thrown during URI parsing in cases where the URI violates the URI construction rules. */
 public class UriParserSyntaxException extends UriParserException {
 
-  private static final long serialVersionUID = 5887744747812478226L;
+  //     private static final long serialVersionUID = 5887744747812478226L;
 
   public enum MessageKeys implements MessageKey {
     /** parameter: segment */
@@ -56,4 +56,5 @@ public class UriParserSyntaxException extends UriParserException {
                                   String... parameters) {
     super(developmentMessage, cause, messageKey, parameters);
   }
+
 }

@@ -23,7 +23,7 @@ import nl.buildforce.olingo.server.api.ODataLibraryException;
 /** Exception thrown by deserializers. */
 public class DeserializerException extends ODataLibraryException {
 
-  private static final long serialVersionUID = 6341270437497060906L;
+  // private static final long serialVersionUID = 6341270437497060906L;
 
   /** Keys for exception texts in the resource bundle. */
   public enum MessageKeys implements MessageKey {
@@ -95,4 +95,5 @@ public class DeserializerException extends ODataLibraryException {
   protected String getBundleName() {
     return DEFAULT_SERVER_BUNDLE_NAME;
   }
+
 }

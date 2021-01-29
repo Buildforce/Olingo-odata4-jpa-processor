@@ -59,4 +59,5 @@ public class CsdlAnnotationPath extends CsdlDynamicExpression {
     result = prime * result + ((value == null) ? 0 : value.hashCode());
     return result;
   }
+
 }

@@ -74,4 +74,5 @@ public class CsdlComplexType extends CsdlStructuralType {
     this.annotations = annotations;
     return this;
   }
+
 }

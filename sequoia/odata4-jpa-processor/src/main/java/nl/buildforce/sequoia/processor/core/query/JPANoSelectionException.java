@@ -11,6 +11,6 @@ package nl.buildforce.sequoia.processor.core.query;
  */
 public class JPANoSelectionException extends Exception {
 
-  private static final long serialVersionUID = -2120984389807283569L;
+  // private static final long serialVersionUID = -2120984389807283569L;
 
 }

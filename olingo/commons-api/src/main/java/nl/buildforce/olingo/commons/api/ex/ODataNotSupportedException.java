@@ -23,7 +23,7 @@ package nl.buildforce.olingo.commons.api.ex;
  */
 public class ODataNotSupportedException extends ODataRuntimeException {
 
-  private static final long serialVersionUID = 42L;
+  // private static final long serialVersionUID = 42L;
 
   /**
    * Create with <code>message</code>.

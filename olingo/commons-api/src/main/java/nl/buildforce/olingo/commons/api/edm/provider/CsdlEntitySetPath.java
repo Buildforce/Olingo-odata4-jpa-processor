@@ -66,4 +66,5 @@ public class CsdlEntitySetPath {
     this.path = path;
     return this;
   }
+
 }

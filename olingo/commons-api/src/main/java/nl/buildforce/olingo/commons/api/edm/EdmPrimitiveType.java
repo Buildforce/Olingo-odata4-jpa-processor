@@ -180,4 +180,5 @@ public interface EdmPrimitiveType extends EdmType {
       Integer precision, String scale, Boolean isUnicode) {
         return false;
   }
+
 }

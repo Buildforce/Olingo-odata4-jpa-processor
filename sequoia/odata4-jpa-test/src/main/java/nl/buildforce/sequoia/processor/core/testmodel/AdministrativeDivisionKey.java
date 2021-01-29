@@ -5,9 +5,9 @@ import jakarta.persistence.Id;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class AdministrativeDivisionKey implements Serializable, Comparable<AdministrativeDivisionKey> {
+public class AdministrativeDivisionKey implements /*Serializable,*/ Comparable<AdministrativeDivisionKey> {
 
-  private static final long serialVersionUID = 5482165952249228988L;
+  // private static final long serialVersionUID = 5482165952249228988L;
   @Id
   @Column(name = "\"CodePublisher\"", length = 10)
   private String codePublisher;

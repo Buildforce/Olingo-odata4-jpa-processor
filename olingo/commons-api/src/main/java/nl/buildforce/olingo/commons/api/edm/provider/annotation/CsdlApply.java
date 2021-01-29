@@ -133,4 +133,5 @@ public class CsdlApply extends CsdlDynamicExpression implements CsdlAnnotatable 
     result = prime * result + ((annotations == null) ? 0 : annotations.hashCode());
     return result;
   }
+
 }

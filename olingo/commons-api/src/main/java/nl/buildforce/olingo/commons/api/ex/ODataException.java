@@ -20,7 +20,7 @@ package nl.buildforce.olingo.commons.api.ex;
 
 public class ODataException extends Exception {
 
-  private static final long serialVersionUID = 3057981437954048107L;
+  //     private static final long serialVersionUID = 3057981437954048107L;
 
   /**
    * Creates exception with <code>message</code>.

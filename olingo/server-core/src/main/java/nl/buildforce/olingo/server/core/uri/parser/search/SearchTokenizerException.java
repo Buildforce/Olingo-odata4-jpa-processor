@@ -22,7 +22,7 @@ import nl.buildforce.olingo.server.core.uri.parser.UriParserSyntaxException;
 
 public class SearchTokenizerException extends UriParserSyntaxException {
 
-  private static final long serialVersionUID = -8295456415309640166L;
+  //     private static final long serialVersionUID = -8295456415309640166L;
 
   public enum MessageKeys implements MessageKey {
     /** parameter: character, TOKEN */
@@ -51,4 +51,5 @@ public class SearchTokenizerException extends UriParserSyntaxException {
                                   String... parameters) {
     super(developmentMessage, cause, messageKey, parameters);
   }
+
 }

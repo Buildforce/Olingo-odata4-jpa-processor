@@ -150,4 +150,5 @@ public class CsdlAnnotation extends CsdlAbstractEdmItem implements CsdlAnnotatab
     result = prime * result + ((annotations == null) ? 0 : annotations.hashCode());
     return result;
   }
+
 }

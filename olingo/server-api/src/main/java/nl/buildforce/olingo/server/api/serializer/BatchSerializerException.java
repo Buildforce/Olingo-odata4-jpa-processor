@@ -23,7 +23,7 @@ package nl.buildforce.olingo.server.api.serializer;
  */
 public class BatchSerializerException extends SerializerException {
 
-  private static final long serialVersionUID = 2634433974342796905L;
+  //     private static final long serialVersionUID = 2634433974342796905L;
 
   public enum MessageKeys implements MessageKey {
     MISSING_CONTENT_ID;

@@ -22,7 +22,7 @@ import nl.buildforce.olingo.server.api.ODataLibraryException;
 
 /** Exception thrown during basic request handling. */
 public class ODataHandlerException extends ODataLibraryException {
-  private static final long serialVersionUID = -907752788975531134L;
+  //     private static final long serialVersionUID = -907752788975531134L;
 
   public enum MessageKeys implements MessageKey {
     /** parameters: HTTP method, HTTP method */
@@ -68,4 +68,5 @@ public class ODataHandlerException extends ODataLibraryException {
   protected String getBundleName() {
     return DEFAULT_SERVER_BUNDLE_NAME;
   }
+
 }

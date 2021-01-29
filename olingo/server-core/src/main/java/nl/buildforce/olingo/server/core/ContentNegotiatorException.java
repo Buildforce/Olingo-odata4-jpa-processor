@@ -21,7 +21,7 @@ package nl.buildforce.olingo.server.core;
 import nl.buildforce.olingo.server.api.ODataLibraryException;
 
 public class ContentNegotiatorException extends ODataLibraryException {
-  private static final long serialVersionUID = -8112658467394158700L;
+  //     private static final long serialVersionUID = -8112658467394158700L;
 
   public enum MessageKeys implements MessageKey {
     /** parameter: list of content-type ranges */
@@ -58,4 +58,5 @@ public class ContentNegotiatorException extends ODataLibraryException {
   protected String getBundleName() {
     return DEFAULT_SERVER_BUNDLE_NAME;
   }
+
 }

@@ -19,7 +19,7 @@
 package nl.buildforce.olingo.server.core;
 
 public class AcceptHeaderContentNegotiatorException extends ContentNegotiatorException {
-  private static final long serialVersionUID = -8112658467394158700L;
+  //     private static final long serialVersionUID = -8112658467394158700L;
 
   public enum MessageKeys implements MessageKey {
     /** parameter: list of content-type ranges */
@@ -52,4 +52,5 @@ public class AcceptHeaderContentNegotiatorException extends ContentNegotiatorExc
   protected String getBundleName() {
     return DEFAULT_SERVER_BUNDLE_NAME;
   }
+
 }

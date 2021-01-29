@@ -21,8 +21,9 @@ package nl.buildforce.olingo.commons.core.edm.primitivetype;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
-import org.apache.commons.codec.binary.Base64;
 import nl.buildforce.olingo.commons.api.edm.EdmPrimitiveTypeException;
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.lang3.ArrayUtils;
 
 /**
  * Implementation of the EDM primitive type Binary.
@@ -171,10 +172,7 @@ public class EdmBinary extends SingletonPrimitiveType {
     if (returnType.isAssignableFrom(byte[].class)) {
       return returnType.cast(result);
     } else if (returnType.isAssignableFrom(Byte[].class)) {
-      Byte[] byteArray = new Byte[result.length];
-      for (int i = 0; i < result.length; i++) {
-        byteArray[i] = result[i];
-      }
+      Byte[] byteArray = ArrayUtils.toObject(result);
       return returnType.cast(byteArray);
     } else {
       throw new EdmPrimitiveTypeException("The value type " + returnType + " is not supported.");
@@ -190,11 +188,7 @@ public class EdmBinary extends SingletonPrimitiveType {
     if (value instanceof byte[]) {
       byteArrayValue = (byte[]) value;
     } else if (value instanceof Byte[]) {
-      int length = ((Byte[]) value).length;
-      byteArrayValue = new byte[length];
-      for (int i = 0; i < length; i++) {
-        byteArrayValue[i] = ((Byte[]) value)[i];
-      }
+      byteArrayValue =  ArrayUtils.toPrimitive((Byte[]) value);
     } else {
       throw new EdmPrimitiveTypeException("The value type " + value.getClass() + " is not supported.");
     }
@@ -205,4 +199,5 @@ public class EdmBinary extends SingletonPrimitiveType {
 
     return new String(Base64.encodeBase64(byteArrayValue, false), UTF_8);
   }
+
 }

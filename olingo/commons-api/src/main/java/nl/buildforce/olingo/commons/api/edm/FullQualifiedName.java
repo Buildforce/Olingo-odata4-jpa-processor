@@ -26,7 +26,7 @@ import java.util.Objects;
  */
 public final class FullQualifiedName implements Serializable {
 
-  private static final long serialVersionUID = -4063629050858999076L;
+  // private static final long serialVersionUID = -4063629050858999076L;
 
   private final String namespace;
   private final String name;
@@ -104,4 +104,5 @@ public final class FullQualifiedName implements Serializable {
   public String toString() {
     return fqn;
   }
+
 }

@@ -4,13 +4,13 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import java.io.Serializable;
 
-public class MembershipKey implements Serializable {
+public class MembershipKey /*implements Serializable*/ {
 
   /**
    *
 
    */
-  private static final long serialVersionUID = -2197928070426048826L;
+  // private static final long serialVersionUID = -2197928070426048826L;
 
   @Id
   @Column(name = "\"PersonID\"", length = 32)

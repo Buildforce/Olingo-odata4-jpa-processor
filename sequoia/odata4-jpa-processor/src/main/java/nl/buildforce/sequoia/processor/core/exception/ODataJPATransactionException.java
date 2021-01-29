@@ -5,7 +5,7 @@ import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
 
 public class ODataJPATransactionException extends ODataJPAProcessException { // NOSONAR
 
-  private static final long serialVersionUID = -3720990003700857965L;
+  //     private static final long serialVersionUID = -3720990003700857965L;
 
   public enum MessageKeys implements ODataJPAMessageKey {
     CANNOT_CREATE_NEW_TRANSACTION;

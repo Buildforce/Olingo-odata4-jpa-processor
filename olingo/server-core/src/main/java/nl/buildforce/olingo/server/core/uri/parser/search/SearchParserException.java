@@ -22,7 +22,7 @@ import nl.buildforce.olingo.server.core.uri.parser.UriParserSyntaxException;
 
 public class SearchParserException extends UriParserSyntaxException {
 
-  private static final long serialVersionUID = 5781553037561337795L;
+  //     private static final long serialVersionUID = 5781553037561337795L;
 
   public enum MessageKeys implements MessageKey {
     NO_EXPRESSION_FOUND,

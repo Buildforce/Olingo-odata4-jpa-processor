@@ -5,12 +5,12 @@ import jakarta.persistence.Embeddable;
 import java.io.Serializable;
 
 @Embeddable
-public class AdministrativeDivisionDescriptionKey implements Serializable {
+public class AdministrativeDivisionDescriptionKey /*implements Serializable*/ {
   /**
    *
 
    */
-  private static final long serialVersionUID = 4843041820527005995L;
+  // private static final long serialVersionUID = 4843041820527005995L;
 
   @Column(name = "\"CodePublisher\"", length = 10, nullable = false)
   private String codePublisher;

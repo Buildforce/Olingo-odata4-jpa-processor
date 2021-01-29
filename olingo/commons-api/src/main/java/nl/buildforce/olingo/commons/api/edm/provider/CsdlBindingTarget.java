@@ -175,4 +175,5 @@ public abstract class CsdlBindingTarget extends CsdlAbstractEdmItem implements C
     this.mapping = mapping;
     return this;
   }
+
 }

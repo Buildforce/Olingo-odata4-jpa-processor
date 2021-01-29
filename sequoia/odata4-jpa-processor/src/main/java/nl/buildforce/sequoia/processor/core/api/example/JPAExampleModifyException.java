@@ -6,7 +6,7 @@ import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
 
 public class JPAExampleModifyException extends ODataJPAProcessException { // NOSONAR
 
-  private static final long serialVersionUID = 121932494074522961L;
+  //     private static final long serialVersionUID = 121932494074522961L;
   private static final String BUNDLE_NAME = "example-exceptions-i18n";
 
   public enum MessageKeys implements ODataJPAMessageKey {

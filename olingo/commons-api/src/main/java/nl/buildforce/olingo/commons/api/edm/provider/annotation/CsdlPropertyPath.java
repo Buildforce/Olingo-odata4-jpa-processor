@@ -59,4 +59,5 @@ public class CsdlPropertyPath extends CsdlDynamicExpression {
     result = prime * result + ((value == null) ? 0 : value.hashCode());
     return result;
   }
+
 }

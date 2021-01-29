@@ -20,7 +20,7 @@ package nl.buildforce.olingo.commons.api.edm;
 
 public class EdmException extends RuntimeException {
 
-  private static final long serialVersionUID = 1L;
+  //   private static final long serialVersionUID = 1L;
 
   public EdmException(Exception cause) {
     super(cause);

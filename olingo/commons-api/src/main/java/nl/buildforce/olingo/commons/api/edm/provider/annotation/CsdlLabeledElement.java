@@ -113,4 +113,5 @@ public class CsdlLabeledElement extends CsdlDynamicExpression implements CsdlAnn
     result = prime * result + ((annotations == null) ? 0 : annotations.hashCode());
     return result;
   }
+
 }

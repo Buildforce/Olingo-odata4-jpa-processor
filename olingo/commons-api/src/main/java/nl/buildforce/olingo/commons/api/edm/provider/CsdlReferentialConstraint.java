@@ -86,4 +86,5 @@ public class CsdlReferentialConstraint extends CsdlAbstractEdmItem implements Cs
     this.annotations = annotations;
     return this;
   }
+
 }

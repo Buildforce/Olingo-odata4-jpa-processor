@@ -12,7 +12,7 @@ public class ODataJPAQueryException extends ODataJPAProcessException { // NOSONA
    *
 
    */
-  private static final long serialVersionUID = -7188499882306858747L;
+  //     private static final long serialVersionUID = -7188499882306858747L;
 
   public enum MessageKeys implements ODataJPAMessageKey {
     QUERY_RESULT_CONV_ERROR,

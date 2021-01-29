@@ -25,7 +25,7 @@ import nl.buildforce.olingo.commons.api.ex.ODataException;
  */
 public class ExpressionVisitException extends ODataException {
 
-  private static final long serialVersionUID = 1L;
+  //   private static final long serialVersionUID = 1L;
 
   public ExpressionVisitException(String msg) {
     super(msg);
@@ -38,4 +38,5 @@ public class ExpressionVisitException extends ODataException {
   public ExpressionVisitException(Throwable cause) {
     super(cause);
   }
+
 }

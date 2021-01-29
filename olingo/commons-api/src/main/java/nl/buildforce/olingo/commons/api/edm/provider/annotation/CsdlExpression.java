@@ -53,4 +53,5 @@ public abstract class CsdlExpression extends CsdlAbstractEdmItem {
   public CsdlDynamicExpression asDynamic() {
     return isDynamic() ? (CsdlDynamicExpression) this : null;
   }
+
 }

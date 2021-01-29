@@ -66,4 +66,5 @@ public class CsdlNavigationPropertyBinding extends CsdlAbstractEdmItem {
     this.target = target;
     return this;
   }
+
 }

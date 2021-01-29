@@ -176,4 +176,5 @@ public abstract class CsdlOperation extends CsdlAbstractEdmItem implements CsdlN
     this.annotations = annotations;
     return this;
   }
+
 }

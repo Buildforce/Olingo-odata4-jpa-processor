@@ -89,4 +89,5 @@ public abstract class CsdlOperationImport extends CsdlAbstractEdmItem implements
     this.annotations = annotations;
     return this;
   }
+
 }

@@ -93,4 +93,5 @@ public class CsdlEntitySet extends CsdlBindingTarget {
     this.mapping = mapping;
     return this;
   }
+
 }

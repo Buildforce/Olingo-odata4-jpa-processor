@@ -128,4 +128,5 @@ public class CsdlEntityType extends CsdlStructuralType {
     this.annotations = annotations;
     return this;
   }
+
 }
