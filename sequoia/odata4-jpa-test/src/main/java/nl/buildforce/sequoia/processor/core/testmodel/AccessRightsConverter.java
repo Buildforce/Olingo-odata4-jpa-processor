@@ -5,13 +5,12 @@ import jakarta.persistence.Converter;
 import java.util.ArrayList;
 import java.util.List;
 
-@Converter()
+@Converter
 public class AccessRightsConverter implements AttributeConverter<AccessRights[], Short> {
 
   @Override
   public Short convertToDatabaseColumn(AccessRights[] attributes) {
-    if (attributes == null || attributes.length == 0)
-      return null;
+    if (attributes == null || attributes.length == 0) return null;
     short value = 0;
     for (AccessRights attribute : attributes)
       if (attribute != null)
@@ -21,8 +20,7 @@ public class AccessRightsConverter implements AttributeConverter<AccessRights[],
 
   @Override
   public AccessRights[] convertToEntityAttribute(Short dbData) {
-    if (dbData == null)
-      return null; // NOSONAR
+    if (dbData == null) return null;
     final List<AccessRights> accesses = new ArrayList<>();
     for (AccessRights e : AccessRights.values()) {
       if ((e.getValue() & dbData) != 0)

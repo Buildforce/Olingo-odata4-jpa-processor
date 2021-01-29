@@ -4,7 +4,7 @@ import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
 //This converter has to be mentioned at all columns it is applicable
-@Converter()
+@Converter
 public class ByteConverter implements AttributeConverter<String, byte[]> {
 
   @Override

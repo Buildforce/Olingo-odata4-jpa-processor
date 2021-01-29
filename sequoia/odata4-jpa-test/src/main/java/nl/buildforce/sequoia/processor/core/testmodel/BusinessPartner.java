@@ -83,12 +83,15 @@ public abstract class BusinessPartner implements KeyAccess {
   @Column(name = "\"CustomString1\"")
   @Convert(converter = StringConverter.class)
   protected String customString1;
+
   @EdmIgnore
   @Column(name = "\"CustomString2\"")
   protected String customString2;
+
   @EdmIgnore
   @Column(name = "\"CustomNum1\"", precision = 16, scale = 5)
   protected BigDecimal customNum1;
+
   @EdmIgnore
   @Column(name = "\"CustomNum2\"", precision = 34)
   protected BigDecimal customNum2;
@@ -96,12 +99,13 @@ public abstract class BusinessPartner implements KeyAccess {
   @Column(name = "\"Country\"", length = 4)
   private String country;
 
-  @EdmAnnotation(term = "Core.IsLanguageDependent", constantExpression = @EdmAnnotation.ConstantExpression(
-      type = ConstantExpressionType.Bool, value = "true"))
+  @EdmAnnotation(term = "Core.IsLanguageDependent",
+          constantExpression = @EdmAnnotation.ConstantExpression(type = ConstantExpressionType.Bool, value = "true"))
   @EdmDescriptionAssociation(languageAttribute = "key/language", descriptionAttribute = "name",
       valueAssignments = {
           @EdmDescriptionAssociation.valueAssignment(attribute = "key/codePublisher", value = "ISO"),
           @EdmDescriptionAssociation.valueAssignment(attribute = "key/codeID", value = "3166-1") })
+
   @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @JoinColumn(name = "\"DivisionCode\"", referencedColumnName = "\"Country\"")
   private Collection<AdministrativeDivisionDescription> locationName;
@@ -129,6 +133,54 @@ public abstract class BusinessPartner implements KeyAccess {
   public BusinessPartner() {
   }
 
+  public String getID() {
+    return iD;
+  }
+
+  public void setID(final String iD) {
+    this.iD = iD;
+  }
+
+  public PostalAddressData getAddress() {
+    return address;
+  }
+
+  public void setAddress(final PostalAddressData address) {
+    this.address = address;
+  }
+
+  public AdministrativeInformation getAdministrativeInformation() {
+    return administrativeInformation;
+  }
+
+  public void setAdministrativeInformation(final AdministrativeInformation administrativeInformation) {
+    this.administrativeInformation = administrativeInformation;
+  }
+
+  public CommunicationData getCommunicationData() {
+    return communicationData;
+  }
+
+  public void setCommunicationData(final CommunicationData communicationData) {
+    this.communicationData = communicationData;
+  }
+
+  public String getCountry() {
+    return country;
+  }
+
+  public void setCountry(final String country) {
+    this.country = country;
+  }
+
+  public String getType() {
+    return type;
+  }
+
+  public void setType(final String type) {
+    this.type = type;
+  }
+
   @Override
   public boolean equals(Object obj) {
     if (this == obj)
@@ -143,20 +195,10 @@ public abstract class BusinessPartner implements KeyAccess {
     } else return iD.equals(other.iD);
   }
 
-  public PostalAddressData getAddress() {
-    return address;
-  }
-
-  public AdministrativeInformation getAdministrativeInformation() {
-    return administrativeInformation;
-  }
-
-  public CommunicationData getCommunicationData() {
-    return communicationData;
-  }
-
-  public String getCountry() {
-    return country;
+  public Collection<BusinessPartnerRole> getRoles() {
+    if (roles == null)
+      roles = new ArrayList<>();
+    return roles;
   }
 
   public LocalDateTime getCreationDateTime() {
@@ -183,49 +225,6 @@ public abstract class BusinessPartner implements KeyAccess {
     return eTag;
   }
 
-  public String getID() {
-    return iD;
-  }
-
-  @Override
-  public Object getKey() {
-    return iD;
-  }
-
-  public Collection<BusinessPartnerRole> getRoles() {
-    if (roles == null)
-      roles = new ArrayList<>();
-    return roles;
-  }
-
-  public String getType() {
-    return type;
-  }
-
-  @Override
-  public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + ((iD == null) ? 0 : iD.hashCode());
-    return result;
-  }
-
-  public void setAddress(final PostalAddressData address) {
-    this.address = address;
-  }
-
-  public void setAdministrativeInformation(final AdministrativeInformation administrativeInformation) {
-    this.administrativeInformation = administrativeInformation;
-  }
-
-  public void setCommunicationData(final CommunicationData communicationData) {
-    this.communicationData = communicationData;
-  }
-
-  public void setCountry(final String country) {
-    this.country = country;
-  }
-
   public void setCreationDateTime(final LocalDateTime creationDateTime) {
     this.creationDateTime = creationDateTime;
   }
@@ -250,16 +249,18 @@ public abstract class BusinessPartner implements KeyAccess {
     this.eTag = eTag;
   }
 
-  public void setID(final String iD) {
-    this.iD = iD;
-  }
-
+/*
   public void setRoles(final Collection<BusinessPartnerRole> roles) {
     this.roles = roles;
   }
+*/
 
-  public void setType(final String type) {
-    this.type = type;
+  public Collection<AdministrativeDivisionDescription> getLocationName() {
+    return locationName;
+  }
+
+  public void setLocationName(final Collection<AdministrativeDivisionDescription> locationName) {
+    this.locationName = locationName;
   }
 
   @PrePersist
@@ -270,12 +271,17 @@ public abstract class BusinessPartner implements KeyAccess {
     administrativeInformation.setUpdated(created);
   }
 
-  public Collection<AdministrativeDivisionDescription> getLocationName() {
-    return locationName;
+  @Override
+  public Object getKey() {
+    return iD;
   }
 
-  public void setLocationName(final Collection<AdministrativeDivisionDescription> locationName) {
-    this.locationName = locationName;
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((iD == null) ? 0 : iD.hashCode());
+    return result;
   }
 
 }

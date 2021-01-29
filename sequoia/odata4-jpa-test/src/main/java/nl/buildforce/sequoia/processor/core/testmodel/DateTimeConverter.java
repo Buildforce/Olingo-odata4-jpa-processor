@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
 //This converter has to be mentioned at all columns it is applicable
-@Converter(autoApply = false)
+@Converter
 public class DateTimeConverter implements AttributeConverter<LocalDateTime, Timestamp> {
 
   @Override
