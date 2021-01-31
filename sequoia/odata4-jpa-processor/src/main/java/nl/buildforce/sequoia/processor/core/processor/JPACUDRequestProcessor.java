@@ -497,7 +497,7 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
     // Upon successful completion, the response MUST contain a Location header that contains the edit URL or read URL of
     // the created entity.
     //
-    successStatusCode = HttpStatusCode.CREATED.getStatusCode();
+    setSuccessStatusCode(HttpStatusCode.CREATED.getStatusCode());
     Preferences prefer = odata.createPreferences(request.getHeaders(HttpHeader.PREFER));
     // TODO Stream properties
 
@@ -508,7 +508,7 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
       Entity createdEntity = convertEntity(et, result, request.getAllHeaders());
       EntityCollection entities = new EntityCollection();
       entities.getEntities().add(createdEntity);
-      createSuccesResponse(response, responseFormat, serializer.serialize(request, entities));
+      createSuccessResponse(response, responseFormat, serializer.serialize(request, entities));
       response.setHeader(HttpHeader.LOCATION, location);
     }
   }
@@ -663,7 +663,7 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
     // as a subsequent request to retrieve the same resource. For updating media entity streams, the content of a
     // non-empty response body MUST be the updated media entity.
     //
-    successStatusCode = HttpStatusCode.OK.getStatusCode();
+    this.setSuccessStatusCode(HttpStatusCode.OK.getStatusCode());
     Preferences prefer = odata.createPreferences(request.getHeaders(HttpHeader.PREFER));
     // TODO Stream properties
     if (updateResult == null || prefer.getReturn() == Return.MINIMAL) {
@@ -692,7 +692,7 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
       }
       EntityCollection entities = new EntityCollection();
       entities.getEntities().add(updatedEntity);
-      createSuccesResponse(response, responseFormat, serializer.serialize(request, entities));
+      createSuccessResponse(response, responseFormat, serializer.serialize(request, entities));
     }
   }
 

@@ -1,15 +1,5 @@
 package nl.buildforce.sequoia.processor.core.processor;
 
-import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAException;
-import nl.buildforce.sequoia.processor.core.api.JPAODataCRUDContextAccess;
-import nl.buildforce.sequoia.processor.core.api.JPAODataPage;
-import nl.buildforce.sequoia.processor.core.api.JPAODataRequestContextAccess;
-import nl.buildforce.sequoia.processor.core.exception.JPAIllegalAccessException;
-import nl.buildforce.sequoia.processor.core.exception.ODataJPAProcessorException;
-import nl.buildforce.sequoia.processor.core.modify.JPAConversionHelper;
-import nl.buildforce.sequoia.processor.core.query.JPACountQuery;
-import nl.buildforce.sequoia.processor.core.query.JPAJoinQuery;
-import nl.buildforce.sequoia.processor.core.serializer.JPASerializerFactory;
 import nl.buildforce.olingo.commons.api.format.ContentType;
 import nl.buildforce.olingo.commons.api.http.HttpHeader;
 import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
@@ -22,6 +12,17 @@ import nl.buildforce.olingo.server.api.uri.UriResource;
 import nl.buildforce.olingo.server.api.uri.UriResourceKind;
 import nl.buildforce.olingo.server.api.uri.queryoption.SystemQueryOption;
 import nl.buildforce.olingo.server.api.uri.queryoption.SystemQueryOptionKind;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAException;
+import nl.buildforce.sequoia.processor.core.api.JPAODataCRUDContextAccess;
+import nl.buildforce.sequoia.processor.core.api.JPAODataPage;
+import nl.buildforce.sequoia.processor.core.api.JPAODataRequestContextAccess;
+import nl.buildforce.sequoia.processor.core.exception.JPAIllegalAccessException;
+import nl.buildforce.sequoia.processor.core.exception.ODataJPAProcessorException;
+import nl.buildforce.sequoia.processor.core.modify.JPAConversionHelper;
+import nl.buildforce.sequoia.processor.core.query.JPACountQuery;
+import nl.buildforce.sequoia.processor.core.query.JPAJoinQuery;
+import nl.buildforce.sequoia.processor.core.serializer.JPASerializerFactory;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Collections;
 import java.util.List;
@@ -135,17 +136,17 @@ public final class JPAProcessorFactory {
     // Server-Driven-Paging
     if (serverDrivenPaging(uriInfo)) {
       final String skiptoken = skipToken(uriInfo);
-      if (skiptoken != null && !skiptoken.isEmpty()) {
-        page = sessionContext.getPagingProvider().getNextPage(skiptoken);
-        if (page == null)
-          throw new ODataJPAProcessorException(ODataJPAProcessorException.MessageKeys.QUERY_SERVER_DRIVEN_PAGING_GONE, HttpStatusCode.GONE, skiptoken);
-      } else {
+      if (StringUtils.isEmpty(skiptoken)) {
         final JPACountQuery countQuery = new JPAJoinQuery(odata, sessionContext, headers,
             new JPAODataRequestContextImpl(uriInfo, requestContext));
         final Integer preferredPagesize = getPreferredPageSize(headers);
         final JPAODataPage firstPage = sessionContext.getPagingProvider().getFirstPage(uriInfo, preferredPagesize,
             countQuery, requestContext.getEntityManager());
         page = firstPage != null ? firstPage : page;
+      } else {
+        page = sessionContext.getPagingProvider().getNextPage(skiptoken);
+        if (page == null)
+          throw new ODataJPAProcessorException(ODataJPAProcessorException.MessageKeys.QUERY_SERVER_DRIVEN_PAGING_GONE, HttpStatusCode.GONE, skiptoken);
       }
     }
     return page;

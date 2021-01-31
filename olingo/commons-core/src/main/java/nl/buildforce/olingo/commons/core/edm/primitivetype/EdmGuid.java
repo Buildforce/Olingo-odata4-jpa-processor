@@ -57,15 +57,18 @@ public final class EdmGuid extends SingletonPrimitiveType {
                                         Integer scale, Boolean isUnicode,
                                         Class<T> returnType) throws EdmPrimitiveTypeException {
 
-    UUID result;
-    if (validateLiteral(value)) {
-      result = UUID.fromString(value);
-    } else {
-      throw new EdmPrimitiveTypeException("The literal '" + value + "' has illegal content.");
+    UUID valueUUID;
+
+    try {
+      valueUUID = UUID.fromString(value);
+    } catch (IllegalArgumentException e) {
+      throw new EdmPrimitiveTypeException("The literal '" + value + "' has illegal content.", e);
     }
 
-    if (returnType.isAssignableFrom(UUID.class)) {
-      return returnType.cast(result);
+    if (returnType == String.class) {
+      return returnType.cast(value);
+    } else if (returnType.isAssignableFrom(UUID.class)) {
+      return returnType.cast(valueUUID);
     } else {
       throw new EdmPrimitiveTypeException("The value type " + returnType + " is not supported.");
     }

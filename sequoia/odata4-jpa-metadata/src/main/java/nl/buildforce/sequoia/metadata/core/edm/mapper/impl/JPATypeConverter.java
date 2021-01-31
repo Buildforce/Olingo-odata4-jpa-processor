@@ -1,13 +1,13 @@
 package nl.buildforce.sequoia.metadata.core.edm.mapper.impl;
 
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAttribute;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
-import nl.buildforce.olingo.commons.api.edm.EdmPrimitiveTypeKind;
-
 import jakarta.persistence.Lob;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.persistence.metamodel.Attribute;
+import nl.buildforce.olingo.commons.api.edm.EdmPrimitiveTypeKind;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAttribute;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
+
 import java.lang.reflect.AnnotatedElement;
 import java.math.BigDecimal;
 import java.sql.Blob;
@@ -139,87 +139,24 @@ public final class JPATypeConverter {
         return (type == Boolean.class ||
                 type == Byte.class ||
                 type == Byte[].class ||
-                type == byte[].class ||
                 type == Double.class ||
                 type == Float.class ||
                 type == Integer.class ||
+                type == Long.class ||
+                type == Short.class ||
+                type == String.class ||
+                type == byte[].class ||
                 type == java.math.BigDecimal.class ||
                 type == java.math.BigInteger.class ||
                 type == java.sql.Time.class ||
                 type == java.sql.Timestamp.class ||
-                type == java.util.Calendar.class ||
-                type == java.time.LocalTime.class ||
                 type == java.time.LocalDate.class ||
+                type == java.time.LocalTime.class ||
                 type == java.time.ZonedDateTime.class ||
+                type == java.util.Calendar.class ||
                 type == java.util.Date.class ||
-                type == java.util.UUID.class ||
-                type == Long.class ||
-                type == Short.class ||
-                type == String.class);
+                type == java.util.UUID.class);
     }
-
-    /*private static EdmPrimitiveTypeKind convertGeography(final Class<?> jpaType, final Attribute<?, ?> currentAttribute)
-            throws ODataJPAModelException {
-        if (jpaType.equals(org.apache.olingo.commons.api.edm.geo.Point.class)) {
-            return EdmPrimitiveTypeKind.GeographyPoint;
-        } else if (jpaType.equals(org.apache.olingo.commons.api.edm.geo.MultiPoint.class)) {
-            return EdmPrimitiveTypeKind.GeographyMultiPoint;
-        } else if (jpaType.equals(org.apache.olingo.commons.api.edm.geo.LineString.class)) {
-            return EdmPrimitiveTypeKind.GeographyLineString;
-        } else if (jpaType.equals(org.apache.olingo.commons.api.edm.geo.MultiLineString.class)) {
-            return EdmPrimitiveTypeKind.GeographyMultiLineString;
-        } else if (jpaType.equals(org.apache.olingo.commons.api.edm.geo.Polygon.class)) {
-            return EdmPrimitiveTypeKind.GeographyPolygon;
-        } else if (jpaType.equals(org.apache.olingo.commons.api.edm.geo.MultiPolygon.class)) {
-            return EdmPrimitiveTypeKind.GeographyMultiPolygon;
-        } else if (jpaType.equals(org.apache.olingo.commons.api.edm.geo.GeospatialCollection.class)) {
-            return EdmPrimitiveTypeKind.GeographyCollection;
-        }
-        // Type (%1$s) of attribute (%2$s) is not supported. Mapping not possible
-        throw new ODataJPAModelException(ODataJPAModelException.MessageKeys.TYPE_NOT_SUPPORTED,
-                jpaType.getName(), currentAttribute.getName());
-    }
-
-    private static EdmPrimitiveTypeKind convertGeometry(final Class<?> jpaType, final Attribute<?, ?> currentAttribute)
-            throws ODataJPAModelException {
-        if (jpaType.equals(org.apache.olingo.commons.api.edm.geo.Point.class)) {
-            return EdmPrimitiveTypeKind.GeometryPoint;
-        } else if (jpaType.equals(org.apache.olingo.commons.api.edm.geo.MultiPoint.class)) {
-            return EdmPrimitiveTypeKind.GeometryMultiPoint;
-        } else if (jpaType.equals(org.apache.olingo.commons.api.edm.geo.LineString.class)) {
-            return EdmPrimitiveTypeKind.GeometryLineString;
-        } else if (jpaType.equals(org.apache.olingo.commons.api.edm.geo.MultiLineString.class)) {
-            return EdmPrimitiveTypeKind.GeometryMultiLineString;
-        } else if (jpaType.equals(org.apache.olingo.commons.api.edm.geo.Polygon.class)) {
-            return EdmPrimitiveTypeKind.GeometryPolygon;
-        } else if (jpaType.equals(org.apache.olingo.commons.api.edm.geo.MultiPolygon.class)) {
-            return EdmPrimitiveTypeKind.GeometryMultiPolygon;
-        } else if (jpaType.equals(org.apache.olingo.commons.api.edm.geo.GeospatialCollection.class)) {
-            return EdmPrimitiveTypeKind.GeometryCollection;
-        }
-
-        if (jpaType.equals(Point.class)) {
-            return EdmPrimitiveTypeKind.GeometryPoint;
-        } else if (jpaType.equals(MultiPoint.class)) {
-            return EdmPrimitiveTypeKind.GeometryMultiPoint;
-        } else if (jpaType.equals(LineString.class)) {
-            return EdmPrimitiveTypeKind.GeometryLineString;
-        } else if (jpaType.equals(MultiLineString.class)) {
-            return EdmPrimitiveTypeKind.GeometryMultiLineString;
-        } else if (jpaType.equals(Polygon.class)) {
-            return EdmPrimitiveTypeKind.GeometryPolygon;
-        } else if (jpaType.equals(MultiPolygon.class)) {
-            return EdmPrimitiveTypeKind.GeometryMultiPolygon;
-        } else if (jpaType.equals(GeometryCollection.class)) {
-            return EdmPrimitiveTypeKind.GeometryCollection;
-        } else if (jpaType.equals(Geometry.class)) {
-            return EdmPrimitiveTypeKind.Geometry;
-        }
-
-        // Type (%1$s) of attribute (%2$s) is not supported. Mapping not possible
-        throw new ODataJPAModelException(ODataJPAModelException.MessageKeys.TYPE_NOT_SUPPORTED,
-                jpaType.getName(), currentAttribute.getName());
-    }*/
 
     private static TemporalType determineTemporalType(final Attribute<?, ?> currentAttribute) {
         if (currentAttribute != null) {
@@ -229,18 +166,7 @@ public final class JPATypeConverter {
             }
         }
         return null;
-
     }
-
-/*    private static Dimension getDimension(final Attribute<?, ?> currentAttribute) {
-        if (currentAttribute.getJavaMember() instanceof AnnotatedElement) {
-            final AnnotatedElement annotatedElement = (AnnotatedElement) currentAttribute.getJavaMember();
-            final EdmGeospatial spatialDetails = annotatedElement.getAnnotation(EdmGeospatial.class);
-            if (spatialDetails != null)
-                return spatialDetails.dimension();
-        }
-        return null;
-    }*/
 
     private static boolean isBlob(final Attribute<?, ?> currentAttribute) {
         if (currentAttribute != null) {

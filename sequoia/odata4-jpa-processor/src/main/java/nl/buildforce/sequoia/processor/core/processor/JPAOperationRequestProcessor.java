@@ -116,7 +116,7 @@ abstract class JPAOperationRequestProcessor extends JPAAbstractRequestProcessor 
 
       final SerializerResult serializerResult = ((JPAOperationSerializer) serializer).serialize(result, returnType,
           request);
-      createSuccesResponse(response, responseFormat, serializerResult);
+      createSuccessResponse(response, responseFormat, serializerResult);
     } else {
       response.setStatusCode(HttpStatusCode.NO_CONTENT.getStatusCode());
     }

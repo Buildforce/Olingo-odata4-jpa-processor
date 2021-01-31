@@ -78,7 +78,7 @@ public class JPAActionRequestProcessor extends JPAOperationRequestProcessor {
 
       if (serializer != null)
         serializeResult(returnType, response, serializer.getContentType(), r, request);
-      else response.setStatusCode(successStatusCode);
+      else response.setStatusCode(HttpStatusCode.OK.getStatusCode());
     } catch (InstantiationException | IllegalAccessException | IllegalArgumentException e) {
       throw new ODataJPAProcessorException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
     } catch (InvocationTargetException | ODataException e) {
