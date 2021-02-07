@@ -40,42 +40,46 @@ public interface Constants {
   Integer DEFAULT_SCALE = 25;
 
   // Common Namespaces
-  String NS_BASE = "http://docs.oasis-open.org/odata/ns/";
+  String NS_BASE = "https://docs.oasis-open.org/odata/ns/";
 
-  String NS_DATASERVICES = "http://docs.oasis-open.org/odata/ns/data";
+  String NS_DATASERVICES = NS_BASE + "data";
 
-  String NS_METADATA = "http://docs.oasis-open.org/odata/ns/metadata";
+  String NS_METADATA = NS_BASE + "metadata";
 
-  String NS_SCHEME = "http://docs.oasis-open.org/odata/ns/scheme";
+  String NS_SCHEME = NS_BASE + "scheme";
 
-  String NS_NAVIGATION_LINK_REL = "http://docs.oasis-open.org/odata/ns/related/";
+  String NS_NAVIGATION_LINK_REL = NS_BASE + "related/";
 
-  String NS_ASSOCIATION_LINK_REL = "http://docs.oasis-open.org/odata/ns/relatedlinks/";
+  String NS_ASSOCIATION_LINK_REL = NS_BASE + "relatedlinks/";
 
-  String NS_MEDIA_EDIT_LINK_REL = "http://docs.oasis-open.org/odata/ns/edit-media/";
+  String NS_MEDIA_EDIT_LINK_REL = NS_BASE + "edit-media/";
   
-  String NS_MEDIA_READ_LINK_REL = "http://docs.oasis-open.org/odata/ns/mediaresource/";
+  String NS_MEDIA_READ_LINK_REL = NS_BASE + "mediaresource/";
 
-  String NS_DELTA_LINK_REL = "http://docs.oasis-open.org/odata/ns/delta";
+  String NS_DELTA_LINK_REL = NS_BASE + "delta";
 
   // XML namespaces and prefixes
-  String NS_ATOM = "http://www.w3.org/2005/Atom";
+  String NS_ATOM = "https://www.w3.org/2005/Atom";
 
+/*
   String NS_GEORSS = "http://www.georss.org/georss";
 
   String NS_GML = "http://www.opengis.net/gml";
 
   String NS_ATOM_TOMBSTONE = "http://purl.org/atompub/tombstones/1.0";
+*/
 
   String PREFIX_DATASERVICES = "d";
 
   String PREFIX_METADATA = "m";
 
+/*
   String PREFIX_GEORSS = "georss";
 
   String PREFIX_GML = "gml";
 
   String SRS_URLPREFIX = "http://www.opengis.net/def/crs/EPSG/0/";
+*/
 
   // Link rel(s)
   String EDIT_LINK_REL = "edit";
@@ -87,37 +91,22 @@ public interface Constants {
   String NEXT_LINK_REL = "next";
 
   // XML elements and attributes
-  String PROPERTIES = "properties";
-
-  String ELEM_ELEMENT = "element";
-
-  String ATTR_TYPE = "type";
-
-  String ATTR_NULL = "null";
-
-  String ATTR_XML_BASE = "base";
-
-  QName QNAME_ATTR_XML_BASE = new QName(XMLConstants.XML_NS_URI, ATTR_XML_BASE);
-
-  String CONTEXT = "context";
-
-  String ATTR_REL = "rel";
-
-  String ATTR_TITLE = "title";
-
-  String ATTR_METADATA = "metadata";
-
   String ATTR_HREF = "href";
-  
+  String ATTR_METADATA = "metadata";
   String ATTR_NAME = "name";
-
-  String ATTR_TARGET = "target";
-
-  String ELEM_REASON = "reason";
-
-  String ATTR_SOURCE = "source";
-
+  String ATTR_NULL = "null";
+  String ATTR_REL = "rel";
   String ATTR_RELATIONSHIP = "relationship";
+  String ATTR_SOURCE = "source";
+  String ATTR_TARGET = "target";
+  String ATTR_TITLE = "title";
+  String ATTR_TYPE = "type";
+  String ATTR_XML_BASE = "base";
+  String CONTEXT = "context";
+  String ELEM_ELEMENT = "element";
+  String ELEM_REASON = "reason";
+  String PROPERTIES = "properties";
+  QName QNAME_ATTR_XML_BASE = new QName(XMLConstants.XML_NS_URI, ATTR_XML_BASE);
 
   // JSON stuff
   String JSON_METADATA = "odata.metadata";
@@ -126,7 +115,7 @@ public interface Constants {
 
   String JSON_ID = "@odata.id";
 
-  String JSON_READ_LINK = "@odata.readLink";
+  // String JSON_READ_LINK = "@odata.readLink";
 
   String JSON_EDIT_LINK = "@odata.editLink";
 
@@ -144,11 +133,13 @@ public interface Constants {
 
   String JSON_METADATA_ETAG = "@odata.metadataEtag";
 
+/*
   String JSON_BIND_LINK_SUFFIX = "@odata.bind";
 
   String JSON_ASSOCIATION_LINK = "@odata.associationLink";
 
   String JSON_NAVIGATION_LINK = "@odata.navigationLink";
+*/
 
   String JSON_COUNT = "@odata.count";
 
@@ -195,15 +186,15 @@ public interface Constants {
 
   String ATOM_ELEM_TITLE = "title";
 
-  QName QNAME_ATOM_ELEM_TITLE = new QName(NS_ATOM, ATOM_ELEM_TITLE);
+  // QName QNAME_ATOM_ELEM_TITLE = new QName(NS_ATOM, ATOM_ELEM_TITLE);
 
   String ATOM_ELEM_SUMMARY = "summary";
 
-  QName QNAME_ATOM_ELEM_SUMMARY = new QName(NS_ATOM, ATOM_ELEM_SUMMARY);
+  // QName QNAME_ATOM_ELEM_SUMMARY = new QName(NS_ATOM, ATOM_ELEM_SUMMARY);
 
   String ATOM_ELEM_UPDATED = "updated";
 
-  QName QNAME_ATOM_ELEM_UPDATED = new QName(NS_ATOM, ATOM_ELEM_UPDATED);
+  // QName QNAME_ATOM_ELEM_UPDATED = new QName(NS_ATOM, ATOM_ELEM_UPDATED);
 
   String ATOM_ELEM_LINK = "link";
 
@@ -229,7 +220,7 @@ public interface Constants {
 
   String ATOM_ATTR_METADATAETAG = "metadata-etag";
 
-  String ATOM_ELEM_DELETED_ENTRY = "deleted-entry";
+  // String ATOM_ELEM_DELETED_ENTRY = "deleted-entry";
 
   // error stuff
   String ERROR_CODE = "code";
@@ -240,9 +231,11 @@ public interface Constants {
 
   String ERROR_DETAILS = "details";
 
+/*
   String ERROR_DETAIL = "detail";
   
   String ERROR_INNERERROR = "innererror";
+*/
 
   // canonical functions to be applied via dynamic annotation <tt>Apply</tt>
   String CANONICAL_FUNCTION_CONCAT = "odata.concat";
@@ -251,10 +244,10 @@ public interface Constants {
 
   String CANONICAL_FUNCTION_URIENCODE = "odata.uriEncode";
 
-  String MEDIA_EDIT_LINK_TYPE = "*/*";
+//  String MEDIA_EDIT_LINK_TYPE = "*/*";
   String ENTITY_NAVIGATION_LINK_TYPE = ContentType.APPLICATION_ATOM_XML_ENTRY.toString();
   String ENTITY_SET_NAVIGATION_LINK_TYPE = ContentType.APPLICATION_ATOM_XML_FEED.toString();
-  String ASSOCIATION_LINK_TYPE = ContentType.APPLICATION_XML.toString();
+//  String ASSOCIATION_LINK_TYPE = ContentType.APPLICATION_XML.toString();
   String ENTITY_COLLECTION_BINDING_LINK_TYPE = ContentType.APPLICATION_XML.toString();
   String ENTITY_BINDING_LINK_TYPE = ContentType.APPLICATION_XML.toString();
   

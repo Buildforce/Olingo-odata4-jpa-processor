@@ -31,12 +31,12 @@
   Abstract:
   This vocabulary defines terms to describe which data in a given entity model can be aggregated, and how.
 -->
-<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+<edmx:Edmx xmlns:edmx="https://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
   <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
     <edmx:Include Namespace="Org.OData.Core.V1" Alias="Core" />
   </edmx:Reference>
   <edmx:DataServices>
-    <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="Org.OData.Aggregation.V1" Alias="Aggregation">
+    <Schema xmlns="https://docs.oasis-open.org/odata/ns/edm" Namespace="Org.OData.Aggregation.V1" Alias="Aggregation">
       <Annotation Term="Core.Description">
         <String>Terms to describe which data in a given entity model can be aggregated, and how.</String>
       </Annotation>

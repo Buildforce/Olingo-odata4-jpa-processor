@@ -26,12 +26,10 @@ import java.math.BigDecimal;
         name = "IsOdd",
         functionName = "IS_ODD",
         returnType = @EdmFunction.ReturnType(isCollection = true),
-        parameter = { @EdmParameter(name = "Number", type = BigDecimal.class, precision = 32, scale = 0) }),
-
-})
+        parameter = { @EdmParameter(name = "Number", type = BigDecimal.class, precision = 32, scale = 0) })})
 @Table(schema = "\"OLINGO\"", name = "\"DummyToBeIgnored\"")
 @EdmIgnore
-public class DummyToBeIgnored /*implements Serializable*/ {
+public class DummyToBeIgnored {
 
   @Id
   private String ID;

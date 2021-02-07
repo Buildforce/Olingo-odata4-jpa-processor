@@ -30,7 +30,7 @@ import java.util.regex.Pattern;
 
 public class AcceptCharset {
 
-  private static final Pattern Q_PATTERN = Pattern.compile("\\A(?:0(?:\\.\\d{0,3})?)|(?:1(?:\\.0{0,3})?)\\Z");
+  private static final Pattern Q_PATTERN = Pattern.compile("\\A0(?:\\.\\d{0,3})?|1(?:\\.0{0,3})?\\Z");
   private static final Pattern CHARSET_PATTERN = Pattern.compile("([^,][\\w!#$%&'*+-._`|~;^]*)");
   private final String charset;
   private final Map<String, String> parameters;

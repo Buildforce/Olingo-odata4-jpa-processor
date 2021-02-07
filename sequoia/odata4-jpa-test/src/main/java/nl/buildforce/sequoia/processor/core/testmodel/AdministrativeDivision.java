@@ -56,9 +56,7 @@ import nl.buildforce.sequoia.metadata.core.edm.annotation.EdmParameter;
         functionName = "\"OLINGO\".\"ConvertToQkm\"",
         isBound = false,
             returnType = @EdmFunction.ReturnType(type = Integer.class),
-        parameter = {
-            @EdmParameter(name = "Area", parameterName = "UnitArea", type = Integer.class) }),
-})
+        parameter = {@EdmParameter(name = "Area", parameterName = "UnitArea", type = Integer.class) })})
 
 @IdClass(AdministrativeDivisionKey.class)
 @Entity(name = "AdministrativeDivision")

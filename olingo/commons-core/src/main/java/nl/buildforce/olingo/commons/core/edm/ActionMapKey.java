@@ -44,8 +44,8 @@ public class ActionMapKey {
   @Override
   public int hashCode() {
     String forHash = actionName.toString()
-        + bindingParameterTypeName.toString()
-        + isBindingParameterCollection.toString();
+        + bindingParameterTypeName
+        + isBindingParameterCollection;
     return forHash.hashCode();
   }
 

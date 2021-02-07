@@ -250,8 +250,7 @@ public final class ContentNegotiator {
                 } else if ("false".equalsIgnoreCase(ieee754compatibleValue)) {
                     contentType = new ContentType(contentType, ContentType.PARAMETER_IEEE754_COMPATIBLE, "false");
                 } else if (ieee754compatibleValue != null) {
-                    throw new IllegalArgumentException("Invalid IEEE754Compatible value in accept header:" +
-                            acceptedType.toString());
+                    throw new IllegalArgumentException("Invalid IEEE754Compatible value in accept header:" + acceptedType);
                 }
 
                 if (acceptedType.matches(contentType)) {

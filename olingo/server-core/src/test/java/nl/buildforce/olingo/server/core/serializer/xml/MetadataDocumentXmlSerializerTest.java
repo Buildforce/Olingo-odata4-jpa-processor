@@ -123,7 +123,7 @@ public class MetadataDocumentXmlSerializerTest {
     when(metadata.getEdm()).thenReturn(edm);
 
     assertEquals("<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
-        + "<edmx:Edmx Version=\"4.0\" xmlns:edmx=\"http://docs.oasis-open.org/odata/ns/edmx\">"
+        + "<edmx:Edmx Version=\"4.0\" xmlns:edmx=\"https://docs.oasis-open.org/odata/ns/edmx\">"
         + "<edmx:DataServices></edmx:DataServices></edmx:Edmx>",
         IOUtils.toString(serializer.metadataDocument(metadata).getContent(), StandardCharsets.UTF_8));
   }
@@ -141,9 +141,9 @@ public class MetadataDocumentXmlSerializerTest {
     InputStream metadata = serializer.metadataDocument(serviceMetadata).getContent();
     assertNotNull(metadata);
     assertEquals("<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
-        + "<edmx:Edmx Version=\"4.0\" xmlns:edmx=\"http://docs.oasis-open.org/odata/ns/edmx\">"
+        + "<edmx:Edmx Version=\"4.0\" xmlns:edmx=\"https://docs.oasis-open.org/odata/ns/edmx\">"
         + "<edmx:DataServices>"
-        + "<Schema xmlns=\"http://docs.oasis-open.org/odata/ns/edm\" Namespace=\"MyNamespace\"></Schema>"
+        + "<Schema xmlns=\"https://docs.oasis-open.org/odata/ns/edm\" Namespace=\"MyNamespace\"></Schema>"
         + "</edmx:DataServices>"
         + "</edmx:Edmx>",
         IOUtils.toString(metadata, StandardCharsets.UTF_8));
@@ -503,9 +503,7 @@ public class MetadataDocumentXmlSerializerTest {
     .setName("PropertyInt16")
     .setType(nameInt16)
     .setNullable(false);
-    private final CsdlProperty propertyString = new CsdlProperty()
-    .setName("PropertyString")
-    .setType(nameString);
+    private final CsdlProperty propertyString = new CsdlProperty("PropertyString", nameString);
     
     private final CsdlNavigationProperty navProperty = new CsdlNavigationProperty()
         .setName("NavProperty")
@@ -1003,4 +1001,5 @@ public class MetadataDocumentXmlSerializerTest {
       return null;
     }
   }
+
 }

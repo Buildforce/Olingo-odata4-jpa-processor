@@ -26,6 +26,7 @@ import java.util.Optional;
 
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
+import nl.buildforce.olingo.commons.api.Constants;
 
 import nl.buildforce.olingo.commons.api.edm.EdmAction;
 import nl.buildforce.olingo.commons.api.edm.EdmActionImport;
@@ -146,9 +147,9 @@ public class MetadataDocumentXmlSerializer {
 
   private static final String EDMX = "Edmx";
   private static final String PREFIX_EDMX = "edmx";
-  private static final String NS_EDMX = "http://docs.oasis-open.org/odata/ns/edmx";
+  private static final String NS_EDMX = Constants.NS_BASE + PREFIX_EDMX;
 
-  private static final String NS_EDM = "http://docs.oasis-open.org/odata/ns/edm";
+  private static final String NS_EDM = Constants.NS_BASE + "edm";
   private static final String XML_ENTITY_SET_PATH = "EntitySetPath";
   private static final String XML_CONTAINS_TARGET = "ContainsTarget";
   private static final String XML_TERM_ATT = "Term";
@@ -1059,4 +1060,5 @@ public class MetadataDocumentXmlSerializer {
       writer.writeEndElement();
     }
   }
+
 }

@@ -65,7 +65,7 @@ public class TestJPAODataGetHandler extends TestBase {
     assertNotNull(cut.jpaMetamodel);
   }
 
-  /*@Test
+  /* @Test
   public void testProcessWithoutEntityManager() throws ODataJPAFilterException, ODataJPAModelException {
     final DataSource ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_DERBY);
     cut = new JPAODataGetHandler(PUNIT_NAME, ds);

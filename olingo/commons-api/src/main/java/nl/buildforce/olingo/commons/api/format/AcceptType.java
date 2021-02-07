@@ -45,7 +45,7 @@ import java.util.regex.Pattern;
  */
 public final class AcceptType {
 
-  private static final Pattern Q_PATTERN = Pattern.compile("\\A(?:0(?:\\.\\d{0,3})?)|(?:1(?:\\.0{0,3})?)\\Z");
+  private static final Pattern Q_PATTERN = Pattern.compile("\\A0(?:\\.\\d{0,3})?|1(?:\\.0{0,3})?\\Z");
 
   private final String type;
   private final String subtype;

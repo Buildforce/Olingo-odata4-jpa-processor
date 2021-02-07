@@ -32,7 +32,7 @@ import nl.buildforce.olingo.commons.api.edm.EdmPrimitiveTypeException;
 public final class EdmDecimal extends SingletonPrimitiveType {
 
   private static final Pattern PATTERN = Pattern.compile(
-          "[+-]?(?:0*(\\p{Digit}+?))(?:\\.(\\p{Digit}+?)0*)?([Ee][+-]?\\p{Digit}+)?");
+          "[+-]?0*(\\p{Digit}+?)(?:\\.(\\p{Digit}+?)0*)?([Ee][+-]?\\p{Digit}+)?");
 
   private static final EdmDecimal INSTANCE = new EdmDecimal();
 

@@ -393,7 +393,7 @@ public class ResourcePathParser {
       if (function == null) {
         throw new UriParserSemanticException(
             "Function of function import '" + edmFunctionImport.getName() + "' "
-                + "with parameters " + names.toString() + " not found.",
+                + "with parameters " + names + " not found.",
             UriParserSemanticException.MessageKeys.FUNCTION_NOT_FOUND, edmFunctionImport.getName(), names.toString());
       }
     } else {
@@ -423,4 +423,5 @@ public class ResourcePathParser {
     ParserHelper.requireTokenEnd(tokenizer);
     return resource;
   }
+
 }

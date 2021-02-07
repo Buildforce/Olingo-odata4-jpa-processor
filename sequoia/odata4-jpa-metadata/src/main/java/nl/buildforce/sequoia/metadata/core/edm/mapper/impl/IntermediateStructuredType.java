@@ -38,30 +38,24 @@ import java.util.Map.Entry;
 import java.util.Objects;
 
 abstract class IntermediateStructuredType extends IntermediateModelElement implements JPAStructuredType {
-//
 
-  protected final Map<String, IntermediateProperty> declaredPropertiesList;
-  protected final Map<String, IntermediateNavigationProperty> declaredNaviPropertiesList;
-  protected final Map<String, JPAPathImpl> resolvedPathMap;
-  protected final Map<String, JPAPath> intermediatePathMap;
-  protected final Map<String, JPAAssociationPathImpl> resolvedAssociationPathMap;
+  protected final Map<String, IntermediateProperty> declaredPropertiesList = new HashMap<>();
+  protected final Map<String, IntermediateNavigationProperty> declaredNaviPropertiesList = new HashMap<>();
+  protected final Map<String, JPAPathImpl> resolvedPathMap = new HashMap<>();
+  protected final Map<String, JPAPath> intermediatePathMap = new HashMap<>();
+  protected final Map<String, JPAAssociationPathImpl> resolvedAssociationPathMap = new HashMap<>();
   protected final ManagedType<?> jpaManagedType;
   protected final IntermediateSchema schema;
   protected List<nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAProtectionInfo> protectedAttributes;
 
-  IntermediateStructuredType(final JPAEdmNameBuilder nameBuilder, final ManagedType<?> jpaManagedType,
-                             final IntermediateSchema schema) {
+  IntermediateStructuredType(final JPAEdmNameBuilder nameBuilder,
+                             final ManagedType<?> _jpaManagedType,
+                             final IntermediateSchema _schema) {
 
-    super(nameBuilder, JPANameBuilder.buildStructuredTypeName(jpaManagedType.getJavaType()));
-    this.declaredPropertiesList = new HashMap<>();
-    this.resolvedPathMap = new HashMap<>();
-    this.intermediatePathMap = new HashMap<>();
-    this.declaredNaviPropertiesList = new HashMap<>();
-    this.resolvedAssociationPathMap = new HashMap<>();
-    this.jpaManagedType = jpaManagedType;
-    this.schema = schema;
-    determineIgnore();
-
+    super(nameBuilder, JPANameBuilder.buildStructuredTypeName(_jpaManagedType.getJavaType()));
+    jpaManagedType = _jpaManagedType;
+    schema = _schema;
+    setIgnore(this.jpaManagedType.getJavaType().getAnnotation(EdmIgnore.class)  != null);
   }
 
   @Override
@@ -329,13 +323,6 @@ abstract class IntermediateStructuredType extends IntermediateModelElement imple
 
   protected boolean determineHasStream() throws ODataJPAModelException {
     return getStreamProperty() != null;
-  }
-
-  protected void determineIgnore() {
-    final EdmIgnore jpaIgnore = this.jpaManagedType.getJavaType().getAnnotation(EdmIgnore.class);
-    if (jpaIgnore != null) {
-      this.setIgnore(true);
-    }
   }
 
   protected IntermediateStructuredType getBaseType() {

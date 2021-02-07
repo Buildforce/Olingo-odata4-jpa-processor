@@ -397,7 +397,7 @@ public class UriValidator {
         optionsString.append(option.getName()).append(' ');
       }
       throw new UriValidationException(
-          "System query option(s) " + optionsString.toString() + "not allowed for method " + httpMethod,
+          "System query option(s) " + optionsString + "not allowed for method " + httpMethod,
           UriValidationException.MessageKeys.SYSTEM_QUERY_OPTION_NOT_ALLOWED_FOR_HTTP_METHOD,
           optionsString.toString(), httpMethod.toString());
     }

@@ -49,8 +49,8 @@ Related work:
   - None
 
 Declared XML namespaces:
-  - http://docs.oasis-open.org/odata/ns/edmx
-  - http://docs.oasis-open.org/odata/ns/edm
+  - https://docs.oasis-open.org/odata/ns/edmx
+  - https://docs.oasis-open.org/odata/ns/edm
 
 Abstract:
   The Open Data Protocol (OData) enables the creation of REST-based data
@@ -66,9 +66,9 @@ Overview:
   This document contains Core terms needed to write vocabularies.
 
 -->
-<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+<edmx:Edmx xmlns:edmx="https://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
   <edmx:DataServices>
-    <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="Org.OData.Core.V1" Alias="Core">
+    <Schema xmlns="https://docs.oasis-open.org/odata/ns/edm" Namespace="Org.OData.Core.V1" Alias="Core">
       <Annotation Term="Core.Description">
         <String>Core terms needed to write vocabularies</String>
       </Annotation>

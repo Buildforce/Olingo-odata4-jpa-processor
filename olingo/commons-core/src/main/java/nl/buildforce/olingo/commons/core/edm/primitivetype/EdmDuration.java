@@ -29,7 +29,7 @@ public class EdmDuration extends SingletonPrimitiveType {
 
   private static final Pattern PATTERN = Pattern.compile(
       "[-+]?P(?:(\\p{Digit}+)D)?(?:T(?:(\\p{Digit}+)H)?(?:(\\p{Digit}+)M)?"
-          + "(?:(\\p{Digit}+(?:\\.(?:\\p{Digit}+?)0*)?)S)?)?");
+          + "(?:(\\p{Digit}+(?:\\.\\p{Digit}+?0*)?)S)?)?");
 
   private static final EdmDuration INSTANCE = new EdmDuration();
 
@@ -112,20 +112,20 @@ public class EdmDuration extends SingletonPrimitiveType {
     BigInteger seconds = valueDecimal.toBigInteger();
     BigInteger days = seconds.divide(BigInteger.valueOf(24 * 60 * 60));
     if (!days.equals(BigInteger.ZERO)) {
-      result.append(days.toString());
+      result.append(days);
       result.append('D');
     }
     result.append('T');
     seconds = seconds.subtract(days.multiply(BigInteger.valueOf(24 * 60 * 60)));
     BigInteger hours = seconds.divide(BigInteger.valueOf(60 * 60));
     if (!hours.equals(BigInteger.ZERO)) {
-      result.append(hours.toString());
+      result.append(hours);
       result.append('H');
     }
     seconds = seconds.subtract(hours.multiply(BigInteger.valueOf(60 * 60)));
     BigInteger minutes = seconds.divide(BigInteger.valueOf(60));
     if (!minutes.equals(BigInteger.ZERO)) {
-      result.append(minutes.toString());
+      result.append(minutes);
       result.append('M');
     }
     result.append(valueDecimal.remainder(BigDecimal.valueOf(60)).toPlainString());
@@ -133,4 +133,5 @@ public class EdmDuration extends SingletonPrimitiveType {
 
     return result.toString();
   }
+
 }

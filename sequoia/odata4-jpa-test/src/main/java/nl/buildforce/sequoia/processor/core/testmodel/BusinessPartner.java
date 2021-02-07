@@ -41,8 +41,7 @@ import java.util.Collection;
         name = "CountRoles",
         functionName = "COUNT_ROLES",
         returnType = @EdmFunction.ReturnType(isCollection = true),
-        parameter = { @EdmParameter(name = "Amount", parameterName = "a", type = String.class),
-        }),
+        parameter = { @EdmParameter(name = "Amount", parameterName = "a", type = String.class)}),
 
     @EdmFunction(
         name = "max",
@@ -50,8 +49,7 @@ import java.util.Collection;
         isBound = false,
         hasFunctionImport = false,
         returnType = @EdmFunction.ReturnType(type = BigDecimal.class, isCollection = false),
-        parameter = { @EdmParameter(name = "Path", parameterName = "path", type = String.class),
-        }),
+        parameter = { @EdmParameter(name = "Path", parameterName = "path", type = String.class)}),
 
     @EdmFunction(
         name = "IsPrime",
@@ -59,9 +57,7 @@ import java.util.Collection;
         isBound = false,
         hasFunctionImport = true,
         returnType = @EdmFunction.ReturnType(type = Boolean.class, isNullable = false),
-        parameter = { @EdmParameter(name = "Number", type = BigDecimal.class, precision = 32, scale = 0) }),
-
-})
+        parameter = { @EdmParameter(name = "Number", type = BigDecimal.class, precision = 32, scale = 0) })})
 
 public abstract class BusinessPartner implements KeyAccess {
   @Id

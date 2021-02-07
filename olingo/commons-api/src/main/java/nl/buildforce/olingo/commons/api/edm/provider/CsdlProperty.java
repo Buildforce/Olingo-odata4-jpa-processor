@@ -29,31 +29,30 @@ import nl.buildforce.olingo.commons.api.edm.FullQualifiedName;
 public class CsdlProperty extends CsdlAbstractEdmItem implements CsdlNamed, CsdlAnnotatable {
 
   private String name;
-
   private String type;
 
   private boolean collection;
-
   private String mimeType;
-
   private CsdlMapping mapping;
 
   // Facets
   private String defaultValue;
-
   private boolean nullable = true;
-
   private Integer maxLength;
-
   private Integer precision;
-
   private Integer scale;
 
   private boolean unicode = true;
 
   // private SRID srid;
-
   private List<CsdlAnnotation> annotations = new ArrayList<>();
+
+  public CsdlProperty() {}
+
+  public CsdlProperty(String _name, FullQualifiedName _type) {
+    name = _name;
+    type = _type.getFullQualifiedNameAsString();
+  }
 
   @Override
   public String getName() {
@@ -64,18 +63,13 @@ public class CsdlProperty extends CsdlAbstractEdmItem implements CsdlNamed, Csdl
    * Sets name.
    *
    * @param name the name
-   * @return the name
+   * @return CsdlProperty
    */
   public CsdlProperty setName(String name) {
     this.name = name;
     return this;
   }
 
-  /**
-   * Gets type.
-   *
-   * @return the type
-   */
   public String getType() {
     return type;
   }
@@ -84,7 +78,7 @@ public class CsdlProperty extends CsdlAbstractEdmItem implements CsdlNamed, Csdl
    * Sets type.
    *
    * @param type the type
-   * @return the type
+   * @return CsdlProperty
    */
   public CsdlProperty setType(String type) {
     this.type = type;
@@ -104,7 +98,7 @@ public class CsdlProperty extends CsdlAbstractEdmItem implements CsdlNamed, Csdl
    * Sets type.
    *
    * @param fqnName the fqn name
-   * @return the type
+   * @return CsdlProperty
    */
   public CsdlProperty setType(FullQualifiedName fqnName) {
     type = fqnName.getFullQualifiedNameAsString();
@@ -325,4 +319,5 @@ public class CsdlProperty extends CsdlAbstractEdmItem implements CsdlNamed, Csdl
   public SRID getSrid() {
     return srid;
   }*/
+
 }

@@ -171,7 +171,7 @@ public class BatchResponseSerializer {
   }
 
   private String generateBoundary(String value) {
-    return value + "_" + UUID.randomUUID().toString();
+    return value + "_" + UUID.randomUUID();
   }
 
   /**

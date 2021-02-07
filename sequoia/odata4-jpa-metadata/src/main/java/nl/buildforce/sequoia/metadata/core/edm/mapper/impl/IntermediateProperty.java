@@ -164,9 +164,7 @@ abstract class IntermediateProperty extends IntermediateModelElement implements 
     @Override
     protected void lazyBuildEdmItem() throws ODataJPAModelException {
         if (edmProperty == null) {
-            edmProperty = new CsdlProperty();
-            edmProperty.setName(getExternalName());
-            edmProperty.setType(determineType());
+            edmProperty = new CsdlProperty(getExternalName(), determineType());
             setFacet();
             edmProperty.setMapping(createMapper());
             edmProperty.setAnnotations(edmAnnotations);

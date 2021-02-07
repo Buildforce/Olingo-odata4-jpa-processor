@@ -147,11 +147,9 @@ class IntermediateCollectionProperty extends IntermediateProperty implements JPA
   @Override
   protected void lazyBuildEdmItem() throws ODataJPAModelException {
     super.lazyBuildEdmItem();
-    if (isComplex()
-        && schema.getComplexType(edmProperty.getTypeAsFQNObject().getName()) == null)
+    if (isComplex() && schema.getComplexType(edmProperty.getTypeAsFQNObject().getName()) == null)
       // Base type of collection '%1$s' of structured type '%2$s' not found
-      throw new ODataJPAModelException(ODataJPAModelException.MessageKeys.INVALID_COLLECTION_TYPE, getInternalName(), sourceType
-          .getInternalName());
+      throw new ODataJPAModelException(ODataJPAModelException.MessageKeys.INVALID_COLLECTION_TYPE, getInternalName(), sourceType.getInternalName());
     edmProperty.setCollection(true);
   }
 

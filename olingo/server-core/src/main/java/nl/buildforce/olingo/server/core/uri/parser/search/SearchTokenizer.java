@@ -650,7 +650,7 @@ public class SearchTokenizer {
     if (state.close().isFinished()) {
       states.add(state);
     } else {
-      throw new SearchTokenizerException("Last parsed state '" + state.toString() + "' is not finished.",
+      throw new SearchTokenizerException("Last parsed state '" + state + "' is not finished.",
           SearchTokenizerException.MessageKeys.NOT_FINISHED_QUERY, state.getTokenName());
     }
 

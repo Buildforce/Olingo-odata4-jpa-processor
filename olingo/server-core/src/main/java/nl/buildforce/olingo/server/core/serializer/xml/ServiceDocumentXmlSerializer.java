@@ -33,7 +33,7 @@ import nl.buildforce.olingo.server.api.serializer.SerializerException;
 
 public class ServiceDocumentXmlSerializer {
   private static final String APP = "app";
-  private static final String NS_APP = "http://www.w3.org/2007/app";
+  private static final String NS_APP = "https://www.w3.org/2007/app";
   private static final String ATOM = "atom";
   private static final String NS_ATOM = Constants.NS_ATOM;
   private static final String METADATA = "metadata";

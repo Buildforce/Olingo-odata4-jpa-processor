@@ -82,7 +82,7 @@ public abstract class UriResourceWithKeysImpl extends UriResourceImpl implements
       }
 
       if (tmp.length() != 0) {
-        return getSegmentValue() + "/" + tmp.toString();
+        return getSegmentValue() + "/" + tmp;
       }
     }
 
