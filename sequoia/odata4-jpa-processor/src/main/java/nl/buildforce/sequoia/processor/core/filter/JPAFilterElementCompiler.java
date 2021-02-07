@@ -63,10 +63,9 @@ public final class JPAFilterElementCompiler extends JPAAbstractFilter {
     // final int handle = parent.getDebugger().startRuntimeMeasurement("JPAFilterCrossCompiler", "compile");
 
     final ExpressionVisitor<JPAOperator> visitor = new JPAVisitor(this);
-    final Expression<Boolean> finalExpression = (Expression<Boolean>) expression.accept(visitor).get();
 
     // parent.getDebugger().stopRuntimeMeasurement(handle);
-    return finalExpression;
+    return (Expression<Boolean>) expression.accept(visitor).get();
   }
 
   @Override

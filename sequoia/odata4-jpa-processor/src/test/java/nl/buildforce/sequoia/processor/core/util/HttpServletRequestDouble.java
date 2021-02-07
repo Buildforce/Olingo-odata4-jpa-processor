@@ -35,13 +35,6 @@ public class HttpServletRequestDouble implements HttpServletRequest {
     private final StringBuffer url;
     private final StringBuffer input;
     private final Map<String, Object> attributes;
-    private String debugFormat;
-
-/*
-    public HttpServletRequestDouble(final String uri, final StringBuffer body) {
-        this(uri, body, null);
-    }
-*/
 
   public HttpServletRequestDouble(
             final String uri,

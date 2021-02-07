@@ -352,10 +352,9 @@ public final class JPAExpandJoinQuery extends JPAAbstractJoinQuery {
     orderBy.addAll(createOrderByList(joinTables, uriResource.getOrderByOption()));
     cq.orderBy(orderBy);
     // TODO group by also at $expand
-    final TypedQuery<Tuple> query = em.createQuery(cq);
 
     // // debugger.stopRuntimeMeasurement(handle);
-    return query;
+    return em.createQuery(cq);
   }
 
   private Expression<Boolean> createWhere() throws ODataApplicationException {

@@ -12,15 +12,18 @@ import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelExc
 import nl.buildforce.sequoia.processor.core.exception.ODataJPAInvocationTargetException;
 import nl.buildforce.sequoia.processor.core.exception.ODataJPAProcessorException;
 import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
+import org.apache.commons.lang3.ArrayUtils;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 /**
  * This class provides some primitive util methods to support modifying
@@ -205,18 +208,31 @@ public final class JPAModifyUtil {
         final String attributeName = meth.getName().substring(3, 4).toLowerCase() + meth.getName().substring(4);
         if (jpaAttributes.containsKey(attributeName)) {
           final Object value = jpaAttributes.get(attributeName);
-          Class<?>[] parameters = meth.getParameterTypes();
-          if (!(value instanceof JPARequestEntity) && parameters.length == 1) {
+          Class<?>[] parameterTypes = meth.getParameterTypes();
+          if (!(value instanceof JPARequestEntity) && parameterTypes.length == 1) {
             try {
               final JPAAttribute attribute = st.getAttribute(attributeName);
               if (!attribute.isComplex() || value == null) {
-                if (value == null || parameters[0].isAssignableFrom(value.getClass())) {
+                if (value == null || parameterTypes[0].isAssignableFrom(value.getClass())) {
                   meth.invoke(instance, value);
                 }
+                /* TODO jakarta.persistence.AttributeConverter.convertToEntityAttribute implementation
+                    or convertToEntityAttribute preventing.
+                 */
+                else if (parameterTypes[0].isAssignableFrom(UUID.class))
+                  if (parameterTypes[0].isAssignableFrom(UUID.class) && (value instanceof Byte[]) || value instanceof byte[]) {
+                    ByteBuffer bb = ByteBuffer.wrap((value instanceof Byte[]) ? ( // Bytes wrapped
+                      ArrayUtils.toPrimitive((Byte[]) value)
+                    ) : (  // Primitive bytes
+                      (byte[])value
+                    ));
+                    long high = bb.getLong();
+                    meth.invoke(instance, new UUID(high, bb.getLong()));
+                  }
               } else if (attribute.isCollection()) {
-                setEmbeddedCollectionAttributeDeep(instance, st, meth, value, parameters, attribute);
+                setEmbeddedCollectionAttributeDeep(instance, st, meth, value, parameterTypes, attribute);
               } else {
-                setEmbeddedAttributeDeep(instance, st, meth, value, parameters, attribute);
+                setEmbeddedAttributeDeep(instance, st, meth, value, parameterTypes, attribute);
               }
             } catch (IllegalAccessException | IllegalArgumentException | ODataJPAModelException
                 | NoSuchMethodException | SecurityException | InstantiationException e) {
@@ -432,4 +448,5 @@ public final class JPAModifyUtil {
       return null;
     return getter.invoke(instance);
   }
+
 }

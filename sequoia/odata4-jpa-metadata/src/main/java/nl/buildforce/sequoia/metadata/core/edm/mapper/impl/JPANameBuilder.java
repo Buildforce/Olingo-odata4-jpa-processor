@@ -16,31 +16,31 @@ import jakarta.persistence.metamodel.Attribute;
  *
  */
 final class JPANameBuilder {
-  public String buildStructuredTypeName(final Class<?> clazz) {
+  static public String buildStructuredTypeName(final Class<?> clazz) {
     return clazz.getCanonicalName();
   }
 
-  public String buildAttributeName(final Attribute<?, ?> jpaAttribute) {
+  static public String buildAttributeName(final Attribute<?, ?> jpaAttribute) {
     return jpaAttribute.getName();
   }
 
-  public String buildAssociationName(final Attribute<?, ?> jpaAttribute) {
+  static public String buildAssociationName(final Attribute<?, ?> jpaAttribute) {
     return jpaAttribute.getName();
   }
 
-  public String buildFunctionName(final EdmFunction jpaFunction) {
+  static public String buildFunctionName(final EdmFunction jpaFunction) {
     return jpaFunction.name();
   }
 
-  public String buildActionName(final EdmAction jpaAction) {
+  static public String buildActionName(final EdmAction jpaAction) {
     return jpaAction.name();
   }
 
-  public String buildEntitySetName(final JPAEdmNameBuilder nameBuilder, final JPAStructuredType entityType) {
+  static public String buildEntitySetName(final JPAEdmNameBuilder nameBuilder, final JPAStructuredType entityType) {
     return buildFQN(entityType.getInternalName(), nameBuilder).getFullQualifiedNameAsString();
   }
 
-  protected final FullQualifiedName buildFQN(final String name, final JPAEdmNameBuilder nameBuilder) {
+  static protected FullQualifiedName buildFQN(final String name, final JPAEdmNameBuilder nameBuilder) {
     return new FullQualifiedName(nameBuilder.getNamespace(), name);
   }
 

@@ -32,8 +32,8 @@ class IntermediateJavaAction extends IntermediateOperation implements JPAAction 
   IntermediateJavaAction(JPAEdmNameBuilder nameBuilder, EdmAction jpaAction, Method javaAction,
                          IntermediateSchema schema) throws ODataJPAModelException {
 
-    super(nameBuilder, IntNameBuilder.buildActionName(jpaAction).isEmpty() ? javaAction.getName() : IntNameBuilder
-        .buildActionName(jpaAction));
+    super(nameBuilder,
+            JPANameBuilder.buildActionName(jpaAction).isEmpty() ? javaAction.getName() : JPANameBuilder.buildActionName(jpaAction));
 
     this.schema = schema;
     this.jpaAction = jpaAction;
@@ -237,4 +237,5 @@ class IntermediateJavaAction extends IntermediateOperation implements JPAAction 
     }
 
   }
+
 }

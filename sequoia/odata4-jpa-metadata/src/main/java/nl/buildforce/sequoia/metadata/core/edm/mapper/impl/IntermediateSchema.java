@@ -119,7 +119,7 @@ final class IntermediateSchema extends IntermediateModelElement {
   }
 
   IntermediateStructuredType getComplexType(final Class<?> targetClass) {
-    return complexTypeListInternalKey.get(IntNameBuilder.buildStructuredTypeName(targetClass));
+    return complexTypeListInternalKey.get(JPANameBuilder.buildStructuredTypeName(targetClass));
   }
 
   JPAStructuredType getComplexType(final String externalName) {
@@ -137,7 +137,7 @@ final class IntermediateSchema extends IntermediateModelElement {
   }
 
   IntermediateStructuredType getEntityType(final Class<?> targetClass) {
-    return entityTypeListInternalKey.get(IntNameBuilder.buildStructuredTypeName(targetClass));
+    return entityTypeListInternalKey.get(JPANameBuilder.buildStructuredTypeName(targetClass));
   }
 
   JPAEntityType getEntityType(final String externalName) {
@@ -183,27 +183,26 @@ final class IntermediateSchema extends IntermediateModelElement {
   }
 
   IntermediateStructuredType getStructuredType(final PluralAttribute<?, ?, ?> jpaAttribute) {
-    IntermediateStructuredType type = complexTypeListInternalKey.get(IntNameBuilder.buildStructuredTypeName(jpaAttribute
+    IntermediateStructuredType type = complexTypeListInternalKey.get(JPANameBuilder.buildStructuredTypeName(jpaAttribute
         .getElementType().getJavaType()));
     if (type == null)
-      type = entityTypeListInternalKey.get(IntNameBuilder.buildStructuredTypeName(jpaAttribute.getElementType()
+      type = entityTypeListInternalKey.get(JPANameBuilder.buildStructuredTypeName(jpaAttribute.getElementType()
           .getJavaType()));
     return type;
   }
 
   IntermediateStructuredType getStructuredType(final Attribute<?, ?> jpaAttribute) {
-    IntermediateStructuredType type = complexTypeListInternalKey.get(IntNameBuilder.buildStructuredTypeName(jpaAttribute
+    IntermediateStructuredType type = complexTypeListInternalKey.get(JPANameBuilder.buildStructuredTypeName(jpaAttribute
         .getJavaType()));
     if (type == null)
-      type = entityTypeListInternalKey.get(IntNameBuilder.buildStructuredTypeName(jpaAttribute.getJavaType()));
+      type = entityTypeListInternalKey.get(JPANameBuilder.buildStructuredTypeName(jpaAttribute.getJavaType()));
     return type;
   }
 
   IntermediateStructuredType getStructuredType(final Class<?> targetClass) {
-    IntermediateStructuredType type = entityTypeListInternalKey
-        .get(IntNameBuilder.buildStructuredTypeName(targetClass));
+    IntermediateStructuredType type = entityTypeListInternalKey.get(JPANameBuilder.buildStructuredTypeName(targetClass));
     if (type == null)
-      type = complexTypeListInternalKey.get(IntNameBuilder.buildStructuredTypeName(targetClass));
+      type = complexTypeListInternalKey.get(JPANameBuilder.buildStructuredTypeName(targetClass));
     return type;
   }
 
@@ -262,4 +261,5 @@ final class IntermediateSchema extends IntermediateModelElement {
     funcList.putAll(factory.create(nameBuilder, reflections, this));
     return funcList;
   }
+
 }

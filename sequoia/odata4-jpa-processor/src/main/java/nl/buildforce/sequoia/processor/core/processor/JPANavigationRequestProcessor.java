@@ -148,10 +148,10 @@ public final class JPANavigationRequestProcessor extends JPAAbstractGetRequestPr
       try {
         if (page.getSkipToken() instanceof String)
           return new URI(Util.determineTargetEntitySet(uriInfo.getUriResourceParts()).getName() + "?"
-              + SystemQueryOptionKind.SKIPTOKEN.toString() + "='" + page.getSkipToken() + "'");
+              + SystemQueryOptionKind.SKIPTOKEN + "='" + page.getSkipToken() + "'");
         else
           return new URI(Util.determineTargetEntitySet(uriInfo.getUriResourceParts()).getName() + "?"
-              + SystemQueryOptionKind.SKIPTOKEN.toString() + "=" + page.getSkipToken().toString());
+              + SystemQueryOptionKind.SKIPTOKEN + "=" + page.getSkipToken().toString());
       } catch (URISyntaxException e) {
         throw new ODataJPAProcessorException(ODataJPAProcessorException.MessageKeys.ODATA_MAXPAGESIZE_NOT_A_NUMBER, HttpStatusCode.INTERNAL_SERVER_ERROR, e);
       }

@@ -23,7 +23,7 @@ class IntermediateDataBaseFunction extends IntermediateFunction implements JPADa
   IntermediateDataBaseFunction(final JPAEdmNameBuilder nameBuilder, final EdmFunction jpaFunction,
                                final Class<?> definingPOJO, final IntermediateSchema schema) {
 
-    super(nameBuilder, jpaFunction, schema, IntNameBuilder.buildFunctionName(jpaFunction));
+    super(nameBuilder, jpaFunction, schema, JPANameBuilder.buildFunctionName(jpaFunction));
     this.setExternalName(jpaFunction.name());
     this.jpaDefiningPOJO = definingPOJO;
   }
@@ -169,4 +169,5 @@ class IntermediateDataBaseFunction extends IntermediateFunction implements JPADa
       }
     }
   }
+
 }

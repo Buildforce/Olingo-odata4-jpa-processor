@@ -5,7 +5,7 @@ import jakarta.persistence.Embeddable;
 import java.io.Serializable;
 
 @Embeddable
-public class InstanceRestrictionKey /*implements Serializable*/ {
+public class InstanceRestrictionKey implements Serializable {
 
   @Column(name = "\"UserName\"", length = 60)
   private String username;

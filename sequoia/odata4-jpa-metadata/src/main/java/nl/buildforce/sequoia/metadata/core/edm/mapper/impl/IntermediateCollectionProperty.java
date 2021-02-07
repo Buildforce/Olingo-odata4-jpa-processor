@@ -53,17 +53,17 @@ class IntermediateCollectionProperty extends IntermediateProperty implements JPA
       final IntermediateStructuredType parent, final IntermediateProperty pathRoot) throws ODataJPAModelException {
 
     super(original.nameBuilder, original.jpaAttribute, original.schema);
-    this.sourceType = parent;
+    sourceType = parent;
 
     final List<JPAElement> newPath = new ArrayList<>();
     newPath.add(pathRoot);
     if (original.path != null) {
       newPath.addAll(original.path.getPath());
-      this.path = new JPAPathImpl(pathRoot.getExternalName() + JPAPath.PATH_SEPARATOR + original.path.getAlias(), "",
+      path = new JPAPathImpl(pathRoot.getExternalName() + JPAPath.PATH_SEPARATOR + original.path.getAlias(), "",
           newPath);
     } else {
       newPath.add(this);
-      this.path = new JPAPathImpl(pathRoot.getExternalName() + JPAPath.PATH_SEPARATOR + original.getExternalName(), "",
+      path = new JPAPathImpl(pathRoot.getExternalName() + JPAPath.PATH_SEPARATOR + original.getExternalName(), "",
           newPath);
     }
   }
@@ -73,14 +73,14 @@ class IntermediateCollectionProperty extends IntermediateProperty implements JPA
       final IntermediateStructuredType parent) throws ODataJPAModelException {
 
     super(nameBuilder, jpaAttribute, schema);
-    this.sourceType = parent;
-    this.path = null;
+    sourceType = parent;
+    path = null;
   }
 
   @Override
   public JPAAssociationPath asAssociation() throws ODataJPAModelException {
-    if (this.associationPath == null)
-      this.associationPath = new JPAAssociationPathImpl(this, sourceType, path == null ? sourceType.getPath(
+    if (associationPath == null)
+      associationPath = new JPAAssociationPathImpl(this, sourceType, path == null ? sourceType.getPath(
           getExternalName()) : path, ((IntermediateCollectionTable) getJoinTable()).getLeftJoinColumns());
     return associationPath;
 
@@ -148,7 +148,7 @@ class IntermediateCollectionProperty extends IntermediateProperty implements JPA
   protected void lazyBuildEdmItem() throws ODataJPAModelException {
     super.lazyBuildEdmItem();
     if (isComplex()
-        && schema.getComplexType(this.edmProperty.getTypeAsFQNObject().getName()) == null)
+        && schema.getComplexType(edmProperty.getTypeAsFQNObject().getName()) == null)
       // Base type of collection '%1$s' of structured type '%2$s' not found
       throw new ODataJPAModelException(ODataJPAModelException.MessageKeys.INVALID_COLLECTION_TYPE, getInternalName(), sourceType
           .getInternalName());

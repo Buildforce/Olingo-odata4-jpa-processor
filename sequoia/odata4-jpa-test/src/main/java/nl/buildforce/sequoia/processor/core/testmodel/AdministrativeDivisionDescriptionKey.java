@@ -5,7 +5,7 @@ import jakarta.persistence.Embeddable;
 import java.io.Serializable;
 
 @Embeddable
-public class AdministrativeDivisionDescriptionKey /*implements Serializable*/ {
+public class AdministrativeDivisionDescriptionKey implements Serializable {
   /**
    *
 

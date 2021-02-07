@@ -5,7 +5,7 @@ import jakarta.persistence.Embeddable;
 import java.io.Serializable;
 
 @Embeddable
-public class CountryKey /*implements Serializable*/ {
+public class CountryKey implements Serializable {
   /**
    *
 

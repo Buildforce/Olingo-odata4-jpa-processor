@@ -276,9 +276,8 @@ public class JPACollectionJoinQuery extends JPAAbstractJoinQuery {
     orderBy.addAll(createOrderByList(joinTables, null));
     cq.orderBy(orderBy);
 
-    final TypedQuery<Tuple> query = em.createQuery(cq);
     // // debugger.stopRuntimeMeasurement(handle);
-    return query;
+    return em.createQuery(cq);
   }
 
   private Expression<Boolean> createWhere() throws ODataApplicationException {

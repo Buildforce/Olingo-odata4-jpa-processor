@@ -63,12 +63,11 @@ final class IntermediateNavigationProperty extends IntermediateModelElement impl
 
   IntermediateNavigationProperty(final JPAEdmNameBuilder nameBuilder, final IntermediateStructuredType parent,
                                  final Attribute<?, ?> jpaAttribute, final IntermediateSchema schema) throws ODataJPAModelException {
-    super(nameBuilder, IntNameBuilder.buildAssociationName(jpaAttribute));
+    super(nameBuilder, JPANameBuilder.buildAssociationName(jpaAttribute));
     this.jpaAttribute = jpaAttribute;
     this.schema = schema;
     this.sourceType = parent;
     buildNaviProperty();
-
   }
 
   @Override

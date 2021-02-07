@@ -22,13 +22,12 @@ import java.util.Map.Entry;
 
 abstract class IntermediateModelElement implements IntermediateModelItemAccess {
 
-  protected static JPAEdmMetadataPostProcessor postProcessor = new DefaultEdmPostProcessor();
-  protected static final JPANameBuilder IntNameBuilder = new JPANameBuilder();
   protected final JPAEdmNameBuilder nameBuilder;
-  protected final String internalName;
   protected final List<CsdlAnnotation> edmAnnotations;
-  private boolean toBeIgnored;
+  protected final String internalName;
+  protected static JPAEdmMetadataPostProcessor postProcessor = new DefaultEdmPostProcessor();
   private String externalName;
+  private boolean toBeIgnored;
 
   static void setPostProcessor(final JPAEdmMetadataPostProcessor pP) {
     postProcessor = pP;
@@ -205,4 +204,5 @@ abstract class IntermediateModelElement implements IntermediateModelItemAccess {
     return "IntermediateModelElement [internalName=" + internalName + ", externalName="
         + externalName + ", toBeIgnored=" + toBeIgnored + "]";
   }
+
 }

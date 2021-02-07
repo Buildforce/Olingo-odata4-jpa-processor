@@ -1,15 +1,14 @@
 package nl.buildforce.sequoia.metadata.core.edm.mapper.impl;
 
-import nl.buildforce.sequoia.metadata.core.edm.annotation.EdmMediaStream;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAEdmNameBuilder;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
-import nl.buildforce.olingo.commons.api.edm.FullQualifiedName;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Version;
 import jakarta.persistence.metamodel.Attribute;
 import jakarta.persistence.metamodel.Attribute.PersistentAttributeType;
 import jakarta.persistence.metamodel.SingularAttribute;
+import nl.buildforce.olingo.commons.api.edm.FullQualifiedName;
+import nl.buildforce.sequoia.metadata.core.edm.annotation.EdmMediaStream;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAEdmNameBuilder;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
 
 import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.Constructor;
@@ -82,11 +81,7 @@ class IntermediateSimpleProperty extends IntermediateProperty {
 
   @Override
   void determineIsVersion() {
-    final Version jpaVersion = ((AnnotatedElement) this.jpaAttribute.getJavaMember())
-        .getAnnotation(Version.class);
-    if (jpaVersion != null) {
-      isVersion = true;
-    }
+    isVersion = (((AnnotatedElement) this.jpaAttribute.getJavaMember()).getAnnotation(Version.class)) != null;
   }
 
   @Override

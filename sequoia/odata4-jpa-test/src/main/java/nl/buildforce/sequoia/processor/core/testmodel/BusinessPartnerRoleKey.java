@@ -3,7 +3,7 @@ package nl.buildforce.sequoia.processor.core.testmodel;
 import jakarta.persistence.Id;
 import java.io.Serializable;
 
-public class BusinessPartnerRoleKey /*implements Serializable*/ {
+public class BusinessPartnerRoleKey implements Serializable {
 
   /**
    *

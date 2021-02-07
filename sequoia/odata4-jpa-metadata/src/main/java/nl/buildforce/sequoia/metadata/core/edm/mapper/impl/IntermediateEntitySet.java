@@ -28,7 +28,7 @@ final class IntermediateEntitySet extends IntermediateModelElement implements In
 
   IntermediateEntitySet(final JPAEdmNameBuilder nameBuilder, final IntermediateEntityType et)
       throws ODataJPAModelException {
-    super(nameBuilder, IntNameBuilder.buildEntitySetName(nameBuilder, et));
+    super(nameBuilder, JPANameBuilder.buildEntitySetName(nameBuilder, et));
     entityType = et;
     setExternalName(nameBuilder.buildEntitySetName(et.getEdmItem()));
   }

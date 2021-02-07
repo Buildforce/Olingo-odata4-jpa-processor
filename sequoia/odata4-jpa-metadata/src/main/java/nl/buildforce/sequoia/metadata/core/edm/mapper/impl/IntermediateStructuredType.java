@@ -52,7 +52,7 @@ abstract class IntermediateStructuredType extends IntermediateModelElement imple
   IntermediateStructuredType(final JPAEdmNameBuilder nameBuilder, final ManagedType<?> jpaManagedType,
                              final IntermediateSchema schema) {
 
-    super(nameBuilder, IntNameBuilder.buildStructuredTypeName(jpaManagedType.getJavaType()));
+    super(nameBuilder, JPANameBuilder.buildStructuredTypeName(jpaManagedType.getJavaType()));
     this.declaredPropertiesList = new HashMap<>();
     this.resolvedPathMap = new HashMap<>();
     this.intermediatePathMap = new HashMap<>();
@@ -539,7 +539,7 @@ abstract class IntermediateStructuredType extends IntermediateModelElement imple
     for (final Attribute<?, ?> jpaAttribute : jpaManagedType.getAttributes()) {
       if (jpaAttribute.getPersistentAttributeType() != null
           && jpaAttribute.getJavaMember() instanceof AnnotatedElement
-          && !sourceRelationshipName.equals(IntNameBuilder.buildAssociationName(jpaAttribute))) {
+          && !sourceRelationshipName.equals(JPANameBuilder.buildAssociationName(jpaAttribute))) {
         if (jpaAttribute.isCollection()) {
           targetClass = ((PluralAttribute<?, ?, ?>) jpaAttribute).getElementType().getJavaType();
         } else {

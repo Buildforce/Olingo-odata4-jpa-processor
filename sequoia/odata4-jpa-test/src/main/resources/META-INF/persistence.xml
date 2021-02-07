@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
 			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-			 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+			 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence https://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
 			 version="2.2">
 
 	<persistence-unit name="nl.buildforce.sequoia" transaction-type="RESOURCE_LOCAL">
 
-		<class>nl.buildforce.sequoia.processor.core.testmodel.AccessRightsConverter</class>
 		<class>nl.buildforce.sequoia.processor.core.testmodel.AdministrativeDivision</class>
 		<class>nl.buildforce.sequoia.processor.core.testmodel.AdministrativeDivisionDescription</class>
 		<class>nl.buildforce.sequoia.processor.core.testmodel.BestOrganization</class>
@@ -16,13 +15,10 @@
 		<class>nl.buildforce.sequoia.processor.core.testmodel.BusinessPartnerRoleProtected</class>
 		<class>nl.buildforce.sequoia.processor.core.testmodel.BusinessPartnerRoleWithGroup</class>
 		<class>nl.buildforce.sequoia.processor.core.testmodel.BusinessPartnerWithGroups</class>
-		<class>nl.buildforce.sequoia.processor.core.testmodel.ByteConverter</class>
 		<class>nl.buildforce.sequoia.processor.core.testmodel.Collection</class>
 		<class>nl.buildforce.sequoia.processor.core.testmodel.CollectionDeep</class>
 		<class>nl.buildforce.sequoia.processor.core.testmodel.Comment</class>
 		<class>nl.buildforce.sequoia.processor.core.testmodel.Country</class>
-		<class>nl.buildforce.sequoia.processor.core.testmodel.DateConverter</class>
-		<class>nl.buildforce.sequoia.processor.core.testmodel.DateTimeConverter</class>
 		<class>nl.buildforce.sequoia.processor.core.testmodel.DeepProtectedExample</class>
 		<class>nl.buildforce.sequoia.processor.core.testmodel.DummyEmbeddedToIgnore</class>
 		<class>nl.buildforce.sequoia.processor.core.testmodel.DummyToBeIgnored</class>
@@ -37,11 +33,17 @@
 		<class>nl.buildforce.sequoia.processor.core.testmodel.PersonDeepProtected</class>
 		<class>nl.buildforce.sequoia.processor.core.testmodel.PersonDeepProtectedHidden</class>
 		<class>nl.buildforce.sequoia.processor.core.testmodel.PersonImage</class>
-		<class>nl.buildforce.sequoia.processor.core.testmodel.StringConverter</class>
 		<class>nl.buildforce.sequoia.processor.core.testmodel.SupportRelationship</class>
 		<class>nl.buildforce.sequoia.processor.core.testmodel.Team</class>
+
+		<class>nl.buildforce.sequoia.processor.core.testmodel.AccessRightsConverter</class>
+		<class>nl.buildforce.sequoia.processor.core.testmodel.ByteConverter</class>
+		<class>nl.buildforce.sequoia.processor.core.testmodel.DateConverter</class>
+		<class>nl.buildforce.sequoia.processor.core.testmodel.DateTimeConverter</class>
+		<class>nl.buildforce.sequoia.processor.core.testmodel.StringConverter</class>
+
 		<properties>
-			<property name="eclipse.weaving" value="true"/>
+			<!--<property name="eclipse.weaving" value="true"/>-->
 			<property name="eclipselink.logging.level" value="WARNING" />
 			<property name="eclipselink.logging.level.sql" value="WARNING"  />
 			<property name="eclipselink.logging.parameters" value="true" />
@@ -77,6 +79,8 @@
 		<class>nl.buildforce.sequoia.processor.core.errormodel.Team</class>
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<properties>
+
+
 			<property name="eclipselink.logging.level" value="WARNING" />
 			<property name="eclipselink.logging.level.metadata" value="ALL"/>
 			<property name="eclipselink.logging.level.sql" value="WARNING" />
@@ -84,9 +88,12 @@
 			<property name="eclipselink.logging.timestamp" value="true" />
 			<property name="eclipselink.persistence-context.flush-mode" value="commit" />
 			<property name="eclipselink.weaving" value="static" />
+
+			<!--
 			<property name="openjpa.ConnectionFactoryProperties" value="PrintParameters=true"/>
 			<property name="openjpa.DynamicEnhancementAgent" value="true"/>
 			<property name="openjpa.RuntimeUnenhancedClasses" value="unsupported"/>
+-->
 		</properties>
 	</persistence-unit>
 </persistence>

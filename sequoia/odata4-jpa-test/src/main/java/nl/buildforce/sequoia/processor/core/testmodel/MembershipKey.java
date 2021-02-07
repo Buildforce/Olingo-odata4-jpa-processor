@@ -4,7 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import java.io.Serializable;
 
-public class MembershipKey /*implements Serializable*/ {
+public class MembershipKey implements Serializable {
 
   /**
    *

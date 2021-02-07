@@ -1,26 +1,27 @@
 <?xml version="1.0"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>nl.buildforce.sequoia</groupId>
-		<artifactId>Sequoia-parent</artifactId>
-		<version>0.0.1</version>
-	</parent>
-	<artifactId>odata4-jpa-annotation</artifactId>
-	<name>odata4-jpa-annotation</name>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>nl.buildforce.sequoia</groupId>
+        <artifactId>Sequoia-parent</artifactId>
+        <version>0.0.1</version>
+    </parent>
+    <artifactId>odata4-jpa-annotation</artifactId>
+    <name>odata4-jpa-annotation</name>
 
-	<dependencies>
-		<dependency>
-			<groupId>nl.buildforce.olingo</groupId>
-			<artifactId>odata-commons-api</artifactId>
-			<version>${odata.version}</version>
-		</dependency>
+    <dependencies>
+        <dependency>
+            <groupId>nl.buildforce.olingo</groupId>
+            <artifactId>odata-commons-api</artifactId>
+            <version>${odata.version}</version>
+        </dependency>
 
-		<dependency>
-			<groupId>org.eclipse.persistence</groupId>
-			<artifactId>org.eclipse.persistence.jpa</artifactId>
-			<version>${eclipselink.version}</version>
-			<scope>provided</scope>
-		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.jpa</artifactId>
+            <version>${eclipselink.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 </project>

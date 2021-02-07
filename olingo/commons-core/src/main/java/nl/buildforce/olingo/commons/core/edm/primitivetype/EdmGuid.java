@@ -18,9 +18,11 @@
  */
 package nl.buildforce.olingo.commons.core.edm.primitivetype;
 
-import java.util.UUID;
-
 import nl.buildforce.olingo.commons.api.edm.EdmPrimitiveTypeException;
+import org.apache.commons.lang3.ArrayUtils;
+
+import java.nio.ByteBuffer;
+import java.util.UUID;
 
 /**
  * Implementation of the EDM primitive type Guid.
@@ -56,28 +58,33 @@ public final class EdmGuid extends SingletonPrimitiveType {
                                         Boolean isNullable, Integer maxLength, Integer precision,
                                         Integer scale, Boolean isUnicode,
                                         Class<T> returnType) throws EdmPrimitiveTypeException {
-
-    UUID valueUUID;
-
     try {
-      valueUUID = UUID.fromString(value);
+      UUID valueUUID = UUID.fromString(value);
+
+      if (returnType == String.class) {
+        return returnType.cast(value);
+      } else if (returnType.isAssignableFrom(UUID.class)) {
+        return returnType.cast(valueUUID);
+      } else if (returnType == Byte[].class) {
+        byte[] buffer = new byte[16];
+        ByteBuffer bb = ByteBuffer.wrap(buffer);
+        bb.putLong(valueUUID.getMostSignificantBits());
+        bb.putLong(valueUUID.getLeastSignificantBits());
+        return returnType.cast(ArrayUtils.toObject(buffer));
+      }
+      throw new EdmPrimitiveTypeException("The value type " + returnType + " is not supported.");
     } catch (IllegalArgumentException e) {
       throw new EdmPrimitiveTypeException("The literal '" + value + "' has illegal content.", e);
-    }
-
-    if (returnType == String.class) {
-      return returnType.cast(value);
-    } else if (returnType.isAssignableFrom(UUID.class)) {
-      return returnType.cast(valueUUID);
-    } else {
-      throw new EdmPrimitiveTypeException("The value type " + returnType + " is not supported.");
     }
   }
 
   @Override
   protected <T> String internalValueToString(T value,
-                                             Boolean isNullable, Integer maxLength, Integer precision,
-                                             Integer scale, Boolean isUnicode) throws EdmPrimitiveTypeException {
+                                             Boolean isNullable,
+                                             Integer maxLength,
+                                             Integer precision,
+                                             Integer scale,
+                                             Boolean isUnicode) throws EdmPrimitiveTypeException {
 
     if (value instanceof UUID) {
       return value.toString();
@@ -85,4 +92,5 @@ public final class EdmGuid extends SingletonPrimitiveType {
       throw new EdmPrimitiveTypeException("The value type " + value.getClass() + " is not supported.");
     }
   }
+
 }
