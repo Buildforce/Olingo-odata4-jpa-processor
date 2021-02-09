@@ -236,7 +236,7 @@ public class TestJPATypeConverter {
     final ODataJPAModelException act = assertThrows(ODataJPAModelException.class,
         () -> JPATypeConverter.convertToEdmSimpleType(javaType, buildTimeAttribute(TemporalType.TIME)));
     assertEquals(ODataJPAModelException.MessageKeys.TYPE_NOT_SUPPORTED.getKey(), act.getId());
-  }*/
+  }
 
   @ParameterizedTest
   @MethodSource("mappingJavaGeometryToOData")
@@ -248,6 +248,7 @@ public class TestJPATypeConverter {
         () -> JPATypeConverter.convertToEdmSimpleType(javaType, buildTimeAttribute(TemporalType.TIME)));
     assertEquals(ODataJPAModelException.MessageKeys.TYPE_NOT_SUPPORTED.getKey(), act.getId());
   }
+*/
 
   @ParameterizedTest
   @MethodSource("mappingJavaTimeToOData")

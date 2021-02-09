@@ -8,7 +8,7 @@
     </parent>
     <artifactId>odata4-jpa-test</artifactId>
     <name>odata4-jpa-test</name>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>

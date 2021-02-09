@@ -78,8 +78,10 @@
 		<class>nl.buildforce.sequoia.processor.core.errormodel.PersonDeepCollectionProtected</class>
 		<class>nl.buildforce.sequoia.processor.core.errormodel.Team</class>
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+
 		<properties>
 
+			<!--<property name="javax.persistence.validation.mode" value="AUTO" />-->
 
 			<property name="eclipselink.logging.level" value="WARNING" />
 			<property name="eclipselink.logging.level.metadata" value="ALL"/>

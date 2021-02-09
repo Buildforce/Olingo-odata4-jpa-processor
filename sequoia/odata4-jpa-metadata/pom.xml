@@ -11,37 +11,45 @@
 
     <name>odata4-jpa-metadata</name>
     <dependencies>
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
         <!-- Testing -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.7.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>3.7.7</version>
+            <scope>test</scope>
+        </dependency>
+
         <dependency>
             <groupId>nl.buildforce.sequoia</groupId>
             <artifactId>odata4-jpa-test</artifactId>
-            <scope>test</scope>
             <version>${project.version}</version>
+            <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>nl.buildforce.sequoia</groupId>
             <artifactId>odata4-jpa-annotation</artifactId>
             <version>${project.version}</version>
         </dependency>
+
         <dependency>
             <groupId>jakarta.persistence</groupId>
             <artifactId>jakarta.persistence-api</artifactId>
             <version>${jakarta.persistence.api}</version>
         </dependency>
-
-        <!--
-        <dependency>
-            <groupId>nl.buildforce.olingo</groupId>
-            <artifactId>odata-server-core</artifactId>
-            <version>${odata.version}</version>
-            <scope>runtime</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>nl.buildforce.olingo</groupId>
-            <artifactId>odata-commons-api</artifactId>
-            <version>${odata.version}</version>
-        </dependency> -->
 
         <dependency>
             <groupId>nl.buildforce.olingo</groupId>
@@ -49,11 +57,6 @@
             <version>${odata.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.fasterxml.jackson.dataformat</groupId>
-            <artifactId>jackson-dataformat-xml</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
         <dependency>
             <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>
