@@ -40,7 +40,7 @@ public interface Constants {
   Integer DEFAULT_SCALE = 25;
 
   // Common Namespaces
-  String NS_BASE = "https://docs.oasis-open.org/odata/ns/";
+  String NS_BASE = "http://docs.oasis-open.org/odata/ns/";
 
   String NS_DATASERVICES = NS_BASE + "data";
 
@@ -252,19 +252,19 @@ public interface Constants {
   String ENTITY_BINDING_LINK_TYPE = ContentType.APPLICATION_XML.toString();
   
  //For v4.01 Delta
-  
-  String AT = "@";
+
+  String AT            = "@";
   String DELETEDENTITY = "/$deletedEntity";
-  String DELETEDLINK = "/$deletedLink";
-  String DELTA = "/$delta";
-  String DELTALINK = "@deltaLink";
-  String DELTAVALUE = "delta";
-  String ENTITY = "/$entity";
-  String HASH = "#";
-  String ID = "@id";
-  String LINK = "/$link";
-  String NEXTLINK = "@nextLink";
-  String REASON = "Reason";
-  String REMOVED = "removed";
+  String DELETEDLINK   = "/$deletedLink";
+  String DELTA         = "/$delta";
+  String DELTALINK     = "@deltaLink";
+  String DELTAVALUE    = "delta";
+  String ENTITY        = "/$entity";
+  String HASH          = "#";
+  String ID            = "@id";
+  String LINK          = "/$link";
+  String NEXTLINK      = "@nextLink";
+  String REASON        = "Reason";
+  String REMOVED       = "removed";
 
 }

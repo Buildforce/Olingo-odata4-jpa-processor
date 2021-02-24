@@ -53,7 +53,7 @@ public final class EdmInt64 extends SingletonPrimitiveType {
                                         Boolean isNullable, Integer maxLength, Integer precision,
                                         Integer scale, Boolean isUnicode, Class<T> returnType) throws EdmPrimitiveTypeException {
 
-    Long valueLong;
+    long valueLong;
     try {
       valueLong = Long.parseLong(value);
     } catch (NumberFormatException e) {

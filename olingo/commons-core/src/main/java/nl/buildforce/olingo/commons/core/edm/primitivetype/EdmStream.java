@@ -61,12 +61,8 @@ public final class EdmStream extends SingletonPrimitiveType {
                                         Boolean isNullable, Integer maxLength, Integer precision,
                                         Integer scale, Boolean isUnicode, Class<T> returnType) throws EdmPrimitiveTypeException {
 
-    URI stream = null;
     try {
-      stream = new URI(value);
-    } catch (URISyntaxException e) {
-      throw new EdmPrimitiveTypeException("The literal '" + value + "' has illegal content.", e);
-    }
+      URI stream = new URI(value);
 
     if (returnType.isAssignableFrom(URI.class)) {
       return returnType.cast(stream);
@@ -77,6 +73,12 @@ public final class EdmStream extends SingletonPrimitiveType {
     } else {
       throw new EdmPrimitiveTypeException("The value type " + returnType + " is not supported.");
     }
+
+  } catch (URISyntaxException e) {
+    throw new EdmPrimitiveTypeException("The literal '" + value + "' has illegal content.", e);
+  }
+
+
   }
 
   @Override

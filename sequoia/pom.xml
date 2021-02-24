@@ -95,8 +95,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>14</source>
-                    <target>14</target>
+                    <source>${project.build.source}</source>
+                    <target>${project.build.source}</target>
                 </configuration>
             </plugin>
         </plugins>

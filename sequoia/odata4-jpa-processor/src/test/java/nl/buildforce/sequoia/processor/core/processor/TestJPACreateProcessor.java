@@ -1,6 +1,11 @@
 package nl.buildforce.sequoia.processor.core.processor;
 
-import nl.buildforce.olingo.server.api.*;
+import nl.buildforce.olingo.server.api.ODataApplicationException;
+import nl.buildforce.olingo.server.api.ODataLibraryException;
+import nl.buildforce.olingo.server.api.ODataRequest;
+import nl.buildforce.olingo.server.api.ODataResponse;
+import nl.buildforce.olingo.server.api.OData;
+
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAssociationPath;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAEntityType;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAStructuredType;

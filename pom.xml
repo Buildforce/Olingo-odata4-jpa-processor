@@ -15,7 +15,7 @@
         <jackson.version>2.12.1</jackson.version>
         <jakarta-servlet.version>5.0.0</jakarta-servlet.version>
         <odata4-jpa.version>0.0.1</odata4-jpa.version>
-        <project.build.source>1.8</project.build.source>
+        <project.build.source>14</project.build.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 

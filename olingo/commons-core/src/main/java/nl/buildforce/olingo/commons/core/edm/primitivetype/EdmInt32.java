@@ -52,7 +52,7 @@ public final class EdmInt32 extends SingletonPrimitiveType {
                                         Boolean isNullable, Integer maxLength, Integer precision,
                                         Integer scale, Boolean isUnicode, Class<T> returnType) throws EdmPrimitiveTypeException {
 
-    Integer valueInteger;
+    int valueInteger;
     try {
       valueInteger = Integer.parseInt(value);
     } catch (NumberFormatException e) {

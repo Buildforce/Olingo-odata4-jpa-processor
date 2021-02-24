@@ -75,11 +75,13 @@ public class EdmProviderImpl extends AbstractEdm {
     this.provider = provider;
   }
   
+/*
   public EdmProviderImpl(CsdlEdmProvider provider, List<CsdlSchema> termSchemaDefinition) {
     this.provider = provider;
     this.termSchemaDefinition = termSchemaDefinition;
     populateAnnotationMap();
   }
+*/
 
   @Override
   public EdmEntityContainer createEntityContainer(FullQualifiedName containerName) {
@@ -567,16 +569,14 @@ public class EdmProviderImpl extends AbstractEdm {
               List<CsdlAnnotation> propAnnotations = getAnnotationsMap().
                   get(typeName.getFullQualifiedNameAsString() + SLASH + property.getName());
               addAnnotationsOnPropertiesOfStructuralType(structuralType, property, propAnnotations);
-              aliasName = getAliasInfo(typeName.getNamespace());
+              // aliasName = getAliasInfo(typeName.getNamespace());
               List<CsdlAnnotation> propAnnotationsOnAlias = getAnnotationsMap().
                   get(typeName.getName() + SLASH + property.getName());
               addAnnotationsOnPropertiesOfStructuralType(structuralType, property, propAnnotationsOnAlias);
             }
           }
         }
-      } catch (ODataException e) {
-        throw new EdmException(e);
-      }
+      } catch (ODataException e) { throw new EdmException(e); }
     }
   }
   
@@ -961,10 +961,12 @@ public class EdmProviderImpl extends AbstractEdm {
     }
   }
   
+/*
   public List<CsdlSchema> getTermSchemaDefinitions() {
     return termSchemaDefinition;
   }
-  
+*/
+
   private boolean compareAnnotations(List<CsdlAnnotation> annotations, CsdlAnnotation annotation) {
     for (CsdlAnnotation annot : annotations) {
       if (annot.equals(annotation)) {
@@ -973,4 +975,5 @@ public class EdmProviderImpl extends AbstractEdm {
     }
     return false;
   }
+
 }

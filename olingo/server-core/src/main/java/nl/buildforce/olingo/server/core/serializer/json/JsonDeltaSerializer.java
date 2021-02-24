@@ -68,17 +68,10 @@ import com.fasterxml.jackson.core.JsonGenerator;
 
 public class JsonDeltaSerializer implements EdmDeltaSerializer {
 
-  private static final String LINK = "/$link";
-  private static final String DELETEDLINK = "/$deletedLink";
-  private static final String DELTA = "/$delta";
-  private static final String HASH = "#";
-  private static final String DELETEDENTITY = "/$deletedEntity";
-  private static final String ENTITY = "/$entity";
-  private static final String REASON = "Reason";
   private static final String IO_EXCEPTION_TEXT = "An I/O exception occurred.";
   private final boolean isIEEE754Compatible;
-  private final boolean isODataMetadataNone;
   private final boolean isODataMetadataFull;
+  private final boolean isODataMetadataNone;
 
   public JsonDeltaSerializer(ContentType contentType) {
     isIEEE754Compatible = ContentTypeHelper.isODataIEEE754Compatible(contentType);
@@ -150,8 +143,8 @@ public class JsonDeltaSerializer implements EdmDeltaSerializer {
     try {
       json.writeStartObject();
       String entityId = options.getContextURL().getEntitySetOrSingletonOrType();
-      String operation = isAdded ? LINK : DELETEDLINK;
-      json.writeStringField(Constants.JSON_CONTEXT, HASH + entityId + operation);
+      String operation = isAdded ? Constants.LINK : Constants.DELETEDLINK;
+      json.writeStringField(Constants.JSON_CONTEXT, Constants.HASH + entityId + operation);
       if (link != null) {
         if (link.getSource() != null) {
           json.writeStringField(Constants.ATTR_SOURCE, link.getSource().toString());
@@ -188,10 +181,10 @@ public class JsonDeltaSerializer implements EdmDeltaSerializer {
     }
     if (deletedEntity.getReason() == null) {
       throw new SerializerException("DeletedEntity reason is null.", 
-          SerializerException.MessageKeys.MISSING_DELTA_PROPERTY, REASON);
+          SerializerException.MessageKeys.MISSING_DELTA_PROPERTY, Constants.REASON);
     }
     json.writeStartObject();
-    json.writeStringField(Constants.JSON_CONTEXT, HASH + deletedEntity.getId().toASCIIString() + DELETEDENTITY);
+    json.writeStringField(Constants.JSON_CONTEXT, Constants.HASH + deletedEntity.getId().toASCIIString() + Constants.DELETEDENTITY);
     json.writeStringField(Constants.ATOM_ATTR_ID, deletedEntity.getId().toASCIIString());
     json.writeStringField(Constants.ELEM_REASON, deletedEntity.getReason().name());
     json.writeEndObject();
@@ -209,7 +202,7 @@ public class JsonDeltaSerializer implements EdmDeltaSerializer {
       if (!entityId.contains(name)) {
         String entityName = entityId.substring(0, entityId.indexOf("("));
         if (!entityName.equals(name)) {
-          json.writeStringField(Constants.JSON_CONTEXT, HASH + entityName + ENTITY);
+          json.writeStringField(Constants.JSON_CONTEXT, Constants.HASH + entityName + Constants.ENTITY);
         }
       }
     }
@@ -507,7 +500,7 @@ public class JsonDeltaSerializer implements EdmDeltaSerializer {
 
   void writeContextURL(ContextURL contextURL, JsonGenerator json) throws IOException {
     if (!isODataMetadataNone && contextURL != null) {
-      json.writeStringField(Constants.JSON_CONTEXT, ContextURLBuilder.create(contextURL).toASCIIString() + DELTA);
+      json.writeStringField(Constants.JSON_CONTEXT, ContextURLBuilder.create(contextURL).toASCIIString() + Constants.DELTA);
     }
   }
 

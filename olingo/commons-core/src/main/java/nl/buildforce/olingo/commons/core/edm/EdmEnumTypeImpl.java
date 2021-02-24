@@ -245,12 +245,10 @@ public class EdmEnumTypeImpl extends EdmTypeImpl implements EdmEnumType {
         if (literal.endsWith(uriSuffix)) {
           int indexSingleQuote = literal.indexOf('\'');
           String fqn = literal.substring(0, indexSingleQuote);
-          FullQualifiedName typeFqn = null;
+
           try {
-            typeFqn = new FullQualifiedName(fqn);
-          } catch (IllegalArgumentException e) {
-            throw new EdmPrimitiveTypeException("The literal '" + literal + "' has illegal content.", e);
-          }
+            FullQualifiedName typeFqn = new FullQualifiedName(fqn);
+
           /*
            * Get itself. This will also resolve a possible alias. If we had an easier way to query the edm for an alias
            * we could use this here. But since there is no such method we try to get the enum type based on a possible
@@ -261,6 +259,10 @@ public class EdmEnumTypeImpl extends EdmTypeImpl implements EdmEnumType {
           if (prospect != null && enumName.equals(prospect.getFullQualifiedName())
               && literal.length() >= fqn.length() + 2) {
             return literal.substring(fqn.length() + 1, literal.length() - 1);
+          }
+
+          } catch (IllegalArgumentException e) {
+            throw new EdmPrimitiveTypeException("The literal '" + literal + "' has illegal content.", e);
           }
         }
       }

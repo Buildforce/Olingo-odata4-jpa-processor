@@ -43,7 +43,7 @@ public final class EdmSByte extends SingletonPrimitiveType {
                                         Boolean isNullable, Integer maxLength, Integer precision,
                                         Integer scale, Boolean isUnicode, Class<T> returnType) throws EdmPrimitiveTypeException {
 
-    Byte valueByte;
+    byte valueByte;
     try {
       valueByte = Byte.parseByte(value);
     } catch (NumberFormatException e) {
@@ -80,4 +80,5 @@ public final class EdmSByte extends SingletonPrimitiveType {
       throw new EdmPrimitiveTypeException("The value type " + value.getClass() + " is not supported.");
     }
   }
+
 }

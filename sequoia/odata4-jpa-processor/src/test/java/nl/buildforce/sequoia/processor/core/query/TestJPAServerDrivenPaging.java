@@ -2,15 +2,6 @@ package nl.buildforce.sequoia.processor.core.query;
 
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import nl.buildforce.olingo.server.api.uri.*;
-import nl.buildforce.olingo.server.api.uri.queryoption.*;
-import nl.buildforce.sequoia.processor.core.api.JPAClaimsPair;
-import nl.buildforce.sequoia.processor.core.api.JPAODataClaimsProvider;
-import nl.buildforce.sequoia.processor.core.api.JPAODataPage;
-import nl.buildforce.sequoia.processor.core.api.JPAODataPagingProvider;
-import nl.buildforce.sequoia.processor.core.util.CountQueryMatcher;
-import nl.buildforce.sequoia.processor.core.util.IntegrationTestHelper;
-import nl.buildforce.sequoia.processor.core.util.TestBase;
 import nl.buildforce.olingo.commons.api.edm.EdmEntitySet;
 import nl.buildforce.olingo.commons.api.edm.EdmEntityType;
 import nl.buildforce.olingo.commons.api.edm.EdmPrimitiveType;
@@ -21,7 +12,25 @@ import nl.buildforce.olingo.commons.api.edm.FullQualifiedName;
 import nl.buildforce.olingo.commons.api.edm.constants.EdmTypeKind;
 import nl.buildforce.olingo.commons.api.ex.ODataException;
 import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
+import nl.buildforce.olingo.server.api.uri.UriInfo;
+import nl.buildforce.olingo.server.api.uri.UriInfoResource;
+import nl.buildforce.olingo.server.api.uri.UriResource;
+import nl.buildforce.olingo.server.api.uri.UriResourceEntitySet;
+import nl.buildforce.olingo.server.api.uri.UriResourceKind;
+import nl.buildforce.olingo.server.api.uri.UriResourcePrimitiveProperty;
+import nl.buildforce.olingo.server.api.uri.queryoption.OrderByItem;
+import nl.buildforce.olingo.server.api.uri.queryoption.OrderByOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.SelectItem;
+import nl.buildforce.olingo.server.api.uri.queryoption.SelectOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.SystemQueryOptionKind;
 import nl.buildforce.olingo.server.api.uri.queryoption.expression.Member;
+import nl.buildforce.sequoia.processor.core.api.JPAClaimsPair;
+import nl.buildforce.sequoia.processor.core.api.JPAODataClaimsProvider;
+import nl.buildforce.sequoia.processor.core.api.JPAODataPage;
+import nl.buildforce.sequoia.processor.core.api.JPAODataPagingProvider;
+import nl.buildforce.sequoia.processor.core.util.CountQueryMatcher;
+import nl.buildforce.sequoia.processor.core.util.IntegrationTestHelper;
+import nl.buildforce.sequoia.processor.core.util.TestBase;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -313,4 +322,5 @@ public class TestJPAServerDrivenPaging extends TestBase {
     when(uriInfo.getOrderByOption()).thenReturn(order);
     return uriInfo;
   }
+
 }

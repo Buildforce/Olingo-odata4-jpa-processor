@@ -76,7 +76,7 @@ public class TestSchemaReader {
     act = cut.getSchemas("annotations/Org.OData.Core.V1.xml");
     assertNotNull(act.get("Org.OData.Core.V1"));
     CsdlSchema schema = act.get("Org.OData.Core.V1");
-    assertEquals(15, schema.getTerms().size());
+    assertEquals(39, schema.getTerms().size());
   }
 
   @Test
@@ -85,7 +85,7 @@ public class TestSchemaReader {
     act = cut.getSchemas("annotations/Org.OData.Core.V1.xml");
     assertNotNull(act.get("Org.OData.Core.V1"));
     CsdlSchema schema = act.get("Org.OData.Core.V1");
-    assertEquals(1, schema.getTypeDefinitions().size());
+    assertEquals(6, schema.getTypeDefinitions().size());
     assertNotNull(schema.getTypeDefinition("Tag"));
     assertEquals("Edm.Boolean", schema.getTypeDefinition("Tag").getUnderlyingType());
   }
@@ -124,9 +124,9 @@ public class TestSchemaReader {
     act = cut.getSchemas("annotations/Org.OData.Core.V1.xml");
     assertNotNull(act.get("Org.OData.Core.V1"));
     CsdlSchema schema = act.get("Org.OData.Core.V1");
-    assertEquals(1, schema.getEnumTypes().size());
+    assertEquals(3, schema.getEnumTypes().size());
     assertNotNull(schema.getEnumType("Permission"));
-    assertEquals(3, schema.getEnumType("Permission").getMembers().size());
+    assertEquals(5, schema.getEnumType("Permission").getMembers().size());
     assertEquals("3", schema.getEnumType("Permission").getMember("ReadWrite").getValue());
   }
 

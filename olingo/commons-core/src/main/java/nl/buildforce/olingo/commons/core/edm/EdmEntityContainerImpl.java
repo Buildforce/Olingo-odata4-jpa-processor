@@ -291,33 +291,28 @@ public class EdmEntityContainerImpl extends AbstractEdmNamed implements EdmEntit
    */
   private void addAnnotationsToPropertiesDerivedFromSingleton(CsdlSingleton singleton, 
       CsdlEntityType entityType, FullQualifiedName entityContainerName) {
-    String entitySetName = null;
-    String schemaName = null;
-    String containerName = null;
-    try {
+
+     try {
       List<CsdlEntitySet> entitySets = provider.getEntityContainer() != null ?
               provider.getEntityContainer().getEntitySets() : new ArrayList<>();
       for (CsdlEntitySet entitySet : entitySets) {
-        entitySetName = entitySet.getName();
+        String entitySetName = entitySet.getName();
         String entityTypeName = entitySet.getTypeFQN().getFullQualifiedNameAsString();
         if ((null != entityTypeName && entityTypeName.equalsIgnoreCase(
             entitySet.getTypeFQN().getNamespace() + DOT + entityType.getName()))) {
-          containerName = provider.getEntityContainer().getName();
-          schemaName = entitySet.getTypeFQN().getNamespace();
+          String containerName = provider.getEntityContainer().getName();
+          String schemaName = entitySet.getTypeFQN().getNamespace();
           for (CsdlProperty property : entityType.getProperties()) {
             if (isPropertyComplex(property)) {
               CsdlComplexType complexType = getComplexTypeFromProperty(property);
               addAnnotationsToComplexTypeIncludedFromSingleton(singleton, property, complexType);
             }
             removeAnnotationsAddedToPropertiesOfEntityType(entityType, property, entityContainerName);
-            removeAnnotationsAddedToPropertiesViaEntitySet(entityType, property, 
-                schemaName, containerName, entitySetName);
+            removeAnnotationsAddedToPropertiesViaEntitySet(entityType, property, schemaName, containerName, entitySetName);
           }
         }
       }
-    } catch (ODataException e) {
-      throw new EdmException(e);
-    }
+    } catch (ODataException e) { throw new EdmException(e); }
   }
   
   /**

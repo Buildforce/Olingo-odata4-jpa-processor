@@ -86,28 +86,27 @@ public class EdmDoubleTest extends PrimitiveTypeBaseTest {
     assertEquals(Double.valueOf(42.0), instance.valueOfString("42", null, null, null, null, null, Double.class));
     assertEquals(Double.valueOf(42E42), instance.valueOfString("42E42", null, null, null, null, null, Double.class));
     assertEquals(BigDecimal.TEN, instance.valueOfString("10", null, null, null, null, null, BigDecimal.class));
+
     assertEquals(Byte.valueOf((byte) 0), instance.valueOfString("0", null, null, null, null, null, Byte.class));
     assertEquals(Short.valueOf((short) 1), instance.valueOfString("1.00", null, null, null, null, null, Short.class));
     assertEquals(Integer.valueOf(42), instance.valueOfString("4.2E1", null, null, null, null, null, Integer.class));
-    assertEquals(Long.valueOf(1234567890), instance.valueOfString("1234567890E-00", null, null, null, null, null,
-        Long.class));
-    assertEquals(Double.valueOf(-0.043099999999995475), instance.valueOfString("-0.043099999999995475", null, null, 
-        null, null, null, Double.class));
+    assertEquals(Long.valueOf(1234567890), instance.valueOfString("1234567890E-00", null, null, null, null, null, Long.class));
+    assertEquals(Double.valueOf(-0.043099999999995475), instance.valueOfString("-0.043099999999995475", null, null, null, null, null, Double.class));
 
-    assertEquals(Double.valueOf(Double.NaN), instance.valueOfString("NaN", null, null, null, null, null,
-        Double.class));
-    assertEquals(Double.valueOf(Double.NEGATIVE_INFINITY), instance.valueOfString("-INF", null, null, null, null,
-        null, Double.class));
-    assertEquals(Float.valueOf(Float.POSITIVE_INFINITY), instance.valueOfString("INF", null, null, null, null, null,
-        Float.class));
+    assertEquals(Double.valueOf(Double.NaN), instance.valueOfString("NaN", null, null, null, null, null, Double.class));
+    assertEquals(Double.valueOf(Double.NEGATIVE_INFINITY), instance.valueOfString("-INF", null, null, null, null, null, Double.class));
+    assertEquals(Float.valueOf(Float.POSITIVE_INFINITY), instance.valueOfString("INF", null, null, null, null, null, Float.class));
 
-    expectContentErrorInValueOfString(instance, "0.");
-    expectContentErrorInValueOfString(instance, ".0");
-    expectContentErrorInValueOfString(instance, "1234567890.12345678");
-    expectContentErrorInValueOfString(instance, "42E400");
+    // General principle of robustness: be conservative in what you do, be liberal in what you accept from others.
+    assertEquals(Double.valueOf(0), instance.valueOfString("0.", null, null, null, null, null, Double.class));
+    assertEquals(Double.valueOf(0), instance.valueOfString(".0", null, null, null, null, null, Double.class));
+
+    assertEquals(Double.valueOf(1234567890.1234567), instance.valueOfString("1234567890.12345678", null, null, null, null, null, Double.class));
+    assertEquals(Double.valueOf("42E400" /*Inf*/), instance.valueOfString("42E400", null, null, null, null, null, Double.class));
+    assertEquals(Double.valueOf(42), instance.valueOfString("42F", null, null, null, null, null, Double.class));
+    assertEquals(Double.valueOf(0x42P42), instance.valueOfString("0x42P42", null, null, null, null, null, Double.class));
+
     expectContentErrorInValueOfString(instance, "42.42.42");
-    expectContentErrorInValueOfString(instance, "42F");
-    expectContentErrorInValueOfString(instance, "0x42P42");
 
     expectUnconvertibleErrorInValueOfString(instance, "INF", BigDecimal.class);
     expectUnconvertibleErrorInValueOfString(instance, "NaN", BigDecimal.class);

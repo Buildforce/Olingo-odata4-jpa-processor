@@ -39,7 +39,7 @@ public class TestTermReader {
     act = cut.getTerms("annotations/Org.OData.Core.V1.xml");
     assertNotNull(act.get("Org.OData.Core.V1"));
     Map<String, CsdlTerm> terms = act.get("Org.OData.Core.V1");
-    assertEquals(15, terms.size());
+    assertEquals(39, terms.size());
   }
 
   @Test

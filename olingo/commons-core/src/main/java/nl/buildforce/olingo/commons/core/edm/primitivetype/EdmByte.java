@@ -43,7 +43,7 @@ public final class EdmByte extends SingletonPrimitiveType {
                                         Boolean isNullable, Integer maxLength, Integer precision,
                                         Integer scale, Boolean isUnicode, Class<T> returnType) throws EdmPrimitiveTypeException {
 
-    Short valueShort;
+    short valueShort;
     try {
       valueShort = Short.parseShort(value);
     } catch (NumberFormatException e) {

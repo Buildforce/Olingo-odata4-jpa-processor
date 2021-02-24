@@ -38,8 +38,11 @@ public final class EdmBoolean extends SingletonPrimitiveType {
 
   @Override
   public boolean validate(String value,
-                          Boolean isNullable, Integer maxLength, Integer precision,
-                          Integer scale, Boolean isUnicode) {
+                          Boolean isNullable,
+                          Integer maxLength,
+                          Integer precision,
+                          Integer scale,
+                          Boolean isUnicode) {
 
     return value == null ? isNullable == null || isNullable : validateLiteral(value);
   }
@@ -50,8 +53,12 @@ public final class EdmBoolean extends SingletonPrimitiveType {
 
   @Override
   protected <T> T internalValueOfString(String value,
-                                        Boolean isNullable, Integer maxLength, Integer precision,
-                                        Integer scale, Boolean isUnicode, Class<T> returnType) throws EdmPrimitiveTypeException {
+                                        Boolean isNullable,
+                                        Integer maxLength,
+                                        Integer precision,
+                                        Integer scale,
+                                        Boolean isUnicode,
+                                        Class<T> returnType) throws EdmPrimitiveTypeException {
 
     if (validateLiteral(value)) {
       if (returnType.isAssignableFrom(Boolean.class)) {
@@ -75,4 +82,5 @@ public final class EdmBoolean extends SingletonPrimitiveType {
       throw new EdmPrimitiveTypeException("The value type " + value.getClass() + " is not supported.");
     }
   }
+
 }

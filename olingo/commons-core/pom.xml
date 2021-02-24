@@ -62,13 +62,20 @@
                         <Export-Package>
                             nl.buildforce.olingo.commons.core,
                             nl.buildforce.olingo.commons.core.edm,
-                            nl.buildforce.olingo.commons.core.edm.provider,
-                            nl.buildforce.olingo.commons.core.edm.primitivetype,
+                            nl.buildforce.olingo.commons.core.edm.primitivetype
                         </Export-Package>
                         <Import-Package>
                             *
                         </Import-Package>
                     </instructions>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${project.build.source}</source>
+                    <target>${project.build.source}</target>
                 </configuration>
             </plugin>
         </plugins>

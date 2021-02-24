@@ -58,7 +58,7 @@ public final class EdmSingle extends SingletonPrimitiveType {
                                         Boolean isNullable, Integer maxLength, Integer precision,
                                         Integer scale, Boolean isUnicode, Class<T> returnType) throws EdmPrimitiveTypeException {
 
-    Float result;
+    float result;
     BigDecimal bigDecimalValue = null;
     // Handle special values first.
     switch (value) {
@@ -80,9 +80,9 @@ public final class EdmSingle extends SingletonPrimitiveType {
         // The number format is checked above, so we don't have to catch NumberFormatException.
         bigDecimalValue = new BigDecimal(value);
         result = bigDecimalValue.floatValue();
-        // "Real" infinite values have been treated already above, so we can throw an exception
+        // "binary32" infinite values have been treated already above, so we can throw an exception
         // if the conversion to a float results in an infinite value.
-        if (result.isInfinite() || bigDecimalValue.compareTo(new BigDecimal(result.toString())) != 0) {
+        if (Float.isInfinite(result) /*|| bigDecimalValue.compareTo(new BigDecimal(result.toString())) != 0*/) {
           throw new EdmPrimitiveTypeException("The literal '" + value + "' has illegal content.");
         }
         break;
@@ -90,9 +90,9 @@ public final class EdmSingle extends SingletonPrimitiveType {
 
     if (returnType.isAssignableFrom(Float.class)) {
       return returnType.cast(result);
-    } else if (result.isInfinite() || result.isNaN()) {
+    } else if (Float.isInfinite(result) || Float.isNaN(result)) {
       if (returnType.isAssignableFrom(Double.class)) {
-        return returnType.cast(result.doubleValue());
+        return returnType.cast((double) result);
       } else {
         throw new EdmPrimitiveTypeException("The literal '" + value
             + "' cannot be converted to value type " + returnType + ".");

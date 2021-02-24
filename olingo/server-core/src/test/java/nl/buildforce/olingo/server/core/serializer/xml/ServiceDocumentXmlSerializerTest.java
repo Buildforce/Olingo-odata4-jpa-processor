@@ -62,7 +62,7 @@ public class ServiceDocumentXmlSerializerTest {
     assertEquals("<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
         + "<app:service xmlns:atom=\"https://www.w3.org/2005/Atom\" "
         + "xmlns:app=\"https://www.w3.org/2007/app\" "
-        + "xmlns:metadata=\"https://docs.oasis-open.org/odata/ns/metadata\" "
+        + "xmlns:metadata=\"http://docs.oasis-open.org/odata/ns/metadata\" "
         + "metadata:context=\"http://host/svc/$metadata\">"
         + "<app:workspace><atom:title>service.test</atom:title></app:workspace>"
         + "</app:service>",
@@ -79,7 +79,7 @@ public class ServiceDocumentXmlSerializerTest {
     assertEquals("<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
         + "<app:service xmlns:atom=\"https://www.w3.org/2005/Atom\" "
         + "xmlns:app=\"https://www.w3.org/2007/app\" "
-        + "xmlns:metadata=\"https://docs.oasis-open.org/odata/ns/metadata\" "
+        + "xmlns:metadata=\"http://docs.oasis-open.org/odata/ns/metadata\" "
         + "metadata:context=\"http://host/svc/$metadata\">"
         + "<app:workspace>"
         + "<atom:title>org.olingo.container</atom:title>"
@@ -99,4 +99,5 @@ public class ServiceDocumentXmlSerializerTest {
         + "</app:service>",
         metadata);
   }
+
 }

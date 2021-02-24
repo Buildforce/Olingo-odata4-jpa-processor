@@ -50,7 +50,7 @@ public final class EdmInt16 extends SingletonPrimitiveType {
   protected <T> T internalValueOfString(String value,
                                         Boolean isNullable, Integer maxLength, Integer precision,
                                         Integer scale, Boolean isUnicode, Class<T> returnType) throws EdmPrimitiveTypeException {
-    Short valueShort;
+    short valueShort;
     try {
       valueShort = Short.parseShort(value);
     } catch (NumberFormatException e) {

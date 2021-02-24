@@ -75,6 +75,7 @@ public class EdmPropertyImpl extends AbstractEdmNamed implements EdmProperty {
     typeInfo = new EdmTypeInfo.Builder().setEdm(edm).setTypeExpression(property.getType()).build();
   }
 
+/*
   private void buildTypeInfoWithAnnotations() {
     if (property.getType() == null) {
       throw new EdmException("Property " + property.getName() + " must hava a full qualified type.");
@@ -82,7 +83,8 @@ public class EdmPropertyImpl extends AbstractEdmNamed implements EdmProperty {
     typeInfo = new EdmTypeInfo.Builder().setEdm(edm).setIncludeAnnotations(true)
         .setTypeExpression(property.getType()).build();
   }
-  
+*/
+
   @Override
   public boolean isCollection() {
     return property.isCollection();
