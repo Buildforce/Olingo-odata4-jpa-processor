@@ -21,11 +21,13 @@
         <module>server-core</module>
     </modules>
 
+<!--
     <scm>
         <connection>scm:git:git://gitbox.apache.org/repos/asf/olingo-odata4.git</connection>
         <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/olingo-odata4.git</developerConnection>
         <url>https://gitbox.apache.org/repos/asf?p=olingo-odata4.git</url>
     </scm>
+-->
 
     <distributionManagement>
         <repository>

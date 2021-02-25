@@ -287,11 +287,6 @@ public final class JPAExpandJoinQuery extends JPAAbstractJoinQuery {
         || uriResourceParts != null
             && !uriResourceParts.isEmpty()
             && uriResourceParts.get(uriResourceParts.size() - 1) instanceof UriResourceCount) {
-//      SELECT "BusinessPartnerID", count(*)
-//      FROM findings_test."sap.hc.studyproxy::Config.ReferenceRanges"
-//        WHERE "BusinessPartnerID"
-
-//        GROUP BY "BusinessPartnerID"
       final CriteriaQuery<Tuple> countQuery = cb.createTupleQuery();
       final List<Selection<?>> selectionPath = buildExpandJoinPath();
 
