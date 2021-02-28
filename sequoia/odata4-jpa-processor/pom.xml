@@ -8,7 +8,7 @@
     </parent>
 
     <artifactId>odata4-jpa-processor</artifactId>
-    <name>odata4-jpa-processor</name>
+    <name>${project.artifactId}</name>
 
     <dependencies>
         <dependency>

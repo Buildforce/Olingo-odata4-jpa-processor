@@ -11,6 +11,7 @@
     <artifactId>odata-commons-api</artifactId>
     <packaging>bundle</packaging>
     <name>${project.artifactId}</name>
+    <description>Contains all OData commons classes which are not more specific (e.g. Constants which can be used in every context).</description>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>

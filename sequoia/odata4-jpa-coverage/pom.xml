@@ -8,7 +8,8 @@
     </parent>
 
     <artifactId>odata4-jpa-coverage</artifactId>
-    <name>odata4-jpa-coverage</name>
+    <name>${project.artifactId}</name>
+    <packaging>pom</packaging>
 
     <dependencies>
         <dependency>
@@ -57,7 +58,6 @@
             </plugin>
         </plugins>
     </build>
-    <packaging>pom</packaging>
     <!--	<distributionManagement>
             <repository>
                 <id>internal</id>
