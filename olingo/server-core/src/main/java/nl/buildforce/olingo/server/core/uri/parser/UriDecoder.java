@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import nl.buildforce.olingo.commons.core.Decoder;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+
 import nl.buildforce.olingo.server.api.uri.queryoption.QueryOption;
 import nl.buildforce.olingo.server.core.uri.queryoption.CustomQueryOptionImpl;
 
@@ -76,9 +78,10 @@ public class UriDecoder {
 
   public static String decode(String encoded) throws UriParserSyntaxException {
     try {
-      return Decoder.decode(encoded);
+      return URLDecoder.decode(encoded, StandardCharsets.UTF_8);
     } catch (IllegalArgumentException e) {
       throw new UriParserSyntaxException("Wrong percent encoding!", e, UriParserSyntaxException.MessageKeys.SYNTAX);
     }
   }
+
 }

@@ -15,19 +15,19 @@ import nl.buildforce.olingo.commons.api.edm.EdmPrimitiveType;
 import nl.buildforce.olingo.commons.api.edm.EdmPrimitiveTypeException;
 import nl.buildforce.olingo.commons.api.edm.EdmProperty;
 import nl.buildforce.olingo.commons.api.edm.EdmStructuredType;
-import nl.buildforce.olingo.commons.core.Encoder;
+import nl.buildforce.olingo.commons.core.UrlEncoder;
 import nl.buildforce.olingo.server.api.ODataLibraryException;
-import nl.buildforce.olingo.server.api.uri.UriHelper;
-import nl.buildforce.olingo.server.api.uri.UriResourceEntitySet;
-import nl.buildforce.olingo.server.core.ODataImpl;
-import nl.buildforce.olingo.server.api.deserializer.DeserializerException;
 import nl.buildforce.olingo.server.api.deserializer.DeserializerException.MessageKeys;
+import nl.buildforce.olingo.server.api.deserializer.DeserializerException;
 import nl.buildforce.olingo.server.api.serializer.SerializerException;
+import nl.buildforce.olingo.server.api.uri.UriHelper;
 import nl.buildforce.olingo.server.api.uri.UriParameter;
 import nl.buildforce.olingo.server.api.uri.UriResource;
+import nl.buildforce.olingo.server.api.uri.UriResourceEntitySet;
 import nl.buildforce.olingo.server.api.uri.UriResourceKind;
 import nl.buildforce.olingo.server.api.uri.queryoption.ExpandOption;
 import nl.buildforce.olingo.server.api.uri.queryoption.SelectOption;
+import nl.buildforce.olingo.server.core.ODataImpl;
 import nl.buildforce.olingo.server.core.serializer.utils.ContextURLHelper;
 import nl.buildforce.olingo.server.core.uri.parser.Parser;
 
@@ -62,7 +62,7 @@ public class UriHelperImpl implements UriHelper {
         result.append(',');
       }
       if (keyNames.size() > 1) {
-        result.append(Encoder.encode(keyName)).append('=');
+        result.append(UrlEncoder.encode(keyName)).append('=');
       }
       EdmProperty edmProperty =  refType.getProperty();
       if (edmProperty == null) {
@@ -76,7 +76,7 @@ public class UriHelperImpl implements UriHelper {
             type.valueToString(propertyValue,
                 edmProperty.isNullable(), edmProperty.getMaxLength(),
                 edmProperty.getPrecision(), edmProperty.getScale(), edmProperty.isUnicode()));
-        result.append(Encoder.encode(value));
+        result.append(UrlEncoder.encode(value));
       } catch (EdmPrimitiveTypeException e) {
         throw new SerializerException("Wrong key value!", e,
             SerializerException.MessageKeys.WRONG_PROPERTY_VALUE, edmProperty.getName(), 
@@ -138,9 +138,7 @@ public class UriHelperImpl implements UriHelper {
       List<UriResource> uriResourceParts =
           new Parser(edm, new ODataImpl()).parseUri(oDataPath, null, rawServiceRoot).getUriResourceParts();
       if (uriResourceParts.size() == 1 && uriResourceParts.get(0).getKind() == UriResourceKind.entitySet) {
-        UriResourceEntitySet entityUriResource = (UriResourceEntitySet) uriResourceParts.get(0);
-
-        return entityUriResource;
+        return (UriResourceEntitySet) uriResourceParts.get(0);
       }
 
       throw new DeserializerException("Invalid entity binding link", MessageKeys.INVALID_ENTITY_BINDING_LINK,

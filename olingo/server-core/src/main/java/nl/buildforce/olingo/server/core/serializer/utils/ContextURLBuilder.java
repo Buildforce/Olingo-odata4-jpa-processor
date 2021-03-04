@@ -7,7 +7,7 @@ import java.net.URI;
 
 import nl.buildforce.olingo.commons.api.Constants;
 import nl.buildforce.olingo.commons.api.data.ContextURL;
-import nl.buildforce.olingo.commons.core.Encoder;
+import nl.buildforce.olingo.commons.core.UrlEncoder;
 
 /**
  * Builder to build a context URL (as defined in the <a
@@ -37,17 +37,17 @@ public final class ContextURLBuilder {
       result.append('#');
       if (contextURL.isCollection()) {
         result.append("Collection(")
-            .append(Encoder.encode(contextURL.getEntitySetOrSingletonOrType()))
+            .append(UrlEncoder.encode(contextURL.getEntitySetOrSingletonOrType()))
             .append(")");
       } else {
-        result.append(Encoder.encode(contextURL.getEntitySetOrSingletonOrType()));
+        result.append(UrlEncoder.encode(contextURL.getEntitySetOrSingletonOrType()));
       }
     }
     if (contextURL.getDerivedEntity() != null) {
       if (contextURL.getEntitySetOrSingletonOrType() == null) {
         throw new IllegalArgumentException("ContextURL: Derived Type without anything to derive from!");
       }
-      result.append('/').append(Encoder.encode(contextURL.getDerivedEntity()));
+      result.append('/').append(UrlEncoder.encode(contextURL.getDerivedEntity()));
     }
     if (contextURL.getKeyPath() != null) {
       result.append('(').append(contextURL.getKeyPath()).append(')');

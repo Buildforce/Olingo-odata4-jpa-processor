@@ -82,7 +82,7 @@ abstract class JPATupleResultConverter implements JPAResultConverter {
         convertComplexAttribute(value, jpaPath.getAlias(), complexValueBuffer, properties, attribute, parentRow,
             prefix, odataEntity);
       } else if (attribute != null) {
-        convertPrimitiveAttribute(value, properties, jpaPath, attribute, odataEntity);
+        convertPrimitiveAttribute(value, properties, jpaPath, attribute);
       }
     }
   }
@@ -173,14 +173,13 @@ abstract class JPATupleResultConverter implements JPAResultConverter {
         parentRow, buildPath(attribute, prefix), odataEntity);
   }
 
-  <T, S> void convertPrimitiveAttribute(final Object value,
-                                        final List<Property> properties, final JPAPath jpaPath, final JPAAttribute attribute,
-                                        final Entity odataEntity) {
+  <T, S> void convertPrimitiveAttribute(final T value,
+                                        final List<Property> properties, final JPAPath jpaPath, final JPAAttribute attribute) {
 
     Object odataValue;
     if (attribute != null && attribute.getConverter() != null) {
       AttributeConverter<T, S> converter = attribute.getConverter();
-      odataValue = converter.convertToDatabaseColumn((T) value);
+       odataValue = converter.convertToDatabaseColumn(value);
     } else if (attribute != null && value != null && attribute.isEnum()) {
       odataValue = ((Enum<?>) value).ordinal();
     } else if (attribute != null && value != null && attribute.isCollection()) {

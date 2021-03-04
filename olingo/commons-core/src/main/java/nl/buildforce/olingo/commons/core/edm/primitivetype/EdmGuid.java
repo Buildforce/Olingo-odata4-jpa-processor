@@ -58,7 +58,11 @@ public final class EdmGuid extends SingletonPrimitiveType {
         ByteBuffer bb = ByteBuffer.wrap(buffer);
         bb.putLong(valueUUID.getMostSignificantBits());
         bb.putLong(valueUUID.getLeastSignificantBits());
-        return (returnType == Byte[].class) ? returnType.cast(ArrayUtils.toObject(buffer)) : returnType.cast(buffer);
+        //FIXME Issue in org.eclipse.persistence.internal.helper.ConversionManager#convertObjectToByteArray 436
+        // if returnType = Byte[].class due wrapped Byte type in convertor.
+        return (returnType == Byte[].class)
+                ? /*returnType.cast(ArrayUtils.toObject(*/ (T) buffer //))
+                : returnType.cast(buffer);
       }
       throw new EdmPrimitiveTypeException("The value type " + returnType + " is not supported.");
     } catch (IllegalArgumentException e) {

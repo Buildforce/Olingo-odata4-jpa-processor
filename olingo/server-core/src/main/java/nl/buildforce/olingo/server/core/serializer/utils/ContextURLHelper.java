@@ -15,7 +15,7 @@ import nl.buildforce.olingo.commons.api.edm.EdmFunction;
 import nl.buildforce.olingo.commons.api.edm.EdmNavigationProperty;
 import nl.buildforce.olingo.commons.api.edm.EdmProperty;
 import nl.buildforce.olingo.commons.api.edm.EdmStructuredType;
-import nl.buildforce.olingo.commons.core.Encoder;
+import nl.buildforce.olingo.commons.core.UrlEncoder;
 import nl.buildforce.olingo.server.api.uri.queryoption.ExpandItem;
 import nl.buildforce.olingo.server.api.uri.queryoption.SelectItem;
 import nl.buildforce.olingo.server.api.serializer.SerializerException;
@@ -97,7 +97,7 @@ public final class ContextURLHelper {
             if (result.length() > 0) {
               result.append(',');
             }
-            result.append(Encoder.encode(action.getFullQualifiedName().getFullQualifiedNameAsString()));
+            result.append(UrlEncoder.encode(action.getFullQualifiedName().getFullQualifiedNameAsString()));
           }
         }
       } else if (resource instanceof UriResourceFunction) {
@@ -110,7 +110,7 @@ public final class ContextURLHelper {
             if (result.length() > 0) {
               result.append(',');
             }
-            result.append(Encoder.encode(function.getFullQualifiedName().getFullQualifiedNameAsString()));
+            result.append(UrlEncoder.encode(function.getFullQualifiedName().getFullQualifiedNameAsString()));
           }
         }
       }
@@ -151,7 +151,7 @@ public final class ContextURLHelper {
       Set<List<String>> selectedPaths = ExpandSelectHelper.
           getSelectedPathsWithTypeCasts(selectItems, propertyName);
       if (selectedPaths == null) {
-        result.append(Encoder.encode(propertyName));
+        result.append(UrlEncoder.encode(propertyName));
       } else {
         List<List<String>> complexSelectedPaths = edmProperty != null && 
             edmProperty.getType() instanceof EdmComplexType ?
@@ -180,7 +180,7 @@ public final class ContextURLHelper {
             } else {
               result.append('/');
             }
-            result.append(Encoder.encode(name));
+            result.append(UrlEncoder.encode(name));
           }
         }
       }
@@ -191,7 +191,7 @@ public final class ContextURLHelper {
           if (result.length() > 0) {
             result.append(',');
           }
-          result.append(Encoder.encode(propertyName));
+          result.append(UrlEncoder.encode(propertyName));
         }
       }
     }
@@ -264,7 +264,7 @@ public final class ContextURLHelper {
             if (result.length() > 0) {
               result.append(',');
             }
-            result.append(Encoder.encode(propertyName)).append('(').append(innerSelectList).append(')');
+            result.append(UrlEncoder.encode(propertyName)).append('(').append(innerSelectList).append(')');
           }
         } else {
           List<UriResource> resourceParts = expandItem.getResourcePath().getUriResourceParts();
@@ -274,7 +274,7 @@ public final class ContextURLHelper {
             }
             List<String> path = getPropertyPath(resourceParts);
             String propertyPath = buildPropertyPath(path);
-            result.append(Encoder.encode(propertyName));
+            result.append(UrlEncoder.encode(propertyName));
             result.append("/").append(propertyPath);
           } else {
             appendExpandedProperty(result, propertyName);
@@ -293,12 +293,11 @@ public final class ContextURLHelper {
     }
   }
 
-  private static void appendExpandedProperty(StringBuilder result, String propertyName)
-      throws SerializerException {
+  private static void appendExpandedProperty(StringBuilder result, String propertyName) {
     if (result.length() > 0) {
       result.append(',');
     }
-    result.append(Encoder.encode(propertyName)).append("()");
+    result.append(UrlEncoder.encode(propertyName)).append("()");
   }
 
   private static List<String> getPropertyPath(List<UriResource> path) {
@@ -314,7 +313,7 @@ public final class ContextURLHelper {
   private static String buildPropertyPath(List<String> path) {
     StringBuilder result = new StringBuilder();
     for (String segment : path) {
-      result.append(result.length() == 0 ? "" : '/').append(Encoder.encode(segment)); //$NON-NLS-1$
+      result.append(result.length() == 0 ? "" : '/').append(UrlEncoder.encode(segment)); //$NON-NLS-1$
     }
     return result.length() == 0 ? null : result.toString();
   }
@@ -366,18 +365,18 @@ public final class ContextURLHelper {
    * @param keys the keys as a list of {@link UriParameter} instances
    * @return a String with the key predicate
    */
-  public static String buildKeyPredicate(List<UriParameter> keys) throws SerializerException {
+  public static String buildKeyPredicate(List<UriParameter> keys) {
     if (keys == null || keys.isEmpty()) {
       return null;
     } else if (keys.size() == 1) {
-      return Encoder.encode(keys.get(0).getText());
+      return UrlEncoder.encode(keys.get(0).getText());
     } else {
       StringBuilder result = new StringBuilder();
       for (UriParameter key : keys) {
         if (result.length() > 0) {
           result.append(',');
         }
-        result.append(Encoder.encode(key.getName())).append('=').append(Encoder.encode(key.getText()));
+        result.append(UrlEncoder.encode(key.getName())).append('=').append(UrlEncoder.encode(key.getText()));
       }
       return result.toString();
     }
