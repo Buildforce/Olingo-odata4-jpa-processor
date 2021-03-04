@@ -51,7 +51,7 @@ public class EdmProviderImpl extends AbstractEdm {
       Collections.synchronizedMap(new HashMap<>());
   private final Map<FullQualifiedName, List<CsdlFunction>> functionsMap =
       Collections.synchronizedMap(new HashMap<>());
-  private List<CsdlSchema> termSchemaDefinition = new ArrayList<>();
+  private final List<CsdlSchema> termSchemaDefinition = new ArrayList<>();
 
   private final String SLASH = "/";
   private final String DOT = ".";
@@ -203,7 +203,7 @@ public class EdmProviderImpl extends AbstractEdm {
 
   /**
    * Add annoations to entity types and complex types
-   * @param entityType
+   * @param structuralType
    * @param annotations
    */
   private void addAnnotationsOnStructuralType(CsdlStructuralType structuralType, List<CsdlAnnotation> annotations) {
@@ -292,8 +292,8 @@ public class EdmProviderImpl extends AbstractEdm {
    * @param structuralType
    * @param typeName
    * @param csdlEntityContainer 
-   * @param isNavPropAnnotationsCleared
-   * @param annotationGrp
+   * @param typeName
+   * @param csdlEntityContainer
    */
   private void updateAnnotationsOnStructuralNavProperties(CsdlStructuralType structuralType, 
       FullQualifiedName typeName, CsdlEntityContainer csdlEntityContainer) {
@@ -501,7 +501,7 @@ public class EdmProviderImpl extends AbstractEdm {
    * Removes the annotations added to properties of entity type when added via entity set
    * @param structuralType
    * @param property
-   * @param annotPropDerivedFromESOnAlias
+   * @param annotPropDerivedFromES
    */
   private void removeAnnotationsOnPropDerivedFromEntitySet(CsdlStructuralType structuralType, CsdlProperty property,
       List<CsdlAnnotation> annotPropDerivedFromES) {
@@ -639,7 +639,6 @@ public class EdmProviderImpl extends AbstractEdm {
   /** Adds annotations to action parameters
    * @param operation
    * @param actionName
-   * @param annotations
    */
   private void addAnnotationsToParamsOfOperations(CsdlOperation operation, FullQualifiedName actionName) {
     List<CsdlParameter> parameters = operation.getParameters();
@@ -668,7 +667,7 @@ public class EdmProviderImpl extends AbstractEdm {
 
   /** Adds annotations to action
    * @param operation
-   * @param annotationsOnAlias
+   * @param annotations
    */
   private void addAnnotationsToOperations(CsdlOperation operation, List<CsdlAnnotation> annotations) {
     for (CsdlAnnotation annotation : annotations) {

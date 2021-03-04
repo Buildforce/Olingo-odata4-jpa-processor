@@ -287,7 +287,7 @@ public final class ContextURLHelper {
   }
   
   private static void handleExpandAll(EdmStructuredType type,
-                                      ExpandOption expand, StringBuilder result) throws SerializerException {
+                                      ExpandOption expand, StringBuilder result) {
     for (String propertyName : type.getNavigationPropertyNames()) {
       appendExpandedProperty(result, propertyName);
     }

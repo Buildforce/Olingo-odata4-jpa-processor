@@ -28,7 +28,7 @@ public class SearchParser {
   private Iterator<SearchQueryToken> tokens;
   private SearchQueryToken token;
 
-  public SearchOption parse(String searchQuery) throws SearchParserException, SearchTokenizerException {
+  public SearchOption parse(String searchQuery) throws SearchParserException {
     SearchTokenizer tokenizer = new SearchTokenizer();
     SearchExpression searchExpression;
     try {

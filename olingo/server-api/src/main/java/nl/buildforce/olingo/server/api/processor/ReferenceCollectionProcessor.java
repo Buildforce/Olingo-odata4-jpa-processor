@@ -22,9 +22,7 @@ public interface ReferenceCollectionProcessor extends Processor {
    * @param response OData response object for collecting response data
    * @param uriInfo information of a parsed OData URI
    * @param responseFormat requested content type after content negotiation
-   * @throws ODataApplicationException if the service implementation encounters a failure
-   * @throws ODataLibraryException
    */
   void readReferenceCollection(ODataRequest request, ODataResponse response, UriInfo uriInfo,
-                               ContentType responseFormat) throws ODataApplicationException, ODataLibraryException;
+                               ContentType responseFormat);
 }

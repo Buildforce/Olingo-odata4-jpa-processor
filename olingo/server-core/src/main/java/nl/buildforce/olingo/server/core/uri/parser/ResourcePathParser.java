@@ -285,9 +285,8 @@ public class ResourcePathParser {
 
     // Type casts can be syntactically indistinguishable from bound function calls in the case of additional keys.
     // But normally they are shorter, so they come next.
-    EdmStructuredType type = previousTyped.getType() instanceof EdmEntityType ?
-        edm.getEntityType(name) :
-        edm.getComplexType(name);
+    EdmStructuredType type =
+            previousTyped.getType() instanceof EdmEntityType ? edm.getEntityType(name) : edm.getComplexType(name);
     if (type != null) {
       return typeCast(name, type, previousTyped);
     }

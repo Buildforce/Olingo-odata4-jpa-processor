@@ -40,7 +40,7 @@ public class UriHelperImpl implements UriHelper {
   }
 
   @Override
-  public String buildContextURLKeyPredicate(List<UriParameter> keys) throws SerializerException {
+  public String buildContextURLKeyPredicate(List<UriParameter> keys) {
     return ContextURLHelper.buildKeyPredicate(keys);
   }
 
@@ -148,4 +148,5 @@ public class UriHelperImpl implements UriHelper {
           entityId);
     }
   }
+
 }

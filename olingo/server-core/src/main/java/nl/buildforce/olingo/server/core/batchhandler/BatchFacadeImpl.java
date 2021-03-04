@@ -31,7 +31,7 @@ public class BatchFacadeImpl implements BatchFacade {
 
   @Override
   public ODataResponse handleODataRequest(ODataRequest request)
-      throws ODataApplicationException, ODataLibraryException {
+      throws ODataLibraryException {
     return partHandler.handleODataRequest(request);
   }
 

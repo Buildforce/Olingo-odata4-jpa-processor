@@ -99,7 +99,7 @@ public class ODataWritableContent implements ODataContent {
     }
     @Override
 	protected void writeBinary(EntityMediaObject mediaEntity, 
-			OutputStream outputStream) throws SerializerException {
+			OutputStream outputStream) {
 		throw new ODataRuntimeException("Not Implemented in Entity Handling");
 	}
   }
@@ -115,7 +115,7 @@ public class ODataWritableContent implements ODataContent {
 	    }
 
 	    protected void writeEntity(EntityIterator entity, 
-	        OutputStream outputStream) throws SerializerException {
+	        OutputStream outputStream) {
 	    	throw new ODataRuntimeException("Not Implemented in Entity Handling");
 	    }
 
@@ -147,7 +147,7 @@ public class ODataWritableContent implements ODataContent {
     }
     
 	protected void writeBinary(EntityMediaObject mediaEntity, 
-			OutputStream outputStream) throws SerializerException {
+			OutputStream outputStream) {
 		throw new ODataRuntimeException("Not Implemented in XML Handling");
 	}
   }

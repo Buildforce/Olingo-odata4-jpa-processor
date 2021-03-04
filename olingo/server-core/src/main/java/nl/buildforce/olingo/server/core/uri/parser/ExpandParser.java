@@ -143,9 +143,7 @@ public class ExpandParser {
         }
       }
       //For handling $expand for Stream property in v 4.01
-        if(lastPart instanceof UriResourcePrimitivePropertyImpl){
-          item.setResourcePath(resource);
-        }else{
+      if (!(lastPart instanceof UriResourcePrimitivePropertyImpl)) {
         EdmStructuredType newReferencedType = typeCastSuffix != null ? typeCastSuffix : (EdmStructuredType) lastPart.getType();
         boolean newReferencedIsCollection = lastPart.isCollection();
         if (hasSlash || tokenizer.next(TokenKind.SLASH)) {
@@ -162,10 +160,9 @@ public class ExpandParser {
         } else {
           parseOptions(tokenizer, newReferencedType, newReferencedIsCollection, item, false, false);
         }
-  
-        item.setResourcePath(resource);
       }
-     }
+      item.setResourcePath(resource);
+    }
 
     return item;
   }

@@ -304,7 +304,7 @@ public class CircleStreamBuffer {
     }
 
     @Override
-    public void close() throws IOException {
+    public void close() {
       inBuffer.closeRead();
     }
   }
@@ -330,7 +330,7 @@ public class CircleStreamBuffer {
     }
 
     @Override
-    public void close() throws IOException {
+    public void close() {
       outBuffer.closeWrite();
     }
   }

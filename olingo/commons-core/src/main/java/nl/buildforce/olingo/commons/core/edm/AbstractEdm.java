@@ -197,7 +197,7 @@ public abstract class AbstractEdm implements Edm {
                                                        boolean isEntityDerivedFromES) {
     this.isEntityDerivedFromES = isEntityDerivedFromES;
     FullQualifiedName fqn = resolvePossibleAlias(namespaceOrAliasFQN);
-    if (!isPreviousES() && getEntityContainer() != null) {
+    if (!isPreviousES && getEntityContainer() != null) {
        getEntityContainer().getEntitySetsWithAnnotations();
     }
     EdmEntityType entityType = entityTypesDerivedFromES.get(fqn);
@@ -215,7 +215,7 @@ public abstract class AbstractEdm implements Edm {
                                                          boolean isComplexDerivedFromES) {
     this.isComplexDerivedFromES = isComplexDerivedFromES;
     FullQualifiedName fqn = resolvePossibleAlias(namespaceOrAliasFQN);
-    if (!isPreviousES() && getEntityContainer() != null) {
+    if (!isPreviousES && getEntityContainer() != null) {
        getEntityContainer().getEntitySetsWithAnnotations();
     }
     EdmComplexType complexType = complexTypesDerivedFromES.get(fqn);
@@ -531,10 +531,6 @@ public abstract class AbstractEdm implements Edm {
   
   protected void setIsPreviousES(boolean isPreviousES) {
     this.isPreviousES = isPreviousES;
-  }
-  
-  protected boolean isPreviousES() {
-    return isPreviousES;
   }
   
   protected Map<String, List<CsdlAnnotation>> getAnnotationsMap() {

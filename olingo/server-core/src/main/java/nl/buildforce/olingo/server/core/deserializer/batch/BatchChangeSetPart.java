@@ -10,7 +10,7 @@ import nl.buildforce.olingo.server.api.deserializer.batch.BatchDeserializerExcep
 public class BatchChangeSetPart extends BatchQueryOperation {
   private BatchQueryOperation request;
 
-  public BatchChangeSetPart(List<Line> message, boolean isStrict) throws BatchDeserializerException {
+  public BatchChangeSetPart(List<Line> message, boolean isStrict) {
     super(message, isStrict);
   }
 

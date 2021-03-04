@@ -151,7 +151,7 @@ public final class JPAODataBatchProcessor implements BatchProcessor {
         t.commit();
         // requestContext.getDebugger().stopRuntimeMeasurement(handle);
         return new ODataResponsePart(responses, true);
-      } catch (ODataApplicationException | ODataLibraryException e) {
+      } catch (ODataLibraryException e) {
         // The batch request is malformed or the processor implementation is not correct.
         // Throwing an exception will stop the whole batch request not only the Change Set!
         t.rollback();

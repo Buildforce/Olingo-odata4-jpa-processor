@@ -548,9 +548,8 @@ public class JsonDeltaSerializerWithNavigations implements EdmDeltaSerializer {
                                 boolean onlyReference, String name, JsonGenerator json,
                                 boolean isFullRepresentation) throws IOException, SerializerException {
     if (entitySet != null) {
-      AbstractEntityCollection entities = entitySet;
       json.writeStartArray();
-      for (Entity entity : entities) {
+      for (Entity entity : entitySet) {
         if (onlyReference) {
           json.writeStartObject();
           json.writeStringField(Constants.JSON_ID, getEntityId(entity, entityType, null));

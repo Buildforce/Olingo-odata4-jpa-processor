@@ -666,8 +666,7 @@ public class ODataXmlSerializer extends AbstractODataSerializer {
     }
   }
 
-  protected Link getOrCreateLink(Linked linked, String navigationPropertyName)
-      throws XMLStreamException {
+  protected Link getOrCreateLink(Linked linked, String navigationPropertyName) {
     Link link = linked.getNavigationLink(navigationPropertyName);
     if (link == null) {
       link = new Link();
@@ -767,7 +766,7 @@ public class ODataXmlSerializer extends AbstractODataSerializer {
   }
 
   private String derivedComplexType(EdmComplexType baseType,
-                                    String definedType) throws SerializerException {
+                                    String definedType) {
     String base = baseType.getFullQualifiedName().getFullQualifiedNameAsString();
     if (base.equals(definedType)) {
       return null;
@@ -1309,14 +1308,13 @@ public class ODataXmlSerializer extends AbstractODataSerializer {
         || invalidCharacterReplacement == null || isUniCode == null || !isUniCode) {
       return value;
     }
-    String s = value;
     StringBuilder result = null;
-    for (int i = 0; i < s.length(); i++) {
-      char c = s.charAt(i);
+    for (int i = 0; i < value.length(); i++) {
+      char c = value.charAt(i);
       if (c <= 0x0020 && c != ' ' && c != '\n' && c != '\t' && c != '\r') {
         if (result == null) {
           result = new StringBuilder();
-          result.append(s, 0, i);
+          result.append(value, 0, i);
         }
         result.append(invalidCharacterReplacement);
       } else if (result != null) {

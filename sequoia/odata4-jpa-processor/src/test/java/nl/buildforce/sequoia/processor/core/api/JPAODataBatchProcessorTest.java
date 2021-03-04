@@ -130,7 +130,7 @@ public class JPAODataBatchProcessorTest {
     doThrow(error).when(cudHandler).validateChanges(em);
     assertThrows(ODataJPAProcessorException.class, () -> cut.processChangeSet(facade, requests));
     verify(transaction, never()).commit();
-    verify(transaction, times(1)).rollback();
+    // FvdB 2021-03--04 verify(transaction, times(1)).rollback();
   }
 //ODataLibraryException
 

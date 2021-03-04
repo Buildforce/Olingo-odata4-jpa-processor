@@ -21,9 +21,7 @@ public interface ActionComplexProcessor extends Processor {
    * @param uriInfo information about a parsed OData URI
    * @param requestFormat content type of body sent with request
    * @param responseFormat requested content type after content negotiation
-   * @throws ODataApplicationException if the service implementation encounters a failure
-   * @throws ODataLibraryException
    */
   void processActionComplex(ODataRequest request, ODataResponse response, UriInfo uriInfo,
-                            ContentType requestFormat, ContentType responseFormat) throws ODataApplicationException, ODataLibraryException;
+                            ContentType requestFormat, ContentType responseFormat);
 }

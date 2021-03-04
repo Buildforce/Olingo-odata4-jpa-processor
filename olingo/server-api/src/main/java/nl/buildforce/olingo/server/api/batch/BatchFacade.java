@@ -29,11 +29,9 @@
     * that is unique in the whole batch request.
     * @param request ODataRequest to process
     * @return corresponding ODataResponse to the given request
-    * @throws ODataApplicationException
     * @throws ODataLibraryException
     */
-   ODataResponse handleODataRequest(ODataRequest request)
-       throws ODataApplicationException, ODataLibraryException;
+   ODataResponse handleODataRequest(ODataRequest request) throws ODataLibraryException;
 
    /**
     * Handles a BatchRequestPart.
@@ -50,10 +48,9 @@
     * See RFC 2046#5.1
     * @param contentType Content Type
     * @return boundary
-    * @throws ODataApplicationException
     * @throws ODataLibraryException
     */
    String extractBoundaryFromContentType(String contentType)
-       throws ODataApplicationException, ODataLibraryException;
+       throws ODataLibraryException;
 
  }

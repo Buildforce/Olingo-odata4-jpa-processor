@@ -39,7 +39,7 @@ public class SelectParser {
   }
 
   public SelectOption parse(UriTokenizer tokenizer, EdmStructuredType referencedType,
-      boolean referencedIsCollection) throws UriParserException, UriValidationException {
+      boolean referencedIsCollection) throws UriParserException {
     List<SelectItem> selectItems = new ArrayList<>();
     SelectItem item;
     do {

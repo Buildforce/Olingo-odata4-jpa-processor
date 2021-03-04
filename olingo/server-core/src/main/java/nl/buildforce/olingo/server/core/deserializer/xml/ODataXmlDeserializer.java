@@ -85,8 +85,7 @@ public class ODataXmlDeserializer implements ODataDeserializer {
 
   private Object primitive(XMLEventReader reader, StartElement start,
                            EdmType type, boolean isNullable, Integer maxLength, Integer precision,
-                           Integer scale, boolean isUnicode) throws XMLStreamException, EdmPrimitiveTypeException,
-      DeserializerException {
+                           Integer scale, boolean isUnicode) throws XMLStreamException, EdmPrimitiveTypeException {
 
     Object value = null;
 
@@ -442,7 +441,7 @@ public class ODataXmlDeserializer implements ODataDeserializer {
     }
   }
 
-  private Entity entityRef(StartElement start) throws XMLStreamException {
+  private Entity entityRef(StartElement start) {
     Entity entity = new Entity();
 
     Attribute entityRefId = start.getAttributeByName(Constants.QNAME_ATOM_ATTR_ID);

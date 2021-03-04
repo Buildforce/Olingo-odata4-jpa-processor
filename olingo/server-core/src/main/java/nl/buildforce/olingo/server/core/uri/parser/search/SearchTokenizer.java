@@ -279,7 +279,7 @@ public class SearchTokenizer {
 
     public State init(char c) throws SearchTokenizerException {
       if (isFinished()) {
-        throw new SearchTokenizerException(toString() + " is already finished.",
+        throw new SearchTokenizerException(" is already finished.",
             SearchTokenizerException.MessageKeys.ALREADY_FINISHED, getTokenName());
       }
       literal.append(c);
@@ -491,7 +491,7 @@ public class SearchTokenizer {
     }
 
     @Override
-    public State close() throws SearchTokenizerException {
+    public State close() {
       if (Token.NOT.name().equals(literal.toString())) {
         return finish();
       }
@@ -525,7 +525,7 @@ public class SearchTokenizer {
     }
 
     @Override
-    public State close() throws SearchTokenizerException {
+    public State close() {
       if (Token.AND.name().equals(literal.toString())) {
         return finish();
       }
@@ -557,7 +557,7 @@ public class SearchTokenizer {
     }
 
     @Override
-    public State close() throws SearchTokenizerException {
+    public State close() {
       if (Token.OR.name().equals(literal.toString())) {
         return finish();
       }
