@@ -908,7 +908,7 @@ public class MetadataDocumentJsonSerializerTest {
       return schemas;
     }
 
-    public CsdlEntityContainer getEntityContainer1() throws ODataException {
+    public CsdlEntityContainer getEntityContainer1() {
       CsdlEntityContainer container = new CsdlEntityContainer();
       container.setName("container1");
 
@@ -935,7 +935,7 @@ public class MetadataDocumentJsonSerializerTest {
     }
 
     @Override
-    public CsdlEntityContainer getEntityContainer() throws ODataException {
+    public CsdlEntityContainer getEntityContainer() {
       CsdlEntityContainer container = new CsdlEntityContainer();
       container.setName("container");
 
@@ -1170,4 +1170,5 @@ public class MetadataDocumentJsonSerializerTest {
       return null;
     }
   }
+
 }

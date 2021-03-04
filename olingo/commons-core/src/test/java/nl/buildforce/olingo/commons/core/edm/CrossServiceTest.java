@@ -62,7 +62,7 @@ package nl.buildforce.olingo.commons.core.edm;
      }
  
      @Override
-     public List<CsdlAliasInfo> getAliasInfos() throws ODataException {
+     public List<CsdlAliasInfo> getAliasInfos() {
        return Arrays.asList(
            new CsdlAliasInfo().setNamespace(NAMESPACE_PREFIX + name).setAlias(ALIAS_PREFIX + name),
            new CsdlAliasInfo().setNamespace(NAMESPACE_PREFIX + other).setAlias(ALIAS_PREFIX + other));
@@ -218,4 +218,5 @@ package nl.buildforce.olingo.commons.core.edm;
     Assert.assertEquals(1, edm1.getEntityContainer().getEntitySets().size());
     Assert.assertEquals("EntitySetOne", edm1.getEntityContainer().getEntitySets().get(0).getName());
   }
-}
+
+ }

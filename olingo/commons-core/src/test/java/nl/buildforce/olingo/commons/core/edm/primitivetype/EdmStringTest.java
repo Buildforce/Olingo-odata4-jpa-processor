@@ -14,7 +14,7 @@ public class EdmStringTest extends PrimitiveTypeBaseTest {
   private final EdmPrimitiveType instance = EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.String);
 
   @Test
-  public void toUriLiteral() throws Exception {
+  public void toUriLiteral() {
     assertEquals("'StringValue'", instance.toUriLiteral("StringValue"));
     assertEquals("'String''Value'", instance.toUriLiteral("String'Value"));
     assertEquals("'String''''''Value'", instance.toUriLiteral("String'''Value"));
@@ -60,4 +60,5 @@ public class EdmStringTest extends PrimitiveTypeBaseTest {
 
     expectTypeErrorInValueOfString(instance, "text");
   }
+
 }

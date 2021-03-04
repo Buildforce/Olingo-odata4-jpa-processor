@@ -24,7 +24,7 @@ public class EdmTimeOfDayTest extends PrimitiveTypeBaseTest {
   private final EdmPrimitiveType instance = EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.TimeOfDay);
 
   @Test
-  public void toUriLiteral() throws Exception {
+  public void toUriLiteral() {
     assertEquals("11:12", instance.toUriLiteral("11:12"));
     assertEquals("11:12:13.012", instance.toUriLiteral("11:12:13.012"));
   }
@@ -167,7 +167,7 @@ public class EdmTimeOfDayTest extends PrimitiveTypeBaseTest {
   }
 
   @Test
-  public void tests() throws Exception {
+  public void tests() {
     instance.validate("12:34:55", null, null, null, null, null);
   }
 

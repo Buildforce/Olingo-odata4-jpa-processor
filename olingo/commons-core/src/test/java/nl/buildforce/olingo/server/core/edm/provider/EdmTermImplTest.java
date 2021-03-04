@@ -97,7 +97,7 @@ public class EdmTermImplTest {
   }
 
   @Test
-  public void termBasics() throws Exception {
+  public void termBasics() {
     assertEquals("name1", initialTerm.getName());
     assertEquals(new FullQualifiedName("namespace", "name1"), initialTerm.getFullQualifiedName());
 

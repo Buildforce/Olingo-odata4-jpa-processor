@@ -34,7 +34,7 @@ public class EdmTypeDefinitionImplTest extends PrimitiveTypeBaseTest {
           .setUnicode(false));
 
   @Test
-  public void defaultType() throws Exception {
+  public void defaultType() {
     assertEquals(String.class, instance.getDefaultType());
   }
 
@@ -49,7 +49,7 @@ public class EdmTypeDefinitionImplTest extends PrimitiveTypeBaseTest {
   }
 
   @Test
-  public void toUriLiteral() throws Exception {
+  public void toUriLiteral() {
     assertEquals("'Value'", instance.toUriLiteral("Value"));
   }
 
@@ -112,7 +112,7 @@ public class EdmTypeDefinitionImplTest extends PrimitiveTypeBaseTest {
   }
 
   @Test
-  public void invalidTypeResultsInEdmException() throws Exception {
+  public void invalidTypeResultsInEdmException() {
     FullQualifiedName typeDefName = new FullQualifiedName("namespace", "name");
     CsdlTypeDefinition providerTypeDef =
         new CsdlTypeDefinition().setName("typeDef").setUnderlyingType(new FullQualifiedName("wrong", "wrong"));
@@ -126,7 +126,7 @@ public class EdmTypeDefinitionImplTest extends PrimitiveTypeBaseTest {
   }
 
   @Test
-  public void nullTypeResultsInEdmException() throws Exception {
+  public void nullTypeResultsInEdmException() {
     FullQualifiedName typeDefName = new FullQualifiedName("namespace", "name");
     CsdlTypeDefinition providerTypeDef = new CsdlTypeDefinition().setName("typeDef");
     EdmTypeDefinitionImpl def = new EdmTypeDefinitionImpl(mock(EdmProviderImpl.class), typeDefName, providerTypeDef);

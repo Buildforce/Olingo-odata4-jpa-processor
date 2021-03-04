@@ -278,19 +278,15 @@ public class EdmProviderImpl extends AbstractEdm {
    * @return
    */
   private String getAliasInfo(String namespace) {
-    try {
       if (null != provider.getAliasInfos()) {
         for (CsdlAliasInfo aliasInfo : provider.getAliasInfos()) {
-          if (null != aliasInfo.getNamespace() && 
+          if (null != aliasInfo.getNamespace() &&
               aliasInfo.getNamespace().equalsIgnoreCase(namespace)) {
             return aliasInfo.getAlias();
           }
         }
       }
-    } catch (ODataException e) {
-      throw new EdmException(e);
-    }
-    return null;
+      return null;
   }
   /** Check if annotations are added on navigation properties of a structural type
    * @param structuralType
@@ -775,17 +771,13 @@ public class EdmProviderImpl extends AbstractEdm {
   @Override
   protected Map<String, String> createAliasToNamespaceInfo() {
     Map<String, String> aliasToNamespaceInfos = new HashMap<>();
-    try {
       List<CsdlAliasInfo> aliasInfos = provider.getAliasInfos();
       if (aliasInfos != null) {
         for (CsdlAliasInfo info : aliasInfos) {
           aliasToNamespaceInfos.put(info.getAlias(), info.getNamespace());
         }
       }
-    } catch (ODataException e) {
-      throw new EdmException(e);
-    }
-    return aliasToNamespaceInfos;
+      return aliasToNamespaceInfos;
   }
 
   @Override

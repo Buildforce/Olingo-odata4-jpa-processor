@@ -14,7 +14,7 @@ public class EdmBooleanTest extends PrimitiveTypeBaseTest {
   private final EdmPrimitiveType instance = EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.Boolean);
 
   @Test
-  public void toUriLiteral() throws Exception {
+  public void toUriLiteral() {
     assertEquals("true", instance.toUriLiteral("true"));
     assertEquals("false", instance.toUriLiteral("false"));
   }
@@ -46,4 +46,5 @@ public class EdmBooleanTest extends PrimitiveTypeBaseTest {
 
     expectTypeErrorInValueOfString(instance, "true");
   }
+
 }

@@ -199,17 +199,13 @@ public class EdmEntityContainerImpl extends AbstractEdmNamed implements EdmEntit
   protected EdmSingleton createSingleton(String singletonName) {
     EdmSingleton singleton = null;
 
-    try {
       CsdlSingleton providerSingleton = provider.getSingleton(entityContainerName, singletonName);
       if (providerSingleton != null) {
         addSingletonAnnotations(providerSingleton, entityContainerName);
         singleton = new EdmSingletonImpl(edm, this, providerSingleton);
       }
-    } catch (ODataException e) {
-      throw new EdmException(e);
-    }
 
-    return singleton;
+      return singleton;
   }
 
   private void addSingletonAnnotations(CsdlSingleton singleton, FullQualifiedName entityContainerName) {
@@ -249,19 +245,15 @@ public class EdmEntityContainerImpl extends AbstractEdmNamed implements EdmEntit
    * @return
    */
   private String getAliasInfo(String namespace) {
-    try {
       if (null != provider.getAliasInfos()) {
         for (CsdlAliasInfo aliasInfo : provider.getAliasInfos()) {
-          if (null != aliasInfo.getNamespace() && 
+          if (null != aliasInfo.getNamespace() &&
 		  aliasInfo.getNamespace().equalsIgnoreCase(namespace)) {
             return aliasInfo.getAlias();
           }
         }
       }
-    } catch (ODataException e) {
-      throw new EdmException(e);
-    }
-    return null;
+      return null;
   }
   
   /** adds annotations to entity type properties derived from singleton

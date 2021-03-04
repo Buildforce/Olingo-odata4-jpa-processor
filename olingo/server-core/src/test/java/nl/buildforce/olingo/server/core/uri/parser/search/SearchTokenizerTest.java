@@ -289,11 +289,11 @@ public class SearchTokenizerTest {
     assertQuery("abc AND \"something\" )").resultsIn(WORD, AND, PHRASE, CLOSE);
   }
 
-  public void validate(String query) throws SearchTokenizerException {
+  public void validate(String query) {
     new Validator(query);
   }
 
-  public Validator assertQuery(String query) throws SearchTokenizerException {
+  public Validator assertQuery(String query) {
     return new Validator(query);
   }
 
@@ -355,8 +355,7 @@ public class SearchTokenizerTest {
       return this;
     }
 
-    private void resultsIn(SearchTokenizerException.MessageKey key)
-        throws SearchTokenizerException {
+    private void resultsIn(SearchTokenizerException.MessageKey key) {
       try {
         validate();
       } catch (SearchTokenizerException e) {
@@ -384,4 +383,5 @@ public class SearchTokenizerTest {
       }
     }
   }
+
 }

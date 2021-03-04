@@ -107,7 +107,7 @@ public class EdmSingletonImplTest {
   }
 
   @Test(expected = EdmException.class)
-  public void nonExsistingEntityType() throws Exception {
+  public void nonExsistingEntityType() {
     CsdlEdmProvider provider = mock(CsdlEdmProvider.class);
     EdmProviderImpl edm = new EdmProviderImpl(provider);
 
@@ -115,4 +115,5 @@ public class EdmSingletonImplTest {
     EdmSingleton edmSingleton = new EdmSingletonImpl(edm, null, singleton);
     edmSingleton.getEntityType();
   }
+
 }

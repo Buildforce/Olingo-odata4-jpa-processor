@@ -30,7 +30,7 @@ public class FixedFormatSerializerTest {
 
   private final FixedFormatSerializer serializer;
 
-  public FixedFormatSerializerTest() throws SerializerException {
+  public FixedFormatSerializerTest() {
     serializer = OData.newInstance().createFixedFormatSerializer();
   }
 
@@ -67,4 +67,5 @@ public class FixedFormatSerializerTest {
 	  SerializerStreamResult result = serializer.mediaEntityStreamed(mediaObject);
 	  assertNotNull(result.getODataContent());
   }
+
 }

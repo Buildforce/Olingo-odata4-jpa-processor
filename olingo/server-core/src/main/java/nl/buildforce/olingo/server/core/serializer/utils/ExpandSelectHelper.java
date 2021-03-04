@@ -211,8 +211,7 @@ public abstract class ExpandSelectHelper {
       return null;
     }
   
-  public static Set<String> getExpandedPropertyNames(List<ExpandItem> expandItems)
-      throws SerializerException {
+  public static Set<String> getExpandedPropertyNames(List<ExpandItem> expandItems) {
     Set<String> expanded = new HashSet<>();
     for (ExpandItem item : expandItems) {
       List<UriResource> resourceParts = item.getResourcePath().getUriResourceParts();
@@ -367,4 +366,5 @@ public abstract class ExpandSelectHelper {
     }
     return matched;
   }
+
 }

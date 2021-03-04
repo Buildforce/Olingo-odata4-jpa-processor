@@ -124,7 +124,7 @@ public class JsonDeltaSerializer implements EdmDeltaSerializer {
   }
 
   private void writeLink(DeltaLink link, EntityCollectionSerializerOptions options,
-      JsonGenerator json, boolean isAdded) throws IOException, SerializerException {
+      JsonGenerator json, boolean isAdded) throws SerializerException {
     try {
       json.writeStartObject();
       String entityId = options.getContextURL().getEntitySetOrSingletonOrType();

@@ -50,7 +50,7 @@ public class ODataHttpHandlerImplTest {
   }
 
   @Test
-  public void extractMethodFail() throws Exception {
+  public void extractMethodFail() {
     String[][] mm = {
         { "POST", "bla", null },
         { "POST", "PUT", "PATCH" },
@@ -209,4 +209,5 @@ public class ODataHttpHandlerImplTest {
     
     }
   }
+
 }

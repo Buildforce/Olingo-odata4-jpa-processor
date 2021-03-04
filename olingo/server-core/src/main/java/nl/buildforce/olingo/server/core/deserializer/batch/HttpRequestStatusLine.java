@@ -101,7 +101,7 @@ public class HttpRequestStatusLine {
     }
   }
 
-  private void buildUri(String oDataPath, String queryOptions) throws BatchDeserializerException {
+  private void buildUri(String oDataPath, String queryOptions) {
     rawBaseUri = requestBaseUri;
     rawODataPath = "/" + oDataPath;
     rawRequestUri = requestBaseUri + rawODataPath;
@@ -174,4 +174,5 @@ public class HttpRequestStatusLine {
   public String getRawRequestUri() {
     return rawRequestUri;
   }
+
 }

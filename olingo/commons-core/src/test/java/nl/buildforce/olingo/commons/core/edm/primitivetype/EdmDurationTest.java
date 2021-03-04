@@ -17,7 +17,7 @@ public class EdmDurationTest extends PrimitiveTypeBaseTest {
   private final EdmPrimitiveType instance = EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.Duration);
 
   @Test
-  public void toUriLiteral() throws Exception {
+  public void toUriLiteral() {
     assertEquals("duration'P120D'", instance.toUriLiteral("P120D"));
   }
 
@@ -87,4 +87,5 @@ public class EdmDurationTest extends PrimitiveTypeBaseTest {
 
     expectTypeErrorInValueOfString(instance, "PT0S");
   }
+
 }

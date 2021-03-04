@@ -298,7 +298,6 @@ public class ODataHttpHandlerImpl implements ODataHttpHandler {
   static void copyHeaders(ODataRequest odRequest, HttpServletRequest req) {
 	  for (Enumeration<?> headerNames = req.getHeaderNames(); headerNames.hasMoreElements();) {
 	      String headerName = (String) headerNames.nextElement();
-	      @SuppressWarnings("unchecked")
 	      // getHeaders() says it returns an Enumeration of String.
           List<String> headerValues = Collections.list(req.getHeaders(headerName));
 	      odRequest.addHeader(headerName, headerValues);
@@ -329,4 +328,5 @@ public class ODataHttpHandlerImpl implements ODataHttpHandler {
   public void register(DebugSupport debugSupport) {
     debugger.setDebugSupportProcessor(debugSupport);
   }*/
+
 }

@@ -304,7 +304,7 @@ public class ODataXmlSerializer extends AbstractODataSerializer {
 
   @Override
   public SerializerStreamResult entityCollectionStreamed(ServiceMetadata metadata, EdmEntityType entityType,
-      EntityIterator entities, EntityCollectionSerializerOptions options) throws SerializerException {
+      EntityIterator entities, EntityCollectionSerializerOptions options) {
       return ODataWritableContent.with(entities, entityType, this, metadata, options).build();
   }
 

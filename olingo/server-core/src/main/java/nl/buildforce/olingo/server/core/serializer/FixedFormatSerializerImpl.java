@@ -25,7 +25,7 @@ import nl.buildforce.olingo.server.api.serializer.SerializerStreamResult;
 public class FixedFormatSerializerImpl implements FixedFormatSerializer {
 
   @Override
-  public InputStream binary(byte[] binary) throws SerializerException {
+  public InputStream binary(byte[] binary) {
     return new ByteArrayInputStream(binary);
   }
   
@@ -44,12 +44,12 @@ public class FixedFormatSerializerImpl implements FixedFormatSerializer {
   }
   
   @Override
-  public SerializerStreamResult mediaEntityStreamed(EntityMediaObject mediaEntity) throws SerializerException {
+  public SerializerStreamResult mediaEntityStreamed(EntityMediaObject mediaEntity) {
 	  return ODataWritableContent.with(mediaEntity, this).build();
   }
 
   @Override
-  public InputStream count(Integer count) throws SerializerException {
+  public InputStream count(Integer count) {
       return new ByteArrayInputStream(count.toString().getBytes(StandardCharsets.UTF_8));
   }
 
@@ -82,4 +82,5 @@ public class FixedFormatSerializerImpl implements FixedFormatSerializer {
 
     return serializer.serialize(batchResponses, boundary);
   }
+
 }

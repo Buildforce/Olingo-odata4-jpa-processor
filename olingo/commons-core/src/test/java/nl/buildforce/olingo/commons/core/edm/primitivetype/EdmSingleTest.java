@@ -28,7 +28,7 @@ public class EdmSingleTest extends PrimitiveTypeBaseTest {
   }
 
   @Test
-  public void toUriLiteral() throws Exception {
+  public void toUriLiteral() {
     assertEquals("127", instance.toUriLiteral("127"));
   }
 
@@ -120,4 +120,5 @@ public class EdmSingleTest extends PrimitiveTypeBaseTest {
 
     expectTypeErrorInValueOfString(instance, "1.42");
   }
+
 }

@@ -41,7 +41,7 @@ public class DefaultProcessor implements MetadataProcessor, ServiceDocumentProce
 
     @Override
     public void readServiceDocument(ODataRequest request, ODataResponse response, /*UriInfo uriInfo,*/
-                                    ContentType requestedContentType) throws ODataApplicationException, ODataLibraryException {
+                                    ContentType requestedContentType) throws ODataLibraryException {
         boolean isNotModified = false;
         ServiceMetadataETagSupport eTagSupport = serviceMetadata.getServiceMetadataETagSupport();
         if (eTagSupport != null && eTagSupport.getServiceDocumentETag() != null) {
@@ -71,7 +71,7 @@ public class DefaultProcessor implements MetadataProcessor, ServiceDocumentProce
 
     @Override
     public void readMetadata(ODataRequest request, ODataResponse response, /*UriInfo uriInfo,*/
-                             ContentType requestedContentType) throws ODataApplicationException, ODataLibraryException {
+                             ContentType requestedContentType) throws ODataLibraryException {
         boolean isNotModified = false;
         ServiceMetadataETagSupport eTagSupport = serviceMetadata.getServiceMetadataETagSupport();
         if (eTagSupport != null && eTagSupport.getMetadataETag() != null) {

@@ -477,8 +477,7 @@ public class MetadataDocumentJsonSerializer {
     }
   }
 
-  private void appendOperationReturnType(JsonGenerator json,
-                                         EdmOperation operation) throws SerializerException, IOException {
+  private void appendOperationReturnType(JsonGenerator json, EdmOperation operation) throws IOException {
     EdmReturnType returnType = operation.getReturnType();
     if (returnType != null) {
       json.writeObjectFieldStart(RETURN_TYPE);
@@ -1094,7 +1093,7 @@ public class MetadataDocumentJsonSerializer {
     return type.getFullQualifiedName().getFullQualifiedNameAsString();
   }
 
-  private void appendReference(JsonGenerator json) throws SerializerException, IOException {
+  private void appendReference(JsonGenerator json) throws IOException {
     json.writeObjectFieldStart(REFERENCES);
     for (EdmxReference reference : serviceMetadata.getReferences()) {
       json.writeObjectFieldStart(reference.getUri().toASCIIString());
@@ -1145,4 +1144,5 @@ public class MetadataDocumentJsonSerializer {
    }
    json.writeEndArray();
   }
+
 }

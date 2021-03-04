@@ -226,78 +226,73 @@ public class EdmSchemaImplTest {
   private static class LocalProvider implements CsdlEdmProvider {
 
     @Override
-    public CsdlEnumType getEnumType(FullQualifiedName enumTypeName) throws ODataException {
+    public CsdlEnumType getEnumType(FullQualifiedName enumTypeName) {
       throw new RuntimeException("Provider must not be called in the schema case");
     }
 
     @Override
-    public CsdlTypeDefinition getTypeDefinition(FullQualifiedName typeDefinitionName) throws ODataException {
+    public CsdlTypeDefinition getTypeDefinition(FullQualifiedName typeDefinitionName) {
       throw new RuntimeException("Provider must not be called in the schema case");
     }
 
     @Override
-    public CsdlEntityType getEntityType(FullQualifiedName entityTypeName) throws ODataException {
+    public CsdlEntityType getEntityType(FullQualifiedName entityTypeName) {
       return null;
     }
 
     @Override
-    public CsdlComplexType getComplexType(FullQualifiedName complexTypeName) throws ODataException {
+    public CsdlComplexType getComplexType(FullQualifiedName complexTypeName) {
       throw new RuntimeException("Provider must not be called in the schema case");
     }
 
     @Override
-    public List<CsdlAction> getActions(FullQualifiedName actionName) throws ODataException {
+    public List<CsdlAction> getActions(FullQualifiedName actionName) {
       throw new RuntimeException("Provider must not be called in the schema case");
     }
 
     @Override
-    public List<CsdlFunction> getFunctions(FullQualifiedName functionName) throws ODataException {
+    public List<CsdlFunction> getFunctions(FullQualifiedName functionName) {
       throw new RuntimeException("Provider must not be called in the schema case");
     }
 
     @Override
-    public CsdlTerm getTerm(FullQualifiedName termName) throws ODataException {
+    public CsdlTerm getTerm(FullQualifiedName termName) {
       throw new RuntimeException("Provider must not be called in the schema case");
     }
 
     @Override
-    public CsdlEntitySet getEntitySet(FullQualifiedName entityContainer, String entitySetName)
-        throws ODataException {
+    public CsdlEntitySet getEntitySet(FullQualifiedName entityContainer, String entitySetName) {
       throw new RuntimeException("Provider must not be called in the schema case");
     }
 
     @Override
-    public CsdlSingleton getSingleton(FullQualifiedName entityContainer, String singletonName)
-        throws ODataException {
+    public CsdlSingleton getSingleton(FullQualifiedName entityContainer, String singletonName) {
       throw new RuntimeException("Provider must not be called in the schema case");
     }
 
     @Override
-    public CsdlActionImport getActionImport(FullQualifiedName entityContainer, String actionImportName)
-        throws ODataException {
+    public CsdlActionImport getActionImport(FullQualifiedName entityContainer, String actionImportName) {
       throw new RuntimeException("Provider must not be called in the schema case");
     }
 
     @Override
     public CsdlFunctionImport getFunctionImport(FullQualifiedName entityContainer,
-                                                String functionImportName)
-        throws ODataException {
+                                                String functionImportName) {
       throw new RuntimeException("Provider must not be called in the schema case");
     }
 
     @Override
-    public CsdlEntityContainerInfo getEntityContainerInfo(FullQualifiedName entityContainerName)
-        throws ODataException {
+    public CsdlEntityContainerInfo getEntityContainerInfo(FullQualifiedName entityContainerName) {
       throw new RuntimeException("Provider must not be called in the schema case");
     }
 
     @Override
-    public List<CsdlAliasInfo> getAliasInfos() throws ODataException {
+    public List<CsdlAliasInfo> getAliasInfos() {
       return Collections.emptyList();
     }
 
     @Override
-    public List<CsdlSchema> getSchemas() throws ODataException {
+    public List<CsdlSchema> getSchemas() {
       CsdlSchema providerSchema = new CsdlSchema();
       providerSchema.setNamespace(NAMESPACE);
       providerSchema.setAlias(ALIAS);
@@ -382,13 +377,14 @@ public class EdmSchemaImplTest {
     }
 
     @Override
-    public CsdlEntityContainer getEntityContainer() throws ODataException {
+    public CsdlEntityContainer getEntityContainer() {
       throw new RuntimeException("Provider must not be called in the schema case");
     }
 
     @Override
-    public CsdlAnnotations getAnnotationsGroup(FullQualifiedName targetName, String qualifier) throws ODataException {
+    public CsdlAnnotations getAnnotationsGroup(FullQualifiedName targetName, String qualifier) {
       throw new RuntimeException("Provider must not be called in the schema case");
     }
   }
+
 }

@@ -137,7 +137,7 @@ public class EdmDateTimeOffsetTest extends PrimitiveTypeBaseTest {
   }
 
   @Test
-  public void valueToStringFromInvalidTypes() throws Exception {
+  public void valueToStringFromInvalidTypes() {
     //expectTypeErrorInValueToString(instance, 0);
     //expectTypeErrorInValueToString(instance, Time.valueOf("12:13:14"));
     expectTypeErrorInValueToString(instance, java.sql.Date.valueOf("2019-10-25"));
@@ -243,7 +243,7 @@ public class EdmDateTimeOffsetTest extends PrimitiveTypeBaseTest {
   }
 
   @Test
-  public void valueOfStringInvalidData() throws Exception {
+  public void valueOfStringInvalidData() {
     expectContentErrorInValueOfString(instance, "2012-02-29T23:32:02X");
     expectContentErrorInValueOfString(instance, "2012-02-29T23:32:02+24:00");
     expectContentErrorInValueOfString(instance, "2012-02-30T01:02:03");

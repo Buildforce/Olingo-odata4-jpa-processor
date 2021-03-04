@@ -55,8 +55,7 @@ public abstract class CsdlAbstractEdmProvider implements CsdlEdmProvider {
   }
 
   @Override
-  public CsdlSingleton getSingleton(FullQualifiedName entityContainer, String singletonName)
-      throws ODataException {
+  public CsdlSingleton getSingleton(FullQualifiedName entityContainer, String singletonName) {
     return null;
   }
 
@@ -79,7 +78,7 @@ public abstract class CsdlAbstractEdmProvider implements CsdlEdmProvider {
   }
 
   @Override
-  public List<CsdlAliasInfo> getAliasInfos() throws ODataException {
+  public List<CsdlAliasInfo> getAliasInfos() {
     return null;
   }
 

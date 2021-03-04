@@ -129,7 +129,7 @@ public class EdmPropertyImplTest {
   }
 
   @Test(expected = EdmException.class)
-  public void getTypeReturnsWrongType() throws Exception {
+  public void getTypeReturnsWrongType() {
     CsdlEdmProvider provider = mock(CsdlEdmProvider.class);
     EdmProviderImpl edm = new EdmProviderImpl(provider);
     CsdlProperty propertyProvider = new CsdlProperty()
@@ -140,7 +140,7 @@ public class EdmPropertyImplTest {
   }
 
   @Test(expected = EdmException.class)
-  public void getTypeReturnsNoTypeKind() throws Exception {
+  public void getTypeReturnsNoTypeKind() {
     CsdlEdmProvider provider = mock(CsdlEdmProvider.class);
     EdmProviderImpl edm = new EdmProviderImpl(provider);
     CsdlProperty propertyProvider = new CsdlProperty()
@@ -173,4 +173,5 @@ public class EdmPropertyImplTest {
     assertEquals("x", property.getDefaultValue());
     // assertNull(property.getSrid());
   }
+
 }

@@ -16,7 +16,7 @@ public class EdmSByteTest extends PrimitiveTypeBaseTest {
   private final EdmPrimitiveType instance = EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.SByte);
 
   @Test
-  public void toUriLiteral() throws Exception {
+  public void toUriLiteral() {
     assertEquals("127", instance.toUriLiteral("127"));
   }
 
@@ -57,4 +57,5 @@ public class EdmSByteTest extends PrimitiveTypeBaseTest {
 
     expectTypeErrorInValueOfString(instance, "1");
   }
+
 }

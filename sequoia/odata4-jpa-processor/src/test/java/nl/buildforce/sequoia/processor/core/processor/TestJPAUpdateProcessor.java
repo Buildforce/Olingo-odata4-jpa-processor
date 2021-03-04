@@ -604,7 +604,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
     public JPAEntityType et;
     public Map<String, Object> jpaAttributes;
     public EntityManager em;
-    public boolean called = false;
+    public boolean called;
     public HttpMethod method;
     public Map<String, List<String>> headers;
     private final JPAUpdateResult change;

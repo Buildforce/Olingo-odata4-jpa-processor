@@ -8,11 +8,11 @@ import nl.buildforce.sequoia.processor.core.testmodel.AdministrativeDivision;
 import java.math.BigDecimal;
 
 public class TestJavaActionNoParameter {
-  public static int constructorCalls = 0;
-  public static Short param1 = null;
-  public static Integer param2 = null;
-  public static FileAccess enumeration = null;
-  public static AdministrativeDivision bindingParam = null;
+  public static int constructorCalls;
+  public static Short param1;
+  public static Integer param2;
+  public static FileAccess enumeration;
+  public static AdministrativeDivision bindingParam;
 
   public TestJavaActionNoParameter() {
     constructorCalls++;
@@ -55,4 +55,5 @@ public class TestJavaActionNoParameter {
   public void unboundVoidOneEnumerationParameter(@EdmParameter(name = "AccessRights") FileAccess a) {
     enumeration = a;
   }
+
 }

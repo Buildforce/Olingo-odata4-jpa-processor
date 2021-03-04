@@ -91,17 +91,17 @@ public class EdmEnumTest {
   }
 
   @Test
-  public void nameSpace() throws Exception {
+  public void nameSpace() {
     assertEquals("namespace", instance.getNamespace());
   }
 
   @Test
-  public void name() throws Exception {
+  public void name() {
     assertEquals("name", instance.getName());
   }
 
   @Test
-  public void kind() throws Exception {
+  public void kind() {
     assertEquals(EdmTypeKind.ENUM, instance.getKind());
   }
 
@@ -113,32 +113,32 @@ public class EdmEnumTest {
   }
 
   @Test
-  public void defaultType() throws Exception {
+  public void defaultType() {
     assertEquals(Byte.class, instance.getDefaultType());
     assertEquals(Integer.class, int32FlagType.getUnderlyingType().getDefaultType());
   }
 
   @Test
-  public void members() throws Exception {
+  public void members() {
     assertArrayEquals(new String[] { "first", "second" }, instance.getMemberNames().toArray());
     assertEquals("64", otherInstance.getMember("second").getValue());
     assertNull(instance.getMember("notExisting"));
   }
 
   @Test
-  public void underlyingType() throws Exception {
+  public void underlyingType() {
     assertEquals(EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.SByte), instance.getUnderlyingType());
   }
 
   @Test
-  public void isFlags() throws Exception {
+  public void isFlags() {
     assertTrue(instance.isFlags());
     assertFalse(nonFlagsInstance.isFlags());
     assertFalse(int16EnumType.isFlags());
   }
 
   @Test
-  public void validate() throws Exception {
+  public void validate() {
     assertTrue(instance.validate(null, null, null, null, null, null));
     assertTrue(instance.validate(null, true, null, null, null, null));
     assertFalse(instance.validate(null, false, null, null, null, null));
@@ -152,7 +152,7 @@ public class EdmEnumTest {
   }
 
   @Test
-  public void toUriLiteral() throws Exception {
+  public void toUriLiteral() {
     assertNull(instance.toUriLiteral(null));
     assertEquals("namespace.name'first'", instance.toUriLiteral("first"));
   }
@@ -264,7 +264,7 @@ public class EdmEnumTest {
   }
 
   @Test
-  public void unsupportedUnderlyingType() throws Exception {
+  public void unsupportedUnderlyingType() {
     // Test some random unsupported types.
     expectErrorInUnderlyingType(EdmPrimitiveTypeKind.Date);
     // expectErrorInUnderlyingType(EdmPrimitiveTypeKind.GeographyPoint);
@@ -272,7 +272,7 @@ public class EdmEnumTest {
   }
 
   @Test
-  public void outOfRangeValueToString() throws Exception {
+  public void outOfRangeValueToString() {
     expectContentErrorInValueToString(int16EnumType, Integer.MAX_VALUE);
   }
 
@@ -333,4 +333,5 @@ public class EdmEnumTest {
     expectErrorInValueOfString(instance, null, false, instance.getDefaultType(),
         "The literal 'null' is not allowed.");
   }
+
 }

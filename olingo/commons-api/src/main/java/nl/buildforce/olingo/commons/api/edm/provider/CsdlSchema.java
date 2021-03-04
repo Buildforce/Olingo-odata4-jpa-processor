@@ -332,7 +332,7 @@ public class CsdlSchema extends CsdlAbstractEdmItem implements CsdlAnnotatable {
     CsdlAnnotations result = null;
     for (CsdlAnnotations annots : getAnnotationGroups()) {
       if (target.equals(annots.getTarget())
-          && (qualifier == annots.getQualifier() || (qualifier != null && qualifier.equals(annots.getQualifier())))) {
+              && qualifier != null && qualifier.equals(annots.getQualifier())) {
         result = annots;
       }
     }

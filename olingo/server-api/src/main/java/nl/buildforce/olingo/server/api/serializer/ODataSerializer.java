@@ -58,7 +58,7 @@ public interface ODataSerializer {
    * @param options options for the serializer
    */
   SerializerStreamResult entityCollectionStreamed(ServiceMetadata metadata, EdmEntityType entityType,
-      EntityIterator entities, EntityCollectionSerializerOptions options) throws SerializerException;
+      EntityIterator entities, EntityCollectionSerializerOptions options);
 
   /**
    * Writes entity data into an InputStream.
@@ -130,4 +130,5 @@ public interface ODataSerializer {
   SerializerResult referenceCollection(ServiceMetadata metadata, EdmEntitySet edmEntitySet,
       AbstractEntityCollection entityCollection, ReferenceCollectionSerializerOptions options)
       throws SerializerException;
+
 }

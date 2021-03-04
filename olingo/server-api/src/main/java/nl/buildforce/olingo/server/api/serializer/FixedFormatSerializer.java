@@ -18,21 +18,20 @@ public interface FixedFormatSerializer {
    * Writes binary output into an InputStream.
    * @param binary the binary data
    */
-  InputStream binary(byte[] binary) throws SerializerException;
+  InputStream binary(byte[] binary);
   
   /**
    * Writes bytes to an Input stream
    * @param mediaEntity bytes
    * @return
-   * @throws SerializerException
    */
-  SerializerStreamResult mediaEntityStreamed(EntityMediaObject mediaEntity) throws SerializerException;
+  SerializerStreamResult mediaEntityStreamed(EntityMediaObject mediaEntity);
   
   /**
    * Writes a count into an InputStream as plain text.
    * @param count the count
    */
-  InputStream count(Integer count) throws SerializerException;
+  InputStream count(Integer count);
 
   /**
    * Writes the raw value of a primitive-type instance into an InputStream.
@@ -57,4 +56,5 @@ public interface FixedFormatSerializer {
    * @return response as an input stream
    */
   InputStream asyncResponse(ODataResponse odataResponse) throws SerializerException;
+
 }

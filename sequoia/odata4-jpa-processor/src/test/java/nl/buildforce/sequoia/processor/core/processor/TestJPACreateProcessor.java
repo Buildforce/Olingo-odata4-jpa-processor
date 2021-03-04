@@ -608,7 +608,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
     public JPAEntityType et;
     public Map<String, Object> jpaAttributes;
     public EntityManager em;
-    public boolean called = false;
+    public boolean called;
     public Map<String, List<String>> headers;
     public JPARequestEntity requestEntity;
     private final Object result;
@@ -649,7 +649,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
     public JPAEntityType et;
     public Map<String, Object> jpaAttributes;
     public EntityManager em;
-    public boolean called = false;
+    public boolean called;
     public JPARequestEntity requestEntity;
 
     @Override

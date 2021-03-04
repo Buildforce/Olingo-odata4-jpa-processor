@@ -116,7 +116,7 @@ public class EdmDecimalTest extends PrimitiveTypeBaseTest {
   }
   
   @Test
-  public void validateDecimal() throws Exception {
+  public void validateDecimal() {
     assertFalse(EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.Decimal).
         validate("3.1991163E7", null, null, 8, 7, null));
     assertTrue(EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.Decimal).
@@ -160,7 +160,7 @@ public class EdmDecimalTest extends PrimitiveTypeBaseTest {
   }
   
   @Test
-  public void validateDecimalInV401() throws Exception {
+  public void validateDecimalInV401() {
     assertTrue(EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.Decimal).
         validateDecimals("0.123", null, null, 3, "variable", null));
     assertTrue(EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.Decimal).
@@ -194,4 +194,5 @@ public class EdmDecimalTest extends PrimitiveTypeBaseTest {
         validateDecimals("1e97", null, null, 7, "floating", null));
     
   }
+
 }

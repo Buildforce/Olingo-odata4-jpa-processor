@@ -96,10 +96,8 @@ public interface CsdlEdmProvider {
    * @param entityContainer this Singleton is contained in
    * @param singletonName name of singleton
    * @return for given container and singleton name
-   * @throws ODataException 
    */
-  CsdlSingleton getSingleton(FullQualifiedName entityContainer, String singletonName)
-      throws ODataException;
+  CsdlSingleton getSingleton(FullQualifiedName entityContainer, String singletonName);
 
   /**
    * This method should return an {@link CsdlActionImport} or <b>null</b> if nothing is found
@@ -137,9 +135,8 @@ public interface CsdlEdmProvider {
    * This method should return a list of all namespaces which have an alias
    *
    * @return List of alias info
-   * @throws ODataException 
    */
-  List<CsdlAliasInfo> getAliasInfos() throws ODataException;
+  List<CsdlAliasInfo> getAliasInfos();
 
   /**
    * This method should return a collection of all {@link CsdlSchema}

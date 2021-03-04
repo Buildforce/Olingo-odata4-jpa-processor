@@ -78,12 +78,12 @@ public class HttpRequestStatusLineTest {
   }
 
   @Test
-  public void otherBaseUri() throws BatchDeserializerException {
+  public void otherBaseUri() {
     parseFail("http://otherhost/odata/ESAllPrim", MessageKeys.INVALID_BASE_URI);
   }
 
   @Test
-  public void invalidRelative() throws BatchDeserializerException {
+  public void invalidRelative() {
     parseFail("/ESAllPrim", MessageKeys.INVALID_URI);
   }
 
@@ -100,4 +100,5 @@ public class HttpRequestStatusLineTest {
       assertEquals(messageKey, e.getMessageKey());
     }
   }
+
 }

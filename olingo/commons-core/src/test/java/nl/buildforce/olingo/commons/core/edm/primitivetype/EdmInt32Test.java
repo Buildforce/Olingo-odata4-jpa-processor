@@ -24,7 +24,7 @@ public class EdmInt32Test extends PrimitiveTypeBaseTest {
   }
 
   @Test
-  public void toUriLiteral() throws Exception {
+  public void toUriLiteral() {
     assertEquals("127", instance.toUriLiteral("127"));
   }
 
@@ -69,4 +69,5 @@ public class EdmInt32Test extends PrimitiveTypeBaseTest {
 
     expectTypeErrorInValueOfString(instance, "1");
   }
+
 }

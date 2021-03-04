@@ -17,7 +17,7 @@ import java.util.List;
 
 public class TestJavaActions implements ODataAction {
 
-  public static int constructorCalls = 0;
+  public static int constructorCalls;
 
   public TestJavaActions(EntityManager em) {
     assert em != null;

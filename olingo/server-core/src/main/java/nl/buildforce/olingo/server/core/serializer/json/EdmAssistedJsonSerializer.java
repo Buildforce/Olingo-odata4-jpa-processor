@@ -77,11 +77,10 @@ public class EdmAssistedJsonSerializer implements EdmAssistedSerializer {
             .getServiceMetadataETagSupport().getMetadataETag();
     String contextURLString = isODataMetadataNone || contextURL == null ? null : ContextURLBuilder.create(
         contextURL).toASCIIString();
-    OutputStream outputStream = null;
     SerializerException cachedException = null;
     
     CircleStreamBuffer buffer = new CircleStreamBuffer();
-    outputStream = buffer.getOutputStream();
+    OutputStream outputStream = buffer.getOutputStream();
     try (JsonGenerator json = new JsonFactory().createGenerator(outputStream)) {
       if (obj instanceof AbstractEntityCollection) {
         doSerialize(entityType, (AbstractEntityCollection) obj, contextURLString, metadataETag, json);
@@ -181,7 +180,7 @@ public class EdmAssistedJsonSerializer implements EdmAssistedSerializer {
 
   private void metadata(String contextURLString, String metadataETag, String eTag,
                         String type, URI id, boolean writeNullId, JsonGenerator json)
-      throws IOException, SerializerException {
+      throws IOException {
     if (!isODataMetadataNone) {
       if (contextURLString != null) {
         json.writeStringField(Constants.JSON_CONTEXT, contextURLString);
@@ -277,7 +276,7 @@ public class EdmAssistedJsonSerializer implements EdmAssistedSerializer {
     } else if (type == EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.Boolean)) {
       json.writeBoolean((Boolean) value);
     } else {
-      String serialized = null;
+      String serialized;
       try {
         serialized = type.valueToString(value,
             edmProperty == null ? null : edmProperty.isNullable(),
@@ -400,4 +399,5 @@ public class EdmAssistedJsonSerializer implements EdmAssistedSerializer {
 
     return stringBuilder.toString();
   }
+
 }

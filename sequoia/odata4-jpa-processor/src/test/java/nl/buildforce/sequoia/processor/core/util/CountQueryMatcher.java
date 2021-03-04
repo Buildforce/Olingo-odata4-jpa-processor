@@ -7,7 +7,7 @@ import org.mockito.ArgumentMatcher;
 public class CountQueryMatcher implements ArgumentMatcher<JPACountQuery> {
 
   private final long extCountResult;
-  private boolean executed = false;
+  private boolean executed;
 
   public CountQueryMatcher(long exp) {
     extCountResult = exp;

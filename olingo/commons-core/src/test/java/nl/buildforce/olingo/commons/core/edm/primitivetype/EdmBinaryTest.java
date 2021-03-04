@@ -22,7 +22,7 @@ public class EdmBinaryTest extends PrimitiveTypeBaseTest {
   private final EdmPrimitiveType instance = EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.Binary);
 
   @Test
-  public void validate() throws Exception {
+  public void validate() {
     assertTrue(instance.validate(null, null, null, null, null, null));
     assertTrue(instance.validate(null, true, null, null, null, null));
     assertFalse(instance.validate(null, false, null, null, null, null));
@@ -35,7 +35,7 @@ public class EdmBinaryTest extends PrimitiveTypeBaseTest {
   }
 
   @Test
-  public void toUriLiteral() throws Exception {
+  public void toUriLiteral() {
     assertEquals("binary'+hKqoQ=='", instance.toUriLiteral("+hKqoQ=="));
     assertEquals("binary''", instance.toUriLiteral(""));
   }
@@ -94,4 +94,5 @@ public class EdmBinaryTest extends PrimitiveTypeBaseTest {
 
     expectTypeErrorInValueOfString(instance, "qrvM3e7_");
   }
+
 }

@@ -18,7 +18,7 @@ public class EdmDateTest extends PrimitiveTypeBaseTest {
   private final EdmPrimitiveType instance = EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.Date);
 
   @Test
-  public void toUriLiteral() throws Exception {
+  public void toUriLiteral() {
     assertEquals("2009-12-26", instance.toUriLiteral("2009-12-26"));
     assertEquals("-2009-12-26", instance.toUriLiteral("-2009-12-26"));
   }
@@ -90,4 +90,5 @@ public class EdmDateTest extends PrimitiveTypeBaseTest {
 
     expectTypeErrorInValueOfString(instance, "2012-02-29");
   }
+
 }

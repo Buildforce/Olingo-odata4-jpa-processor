@@ -136,7 +136,7 @@ public class EdmNavigationPropertyImplTest {
   }
 
   @Test(expected = EdmException.class)
-  public void navigationPropertyWithNonExistentType() throws Exception {
+  public void navigationPropertyWithNonExistentType() {
     EdmProviderImpl edm = mock(EdmProviderImpl.class);
     CsdlNavigationProperty propertyProvider = new CsdlNavigationProperty();
     EdmNavigationProperty property = new EdmNavigationPropertyImpl(edm, propertyProvider);

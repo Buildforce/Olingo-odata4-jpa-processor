@@ -269,9 +269,9 @@ public class LexerTest {
 
   public static class TokenValidator {
 
-    private String input = null;
-    private UriTokenizer tokenizer = null;
-    private String curText = null;
+    private String input;
+    private UriTokenizer tokenizer;
+    private String curText;
 
     public TokenValidator run(String uri) {
       input = uri;
@@ -299,4 +299,5 @@ public class LexerTest {
       return this;
     }
   }
+
 }
