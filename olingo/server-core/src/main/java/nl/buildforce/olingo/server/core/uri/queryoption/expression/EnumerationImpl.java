@@ -9,7 +9,6 @@ import java.util.List;
 import nl.buildforce.olingo.commons.api.edm.EdmEnumType;
 import nl.buildforce.olingo.server.api.ODataApplicationException;
 import nl.buildforce.olingo.server.api.uri.queryoption.expression.Enumeration;
-import nl.buildforce.olingo.server.api.uri.queryoption.expression.ExpressionVisitException;
 import nl.buildforce.olingo.server.api.uri.queryoption.expression.ExpressionVisitor;
 
 public class EnumerationImpl implements Enumeration {

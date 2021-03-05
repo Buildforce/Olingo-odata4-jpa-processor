@@ -67,7 +67,7 @@ public final class EdmPrimitiveTypeFactory {
     case GeometryCollection:
       return EdmGeometryCollection.getInstance();*/
 
-          default -> throw new IllegalArgumentException("Wrong type: " + kind);
+          // default -> throw new IllegalArgumentException("Wrong type: " + kind);
       };
   }
 

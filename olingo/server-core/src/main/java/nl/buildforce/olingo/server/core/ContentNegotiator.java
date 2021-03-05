@@ -14,7 +14,6 @@ import nl.buildforce.olingo.server.api.uri.queryoption.FormatOption;
 
 import java.nio.charset.StandardCharsets;
 import java.nio.charset.UnsupportedCharsetException;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;

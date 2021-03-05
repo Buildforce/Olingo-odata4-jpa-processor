@@ -4,7 +4,6 @@ import nl.buildforce.olingo.server.api.ODataApplicationException;
 import nl.buildforce.olingo.server.api.uri.UriInfoResource;
 
 import nl.buildforce.olingo.server.api.uri.queryoption.expression.BinaryOperatorKind;
-import nl.buildforce.olingo.server.api.uri.queryoption.expression.ExpressionVisitException;
 import nl.buildforce.olingo.server.api.uri.queryoption.expression.ExpressionVisitor;
 import nl.buildforce.olingo.server.api.uri.queryoption.expression.Literal;
 import nl.buildforce.olingo.server.api.uri.queryoption.expression.Member;

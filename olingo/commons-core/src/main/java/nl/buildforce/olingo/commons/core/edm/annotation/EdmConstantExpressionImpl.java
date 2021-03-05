@@ -89,7 +89,7 @@ public class EdmConstantExpressionImpl extends AbstractEdmExpression implements 
           case Int -> EdmExpressionType.Int;
           case String -> EdmExpressionType.String;
           case TimeOfDay -> EdmExpressionType.TimeOfDay;
-          default -> throw new EdmException("Invalid Expressiontype for constant expression: " + csdlExp.getType());
+          // default -> throw new EdmException("Invalid Expressiontype for constant expression: " + csdlExp.getType());
       };
   }
 

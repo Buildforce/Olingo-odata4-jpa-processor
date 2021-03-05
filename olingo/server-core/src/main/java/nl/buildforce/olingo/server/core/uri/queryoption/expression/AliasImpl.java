@@ -6,7 +6,6 @@ package nl.buildforce.olingo.server.core.uri.queryoption.expression;
 import nl.buildforce.olingo.server.api.ODataApplicationException;
 import nl.buildforce.olingo.server.api.uri.queryoption.AliasQueryOption;
 import nl.buildforce.olingo.server.api.uri.queryoption.expression.Alias;
-import nl.buildforce.olingo.server.api.uri.queryoption.expression.ExpressionVisitException;
 import nl.buildforce.olingo.server.api.uri.queryoption.expression.ExpressionVisitor;
 
 public class AliasImpl implements Alias {

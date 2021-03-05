@@ -5,7 +5,6 @@ package nl.buildforce.olingo.server.api.processor;
 
 import nl.buildforce.olingo.commons.api.format.ContentType;
 import nl.buildforce.olingo.server.api.ODataApplicationException;
-import nl.buildforce.olingo.server.api.ODataLibraryException;
 import nl.buildforce.olingo.server.api.ODataRequest;
 import nl.buildforce.olingo.server.api.ODataResponse;
 import nl.buildforce.olingo.server.api.uri.UriInfo;

@@ -6,7 +6,6 @@ package nl.buildforce.olingo.server.core.uri.queryoption.expression;
 import nl.buildforce.olingo.commons.api.edm.EdmType;
 import nl.buildforce.olingo.server.api.ODataApplicationException;
 import nl.buildforce.olingo.server.api.uri.UriResourcePartTyped;
-import nl.buildforce.olingo.server.api.uri.queryoption.expression.ExpressionVisitException;
 import nl.buildforce.olingo.server.api.uri.queryoption.expression.ExpressionVisitor;
 import nl.buildforce.olingo.server.api.uri.queryoption.expression.Member;
 import nl.buildforce.olingo.server.core.uri.UriInfoImpl;

@@ -37,7 +37,7 @@ public abstract class AbstractEdmLogicalOrComparisonExpression
           case Ge -> EdmExpressionType.Ge;
           case Lt -> EdmExpressionType.Lt;
           case Le -> EdmExpressionType.Le;
-          default -> throw new EdmException("Invalid Expressiontype for logical or comparison expression: " + csdlExp.getType());
+          // default -> throw new EdmException("Invalid Expressiontype for logical or comparison expression: " + csdlExp.getType());
       };
   }
 
@@ -68,4 +68,5 @@ public abstract class AbstractEdmLogicalOrComparisonExpression
     }
     return right;
   }
+
 }
