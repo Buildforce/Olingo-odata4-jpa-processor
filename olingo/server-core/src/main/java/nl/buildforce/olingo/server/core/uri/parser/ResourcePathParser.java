@@ -150,7 +150,7 @@ public class ResourcePathParser {
   }
 
   private void requireMediaResourceInCaseOfEntity(UriResource resource) throws UriParserSemanticException {
-    // If the resource is an entity or navigatio
+    // If the resource is an entity or navigation
     if (resource instanceof UriResourceEntitySet && !((UriResourceEntitySet) resource).getEntityType().hasStream()
         || resource instanceof UriResourceNavigation
         && !((EdmEntityType) ((UriResourceNavigation) resource).getType()).hasStream()) {
