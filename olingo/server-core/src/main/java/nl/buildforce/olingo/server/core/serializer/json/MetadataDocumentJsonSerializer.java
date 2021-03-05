@@ -837,185 +837,159 @@ public class MetadataDocumentJsonSerializer {
   private void appendDynamicExpression(JsonGenerator json, 
       EdmDynamicExpression dynExp, String termName) throws SerializerException, IOException {
     json.writeFieldName(termName);
-    switch (dynExp.getExpressionType()) {
-    // Logical
-    case And:
-      appendLogicalOrComparisonExpression(json, dynExp.asAnd());
-      break;
-    case Or:
-      appendLogicalOrComparisonExpression(json, dynExp.asOr());
-      break;
-    case Not:
-      appendNotExpression(json, dynExp.asNot());
-      break;
-    // Comparison
-    case Eq:
-      appendLogicalOrComparisonExpression(json, dynExp.asEq());
-      break;
-    case Ne:
-      appendLogicalOrComparisonExpression(json, dynExp.asNe());
-      break;
-    case Gt:
-      appendLogicalOrComparisonExpression(json, dynExp.asGt());
-      break;
-    case Ge:
-      appendLogicalOrComparisonExpression(json, dynExp.asGe());
-      break;
-    case Lt:
-      appendLogicalOrComparisonExpression(json, dynExp.asLt());
-      break;
-    case Le:
-      appendLogicalOrComparisonExpression(json, dynExp.asLe());
-      break;
-    case AnnotationPath:
-      json.writeStartObject();
-      json.writeStringField(ANNOTATION_PATH, dynExp.asAnnotationPath().getValue());
-      json.writeEndObject();
-      break;
-    case Apply:
-      EdmApply asApply = dynExp.asApply();
-      json.writeStartObject();
-      json.writeArrayFieldStart(DOLLAR + asApply.getExpressionName());
-      for (EdmExpression parameter : asApply.getParameters()) {
-        appendExpression(json, parameter, null);
-      }
-      json.writeEndArray();
-      json.writeStringField(DOLLAR + Kind.Function.name(), asApply.getFunction());
-      
-      appendAnnotations(json, asApply, null);
-      json.writeEndObject();
-      break;
-    case Cast:
-      EdmCast asCast = dynExp.asCast();
-      json.writeStartObject();
-      appendExpression(json, asCast.getValue(), DOLLAR + asCast.getExpressionName());
-      json.writeStringField(TYPE, getAliasedFullQualifiedName(asCast.getType()));
-     
-      if (asCast.getMaxLength() != null) {
-        json.writeNumberField(MAX_LENGTH, asCast.getMaxLength());
-      }
+      switch (dynExp.getExpressionType()) {
+          // Logical
+          case And -> appendLogicalOrComparisonExpression(json, dynExp.asAnd());
+          case Or  -> appendLogicalOrComparisonExpression(json, dynExp.asOr());
+          case Not -> appendNotExpression(json, dynExp.asNot());
 
-      if (asCast.getPrecision() != null) {
-        json.writeNumberField(PRECISION, asCast.getPrecision());
+          // Comparison
+          case Eq -> appendLogicalOrComparisonExpression(json, dynExp.asEq());
+          case Ne -> appendLogicalOrComparisonExpression(json, dynExp.asNe());
+          case Gt -> appendLogicalOrComparisonExpression(json, dynExp.asGt());
+          case Ge -> appendLogicalOrComparisonExpression(json, dynExp.asGe());
+          case Lt -> appendLogicalOrComparisonExpression(json, dynExp.asLt());
+          case Le -> appendLogicalOrComparisonExpression(json, dynExp.asLe());
+          case AnnotationPath -> {
+              json.writeStartObject();
+              json.writeStringField(ANNOTATION_PATH, dynExp.asAnnotationPath().getValue());
+              json.writeEndObject();
+          }
+          case Apply -> {
+              EdmApply asApply = dynExp.asApply();
+              json.writeStartObject();
+              json.writeArrayFieldStart(DOLLAR + asApply.getExpressionName());
+              for (EdmExpression parameter : asApply.getParameters()) {
+                  appendExpression(json, parameter, null);
+              }
+              json.writeEndArray();
+              json.writeStringField(DOLLAR + Kind.Function.name(), asApply.getFunction());
+              appendAnnotations(json, asApply, null);
+              json.writeEndObject();
+          }
+          case Cast -> {
+              EdmCast asCast = dynExp.asCast();
+              json.writeStartObject();
+              appendExpression(json, asCast.getValue(), DOLLAR + asCast.getExpressionName());
+              json.writeStringField(TYPE, getAliasedFullQualifiedName(asCast.getType()));
+              if (asCast.getMaxLength() != null) {
+                  json.writeNumberField(MAX_LENGTH, asCast.getMaxLength());
+              }
+              if (asCast.getPrecision() != null) {
+                  json.writeNumberField(PRECISION, asCast.getPrecision());
+              }
+              if (asCast.getScale() != null) {
+                  json.writeNumberField(SCALE, asCast.getScale());
+              }
+              appendAnnotations(json, asCast, null);
+              json.writeEndObject();
+          }
+          case Collection -> {
+              json.writeStartArray();
+              for (EdmExpression item : dynExp.asCollection().getItems()) {
+                  appendExpression(json, item, null);
+              }
+              json.writeEndArray();
+          }
+          case If -> {
+              EdmIf asIf = dynExp.asIf();
+              json.writeStartObject();
+              json.writeArrayFieldStart(DOLLAR + asIf.getExpressionName());
+              appendExpression(json, asIf.getGuard(), null);
+              appendExpression(json, asIf.getThen(), null);
+              appendExpression(json, asIf.getElse(), null);
+              json.writeEndArray();
+              appendAnnotations(json, asIf, null);
+              json.writeEndObject();
+          }
+          case IsOf -> {
+              EdmIsOf asIsOf = dynExp.asIsOf();
+              json.writeStartObject();
+              appendExpression(json, asIsOf.getValue(), DOLLAR + asIsOf.getExpressionName());
+              json.writeStringField(TYPE, getAliasedFullQualifiedName(asIsOf.getType()));
+              if (asIsOf.getMaxLength() != null) {
+                  json.writeNumberField(MAX_LENGTH, asIsOf.getMaxLength());
+              }
+              if (asIsOf.getPrecision() != null) {
+                  json.writeNumberField(PRECISION, asIsOf.getPrecision());
+              }
+              if (asIsOf.getScale() != null) {
+                  json.writeNumberField(SCALE, asIsOf.getScale());
+              }
+              appendAnnotations(json, asIsOf, null);
+              json.writeEndObject();
+          }
+          case LabeledElement -> {
+              EdmLabeledElement asLabeledElement = dynExp.asLabeledElement();
+              json.writeStartObject();
+              appendExpression(json, asLabeledElement.getValue(), DOLLAR + asLabeledElement.getExpressionName());
+              json.writeStringField(NAME, asLabeledElement.getName());
+              appendAnnotations(json, asLabeledElement, null);
+              json.writeEndObject();
+          }
+          case LabeledElementReference -> {
+              EdmLabeledElementReference asLabeledElementReference = dynExp.asLabeledElementReference();
+              json.writeStartObject();
+              json.writeStringField(DOLLAR + asLabeledElementReference.getExpressionName(),
+                      asLabeledElementReference.getValue());
+              json.writeEndObject();
+          }
+          case Null -> {
+              EdmNull asNull = dynExp.asNull();
+              json.writeStartObject();
+              json.writeStringField(DOLLAR + asNull.getExpressionName(), null);
+              appendAnnotations(json, dynExp.asNull(), null);
+              json.writeEndObject();
+          }
+          case NavigationPropertyPath -> {
+              EdmNavigationPropertyPath asNavigationPropertyPath = dynExp.asNavigationPropertyPath();
+              json.writeStartObject();
+              json.writeStringField(DOLLAR + asNavigationPropertyPath.getExpressionName(),
+                      asNavigationPropertyPath.getValue());
+              json.writeEndObject();
+          }
+          case Path -> {
+              EdmPath asPath = dynExp.asPath();
+              json.writeStartObject();
+              json.writeStringField(DOLLAR + asPath.getExpressionName(), asPath.getValue());
+              json.writeEndObject();
+          }
+          case PropertyPath -> {
+              EdmPropertyPath asPropertyPath = dynExp.asPropertyPath();
+              json.writeStartObject();
+              json.writeStringField(DOLLAR + asPropertyPath.getExpressionName(), asPropertyPath.getValue());
+              json.writeEndObject();
+          }
+          case Record -> {
+              EdmRecord asRecord = dynExp.asRecord();
+              json.writeStartObject();
+              try {
+                  EdmStructuredType structuredType = asRecord.getType();
+                  if (structuredType != null) {
+                      json.writeStringField(TYPE, getAliasedFullQualifiedName(structuredType));
+                  }
+              } catch (EdmException e) {
+                  FullQualifiedName type = asRecord.getTypeFQN();
+                  if (type != null) {
+                      json.writeStringField(TYPE, getAliasedFullQualifiedName(type));
+                  }
+              }
+              for (EdmPropertyValue propValue : asRecord.getPropertyValues()) {
+                  appendExpression(json, propValue.getValue(), propValue.getProperty());
+                  appendAnnotations(json, propValue, propValue.getProperty());
+              }
+              appendAnnotations(json, asRecord, null);
+              json.writeEndObject();
+          }
+          case UrlRef -> {
+              EdmUrlRef asUrlRef = dynExp.asUrlRef();
+              json.writeStartObject();
+              appendExpression(json, asUrlRef.getValue(), DOLLAR + asUrlRef.getExpressionName());
+              appendAnnotations(json, asUrlRef, null);
+              json.writeEndObject();
+          }
+          default -> throw new IllegalArgumentException("Unkown ExpressionType for dynamic expression: " + dynExp.getExpressionType());
       }
-
-      if (asCast.getScale() != null) {
-        json.writeNumberField(SCALE, asCast.getScale());
-      }
-      appendAnnotations(json, asCast, null);
-      json.writeEndObject();
-      break;
-    case Collection:
-      json.writeStartArray();
-      for (EdmExpression item : dynExp.asCollection().getItems()) {
-        appendExpression(json, item, null);
-      }
-      json.writeEndArray();
-      break;
-    case If:
-      EdmIf asIf = dynExp.asIf();
-      json.writeStartObject();
-      json.writeArrayFieldStart(DOLLAR + asIf.getExpressionName());
-      appendExpression(json, asIf.getGuard(), null);
-      appendExpression(json, asIf.getThen(), null);
-      appendExpression(json, asIf.getElse(), null);
-      json.writeEndArray();
-      appendAnnotations(json, asIf, null);
-      json.writeEndObject();
-      break;
-    case IsOf:
-      EdmIsOf asIsOf = dynExp.asIsOf();
-      json.writeStartObject();
-      appendExpression(json, asIsOf.getValue(), DOLLAR + asIsOf.getExpressionName());
-      
-      json.writeStringField(TYPE, getAliasedFullQualifiedName(asIsOf.getType()));
-
-      if (asIsOf.getMaxLength() != null) {
-        json.writeNumberField(MAX_LENGTH, asIsOf.getMaxLength());
-      }
-
-      if (asIsOf.getPrecision() != null) {
-        json.writeNumberField(PRECISION, asIsOf.getPrecision());
-      }
-
-      if (asIsOf.getScale() != null) {
-        json.writeNumberField(SCALE, asIsOf.getScale());
-      }
-      appendAnnotations(json, asIsOf, null);
-      json.writeEndObject();
-      break;
-    case LabeledElement:
-      EdmLabeledElement asLabeledElement = dynExp.asLabeledElement();
-      json.writeStartObject();
-      appendExpression(json, asLabeledElement.getValue(), DOLLAR + asLabeledElement.getExpressionName());
-      json.writeStringField(NAME, asLabeledElement.getName());
-      appendAnnotations(json, asLabeledElement, null);
-      json.writeEndObject();
-      break;
-    case LabeledElementReference:
-      EdmLabeledElementReference asLabeledElementReference = dynExp.asLabeledElementReference();
-      json.writeStartObject();
-      json.writeStringField(DOLLAR + asLabeledElementReference.getExpressionName(), 
-          asLabeledElementReference.getValue());
-      json.writeEndObject();
-      break;
-    case Null:
-      EdmNull asNull = dynExp.asNull();
-      json.writeStartObject();
-      json.writeStringField(DOLLAR + asNull.getExpressionName(), null);
-      appendAnnotations(json, dynExp.asNull(), null);
-      json.writeEndObject();
-      break;
-    case NavigationPropertyPath:
-      EdmNavigationPropertyPath asNavigationPropertyPath = dynExp.asNavigationPropertyPath();
-      json.writeStartObject();
-      json.writeStringField(DOLLAR + asNavigationPropertyPath.getExpressionName(), 
-          asNavigationPropertyPath.getValue());
-      json.writeEndObject();
-      break;
-    case Path:
-      EdmPath asPath = dynExp.asPath();
-      json.writeStartObject();
-      json.writeStringField(DOLLAR + asPath.getExpressionName(), asPath.getValue());
-      json.writeEndObject();
-      break;
-    case PropertyPath:
-      EdmPropertyPath asPropertyPath = dynExp.asPropertyPath();
-      json.writeStartObject();
-      json.writeStringField(DOLLAR + asPropertyPath.getExpressionName(), asPropertyPath.getValue());
-      json.writeEndObject();
-      break;
-    case Record:
-      EdmRecord asRecord = dynExp.asRecord();
-      json.writeStartObject();
-      try {
-        EdmStructuredType structuredType = asRecord.getType();
-        if (structuredType != null) {
-          json.writeStringField(TYPE, getAliasedFullQualifiedName(structuredType));
-        }
-      } catch (EdmException e) {
-        FullQualifiedName type = asRecord.getTypeFQN();
-        if (type != null) {
-          json.writeStringField(TYPE, getAliasedFullQualifiedName(type));
-        }
-      }
-      for (EdmPropertyValue propValue : asRecord.getPropertyValues()) {
-        appendExpression(json, propValue.getValue(), propValue.getProperty());
-        appendAnnotations(json, propValue, propValue.getProperty());
-      }
-      appendAnnotations(json, asRecord, null);
-      json.writeEndObject();
-      break;
-    case UrlRef:
-      EdmUrlRef asUrlRef = dynExp.asUrlRef();
-      json.writeStartObject();
-      appendExpression(json, asUrlRef.getValue(), DOLLAR + asUrlRef.getExpressionName());
-      appendAnnotations(json, asUrlRef, null);
-      json.writeEndObject();
-      break;
-    default:
-      throw new IllegalArgumentException("Unkown ExpressionType for dynamic expression: " + dynExp.getExpressionType());
-    }
   }
 
   private void appendNotExpression(JsonGenerator json, EdmNot exp)

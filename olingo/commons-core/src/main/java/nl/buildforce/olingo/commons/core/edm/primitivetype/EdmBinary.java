@@ -50,15 +50,10 @@ public class EdmBinary extends SingletonPrimitiveType {
    * @return true if byte is whitespace, false otherwise
    */
   private static boolean isWhiteSpace(byte byteToCheck) {
-    switch (byteToCheck) {
-    case ' ':
-    case '\n':
-    case '\r':
-    case '\t':
-      return true;
-    default:
-      return false;
-    }
+    return switch (byteToCheck) {
+      case ' ', '\n', '\r', '\t' -> true;
+      default -> false;
+    };
   }
 
   /**

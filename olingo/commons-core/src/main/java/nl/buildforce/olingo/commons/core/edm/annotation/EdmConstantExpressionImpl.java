@@ -51,43 +51,20 @@ public class EdmConstantExpressionImpl extends AbstractEdmExpression implements 
       }
       enumMembers = Collections.unmodifiableList(localEnumValues);
     } else {
-      EdmPrimitiveTypeKind kind;
-      switch (csdlExp.getType()) {
-      case Binary:
-        kind = EdmPrimitiveTypeKind.Binary;
-        break;
-      case Bool:
-        kind = EdmPrimitiveTypeKind.Boolean;
-        break;
-      case Date:
-        kind = EdmPrimitiveTypeKind.Date;
-        break;
-      case DateTimeOffset:
-        kind = EdmPrimitiveTypeKind.DateTimeOffset;
-        break;
-      case Decimal:
-        kind = EdmPrimitiveTypeKind.Decimal;
-        break;
-      case Duration:
-        kind = EdmPrimitiveTypeKind.Duration;
-        break;
-      case Float:
-        kind = EdmPrimitiveTypeKind.Single;
-        break;
-      case Guid:
-        kind = EdmPrimitiveTypeKind.Guid;
-        break;
-      case Int:
-        kind = EdmPrimitiveTypeKind.Int32;
-        break;
-      case TimeOfDay:
-        kind = EdmPrimitiveTypeKind.TimeOfDay;
-        break;
-      case String:
-      default:
-        kind = EdmPrimitiveTypeKind.String;
-      }
-      EdmPrimitiveType type = EdmPrimitiveTypeFactory.getInstance(kind);
+      EdmPrimitiveTypeKind kind = switch (csdlExp.getType()) {
+          case Binary -> EdmPrimitiveTypeKind.Binary;
+          case Bool -> EdmPrimitiveTypeKind.Boolean;
+          case Date -> EdmPrimitiveTypeKind.Date;
+          case DateTimeOffset -> EdmPrimitiveTypeKind.DateTimeOffset;
+          case Decimal -> EdmPrimitiveTypeKind.Decimal;
+          case Duration -> EdmPrimitiveTypeKind.Duration;
+          case Float -> EdmPrimitiveTypeKind.Single;
+          case Guid -> EdmPrimitiveTypeKind.Guid;
+          case Int -> EdmPrimitiveTypeKind.Int32;
+          case TimeOfDay -> EdmPrimitiveTypeKind.TimeOfDay;
+          default -> EdmPrimitiveTypeKind.String;
+      };
+        EdmPrimitiveType type = EdmPrimitiveTypeFactory.getInstance(kind);
       try {
         primitive = type.valueOfString(csdlExp.getValue(), null, null, null, null, null, type.getDefaultType());
       } catch (EdmPrimitiveTypeException e) {
@@ -99,34 +76,21 @@ public class EdmConstantExpressionImpl extends AbstractEdmExpression implements 
 
   @Override
   public EdmExpressionType getExpressionType() {
-    switch (csdlExp.getType()) {
-    case Binary:
-      return EdmExpressionType.Binary;
-    case Bool:
-      return EdmExpressionType.Bool;
-    case Date:
-      return EdmExpressionType.Date;
-    case DateTimeOffset:
-      return EdmExpressionType.DateTimeOffset;
-    case Decimal:
-      return EdmExpressionType.Decimal;
-    case Duration:
-      return EdmExpressionType.Duration;
-    case EnumMember:
-      return EdmExpressionType.EnumMember;
-    case Float:
-      return EdmExpressionType.Float;
-    case Guid:
-      return EdmExpressionType.Guid;
-    case Int:
-      return EdmExpressionType.Int;
-    case String:
-      return EdmExpressionType.String;
-    case TimeOfDay:
-      return EdmExpressionType.TimeOfDay;
-    default:
-      throw new EdmException("Invalid Expressiontype for constant expression: " + csdlExp.getType());
-    }
+      return switch (csdlExp.getType()) {
+          case Binary -> EdmExpressionType.Binary;
+          case Bool -> EdmExpressionType.Bool;
+          case Date -> EdmExpressionType.Date;
+          case DateTimeOffset -> EdmExpressionType.DateTimeOffset;
+          case Decimal -> EdmExpressionType.Decimal;
+          case Duration -> EdmExpressionType.Duration;
+          case EnumMember -> EdmExpressionType.EnumMember;
+          case Float -> EdmExpressionType.Float;
+          case Guid -> EdmExpressionType.Guid;
+          case Int -> EdmExpressionType.Int;
+          case String -> EdmExpressionType.String;
+          case TimeOfDay -> EdmExpressionType.TimeOfDay;
+          default -> throw new EdmException("Invalid Expressiontype for constant expression: " + csdlExp.getType());
+      };
   }
 
   @Override

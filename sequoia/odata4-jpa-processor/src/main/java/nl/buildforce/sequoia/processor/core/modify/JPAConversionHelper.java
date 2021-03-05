@@ -194,7 +194,7 @@ public class JPAConversionHelper {
         throw new ODataJPAProcessorException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
       }
       switch (odataProperty.getValueType()) {
-        case COMPLEX:
+        case COMPLEX -> {
           internalName = path.getPath().get(0).getInternalName();
           try {
             JPAStructuredType a = st.getAttribute(internalName).getStructuredType();
@@ -202,23 +202,20 @@ public class JPAConversionHelper {
           } catch (ODataJPAModelException e) {
             throw new ODataJPAProcessorException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
           }
-          break;
-        case PRIMITIVE:
-        case ENUM:
+        }
+        case PRIMITIVE, ENUM -> {
           final JPAAttribute attribute = path.getLeaf();
           internalName = attribute.getInternalName();
           jpaAttribute = processAttributeConverter(odataProperty.getValue(), attribute);
-          break;
-        case COLLECTION_PRIMITIVE:
-        case COLLECTION_ENUM:
+        }
+        case COLLECTION_PRIMITIVE, COLLECTION_ENUM -> {
           final JPAAttribute attribute2 = path.getLeaf();
           internalName = attribute2.getInternalName();
           jpaAttribute = new ArrayList<>();
           for (Object property : (List<?>) odataProperty.getValue())
             ((List<Object>) jpaAttribute).add(processAttributeConverter(property, attribute2));
-
-          break;
-        case COLLECTION_COMPLEX:
+        }
+        case COLLECTION_COMPLEX -> {
           internalName = path.getPath().get(0).getInternalName();
           jpaAttribute = new ArrayList<>();
           try {
@@ -228,10 +225,9 @@ public class JPAConversionHelper {
           } catch (ODataJPAModelException e) {
             throw new ODataJPAProcessorException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
           }
-          break;
-        default:
-          throw new ODataJPAProcessorException(MessageKeys.NOT_SUPPORTED_PROP_TYPE, HttpStatusCode.NOT_IMPLEMENTED,
-              odataProperty.getValueType().name());
+        }
+        default -> throw new ODataJPAProcessorException(MessageKeys.NOT_SUPPORTED_PROP_TYPE, HttpStatusCode.NOT_IMPLEMENTED,
+                odataProperty.getValueType().name());
       }
       jpaAttributes.put(internalName, jpaAttribute);
     }

@@ -233,410 +233,159 @@ public class UriTokenizer {
 
     boolean found = false;
     int previousIndex = index;
-    switch (allowedTokenKind) {
-    case EOF:
-      found = index >= parseString.length();
-      break;
+      found = switch (allowedTokenKind) {
+          case EOF -> index >= parseString.length();
 
-    // Constants
-    case REF:
-      found = nextConstant("$ref");
-      break;
-    case VALUE:
-      found = nextConstant("$value");
-      break;
-    case COUNT:
-      found = nextConstant("$count");
-      break;
-    case CROSSJOIN:
-      found = nextConstant("$crossjoin");
-      break;
-    case ROOT:
-      found = nextConstant("$root");
-      break;
-    case IT:
-      found = nextConstant("$it");
-      break;
+          // Constants
+          case REF -> nextConstant("$ref");
+          case VALUE -> nextConstant("$value");
+          case COUNT -> nextConstant("$count");
+          case CROSSJOIN -> nextConstant("$crossjoin");
+          case ROOT -> nextConstant("$root");
+          case IT -> nextConstant("$it");
+          case APPLY -> nextConstant("$apply");
+          case EXPAND -> nextConstant("$expand");
+          case FILTER -> nextConstant("$filter");
+          case LEVELS -> nextConstant("$levels");
+          case ORDERBY -> nextConstant("$orderby");
+          case SEARCH -> nextConstant("$search");
+          case SELECT -> nextConstant("$select");
+          case SKIP -> nextConstant("$skip");
+          case TOP -> nextConstant("$top");
+          case ANY -> nextConstant("any");
+          case ALL -> nextConstant("all");
+          case OPEN -> nextCharacter('(');
+          case CLOSE -> nextCharacter(')');
+          case COMMA -> nextCharacter(',');
+          case SEMI -> nextCharacter(';');
+          case COLON -> nextCharacter(':');
+          case DOT -> nextCharacter('.');
+          case SLASH -> nextCharacter('/');
+          case EQ -> nextCharacter('=');
+          case STAR -> nextCharacter('*');
+          case PLUS -> nextCharacter('+');
+          case NULL -> nextConstant("null");
+          case MAX -> nextConstant("max");
+          case AVERAGE -> nextConstant("average");
+          case COUNTDISTINCT -> nextConstant("countdistinct");
+          case IDENTITY -> nextConstant("identity");
+          case MIN -> nextConstant("min");
+          case SUM -> nextConstant("sum");
+          case ROLLUP_ALL -> nextConstant("$all");
 
-    case APPLY:
-      found = nextConstant("$apply");
-      break;
-    case EXPAND:
-      found = nextConstant("$expand");
-      break;
-    case FILTER:
-      found = nextConstant("$filter");
-      break;
-    case LEVELS:
-      found = nextConstant("$levels");
-      break;
-    case ORDERBY:
-      found = nextConstant("$orderby");
-      break;
-    case SEARCH:
-      found = nextConstant("$search");
-      break;
-    case SELECT:
-      found = nextConstant("$select");
-      break;
-    case SKIP:
-      found = nextConstant("$skip");
-      break;
-    case TOP:
-      found = nextConstant("$top");
-      break;
+          // Identifiers
+          case ODataIdentifier -> nextODataIdentifier();
+          case QualifiedName -> nextQualifiedName();
+          case ParameterAliasName -> nextParameterAliasName();
 
-    case ANY:
-      found = nextConstant("any");
-      break;
-    case ALL:
-      found = nextConstant("all");
-      break;
+          // Primitive Values
+          case BooleanValue -> nextBooleanValue();
+          case StringValue -> nextStringValue();
+          case IntegerValue -> nextIntegerValue(true);
+          case GuidValue -> nextGuidValue();
+          case DateValue -> nextDateValue();
+          case DateTimeOffsetValue -> nextDateTimeOffsetValue();
+          case TimeOfDayValue -> nextTimeOfDayValue();
+          case DecimalValue -> nextDecimalValue();
+          case DoubleValue -> nextDoubleValue();
+          case DurationValue -> nextDurationValue();
+          case BinaryValue -> nextBinaryValue();
+          case EnumValue -> nextEnumValue();
 
-    case OPEN:
-      found = nextCharacter('(');
-      break;
-    case CLOSE:
-      found = nextCharacter(')');
-      break;
-    case COMMA:
-      found = nextCharacter(',');
-      break;
-    case SEMI:
-      found = nextCharacter(';');
-      break;
-    case COLON:
-      found = nextCharacter(':');
-      break;
-    case DOT:
-      found = nextCharacter('.');
-      break;
-    case SLASH:
-      found = nextCharacter('/');
-      break;
-    case EQ:
-      found = nextCharacter('=');
-      break;
-    case STAR:
-      found = nextCharacter('*');
-      break;
-    case PLUS:
-      found = nextCharacter('+');
-      break;
+          // Complex or Collection Value
+          case jsonArrayOrObject -> nextJsonArrayOrObject();
 
-    case NULL:
-      found = nextConstant("null");
-      break;
-    case MAX:
-      found = nextConstant("max");
-      break;
+          // Search
+          case Word -> nextWord();
+          case Phrase -> nextPhrase();
 
-    case AVERAGE:
-      found = nextConstant("average");
-      break;
-    case COUNTDISTINCT:
-      found = nextConstant("countdistinct");
-      break;
-    case IDENTITY:
-      found = nextConstant("identity");
-      break;
-    case MIN:
-      found = nextConstant("min");
-      break;
-    case SUM:
-      found = nextConstant("sum");
-      break;
+          // Operators in Search Expressions
+          case OrOperatorSearch -> nextBinaryOperator("OR");
+          case AndOperatorSearch -> nextAndOperatorSearch();
+          case NotOperatorSearch -> nextUnaryOperator("NOT");
 
-    case ROLLUP_ALL:
-      found = nextConstant("$all");
-      break;
+          // Operators
+          case OrOperator -> nextBinaryOperator("or");
+          case AndOperator -> nextBinaryOperator("and");
+          case EqualsOperator -> nextBinaryOperator("eq");
+          case NotEqualsOperator -> nextBinaryOperator("ne");
+          case GreaterThanOperator -> nextBinaryOperator("gt");
+          case GreaterThanOrEqualsOperator -> nextBinaryOperator("ge");
+          case LessThanOperator -> nextBinaryOperator("lt");
+          case LessThanOrEqualsOperator -> nextBinaryOperator("le");
+          case HasOperator -> nextBinaryOperator("has");
+          case InOperator -> nextBinaryOperator("in");
+          case AddOperator -> nextBinaryOperator("add");
+          case SubOperator -> nextBinaryOperator("sub");
+          case MulOperator -> nextBinaryOperator("mul");
+          case DivOperator -> nextBinaryOperator("div");
+          case ModOperator -> nextBinaryOperator("mod");
+          case MinusOperator ->
+                  // To avoid unnecessary minus operators for negative numbers, we have to check what follows the minus sign.
+                  nextCharacter('-') && !nextDigit() && !nextConstant("INF");
+          case NotOperator -> nextUnaryOperator("not");
 
-    // Identifiers
-    case ODataIdentifier:
-      found = nextODataIdentifier();
-      break;
-    case QualifiedName:
-      found = nextQualifiedName();
-      break;
-    case ParameterAliasName:
-      found = nextParameterAliasName();
-      break;
+          // Operators for the aggregation extension
+          case AsOperator -> nextBinaryOperator("as");
+          case FromOperator -> nextBinaryOperator("from");
+          case WithOperator -> nextBinaryOperator("with");
 
-    // Primitive Values
-    case BooleanValue:
-      found = nextBooleanValue();
-      break;
-    case StringValue:
-      found = nextStringValue();
-      break;
-    case IntegerValue:
-      found = nextIntegerValue(true);
-      break;
-    case GuidValue:
-      found = nextGuidValue();
-      break;
-    case DateValue:
-      found = nextDateValue();
-      break;
-    case DateTimeOffsetValue:
-      found = nextDateTimeOffsetValue();
-      break;
-    case TimeOfDayValue:
-      found = nextTimeOfDayValue();
-      break;
-    case DecimalValue:
-      found = nextDecimalValue();
-      break;
-    case DoubleValue:
-      found = nextDoubleValue();
-      break;
-    case DurationValue:
-      found = nextDurationValue();
-      break;
-    case BinaryValue:
-      found = nextBinaryValue();
-      break;
-    case EnumValue:
-      found = nextEnumValue();
-      break;
+          // Methods
+          case CastMethod -> nextMethod("cast");
+          case CeilingMethod -> nextMethod("ceiling");
+          case ConcatMethod -> nextMethod("concat");
+          case ContainsMethod -> nextMethod("contains");
+          case DateMethod -> nextMethod("date");
+          case DayMethod -> nextMethod("day");
+          case EndswithMethod -> nextMethod("endswith");
+          case FloorMethod -> nextMethod("floor");
+          case FractionalsecondsMethod -> nextMethod("fractionalseconds");
+          case HourMethod -> nextMethod("hour");
+          case IndexofMethod -> nextMethod("indexof");
+          case IsofMethod -> nextMethod("isof");
+          case LengthMethod -> nextMethod("length");
+          case MaxdatetimeMethod -> nextMethod("maxdatetime");
+          case MindatetimeMethod -> nextMethod("mindatetime");
+          case MinuteMethod -> nextMethod("minute");
+          case MonthMethod -> nextMethod("month");
+          case NowMethod -> nextMethod("now");
+          case RoundMethod -> nextMethod("round");
+          case SecondMethod -> nextMethod("second");
+          case StartswithMethod -> nextMethod("startswith");
+          case SubstringMethod -> nextMethod("substring");
+          case TimeMethod -> nextMethod("time");
+          case TolowerMethod -> nextMethod("tolower");
+          case TotaloffsetminutesMethod -> nextMethod("totaloffsetminutes");
+          case TotalsecondsMethod -> nextMethod("totalseconds");
+          case ToupperMethod -> nextMethod("toupper");
+          case TrimMethod -> nextMethod("trim");
+          case YearMethod -> nextMethod("year");
+          case SubstringofMethod -> nextMethod("substringof");
 
-    // Complex or Collection Value
-    case jsonArrayOrObject:
-      found = nextJsonArrayOrObject();
-      break;
+          // Method for the aggregation extension
+          case IsDefinedMethod -> nextMethod("isdefined");
 
-    // Search
-    case Word:
-      found = nextWord();
-      break;
-    case Phrase:
-      found = nextPhrase();
-      break;
+          // Transformations for the aggregation extension
+          case AggregateTrafo -> nextMethod("aggregate");
+          case BottomCountTrafo -> nextMethod("bottomcount");
+          case BottomPercentTrafo -> nextMethod("bottompercent");
+          case BottomSumTrafo -> nextMethod("bottomsum");
+          case ComputeTrafo -> nextMethod("compute");
+          case ExpandTrafo -> nextMethod("expand");
+          case FilterTrafo -> nextMethod("filter");
+          case GroupByTrafo -> nextMethod("groupby");
+          case SearchTrafo -> nextMethod("search");
+          case TopCountTrafo -> nextMethod("topcount");
+          case TopPercentTrafo -> nextMethod("toppercent");
+          case TopSumTrafo -> nextMethod("topsum");
 
-    // Operators in Search Expressions
-    case OrOperatorSearch:
-      found = nextBinaryOperator("OR");
-      break;
-    case AndOperatorSearch:
-      found = nextAndOperatorSearch();
-      break;
-    case NotOperatorSearch:
-      found = nextUnaryOperator("NOT");
-      break;
+          // Roll-up specification for the aggregation extension
+          case RollUpSpec -> nextMethod("rollup");
 
-    // Operators
-    case OrOperator:
-      found = nextBinaryOperator("or");
-      break;
-    case AndOperator:
-      found = nextBinaryOperator("and");
-      break;
-    case EqualsOperator:
-      found = nextBinaryOperator("eq");
-      break;
-    case NotEqualsOperator:
-      found = nextBinaryOperator("ne");
-      break;
-    case GreaterThanOperator:
-      found = nextBinaryOperator("gt");
-      break;
-    case GreaterThanOrEqualsOperator:
-      found = nextBinaryOperator("ge");
-      break;
-    case LessThanOperator:
-      found = nextBinaryOperator("lt");
-      break;
-    case LessThanOrEqualsOperator:
-      found = nextBinaryOperator("le");
-      break;
-    case HasOperator:
-      found = nextBinaryOperator("has");
-      break;
-    case InOperator:
-      found = nextBinaryOperator("in");
-      break;
-    case AddOperator:
-      found = nextBinaryOperator("add");
-      break;
-    case SubOperator:
-      found = nextBinaryOperator("sub");
-      break;
-    case MulOperator:
-      found = nextBinaryOperator("mul");
-      break;
-    case DivOperator:
-      found = nextBinaryOperator("div");
-      break;
-    case ModOperator:
-      found = nextBinaryOperator("mod");
-      break;
-    case MinusOperator:
-      // To avoid unnecessary minus operators for negative numbers, we have to check what follows the minus sign.
-      found = nextCharacter('-') && !nextDigit() && !nextConstant("INF");
-      break;
-    case NotOperator:
-      found = nextUnaryOperator("not");
-      break;
-
-    // Operators for the aggregation extension
-    case AsOperator:
-      found = nextBinaryOperator("as");
-      break;
-    case FromOperator:
-      found = nextBinaryOperator("from");
-      break;
-    case WithOperator:
-      found = nextBinaryOperator("with");
-      break;
-
-    // Methods
-    case CastMethod:
-      found = nextMethod("cast");
-      break;
-    case CeilingMethod:
-      found = nextMethod("ceiling");
-      break;
-    case ConcatMethod:
-      found = nextMethod("concat");
-      break;
-    case ContainsMethod:
-      found = nextMethod("contains");
-      break;
-    case DateMethod:
-      found = nextMethod("date");
-      break;
-    case DayMethod:
-      found = nextMethod("day");
-      break;
-    case EndswithMethod:
-      found = nextMethod("endswith");
-      break;
-    case FloorMethod:
-      found = nextMethod("floor");
-      break;
-    case FractionalsecondsMethod:
-      found = nextMethod("fractionalseconds");
-      break;
-    case HourMethod:
-      found = nextMethod("hour");
-      break;
-    case IndexofMethod:
-      found = nextMethod("indexof");
-      break;
-    case IsofMethod:
-      found = nextMethod("isof");
-      break;
-    case LengthMethod:
-      found = nextMethod("length");
-      break;
-    case MaxdatetimeMethod:
-      found = nextMethod("maxdatetime");
-      break;
-    case MindatetimeMethod:
-      found = nextMethod("mindatetime");
-      break;
-    case MinuteMethod:
-      found = nextMethod("minute");
-      break;
-    case MonthMethod:
-      found = nextMethod("month");
-      break;
-    case NowMethod:
-      found = nextMethod("now");
-      break;
-    case RoundMethod:
-      found = nextMethod("round");
-      break;
-    case SecondMethod:
-      found = nextMethod("second");
-      break;
-    case StartswithMethod:
-      found = nextMethod("startswith");
-      break;
-    case SubstringMethod:
-      found = nextMethod("substring");
-      break;
-    case TimeMethod:
-      found = nextMethod("time");
-      break;
-    case TolowerMethod:
-      found = nextMethod("tolower");
-      break;
-    case TotaloffsetminutesMethod:
-      found = nextMethod("totaloffsetminutes");
-      break;
-    case TotalsecondsMethod:
-      found = nextMethod("totalseconds");
-      break;
-    case ToupperMethod:
-      found = nextMethod("toupper");
-      break;
-    case TrimMethod:
-      found = nextMethod("trim");
-      break;
-    case YearMethod:
-      found = nextMethod("year");
-      break;
-    case SubstringofMethod:
-      found = nextMethod("substringof");
-      break;
-
-    // Method for the aggregation extension
-    case IsDefinedMethod:
-      found = nextMethod("isdefined");
-      break;
-
-    // Transformations for the aggregation extension
-    case AggregateTrafo:
-      found = nextMethod("aggregate");
-      break;
-    case BottomCountTrafo:
-      found = nextMethod("bottomcount");
-      break;
-    case BottomPercentTrafo:
-      found = nextMethod("bottompercent");
-      break;
-    case BottomSumTrafo:
-      found = nextMethod("bottomsum");
-      break;
-    case ComputeTrafo:
-      found = nextMethod("compute");
-      break;
-    case ExpandTrafo:
-      found = nextMethod("expand");
-      break;
-    case FilterTrafo:
-      found = nextMethod("filter");
-      break;
-    case GroupByTrafo:
-      found = nextMethod("groupby");
-      break;
-    case SearchTrafo:
-      found = nextMethod("search");
-      break;
-    case TopCountTrafo:
-      found = nextMethod("topcount");
-      break;
-    case TopPercentTrafo:
-      found = nextMethod("toppercent");
-      break;
-    case TopSumTrafo:
-      found = nextMethod("topsum");
-      break;
-
-    // Roll-up specification for the aggregation extension
-    case RollUpSpec:
-      found = nextMethod("rollup");
-      break;
-
-    // Suffixes
-    case AscSuffix:
-      found = nextSuffix("asc");
-      break;
-    case DescSuffix:
-      found = nextSuffix("desc");
-      break;
-    }
+          // Suffixes
+          case AscSuffix -> nextSuffix("asc");
+          case DescSuffix -> nextSuffix("desc");
+      };
 
     if (found) {
       startIndex = previousIndex;

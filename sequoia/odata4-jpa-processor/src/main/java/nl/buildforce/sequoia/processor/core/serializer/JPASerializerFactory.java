@@ -102,25 +102,16 @@ public final class JPASerializerFactory {
       final UriResourceKind uriResourceKind, boolean isCollection, final Optional<List<String>> responseVersion)
       throws SerializerException, ODataJPASerializerException {
 
-    switch (uriResourceKind) {
-      case entitySet:
-      case navigationProperty:
-        return createSerializerCollectionRequest(responseFormat, uriInfo, isCollection, responseVersion);
-      case complexProperty:
-        return createSerializerComplexPropertyRequest(responseFormat, uriInfo, responseVersion);
-      case primitiveProperty:
-        return createSerializerPrimitivePropertyRequest(responseFormat, uriInfo, responseVersion);
-      case action:
-      case function:
-        return new JPASerializeFunction(uriInfo, responseFormat, this, responseVersion);
-      case count:
-        return new JPASerializeCount(odata.createFixedFormatSerializer());
-      case value:
-        return new JPASerializeValue(serviceMetadata, odata.createFixedFormatSerializer(), uriInfo);
-      default:
-        throw new ODataJPASerializerException(ODataJPASerializerException.MessageKeys.NOT_SUPPORTED_RESOURCE_TYPE,
-            HttpStatusCode.NOT_IMPLEMENTED, uriResourceKind.toString());
-    }
+    return switch (uriResourceKind) {
+      case entitySet, navigationProperty -> createSerializerCollectionRequest(responseFormat, uriInfo, isCollection, responseVersion);
+      case complexProperty -> createSerializerComplexPropertyRequest(responseFormat, uriInfo, responseVersion);
+      case primitiveProperty -> createSerializerPrimitivePropertyRequest(responseFormat, uriInfo, responseVersion);
+      case action, function -> new JPASerializeFunction(uriInfo, responseFormat, this, responseVersion);
+      case count -> new JPASerializeCount(odata.createFixedFormatSerializer());
+      case value -> new JPASerializeValue(serviceMetadata, odata.createFixedFormatSerializer(), uriInfo);
+      default -> throw new ODataJPASerializerException(ODataJPASerializerException.MessageKeys.NOT_SUPPORTED_RESOURCE_TYPE,
+              HttpStatusCode.NOT_IMPLEMENTED, uriResourceKind.toString());
+    };
   }
 
   private JPASerializer createSerializerComplexPropertyRequest(final ContentType responseFormat, final UriInfo uriInfo,
@@ -141,4 +132,5 @@ public final class JPASerializerFactory {
     else
       return new JPASerializeEntity(serviceMetadata, serializer, uriHelper, uriInfo, responseFormat, serviceContext);
   }
+
 }

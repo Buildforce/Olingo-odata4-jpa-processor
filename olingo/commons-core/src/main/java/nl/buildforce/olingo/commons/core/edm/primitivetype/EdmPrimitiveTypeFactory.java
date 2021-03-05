@@ -15,41 +15,24 @@ public final class EdmPrimitiveTypeFactory {
    * @return {@link EdmPrimitiveType} instance
    */
   public static EdmPrimitiveType getInstance(EdmPrimitiveTypeKind kind) {
-    switch (kind) {
-    case Binary:
-      return EdmBinary.getInstance();
-    case Boolean:
-      return EdmBoolean.getInstance();
-    case Byte:
-      return EdmByte.getInstance();
-    case SByte:
-      return EdmSByte.getInstance();
-    case Date:
-      return EdmDate.getInstance();
-    case DateTimeOffset:
-      return EdmDateTimeOffset.getInstance();
-    case TimeOfDay:
-      return EdmTimeOfDay.getInstance();
-    case Duration:
-      return EdmDuration.getInstance();
-    case Decimal:
-      return EdmDecimal.getInstance();
-    case Single:
-      return EdmSingle.getInstance();
-    case Double:
-      return EdmDouble.getInstance();
-    case Guid:
-      return EdmGuid.getInstance();
-    case Int16:
-      return EdmInt16.getInstance();
-    case Int32:
-      return EdmInt32.getInstance();
-    case Int64:
-      return EdmInt64.getInstance();
-    case String:
-      return EdmString.getInstance();
-    case Stream:
-      return EdmStream.getInstance();
+      return switch (kind) {
+          case Binary -> EdmBinary.getInstance();
+          case Boolean -> EdmBoolean.getInstance();
+          case Byte -> EdmByte.getInstance();
+          case SByte -> EdmSByte.getInstance();
+          case Date -> EdmDate.getInstance();
+          case DateTimeOffset -> EdmDateTimeOffset.getInstance();
+          case TimeOfDay -> EdmTimeOfDay.getInstance();
+          case Duration -> EdmDuration.getInstance();
+          case Decimal -> EdmDecimal.getInstance();
+          case Single -> EdmSingle.getInstance();
+          case Double -> EdmDouble.getInstance();
+          case Guid -> EdmGuid.getInstance();
+          case Int16 -> EdmInt16.getInstance();
+          case Int32 -> EdmInt32.getInstance();
+          case Int64 -> EdmInt64.getInstance();
+          case String -> EdmString.getInstance();
+          case Stream -> EdmStream.getInstance();
 
     /*case Geography:
       return EdmGeography.getInstance();
@@ -84,9 +67,8 @@ public final class EdmPrimitiveTypeFactory {
     case GeometryCollection:
       return EdmGeometryCollection.getInstance();*/
 
-    default:
-      throw new IllegalArgumentException("Wrong type: " + kind);
-    }
+          default -> throw new IllegalArgumentException("Wrong type: " + kind);
+      };
   }
 
   private EdmPrimitiveTypeFactory() {

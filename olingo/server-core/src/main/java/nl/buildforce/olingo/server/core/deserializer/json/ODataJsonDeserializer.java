@@ -311,21 +311,16 @@ public ODataJsonDeserializer(ContentType contentType, ServiceMetadata serviceMet
     for (String paramName : parameterNames) {
       EdmParameter edmParameter = edmAction.getParameter(paramName);
 
-      switch (edmParameter.getType().getKind()) {
-      case PRIMITIVE:
-      case DEFINITION:
-      case ENUM:
-      case COMPLEX:
-      case ENTITY:
-        Parameter parameter = createParameter(node.get(paramName), paramName, edmParameter);
-        parameters.put(paramName, parameter);
-        node.remove(paramName);
-        break;
-      default:
-        throw new DeserializerException(
-            "Invalid type kind " + edmParameter.getType().getKind() + " for action parameter: " + paramName,
-            DeserializerException.MessageKeys.INVALID_ACTION_PARAMETER_TYPE, paramName);
-      }
+        switch (edmParameter.getType().getKind()) {
+            case PRIMITIVE, DEFINITION, ENUM, COMPLEX, ENTITY -> {
+                Parameter parameter = createParameter(node.get(paramName), paramName, edmParameter);
+                parameters.put(paramName, parameter);
+                node.remove(paramName);
+            }
+            default -> throw new DeserializerException(
+                    "Invalid type kind " + edmParameter.getType().getKind() + " for action parameter: " + paramName,
+                    MessageKeys.INVALID_ACTION_PARAMETER_TYPE, paramName);
+        }
     }
     return parameters;
   }
@@ -620,31 +615,28 @@ public ODataJsonDeserializer(ContentType contentType, ServiceMetadata serviceMet
     }
     List<Object> valueArray = new ArrayList<>();
     Iterator<JsonNode> iterator = jsonNode.iterator();
-    switch (type.getKind()) {
-    case PRIMITIVE:
-    case DEFINITION:
-    case ENUM:
-      while (iterator.hasNext()) {
-        JsonNode arrayElement = iterator.next();
-        Object value = readPrimitiveValue(name, (EdmPrimitiveType) type,
-            isNullable, maxLength, precision, scale, isUnicode, mapping, arrayElement);
-        valueArray.add(value);
+      switch (type.getKind()) {
+          case PRIMITIVE, DEFINITION, ENUM -> {
+              while (iterator.hasNext()) {
+                  JsonNode arrayElement = iterator.next();
+                  Object value = readPrimitiveValue(name, (EdmPrimitiveType) type,
+                          isNullable, maxLength, precision, scale, isUnicode, mapping, arrayElement);
+                  valueArray.add(value);
+              }
+              property.setValue(type.getKind() == EdmTypeKind.ENUM ? ValueType.COLLECTION_ENUM : ValueType.COLLECTION_PRIMITIVE,
+                      valueArray);
+          }
+          case COMPLEX -> {
+              while (iterator.hasNext()) {
+                  // read and add all complex properties
+                  Object value = readComplexNode(name, type, isNullable, iterator.next());
+                  valueArray.add(value);
+              }
+              property.setValue(ValueType.COLLECTION_COMPLEX, valueArray);
+          }
+          default -> throw new DeserializerException("Invalid Type Kind for a property found: " + type.getKind(),
+                  MessageKeys.INVALID_JSON_TYPE_FOR_PROPERTY, name);
       }
-      property.setValue(type.getKind() == EdmTypeKind.ENUM ? ValueType.COLLECTION_ENUM : ValueType.COLLECTION_PRIMITIVE,
-          valueArray);
-      break;
-    case COMPLEX:
-      while (iterator.hasNext()) {
-        // read and add all complex properties
-        Object value = readComplexNode(name, type, isNullable, iterator.next());
-        valueArray.add(value);
-      }
-      property.setValue(ValueType.COLLECTION_COMPLEX, valueArray);
-      break;
-    default:
-      throw new DeserializerException("Invalid Type Kind for a property found: " + type.getKind(),
-          DeserializerException.MessageKeys.INVALID_JSON_TYPE_FOR_PROPERTY, name);
-    }
   }
 
   private ComplexValue readComplexValue(String name, EdmType type,

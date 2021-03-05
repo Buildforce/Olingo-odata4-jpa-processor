@@ -111,7 +111,7 @@ public abstract class AbstractEdm implements Edm {
     Map<String, EdmSchema> localSchemas = createSchemas();
     schemas = Collections.synchronizedMap(localSchemas);
 
-    schemaList = Collections.unmodifiableList(new ArrayList<>(schemas.values()));
+    schemaList = List.copyOf(schemas.values());
   }
 
   private void loadAliasToNamespaceInfo() {

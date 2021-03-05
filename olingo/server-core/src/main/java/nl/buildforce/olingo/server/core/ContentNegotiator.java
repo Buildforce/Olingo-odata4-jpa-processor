@@ -31,30 +31,16 @@ public final class ContentNegotiator {
     private static final Pattern CHARSET_PATTERN = Pattern.compile("([^,][\\w!#$%&'*+-._`|~;^]*)");
 
     private static final List<ContentType> DEFAULT_SUPPORTED_CONTENT_TYPES =
-            Collections.unmodifiableList(Arrays.asList(
-                    ContentType.CT_JSON,
-                    ContentType.JSON_NO_METADATA,
-                    ContentType.APPLICATION_JSON,
-                    ContentType.JSON_FULL_METADATA,
-                    ContentType.APPLICATION_ATOM_XML,
-                    ContentType.APPLICATION_XML));
+            List.of(ContentType.CT_JSON, ContentType.JSON_NO_METADATA, ContentType.APPLICATION_JSON, ContentType.JSON_FULL_METADATA, ContentType.APPLICATION_ATOM_XML, ContentType.APPLICATION_XML);
 
     private static List<ContentType> getDefaultSupportedContentTypes(RepresentationType type) {
-        switch (type) {
-            case METADATA:
-                return Collections.unmodifiableList(Arrays.asList(ContentType.APPLICATION_XML,
-                        ContentType.APPLICATION_JSON));
-            case MEDIA:
-            case BINARY:
-                return Collections.singletonList(ContentType.APPLICATION_OCTET_STREAM);
-            case VALUE:
-            case COUNT:
-                return Collections.singletonList(ContentType.TEXT_PLAIN);
-            case BATCH:
-                return Collections.singletonList(ContentType.MULTIPART_MIXED);
-            default:
-                return DEFAULT_SUPPORTED_CONTENT_TYPES;
-        }
+        return switch (type) {
+            case METADATA -> List.of(ContentType.APPLICATION_XML, ContentType.APPLICATION_JSON);
+            case MEDIA, BINARY -> Collections.singletonList(ContentType.APPLICATION_OCTET_STREAM);
+            case VALUE, COUNT -> Collections.singletonList(ContentType.TEXT_PLAIN);
+            case BATCH -> Collections.singletonList(ContentType.MULTIPART_MIXED);
+            default -> DEFAULT_SUPPORTED_CONTENT_TYPES;
+        };
     }
 
     private static List<ContentType> getSupportedContentTypes(

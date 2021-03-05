@@ -165,24 +165,8 @@ public class UriInfoImpl implements UriInfo {
     }
 
     switch (systemQueryOptionKind) {
-    case EXPAND:
-    case FILTER:
-    case FORMAT:
-    case ID:
-    case COUNT:
-    case ORDERBY:
-    case SEARCH:
-    case SELECT:
-    case SKIP:
-    case SKIPTOKEN:
-    case DELTATOKEN:
-    case TOP:
-    case LEVELS:
-    case APPLY:
-      systemQueryOptions.put(systemQueryOptionKind, systemOption);
-      break;
-    default:
-      throw new ODataRuntimeException("Unsupported System Query Option: " + systemOption.getName());
+      case EXPAND, FILTER, FORMAT, ID, COUNT, ORDERBY, SEARCH, SELECT, SKIP, SKIPTOKEN, DELTATOKEN, TOP, LEVELS, APPLY -> systemQueryOptions.put(systemQueryOptionKind, systemOption);
+      default -> throw new ODataRuntimeException("Unsupported System Query Option: " + systemOption.getName());
     }
     return this;
   }
@@ -249,7 +233,7 @@ public class UriInfoImpl implements UriInfo {
 
   @Override
   public List<SystemQueryOption> getSystemQueryOptions() {
-    return Collections.unmodifiableList(new ArrayList<>(systemQueryOptions.values()));
+    return List.copyOf(systemQueryOptions.values());
   }
 
   public UriInfoImpl addAlias(AliasQueryOption alias) {
@@ -273,7 +257,7 @@ public class UriInfoImpl implements UriInfo {
 
   @Override
   public List<AliasQueryOption> getAliases() {
-    return Collections.unmodifiableList(new ArrayList<>(aliases.values()));
+    return List.copyOf(aliases.values());
   }
 
   public UriInfoImpl addCustomQueryOption(CustomQueryOption option) {
@@ -302,4 +286,5 @@ public class UriInfoImpl implements UriInfo {
   public DeltaTokenOption getDeltaTokenOption() {
     return (DeltaTokenOption) systemQueryOptions.get(SystemQueryOptionKind.DELTATOKEN);
   }
+
 }

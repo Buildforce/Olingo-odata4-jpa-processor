@@ -47,16 +47,10 @@ public final class EdmSingle extends SingletonPrimitiveType {
     BigDecimal bigDecimalValue = null;
     // Handle special values first.
     switch (value) {
-      case EdmDouble.NEGATIVE_INFINITY:
-        result = Float.NEGATIVE_INFINITY;
-        break;
-      case EdmDouble.POSITIVE_INFINITY:
-        result = Float.POSITIVE_INFINITY;
-        break;
-      case EdmDouble.NaN:
-        result = Float.NaN;
-        break;
-      default:
+      case EdmDouble.NEGATIVE_INFINITY -> result = Float.NEGATIVE_INFINITY;
+      case EdmDouble.POSITIVE_INFINITY -> result = Float.POSITIVE_INFINITY;
+      case EdmDouble.NaN -> result = Float.NaN;
+      default -> {
         // Now only "normal" numbers remain.
         if (!PATTERN.matcher(value).matches()) {
           throw new EdmPrimitiveTypeException("The literal '" + value + "' has illegal content.");
@@ -70,7 +64,7 @@ public final class EdmSingle extends SingletonPrimitiveType {
         if (Float.isInfinite(result) /*|| bigDecimalValue.compareTo(new BigDecimal(result.toString())) != 0*/) {
           throw new EdmPrimitiveTypeException("The literal '" + value + "' has illegal content.");
         }
-        break;
+      }
     }
 
     if (returnType.isAssignableFrom(Float.class)) {
@@ -132,4 +126,5 @@ public final class EdmSingle extends SingletonPrimitiveType {
       throw new EdmPrimitiveTypeException("The value type " + value.getClass() + " is not supported.");
     }
   }
+
 }

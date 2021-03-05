@@ -78,41 +78,33 @@ public class ODataDispatcher {
   public void dispatch(ODataRequest request, ODataResponse response) throws ODataApplicationException,
           ODataLibraryException {
     switch (uriInfo.getKind()) {
-    case metadata:
-      checkMethods(request.getMethod(), HttpMethod.GET, HttpMethod.HEAD);
-      ContentType requestedContentType = ContentNegotiator.doContentNegotiation(uriInfo.getFormatOption(),
-          request, handler.getCustomContentTypeSupport(), RepresentationType.METADATA);
-      handler.selectProcessor(MetadataProcessor.class)
-          .readMetadata(request, response, /*uriInfo,*/ requestedContentType);
-      break;
-
-    case service:
-      checkMethods(request.getMethod(), HttpMethod.GET, HttpMethod.HEAD);
-      if ("".equals(request.getRawODataPath())) {
-        handler.selectProcessor(RedirectProcessor.class)
-            .redirect(request, response);
-      } else {
-        ContentType serviceContentType = ContentNegotiator.doContentNegotiation(uriInfo.getFormatOption(),
-            request, handler.getCustomContentTypeSupport(), RepresentationType.SERVICE);
-        handler.selectProcessor(ServiceDocumentProcessor.class)
-            .readServiceDocument(request, response, /*uriInfo,*/ serviceContentType);
+      case metadata -> {
+        checkMethods(request.getMethod(), HttpMethod.GET, HttpMethod.HEAD);
+        ContentType requestedContentType = ContentNegotiator.doContentNegotiation(uriInfo.getFormatOption(),
+                request, handler.getCustomContentTypeSupport(), RepresentationType.METADATA);
+        handler.selectProcessor(MetadataProcessor.class)
+                .readMetadata(request, response, /*uriInfo,*/ requestedContentType);
       }
-      break;
-
-    case resource:
-    case entityId:
-      handleResourceDispatching(request, response);
-      break;
-
-    case batch:
-      checkMethod(request.getMethod(), HttpMethod.POST);
-      new BatchHandler(handler, handler.selectProcessor(BatchProcessor.class))
-          .process(request, response, true);
-      break;
-
-    default:
-      throw new ODataHandlerException(NOT_IMPLEMENTED_MESSAGE,
-          ODataHandlerException.MessageKeys.FUNCTIONALITY_NOT_IMPLEMENTED);
+      case service -> {
+        checkMethods(request.getMethod(), HttpMethod.GET, HttpMethod.HEAD);
+        if ("".equals(request.getRawODataPath())) {
+          handler.selectProcessor(RedirectProcessor.class)
+                  .redirect(request, response);
+        } else {
+          ContentType serviceContentType = ContentNegotiator.doContentNegotiation(uriInfo.getFormatOption(),
+                  request, handler.getCustomContentTypeSupport(), RepresentationType.SERVICE);
+          handler.selectProcessor(ServiceDocumentProcessor.class)
+                  .readServiceDocument(request, response, /*uriInfo,*/ serviceContentType);
+        }
+      }
+      case resource, entityId -> handleResourceDispatching(request, response);
+      case batch -> {
+        checkMethod(request.getMethod(), HttpMethod.POST);
+        new BatchHandler(handler, handler.selectProcessor(BatchProcessor.class))
+                .process(request, response, true);
+      }
+      default -> throw new ODataHandlerException(NOT_IMPLEMENTED_MESSAGE,
+              ODataHandlerException.MessageKeys.FUNCTIONALITY_NOT_IMPLEMENTED);
     }
   }
 
@@ -123,52 +115,29 @@ public class ODataDispatcher {
     UriResource lastPathSegment = uriInfo.getUriResourceParts().get(lastPathSegmentIndex);
 
     switch (lastPathSegment.getKind()) {
-    case action:
-      checkMethod(request.getMethod(), HttpMethod.POST);
-      handleActionDispatching(request, response, (UriResourceAction) lastPathSegment);
-      break;
-
-    case function:
-      checkMethod(request.getMethod(), HttpMethod.GET);
-      handleFunctionDispatching(request, response, (UriResourceFunction) lastPathSegment);
-      break;
-
-    case entitySet:
-    case navigationProperty:
-      handleEntityDispatching(request, response,
-          ((UriResourcePartTyped) lastPathSegment).isCollection(), isEntityOrNavigationMedia(lastPathSegment));
-      break;
-      
-    case singleton:
-      handleSingleEntityDispatching(request, response, isSingletonMedia(lastPathSegment), true);
-      break;
-      
-    case count:
-      checkMethod(request.getMethod(), HttpMethod.GET);
-      handleCountDispatching(request, response, lastPathSegmentIndex);
-      break;
-
-    case primitiveProperty:
-      handlePrimitiveDispatching(request, response,
-          ((UriResourceProperty) lastPathSegment).isCollection());
-      break;
-
-    case complexProperty:
-      handleComplexDispatching(request, response,
-          ((UriResourceProperty) lastPathSegment).isCollection());
-      break;
-
-    case value:
-      handleValueDispatching(request, response, lastPathSegmentIndex);
-      break;
-
-    case ref:
-      handleReferenceDispatching(request, response, lastPathSegmentIndex);
-      break;
-
-    default:
-      throw new ODataHandlerException(NOT_IMPLEMENTED_MESSAGE,
-          ODataHandlerException.MessageKeys.FUNCTIONALITY_NOT_IMPLEMENTED);
+      case action -> {
+        checkMethod(request.getMethod(), HttpMethod.POST);
+        handleActionDispatching(request, response, (UriResourceAction) lastPathSegment);
+      }
+      case function -> {
+        checkMethod(request.getMethod(), HttpMethod.GET);
+        handleFunctionDispatching(request, response, (UriResourceFunction) lastPathSegment);
+      }
+      case entitySet, navigationProperty -> handleEntityDispatching(request, response,
+              ((UriResourcePartTyped) lastPathSegment).isCollection(), isEntityOrNavigationMedia(lastPathSegment));
+      case singleton -> handleSingleEntityDispatching(request, response, isSingletonMedia(lastPathSegment), true);
+      case count -> {
+        checkMethod(request.getMethod(), HttpMethod.GET);
+        handleCountDispatching(request, response, lastPathSegmentIndex);
+      }
+      case primitiveProperty -> handlePrimitiveDispatching(request, response,
+              ((UriResourceProperty) lastPathSegment).isCollection());
+      case complexProperty -> handleComplexDispatching(request, response,
+              ((UriResourceProperty) lastPathSegment).isCollection());
+      case value -> handleValueDispatching(request, response, lastPathSegmentIndex);
+      case ref -> handleReferenceDispatching(request, response, lastPathSegmentIndex);
+      default -> throw new ODataHandlerException(NOT_IMPLEMENTED_MESSAGE,
+              ODataHandlerException.MessageKeys.FUNCTIONALITY_NOT_IMPLEMENTED);
     }
   }
 
@@ -180,20 +149,13 @@ public class ODataDispatcher {
     }
     EdmReturnType returnType = function.getReturnType();
     switch (returnType.getType().getKind()) {
-    case ENTITY:
-      handleEntityDispatching(request, response,
-          returnType.isCollection() && uriResourceFunction.getKeyPredicates().isEmpty(),
-          false);
-      break;
-    case PRIMITIVE:
-      handlePrimitiveDispatching(request, response, returnType.isCollection());
-      break;
-    case COMPLEX:
-      handleComplexDispatching(request, response, returnType.isCollection());
-      break;
-    default:
-      throw new ODataHandlerException(NOT_IMPLEMENTED_MESSAGE,
-          ODataHandlerException.MessageKeys.FUNCTIONALITY_NOT_IMPLEMENTED);
+      case ENTITY -> handleEntityDispatching(request, response,
+              returnType.isCollection() && uriResourceFunction.getKeyPredicates().isEmpty(),
+              false);
+      case PRIMITIVE -> handlePrimitiveDispatching(request, response, returnType.isCollection());
+      case COMPLEX -> handleComplexDispatching(request, response, returnType.isCollection());
+      default -> throw new ODataHandlerException(NOT_IMPLEMENTED_MESSAGE,
+              ODataHandlerException.MessageKeys.FUNCTIONALITY_NOT_IMPLEMENTED);
     }
   }
 
@@ -214,48 +176,44 @@ public class ODataDispatcher {
       boolean isCollection = returnType.isCollection();
       ContentType responseFormat;
       switch (returnType.getType().getKind()) {
-      case ENTITY:
-        responseFormat = ContentNegotiator.doContentNegotiation(uriInfo.getFormatOption(),
-            request, handler.getCustomContentTypeSupport(),
-            isCollection ? RepresentationType.COLLECTION_ENTITY : RepresentationType.ENTITY);
-        if (isCollection) {
-          handler.selectProcessor(ActionEntityCollectionProcessor.class)
-              .processActionEntityCollection(request, response, uriInfo, requestFormat, responseFormat);
-        } else {
-          handler.selectProcessor(ActionEntityProcessor.class)
-              .processActionEntity(request, response, uriInfo, requestFormat, responseFormat);
+        case ENTITY -> {
+          responseFormat = ContentNegotiator.doContentNegotiation(uriInfo.getFormatOption(),
+                  request, handler.getCustomContentTypeSupport(),
+                  isCollection ? RepresentationType.COLLECTION_ENTITY : RepresentationType.ENTITY);
+          if (isCollection) {
+            handler.selectProcessor(ActionEntityCollectionProcessor.class)
+                    .processActionEntityCollection(request, response, uriInfo, requestFormat, responseFormat);
+          } else {
+            handler.selectProcessor(ActionEntityProcessor.class)
+                    .processActionEntity(request, response, uriInfo, requestFormat, responseFormat);
+          }
         }
-        break;
-
-      case PRIMITIVE:
-        responseFormat = ContentNegotiator.doContentNegotiation(uriInfo.getFormatOption(),
-            request, handler.getCustomContentTypeSupport(),
-            isCollection ? RepresentationType.COLLECTION_PRIMITIVE : RepresentationType.PRIMITIVE);
-        if (isCollection) {
-          handler.selectProcessor(ActionPrimitiveCollectionProcessor.class)
-              .processActionPrimitiveCollection(request, response, uriInfo, requestFormat, responseFormat);
-        } else {
-          handler.selectProcessor(ActionPrimitiveProcessor.class)
-              .processActionPrimitive(request, response, uriInfo, requestFormat, responseFormat);
+        case PRIMITIVE -> {
+          responseFormat = ContentNegotiator.doContentNegotiation(uriInfo.getFormatOption(),
+                  request, handler.getCustomContentTypeSupport(),
+                  isCollection ? RepresentationType.COLLECTION_PRIMITIVE : RepresentationType.PRIMITIVE);
+          if (isCollection) {
+            handler.selectProcessor(ActionPrimitiveCollectionProcessor.class)
+                    .processActionPrimitiveCollection(request, response, uriInfo, requestFormat, responseFormat);
+          } else {
+            handler.selectProcessor(ActionPrimitiveProcessor.class)
+                    .processActionPrimitive(request, response, uriInfo, requestFormat, responseFormat);
+          }
         }
-        break;
-
-      case COMPLEX:
-        responseFormat = ContentNegotiator.doContentNegotiation(uriInfo.getFormatOption(),
-            request, handler.getCustomContentTypeSupport(),
-            isCollection ? RepresentationType.COLLECTION_COMPLEX : RepresentationType.COMPLEX);
-        if (isCollection) {
-          handler.selectProcessor(ActionComplexCollectionProcessor.class)
-              .processActionComplexCollection(request, response, uriInfo, requestFormat, responseFormat);
-        } else {
-          handler.selectProcessor(ActionComplexProcessor.class)
-              .processActionComplex(request, response, uriInfo, requestFormat, responseFormat);
+        case COMPLEX -> {
+          responseFormat = ContentNegotiator.doContentNegotiation(uriInfo.getFormatOption(),
+                  request, handler.getCustomContentTypeSupport(),
+                  isCollection ? RepresentationType.COLLECTION_COMPLEX : RepresentationType.COMPLEX);
+          if (isCollection) {
+            handler.selectProcessor(ActionComplexCollectionProcessor.class)
+                    .processActionComplexCollection(request, response, uriInfo, requestFormat, responseFormat);
+          } else {
+            handler.selectProcessor(ActionComplexProcessor.class)
+                    .processActionComplex(request, response, uriInfo, requestFormat, responseFormat);
+          }
         }
-        break;
-
-      default:
-        throw new ODataHandlerException(NOT_IMPLEMENTED_MESSAGE,
-            ODataHandlerException.MessageKeys.FUNCTIONALITY_NOT_IMPLEMENTED);
+        default -> throw new ODataHandlerException(NOT_IMPLEMENTED_MESSAGE,
+                ODataHandlerException.MessageKeys.FUNCTIONALITY_NOT_IMPLEMENTED);
       }
     }
   }

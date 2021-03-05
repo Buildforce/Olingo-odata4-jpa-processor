@@ -93,7 +93,7 @@ public class PreferencesImpl implements Preferences {
   private Integer getNonNegativeIntegerPreference(String name) {
     if (preferences.containsKey(name) && preferences.get(name).getValue() != null) {
       try {
-        Integer result = Integer.valueOf(preferences.get(name).getValue());
+        int result = Integer.parseInt(preferences.get(name).getValue());
         return result < 0 ? null : result;
       } catch (NumberFormatException e) {
         return null;
@@ -101,4 +101,5 @@ public class PreferencesImpl implements Preferences {
     }
     return null;
   }
+
 }

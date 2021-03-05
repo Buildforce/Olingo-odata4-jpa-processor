@@ -142,11 +142,11 @@ public class ODataImpl extends OData {
   private float getMaxVersion(List<String> versions) {
     Float[] versionValue = new Float [versions.size()];
     int i=0;
-    Float max= (float) 0;
+    float max= (float) 0;
     for(String version:versions){
-     Float ver = Float.valueOf(version);
+     float ver = Float.parseFloat(version);
      versionValue[i++] = ver;
-     max = max > ver ? max : ver ;
+     max = Math.max(max, ver);
    }
     return max;
   }

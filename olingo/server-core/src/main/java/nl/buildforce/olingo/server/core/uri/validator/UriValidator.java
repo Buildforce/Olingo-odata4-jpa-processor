@@ -119,36 +119,20 @@ public class UriValidator {
   }
 
   private UriType getUriType(UriInfo uriInfo) throws UriValidationException {
-    UriType uriType;
 
-    switch (uriInfo.getKind()) {
-    case all:
-      uriType = UriType.all;
-      break;
-    case batch:
-      uriType = UriType.batch;
-      break;
-    case crossjoin:
-      uriType = UriType.crossjoin;
-      break;
-    case entityId:
-      uriType = UriType.entityId;
-      break;
-    case metadata:
-      uriType = UriType.metadata;
-      break;
-    case resource:
-      uriType = getUriTypeForResource(uriInfo.getUriResourceParts());
-      break;
-    case service:
-      uriType = UriType.service;
-      break;
-    default:
-      throw new UriValidationException("Unsupported uriInfo kind: " + uriInfo.getKind(),
-          UriValidationException.MessageKeys.UNSUPPORTED_URI_KIND, uriInfo.getKind().toString());
-    }
-
-    return uriType;
+    return switch (uriInfo.getKind()) {
+      case all -> UriType.all;
+      case batch -> UriType.batch;
+      case crossjoin -> UriType.crossjoin;
+      case entityId -> UriType.entityId;
+      case metadata -> UriType.metadata;
+      case resource -> getUriTypeForResource(uriInfo.getUriResourceParts());
+      case service -> UriType.service;
+/*
+      default -> throw new UriValidationException("Unsupported uriInfo kind: " + uriInfo.getKind(),
+              UriValidationException.MessageKeys.UNSUPPORTED_URI_KIND, uriInfo.getKind().toString());
+*/
+    };
   }
 
   /**
@@ -159,40 +143,19 @@ public class UriValidator {
   private UriType getUriTypeForResource(List<UriResource> segments) throws UriValidationException {
     UriResource lastPathSegment = segments.get(segments.size() - 1);
 
-    UriType uriType;
-    switch (lastPathSegment.getKind()) {
-    case count:
-      uriType = getUriTypeForCount(segments.get(segments.size() - 2));
-      break;
-    case action:
-      uriType = getUriTypeForAction(lastPathSegment);
-      break;
-    case complexProperty:
-      uriType = getUriTypeForComplexProperty(lastPathSegment);
-      break;
-    case entitySet:
-    case navigationProperty:
-      uriType = getUriTypeForEntitySet(lastPathSegment);
-      break;
-    case function:
-      uriType = getUriTypeForFunction(lastPathSegment);
-      break;
-    case primitiveProperty:
-      uriType = getUriTypeForPrimitiveProperty(lastPathSegment);
-      break;
-    case ref:
-      uriType = getUriTypeForRef(segments.get(segments.size() - 2));
-      break;
-    case singleton:
-      uriType = UriType.entity;
-      break;
-    case value:
-      uriType = getUriTypeForValue(segments.get(segments.size() - 2));
-      break;
-    default:
-      throw new UriValidationException("Unsupported uriResource kind: " + lastPathSegment.getKind(),
-          UriValidationException.MessageKeys.UNSUPPORTED_URI_RESOURCE_KIND, lastPathSegment.getKind().toString());
-    }
+    UriType uriType = switch (lastPathSegment.getKind()) {
+      case count -> getUriTypeForCount(segments.get(segments.size() - 2));
+      case action -> getUriTypeForAction(lastPathSegment);
+      case complexProperty -> getUriTypeForComplexProperty(lastPathSegment);
+      case entitySet, navigationProperty -> getUriTypeForEntitySet(lastPathSegment);
+      case function -> getUriTypeForFunction(lastPathSegment);
+      case primitiveProperty -> getUriTypeForPrimitiveProperty(lastPathSegment);
+      case ref -> getUriTypeForRef(segments.get(segments.size() - 2));
+      case singleton -> UriType.entity;
+      case value -> getUriTypeForValue(segments.get(segments.size() - 2));
+      default -> throw new UriValidationException("Unsupported uriResource kind: " + lastPathSegment.getKind(),
+              UriValidationException.MessageKeys.UNSUPPORTED_URI_RESOURCE_KIND, lastPathSegment.getKind().toString());
+    };
 
     return uriType;
   }
@@ -200,24 +163,17 @@ public class UriValidator {
   private UriType getUriTypeForValue(UriResource secondLastPathSegment) throws UriValidationException {
     UriType uriType;
     switch (secondLastPathSegment.getKind()) {
-    case primitiveProperty:
-      uriType = UriType.propertyPrimitiveValue;
-      break;
-    case entitySet:
-    case navigationProperty:
-    case singleton:
-      uriType = UriType.mediaStream;
-      break;
-    case function:
-      UriResourceFunction uriFunction = (UriResourceFunction) secondLastPathSegment;
-      EdmFunction function = uriFunction.getFunction();
-      uriType = function.getReturnType().getType().getKind() == EdmTypeKind.ENTITY ?
-          UriType.mediaStream : UriType.propertyPrimitiveValue;
-      break;
-    default:
-      throw new UriValidationException(
-          "Unexpected kind in path segment before $value: " + secondLastPathSegment.getKind(),
-          UriValidationException.MessageKeys.UNALLOWED_KIND_BEFORE_VALUE, secondLastPathSegment.toString());
+      case primitiveProperty -> uriType = UriType.propertyPrimitiveValue;
+      case entitySet, navigationProperty, singleton -> uriType = UriType.mediaStream;
+      case function -> {
+        UriResourceFunction uriFunction = (UriResourceFunction) secondLastPathSegment;
+        EdmFunction function = uriFunction.getFunction();
+        uriType = function.getReturnType().getType().getKind() == EdmTypeKind.ENTITY ?
+                UriType.mediaStream : UriType.propertyPrimitiveValue;
+      }
+      default -> throw new UriValidationException(
+              "Unexpected kind in path segment before $value: " + secondLastPathSegment.getKind(),
+              UriValidationException.MessageKeys.UNALLOWED_KIND_BEFORE_VALUE, secondLastPathSegment.toString());
     }
     return uriType;
   }
@@ -244,23 +200,13 @@ public class UriValidator {
     UriResourceFunction uriFunction = (UriResourceFunction) lastPathSegment;
     boolean isCollection = uriFunction.isCollection();
     EdmTypeKind typeKind = uriFunction.getFunction().getReturnType().getType().getKind();
-    UriType uriType;
-    switch (typeKind) {
-    case ENTITY:
-      uriType = isCollection ? UriType.entitySet : UriType.entity;
-      break;
-    case PRIMITIVE:
-    case ENUM:
-    case DEFINITION:
-      uriType = isCollection ? UriType.propertyPrimitiveCollection : UriType.propertyPrimitive;
-      break;
-    case COMPLEX:
-      uriType = isCollection ? UriType.propertyComplexCollection : UriType.propertyComplex;
-      break;
-    default:
-      throw new UriValidationException("Unsupported function return type: " + typeKind,
-          UriValidationException.MessageKeys.UNSUPPORTED_FUNCTION_RETURN_TYPE, typeKind.toString());
-    }
+    UriType uriType = switch (typeKind) {
+      case ENTITY -> isCollection ? UriType.entitySet : UriType.entity;
+      case PRIMITIVE, ENUM, DEFINITION -> isCollection ? UriType.propertyPrimitiveCollection : UriType.propertyPrimitive;
+      case COMPLEX -> isCollection ? UriType.propertyComplexCollection : UriType.propertyComplex;
+      default -> throw new UriValidationException("Unsupported function return type: " + typeKind,
+              UriValidationException.MessageKeys.UNSUPPORTED_FUNCTION_RETURN_TYPE, typeKind.toString());
+    };
 
     return uriType;
   }
@@ -278,63 +224,36 @@ public class UriValidator {
     if (rt == null) {
       return UriType.none;
     }
-    UriType uriType;
-    switch (rt.getType().getKind()) {
-    case ENTITY:
-      uriType = rt.isCollection() ? UriType.entitySet : UriType.entity;
-      break;
-    case PRIMITIVE:
-    case ENUM:
-    case DEFINITION:
-      uriType = rt.isCollection() ? UriType.propertyPrimitiveCollection : UriType.propertyPrimitive;
-      break;
-    case COMPLEX:
-      uriType = rt.isCollection() ? UriType.propertyComplexCollection : UriType.propertyComplex;
-      break;
-    default:
-      throw new UriValidationException("Unsupported action return type: " + rt.getType().getKind(),
-          UriValidationException.MessageKeys.UNSUPPORTED_ACTION_RETURN_TYPE, rt.getType().getKind().toString());
-    }
+    UriType uriType = switch (rt.getType().getKind()) {
+      case ENTITY -> rt.isCollection() ? UriType.entitySet : UriType.entity;
+      case PRIMITIVE, ENUM, DEFINITION -> rt.isCollection() ? UriType.propertyPrimitiveCollection : UriType.propertyPrimitive;
+      case COMPLEX -> rt.isCollection() ? UriType.propertyComplexCollection : UriType.propertyComplex;
+      default -> throw new UriValidationException("Unsupported action return type: " + rt.getType().getKind(),
+              UriValidationException.MessageKeys.UNSUPPORTED_ACTION_RETURN_TYPE, rt.getType().getKind().toString());
+    };
     return uriType;
   }
 
   private UriType getUriTypeForCount(UriResource secondLastPathSegment) throws UriValidationException {
     UriType uriType;
     switch (secondLastPathSegment.getKind()) {
-    case entitySet:
-    case navigationProperty:
-      uriType = UriType.entitySetCount;
-      break;
-    case complexProperty:
-      uriType = UriType.propertyComplexCollectionCount;
-      break;
-    case primitiveProperty:
-      uriType = UriType.propertyPrimitiveCollectionCount;
-      break;
-    case function:
-      UriResourceFunction uriFunction = (UriResourceFunction) secondLastPathSegment;
-      EdmFunction function = uriFunction.getFunction();
-      EdmType returnType = function.getReturnType().getType();
-      switch (returnType.getKind()) {
-      case ENTITY:
-        uriType = UriType.entitySetCount;
-        break;
-      case COMPLEX:
-        uriType = UriType.propertyComplexCollectionCount;
-        break;
-      case PRIMITIVE:
-      case ENUM:
-      case DEFINITION:
-        uriType = UriType.propertyPrimitiveCollectionCount;
-        break;
-      default:
-        throw new UriValidationException("Unsupported return type: " + returnType.getKind(),
-            UriValidationException.MessageKeys.UNSUPPORTED_FUNCTION_RETURN_TYPE, returnType.getKind().toString());
+      case entitySet, navigationProperty -> uriType = UriType.entitySetCount;
+      case complexProperty -> uriType = UriType.propertyComplexCollectionCount;
+      case primitiveProperty -> uriType = UriType.propertyPrimitiveCollectionCount;
+      case function -> {
+        UriResourceFunction uriFunction = (UriResourceFunction) secondLastPathSegment;
+        EdmFunction function = uriFunction.getFunction();
+        EdmType returnType = function.getReturnType().getType();
+        uriType = switch (returnType.getKind()) {
+          case ENTITY -> UriType.entitySetCount;
+          case COMPLEX -> UriType.propertyComplexCollectionCount;
+          case PRIMITIVE, ENUM, DEFINITION -> UriType.propertyPrimitiveCollectionCount;
+          default -> throw new UriValidationException("Unsupported return type: " + returnType.getKind(),
+                  UriValidationException.MessageKeys.UNSUPPORTED_FUNCTION_RETURN_TYPE, returnType.getKind().toString());
+        };
       }
-      break;
-    default:
-      throw new UriValidationException("Illegal path part kind before $count: " + secondLastPathSegment.getKind(),
-          UriValidationException.MessageKeys.UNALLOWED_KIND_BEFORE_COUNT, secondLastPathSegment.toString());
+      default -> throw new UriValidationException("Illegal path part kind before $count: " + secondLastPathSegment.getKind(),
+              UriValidationException.MessageKeys.UNALLOWED_KIND_BEFORE_COUNT, secondLastPathSegment.toString());
     }
 
     return uriType;

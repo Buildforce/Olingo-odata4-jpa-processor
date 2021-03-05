@@ -65,40 +65,30 @@ public class JPAOperationConverter {
   }
 
   public final Expression<Boolean> convert(final JPABooleanOperatorImp jpaOperator) throws ODataApplicationException {
-    switch (jpaOperator.getOperator()) {
-      case AND:
-        return cb.and(jpaOperator.getLeft(), jpaOperator.getRight());
-      case OR:
-        return cb.or(jpaOperator.getLeft(), jpaOperator.getRight());
-      default:
-        return dbConverter.convert(jpaOperator);
-    }
+    return switch (jpaOperator.getOperator()) {
+      case AND -> cb.and(jpaOperator.getLeft(), jpaOperator.getRight());
+      case OR -> cb.or(jpaOperator.getLeft(), jpaOperator.getRight());
+      default -> dbConverter.convert(jpaOperator);
+    };
   }
 
   @SuppressWarnings({ "unchecked" })
   public final Expression<Boolean> convert(@SuppressWarnings("rawtypes") final JPAComparisonOperatorImp jpaOperator)
       throws ODataApplicationException {
 
-    switch (jpaOperator.getOperator()) {
-      case EQ:
-        return equalExpression(cb::equal, cb::equal, cb::isNull,
-            jpaOperator);
-      case NE:
-        return equalExpression(cb::notEqual, cb::notEqual, cb::isNotNull,
-            jpaOperator);
-      case GE:
-        return comparisonExpression(cb::greaterThanOrEqualTo, (l, r) -> (cb.greaterThanOrEqualTo(l,
-            r)), jpaOperator);
-      case GT:
-        return comparisonExpression(cb::greaterThan, (l, r) -> (cb.greaterThan(l, r)), jpaOperator);
-      case LT:
-        return comparisonExpression(cb::lessThan, (l, r) -> (cb.lessThan(l, r)), jpaOperator);
-      case LE:
-        return comparisonExpression(cb::lessThanOrEqualTo, (l, r) -> (cb.lessThanOrEqualTo(l, r)),
-            jpaOperator);
-      default:
-        return dbConverter.convert(jpaOperator);
-    }
+    return switch (jpaOperator.getOperator()) {
+      case EQ -> equalExpression(cb::equal, cb::equal, cb::isNull,
+              jpaOperator);
+      case NE -> equalExpression(cb::notEqual, cb::notEqual, cb::isNotNull,
+              jpaOperator);
+      case GE -> comparisonExpression(cb::greaterThanOrEqualTo, (l, r) -> (cb.greaterThanOrEqualTo(l,
+              r)), jpaOperator);
+      case GT -> comparisonExpression(cb::greaterThan, (l, r) -> (cb.greaterThan(l, r)), jpaOperator);
+      case LT -> comparisonExpression(cb::lessThan, (l, r) -> (cb.lessThan(l, r)), jpaOperator);
+      case LE -> comparisonExpression(cb::lessThanOrEqualTo, (l, r) -> (cb.lessThanOrEqualTo(l, r)),
+              jpaOperator);
+      default -> dbConverter.convert(jpaOperator);
+    };
 
   }
 

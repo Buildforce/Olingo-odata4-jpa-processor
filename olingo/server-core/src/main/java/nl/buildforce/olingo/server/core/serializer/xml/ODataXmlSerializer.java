@@ -858,16 +858,12 @@ public class ODataXmlSerializer extends AbstractODataSerializer {
                                         XMLStreamWriter writer) throws XMLStreamException, EdmPrimitiveTypeException, SerializerException {
     for (Object value : property.asCollection()) {
       writer.writeStartElement(METADATA, Constants.ELEM_ELEMENT, NS_METADATA);
-      switch (property.getValueType()) {
-      case COLLECTION_PRIMITIVE:
-      case COLLECTION_ENUM:
-        writePrimitiveValue(type, value, isNullable, maxLength, precision,
-            scale, isUnicode, xml10InvalidCharReplacement, writer);
-        break;
-        default:
-        throw new SerializerException("Property type not yet supported!",
-            SerializerException.MessageKeys.UNSUPPORTED_PROPERTY_TYPE, property.getName());
-      }
+        switch (property.getValueType()) {
+            case COLLECTION_PRIMITIVE, COLLECTION_ENUM -> writePrimitiveValue(type, value, isNullable, maxLength, precision,
+                    scale, isUnicode, xml10InvalidCharReplacement, writer);
+            default -> throw new SerializerException("Property type not yet supported!",
+                    SerializerException.MessageKeys.UNSUPPORTED_PROPERTY_TYPE, property.getName());
+        }
       writer.writeEndElement();
     }
   }
