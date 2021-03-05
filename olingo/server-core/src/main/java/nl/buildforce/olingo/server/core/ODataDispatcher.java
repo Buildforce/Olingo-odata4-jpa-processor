@@ -261,7 +261,7 @@ public class ODataDispatcher {
   }
 
   private void handleReferenceDispatching(ODataRequest request, ODataResponse response,
-                                          int lastPathSegmentIndex) throws ODataApplicationException, ODataLibraryException {
+                                          int lastPathSegmentIndex) throws ODataLibraryException {
     HttpMethod httpMethod = request.getMethod();
     boolean isCollection = ((UriResourcePartTyped) uriInfo.getUriResourceParts()
         .get(lastPathSegmentIndex - 1))

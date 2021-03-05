@@ -35,9 +35,7 @@ import java.util.Map;
 
 public final class Util {
 
-  private Util() {
-    // suppress instance creation
-  }
+  private Util() {/* static helper class*/}
 
   public static final String VALUE_RESOURCE = "$VALUE";
 
@@ -354,4 +352,5 @@ public final class Util {
           HttpStatusCode.BAD_REQUEST,
           uriResourceItem.getKind().name());
   }
+
 }

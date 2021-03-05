@@ -35,7 +35,7 @@ public class EnumerationImpl implements Enumeration {
   }
 
   @Override
-  public <T> T accept(ExpressionVisitor<T> visitor) throws ExpressionVisitException, ODataApplicationException {
+  public <T> T accept(ExpressionVisitor<T> visitor) throws ODataApplicationException {
     return visitor.visitEnum(type, values);
   }
 
@@ -44,4 +44,5 @@ public class EnumerationImpl implements Enumeration {
     return type == null ? "NULL" :
       type.getFullQualifiedName().getFullQualifiedNameAsString() + getValues();
   }
+
 }

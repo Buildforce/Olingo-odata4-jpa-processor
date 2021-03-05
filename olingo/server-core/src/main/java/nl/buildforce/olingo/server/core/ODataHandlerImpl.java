@@ -145,12 +145,7 @@ public class ODataHandlerImpl implements ODataHandler {
     // debugger.stopRuntimeMeasurement(measurementUriValidator);
 
     // int measurementDispatcher = debugger.startRuntimeMeasurement("ODataDispatcher", "dispatch");
-    try {
-      new ODataDispatcher(uriInfo, this).dispatch(request, response);
-    } finally {
-      // debugger.stopRuntimeMeasurement(measurementDispatcher);
-      // debugger.stopRuntimeMeasurement(measurementHandle);
-    }
+    new ODataDispatcher(uriInfo, this).dispatch(request, response);
   }
 
   public void handleException(ODataRequest request, ODataResponse response,

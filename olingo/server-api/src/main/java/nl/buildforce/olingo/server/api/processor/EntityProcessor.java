@@ -59,9 +59,7 @@ public interface EntityProcessor extends Processor {
    * @param response OData response object for collecting response data
    * @param uriInfo information of a parsed OData URI
    * @throws ODataApplicationException if the service implementation encounters a failure
-   * @throws ODataLibraryException
    */
-  void deleteEntity(ODataRequest request, ODataResponse response, UriInfo uriInfo) throws ODataApplicationException,
-  ODataLibraryException;
+  void deleteEntity(ODataRequest request, ODataResponse response, UriInfo uriInfo) throws ODataApplicationException;
 
 }

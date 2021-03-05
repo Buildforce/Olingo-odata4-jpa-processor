@@ -437,7 +437,7 @@ public class Parser {
   }
 
   private void parseSelectOption(SelectOption selectOption, EdmType contextType,
-      boolean contextIsCollection) throws UriParserException, UriValidationException {
+      boolean contextIsCollection) throws UriParserException {
     if (selectOption != null) {
       String optionValue = selectOption.getText();
       UriTokenizer selectTokenizer = new UriTokenizer(optionValue);

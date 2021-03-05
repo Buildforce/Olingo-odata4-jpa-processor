@@ -30,7 +30,7 @@ public class LiteralImpl implements Literal {
   }
 
   @Override
-  public <T> T accept(ExpressionVisitor<T> visitor) throws ExpressionVisitException, ODataApplicationException {
+  public <T> T accept(ExpressionVisitor<T> visitor) {
     return visitor.visitLiteral(this);
   }
 
@@ -38,4 +38,5 @@ public class LiteralImpl implements Literal {
   public String toString() {
     return text == null ? "" : text;
   }
+
 }

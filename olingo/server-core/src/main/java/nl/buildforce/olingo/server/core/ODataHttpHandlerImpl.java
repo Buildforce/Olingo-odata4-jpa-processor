@@ -206,8 +206,6 @@ public class ODataHttpHandlerImpl implements ODataHttpHandler {
     } catch (IOException e) {
       throw new DeserializerException("An I/O exception occurred.", e,
           DeserializerException.MessageKeys.IO_EXCEPTION);
-    } finally {
-      // debugger.stopRuntimeMeasurement(requestHandle);
     }
   }
   

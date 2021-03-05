@@ -27,7 +27,7 @@ final class TypeUtil {
 
   /** Creates a parameter map with predictable order. */
   static TreeMap<String, String> createParameterMap() {
-    return new TreeMap<>((s, str) -> s.compareToIgnoreCase(str));
+    return new TreeMap<>(String::compareToIgnoreCase); // was TreeMap<>((s, str) -> s.compareToIgnoreCase(str))
   }
 
   /**

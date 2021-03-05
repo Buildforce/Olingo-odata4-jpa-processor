@@ -21,7 +21,7 @@ public final class JPAFilterExpression implements JPAVisitableExpression {
   }
 
   @Override
-  public <T> T accept(final ExpressionVisitor<T> visitor) throws ExpressionVisitException, ODataApplicationException {
+  public <T> T accept(final ExpressionVisitor<T> visitor) throws ODataApplicationException {
     final T left = visitor.visitMember(member);
     final T right = visitor.visitLiteral(literal);
     return visitor.visitBinaryOperator(operator, left, right);

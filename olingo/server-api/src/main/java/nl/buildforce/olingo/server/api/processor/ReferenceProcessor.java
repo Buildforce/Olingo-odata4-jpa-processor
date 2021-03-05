@@ -4,8 +4,6 @@
 package nl.buildforce.olingo.server.api.processor;
 
 import nl.buildforce.olingo.commons.api.format.ContentType;
-import nl.buildforce.olingo.server.api.ODataApplicationException;
-import nl.buildforce.olingo.server.api.ODataLibraryException;
 import nl.buildforce.olingo.server.api.ODataRequest;
 import nl.buildforce.olingo.server.api.ODataResponse;
 import nl.buildforce.olingo.server.api.uri.UriInfo;
@@ -53,6 +51,6 @@ public interface ReferenceProcessor extends Processor {
    * @param response OData response object for collecting response data
    * @param uriInfo information of a parsed OData URI
    */
-  void deleteReference(ODataRequest request, ODataResponse response, UriInfo uriInfo)
-  ;
+  void deleteReference(ODataRequest request, ODataResponse response, UriInfo uriInfo);
+
 }

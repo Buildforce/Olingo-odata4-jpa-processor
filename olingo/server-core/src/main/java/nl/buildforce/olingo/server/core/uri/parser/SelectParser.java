@@ -28,7 +28,6 @@ import nl.buildforce.olingo.server.core.uri.UriResourcePrimitivePropertyImpl;
 import nl.buildforce.olingo.server.core.uri.parser.UriTokenizer.TokenKind;
 import nl.buildforce.olingo.server.core.uri.queryoption.SelectItemImpl;
 import nl.buildforce.olingo.server.core.uri.queryoption.SelectOptionImpl;
-import nl.buildforce.olingo.server.core.uri.validator.UriValidationException;
 
 public class SelectParser {
 
@@ -222,4 +221,5 @@ public class SelectParser {
       }
     }
   }
+
 }

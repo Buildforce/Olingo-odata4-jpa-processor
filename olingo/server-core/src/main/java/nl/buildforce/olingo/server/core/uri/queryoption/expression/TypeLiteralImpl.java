@@ -23,7 +23,7 @@ public class TypeLiteralImpl implements TypeLiteral {
   }
 
   @Override
-  public <T> T accept(ExpressionVisitor<T> visitor) throws ExpressionVisitException, ODataApplicationException {
+  public <T> T accept(ExpressionVisitor<T> visitor) throws ODataApplicationException {
     return visitor.visitTypeLiteral(type);
   }
 
@@ -31,4 +31,5 @@ public class TypeLiteralImpl implements TypeLiteral {
   public String toString() {
     return type == null ? "NULL" : type.getFullQualifiedName().getFullQualifiedNameAsString();
   }
+
 }

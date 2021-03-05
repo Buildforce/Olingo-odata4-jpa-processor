@@ -100,8 +100,9 @@ public class EdmAssistedJsonSerializer implements EdmAssistedSerializer {
         try {
           outputStream.close();
         } catch (IOException e) {
-          throw cachedException == null ? new SerializerException(IO_EXCEPTION_TEXT, e,
-              SerializerException.MessageKeys.IO_EXCEPTION) : cachedException;
+          throw cachedException == null ?
+                  new SerializerException(IO_EXCEPTION_TEXT, e, SerializerException.MessageKeys.IO_EXCEPTION)
+                  : cachedException;
         }
       }
     }

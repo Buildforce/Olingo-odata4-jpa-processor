@@ -6,12 +6,12 @@ package nl.buildforce.olingo.commons.api.constants;
 import nl.buildforce.olingo.commons.api.IConstants;
 
 /**
- * Constant values related to the OData protocol.
+ * Constant values related to the OData protocol. With @odata prefix
  */
 public final class Constantsv00 implements IConstants{
 
   // JSON stuff
-   public static final String JSON_METADATA = "odata.metadata";
+   // public static final String JSON_METADATA = "odata.metadata";
 
    public static final String JSON_TYPE = "@odata.type";
 
@@ -138,4 +138,5 @@ public final class Constantsv00 implements IConstants{
   public String getDeltaLink() {
     return JSON_DELTA_LINK;
   }
+
 }

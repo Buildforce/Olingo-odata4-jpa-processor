@@ -22,9 +22,8 @@ public interface ActionPrimitiveProcessor extends Processor {
    * @param requestFormat content type of body sent with request
    * @param responseFormat requested content type after content negotiation
    * @throws ODataApplicationException if the service implementation encounters a failure
-   * @throws ODataLibraryException
    */
   void processActionPrimitive(ODataRequest request, ODataResponse response, UriInfo uriInfo,
-                              ContentType requestFormat, ContentType responseFormat) throws ODataApplicationException, ODataLibraryException;
+                              ContentType requestFormat, ContentType responseFormat) throws ODataApplicationException;
 
 }

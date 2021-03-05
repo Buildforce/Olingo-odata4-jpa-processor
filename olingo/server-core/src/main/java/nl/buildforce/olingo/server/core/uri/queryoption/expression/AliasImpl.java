@@ -29,7 +29,7 @@ public class AliasImpl implements Alias {
   }
 
   @Override
-  public <T> T accept(ExpressionVisitor<T> visitor) throws ExpressionVisitException, ODataApplicationException {
+  public <T> T accept(ExpressionVisitor<T> visitor) throws ODataApplicationException {
     return visitor.visitAlias(parameterName);
   }
 
@@ -37,4 +37,5 @@ public class AliasImpl implements Alias {
   public String toString() {
     return parameterName;
   }
+
 }

@@ -21,9 +21,8 @@ public interface ActionVoidProcessor extends Processor {
    * @param uriInfo information about a parsed OData URI
    * @param requestFormat content type of body sent with request
    * @throws ODataApplicationException if the service implementation encounters a failure
-   * @throws ODataLibraryException
    */
   void processActionVoid(ODataRequest request, ODataResponse response, UriInfo uriInfo, ContentType requestFormat)
-      throws ODataApplicationException, ODataLibraryException;
+      throws ODataApplicationException;
 
 }

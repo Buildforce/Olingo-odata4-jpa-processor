@@ -35,10 +35,9 @@ public interface MediaEntityProcessor extends EntityProcessor {
    * @param requestFormat content type of body sent with request
    * @param responseFormat requested content type after content negotiation
    * @throws ODataApplicationException if the service implementation encounters a failure
-   * @throws ODataLibraryException
    */
   void createMediaEntity(ODataRequest request, ODataResponse response, UriInfo uriInfo,
-      ContentType requestFormat, ContentType responseFormat) throws ODataApplicationException, ODataLibraryException;
+      ContentType requestFormat, ContentType responseFormat) throws ODataApplicationException;
 
   /**
    * Updates entity media data in the persistence and puts content and status into the response.
@@ -48,10 +47,9 @@ public interface MediaEntityProcessor extends EntityProcessor {
    * @param requestFormat content type of body sent with request
    * @param responseFormat requested content type after content negotiation
    * @throws ODataApplicationException if the service implementation encounters a failure
-   * @throws ODataLibraryException
    */
   void updateMediaEntity(ODataRequest request, ODataResponse response, UriInfo uriInfo,
-      ContentType requestFormat, ContentType responseFormat) throws ODataApplicationException, ODataLibraryException;
+      ContentType requestFormat, ContentType responseFormat) throws ODataApplicationException;
 
   /**
    * Deletes entity media data and associated entity from persistence and puts the status into the response.
@@ -59,9 +57,8 @@ public interface MediaEntityProcessor extends EntityProcessor {
    * @param response OData response object for collecting response data
    * @param uriInfo information of a parsed OData URI
    * @throws ODataApplicationException if the service implementation encounters a failure
-   * @throws ODataLibraryException
    */
   void deleteMediaEntity(ODataRequest request, ODataResponse response, UriInfo uriInfo)
-      throws ODataApplicationException, ODataLibraryException;
+      throws ODataApplicationException;
 
 }

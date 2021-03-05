@@ -44,7 +44,7 @@ public abstract class CsdlAbstractEdmProvider implements CsdlEdmProvider {
   }
 
   @Override
-  public CsdlTerm getTerm(FullQualifiedName termName) throws ODataException {
+  public CsdlTerm getTerm(FullQualifiedName termName) {
     return null;
   }
 
@@ -93,8 +93,7 @@ public abstract class CsdlAbstractEdmProvider implements CsdlEdmProvider {
   }
 
   @Override
-  public CsdlAnnotations getAnnotationsGroup(FullQualifiedName targetName, String qualifier)
-      throws ODataException {
+  public CsdlAnnotations getAnnotationsGroup(FullQualifiedName targetName, String qualifier) {
     return null;
   }
 

@@ -38,7 +38,7 @@ public class MemberImpl implements Member {
   }
 
   @Override
-  public <T> T accept(ExpressionVisitor<T> visitor) throws ExpressionVisitException, ODataApplicationException {
+  public <T> T accept(ExpressionVisitor<T> visitor) throws ODataApplicationException {
     return visitor.visitMember(this);
   }
 
@@ -80,4 +80,5 @@ public class MemberImpl implements Member {
   public String toString() {
     return path.getUriResourceParts().toString() + (startTypeFilter == null ? "" : startTypeFilter);
   }
+
 }

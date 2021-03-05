@@ -14,7 +14,7 @@ public class BatchQueryOperation implements BatchPart {
   protected Header headers;
   protected List<Line> body;
   protected int bodySize;
-  protected List<Line> message;
+  protected final List<Line> message;
 
   public BatchQueryOperation(List<Line> message, boolean isStrict) {
     this.isStrict = isStrict;
@@ -64,4 +64,5 @@ public class BatchQueryOperation implements BatchPart {
   public boolean isStrict() {
     return isStrict;
   }
+
 }

@@ -15,7 +15,6 @@ import nl.buildforce.olingo.server.api.serializer.SerializerResult;
 import nl.buildforce.olingo.server.api.uri.UriInfoResource;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.criteria.CriteriaBuilder;
 
 abstract class JPAAbstractRequestProcessor {
 

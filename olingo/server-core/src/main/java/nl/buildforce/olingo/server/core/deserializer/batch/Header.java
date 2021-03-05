@@ -118,7 +118,7 @@ public class Header implements Iterable<HeaderField>, Cloneable {
 
   @Override
   public Iterator<HeaderField> iterator() {
-    return new Iterator<HeaderField>() {
+    return new Iterator<>() {
       final Iterator<String> keyIterator = headers.keySet().iterator();
 
       @Override
@@ -148,4 +148,5 @@ public class Header implements Iterable<HeaderField>, Cloneable {
 
     return singleValues;
   }
+
 }

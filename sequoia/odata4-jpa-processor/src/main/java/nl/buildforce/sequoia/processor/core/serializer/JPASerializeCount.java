@@ -15,8 +15,7 @@ final class JPASerializeCount implements JPASerializer {
   }
 
   @Override
-  public SerializerResult serialize(final ODataRequest request, final EntityCollection result)
-      throws SerializerException {
+  public SerializerResult serialize(final ODataRequest request, final EntityCollection result) {
     return new JPAValueSerializerResult(serializer.count(result.getCount()));
   }
 
@@ -24,4 +23,5 @@ final class JPASerializeCount implements JPASerializer {
   public ContentType getContentType() {
     return ContentType.TEXT_PLAIN;
   }
+
 }

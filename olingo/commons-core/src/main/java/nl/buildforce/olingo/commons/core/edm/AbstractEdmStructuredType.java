@@ -25,7 +25,7 @@ import nl.buildforce.olingo.commons.api.edm.provider.CsdlStructuralType;
 public abstract class AbstractEdmStructuredType extends EdmTypeImpl implements EdmStructuredType {
 
   protected EdmStructuredType baseType;
-  protected FullQualifiedName baseTypeName;
+  protected final FullQualifiedName baseTypeName;
 
   private final CsdlStructuralType providerStructuredType;
 
@@ -170,4 +170,5 @@ public abstract class AbstractEdmStructuredType extends EdmTypeImpl implements E
   public boolean isAbstract() {
     return providerStructuredType.isAbstract();
   }
+
 }

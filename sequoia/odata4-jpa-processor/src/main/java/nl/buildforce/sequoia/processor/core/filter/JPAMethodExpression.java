@@ -24,7 +24,7 @@ public final class JPAMethodExpression implements JPAVisitableExpression {
   }
 
   @Override
-  public <T> T accept(final ExpressionVisitor<T> visitor) throws ExpressionVisitException, ODataApplicationException {
+  public <T> T accept(final ExpressionVisitor<T> visitor) throws ODataApplicationException {
     final List<T> parameters = new ArrayList<>(2);
 
     parameters.add(visitor.visitMember(member));

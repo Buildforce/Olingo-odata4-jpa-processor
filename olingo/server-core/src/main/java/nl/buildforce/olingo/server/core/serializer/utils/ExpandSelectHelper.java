@@ -11,7 +11,6 @@ import java.util.Set;
 import nl.buildforce.olingo.commons.api.edm.EdmStructuredType;
 import nl.buildforce.olingo.server.api.uri.queryoption.ExpandItem;
 import nl.buildforce.olingo.server.api.uri.queryoption.SelectItem;
-import nl.buildforce.olingo.server.api.serializer.SerializerException;
 import nl.buildforce.olingo.server.api.uri.UriResource;
 import nl.buildforce.olingo.server.api.uri.UriResourceAction;
 import nl.buildforce.olingo.server.api.uri.UriResourceComplexProperty;
