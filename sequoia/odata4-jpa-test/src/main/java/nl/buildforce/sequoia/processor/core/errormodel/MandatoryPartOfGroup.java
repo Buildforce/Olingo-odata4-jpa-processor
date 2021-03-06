@@ -1,6 +1,5 @@
-/**
- *
-
+/* Copyright Buildƒorce Digital i.o. 2021
+ * Licensed under the EUPL-1.2-or-later
  */
 package nl.buildforce.sequoia.processor.core.errormodel;
 
@@ -15,11 +14,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Version;
 import java.util.List;
 
-/**
- * @author Oliver Grande
- * Created: 29.06.2019
- *
- */
+
 @Entity()
 public class MandatoryPartOfGroup {
   @Id

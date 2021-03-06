@@ -62,7 +62,6 @@ public class AcceptCharset {
    * Creates a list of {@link AcceptCharset} objects based on given input string.
    * @param acceptCharsets accept types, comma-separated, as specified for the HTTP header <code>Accept-Charset</code>
    * @return a list of <code>AcceptType</code> objects
-   * @throws Exception 
    * @throws IllegalArgumentException if input string is not parseable
    */
   public static List<AcceptCharset> create(String acceptCharsets) {

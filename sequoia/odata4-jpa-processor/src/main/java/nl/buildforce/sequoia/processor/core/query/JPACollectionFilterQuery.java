@@ -31,9 +31,6 @@ import java.util.List;
  * <code>CollectionDeeps?$filter=FirstLevel/SecondLevel/Comment/$count eq 2</code>.
  * This is done as sub-query instead of a join to have more straightforward way to implement OR or AND conditions
  *
-
- * @author Oliver Grande
- *
  */
 public final class JPACollectionFilterQuery extends JPANavigationQuery {
 

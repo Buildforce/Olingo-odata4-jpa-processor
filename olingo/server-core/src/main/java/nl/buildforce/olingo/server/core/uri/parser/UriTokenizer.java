@@ -53,12 +53,13 @@ public class UriTokenizer {
     NULL,
     MAX,
 
-    AVERAGE, // for the aggregation extension
-    COUNTDISTINCT, // for the aggregation extension
-    IDENTITY, // for the aggregation extension
-    MIN, // for the aggregation extension
-    SUM, // for the aggregation extension
-    ROLLUP_ALL, // for the aggregation extension
+    // For the aggregation extensions
+    AVERAGE,
+    COUNTDISTINCT,
+    IDENTITY,
+    MIN,
+    SUM,
+    ROLLUP_ALL,
 
     // variable-value tokens (convention: mixed case)
     ODataIdentifier,
@@ -174,7 +175,6 @@ public class UriTokenizer {
     TopCountTrafo, // for the aggregation extension
     TopPercentTrafo, // for the aggregation extension
     TopSumTrafo, // for the aggregation extension
-
     RollUpSpec, // for the aggregation extension
 
     AscSuffix,
@@ -636,7 +636,7 @@ public class UriTokenizer {
 
   /**
    * Moves past a decimal value with a fractional part if found; otherwise leaves the index unchanged.
-   * Whole numbers must be found with {@link #nextIntegerValue()}.
+   * Whole numbers must be found with {@link #nextIntegerValue }.
    */
   private boolean nextDecimalValue() {
     int lastGoodIndex = index;
@@ -652,7 +652,7 @@ public class UriTokenizer {
    * Moves past a floating-point-number value with an exponential part
    * or one of the special constants "NaN", "-INF", and "INF"
    * if found; otherwise leaves the index unchanged.
-   * Whole numbers must be found with {@link #nextIntegerValue()}.
+   * Whole numbers must be found with {@link #nextIntegerValue}.
    * Decimal numbers must be found with {@link #nextDecimalValue()}.
    */
   private boolean nextDoubleValue() {

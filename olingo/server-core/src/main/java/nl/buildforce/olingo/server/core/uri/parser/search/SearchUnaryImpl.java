@@ -19,13 +19,17 @@ public class SearchUnaryImpl extends SearchExpressionImpl implements SearchUnary
     return SearchUnaryOperatorKind.NOT;
   }
 
+/*
   @Override
   public SearchTerm getOperand() {
     return operand;
   }
+*/
+
 
   @Override
   public String toString() {
     return "{" + getOperator().name() + " " + operand + '}';
   }
+
 }

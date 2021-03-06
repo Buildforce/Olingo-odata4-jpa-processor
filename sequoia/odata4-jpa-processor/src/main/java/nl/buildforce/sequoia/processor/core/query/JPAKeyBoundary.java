@@ -2,15 +2,6 @@ package nl.buildforce.sequoia.processor.core.query;
 
 import java.util.Objects;
 
-/**
- *
-
- *
-
- * @author Oliver Grande
- * Created: 10.11.2019
- *
- */
 public class JPAKeyBoundary {
 
   private final int noHops;
@@ -33,4 +24,5 @@ public class JPAKeyBoundary {
   public String toString() {
     return "JPAKeyBoundary [noHops=" + noHops + ", keyBoundary=" + keyBoundary + "]";
   }
+
 }

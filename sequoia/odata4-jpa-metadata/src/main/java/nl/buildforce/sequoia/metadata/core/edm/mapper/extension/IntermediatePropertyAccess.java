@@ -7,7 +7,6 @@ import java.util.List;
 
 /**
  * Override generated metadata for a property.
- * @author Oliver Grande
  *
  */
 public interface IntermediatePropertyAccess extends IntermediateModelItemAccess {

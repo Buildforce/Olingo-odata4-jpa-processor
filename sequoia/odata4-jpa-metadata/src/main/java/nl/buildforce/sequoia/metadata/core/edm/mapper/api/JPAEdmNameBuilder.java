@@ -1,5 +1,5 @@
-/**
- *
+/* Copyright Buildƒorce Digital i.o. 2021
+ * Licensed under the EUPL-1.2-or-later
  */
 package nl.buildforce.sequoia.metadata.core.edm.mapper.api;
 
@@ -12,8 +12,6 @@ import jakarta.persistence.metamodel.EntityType;
 /**
  * A name builder creates, based on information from the JPA entity model names, the names of the corresponding element
  * of the OData entity data model (EDM)
- * @author Oliver Grande
- * Created: 15.09.2019
  *
  */
 public interface JPAEdmNameBuilder {

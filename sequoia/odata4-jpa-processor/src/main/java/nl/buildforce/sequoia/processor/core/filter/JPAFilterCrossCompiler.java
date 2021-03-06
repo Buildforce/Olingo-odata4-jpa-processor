@@ -38,8 +38,6 @@ import java.util.Optional;
  * "https://tools.oasis-open.org/version-control/browse/wsvn/odata/trunk/spec/ABNF/odata-abnf-construction-rules.txt">
  * odata-abnf-construction-rules</a>
  * </ul>
- * @author Oliver Grande
- *
  */
 //TODO handle $it ...
 public final class JPAFilterCrossCompiler extends JPAAbstractFilter {

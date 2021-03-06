@@ -2,7 +2,7 @@ package nl.buildforce.sequoia.processor.core.testmodel;
 
 public interface TestDataConstants {
   int NO_ATTRIBUTES_CHANGE_INFO = 2;
-  int NO_ATTRIBUTES_PERSON = 2;
+//  int NO_ATTRIBUTES_PERSON = 2;
   int NO_ATTRIBUTES_COMMUNICATION_DATA = 4;
   int NO_ATTRIBUTES_BUSINESS_PARTNER = 6;
   int NO_ATTRIBUTES_ORGANIZATION = 4;

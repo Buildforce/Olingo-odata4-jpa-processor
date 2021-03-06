@@ -4,8 +4,6 @@ import java.util.List;
 
 /**
  * Container that provides field groups
- * @author Oliver Grande
- * Created: 30.06.2019
  *
  */
 public interface JPAODataGroupProvider {

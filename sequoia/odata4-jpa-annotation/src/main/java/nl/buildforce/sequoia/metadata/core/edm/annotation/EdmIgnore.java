@@ -5,10 +5,6 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-/**
- * @author Oliver Grande
- *
- */
 @Target({ ElementType.TYPE, ElementType.FIELD })
 @Retention(value = RetentionPolicy.RUNTIME)
 public @interface EdmIgnore {

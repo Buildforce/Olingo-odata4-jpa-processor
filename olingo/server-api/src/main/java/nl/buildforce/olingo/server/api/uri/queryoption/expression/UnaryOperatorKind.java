@@ -37,18 +37,20 @@ public enum UnaryOperatorKind {
     return syntax;
   }
 
-  /**
-   * URI syntax to enumeration value
-   * @param operator Operator in the syntax used in the URI
-   * @return Operator kind which represents the given syntax
-   */
-  public static UnaryOperatorKind get(String operator) {
-    for (UnaryOperatorKind op : UnaryOperatorKind.values()) {
-      if (op.toString().equals(operator)) {
-        return op;
-      }
-    }
-    return null;
-  }
+// --Commented out by Inspection START (''21-03-06 00:53):
+//  /**
+//   * URI syntax to enumeration value
+//   * @param operator Operator in the syntax used in the URI
+//   * @return Operator kind which represents the given syntax
+//   */
+//  public static UnaryOperatorKind get(String operator) {
+//    for (UnaryOperatorKind op : UnaryOperatorKind.values()) {
+//      if (op.toString().equals(operator)) {
+//        return op;
+//      }
+//    }
+//    return null;
+//  }
+// --Commented out by Inspection STOP (''21-03-06 00:53)
 
 }

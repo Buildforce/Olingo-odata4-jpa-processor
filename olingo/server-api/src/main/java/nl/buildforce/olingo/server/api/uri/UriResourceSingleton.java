@@ -22,9 +22,11 @@ public interface UriResourceSingleton extends UriResourcePartTyped {
    */
   EdmEntityType getEntityType();
 
-  /**
-   * @return Type filter
-   */
-  EdmEntityType getEntityTypeFilter();
+// --Commented out by Inspection START (''21-03-06 11:48):
+//  /**
+//   * @return Type filter
+//   */
+//  EdmEntityType getEntityTypeFilter();
+// --Commented out by Inspection STOP (''21-03-06 11:48)
 
 }

@@ -25,7 +25,6 @@ import java.util.Map.Entry;
  * <a href=
  * "https://docs.oasis-open.org/odata/odata/v4.0/errata02/os/complete/part3-csdl/odata-v4.0-errata02-os-part3-csdl-complete.html#_Toc406398024"
  * >OData Version 4.0 Part 3 - 13 Entity Container</a>
- * @author Oliver Grande
  *
  */
 //TODO How to handle multiple schemas

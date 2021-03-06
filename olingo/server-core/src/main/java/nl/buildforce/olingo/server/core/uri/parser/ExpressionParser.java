@@ -360,7 +360,6 @@ public class ExpressionParser {
   }
 
   /**
-   * @param expressionList
    * @throws UriParserException
    * @throws UriValidationException
    */

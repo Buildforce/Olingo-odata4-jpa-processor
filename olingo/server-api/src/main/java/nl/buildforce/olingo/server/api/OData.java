@@ -150,7 +150,7 @@ public abstract class OData {
   * Deserializers are used in Processor implementations.
     *
     * @param contentType any content type supported by Olingo (XML, JSON ...)
-    * @param service version
+    * @param versions version
    */
   public abstract ODataDeserializer createDeserializer(ContentType contentType, 
       List<String> versions) throws DeserializerException;
@@ -161,7 +161,7 @@ public abstract class OData {
    *
    * @param contentType any content type supported by Olingo (XML, JSON ...)
    * @param metadata ServiceMetada of the service
-   * @param service version
+   * @param versions version
    */
   public abstract ODataDeserializer createDeserializer(ContentType contentType,
       ServiceMetadata metadata, List<String> versions) throws DeserializerException;
@@ -185,7 +185,7 @@ public abstract class OData {
    */
   public abstract Preferences createPreferences(Collection<String> preferHeaders);
 
-  /**
+  /*
    * Creates a DebugResponseHelper for the given debugFormat.
    * If the format is not supported no exception is thrown.
    * Instead we give back the implementation for the JSON format.
@@ -206,7 +206,7 @@ public abstract class OData {
    * Creates a new serializer object capable of working without EDM information
    * for rendering delta content in the specified format.
    * @param contentType a content type supported by Olingo
-   * @param version versions supported by Olingo
+   * @param versions versions supported by Olingo
    */
   public abstract EdmDeltaSerializer createEdmDeltaSerializer(ContentType contentType,
                                                               List<String> versions) throws SerializerException;

@@ -260,11 +260,8 @@ public class EdmEntityContainerImpl extends AbstractEdmNamed implements EdmEntit
    * E.g of target paths
    * MySchema.MyEntityContainer/MySingleton/MyComplexProperty/MyNavigationProperty
    * @param singleton
-   * @param isPropAnnotationsCleared
-   * @param isNavPropAnnotationsCleared
    * @param entityType
    * @param entityContainerName
-   * @param annotationGrp
    */
   private void addAnnotationsToPropertiesDerivedFromSingleton(CsdlSingleton singleton, 
       CsdlEntityType entityType, FullQualifiedName entityContainerName) {
@@ -346,10 +343,7 @@ public class EdmEntityContainerImpl extends AbstractEdmNamed implements EdmEntit
   /**
    * 
    * @param singleton
-   * @param entityContainerName2
-   * @param annotationGrp
    * @param propertyName
-   * @param isComplexNavPropAnnotationsCleared
    * @param complexType
    */
   private void addAnnotationsToComplexTypeIncludedFromSingleton(CsdlSingleton singleton,

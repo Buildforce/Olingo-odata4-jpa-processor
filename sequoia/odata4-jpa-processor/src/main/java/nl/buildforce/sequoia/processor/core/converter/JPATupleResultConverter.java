@@ -34,8 +34,6 @@ import java.util.Map;
 
 /**
  * Abstract super class for result converter, which convert Tuple based results.
- * @author Oliver Grande
- *
  */
 abstract class JPATupleResultConverter implements JPAResultConverter {
 

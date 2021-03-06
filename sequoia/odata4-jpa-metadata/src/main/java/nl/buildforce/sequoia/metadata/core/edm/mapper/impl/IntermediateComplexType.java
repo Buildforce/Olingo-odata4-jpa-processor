@@ -23,7 +23,6 @@ import java.util.List;
  * <a href=
  * "http://docs.oasis-open.org/odata/odata/v4.0/errata02/os/complete/part3-csdl/odata-v4.0-errata02-os-part3-csdl-complete.html#_Toc406397985"
  * >OData Version 4.0 Part 3 - 9 Complex Type</a>
- * @author Oliver Grande
  *
  */
 final class IntermediateComplexType extends IntermediateStructuredType {

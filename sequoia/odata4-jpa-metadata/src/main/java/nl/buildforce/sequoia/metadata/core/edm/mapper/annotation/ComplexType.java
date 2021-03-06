@@ -9,8 +9,6 @@ import java.util.Arrays;
 /**
  * Complex Type for vocabulary definitions<br>
  * Not supported: <code>NavigationProperty</code>, no use case known
- * @author Oliver Grande
- *
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 class ComplexType extends CsdlComplexType {
@@ -44,4 +42,5 @@ class ComplexType extends CsdlComplexType {
   public void setProperties(Property[] properties) {
     this.properties.addAll(Arrays.asList(properties));
   }
+
 }

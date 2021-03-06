@@ -16,7 +16,7 @@ public class SerializerException extends ODataLibraryException {
     NOT_IMPLEMENTED,
     /** parameter: format */
     UNSUPPORTED_FORMAT,
-    JSON_METADATA,
+    //JSON_METADATA,
     IO_EXCEPTION,
     NULL_INPUT,
     NO_CONTEXT_URL,
@@ -39,7 +39,8 @@ public class SerializerException extends ODataLibraryException {
     UNSUPPORTED_OPERATION_TYPE,
     NULL_PROPERTY,
     /** parameter: encoding-name */
-    UNSUPPORTED_ENCODING;
+    //UNSUPPORTED_ENCODING
+    ;
 
     @Override
     public String getKey() {

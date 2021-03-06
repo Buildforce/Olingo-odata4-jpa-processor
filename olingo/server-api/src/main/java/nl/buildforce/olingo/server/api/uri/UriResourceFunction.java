@@ -39,14 +39,15 @@ public interface UriResourceFunction extends UriResourcePartTyped {
    */
   List<UriParameter> getParameters();
 
-  /**
-   * @return Type filter before key predicates if used, otherwise null
-   */
-  EdmType getTypeFilterOnCollection();
-
-  /**
-   * @return Type filter behind key predicates if used, otherwise null
-   */
-  EdmType getTypeFilterOnEntry();
+// --Commented out by Inspection START (''21-03-06 12:03):
+//  /**
+//   * @return Type filter before key predicates if used, otherwise null
+//   */
+//  EdmType getTypeFilterOnCollection();
+//  /**
+//   * @return Type filter behind key predicates if used, otherwise null
+//   */
+//  EdmType getTypeFilterOnEntry();
+// --Commented out by Inspection STOP (''21-03-06 12:03)
 
 }

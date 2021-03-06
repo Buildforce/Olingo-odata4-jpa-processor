@@ -23,9 +23,6 @@ import java.util.Map;
 /**
  * Provides an entity as tuple result. This is primarily done to reuse the existing tuple converter.
  *
-
- * @author Oliver Grande
- *
  */
 final class JPAEntityResult extends JPAEntityBasedResult {
   private final Map<String, Object> valuePairedResult;

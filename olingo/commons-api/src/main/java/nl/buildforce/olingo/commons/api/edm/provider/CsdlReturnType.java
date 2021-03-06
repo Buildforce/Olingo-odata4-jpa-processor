@@ -179,7 +179,7 @@ public class CsdlReturnType extends CsdlAbstractEdmItem implements CsdlAnnotatab
     return srid;
   }*/
 
-  /**
+  /*
    * Sets srid.
    *
    * @param srid the srid
@@ -205,4 +205,5 @@ public class CsdlReturnType extends CsdlAbstractEdmItem implements CsdlAnnotatab
     this.annotations = annotations;
     return this;
   }
+
 }

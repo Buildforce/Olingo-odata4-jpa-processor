@@ -12,8 +12,6 @@ import jakarta.persistence.metamodel.Attribute;
  * Build the internal name for Intermediate Model Elements
  *
 
- * @author Oliver Grande
- *
  */
 final class JPANameBuilder {
   static public String buildStructuredTypeName(final Class<?> clazz) {

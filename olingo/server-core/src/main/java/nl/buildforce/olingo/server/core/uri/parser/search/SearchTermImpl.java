@@ -12,13 +12,16 @@ public class SearchTermImpl extends SearchExpressionImpl implements SearchTerm {
     this.term = term;
   }
 
+/*
   @Override
   public String getSearchTerm() {
     return term;
   }
+*/
 
   @Override
   public String toString() {
     return "'" + term + "'";
   }
+
 }

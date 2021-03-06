@@ -12,11 +12,6 @@ import jakarta.persistence.metamodel.EntityType;
 
 import java.util.stream.IntStream;
 
-/**
- * @author Oliver Grande
- * Created: 19.09.2019
- *
- */
 public class CustomJPANameBuilder implements JPAEdmNameBuilder {
 
   @Override

@@ -2,10 +2,6 @@ package nl.buildforce.sequoia.metadata.core.edm.mapper.extension;
 
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAElement;
 
-/**
- * @author Oliver Grande
- *
- */
 public interface IntermediateModelItemAccess extends JPAElement {
   /**
    * Element shall be ignored for metadata generation.

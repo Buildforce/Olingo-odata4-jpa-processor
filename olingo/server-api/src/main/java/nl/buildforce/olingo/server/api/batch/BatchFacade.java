@@ -48,7 +48,6 @@
     * See RFC 2046#5.1
     * @param contentType Content Type
     * @return boundary
-    * @throws ODataLibraryException
     */
    String extractBoundaryFromContentType(String contentType)
        throws ODataLibraryException;

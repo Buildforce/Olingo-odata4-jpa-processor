@@ -32,8 +32,6 @@ import static nl.buildforce.sequoia.processor.core.api.example.JPAExampleModifyE
  * navigation properties that return at least empty collections.<br/>
  * To link entities constructor injection is used. So each dependent entity needs a constructor that takes a entity type
  * it depends on as parameter.
- * @author Oliver Grande
- *
  */
 public class JPAExampleCUDRequestHandler extends JPAAbstractCUDRequestHandler {
   private final Map<Object, JPARequestEntity> entityBuffer;

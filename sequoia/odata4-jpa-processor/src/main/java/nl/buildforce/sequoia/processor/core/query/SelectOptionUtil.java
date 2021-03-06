@@ -12,15 +12,6 @@ import nl.buildforce.olingo.server.api.uri.queryoption.SelectOption;
 
 import java.util.stream.Collectors;
 
-/**
- *
-
- *
-
- * @author Oliver Grande
- * Created: 01.11.2019
- *
- */
 class SelectOptionUtil {
 
   private SelectOptionUtil() {}
@@ -47,4 +38,5 @@ class SelectOptionUtil {
     return select == null || select.getSelectItems() == null || select.getSelectItems().isEmpty() || select
         .getSelectItems().get(0).isStar();
   }
+
 }

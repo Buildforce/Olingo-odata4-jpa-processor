@@ -42,7 +42,6 @@ import java.util.List;
 /**
  * Functions as User Defined Functions, Native Query, as Criteria Builder does not provide the option to used UDFs in
  * the From clause.
- * @author Oliver Grande
  *
  */
 public final class JPAFunctionRequestProcessor extends JPAOperationRequestProcessor implements JPARequestProcessor {

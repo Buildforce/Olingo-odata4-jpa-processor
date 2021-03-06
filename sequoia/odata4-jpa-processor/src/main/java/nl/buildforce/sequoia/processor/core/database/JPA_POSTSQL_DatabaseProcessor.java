@@ -23,9 +23,6 @@ import static nl.buildforce.sequoia.processor.core.exception.ODataJPAProcessorEx
 /**
  * Copy template of a database processor for PostgreSQL
  *
-
- * @author Oliver Grande
- * Created: 04.07.2019
  *
  */
 class JPA_POSTSQL_DatabaseProcessor extends JPAAbstractDatabaseProcessor { // NOSONAR

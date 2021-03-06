@@ -5,8 +5,6 @@ import nl.buildforce.sequoia.processor.core.database.JPAODataDatabaseTableFuncti
 
 /**
  * Interface is in a beta state
- * @author Oliver Grande
- *
  */
 public interface JPAODataDatabaseProcessor extends JPAODataDatabaseSearch, JPAODataDatabaseTableFunction {
 

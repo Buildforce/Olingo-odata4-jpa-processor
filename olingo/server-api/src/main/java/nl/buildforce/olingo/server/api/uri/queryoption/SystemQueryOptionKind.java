@@ -70,7 +70,7 @@ public enum SystemQueryOptionKind {
   LEVELS("$levels"),
   
   /**
-   * @see deltaTokenOption
+   * @see DeltaTokenOption
    */
   DELTATOKEN("$deltatoken"),
   
@@ -107,4 +107,5 @@ public enum SystemQueryOptionKind {
   public String toString() {
     return syntax;
   }
+
 }

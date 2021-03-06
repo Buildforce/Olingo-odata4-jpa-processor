@@ -15,12 +15,6 @@ import nl.buildforce.olingo.commons.api.edm.provider.CsdlNavigationPropertyBindi
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
-
- * @author Oliver Grande
- *
- */
 final class IntermediateEntitySet extends IntermediateModelElement implements IntermediateEntitySetAccess,
         JPAEntitySet {
   private final IntermediateEntityType entityType;

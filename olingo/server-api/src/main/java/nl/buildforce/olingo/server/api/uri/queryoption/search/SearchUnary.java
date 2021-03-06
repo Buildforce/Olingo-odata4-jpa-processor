@@ -7,6 +7,6 @@ public interface SearchUnary extends SearchExpression {
 
   SearchUnaryOperatorKind getOperator();
 
-  SearchTerm getOperand();
+  // SearchTerm getOperand();
 
 }

@@ -22,7 +22,6 @@ import java.util.Optional;
 
 /**
  * Compiles just one Expression. Mainly build for filter on navigation
- * @author Oliver Grande
  *
  */
 //TODO handle $it ...

@@ -9,7 +9,6 @@ import java.lang.annotation.Target;
  * Metadata of a function, see <a href =
  * "http://docs.oasis-open.org/odata/odata/v4.0/errata02/os/complete/part3-csdl/odata-v4.0-errata02-os-part3-csdl-complete.html#_Toc406398010">
  * edm:Function.</a><p>
- * @author Oliver Grande
  *
  */
 @Retention(RetentionPolicy.RUNTIME)
@@ -103,4 +102,5 @@ public @interface EdmFunction {
    * @return return type of this function
    */
   ReturnType returnType();
+
 }

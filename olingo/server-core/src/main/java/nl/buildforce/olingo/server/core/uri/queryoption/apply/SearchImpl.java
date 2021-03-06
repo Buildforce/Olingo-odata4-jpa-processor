@@ -11,20 +11,23 @@ import nl.buildforce.olingo.server.api.uri.queryoption.apply.Search;
  */
 public class SearchImpl implements Search {
 
-  private SearchOption searchOption;
+  // private SearchOption searchOption;
 
   @Override
   public Kind getKind() {
     return Kind.SEARCH;
   }
 
+/*
   @Override
   public SearchOption getSearchOption() {
     return searchOption;
   }
 
+*/
   public SearchImpl setSearchOption(SearchOption searchOption) {
-    this.searchOption = searchOption;
+    // this.searchOption = searchOption;
     return this;
   }
+
 }

@@ -23,10 +23,12 @@ public class UriResourceSingletonImpl extends UriResourceTypedImpl implements Ur
     return singleton;
   }
 
+/*
   @Override
   public EdmEntityType getEntityTypeFilter() {
     return (EdmEntityType) getTypeFilter();
   }
+*/
 
   @Override
   public EdmType getType() {
@@ -47,4 +49,5 @@ public class UriResourceSingletonImpl extends UriResourceTypedImpl implements Ur
   public String getSegmentValue() {
     return singleton.getName();
   }
+
 }

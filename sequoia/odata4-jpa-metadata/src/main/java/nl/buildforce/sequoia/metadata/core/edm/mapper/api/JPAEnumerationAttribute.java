@@ -18,7 +18,7 @@ public interface JPAEnumerationAttribute {
   /**
    * Converts a list of string representations either into an array of enumerations, if a converter is given, or
    * otherwise the first value into an enumeration
-   * @param value
+   * @param values
    * @return
    * @throws ODataJPAModelException
    */

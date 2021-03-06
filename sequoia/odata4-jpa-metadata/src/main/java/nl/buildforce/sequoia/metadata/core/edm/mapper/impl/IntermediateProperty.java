@@ -47,8 +47,6 @@ import java.util.stream.Collectors;
  * </ol>
  * So properties maybe e.g. a complex collection property or a simple primitive property
  *
- * @author Oliver Grande
- * @contributor FvdB
  */
 abstract class IntermediateProperty extends IntermediateModelElement implements IntermediatePropertyAccess, JPAAttribute {
     private AttributeConverter<?, ?> valueConverter;

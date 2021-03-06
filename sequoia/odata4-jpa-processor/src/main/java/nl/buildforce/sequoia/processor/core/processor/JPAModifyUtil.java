@@ -35,8 +35,6 @@ import java.util.UUID;
  * correct type.
  *
 
- * @author Oliver Grande
- *
  */
 public final class JPAModifyUtil {
 

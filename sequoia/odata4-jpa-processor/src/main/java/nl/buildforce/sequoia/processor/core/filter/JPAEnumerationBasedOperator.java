@@ -4,8 +4,6 @@ import nl.buildforce.sequoia.processor.core.exception.ODataJPAFilterException;
 
 /**
  * Main purpose of this interface is to increase testability of JPAEnumerationBasedOperator
- * @author Oliver Grande
- *
  */
 public interface JPAEnumerationBasedOperator extends JPAPrimitiveTypeOperator {
 

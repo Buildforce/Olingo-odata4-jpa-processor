@@ -12,8 +12,10 @@ public class UriValidationException extends ODataLibraryException {
   public enum MessageKeys implements MessageKey {
     /** parameter: unsupported query option */
     UNSUPPORTED_QUERY_OPTION,
-    /** parameter: unsupported uri kind */
-    UNSUPPORTED_URI_KIND,
+// --Commented out by Inspection START (''21-03-06 00:29):
+//    /** parameter: unsupported uri kind */
+//    UNSUPPORTED_URI_KIND,
+// --Commented out by Inspection STOP (''21-03-06 00:29)
     /** parameter: unsupported uri resource kind */
     UNSUPPORTED_URI_RESOURCE_KIND,
     /** parameter: unsupported function return type */
@@ -22,8 +24,10 @@ public class UriValidationException extends ODataLibraryException {
     UNSUPPORTED_ACTION_RETURN_TYPE,
     /** parameter: unsupported http method */
     UNSUPPORTED_HTTP_METHOD,
-    /** parameter: unsupported parameter name */
-    UNSUPPORTED_PARAMETER,
+// --Commented out by Inspection START (''21-03-06 00:29):
+//    /** parameter: unsupported parameter name */
+//    UNSUPPORTED_PARAMETER,
+// --Commented out by Inspection STOP (''21-03-06 00:29)
     /** parameter: system query option */
     SYSTEM_QUERY_OPTION_NOT_ALLOWED,
     /** parameters: system query option, http method */

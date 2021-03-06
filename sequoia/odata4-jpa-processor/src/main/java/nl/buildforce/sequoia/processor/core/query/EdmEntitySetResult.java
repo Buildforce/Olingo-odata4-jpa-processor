@@ -8,8 +8,6 @@ import java.util.List;
 
 /**
  * Container to provide result e.g. of target entity set determination
- * @author Oliver Grande
- *
  */
 final class EdmEntitySetResult implements EdmEntitySetInfo {
 

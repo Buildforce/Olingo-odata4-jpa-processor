@@ -14,9 +14,6 @@ import java.lang.annotation.Target;
  * "http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/part3-csdl/odata-v4.0-errata03-os-part3-csdl-complete.html#_Toc453752630"
  * >OData Version 4.0 Part 3 - 14.3 Element edm:Annotation</a>
  *
-
- * @author Oliver Grande
- *
  */
 @Target({ ElementType.TYPE, ElementType.FIELD })
 @Retention(value = RetentionPolicy.RUNTIME)
@@ -47,4 +44,5 @@ public @interface EdmAnnotation {
   @interface DynamicExpression {
     String path() default "";
   }
+
 }

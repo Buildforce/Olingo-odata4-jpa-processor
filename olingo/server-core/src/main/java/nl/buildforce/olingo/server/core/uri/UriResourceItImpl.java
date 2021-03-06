@@ -8,7 +8,7 @@ import nl.buildforce.olingo.server.api.uri.UriResourceIt;
 import nl.buildforce.olingo.server.api.uri.UriResourceKind;
 
 /**
- * Covers Functionimports and BoundFunction in URI
+ * Covers Function imports and BoundFunction in URI
  */
 public class UriResourceItImpl extends UriResourceWithKeysImpl implements UriResourceIt {
 
@@ -35,4 +35,5 @@ public class UriResourceItImpl extends UriResourceWithKeysImpl implements UriRes
   public String getSegmentValue() {
     return "$it";
   }
+
 }

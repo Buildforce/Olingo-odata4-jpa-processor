@@ -2,7 +2,6 @@ package nl.buildforce.sequoia.processor.core.api;
 
 /**
  * Allows to provide a single value or a closed interval.
- * @author Oliver Grande
  *
  * @param <T>
  */
@@ -38,4 +37,5 @@ public class JPAClaimsPair<T> {
   public <Y> Y maxAs() {
     return (Y) max;
   }
+
 }

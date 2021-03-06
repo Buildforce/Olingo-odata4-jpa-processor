@@ -38,7 +38,6 @@ import java.util.Optional;
  * <a href=
  * "https://docs.oasis-open.org/odata/odata/v4.0/errata02/os/complete/part3-csdl/odata-v4.0-errata02-os-part3-csdl-complete.html#_Toc406397974"
  * >OData Version 4.0 Part 3 - 8 Entity Type</a>
- * @author Oliver Grande
  *
  */
 final class IntermediateEntityType extends IntermediateStructuredType implements JPAEntityType,

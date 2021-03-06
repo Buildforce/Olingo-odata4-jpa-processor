@@ -10,6 +10,7 @@ import nl.buildforce.olingo.server.api.uri.queryoption.search.SearchUnary;
 
 public abstract class SearchExpressionImpl implements SearchExpression {
 
+/*
   @Override
   public boolean isSearchTerm() {
     return this instanceof SearchTerm;
@@ -39,5 +40,6 @@ public abstract class SearchExpressionImpl implements SearchExpression {
   public SearchUnary asSearchUnary() {
     return isSearchUnary() ? (SearchUnary) this : null;
   }
+*/
 
 }

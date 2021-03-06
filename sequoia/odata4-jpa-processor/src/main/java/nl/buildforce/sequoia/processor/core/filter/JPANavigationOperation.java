@@ -46,8 +46,6 @@ import java.util.List;
  * - CollectionDeeps?$filter=FirstLevel/SecondLevel/Comment/$count eq 2&$select=ID<br>
  * - Organizations?$filter=AdministrativeInformation/Created/User/LastName eq 'Mustermann'<br>
  * - AdministrativeDivisions?$filter=Parent/Parent/CodeID eq 'NUTS1' and DivisionCode eq 'BE212'
- * @author Oliver Grande
- *
  */
 final class JPANavigationOperation extends JPAExistsOperation implements JPAExpressionOperator {
 

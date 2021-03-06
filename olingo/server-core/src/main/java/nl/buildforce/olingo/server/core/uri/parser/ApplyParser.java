@@ -154,7 +154,7 @@ public class ApplyParser {
     } else if (tokenizer.next(TokenKind.SearchTrafo)) {
       SearchOption searchOption = new SearchParser().parse(tokenizer);
       ParserHelper.requireNext(tokenizer, TokenKind.CLOSE);
-      return new SearchImpl().setSearchOption(searchOption);
+      return new SearchImpl(); //.setSearchOption(searchOption);
 
     } else if (tokenizer.next(TokenKind.QualifiedName)) {
       return parseCustomFunction(new FullQualifiedName(tokenizer.getText()), referencedType);
@@ -549,4 +549,5 @@ public class ApplyParser {
     ParserHelper.requireNext(tokenizer, TokenKind.CLOSE);
     return bottomTop;
   }
+
 }

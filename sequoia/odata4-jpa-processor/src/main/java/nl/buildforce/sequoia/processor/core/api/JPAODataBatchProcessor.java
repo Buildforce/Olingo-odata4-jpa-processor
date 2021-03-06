@@ -31,8 +31,6 @@ import java.util.UUID;
  * "https://docs.oasis-open.org/odata/odata/v4.0/os/part1-protocol/odata-v4.0-os-part1-protocol.html#_Toc372793748">
  * 11.7 Batch Requests </a>
  *
- * @author Oliver Grande
- *
  */
 public final class JPAODataBatchProcessor implements BatchProcessor {
 

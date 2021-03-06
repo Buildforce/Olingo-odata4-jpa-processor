@@ -69,8 +69,6 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 /**
  * The following set of test methods checks a number of standard methods of model pojos.
- * @author Oliver Grande
- * Created: 05.10.2019
  *
  */
 public class TestStandardMethodsOfTestModel {

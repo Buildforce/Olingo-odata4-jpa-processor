@@ -18,15 +18,15 @@ public interface SelectItem {
    */
   boolean isStar();
 
-  /**
+  /*
    * @return Namespace and star is used as select item in order to select operations
    */
-  boolean isAllOperationsInSchema();
+  //boolean isAllOperationsInSchema();
 
-  /**
+  /*
    * @return Namespace when a star is used in combination with an namespace
    */
-  FullQualifiedName getAllOperationsInSchemaNameSpace();
+  //FullQualifiedName getAllOperationsInSchemaNameSpace();
 
   /**
    * @return A {@link UriInfoResource} object containing the resource path segments to be selected

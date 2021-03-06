@@ -1,6 +1,9 @@
+/* Copyright Buildƒorce Digital i.o. 2021
+ * Licensed under the EUPL-1.2-or-later
+ */
 package nl.buildforce.sequoia.processor.core.query;
 
-/**
+/*
  * A query to retrieve the expand entities.<p> According to
  * <a href=
  * "http://docs.oasis-open.org/odata/odata/v4.0/errata02/os/complete/part2-url-conventions/odata-v4.0-errata02-os-part2-url-conventions-complete.html#_Toc406398162"
@@ -12,8 +15,6 @@ package nl.buildforce.sequoia.processor.core.query;
  * </ul>
  * As of now only the bold once are supported
  * <p>
- * @author Oliver Grande
- * @since 0.3.6
  */
 
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAssociationPath;
@@ -60,4 +61,5 @@ public class JPAExpandSubQuery extends JPAAbstractJoinQuery {
     // TODO Auto-generated method stub
     return null;
   }
+
 }

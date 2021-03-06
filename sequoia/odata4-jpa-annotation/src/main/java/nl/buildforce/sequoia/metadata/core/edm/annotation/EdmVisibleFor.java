@@ -15,9 +15,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
  * <b>Note:</b> Keys, mandatory fields as well as association or navigation properties can not be annotated
  *
-
- * @author Oliver Grande
- *
  */
 @Retention(RUNTIME)
 @Target(FIELD)

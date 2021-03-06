@@ -57,7 +57,6 @@ public interface ODataDeserializer {
   /**
    * Reads entity references from the provided document.
    * @param stream
-   * @param keys
    * @return {@link DeserializerResult#getEntityReferences()}
    * @throws DeserializerException
    */

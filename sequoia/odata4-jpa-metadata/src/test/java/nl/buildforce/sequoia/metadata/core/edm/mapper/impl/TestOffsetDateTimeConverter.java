@@ -12,11 +12,6 @@ import java.time.ZonedDateTime;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/**
- * @author Oliver Grande
- * Created: 09.03.2020
- *
- */
 public class TestOffsetDateTimeConverter {
     private OffsetDateTimeConverter cut;
 
@@ -50,4 +45,5 @@ public class TestOffsetDateTimeConverter {
         final ZonedDateTime act = cut.convertToEntityAttribute(time);
         assertEquals(time, act.toOffsetDateTime());
     }
+
 }

@@ -18,8 +18,6 @@ import java.util.List;
 
 /**
  * http://docs.oasis-open.org/odata/ns/edmx
- * @author Oliver Grande
- *
  */
 
 @JsonIgnoreProperties(ignoreUnknown = true)

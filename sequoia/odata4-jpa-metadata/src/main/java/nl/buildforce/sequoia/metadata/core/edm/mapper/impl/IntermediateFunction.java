@@ -23,7 +23,6 @@ import java.util.List;
  * <a href=
  * "https://docs.oasis-open.org/odata/odata/v4.0/errata02/os/complete/part3-csdl/odata-v4.0-errata02-os-part3-csdl-complete.html#_Toc406398010"
  * >OData Version 4.0 Part 3 - 12.2 Element edm:Function</a>
- * @author Oliver Grande
  *
  */
 
@@ -144,4 +143,5 @@ abstract class IntermediateFunction extends IntermediateOperation implements JPA
       return null;
     }*/
   }
+
 }

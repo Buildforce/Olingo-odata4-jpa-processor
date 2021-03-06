@@ -124,7 +124,7 @@ public class UriHelperImpl implements UriHelper {
     return null;
   }
   
-  @Override
+/*  @Override
   public UriResourceEntitySet parseEntityId(Edm edm, String entityId, String rawServiceRoot)
       throws DeserializerException {
 
@@ -147,6 +147,6 @@ public class UriHelperImpl implements UriHelper {
       throw new DeserializerException("Invalid entity binding link", e, MessageKeys.INVALID_ENTITY_BINDING_LINK,
           entityId);
     }
-  }
+  }*/
 
 }

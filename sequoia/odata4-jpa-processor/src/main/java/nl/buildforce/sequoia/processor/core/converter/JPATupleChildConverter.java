@@ -40,8 +40,6 @@ import java.util.Map.Entry;
  * stored in an ArrayList and deleting a row, which is not the last row, leads to an array copy, which can consume a lot
  * of time. For the same reason no trimToSize() is called. As an alternative to an ArrayList also a simple linked list
  * could be used, but this comes with the draw back that each entry would consume round about double space in the list.
- * @author Oliver Grande
- *
  */
 public class JPATupleChildConverter extends JPATupleResultConverter {
 

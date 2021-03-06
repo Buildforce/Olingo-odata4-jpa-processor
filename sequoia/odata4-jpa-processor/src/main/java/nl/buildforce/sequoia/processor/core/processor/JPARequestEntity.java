@@ -10,8 +10,6 @@ import java.util.Optional;
 
 /**
  * Representing an entity that should be created, updated or deleted by a POST, PUT, PATCH or DELETE request
- * @author Oliver Grande
- *
  */
 public interface JPARequestEntity {
   /**

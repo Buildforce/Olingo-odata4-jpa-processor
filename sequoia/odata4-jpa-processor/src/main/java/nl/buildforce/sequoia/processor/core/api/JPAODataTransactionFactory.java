@@ -19,9 +19,6 @@ import jakarta.persistence.RollbackException;
  * In case not TransactionFactory is provided the JPA Processor will create an instance of
  * {@link JPAODataDefaultTransactionFactory}, which shall be sufficient for most uses cases.
  *
-
- * @author Oliver Grande
- * Created: 07.10.2019
  *
  */
 public interface JPAODataTransactionFactory {

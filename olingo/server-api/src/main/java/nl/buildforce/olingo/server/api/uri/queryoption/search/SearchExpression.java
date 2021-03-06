@@ -5,16 +5,16 @@ package nl.buildforce.olingo.server.api.uri.queryoption.search;
 
 public interface SearchExpression {
 
-  boolean isSearchTerm();
+  // boolean isSearchTerm();
 
-  SearchTerm asSearchTerm();
+  // SearchTerm asSearchTerm();
 
-  boolean isSearchBinary();
+  // boolean isSearchBinary();
 
-  SearchBinary asSearchBinary();
+  // SearchBinary asSearchBinary();
 
-  boolean isSearchUnary();
+  // boolean isSearchUnary();
 
-  SearchUnary asSearchUnary();
+  // SearchUnary asSearchUnary();
 
 }

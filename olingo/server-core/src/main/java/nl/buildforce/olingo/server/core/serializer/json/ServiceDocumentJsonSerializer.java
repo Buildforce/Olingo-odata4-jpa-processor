@@ -20,7 +20,7 @@ public class ServiceDocumentJsonSerializer {
 
   public static final String FUNCTION_IMPORT = "FunctionImport";
   public static final String SINGLETON = "Singleton";
-  public static final String SERVICE_DOCUMENT = "ServiceDocument";
+//public static final String SERVICE_DOCUMENT = "ServiceDocument";
 
   private final ServiceMetadata metadata;
   private final String serviceRoot;
@@ -102,4 +102,5 @@ public class ServiceDocumentJsonSerializer {
     }
     gen.writeEndObject();
   }
+
 }

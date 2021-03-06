@@ -21,7 +21,7 @@ final class TypeUtil {
   static final String PARAMETER_SEPARATOR = ";";
   static final String PARAMETER_KEY_VALUE_SEPARATOR = "=";
   static final String TYPE_SUBTYPE_SEPARATOR = "/";
-  static final String TYPE_SUBTYPE_WILDCARD = "*";
+  // static final String TYPE_SUBTYPE_WILDCARD = "*";
 
   private TypeUtil() { /* static helper class */}
 

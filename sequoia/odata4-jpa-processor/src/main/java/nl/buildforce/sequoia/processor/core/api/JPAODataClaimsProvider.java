@@ -8,8 +8,6 @@ import java.util.Map;
 
 /**
  * Container that contains the claims that must be fulfilled, so an entity my be modified or read.
- * @author Oliver Grande
- *
  */
 public class JPAODataClaimsProvider implements JPAODataClaimProvider {
 

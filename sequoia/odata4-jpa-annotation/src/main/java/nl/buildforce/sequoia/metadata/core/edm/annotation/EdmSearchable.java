@@ -7,8 +7,6 @@ import java.lang.annotation.Target;
 
 /**
  * Marks an attribute as searchable
- * @author Oliver Grande
- *
  */
 @Target({ ElementType.FIELD })
 @Retention(value = RetentionPolicy.RUNTIME)

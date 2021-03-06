@@ -44,11 +44,13 @@ public class UriHelperDouble implements UriHelper {
     return keyPredicates.get(entity.getProperty(idPropertyName).getValue());
   }
 
+/*
   @Override
   public UriResourceEntitySet parseEntityId(Edm edm, String entityId, String rawServiceRoot) {
     fail();
     return null;
   }
+*/
 
   public Map<String, String> getKeyPredicates() {
     return keyPredicates;

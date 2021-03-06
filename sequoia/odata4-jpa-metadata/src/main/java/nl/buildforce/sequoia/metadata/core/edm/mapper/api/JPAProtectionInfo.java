@@ -2,7 +2,6 @@ package nl.buildforce.sequoia.metadata.core.edm.mapper.api;
 
 /**
  * Provides information about a protected attribute
- * @author Oliver Grande
  *
  */
 public interface JPAProtectionInfo {
@@ -29,4 +28,5 @@ public interface JPAProtectionInfo {
    * @return
    */
   boolean supportsWildcards();
+
 }

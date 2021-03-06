@@ -11,13 +11,15 @@ import nl.buildforce.olingo.commons.api.edm.EdmType;
  */
 public interface UriResourceIt extends UriResourcePartTyped {
 
-  /**
-   * @return Type filter if $it refers to a collection
-   */
-  EdmType getTypeFilterOnCollection();
+// --Commented out by Inspection START (''21-03-06 11:58):
+//  /**
+//   * @return Type filter if $it refers to a collection
+//   */
+//  EdmType getTypeFilterOnCollection();
+//  /**
+//   * @return Type filter if $it refers to a single entry
+//   */
+//  EdmType getTypeFilterOnEntry();
+// --Commented out by Inspection STOP (''21-03-06 11:58)
 
-  /**
-   * @return Type filter if $it refers to a single entry
-   */
-  EdmType getTypeFilterOnEntry();
 }

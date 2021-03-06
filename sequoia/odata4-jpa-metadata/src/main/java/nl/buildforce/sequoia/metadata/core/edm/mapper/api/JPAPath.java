@@ -4,8 +4,6 @@ import java.util.List;
 
 /**
  * A path within an JPA entity to an attribute.
- * @author Oliver Grande
- *
  */
 public interface JPAPath extends Comparable<JPAPath> {
 

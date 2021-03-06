@@ -11,8 +11,6 @@ import java.lang.annotation.Target;
  * Metadata of an action, see <a href =
  * "http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/part3-csdl/odata-v4.0-errata03-os-part3-csdl-complete.html#_Toc453752579">
  * edm:Action</a>.<p>
- * @author Oliver Grande
- *
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.METHOD })
@@ -54,4 +52,5 @@ public @interface EdmAction {
    * @return
    */
   String entitySetPath() default "";
+
 }

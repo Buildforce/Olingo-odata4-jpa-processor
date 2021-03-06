@@ -46,8 +46,6 @@ import java.util.Map;
 /**
  * Helper method for modifying requests.<p>
  * Mainly created to increase testability
- * @author Oliver Grande
- *
  */
 
 public class JPAConversionHelper {

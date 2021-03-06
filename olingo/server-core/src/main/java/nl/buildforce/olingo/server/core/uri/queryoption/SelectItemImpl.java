@@ -13,7 +13,7 @@ public class SelectItemImpl implements SelectItem {
   private UriInfoResource path;
 
   private boolean isStar;
-  private FullQualifiedName addOperationsInSchemaNameSpace;
+//  private FullQualifiedName addOperationsInSchemaNameSpace;
 
   private EdmType startTypeFilter;
 
@@ -38,10 +38,10 @@ public class SelectItemImpl implements SelectItem {
     return this;
   }
 
-  @Override
-  public boolean isAllOperationsInSchema() {
-    return addOperationsInSchemaNameSpace != null;
-  }
+  /*  @Override
+    public boolean isAllOperationsInSchema() {
+      return addOperationsInSchemaNameSpace != null;
+    }
 
   @Override
   public FullQualifiedName getAllOperationsInSchemaNameSpace() {
@@ -51,7 +51,7 @@ public class SelectItemImpl implements SelectItem {
   public void addAllOperationsInSchema(FullQualifiedName addOperationsInSchemaNameSpace) {
     this.addOperationsInSchemaNameSpace = addOperationsInSchemaNameSpace;
   }
-
+*/
   @Override
   public EdmType getStartTypeFilter() {
     return startTypeFilter;

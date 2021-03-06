@@ -51,8 +51,6 @@ import static java.util.stream.Collectors.joining;
  * </ul>
  * As of now only the bold once are supported
  * <p>
- * @author Oliver Grande
- *
  */
 public final class JPAExpandJoinQuery extends JPAAbstractJoinQuery {
   private final JPAAssociationPath association;

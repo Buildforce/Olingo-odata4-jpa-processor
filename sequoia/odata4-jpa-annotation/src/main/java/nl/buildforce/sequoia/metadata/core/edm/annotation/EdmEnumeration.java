@@ -25,8 +25,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  * ordinal</li>
  * </ul>
  * </ul>
- * @author Oliver Grande
- *
  */
 
 @Retention(RUNTIME)

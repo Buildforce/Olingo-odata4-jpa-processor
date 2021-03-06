@@ -33,7 +33,6 @@ import java.util.stream.Collectors;
  * join columns values of the parent as its key and on the other hand a map that point the results of the next expand.
  * The join columns are concatenated in the order they are stored in the corresponding Association Path.
  *
- * @author Oliver Grande
  */
 public final class JPAExpandQueryResult implements JPAExpandResult, JPAConvertibleResult {
     private static final Map<String, List<Tuple>> EMPTY_RESULT;

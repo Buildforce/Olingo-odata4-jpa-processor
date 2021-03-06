@@ -28,8 +28,6 @@ import java.lang.reflect.InvocationTargetException;
  * >OData Version 4.0 Part 3 - 6 Structural Property </a>
  *
  *
- * @author Oliver Grande
- *
  */
 class IntermediateSimpleProperty extends IntermediateProperty {
   private EdmMediaStream streamInfo;

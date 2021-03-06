@@ -11,9 +11,10 @@ import nl.buildforce.olingo.server.api.uri.queryoption.SearchOption;
  */
 public interface Search extends ApplyItem {
 
-  /**
+  /*
    * Gets the search option.
    * @return a {@link SearchOption} (but never <code>null</code>)
    */
-  SearchOption getSearchOption();
+  // SearchOption getSearchOption();
+
 }

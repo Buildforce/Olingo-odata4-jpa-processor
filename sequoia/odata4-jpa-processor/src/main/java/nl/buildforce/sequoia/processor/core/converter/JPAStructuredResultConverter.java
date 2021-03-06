@@ -25,8 +25,6 @@ import java.util.Map;
 
 /**
  * Abstract super class to converts a list of JPA POJOs into Olingo format. The POJOs have to have
- * @author Oliver Grande
- *
  */
 
 public abstract class JPAStructuredResultConverter {

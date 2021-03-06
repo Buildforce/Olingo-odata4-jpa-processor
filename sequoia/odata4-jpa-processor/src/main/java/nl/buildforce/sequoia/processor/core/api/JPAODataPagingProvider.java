@@ -8,8 +8,6 @@ import jakarta.persistence.EntityManager;
 
 /**
  *
- * @author Oliver Grande
- *
  */
 public interface JPAODataPagingProvider {
   /**

@@ -51,9 +51,10 @@ public class ComplexValue extends Linked {
 
   /**
    * Set string representation of type.
-   * @param type string representation of type
+   * @param typeName string representation of type
    */
   public void setTypeName(String typeName) {
     this.typeName = typeName;
   }
+
 }

@@ -8,8 +8,6 @@ import java.util.List;
 /**
  * External view on an Intermediate Structured Type.
  *
- * @author Oliver Grande
- *
  */
 public interface JPAStructuredType extends JPAElement {
   JPAAssociationAttribute getAssociation(final String internalName) throws ODataJPAModelException;
@@ -141,4 +139,5 @@ public interface JPAStructuredType extends JPAElement {
   Class<?> getTypeClass();
 
   boolean isAbstract();
+
 }

@@ -10,7 +10,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  * Describes which authorization claim shall be used to filter the annotated attribute. In case multiple attributes of
  * an entity are annotated they are connected via an AND operation. This annotation is respected also if the attribute
  * is marked to be ignored.
- * @author Oliver Grande
  *
  */
 @Retention(RUNTIME)
@@ -35,4 +34,5 @@ public @interface EdmProtectedBy {
    * zero or more characters and '+' as well as '_' for a single character.
    */
   boolean wildcardSupported() default true;
+
 }

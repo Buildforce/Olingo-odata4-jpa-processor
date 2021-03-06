@@ -59,7 +59,7 @@ public class SelectParser {
       // The namespace or its alias could consist of dot-separated OData identifiers.
       FullQualifiedName allOperationsInSchema = parseAllOperationsInSchema(tokenizer);
       if (allOperationsInSchema != null) {
-        item.addAllOperationsInSchema(allOperationsInSchema);
+        // item.addAllOperationsInSchema(allOperationsInSchema);
 
       } else {
         ensureReferencedTypeNotNull(referencedType);
@@ -93,7 +93,7 @@ public class SelectParser {
       // The namespace or its alias could be a single OData identifier.
       FullQualifiedName allOperationsInSchema = parseAllOperationsInSchema(tokenizer);
       if (allOperationsInSchema != null) {
-        item.addAllOperationsInSchema(allOperationsInSchema);
+        // item.addAllOperationsInSchema(allOperationsInSchema);
 
       } else {
         ensureReferencedTypeNotNull(referencedType);

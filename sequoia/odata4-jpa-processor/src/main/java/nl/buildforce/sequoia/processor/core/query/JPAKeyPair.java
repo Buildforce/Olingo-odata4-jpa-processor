@@ -11,10 +11,6 @@ import java.util.Map;
  * the original query was restricted by <code>$top</code> and/or <code>$skip</code>.<br>
  * The pair is seen as closed interval, that is min and max are seen as part of the result.
  *
-
- * @author Oliver Grande
- * Created: 13.10.2019
- * @since 0.3.6
  * @param
  */
 @SuppressWarnings("rawtypes")
@@ -73,4 +69,5 @@ public class JPAKeyPair {
   public String toString() {
     return "JPAKeyPair [min=" + min + ", max=" + max + ", hasUpperBoundary=" + hasUpperBoundary() + "]";
   }
+
 }

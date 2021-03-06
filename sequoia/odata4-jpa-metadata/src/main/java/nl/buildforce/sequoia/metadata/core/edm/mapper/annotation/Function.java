@@ -9,7 +9,6 @@ import java.util.Objects;
 
 /**
  * Function as part of a OData vocabulary. <br>
- * @author Oliver Grande
  *
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -49,4 +48,5 @@ public class Function extends CsdlFunction {
   public void setReturnType(final ReturnType returnType) {
     super.setReturnType(returnType);
   }
+
 }

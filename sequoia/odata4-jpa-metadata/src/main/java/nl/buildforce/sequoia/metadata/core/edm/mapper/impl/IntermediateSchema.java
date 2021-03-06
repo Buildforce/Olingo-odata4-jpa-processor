@@ -33,7 +33,6 @@ import java.util.Map.Entry;
  * <a href=
  * "https://docs.oasis-open.org/odata/odata/v4.0/errata02/os/complete/part3-csdl/odata-v4.0-errata02-os-part3-csdl-complete.html#_Toc406397946"
  * >OData Version 4.0 Part 3 - 5 Schema </a>
- * @author Oliver Grande
  *
  */
 final class IntermediateSchema extends IntermediateModelElement {

@@ -194,11 +194,14 @@ public abstract class TestJPAConversionHelper {
       return null;
     }
 
+/*
     @Override
     public UriResourceEntitySet parseEntityId(Edm edm, String entityId, String rawServiceRoot) {
       fail();
       return null;
     }
+*/
 
   }
+
 }

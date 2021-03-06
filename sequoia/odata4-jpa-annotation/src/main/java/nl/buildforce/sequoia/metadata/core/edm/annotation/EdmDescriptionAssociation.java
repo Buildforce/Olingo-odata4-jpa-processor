@@ -13,8 +13,6 @@ import java.lang.annotation.Target;
  * and updatable = false. It is mapped to a property with the name of the association<p>
  * One and only one of the fields of LanguageAttribute - LocaleAttribute has to be filled. To ensure that, in case
  * multiple descriptions are available, the right one the chosen the Description Attribute has to be named<p>
- * @author Oliver Grande
- *
  */
 @Target({ ElementType.FIELD })
 @Retention(value = RetentionPolicy.RUNTIME)

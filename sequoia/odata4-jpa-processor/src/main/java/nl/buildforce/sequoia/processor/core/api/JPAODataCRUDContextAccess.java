@@ -13,8 +13,6 @@ import java.util.Optional;
 
 /**
  *
- * @author Oliver Grande
- *
  */
 public interface JPAODataCRUDContextAccess {
 

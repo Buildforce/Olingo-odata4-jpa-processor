@@ -1,6 +1,5 @@
-/**
- *
-
+/* Copyright Buildƒorce Digital i.o. 2021
+ * Licensed under the EUPL-1.2-or-later
  */
 package nl.buildforce.sequoia.processor.core.errormodel;
 
@@ -12,11 +11,6 @@ import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Version;
 
-/**
- * @author Oliver Grande
- * Created: 29.06.2019
- *
- */
 @Entity
 public class EmbeddedKeyPartOfGroup {
 
