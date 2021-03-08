@@ -12,4 +12,5 @@ public interface EdmNamed {
    * @return name as String
    */
   String getName();
+
 }

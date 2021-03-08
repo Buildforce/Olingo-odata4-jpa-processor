@@ -22,14 +22,15 @@ public class BottomTopImpl implements BottomTop {
     return Kind.BOTTOM_TOP;
   }
 
-  @Override
-  public Method getMethod() {
-    return method;
-  }
-
   public BottomTopImpl setMethod(Method method) {
     this.method = method;
     return this;
+  }
+
+/*
+  @Override
+  public Method getMethod() {
+    return method;
   }
 
   @Override
@@ -37,18 +38,20 @@ public class BottomTopImpl implements BottomTop {
     return number;
   }
 
-  public BottomTopImpl setNumber(Expression number) {
-    this.number = number;
-    return this;
-  }
-
   @Override
   public Expression getValue() {
     return value;
+  }
+*/
+
+  public BottomTopImpl setNumber(Expression number) {
+    this.number = number;
+    return this;
   }
 
   public BottomTopImpl setValue(Expression value) {
     this.value = value;
     return this;
   }
+
 }

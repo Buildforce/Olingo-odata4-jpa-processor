@@ -4,6 +4,7 @@
 package nl.buildforce.olingo.server.core;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 
 import nl.buildforce.olingo.commons.api.constants.Constantsv00;
@@ -148,7 +149,7 @@ public class ODataImpl extends OData {
      versionValue[i++] = ver;
      max = Math.max(max, ver);
    }
-    return max;
+    return Float.parseFloat(versions.stream().max(Comparator.comparing(p -> Float.parseFloat(p))).get());
   }
 
   @Override
@@ -158,7 +159,7 @@ public class ODataImpl extends OData {
 
   @Override
   public ODataHandler createRawHandler(ServiceMetadata serviceMetadata) {
-    return new ODataHandlerImpl(this, serviceMetadata/*, new ServerCoreDebugger(this)*/);
+    return new ODataHandlerImpl(this, serviceMetadata);
   }
 
   @Override

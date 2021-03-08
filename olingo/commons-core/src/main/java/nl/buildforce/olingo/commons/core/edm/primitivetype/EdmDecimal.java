@@ -39,7 +39,7 @@ public final class EdmDecimal extends SingletonPrimitiveType {
         return (precision == null || significantIntegerDigits <= precision - (scale == null ? 0 : scale)) && decimals <= (scale == null ? 0 : scale);
     }
 
-    private static ImmutablePair significantIntegerDigits_decimals(String value) {
+    private static ImmutablePair<Integer, Integer> significantIntegerDigits_decimals(String value) {
         Matcher matcher = PATTERN.matcher(value);
         matcher.matches();
         if (matcher.group(3) != null) {
@@ -47,7 +47,7 @@ public final class EdmDecimal extends SingletonPrimitiveType {
             matcher = PATTERN.matcher(plainValue);
             matcher.matches();
         }
-        return new ImmutablePair("0".equals(matcher.group(1)) ? 0 : matcher.group(1).length()
+        return new ImmutablePair<Integer, Integer>("0".equals(matcher.group(1)) ? 0 : matcher.group(1).length()
                 , matcher.group(2) == null ? 0 : matcher.group(2).length());
     }
 
@@ -218,4 +218,5 @@ public final class EdmDecimal extends SingletonPrimitiveType {
 
         return result;
     }
+
 }

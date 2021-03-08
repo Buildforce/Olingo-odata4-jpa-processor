@@ -87,4 +87,5 @@ public final class EdmString extends SingletonPrimitiveType {
   public String fromUriLiteral(String literal) throws EdmPrimitiveTypeException {
     return literal == null ? null : super.fromUriLiteral(literal).replace("''", "'");
   }
+
 }

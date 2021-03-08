@@ -152,7 +152,7 @@ public class ApplyParser {
       return parseGroupByTrafo(referencedType);
 
     } else if (tokenizer.next(TokenKind.SearchTrafo)) {
-      SearchOption searchOption = new SearchParser().parse(tokenizer);
+      /*SearchOption searchOption = */ new SearchParser().parse(tokenizer);
       ParserHelper.requireNext(tokenizer, TokenKind.CLOSE);
       return new SearchImpl(); //.setSearchOption(searchOption);
 

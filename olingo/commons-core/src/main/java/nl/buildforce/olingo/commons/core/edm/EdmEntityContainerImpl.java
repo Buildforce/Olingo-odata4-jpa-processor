@@ -232,7 +232,7 @@ public class EdmEntityContainerImpl extends AbstractEdmNamed implements EdmEntit
     if (null != annotations && !annotations.isEmpty()) {
       isSingletonAnnotationsIncluded = true;
       for (CsdlAnnotation annotation : annotations) {
-        if (!compareAnnotations(singleton.getAnnotations(), annotation)) {
+        if (containsNotAnnotation(singleton.getAnnotations(), annotation)) {
           singleton.getAnnotations().add(annotation);
         }
       }
@@ -389,7 +389,7 @@ public class EdmEntityContainerImpl extends AbstractEdmNamed implements EdmEntit
     if (null != annotations && !annotations.isEmpty()) {
       isAnnotationsIncluded = true;
       for (CsdlAnnotation annotation : annotations) {
-        if (!compareAnnotations(complexType.getNavigationProperty(
+        if (containsNotAnnotation(complexType.getNavigationProperty(
             complexNavProperty.getName()).getAnnotations(), annotation)) {
           complexType.getNavigationProperty(complexNavProperty.getName()).getAnnotations().add(annotation); 
         }
@@ -408,7 +408,7 @@ public class EdmEntityContainerImpl extends AbstractEdmNamed implements EdmEntit
     if (null != annotations && !annotations.isEmpty()) {
       isAnnotationsIncluded = true;
       for (CsdlAnnotation annotation : annotations) {
-        if (!compareAnnotations(complexType.getProperty(
+        if (containsNotAnnotation(complexType.getProperty(
             complexProperty.getName()).getAnnotations(), annotation)) {
           complexType.getProperty(complexProperty.getName()).getAnnotations().add(annotation); 
         }
@@ -457,7 +457,7 @@ public class EdmEntityContainerImpl extends AbstractEdmNamed implements EdmEntit
     if (null != annotations && !annotations.isEmpty()) {
       isAnnotationsIncluded = true;
       for (CsdlAnnotation annotation : annotations) {
-        if (!compareAnnotations(entitySet.getAnnotations(), annotation)) {
+        if (containsNotAnnotation(entitySet.getAnnotations(), annotation)) {
           entitySet.getAnnotations().add(annotation);
         }
       }
@@ -539,7 +539,7 @@ public class EdmEntityContainerImpl extends AbstractEdmNamed implements EdmEntit
     if (null != annotations && !annotations.isEmpty()) {
       isAnnotationsIncluded = true;
       for (CsdlAnnotation annotation : annotations) {
-        if (!compareAnnotations(entityType.getProperty(
+        if (containsNotAnnotation(entityType.getProperty(
             property.getName()).getAnnotations(), annotation)) {
           entityType.getProperty(property.getName()).getAnnotations().add(annotation); 
         }
@@ -578,7 +578,7 @@ public class EdmEntityContainerImpl extends AbstractEdmNamed implements EdmEntit
     if (null != annotations && !annotations.isEmpty()) {
        isAnnotationsIncluded = true;
        for (CsdlAnnotation annotation : annotations) {
-         if (!compareAnnotations(entityType.getNavigationProperty(
+         if (containsNotAnnotation(entityType.getNavigationProperty(
              navProperty.getName()).getAnnotations(), annotation)) {
            entityType.getNavigationProperty(navProperty.getName()).getAnnotations().add(annotation); 
          }
@@ -774,7 +774,7 @@ public class EdmEntityContainerImpl extends AbstractEdmNamed implements EdmEntit
   private void addAnnotationsOnOperationImport(CsdlOperationImport operationImport, List<CsdlAnnotation> annotations) {
     if (null != annotations && !annotations.isEmpty()) {
       for (CsdlAnnotation annotation : annotations) {
-        if (!compareAnnotations(operationImport.getAnnotations(), annotation)) {
+        if (containsNotAnnotation(operationImport.getAnnotations(), annotation)) {
           operationImport.getAnnotations().add(annotation);
         }
       }
@@ -882,13 +882,13 @@ public class EdmEntityContainerImpl extends AbstractEdmNamed implements EdmEntit
     }
   }
   
-  private boolean compareAnnotations(List<CsdlAnnotation> annotations, CsdlAnnotation annotation) {
+  private boolean containsNotAnnotation(List<CsdlAnnotation> annotations, CsdlAnnotation annotation) {
     for (CsdlAnnotation annot : annotations) {
       if (annot.equals(annotation)) {
-        return true;
+        return false;
       }
     }
-    return false;
+    return true;
   }
 
 }

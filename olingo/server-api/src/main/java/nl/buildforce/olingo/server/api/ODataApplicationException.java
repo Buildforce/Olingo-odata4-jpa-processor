@@ -33,20 +33,22 @@ public class ODataApplicationException extends ODataException {
     this.locale = locale;
   }
 
-  /**
-   * Exception in an OData service implementation.
-   * @param msg the text of the exception
-   * @param statusCode the HTTP status code of the error response; the default is 500 - Internal Server Error
-   * @param locale a {@link Locale} to enable translation of error messages
-   * @param oDataErrorCode the error code of the exception as defined by the OData standard
-   * @see ODataException
-   * @see HttpStatusCode
-   */
-  public ODataApplicationException(String msg, int statusCode, Locale locale,
-                                   String oDataErrorCode) {
-    this(msg, statusCode, locale);
-    this.oDataErrorCode = oDataErrorCode;
-  }
+// --Commented out by Inspection START (''21-03-07 11:10):
+//  /**
+//   * Exception in an OData service implementation.
+//   * @param msg the text of the exception
+//   * @param statusCode the HTTP status code of the error response; the default is 500 - Internal Server Error
+//   * @param locale a {@link Locale} to enable translation of error messages
+//   * @param oDataErrorCode the error code of the exception as defined by the OData standard
+//   * @see ODataException
+//   * @see HttpStatusCode
+//   */
+//  public ODataApplicationException(String msg, int statusCode, Locale locale,
+//                                   String oDataErrorCode) {
+//    this(msg, statusCode, locale);
+//    this.oDataErrorCode = oDataErrorCode;
+//  }
+// --Commented out by Inspection STOP (''21-03-07 11:10)
 
   /**
    * Exception in an OData service implementation.

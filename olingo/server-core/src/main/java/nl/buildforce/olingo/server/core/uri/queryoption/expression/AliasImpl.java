@@ -18,10 +18,12 @@ public class AliasImpl implements Alias {
     this.alias = alias;
   }
 
+/*
   @Override
   public String getParameterName() {
     return parameterName;
   }
+*/
 
   public AliasQueryOption getAlias() {
     return alias;

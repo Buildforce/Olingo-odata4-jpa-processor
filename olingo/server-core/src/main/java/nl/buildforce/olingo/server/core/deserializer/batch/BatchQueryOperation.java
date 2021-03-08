@@ -13,7 +13,7 @@ public class BatchQueryOperation implements BatchPart {
   protected Line httpStatusLine;
   protected Header headers;
   protected List<Line> body;
-  protected int bodySize;
+  // protected int bodySize;
   protected final List<Line> message;
 
   public BatchQueryOperation(List<Line> message, boolean isStrict) {
@@ -51,18 +51,22 @@ public class BatchQueryOperation implements BatchPart {
     return body;
   }
 
+/*
   public int getBodySize() {
     return bodySize;
   }
+*/
 
   @Override
   public Header getHeaders() {
     return headers;
   }
 
+/*
   @Override
   public boolean isStrict() {
     return isStrict;
   }
+*/
 
 }

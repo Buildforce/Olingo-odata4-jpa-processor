@@ -12,9 +12,12 @@ import nl.buildforce.olingo.server.api.uri.queryoption.ApplyItem;
  */
 public interface Aggregate extends ApplyItem {
 
-  /**
-   * Gets the aggregate expressions.
-   * @return a non-empty list of aggregate expressions (and never <code>null</code>)
-   */
-  List<AggregateExpression> getExpressions();
+// --Commented out by Inspection START (''21-03-06 17:15):
+//  /**
+//   * Gets the aggregate expressions.
+//   * @return a non-empty list of aggregate expressions (and never <code>null</code>)
+//   */
+//  List<AggregateExpression> getExpressions();
+// --Commented out by Inspection STOP (''21-03-06 17:15)
+
 }

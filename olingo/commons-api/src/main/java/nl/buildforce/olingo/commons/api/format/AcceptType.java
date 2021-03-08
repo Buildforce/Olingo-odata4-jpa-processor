@@ -37,13 +37,12 @@ public final class AcceptType {
   private final Map<String, String> parameters;
   private final Float quality;
 
-  private AcceptType(String type, String subtype, Map<String, String> parameters,
-                     Float quality) {
+  private AcceptType(String type, String subtype, Map<String, String> parameters) {
     this.type = type;
     this.subtype = subtype;
     this.parameters = TypeUtil.createParameterMap();
     this.parameters.putAll(parameters);
-    this.quality = quality;
+    this.quality = 1.0f;
   }
 
   private AcceptType(String type) {
@@ -132,7 +131,7 @@ public final class AcceptType {
    */
   public static List<AcceptType> fromContentType(ContentType contentType) {
     return Collections.singletonList(new AcceptType(
-        contentType.getMainType(), contentType.getSubtype(), contentType.getParameters(), 1F));
+        contentType.getMainType(), contentType.getSubtype(), contentType.getParameters()));
   }
 
   public String getType() {

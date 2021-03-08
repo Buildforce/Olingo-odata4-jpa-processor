@@ -12,7 +12,6 @@ import nl.buildforce.olingo.commons.api.edm.provider.CsdlEdmProvider;
 import nl.buildforce.olingo.commons.api.edmx.EdmxReference;
 import nl.buildforce.olingo.commons.api.ex.ODataRuntimeException;
 import nl.buildforce.olingo.commons.api.format.ContentType;
-// import nl.buildforce.olingo.server.api.debug.DebugResponseHelper;
 import nl.buildforce.olingo.server.api.deserializer.DeserializerException;
 import nl.buildforce.olingo.server.api.deserializer.FixedFormatDeserializer;
 import nl.buildforce.olingo.server.api.deserializer.ODataDeserializer;
@@ -41,15 +40,13 @@ public abstract class OData {
    */
   public static OData newInstance() {
     try {
-      Class<?> clazz = Class.forName(OData.IMPLEMENTATION);
+      Class<?> clazz = Class.forName(IMPLEMENTATION);
 
       /*
        * We explicitly do not use the singleton pattern to keep the server state free
        * and avoid class loading issues also during hot deployment.
        */
-      Object object = clazz.newInstance();
-
-      return (OData) object;
+      return (OData) clazz.newInstance();
 
     } catch (Exception e) {
       throw new ODataRuntimeException(e);

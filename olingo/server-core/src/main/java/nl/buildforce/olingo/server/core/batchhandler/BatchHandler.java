@@ -37,7 +37,7 @@ public class BatchHandler {
     validateRequest(request);
     validatePreferHeader(request);
 
-    BatchFacade operation = new BatchFacadeImpl(oDataHandler, batchProcessor, isStrict);
+    BatchFacade operation = new BatchFacadeImpl(oDataHandler, batchProcessor);
     batchProcessor.processBatch(operation, request, response);
   }
   
@@ -73,4 +73,5 @@ public class BatchHandler {
       throw new BatchDeserializerException("Invalid HTTP method", MessageKeys.INVALID_METHOD, "0");
     }
   }
+
 }

@@ -22,10 +22,8 @@ public class BatchFacadeImpl implements BatchFacade {
    * Creates a new BatchFacade.
    * @param oDataHandler   handler
    * @param batchProcessor batch processor
-   * @param isStrict       mode switch (currently not used)
    */
-  public BatchFacadeImpl(ODataHandler oDataHandler, BatchProcessor batchProcessor,
-                         boolean isStrict) {
+  public BatchFacadeImpl(ODataHandler oDataHandler, BatchProcessor batchProcessor) {
     partHandler = new BatchPartHandler(oDataHandler, batchProcessor, this);
   }
 
@@ -45,4 +43,5 @@ public class BatchFacadeImpl implements BatchFacade {
   public String extractBoundaryFromContentType(String contentType) throws BatchDeserializerException {
     return BatchParserCommon.getBoundary(contentType, 0);
   }
+
 }

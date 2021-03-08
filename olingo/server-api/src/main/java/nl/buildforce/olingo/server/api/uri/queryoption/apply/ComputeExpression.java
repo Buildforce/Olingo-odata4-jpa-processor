@@ -11,15 +11,18 @@ import nl.buildforce.olingo.server.api.uri.queryoption.expression.Expression;
  */
 public interface ComputeExpression {
 
-  /**
-   * Gets the expression to compute.
-   * @return an {@link Expression} (but never <code>null</code>)
-   */
-  Expression getExpression();
+// --Commented out by Inspection START (''21-03-07 22:43):
+//  /**
+//   * Gets the expression to compute.
+//   * @return an {@link Expression} (but never <code>null</code>)
+//   */
+//  Expression getExpression();
+//
+//  /**
+//   * Gets the name of the computation result if an alias name has been set.
+//   * @return an identifier String (but never <code>null</code>)
+//   */
+//  String getAlias();
+// --Commented out by Inspection STOP (''21-03-07 22:43)
 
-  /**
-   * Gets the name of the computation result if an alias name has been set.
-   * @return an identifier String (but never <code>null</code>)
-   */
-  String getAlias();
 }

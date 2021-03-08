@@ -111,10 +111,12 @@ public class BatchBodyPart implements BatchPart {
     return headers;
   }
 
+/*
   @Override
   public boolean isStrict() {
     return isStrict;
   }
+*/
 
   public boolean isChangeSet() {
     return isChangeSet;

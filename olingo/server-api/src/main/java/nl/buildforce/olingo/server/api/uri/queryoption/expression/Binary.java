@@ -13,11 +13,13 @@ import java.util.List;
  */
 public interface Binary extends Expression {
 
-  /**
-   * @return binary operator kind
-   * @see BinaryOperatorKind
-   */
-  BinaryOperatorKind getOperator();
+// --Commented out by Inspection START (''21-03-07 09:25):
+//  /**
+//   * @return binary operator kind
+//   * @see BinaryOperatorKind
+//   */
+//  BinaryOperatorKind getOperator();
+// --Commented out by Inspection STOP (''21-03-07 09:25)
 
   /**
    * @return Expression sub tree of the left operand
@@ -29,10 +31,12 @@ public interface Binary extends Expression {
    */
   Expression getRightOperand();
   
-  /**
-   * 
-   * @return list of expressions of the right operand
-   */
-  List<Expression> getExpressions();
+// --Commented out by Inspection START (''21-03-07 09:25):
+//  /**
+//   *
+//   * @return list of expressions of the right operand
+//   */
+//  List<Expression> getExpressions();
+// --Commented out by Inspection STOP (''21-03-07 09:25)
 
 }

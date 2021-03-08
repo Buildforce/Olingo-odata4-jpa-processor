@@ -11,9 +11,11 @@ package nl.buildforce.olingo.server.api.uri.queryoption.expression;
  */
 public interface Alias extends Expression {
 
-  /**
-   * @return Name of the used alias
-   */
-  String getParameterName();
+// --Commented out by Inspection START (''21-03-06 17:18):
+//  /**
+//   * @return Name of the used alias
+//   */
+//  String getParameterName();
+// --Commented out by Inspection STOP (''21-03-06 17:18)
 
 }

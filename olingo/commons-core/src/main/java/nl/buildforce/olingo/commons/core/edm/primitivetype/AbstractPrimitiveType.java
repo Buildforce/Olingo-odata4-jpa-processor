@@ -103,4 +103,5 @@ abstract class AbstractPrimitiveType implements EdmPrimitiveType {
   public String toString() {
     return getFullQualifiedName().getFullQualifiedNameAsString();
   }
+
 }

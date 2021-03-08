@@ -17,17 +17,18 @@ public class AggregateImpl implements Aggregate {
   private final List<AggregateExpression> expressions = new ArrayList<>();
 
   @Override
-  public Kind getKind() {
-    return Kind.AGGREGATE;
-  }
+  public Kind getKind() { return Kind.AGGREGATE; }
 
+/*
   @Override
   public List<AggregateExpression> getExpressions() {
     return expressions;
   }
+*/
 
   public AggregateImpl addExpression(AggregateExpression expression) {
     expressions.add(expression);
     return this;
   }
+
 }

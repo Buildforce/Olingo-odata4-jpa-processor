@@ -94,7 +94,11 @@ public interface Constants {
   QName QNAME_ATTR_XML_BASE = new QName(XMLConstants.XML_NS_URI, ATTR_XML_BASE);
 
   // JSON stuff
+/*
   String JSON_METADATA = "odata.metadata";
+
+  String JSON_NULL = "odata.null";
+*/
 
   String JSON_TYPE = "@odata.type";
 
@@ -133,8 +137,6 @@ public interface Constants {
   String JSON_DELTA_LINK = "@odata.deltaLink";
 
   String JSON_ERROR = "error";
-
-  String JSON_NULL = "odata.null";
 
   String VALUE = "value";
 

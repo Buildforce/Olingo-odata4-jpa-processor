@@ -4,7 +4,7 @@
 package nl.buildforce.olingo.server.api.uri.queryoption.search;
 
 public enum SearchUnaryOperatorKind {
-  NOT;
+  NOT
 
 /*  public static SearchUnaryOperatorKind get(String operator) {
     return NOT.name().equals(operator) ? NOT : null;

@@ -73,11 +73,12 @@ public class ComplexSerializerOptions {
     public Builder xml10InvalidCharReplacement(String replacement) {
       options.xml10InvalidCharReplacement = replacement;
       return this;
-    } 
-    
+    }
+
     /** Builds the OData serializer options. */
     public ComplexSerializerOptions build() {
       return options;
     }
   }
+
 }

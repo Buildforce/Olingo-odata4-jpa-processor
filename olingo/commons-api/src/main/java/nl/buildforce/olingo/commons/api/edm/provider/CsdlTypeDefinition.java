@@ -169,7 +169,7 @@ public class CsdlTypeDefinition extends CsdlAbstractEdmItem implements CsdlNamed
     return srid;
   }*/
 
-  /**
+  /*
    * Sets srid.
    *
    * @param srid the srid
@@ -194,4 +194,5 @@ public class CsdlTypeDefinition extends CsdlAbstractEdmItem implements CsdlNamed
     this.annotations = annotations;
     return this;
   }
+
 }

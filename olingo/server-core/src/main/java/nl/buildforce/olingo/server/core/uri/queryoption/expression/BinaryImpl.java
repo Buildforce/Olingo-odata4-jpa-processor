@@ -40,10 +40,17 @@ public class BinaryImpl implements Binary {
     expressions = right;
   }
 
+/*
   @Override
   public BinaryOperatorKind getOperator() {
     return operator;
   }
+
+  @Override
+  public List<Expression> getExpressions() {
+    return expressions;
+  }
+*/
 
   @Override
   public Expression getLeftOperand() {
@@ -80,8 +87,4 @@ public class BinaryImpl implements Binary {
     return "{" + left + " " + operator.name() + " " + (null != right ? right : expressions) + '}';
   }
 
-  @Override
-  public List<Expression> getExpressions() {
-    return expressions;
-  }
 }

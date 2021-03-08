@@ -13,9 +13,12 @@ import nl.buildforce.olingo.server.api.uri.queryoption.ApplyOption;
  */
 public interface Concat extends ApplyItem {
 
-  /**
-   * Gets the concatenated apply options.
-   * @return a non-empty list of apply options (and never <code>null</code>)
-   */
-  List<ApplyOption> getApplyOptions();
+// --Commented out by Inspection START (''21-03-07 22:47):
+//  /**
+//   * Gets the concatenated apply options.
+//   * @return a non-empty list of apply options (and never <code>null</code>)
+//   */
+//  List<ApplyOption> getApplyOptions();
+// --Commented out by Inspection STOP (''21-03-07 22:47)
+
 }

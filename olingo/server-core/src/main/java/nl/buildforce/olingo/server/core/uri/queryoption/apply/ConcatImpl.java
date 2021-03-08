@@ -21,13 +21,16 @@ public class ConcatImpl implements Concat {
     return Kind.CONCAT;
   }
 
+/*
   @Override
   public List<ApplyOption> getApplyOptions() {
     return options;
   }
+*/
 
   public ConcatImpl addApplyOption(ApplyOption option) {
     options.add(option);
     return this;
   }
+
 }

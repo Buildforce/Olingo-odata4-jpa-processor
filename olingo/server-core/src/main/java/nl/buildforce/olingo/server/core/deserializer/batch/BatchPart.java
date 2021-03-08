@@ -6,5 +6,6 @@ package nl.buildforce.olingo.server.core.deserializer.batch;
 public interface BatchPart {
   Header getHeaders();
 
-  boolean isStrict();
+  // --Commented out by Inspection (''21-03-06 17:24):boolean isStrict();
+
 }
