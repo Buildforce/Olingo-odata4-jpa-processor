@@ -157,10 +157,12 @@ public class ODataImpl extends OData {
     return new ODataHttpHandlerImpl(this, serviceMetadata);
   }
 
+/*
   @Override
   public ODataHandler createRawHandler(ServiceMetadata serviceMetadata) {
     return new ODataHandlerImpl(this, serviceMetadata);
   }
+*/
 
   @Override
   public ServiceMetadata createServiceMetadata(CsdlEdmProvider edmProvider,

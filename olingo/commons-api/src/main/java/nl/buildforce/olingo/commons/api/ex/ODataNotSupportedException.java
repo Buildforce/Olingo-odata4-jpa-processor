@@ -19,23 +19,27 @@ public class ODataNotSupportedException extends ODataRuntimeException {
     super(msg);
   }
 
-  /**
-   * Create with <code>message</code> for and <code>cause</code> of exception.
-   *
-   * @param msg message text for exception
-   * @param cause cause of exception
-   */
-  public ODataNotSupportedException(String msg, Exception cause) {
-    super(msg, cause);
-  }
+// --Commented out by Inspection START (''21-03-09 21:47):
+//  /**
+//   * Create with <code>message</code> for and <code>cause</code> of exception.
+//   *
+//   * @param msg message text for exception
+//   * @param cause cause of exception
+//   */
+//  public ODataNotSupportedException(String msg, Exception cause) {
+//    super(msg, cause);
+//  }
+// --Commented out by Inspection STOP (''21-03-09 21:47)
 
-  /**
-   * Create with <code>cause</code> of exception.
-   *
-   * @param cause cause of exception
-   */
-  public ODataNotSupportedException(Exception cause) {
-    super(cause);
-  }
+// --Commented out by Inspection START (''21-03-09 21:47):
+//  /**
+//   * Create with <code>cause</code> of exception.
+//   *
+//   * @param cause cause of exception
+//   */
+//  public ODataNotSupportedException(Exception cause) {
+//    super(cause);
+//  }
+// --Commented out by Inspection STOP (''21-03-09 21:47)
 
 }

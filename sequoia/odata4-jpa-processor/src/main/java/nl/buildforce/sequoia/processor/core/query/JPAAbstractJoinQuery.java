@@ -349,8 +349,7 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
           }
         }
       } catch (ODataJPAModelException e) {
-        // // debugger.stopRuntimeMeasurement(handle);
-        throw new ODataJPAQueryException(e, HttpStatusCode.BAD_REQUEST);
+          throw new ODataJPAQueryException(e, HttpStatusCode.BAD_REQUEST);
       }
     }
       // Ensure results get ordered by primary key. By this it is ensured that the results will match the sub-select
@@ -422,7 +421,6 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
     try {
       whereCondition = createKeyWhere(navigationInfo);
     } catch (ODataApplicationException e) {
-      // // debugger.stopRuntimeMeasurement(handle);
       throw e;
     }
 
@@ -433,7 +431,6 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
       whereCondition = addWhereClause(whereCondition, navigationInfo.get(navigationInfo.size() - 1).getFilterCompiler()
           .compile());
     } catch (ExpressionVisitException e) {
-      // // debugger.stopRuntimeMeasurement(handle);
       throw new ODataJPAQueryException(ODataJPAQueryException.MessageKeys.QUERY_PREPARATION_FILTER_ERROR,
           HttpStatusCode.BAD_REQUEST, e);
     }

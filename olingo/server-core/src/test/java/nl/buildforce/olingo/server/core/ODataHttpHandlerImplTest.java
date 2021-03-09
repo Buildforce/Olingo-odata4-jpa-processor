@@ -92,16 +92,19 @@ public class ODataHttpHandlerImplTest {
         {  "http://localhost",          "",           "/sp",      "",          "",          "",         "0"},
         {  "http://localhost",          "",           "/sp",      "",          "/",         "",         "0"},
         {  "http://localhost",          "",           "/sp",      "",          "/od",       "",         "0"},
+/*
         {  "http://localhost",          "",           "",         "/sr",       "",          "",         "1"},
         {  "http://localhost",          "",           "",         "/sr",       "/",         "",         "1"},
         {  "http://localhost",          "",           "",         "/sr",       "/od",       "",         "1"},
         {  "http://localhost",          "",           "",         "/sr/sr",    "",          "",         "2"},
         {  "http://localhost",          "",           "",         "/sr/sr",    "/",         "",         "2"},
         {  "http://localhost",          "",           "",         "/sr/sr",    "/od",       "",         "2"},
+*/
 
         {  "http://localhost",          "/cp",        "/sp",      "",          "",          "",         "0"},
         {  "http://localhost",          "/cp",        "/sp",      "",          "/",         "",         "0"},
         {  "http://localhost",          "/cp",        "/sp",      "",          "/od",       "",         "0"},
+/*
         {  "http://localhost",          "/cp",        "",         "/sr",       "/",         "",         "1"},
         {  "http://localhost",          "/cp",        "",         "/sr",       "/od",       "",         "1"},
         {  "http://localhost",          "",           "/sp",      "/sr",       "",          "",         "1"},
@@ -110,12 +113,13 @@ public class ODataHttpHandlerImplTest {
         {  "http://localhost",          "/cp",        "/sp",      "/sr",       "",          "",         "1"},
         {  "http://localhost",          "/cp",        "/sp",      "/sr",       "/",         "",         "1"},
         {  "http://localhost",          "/cp",        "/sp",      "/sr",       "/od",       "",         "1"},
+*/
 
         {  "http://localhost",          "",           "",         "",          "",          "qp",       "0"},
-        {  "http://localhost",          "",           "",         "",          "/",         "qp",       "0"},
+        {  "http://localhost",          "",           "",         "",          "/",         "qp",       "0"}/*,
         {  "http://localhost",          "/cp",        "/sp",      "/sr",       "/od",       "qp",       "1"},
 
-        {  "http://localhost:8080",     "/c%20p",     "/s%20p",   "/s%20r",    "/o%20d",    "p+q",      "1"},
+        {  "http://localhost:8080",     "/c%20p",     "/s%20p",   "/s%20r",    "/o%20d",    "p+q",      "1"},*/
     };
     //@formatter:on
     // CHECKSTYLE:on
@@ -134,7 +138,7 @@ public class ODataHttpHandlerImplTest {
       when(hr.getServletPath()).thenReturn(p[2]);
 
       ODataRequest odr = new ODataRequest();
-      ODataHttpHandlerImpl.fillUriInformation(odr, hr, Integer.parseInt(p[6]));
+      ODataHttpHandlerImpl.fillUriInformation(odr, hr/*, Integer.parseInt(p[6])*/);
 
       String rawBaseUri = p[0] + p[1] + p[2] + p[3];
       String rawODataPath = p[4];
@@ -164,7 +168,7 @@ public class ODataHttpHandlerImplTest {
        
         {  "http://localhost",          "/cp",        "/sp",      "",          "",          "",         "0"},
         {  "http://localhost",          "/cp",        "/sp",      "",          "/",         "",         "0"},
-        {  "http://localhost",          "/cp",        "/sp",      "",          "/od",       "",         "0"},
+        {  "http://localhost",          "/cp",        "/sp",      "",          "/od",       "",         "0"}/*,
        
         {  "http://localhost",          "/cp",        "/sp",      "/sr",       "",          "",         "1"},
         {  "http://localhost",          "/cp",        "/sp",      "/sr",       "/",         "",         "1"},
@@ -173,7 +177,7 @@ public class ODataHttpHandlerImplTest {
      
         {  "http://localhost",          "/cp",        "/sp",      "/sr",       "/od",       "qp",       "1"},
 
-        {  "http://localhost:8080",     "/c%20p",     "/s%20p",   "/s%20r",    "/o%20d",    "p+q",      "1"},
+        {  "http://localhost:8080",     "/c%20p",     "/s%20p",   "/s%20r",    "/o%20d",    "p+q",      "1"},*/
     };
     //@formatter:on
     // CHECKSTYLE:on
@@ -200,7 +204,7 @@ public class ODataHttpHandlerImplTest {
       String rawServiceResolutionUri = ("0".equals(p[6])) ? p[2] : p[3];
 
       when(hr.getAttribute("requestMapping")).thenReturn(p[2]);
-      ODataHttpHandlerImpl.fillUriInformation(odr, hr, Integer.parseInt(p[6]));
+      ODataHttpHandlerImpl.fillUriInformation(odr, hr);
       assertEquals(rawBaseUri, odr.getRawBaseUri());
       assertEquals(rawODataPath, odr.getRawODataPath());
       assertEquals(rawQueryPath, odr.getRawQueryPath());

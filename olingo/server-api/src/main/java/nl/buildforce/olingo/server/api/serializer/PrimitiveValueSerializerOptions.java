@@ -40,10 +40,12 @@ public class PrimitiveValueSerializerOptions {
     return isUnicode;
   }
   
-  /** Gets the replacement string for unicode characters, that is not allowed in XML 1.0 */
-  public String xml10InvalidCharReplacement() {
-    return xml10InvalidCharReplacement;
-  }  
+// --Commented out by Inspection START (''21-03-09 23:00):
+//  /** Gets the replacement string for unicode characters, that is not allowed in XML 1.0 */
+//  public String xml10InvalidCharReplacement() {
+//    return xml10InvalidCharReplacement;
+//  }
+// --Commented out by Inspection STOP (''21-03-09 23:00)
 
   private PrimitiveValueSerializerOptions() {}
 
@@ -67,40 +69,50 @@ public class PrimitiveValueSerializerOptions {
       return this;
     }
 
-    /** Sets the maxLength facet. */
-    public Builder maxLength(Integer maxLength) {
-      options.maxLength = maxLength;
-      return this;
-    }
+// --Commented out by Inspection START (''21-03-09 23:00):
+//    /** Sets the maxLength facet. */
+//    public Builder maxLength(Integer maxLength) {
+// --Commented out by Inspection START (''21-03-09 23:00):
+////      options.maxLength = maxLength;
+////      return this;
+////    }
+// --Commented out by Inspection START (''21-03-09 23:00):
+////// --Commented out by Inspection STOP (''21-03-09 23:00)
+////
+// --Commented out by Inspection START (''21-03-09 23:00):
+//////    /** Sets the precision facet. */
+////// --Commented out by Inspection STOP (''21-03-09 23:00)
+//// --Commented out by Inspection STOP (''21-03-09 23:00)
+//    public Builder precision(Integer precision) {
+//      options.precision = precision;
+//      return this;
+//    }
 
-    /** Sets the precision facet. */
-    public Builder precision(Integer precision) {
-      options.precision = precision;
-      return this;
-    }
+//    /** Sets the scale facet. */
+//    public Builder scale(Integer scale) {
+//      options.scale = scale;
+//      return this;
+//    }
+//
+//    /** Sets the unicode facet. */
+//    public Builder unicode(Boolean isUnicode) {
+//      options.isUnicode = isUnicode;
+//      return this;
+//    }
+//
+//// --Commented out by Inspection START (''21-03-09 23:00):
+// --Commented out by Inspection STOP (''21-03-09 23:00)
+//    /** Sets all facets from an EDM property. */
+//    public Builder facetsFrom(EdmProperty property) {
+//      options.isNullable = property.isNullable();
+//      options.maxLength = property.getMaxLength();
+//      options.precision = property.getPrecision();
+//      options.scale = property.getScale();
+//      options.isUnicode = property.isUnicode();
+//      return this;
+//    }
+// --Commented out by Inspection STOP (''21-03-09 23:00)
 
-    /** Sets the scale facet. */
-    public Builder scale(Integer scale) {
-      options.scale = scale;
-      return this;
-    }
-
-    /** Sets the unicode facet. */
-    public Builder unicode(Boolean isUnicode) {
-      options.isUnicode = isUnicode;
-      return this;
-    }
-
-    /** Sets all facets from an EDM property. */
-    public Builder facetsFrom(EdmProperty property) {
-      options.isNullable = property.isNullable();
-      options.maxLength = property.getMaxLength();
-      options.precision = property.getPrecision();
-      options.scale = property.getScale();
-      options.isUnicode = property.isUnicode();
-      return this;
-    }
-    
     /** set the replacement string for xml 1.0 unicode controlled characters that are not allowed */
     public Builder xml10InvalidCharReplacement(String replacement) {
       options.xml10InvalidCharReplacement = replacement;
@@ -112,4 +124,5 @@ public class PrimitiveValueSerializerOptions {
       return options;
     }
   }
+
 }

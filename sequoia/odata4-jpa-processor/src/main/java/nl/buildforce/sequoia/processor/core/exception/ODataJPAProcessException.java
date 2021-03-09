@@ -103,21 +103,29 @@ public abstract class ODataJPAProcessException extends ODataApplicationException
     }
   }
 
-  public String[] getParameter() {
-    return parameter;
-  }
+// --Commented out by Inspection START (''21-03-09 21:10):
+//  public String[] getParameter() {
+//    return parameter;
+//  }
+// --Commented out by Inspection STOP (''21-03-09 21:10)
 
-  public String getId() {
-    return id;
-  }
+// --Commented out by Inspection START (''21-03-09 21:10):
+//// --Commented out by Inspection START (''21-03-09 21:10):
+////// --Commented out by Inspection START (''21-03-09 21:10):
+// --Commented out by Inspection STOP (''21-03-09 21:10)
+////  public String getId() {
+////    return id;
+////  }
+//// --Commented out by Inspection STOP (''21-03-09 21:10)
+//  public static Enumeration<Locale> getLocales() {
+//    return locales;
+//  }
 
-  public static Enumeration<Locale> getLocales() {
-    return locales;
-  }
-
-  public static void setLocales(final Enumeration<Locale> locales) {
-    ODataJPAProcessException.locales = locales;
-  }
+//  public static void setLocales(final Enumeration<Locale> locales) {
+//    ODataJPAProcessException.locales = locales;
+//  }
+// --Commented out by Inspection STOP (''21-03-09 21:10)
 
   protected abstract String getBundleName();
+
 }

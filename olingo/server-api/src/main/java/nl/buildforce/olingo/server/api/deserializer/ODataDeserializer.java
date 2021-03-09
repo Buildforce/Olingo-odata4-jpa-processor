@@ -25,15 +25,17 @@ public interface ODataDeserializer {
    */
   DeserializerResult entity(InputStream stream, EdmEntityType edmEntityType) throws DeserializerException;
 
-  /**
-   * Deserializes an entity collection stream into an {@link nl.buildforce.olingo.commons.api.data.EntityCollection
-   * EntityCollection} object.
-   * @param stream
-   * @param edmEntityType
-   * @return {@link DeserializerResult#getEntityCollection()}
-   * @throws DeserializerException
-   */
-  DeserializerResult entityCollection(InputStream stream, EdmEntityType edmEntityType) throws DeserializerException;
+// --Commented out by Inspection START (''21-03-09 19:38):
+//  /**
+//   * Deserializes an entity collection stream into an {@link nl.buildforce.olingo.commons.api.data.EntityCollection
+//   * EntityCollection} object.
+//   * @param stream
+//   * @param edmEntityType
+//   * @return {@link DeserializerResult#getEntityCollection()}
+//   * @throws DeserializerException
+//   */
+//  DeserializerResult entityCollection(InputStream stream, EdmEntityType edmEntityType) throws DeserializerException;
+// --Commented out by Inspection STOP (''21-03-09 19:38)
 
   /**
    * Deserializes an action-parameters stream into a map of key/value pairs.

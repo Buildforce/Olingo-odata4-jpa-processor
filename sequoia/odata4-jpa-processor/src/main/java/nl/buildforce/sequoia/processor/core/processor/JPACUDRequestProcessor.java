@@ -95,16 +95,13 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
       handler.updateEntity(requestEntity, em, determineHttpVerb(request, uriInfo.getUriResourceParts()));
       if (!foreignTransaction)
         handler.validateChanges(em);
-      // // debugger.stopRuntimeMeasurement(updateHandle);
     } catch (ODataJPAProcessException e) {
       if (!foreignTransaction)
         ownTransaction.rollback();
-      // // debugger.stopRuntimeMeasurement(handle);
       throw e;
     } catch (Exception e) {
       if (!foreignTransaction)
         ownTransaction.rollback();
-      // // debugger.stopRuntimeMeasurement(handle);
       throw new ODataJPAProcessorException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
     }
     if (!foreignTransaction)
@@ -136,16 +133,13 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
       result = handler.createEntity(requestEntity, em);
       if (!foreignTransaction)
         handler.validateChanges(em);
-      // // debugger.stopRuntimeMeasurement(createHandle);
     } catch (ODataJPAProcessException e) {
       if (!foreignTransaction)
         ownTransaction.rollback();
-      // // debugger.stopRuntimeMeasurement(handle);
       throw e;
     } catch (Exception e) {
       if (!foreignTransaction)
         ownTransaction.rollback();
-      // // debugger.stopRuntimeMeasurement(handle);
       throw new ODataJPAProcessorException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
     }
 
@@ -153,7 +147,6 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
         && !(result instanceof Map<?, ?>)) {
       if (!foreignTransaction)
         ownTransaction.rollback();
-      // // debugger.stopRuntimeMeasurement(handle);
       throw new ODataJPAProcessorException(ODataJPAProcessorException.MessageKeys.WRONG_RETURN_TYPE, HttpStatusCode.INTERNAL_SERVER_ERROR, result
           .getClass().toString(), requestEntity.getEntityType().getTypeClass().toString());
     }
@@ -206,16 +199,13 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
       handler.deleteEntity(requestEntity, em);
       if (!foreignTransaction)
         handler.validateChanges(em);
-      // // debugger.stopRuntimeMeasurement(deleteHandle);
     } catch (ODataJPAProcessException e) {
       if (!foreignTransaction)
         ownTransaction.rollback();
-      // // debugger.stopRuntimeMeasurement(handle);
       throw e;
     } catch (Throwable e) { // NOSONAR
       if (!foreignTransaction)
         ownTransaction.rollback();
-      // // debugger.stopRuntimeMeasurement(handle);
       throw new ODataJPAProcessorException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
     }
     if (!foreignTransaction)
@@ -265,22 +255,18 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
       updateResult = handler.updateEntity(requestEntity, em, determineHttpVerb(request, uriInfo.getUriResourceParts()));
       if (!foreignTransaction)
         handler.validateChanges(em);
-      // // debugger.stopRuntimeMeasurement(updateHandle);
     } catch (ODataJPAProcessException e) {
       if (!foreignTransaction)
         ownTransaction.rollback();
-      // // debugger.stopRuntimeMeasurement(handle);
       throw e;
     } catch (Throwable e) {
       if (!foreignTransaction)
         ownTransaction.rollback();
-      // // debugger.stopRuntimeMeasurement(handle);
       throw new ODataJPAProcessorException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
     }
     if (updateResult == null) {
       if (!foreignTransaction)
         ownTransaction.rollback();
-      // // debugger.stopRuntimeMeasurement(handle);
       throw new ODataJPAProcessorException(ODataJPAProcessorException.MessageKeys.RETURN_NULL, HttpStatusCode.INTERNAL_SERVER_ERROR);
     }
     if (updateResult.getModifiedEntity() != null && !requestEntity.getEntityType().getTypeClass().isInstance(
@@ -289,7 +275,6 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
       // instance of a sub class even so the super class was requested.
       if (!foreignTransaction)
         ownTransaction.rollback();
-      // // debugger.stopRuntimeMeasurement(handle);
       throw new ODataJPAProcessorException(ODataJPAProcessorException.MessageKeys.WRONG_RETURN_TYPE, HttpStatusCode.INTERNAL_SERVER_ERROR,
           updateResult.getModifiedEntity().getClass().toString(), requestEntity.getEntityType().getTypeClass()
               .toString());

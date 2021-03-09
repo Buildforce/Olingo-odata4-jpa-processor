@@ -69,11 +69,13 @@ public class UriResourceNavigationDouble implements UriResourceNavigation {
     return null;
   }
 
-  @Override
+
+/*  @Override
   public EdmType getTypeFilterOnCollection() {
     fail();
     return null;
-  }
+  }*/
+
 
   @Override
   public EdmType getTypeFilterOnEntry() {

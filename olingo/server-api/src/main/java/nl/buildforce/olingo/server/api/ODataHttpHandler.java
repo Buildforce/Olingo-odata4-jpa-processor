@@ -29,7 +29,7 @@ public interface ODataHttpHandler extends ODataHandler {
    * Sets the split parameter which is used for service resolution.
    * @param split the number of path segments reserved for service resolution; default is 0
    */
-  void setSplit(int split);
+  //void setSplit(int split);
 
 
   /**
@@ -43,11 +43,12 @@ public interface ODataHttpHandler extends ODataHandler {
    * content types.
    * @see CustomContentTypeSupport
    */
-  void register(CustomContentTypeSupport customContentTypeSupport);
+  // void register(CustomContentTypeSupport customContentTypeSupport);
 
   /**
    * Registers support for concurrency control for certain entity sets.
    * @param customETagSupport handler to register
    */
   void register(CustomETagSupport customETagSupport);
+
 }

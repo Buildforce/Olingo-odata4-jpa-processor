@@ -8,14 +8,9 @@ import nl.buildforce.olingo.server.api.uri.queryoption.expression.Expression;
 
 /**
  * Represents a transformation with one of the pre-defined methods
- * <code>bottomcount</code>, <code>bottompercent</code>, <code>bottomsum</code>,
- * <code>topcount</code>, <code>toppercent</code>, <code>topsum</code>.
+ * <code>bottomcount, bottompercent, bottomsum, topcount, toppercent, topsum</code>.
  */
 public class BottomTopImpl implements BottomTop {
-
-  private Method method;
-  private Expression number;
-  private Expression value;
 
   @Override
   public Kind getKind() {
@@ -23,7 +18,6 @@ public class BottomTopImpl implements BottomTop {
   }
 
   public BottomTopImpl setMethod(Method method) {
-    this.method = method;
     return this;
   }
 
@@ -45,12 +39,10 @@ public class BottomTopImpl implements BottomTop {
 */
 
   public BottomTopImpl setNumber(Expression number) {
-    this.number = number;
     return this;
   }
 
   public BottomTopImpl setValue(Expression value) {
-    this.value = value;
     return this;
   }
 

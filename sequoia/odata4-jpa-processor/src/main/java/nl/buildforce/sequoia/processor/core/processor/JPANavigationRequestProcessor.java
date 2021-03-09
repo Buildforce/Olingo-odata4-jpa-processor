@@ -76,7 +76,6 @@ public final class JPANavigationRequestProcessor extends JPAAbstractGetRequestPr
     try {
       query = new JPAJoinQuery(odata, sessionContext, request.getAllHeaders(), requestContext);
     } catch (ODataException e) {
-      // // // debugger.stopRuntimeMeasurement(handle);
       throw new ODataJPAProcessorException(ODataJPAProcessorException.MessageKeys.QUERY_PREPARATION_ERROR, HttpStatusCode.INTERNAL_SERVER_ERROR, e);
     }
 
@@ -90,10 +89,7 @@ public final class JPANavigationRequestProcessor extends JPAAbstractGetRequestPr
     try {
       entityCollection = result.asEntityCollection(new JPATupleChildConverter(sd, odata.createUriHelper(),
           serviceMetadata)).get(JPAExpandResult.ROOT_RESULT_KEY);
-      // // debugger.stopRuntimeMeasurement(converterHandle);
     } catch (ODataApplicationException e) {
-      // // debugger.stopRuntimeMeasurement(converterHandle);
-      // // debugger.stopRuntimeMeasurement(handle);
       throw new ODataJPAProcessorException(ODataJPAProcessorException.MessageKeys.QUERY_RESULT_CONV_ERROR, HttpStatusCode.INTERNAL_SERVER_ERROR, e);
     }
     // Set Next Link
@@ -133,7 +129,6 @@ public final class JPANavigationRequestProcessor extends JPAAbstractGetRequestPr
     else if (entityCollection.getEntities() != null) {
       // final int serializerHandle = debugger.startRuntimeMeasurement(serializer, "serialize");
       final SerializerResult serializerResult = serializer.serialize(request, entityCollection);
-      // // debugger.stopRuntimeMeasurement(serializerHandle);
       createSuccessResponse(response, responseFormat, serializerResult);
     } else {
       // A request returns 204 No Content if the requested resource has the null value, or if the service applies a

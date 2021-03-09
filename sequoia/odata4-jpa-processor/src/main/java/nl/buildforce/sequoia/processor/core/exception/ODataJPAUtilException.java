@@ -22,32 +22,36 @@ public class ODataJPAUtilException extends ODataJPAProcessException {
     public String getKey() {
       return name();
     }
-
   }
 
   private static final String BUNDLE_NAME = "processor-exceptions-i18n";
-
-  public ODataJPAUtilException(final Throwable e, final HttpStatusCode statusCode) {
-    super(e, statusCode);
-  }
-
-  public ODataJPAUtilException(final MessageKeys messageKey, final HttpStatusCode statusCode,
-      final Throwable cause, final String... params) {
-    super(messageKey.getKey(), statusCode, cause, params);
-  }
 
   public ODataJPAUtilException(final MessageKeys messageKey, final HttpStatusCode statusCode) {
     super(messageKey.getKey(), statusCode);
   }
 
-  public ODataJPAUtilException(final MessageKeys messageKey, final HttpStatusCode statusCode,
-      final String... params) {
-    super(messageKey.getKey(), statusCode, params);
-  }
+// --Commented out by Inspection START (''21-03-09 21:34):
+//  public ODataJPAUtilException(final Throwable e, final HttpStatusCode statusCode) {
+//    super(e, statusCode);
+//  }
+//
+//  public ODataJPAUtilException(final MessageKeys messageKey, final HttpStatusCode statusCode,
+//      final Throwable cause, final String... params) {
+//    super(messageKey.getKey(), statusCode, cause, params);
+//  }
+// --Commented out by Inspection STOP (''21-03-09 21:34)
 
-  public ODataJPAUtilException(final MessageKeys messageKey, final HttpStatusCode statusCode, final Throwable e) {
-    super(messageKey.getKey(), statusCode, e);
-  }
+// --Commented out by Inspection START (''21-03-09 21:34):
+//  public ODataJPAUtilException(final MessageKeys messageKey, final HttpStatusCode statusCode,
+// --Commented out by Inspection START (''21-03-09 21:34):
+////      final String... params) {
+////    super(messageKey.getKey(), statusCode, params);
+////  }
+//
+//  public ODataJPAUtilException(final MessageKeys messageKey, final HttpStatusCode statusCode, final Throwable e) {
+//    super(messageKey.getKey(), statusCode, e);
+//  }
+// --Commented out by Inspection STOP (''21-03-09 21:34)
 
   @Override
   protected String getBundleName() {

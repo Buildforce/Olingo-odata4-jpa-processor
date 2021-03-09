@@ -66,17 +66,18 @@ public class ODataXmlDeserializer implements ODataDeserializer {
   
   private ServiceMetadata serviceMetadata;
 
-  public ODataXmlDeserializer() {
-  }
-
   public ODataXmlDeserializer(ServiceMetadata serviceMetadata) {
     this.serviceMetadata = serviceMetadata;
   }
-  
+
+  public ODataXmlDeserializer() { }
+
+  /*
   public void setMetadata(ServiceMetadata metadata) {
     serviceMetadata = metadata;
   }
-  
+*/
+
   protected XMLEventReader getReader(InputStream input) throws XMLStreamException {
     FACTORY.setProperty(XMLInputFactory.SUPPORT_DTD, false);
     FACTORY.setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, false);
@@ -660,6 +661,7 @@ public class ODataXmlDeserializer implements ODataDeserializer {
     return entitySet;
   }
 
+/*
   @Override
   public DeserializerResult entityCollection(InputStream input, EdmEntityType edmEntityType)
       throws DeserializerException {
@@ -680,6 +682,7 @@ public class ODataXmlDeserializer implements ODataDeserializer {
           DeserializerException.MessageKeys.INVALID_VALUE_FOR_PROPERTY);
     }
   }
+*/
 
   @Override
   public DeserializerResult entityReferences(InputStream stream) throws DeserializerException {

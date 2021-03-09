@@ -58,7 +58,7 @@ public final class BatchOptions {
     private final BatchOptions options;
 
     /** Initializes the options builder. */
-    public Builder() {
+    private Builder() {
       options = new BatchOptions();
     }
 
@@ -94,4 +94,5 @@ public final class BatchOptions {
       return options;
     }
   }
+
 }

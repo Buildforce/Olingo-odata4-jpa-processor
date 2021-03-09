@@ -27,7 +27,7 @@ public final class ReferenceSerializerOptions {
   public static final class Builder {
     private final ReferenceSerializerOptions options;
 
-    public Builder() {
+    private Builder() {
       options = new ReferenceSerializerOptions();
     }
 
@@ -42,4 +42,5 @@ public final class ReferenceSerializerOptions {
       return options;
     }
   }
+
 }

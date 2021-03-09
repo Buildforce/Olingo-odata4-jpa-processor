@@ -36,13 +36,15 @@ public class Parameter extends Valuable {
     return getValueType() == ValueType.ENTITY || getValueType() == ValueType.COLLECTION_ENTITY;
   }
 
-  /**
-   * Gets the value in its entity representation or null if it is not based on an entity value type.
-   * @return entity representation or null if it is not based on an entity value type
-   */
-  public Entity asEntity() {
-    return isEntity() && !isCollection() ? (Entity) getValue() : null;
-  }
+// --Commented out by Inspection START (''21-03-09 22:31):
+//  /**
+//   * Gets the value in its entity representation or null if it is not based on an entity value type.
+//   * @return entity representation or null if it is not based on an entity value type
+//   */
+//  public Entity asEntity() {
+//    return isEntity() && !isCollection() ? (Entity) getValue() : null;
+//  }
+// --Commented out by Inspection STOP (''21-03-09 22:31)
 
   @Override
   public boolean equals(Object o) {
@@ -61,4 +63,5 @@ public class Parameter extends Valuable {
   public String toString() {
     return (name == null ? "null" : name) + '=' + (getValue() == null ? "null" : getValue());
   }
+
 }

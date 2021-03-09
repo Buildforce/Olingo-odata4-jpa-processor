@@ -32,7 +32,7 @@ public final class ReferenceCollectionSerializerOptions {
   public static final class Builder {
     private final ReferenceCollectionSerializerOptions options;
 
-    public Builder() {
+    private Builder() {
       options = new ReferenceCollectionSerializerOptions();
     }
 
@@ -53,4 +53,5 @@ public final class ReferenceCollectionSerializerOptions {
       return options;
     }
   }
+
 }

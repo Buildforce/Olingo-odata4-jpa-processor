@@ -17,10 +17,10 @@ public enum PreferenceName {
   TRACK_CHANGES_PREF("track-changes"),
   RETURN("return"),
   RESPOND_ASYNC("respond-async"),
-  WAIT("wait"),
+  WAIT("wait")/*,
   RETURN_CONTENT("return-content"),
   RETURN_NO_CONTENT("return-no-content"),
-  KEY_AS_SEGMENT("KeyAsSegment");
+  KEY_AS_SEGMENT("KeyAsSegment")*/;
 
   private final String preferenceName;
 
@@ -36,4 +36,5 @@ public enum PreferenceName {
   public String toString() {
     return getName();
   }
+
 }

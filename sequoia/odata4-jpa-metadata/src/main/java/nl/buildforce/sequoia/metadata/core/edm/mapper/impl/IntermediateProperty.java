@@ -327,8 +327,9 @@ abstract class IntermediateProperty extends IntermediateModelElement implements 
                 Type[] types = ((ParameterizedType) convType[0]).getActualTypeArguments();
                 entityType = (Class<?>) types[0];
                 dbType = (Class<?>) types[1];
-                if (!JPATypeConverter.isSupportedByOlingo(entityType))
+                if (!JPATypeConverter.isSupportedByOlingo(entityType)) {
                     valueConverter = (AttributeConverter<?, ?>) jpaConverter.converter().getDeclaredConstructor().newInstance();
+                }
             } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
                 throw new ODataJPAModelException(ODataJPAModelException.MessageKeys.TYPE_MAPPER_COULD_NOT_INSTANTIATED, e);
             }

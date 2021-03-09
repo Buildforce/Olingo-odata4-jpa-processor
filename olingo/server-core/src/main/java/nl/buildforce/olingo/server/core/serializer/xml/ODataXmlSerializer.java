@@ -29,7 +29,6 @@ import nl.buildforce.olingo.commons.api.data.Operation;
 import nl.buildforce.olingo.commons.api.data.Property;
 import nl.buildforce.olingo.commons.api.data.ValueType;
 import nl.buildforce.olingo.commons.api.edm.EdmComplexType;
-import nl.buildforce.olingo.commons.api.edm.EdmEntitySet;
 import nl.buildforce.olingo.commons.api.edm.EdmEntityType;
 import nl.buildforce.olingo.commons.api.edm.EdmNavigationProperty;
 import nl.buildforce.olingo.commons.api.edm.EdmPrimitiveType;
@@ -803,7 +802,7 @@ public class ODataXmlSerializer extends AbstractODataSerializer {
         if (edmProperty.isCollection()) {
           writer.writeAttribute(METADATA, NS_METADATA, Constants.ATTR_TYPE, collectionType(edmProperty.getType()));
           writeComplexCollection(metadata, (EdmComplexType) edmProperty.getType(), property, selectedPaths, 
-              xml10InvalidCharReplacement, writer, expandedPaths, linked, expand);
+              xml10InvalidCharReplacement, writer, expandedPaths, expand);
         } else {
             writeComplex(metadata, edmProperty, property, selectedPaths, 
                 xml10InvalidCharReplacement, writer, expandedPaths, linked, expand);
@@ -871,7 +870,7 @@ public class ODataXmlSerializer extends AbstractODataSerializer {
   private void writeComplexCollection(ServiceMetadata metadata,
                                       EdmComplexType type, Property property, Set<List<String>> selectedPaths,
                                       String xml10InvalidCharReplacement, XMLStreamWriter writer,
-                                      Set<List<String>> expandedPaths, Linked linked, ExpandOption expand)
+                                      Set<List<String>> expandedPaths, ExpandOption expand)
       throws XMLStreamException, SerializerException {
     EdmComplexType complexType = type;
     Set<List<String>> expandedPaths1 = expandedPaths != null && !expandedPaths.isEmpty() ? 
@@ -1171,7 +1170,7 @@ public class ODataXmlSerializer extends AbstractODataSerializer {
       }
       
       writeComplexCollection(metadata, type, property, selectedPaths,
-              options.xml10InvalidCharReplacement(), writer, expandPaths, null,
+              options.xml10InvalidCharReplacement(), writer, expandPaths,
               options.getExpand());
       writer.writeEndElement();
       writer.writeEndDocument();
@@ -1188,11 +1187,20 @@ public class ODataXmlSerializer extends AbstractODataSerializer {
     }
   }
 
+/*
   @Override
   public SerializerResult reference(ServiceMetadata metadata, EdmEntitySet edmEntitySet,
                                     Entity entity, ReferenceSerializerOptions options) throws SerializerException {
     return entityReference(entity, options);
   }
+
+  @Override
+  public SerializerResult referenceCollection(ServiceMetadata metadata, EdmEntitySet edmEntitySet,
+                                              AbstractEntityCollection entityCollection, ReferenceCollectionSerializerOptions options)
+          throws SerializerException {
+    return entityReferenceCollection(entityCollection, options);
+  }
+*/
 
   protected SerializerResult entityReference(Entity entity, ReferenceSerializerOptions options)
       throws SerializerException {
@@ -1232,13 +1240,6 @@ public class ODataXmlSerializer extends AbstractODataSerializer {
     }
     writer.writeAttribute(Constants.ATOM_ATTR_ID, entity.getId().toASCIIString());
     writer.writeEndElement();
-  }
-
-  @Override
-  public SerializerResult referenceCollection(ServiceMetadata metadata, EdmEntitySet edmEntitySet,
-                                              AbstractEntityCollection entityCollection, ReferenceCollectionSerializerOptions options)
-      throws SerializerException {
-    return entityReferenceCollection(entityCollection, options);
   }
 
   protected SerializerResult entityReferenceCollection(AbstractEntityCollection entitySet,

@@ -24,13 +24,16 @@ public interface UriResourceNavigation extends UriResourcePartTyped {
    */
   List<UriParameter> getKeyPredicates();
 
-  /**
-   * @return Type filter before key predicates if used, otherwise null
-   */
-  EdmType getTypeFilterOnCollection();
+// --Commented out by Inspection START (''21-03-09 08:03):
+//  /**
+//   * @return Type filter before key predicates if used, otherwise null
+//   */
+//  EdmType getTypeFilterOnCollection();
+// --Commented out by Inspection STOP (''21-03-09 08:03)
 
   /**
    * @return Type filter behind key predicates if used, otherwise null
    */
   EdmType getTypeFilterOnEntry();
+
 }

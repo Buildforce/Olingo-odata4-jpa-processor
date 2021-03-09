@@ -30,10 +30,12 @@ public class ODataJPAFilterException extends ODataJPAProcessException {
     super(e, statusCode);
   }
 
+/*
   public ODataJPAFilterException(final MessageKeys messageKey, final HttpStatusCode statusCode,
       final Throwable cause, final String... params) {
     super(messageKey.getKey(), statusCode, cause, params);
   }
+*/
 
   public ODataJPAFilterException(final MessageKeys messageKey, final HttpStatusCode statusCode) {
     super(messageKey.getKey(), statusCode);
@@ -44,9 +46,11 @@ public class ODataJPAFilterException extends ODataJPAProcessException {
     super(messageKey.getKey(), statusCode, params);
   }
 
+/*
   public ODataJPAFilterException(final MessageKeys messageKey, final HttpStatusCode statusCode, final Throwable e) {
     super(messageKey.getKey(), statusCode, e);
   }
+*/
 
   @Override
   protected String getBundleName() { return BUNDLE_NAME; }

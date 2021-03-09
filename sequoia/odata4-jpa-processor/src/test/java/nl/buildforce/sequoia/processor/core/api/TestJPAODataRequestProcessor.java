@@ -43,7 +43,7 @@ public class TestJPAODataRequestProcessor {
   }
 
   static Stream<Executable> updatePrimitiveValueMethodsProvider() {
-    return Stream.of(() -> cut.updatePrimitiveValue(null, null, null, null, null));
+    return Stream.of(() -> cut.updatePrimitiveValue());
   }
 
   static Stream<Executable> modifyComplexValueMethodsProvider() {

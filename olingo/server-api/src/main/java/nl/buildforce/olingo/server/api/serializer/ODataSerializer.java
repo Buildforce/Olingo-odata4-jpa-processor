@@ -117,8 +117,10 @@ public interface ODataSerializer {
    * @param entity data of the entity
    * @param options {@link ReferenceSerializerOptions}
    */
+/*
   SerializerResult reference(ServiceMetadata metadata, EdmEntitySet edmEntitySet, Entity entity,
       ReferenceSerializerOptions options) throws SerializerException;
+*/
 
   /**
    * Writes entity-collection references into an InputStream.
@@ -127,8 +129,10 @@ public interface ODataSerializer {
    * @param entityCollection data of the entity collection
    * @param options {@link ReferenceCollectionSerializerOptions}
    */
+/*
   SerializerResult referenceCollection(ServiceMetadata metadata, EdmEntitySet edmEntitySet,
       AbstractEntityCollection entityCollection, ReferenceCollectionSerializerOptions options)
       throws SerializerException;
+*/
 
 }

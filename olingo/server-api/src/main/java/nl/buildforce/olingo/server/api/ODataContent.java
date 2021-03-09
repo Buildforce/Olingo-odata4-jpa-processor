@@ -25,13 +25,16 @@ public interface ODataContent {
    */
   void write(WritableByteChannel channel);
 
-  /**
-   * Write the available content into the given <code>OutputStream</code>.
-   *
-   * If during write of the content an exception is thrown this exception will be catched
-   * and the org.apache.olingo.server.api.ODataContentWriteErrorCallback is called (if registered).
-   *
-   * @param stream stream in which the content is written.
-   */
-  void write(OutputStream stream);
+// --Commented out by Inspection START (''21-03-09 16:25):
+//  /**
+//   * Write the available content into the given <code>OutputStream</code>.
+//   *
+//   * If during write of the content an exception is thrown this exception will be catched
+//   * and the org.apache.olingo.server.api.ODataContentWriteErrorCallback is called (if registered).
+//   *
+//   * @param stream stream in which the content is written.
+//   */
+//  void write(OutputStream stream);
+// --Commented out by Inspection STOP (''21-03-09 16:25)
+
 }

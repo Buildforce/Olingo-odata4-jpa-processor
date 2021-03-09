@@ -148,7 +148,7 @@ public final class JPAODataRequestProcessor
   }
 
   @Override
-  public void deletePrimitiveValue(final ODataRequest request, final ODataResponse response, final UriInfo uriInfo)
+  public void deletePrimitiveValue()
       throws ODataApplicationException {
     // .../Organizations('4')/Address/Country/$value
     throw new ODataJPAProcessorException(ODataJPAProcessorException.MessageKeys.NOT_SUPPORTED_DELETE_VALUE,
@@ -282,8 +282,7 @@ public final class JPAODataRequestProcessor
   }
 
   @Override
-  public void updatePrimitiveValue(final ODataRequest request, final ODataResponse response, final UriInfo uriInfo,
-      final ContentType requestFormat, final ContentType responseFormat)
+  public void updatePrimitiveValue()
       throws ODataApplicationException {
     // ../Organizations('5')/Address/StreetName/$value
     throw new ODataJPAProcessorException(ODataJPAProcessorException.MessageKeys.NOT_SUPPORTED_UPDATE_VALUE,

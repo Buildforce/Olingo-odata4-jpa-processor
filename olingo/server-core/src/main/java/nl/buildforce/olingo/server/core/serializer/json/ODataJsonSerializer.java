@@ -95,11 +95,10 @@ public class ODataJsonSerializer extends AbstractODataSerializer {
   @Override
   public SerializerResult serviceDocument(ServiceMetadata metadata, String serviceRoot)
       throws SerializerException {
-    OutputStream outputStream = null;
     SerializerException cachedException = null;
 
     CircleStreamBuffer buffer = new CircleStreamBuffer();
-    outputStream = buffer.getOutputStream();
+    OutputStream outputStream = buffer.getOutputStream();
     try (JsonGenerator json = new JsonFactory().createGenerator(outputStream)) {
       new ServiceDocumentJsonSerializer(metadata, serviceRoot, isODataMetadataNone).writeServiceDocument(json);
 
@@ -729,7 +728,7 @@ public class ODataJsonSerializer extends AbstractODataSerializer {
       } else if (property.isComplex()) {
         if (edmProperty.isCollection()) {
           writeComplexCollection(metadata, (EdmComplexType) type, property, selectedPaths, 
-              json, expandedPaths, linked, expand);
+              json, expandedPaths, expand);
         } else {
          writeComplex(metadata, (EdmComplexType) type, property, selectedPaths, json, 
              expandedPaths, linked, expand);
@@ -820,7 +819,7 @@ public class ODataJsonSerializer extends AbstractODataSerializer {
   private void writeComplexCollection(ServiceMetadata metadata, EdmComplexType type,
                                       Property property,
                                       Set<List<String>> selectedPaths, JsonGenerator json,
-                                      Set<List<String>> expandedPaths, Linked linked, ExpandOption expand)
+                                      Set<List<String>> expandedPaths, ExpandOption expand)
       throws IOException, SerializerException {
     json.writeStartArray();
     EdmComplexType derivedType = type;
@@ -1116,8 +1115,8 @@ public class ODataJsonSerializer extends AbstractODataSerializer {
       if (null != options && null != options.getExpand()) {
         expandPaths = ExpandSelectHelper.getExpandedItemsPath(options.getExpand());
       }
-      writeComplexCollection(metadata, type, property, selectedPaths, json, expandPaths, null, 
-          options == null ? null : options.getExpand());
+      writeComplexCollection(metadata, type, property, selectedPaths, json, expandPaths,
+              options == null ? null : options.getExpand());
       json.writeEndObject();
 
       json.close();
@@ -1131,6 +1130,7 @@ public class ODataJsonSerializer extends AbstractODataSerializer {
     }
   }
 
+/*
   @Override
   public SerializerResult reference(ServiceMetadata metadata, EdmEntitySet edmEntitySet,
                                     Entity entity, ReferenceSerializerOptions options) throws SerializerException {
@@ -1203,6 +1203,7 @@ public class ODataJsonSerializer extends AbstractODataSerializer {
     }
 
   }
+*/
 
   void writeContextURL(ContextURL contextURL, JsonGenerator json) throws IOException {
     if (!isODataMetadataNone && contextURL != null) {

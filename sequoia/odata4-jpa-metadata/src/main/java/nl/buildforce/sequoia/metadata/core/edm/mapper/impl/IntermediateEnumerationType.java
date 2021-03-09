@@ -13,6 +13,8 @@ import nl.buildforce.olingo.commons.api.edm.provider.CsdlEnumType;
 import jakarta.persistence.AttributeConverter;
 
 import java.lang.reflect.Array;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -62,10 +64,10 @@ class IntermediateEnumerationType extends IntermediateModelElement implements JP
 
     if (annotation.converter() != DummyConverter.class) {
       try {
-        final AttributeConverter<Enum<?>[], T> converter =
-                (AttributeConverter<Enum<?>[], T>) (annotation.converter()).newInstance();
+        Constructor<? extends AttributeConverter<? extends Enum<?>[], ? extends Number>> constructor = (annotation.converter()).getConstructor();
+        final AttributeConverter<Enum<?>[], T> converter = (AttributeConverter<Enum<?>[], T>) constructor.newInstance();
         return (E) (converter.convertToEntityAttribute(value)[0]);
-      } catch (InstantiationException | IllegalAccessException e) {
+      } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
         throw new ODataJPAModelException(e);
       }
     } else {
@@ -104,10 +106,10 @@ class IntermediateEnumerationType extends IntermediateModelElement implements JP
       return valueOf(values.get(0));
     else {
       try {
-        final AttributeConverter<Enum<?>[], T> converter =
-                (AttributeConverter<Enum<?>[], T>) annotation.converter().newInstance();
+        Constructor<? extends AttributeConverter<? extends Enum<?>[], ? extends Number>> constructor = annotation.converter().getConstructor();
+        final AttributeConverter<Enum<?>[], T> converter = (AttributeConverter<Enum<?>[], T>) constructor.newInstance();
         return converter.convertToDatabaseColumn((Enum<?>[]) convert(values));
-      } catch (InstantiationException | IllegalAccessException e) {
+      } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e ) {
         throw new ODataJPAModelException(e);
       }
     }

@@ -69,7 +69,6 @@ class JPAVisitor implements JPAExpressionVisitor {
 
     if (operator == BinaryOperatorKind.AND || operator == BinaryOperatorKind.OR) {
       // Connecting operations have to be handled first, as JPANavigationOperation do not need special treatment
-      // // debugger.stopRuntimeMeasurement(handle);
       return new JPABooleanOperatorImp(this.jpaCompiler.getConverter(), operator, (JPAExpression) left,
           (JPAExpression) right);
     }
@@ -84,7 +83,6 @@ class JPAVisitor implements JPAExpressionVisitor {
         || operator == BinaryOperatorKind.LT
         || operator == BinaryOperatorKind.LE
         || operator == BinaryOperatorKind.HAS) {
-      // // debugger.stopRuntimeMeasurement(handle);
       return new JPAComparisonOperatorImp(this.jpaCompiler.getConverter(), operator, left, right);
     }
     if (operator == BinaryOperatorKind.ADD
@@ -92,7 +90,6 @@ class JPAVisitor implements JPAExpressionVisitor {
         || operator == BinaryOperatorKind.MUL
         || operator == BinaryOperatorKind.DIV
         || operator == BinaryOperatorKind.MOD) {
-      // // debugger.stopRuntimeMeasurement(handle);
       return new JPAArithmeticOperatorImp(this.jpaCompiler.getConverter(), operator, left, right);
     }
     // // debugger.stopRuntimeMeasurement(handle);
@@ -151,20 +148,16 @@ class JPAVisitor implements JPAExpressionVisitor {
 
     // final int handle = debugger.startRuntimeMeasurement(this, "visitMember");
     if (getLambdaType(member.getResourcePath()) == UriResourceKind.lambdaAny) {
-      // // debugger.stopRuntimeMeasurement(handle);
       return new JPALambdaAnyOperation(this.jpaCompiler, member);
     } else if (getLambdaType(member.getResourcePath()) == UriResourceKind.lambdaAll) {
-      // // debugger.stopRuntimeMeasurement(handle);
       return new JPALambdaAllOperation(this.jpaCompiler, member);
     } else if (isAggregation(member.getResourcePath())) {
-      // // debugger.stopRuntimeMeasurement(handle);
       return new JPAAggregationOperationImp(jpaCompiler.getRoot(), jpaCompiler.getConverter());
     } else if (isCustomFunction(member.getResourcePath())) {
       final UriResource resource = member.getResourcePath().getUriResourceParts().get(0);
       final JPADataBaseFunction jpaFunction = (JPADataBaseFunction) this.jpaCompiler.getSd().getFunction(
           ((UriResourceFunction) resource).getFunction());
       final List<UriParameter> odataParams = ((UriResourceFunction) resource).getParameters();
-      // // debugger.stopRuntimeMeasurement(handle);
       return new JPAFunctionOperator(this, odataParams, jpaFunction);
     }
     // // debugger.stopRuntimeMeasurement(handle);
@@ -204,10 +197,8 @@ class JPAVisitor implements JPAExpressionVisitor {
       throws ODataApplicationException {
     // final int handle = debugger.startRuntimeMeasurement(this, "visitBinaryOperator");
     if (operator == UnaryOperatorKind.NOT) {
-      // // debugger.stopRuntimeMeasurement(handle);
       return new JPAUnaryBooleanOperatorImp(this.jpaCompiler.getConverter(), operator, (JPAExpressionOperator) operand);
     } else {
-      // // debugger.stopRuntimeMeasurement(handle);
       throw new ODataJPAFilterException(ODataJPAFilterException.MessageKeys.NOT_SUPPORTED_OPERATOR,
           HttpStatusCode.NOT_IMPLEMENTED, operator.name());
     }

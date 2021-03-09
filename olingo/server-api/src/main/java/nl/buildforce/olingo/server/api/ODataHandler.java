@@ -38,4 +38,5 @@ public interface ODataHandler {
    * different ODataHandler implementations/extensions.</p>
    */
   void register(OlingoExtension extension);
+
 }

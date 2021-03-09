@@ -16,8 +16,8 @@ public class ODataJPADBAdaptorException extends ODataJPAProcessException {
   public enum MessageKeys implements ODataJPAMessageKey {
     PARAMETER_MISSING,
     NOT_SUPPORTED_SEARCH,
-    PARAMETER_CONVERSION_ERROR,
-    WRONG_NO_KEY_PROP;
+    PARAMETER_CONVERSION_ERROR/*,
+    WRONG_NO_KEY_PROP*/;
 
     @Override
     public String getKey() {

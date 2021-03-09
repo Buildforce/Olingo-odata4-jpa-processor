@@ -97,6 +97,7 @@ public ODataJsonDeserializer(ContentType contentType, ServiceMetadata serviceMet
     this.constants = constants;
   }
 
+/*
   @Override
   public DeserializerResult entityCollection(InputStream stream, EdmEntityType edmEntityType)
       throws DeserializerException {
@@ -108,6 +109,7 @@ public ODataJsonDeserializer(ContentType contentType, ServiceMetadata serviceMet
       throw wrapParseException(e);
     }
   }
+*/
 
   private EntityCollection consumeEntityCollectionNode(EdmEntityType edmEntityType, ObjectNode tree,
                                                        ExpandTreeBuilder expandBuilder) throws DeserializerException {

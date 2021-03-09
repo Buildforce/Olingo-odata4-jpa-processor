@@ -183,7 +183,6 @@ public class TestStandardMethodsOfTestModel {
 
     final Method[] methods = clazz.getMethods();
     final Constructor<?> constructor = clazz.getConstructor();
-    assertNotNull(constructor);
     final Object instance = constructor.newInstance();
 
     for (final Method hashcode : methods) {

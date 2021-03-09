@@ -157,10 +157,12 @@ public class ODataWritableContent implements ODataContent {
       streamContent.write(Channels.newOutputStream(writeChannel));
   }
 
+/*
   @Override
   public void write(OutputStream stream) {
     write(Channels.newChannel(stream));
   }
+*/
 
   private ODataWritableContent(StreamContent streamContent) {
     this.streamContent = streamContent;
@@ -228,7 +230,7 @@ public class ODataWritableContent implements ODataContent {
         StreamContentForXml input = new StreamContentForXml(entities, entityType,
             (ODataXmlSerializer) serializer, metadata, options);
         return new ODataWritableContent(input);
-      } else if (fixedFormatSerializer instanceof FixedFormatSerializerImpl) {
+      } else if (fixedFormatSerializer != null) {
     	  StreamContent input = new StreamContentForMedia(mediaEntity, fixedFormatSerializer);
     	  return new ODataWritableContent(input);
       }
@@ -239,4 +241,5 @@ public class ODataWritableContent implements ODataContent {
       return SerializerStreamResultImpl.with().content(buildContent()).build();
     }
   }
+
 }

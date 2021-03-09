@@ -39,29 +39,31 @@ public class ODataRequest {
     this.method = method;
   }
 
-  /**
-   * <p>Sets a header in the request.</p>
-   * <p>The header name will be handled as case-insensitive key.</p>
-   * <p>If a header already exists then the header will be replaced by this new value.</p>
-   * @param name case-insensitive header name
-   * @param value value for the given header name
-   * @see <a href="http://ietf.org/rfc/rfc7230.txt">RFC 7230, section 3.2.2</a>
-   */
-  public void setHeader(String name, String value) {
-    headers.setHeader(name, value);
-  }
+// --Commented out by Inspection START (''21-03-09 21:51):
+//  /**
+//   * <p>Sets a header in the request.</p>
+//   * <p>The header name will be handled as case-insensitive key.</p>
+//   * <p>If a header already exists then the header will be replaced by this new value.</p>
+//   * @param name case-insensitive header name
+//   * @param value value for the given header name
+//   * @see <a href="http://ietf.org/rfc/rfc7230.txt">RFC 7230, section 3.2.2</a>
+//   */
+//  public void setHeader(String name, String value) {
+//    headers.setHeader(name, value);
+//  }
 
-  /**
-   * <p>Adds a header to the request.</p>
-   * <p>The header name will be handled as case-insensitive key.</p>
-   * <p>If a header already exists then the list of values will just be extended.</p>
-   * @param name case-insensitive header name
-   * @param value value for the given header name
-   * @see <a href="http://ietf.org/rfc/rfc7230.txt">RFC 7230, section 3.2.2</a>
-   */
-  public void addHeader(String name, String value) {
-    headers.addHeader(name, value);
-  }
+//  /**
+//   * <p>Adds a header to the request.</p>
+//   * <p>The header name will be handled as case-insensitive key.</p>
+//   * <p>If a header already exists then the list of values will just be extended.</p>
+//   * @param name case-insensitive header name
+//   * @param value value for the given header name
+//   * @see <a href="http://ietf.org/rfc/rfc7230.txt">RFC 7230, section 3.2.2</a>
+//   */
+//  public void addHeader(String name, String value) {
+//    headers.addHeader(name, value);
+//  }
+// --Commented out by Inspection STOP (''21-03-09 21:51)
 
   /**
    * <p>Adds a header to the request.</p>

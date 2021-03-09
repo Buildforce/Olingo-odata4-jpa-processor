@@ -70,9 +70,11 @@ public class ODataJPAMessageTextBuffer implements ODataJPAMessageBufferRead {
     return resourceLocale;
   }
 
+/*
   String getBundleName() {
     return bundleName;
   }
+*/
 
   Locale getLocale() {
     return locale;
@@ -81,4 +83,5 @@ public class ODataJPAMessageTextBuffer implements ODataJPAMessageBufferRead {
   private ResourceBundle getResourceBundle(Locale resourceLocale) {
     return ResourceBundle.getBundle(bundleName, resourceLocale);
   }
+
 }

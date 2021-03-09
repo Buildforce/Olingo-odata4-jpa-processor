@@ -28,4 +28,5 @@ public enum PropertyType {
    * Empty type (possibly, no type information could be retrieved).
    */
   EMPTY
+
 }

@@ -114,34 +114,17 @@ public class ODataHandlerImpl implements ODataHandler {
     // int measurementHandle = debugger.startRuntimeMeasurement("ODataHandler", "processInternal");
 
     response.setHeader(HttpHeader.ODATA_VERSION, ODataServiceVersion.V40.toString());
-    
-    try {
-      validateODataVersion(request);
-    } catch (ODataHandlerException e) {
-      // debugger.stopRuntimeMeasurement(measurementHandle);
-      throw e;
-    }
+
+    validateODataVersion(request);
 
     // int measurementUriParser = debugger.startRuntimeMeasurement("Parser", "parseUri");
-    try {
-      uriInfo = new Parser(serviceMetadata.getEdm(), odata)
-          .parseUri(request.getRawODataPath(), request.getRawQueryPath(), request.getRawBaseUri());
-    } catch (ODataLibraryException e) {
-      // debugger.stopRuntimeMeasurement(measurementUriParser);
-      // debugger.stopRuntimeMeasurement(measurementHandle);
-      throw e;
-    }
+    uriInfo = new Parser(serviceMetadata.getEdm(), odata)
+        .parseUri(request.getRawODataPath(), request.getRawQueryPath(), request.getRawBaseUri());
     // debugger.stopRuntimeMeasurement(measurementUriParser);
 
     // int measurementUriValidator = debugger.startRuntimeMeasurement("UriValidator", "validate");
     HttpMethod method = request.getMethod();
-    try {
-      new UriValidator().validate(uriInfo, method);
-    } catch (UriValidationException e) {
-      // debugger.stopRuntimeMeasurement(measurementUriValidator);
-      // debugger.stopRuntimeMeasurement(measurementHandle);
-      throw e;
-    }
+    new UriValidator().validate(uriInfo, method);
     // debugger.stopRuntimeMeasurement(measurementUriValidator);
 
     // int measurementDispatcher = debugger.startRuntimeMeasurement("ODataDispatcher", "dispatch");
@@ -253,12 +236,15 @@ public class ODataHandlerImpl implements ODataHandler {
     return customETagSupport;
   }
 
+/*
   public Exception getLastThrownException() {
     return lastThrownException;
   }
 
+
   public UriInfo getUriInfo() {
     return uriInfo;
   }
+*/
 
 }

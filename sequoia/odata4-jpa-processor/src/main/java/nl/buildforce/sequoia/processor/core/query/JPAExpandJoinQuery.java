@@ -101,7 +101,6 @@ public final class JPAExpandJoinQuery extends JPAAbstractJoinQuery {
 
       // final int resultHandle = debugger.startRuntimeMeasurement(tupleQuery, "getResultList");
       final List<Tuple> intermediateResult = tupleQuery.getResultList();
-      // // debugger.stopRuntimeMeasurement(resultHandle);
       if (uriResource.getTopOption() != null || uriResource.getSkipOption() != null) {
         // Simplest solution for the problem. Read all and throw away, what is not requested
         if (uriResource.getSkipOption() != null)
@@ -113,7 +112,6 @@ public final class JPAExpandJoinQuery extends JPAAbstractJoinQuery {
 
       final Set<JPAPath> requestedSelection = new HashSet<>();
       buildSelectionAddNavigationAndSelect(uriResource, requestedSelection, uriResource.getSelectOption());
-      // // debugger.stopRuntimeMeasurement(handle);
       return new JPAExpandQueryResult(result, count(), jpaEntity, requestedSelection);
 
     } catch (JPANoSelectionException e) {
@@ -362,7 +360,6 @@ public final class JPAExpandJoinQuery extends JPAAbstractJoinQuery {
       whereCondition = addWhereClause(whereCondition, createExpandWhere());
       whereCondition = addWhereClause(whereCondition, createProtectionWhere(claimsProvider));
     } catch (ODataApplicationException e) {
-      // // // debugger.stopRuntimeMeasurement(handle);
       throw e;
     }
     // // // debugger.stopRuntimeMeasurement(handle);

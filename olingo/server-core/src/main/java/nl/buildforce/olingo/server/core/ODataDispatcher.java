@@ -326,13 +326,12 @@ public class ODataDispatcher {
           valueRepresentationType, true);
       ContentType responseFormat = ContentNegotiator.doContentNegotiation(uriInfo.getFormatOption(),
           request, handler.getCustomContentTypeSupport(), valueRepresentationType);
-      handler.selectProcessor(PrimitiveValueProcessor.class)
-          .updatePrimitiveValue(request, response, uriInfo, requestFormat, responseFormat);
+      handler.selectProcessor(PrimitiveValueProcessor.class).updatePrimitiveValue();
     } else if (method == HttpMethod.DELETE && resource instanceof UriResourceProperty) {
       validatePreferHeader(request);
       validatePreconditions(request, false);
       handler.selectProcessor(PrimitiveValueProcessor.class)
-          .deletePrimitiveValue(request, response, uriInfo);
+          .deletePrimitiveValue();
     } else {
       throwMethodNotAllowed(method);
     }
