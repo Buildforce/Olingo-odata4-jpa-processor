@@ -30,12 +30,14 @@ public interface UriHelper {
   String buildContextURLSelectList(EdmStructuredType type, ExpandOption expand, SelectOption select)
       throws SerializerException;
 
-  /**
-   * Builds the key-predicate part of a {@link nl.buildforce.olingo.commons.api.data.ContextURL ContextURL}.
-   * @param keys the keys as a list of {@link UriParameter} instances
-   * @return a String with the key predicate
-   */
-  String buildContextURLKeyPredicate(List<UriParameter> keys) throws SerializerException;
+// --Commented out by Inspection START (''21-03-10 00:11):
+//  /**
+//   * Builds the key-predicate part of a {@link nl.buildforce.olingo.commons.api.data.ContextURL ContextURL}.
+//   * @param keys the keys as a list of {@link UriParameter} instances
+//   * @return a String with the key predicate
+//   */
+//  String buildContextURLKeyPredicate(List<UriParameter> keys) throws SerializerException;
+// --Commented out by Inspection STOP (''21-03-10 00:11)
 
   /**
    * Builds the relative canonical URL for the given entity in the given entity set.

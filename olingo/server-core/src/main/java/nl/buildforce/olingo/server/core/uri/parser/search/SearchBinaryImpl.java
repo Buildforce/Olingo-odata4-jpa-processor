@@ -20,6 +20,7 @@ public class SearchBinaryImpl extends SearchExpressionImpl implements SearchBina
     this.right = right;
   }
 
+/*
   @Override
   public SearchBinaryOperatorKind getOperator() {
     return operator;
@@ -34,9 +35,11 @@ public class SearchBinaryImpl extends SearchExpressionImpl implements SearchBina
   public SearchExpression getRightOperand() {
     return right;
   }
+*/
 
   @Override
   public String toString() {
     return "{" + left + " " + operator.name() + " " + right + '}';
   }
+
 }

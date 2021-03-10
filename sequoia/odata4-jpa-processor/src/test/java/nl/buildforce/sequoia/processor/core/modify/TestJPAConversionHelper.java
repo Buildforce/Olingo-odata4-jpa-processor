@@ -176,11 +176,13 @@ public abstract class TestJPAConversionHelper {
 
     }
 
+/*
     @Override
     public String buildContextURLKeyPredicate(List<UriParameter> keys) {
       fail();
       return null;
     }
+*/
 
     @Override
     public String buildContextURLSelectList(EdmStructuredType type, ExpandOption expand, SelectOption select) {

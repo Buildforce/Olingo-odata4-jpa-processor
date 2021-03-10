@@ -24,4 +24,5 @@ public class SearchOptionImpl extends SystemQueryOptionImpl implements SearchOpt
     this.searchExpression = searchExpression;
     return this;
   }
+
 }

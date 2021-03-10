@@ -20,11 +20,13 @@ public interface ServiceMetadata {
    */
   Edm getEdm();
 
-  /**
-   * Get the data-service version.
-   * @return data service version of this service
-   */
-  ODataServiceVersion getDataServiceVersion();
+// --Commented out by Inspection START (''21-03-09 23:53):
+//  /**
+//   * Get the data-service version.
+//   * @return data service version of this service
+//   */
+//  ODataServiceVersion getDataServiceVersion();
+// --Commented out by Inspection STOP (''21-03-09 23:53)
 
   /**
    * Gets the list of references defined for this service.
@@ -37,4 +39,5 @@ public interface ServiceMetadata {
    * @return metadata ETag support
    */
   ServiceMetadataETagSupport getServiceMetadataETagSupport();
+
 }

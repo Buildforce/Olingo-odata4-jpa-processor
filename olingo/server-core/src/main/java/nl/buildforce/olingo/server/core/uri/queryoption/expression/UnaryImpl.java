@@ -28,10 +28,12 @@ public class UnaryImpl implements Unary {
     return operator;
   }
 
+/*
   @Override
   public Expression getOperand() {
     return expression;
   }
+*/
 
   public EdmType getType() {
     return type;
@@ -47,4 +49,5 @@ public class UnaryImpl implements Unary {
   public String toString() {
     return "{" + operator.name() + " " + expression + '}';
   }
+
 }

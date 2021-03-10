@@ -38,11 +38,13 @@ public class ServiceMetadataDouble implements ServiceMetadata {
     return edm;
   }
 
+/*
   @Override
   public ODataServiceVersion getDataServiceVersion() {
     fail();
     return null;
   }
+*/
 
   @Override
   public List<EdmxReference> getReferences() {

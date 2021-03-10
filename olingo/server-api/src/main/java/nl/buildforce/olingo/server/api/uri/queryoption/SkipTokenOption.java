@@ -9,9 +9,11 @@ package nl.buildforce.olingo.server.api.uri.queryoption;
  */
 public interface SkipTokenOption extends SystemQueryOption {
 
-  /**
-   * @return Value of $skiptoken
-   */
-  String getValue();
+// --Commented out by Inspection START (''21-03-10 00:00):
+//  /**
+//   * @return Value of $skiptoken
+//   */
+//  String getValue();
+// --Commented out by Inspection STOP (''21-03-10 00:00)
 
 }

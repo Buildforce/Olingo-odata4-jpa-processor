@@ -26,11 +26,13 @@ public class UriHelperDouble implements UriHelper {
     return null;
   }
 
+/*
   @Override
   public String buildContextURLKeyPredicate(List<UriParameter> keys) {
     fail();
     return null;
   }
+*/
 
   @Override
   public String buildCanonicalURL(EdmEntitySet edmEntitySet, Entity entity) {

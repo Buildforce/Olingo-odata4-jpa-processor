@@ -39,10 +39,12 @@ public class UriHelperImpl implements UriHelper {
     return ContextURLHelper.buildSelectList(type, expand, select);
   }
 
+/*
   @Override
   public String buildContextURLKeyPredicate(List<UriParameter> keys) {
     return ContextURLHelper.buildKeyPredicate(keys);
   }
+*/
 
   @Override
   public String buildCanonicalURL(EdmEntitySet edmEntitySet, Entity entity) throws SerializerException {

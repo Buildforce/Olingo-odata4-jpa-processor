@@ -44,10 +44,12 @@ final class JPALambdaAllOperation extends JPALambdaOperation {
       return visitor.visitUnaryOperator(getOperator(), operand);
     }
 
+/*
     @Override
     public nl.buildforce.olingo.server.api.uri.queryoption.expression.Expression getOperand() {
       return expression;
     }
+*/
 
     @Override
     public UnaryOperatorKind getOperator() {

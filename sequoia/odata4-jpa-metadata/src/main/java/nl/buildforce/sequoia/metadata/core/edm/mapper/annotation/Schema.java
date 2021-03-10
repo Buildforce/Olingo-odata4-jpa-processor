@@ -126,4 +126,5 @@ class Schema {
   private List<CsdlTypeDefinition> asTypeDefinitions() {
     return Collections.unmodifiableList(typeDefinitions);
   }
+
 }

@@ -11,11 +11,15 @@ package nl.buildforce.olingo.server.api.uri.queryoption.expression;
  */
 public interface Unary extends Expression {
 
-  /**
-   * @return The used binary operator
-   * @see UnaryOperatorKind
-   */
-  Expression getOperand();
+// --Commented out by Inspection START (''21-03-10 00:06):
+//  /**
+//   * @return The used binary operator
+// --Commented out by Inspection START (''21-03-10 00:06):
+////   * @see UnaryOperatorKind
+////   */
+////  Expression getOperand();
+//// --Commented out by Inspection STOP (''21-03-10 00:06)
+// --Commented out by Inspection STOP (''21-03-10 00:06)
 
   /**
    * @return Expression sub tree to which the operator applies

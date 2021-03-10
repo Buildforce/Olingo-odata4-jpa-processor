@@ -36,10 +36,12 @@ public class ServiceMetadataImpl implements ServiceMetadata {
     return edm;
   }
 
+/*
   @Override
   public ODataServiceVersion getDataServiceVersion() {
     return ODataServiceVersion.V40;
   }
+*/
 
   @Override
   public List<EdmxReference> getReferences() {
@@ -50,4 +52,5 @@ public class ServiceMetadataImpl implements ServiceMetadata {
   public ServiceMetadataETagSupport getServiceMetadataETagSupport() {
     return serviceMetadataETagSupport;
   }
+
 }

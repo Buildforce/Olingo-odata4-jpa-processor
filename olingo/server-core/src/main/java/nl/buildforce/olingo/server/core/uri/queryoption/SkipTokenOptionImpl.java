@@ -12,10 +12,12 @@ public class SkipTokenOptionImpl extends SystemQueryOptionImpl implements SkipTo
     setKind(SystemQueryOptionKind.SKIPTOKEN);
   }
 
+/*
   @Override
   public String getValue() {
     return getText();
   }
+*/
 
   public SkipTokenOptionImpl setValue(String skipTokenValue) {
     setText(skipTokenValue);

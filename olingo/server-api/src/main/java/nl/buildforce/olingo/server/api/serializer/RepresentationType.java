@@ -29,7 +29,7 @@ public enum RepresentationType {
   /** collection of complex-type instances */
   COLLECTION_COMPLEX,
   /** differences */
-  DIFFERENCES,
+  // DIFFERENCES,
   /** media entity */
   MEDIA,
   /** binary-type instance */
@@ -44,4 +44,5 @@ public enum RepresentationType {
   COUNT,
   /** parameters of an action */
   ACTION_PARAMETERS
+
 }

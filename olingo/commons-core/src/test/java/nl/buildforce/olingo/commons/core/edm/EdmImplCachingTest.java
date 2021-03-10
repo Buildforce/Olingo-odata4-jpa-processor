@@ -47,8 +47,6 @@ public class EdmImplCachingTest {
   @Test
   public void cacheSchema() {
     List<EdmSchema> schemas = edm.getSchemas();
-    assertNotNull(schemas);
-
     assertEquals(1, schemas.size());
 
     List<EdmSchema> cachedSchemas = edm.getSchemas();
@@ -184,11 +182,12 @@ public class EdmImplCachingTest {
     EdmFunction function = edm.getUnboundFunction(NAME1, null);
     assertNotNull(function);
 
-    EdmFunction cachedfunction = edm.getUnboundFunction(NAME1, null);
-    assertNotNull(cachedfunction);
+    EdmFunction cachedFunction = edm.getUnboundFunction(NAME1, null);
+    assertNotNull(cachedFunction);
 
-      assertSame(function, cachedfunction);
-    assertEquals(function, cachedfunction);
+      assertSame(function, cachedFunction);
+
+    assertEquals(function, cachedFunction);
 
     EdmFunction function2 = edm.getBoundFunction(NAME2, null, false, null);
     assertNotNull(function2);
@@ -198,16 +197,16 @@ public class EdmImplCachingTest {
 
   @Test
   public void cacheBoundFunction() {
-    EdmFunction function = edm.getBoundFunction(NAME1, NAME2, true, new ArrayList<String>());
+    EdmFunction function = edm.getBoundFunction(NAME1, NAME2, true, new ArrayList<>());
     assertNotNull(function);
 
-    EdmFunction cachedfunction = edm.getBoundFunction(NAME1, NAME2, true, new ArrayList<String>());
+    EdmFunction cachedfunction = edm.getBoundFunction(NAME1, NAME2, true, new ArrayList<>());
     assertNotNull(cachedfunction);
 
       assertSame(function, cachedfunction);
     assertEquals(function, cachedfunction);
 
-    EdmFunction function2 = edm.getBoundFunction(NAME2, NAME2, true, new ArrayList<String>());
+    EdmFunction function2 = edm.getBoundFunction(NAME2, NAME2, true, new ArrayList<>());
     assertNotNull(function2);
 
     assertNotSame(function, function2);
@@ -215,13 +214,13 @@ public class EdmImplCachingTest {
 
   @Test
   public void cacheUnboundFunctionWithParameters() {
-    ArrayList<String> parameters1 = new ArrayList<String>();
+    ArrayList<String> parameters1 = new ArrayList<>();
     parameters1.add("A");
     parameters1.add("B");
     EdmFunction function = edm.getBoundFunction(NAME1, NAME2, true, parameters1);
     assertNotNull(function);
 
-    ArrayList<String> parameters2 = new ArrayList<String>();
+    ArrayList<String> parameters2 = new ArrayList<>();
     parameters2.add("B");
     parameters2.add("A");
     EdmFunction cachedfunction = edm.getBoundFunction(NAME1, NAME2, true, parameters2);
@@ -230,7 +229,7 @@ public class EdmImplCachingTest {
       assertSame(function, cachedfunction);
     assertEquals(function, cachedfunction);
 
-    EdmFunction function2 = edm.getBoundFunction(NAME2, NAME2, true, new ArrayList<String>());
+    EdmFunction function2 = edm.getBoundFunction(NAME2, NAME2, true, new ArrayList<>());
     assertNotNull(function2);
 
     assertNotSame(function, function2);
@@ -271,9 +270,7 @@ public class EdmImplCachingTest {
   }
 
   @Before
-  public void setup() {
-    edm = new LocalEdm();
-  }
+  public void setup() { edm = new LocalEdm(); }
 
   private class LocalEdm extends AbstractEdm {
 
@@ -374,7 +371,7 @@ public class EdmImplCachingTest {
 
     @Override
     protected Map<String, String> createAliasToNamespaceInfo() {
-      return new HashMap<String, String>();
+      return new HashMap<>();
     }
 
     @Override
@@ -429,7 +426,7 @@ public class EdmImplCachingTest {
     protected Map<String, EdmSchema> createSchemas() {
       EdmSchema schema = mock(EdmSchema.class);
       when(schema.getNamespace()).thenReturn(NAME1.getNamespace());
-      return new HashMap<String, EdmSchema>() {
+      return new HashMap<>() {
         //     private static final long serialVersionUID = 3109256773218160485L;
 
         {
