@@ -1,5 +1,16 @@
 package nl.buildforce.sequoia.processor.core.modify;
 
+import jakarta.persistence.Tuple;
+import jakarta.persistence.TupleElement;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.Map;
+
+import nl.buildforce.olingo.commons.api.data.ComplexValue;
+import nl.buildforce.olingo.server.api.OData;
+import nl.buildforce.olingo.server.api.ODataApplicationException;
+
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAssociationPath;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAEntityType;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
@@ -8,19 +19,12 @@ import nl.buildforce.sequoia.processor.core.converter.JPAExpandResult;
 import nl.buildforce.sequoia.processor.core.converter.JPATupleChildConverter;
 import nl.buildforce.sequoia.processor.core.util.ServiceMetadataDouble;
 import nl.buildforce.sequoia.processor.core.util.TestBase;
-import nl.buildforce.olingo.commons.api.data.ComplexValue;
-import nl.buildforce.olingo.server.api.OData;
-import nl.buildforce.olingo.server.api.ODataApplicationException;
+
 import org.junit.jupiter.api.Test;
-
-import jakarta.persistence.Tuple;
-import jakarta.persistence.TupleElement;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public abstract class TestJPACreateResult extends TestBase {
 

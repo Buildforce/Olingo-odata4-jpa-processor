@@ -1,7 +1,17 @@
 package nl.buildforce.sequoia.processor.core.api.example;
 
-import nl.buildforce.olingo.server.api.uri.*;
-import nl.buildforce.olingo.server.api.uri.queryoption.*;
+import nl.buildforce.olingo.server.api.uri.UriInfo;
+import nl.buildforce.olingo.server.api.uri.UriInfoResource;
+import nl.buildforce.olingo.server.api.uri.UriResource;
+import nl.buildforce.olingo.server.api.uri.UriResourceEntitySet;
+import nl.buildforce.olingo.server.api.uri.UriResourceKind;
+import nl.buildforce.olingo.server.api.uri.UriResourcePrimitiveProperty;
+import nl.buildforce.olingo.server.api.uri.queryoption.OrderByItem;
+import nl.buildforce.olingo.server.api.uri.queryoption.OrderByOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.SkipOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.SystemQueryOptionKind;
+import nl.buildforce.olingo.server.api.uri.queryoption.TopOption;
+
 import nl.buildforce.sequoia.processor.core.api.JPAODataPage;
 import nl.buildforce.sequoia.processor.core.query.JPACountQuery;
 import nl.buildforce.olingo.commons.api.edm.EdmEntitySet;
@@ -9,6 +19,7 @@ import nl.buildforce.olingo.commons.api.edm.EdmProperty;
 import nl.buildforce.olingo.commons.api.edm.EdmType;
 import nl.buildforce.olingo.server.api.ODataApplicationException;
 import nl.buildforce.olingo.server.api.uri.queryoption.expression.Member;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -285,4 +296,5 @@ public class JPAExamplePagingProviderTest {
   private String toODataString(final String skiptoken) {
     return "'" + skiptoken + "'";
   }
+
 }

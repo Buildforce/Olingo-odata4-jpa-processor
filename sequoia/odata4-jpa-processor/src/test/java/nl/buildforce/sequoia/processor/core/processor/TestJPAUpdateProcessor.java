@@ -1,6 +1,30 @@
 package nl.buildforce.sequoia.processor.core.processor;
 
-import nl.buildforce.olingo.server.api.*;
+import jakarta.persistence.EntityManager;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
+import nl.buildforce.olingo.commons.api.edm.EdmProperty;
+import nl.buildforce.olingo.commons.api.ex.ODataException;
+import nl.buildforce.olingo.commons.api.format.ContentType;
+import nl.buildforce.olingo.commons.api.http.HttpMethod;
+import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
+import nl.buildforce.olingo.server.api.OData;
+import nl.buildforce.olingo.server.api.ODataApplicationException;
+import nl.buildforce.olingo.server.api.ODataLibraryException;
+import nl.buildforce.olingo.server.api.ODataRequest;
+import nl.buildforce.olingo.server.api.ODataResponse;
+import nl.buildforce.olingo.server.api.serializer.SerializerException;
+import nl.buildforce.olingo.server.api.uri.UriResourceProperty;
+
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAEntityType;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAStructuredType;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAException;
@@ -18,34 +42,17 @@ import nl.buildforce.sequoia.processor.core.testmodel.AdministrativeDivision;
 import nl.buildforce.sequoia.processor.core.testmodel.AdministrativeDivisionKey;
 import nl.buildforce.sequoia.processor.core.testmodel.InhouseAddress;
 import nl.buildforce.sequoia.processor.core.testmodel.Organization;
-import nl.buildforce.olingo.commons.api.edm.EdmProperty;
-import nl.buildforce.olingo.commons.api.ex.ODataException;
-import nl.buildforce.olingo.commons.api.format.ContentType;
-import nl.buildforce.olingo.commons.api.http.HttpHeader;
-import nl.buildforce.olingo.commons.api.http.HttpMethod;
-import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
-import nl.buildforce.olingo.server.api.serializer.SerializerException;
-import nl.buildforce.olingo.server.api.uri.UriResourceProperty;
+import static nl.buildforce.olingo.commons.api.http.HttpHeader.PREFERENCE_APPLIED;
+
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
-import jakarta.persistence.EntityManager;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.List;
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
@@ -336,7 +343,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
 
     processor.updateEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON);
 
-    assertEquals(PREFERENCE_APPLIED, response.getHeader(HttpHeader.PREFERENCE_APPLIED));
+    assertEquals(RETURN_MINIMAL, response.getHeader(PREFERENCE_APPLIED));
   }
 
   @Test
@@ -351,7 +358,7 @@ public class TestJPAUpdateProcessor extends TestJPAModifyProcessor {
 
     processor.updateEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON);
 
-    assertEquals(PREFERENCE_APPLIED, response.getHeader(HttpHeader.PREFERENCE_APPLIED));
+    assertEquals(RETURN_MINIMAL, response.getHeader(PREFERENCE_APPLIED));
   }
 
   @Test

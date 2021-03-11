@@ -1,7 +1,6 @@
 package nl.buildforce.sequoia.processor.core.processor;
 
 import nl.buildforce.olingo.commons.api.format.ContentType;
-import nl.buildforce.olingo.commons.api.http.HttpHeader;
 import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
 import nl.buildforce.olingo.server.api.OData;
 import nl.buildforce.olingo.server.api.ODataApplicationException;
@@ -12,6 +11,7 @@ import nl.buildforce.olingo.server.api.uri.UriResource;
 import nl.buildforce.olingo.server.api.uri.UriResourceKind;
 import nl.buildforce.olingo.server.api.uri.queryoption.SystemQueryOption;
 import nl.buildforce.olingo.server.api.uri.queryoption.SystemQueryOptionKind;
+
 import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAException;
 import nl.buildforce.sequoia.processor.core.api.JPAODataCRUDContextAccess;
 import nl.buildforce.sequoia.processor.core.api.JPAODataPage;
@@ -23,6 +23,7 @@ import nl.buildforce.sequoia.processor.core.query.JPACountQuery;
 import nl.buildforce.sequoia.processor.core.query.JPAJoinQuery;
 import nl.buildforce.sequoia.processor.core.serializer.JPASerializerFactory;
 import org.apache.commons.lang3.StringUtils;
+import static nl.buildforce.olingo.commons.api.http.HttpHeader.ODATA_MAX_VERSION;
 
 import java.util.Collections;
 import java.util.List;
@@ -48,7 +49,7 @@ public final class JPAProcessorFactory {
       final JPAODataRequestContextAccess context, final Map<String, List<String>> header) throws ODataJPAException, SerializerException {
 
     final JPAODataRequestContextAccess requestContext = new JPAODataRequestContextImpl(uriInfo,
-            serializerFactory.createCUDSerializer(responseFormat, uriInfo, Optional.ofNullable(header.get(HttpHeader.ODATA_MAX_VERSION))),
+            serializerFactory.createCUDSerializer(responseFormat, uriInfo, Optional.ofNullable(header.get(ODATA_MAX_VERSION))),
         context);
 
     return new JPACUDRequestProcessor(odata, serviceMetadata, sessionContext, requestContext,
@@ -69,7 +70,7 @@ public final class JPAProcessorFactory {
 
     final JPAODataRequestContextAccess requestContext = new JPAODataRequestContextImpl(uriInfo,
         responseFormat != null ? serializerFactory.createSerializer(responseFormat, uriInfo, Optional.ofNullable(header
-            .get(HttpHeader.ODATA_MAX_VERSION))) : null, context);
+            .get(ODATA_MAX_VERSION))) : null, context);
 
     return new JPAActionRequestProcessor(odata, sessionContext, requestContext);
 
@@ -86,7 +87,7 @@ public final class JPAProcessorFactory {
       requestContext = new JPAODataRequestContextImpl(page,
               serializerFactory.createSerializer(responseFormat,
                       page.getUriInfo(),
-                      Optional.ofNullable(header.get(HttpHeader.ODATA_MAX_VERSION))),
+                      Optional.ofNullable(header.get(ODATA_MAX_VERSION))),
               context);
     } catch (SerializerException | JPAIllegalAccessException | ODataApplicationException e) {
       throw new ODataJPAProcessorException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
@@ -198,4 +199,5 @@ public final class JPAProcessorFactory {
     }
     return Collections.emptyList();
   }
+
 }

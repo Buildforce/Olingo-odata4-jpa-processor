@@ -5,7 +5,7 @@ package nl.buildforce.olingo.server.api.uri.queryoption.search;
 
 public enum SearchBinaryOperatorKind {
   AND,
-  OR;
+  OR
 
 // --Commented out by Inspection START (''21-03-09 23:47):
 //  public static SearchBinaryOperatorKind get(String operator) {

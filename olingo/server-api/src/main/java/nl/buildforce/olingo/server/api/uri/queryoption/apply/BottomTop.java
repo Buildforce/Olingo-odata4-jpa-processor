@@ -4,7 +4,6 @@
 package nl.buildforce.olingo.server.api.uri.queryoption.apply;
 
 import nl.buildforce.olingo.server.api.uri.queryoption.ApplyItem;
-import nl.buildforce.olingo.server.api.uri.queryoption.expression.Expression;
 
 /**
  * Represents a transformation with one of the pre-defined methods

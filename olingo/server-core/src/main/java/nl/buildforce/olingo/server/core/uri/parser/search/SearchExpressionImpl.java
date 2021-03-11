@@ -3,10 +3,7 @@
 */
 package nl.buildforce.olingo.server.core.uri.parser.search;
 
-import nl.buildforce.olingo.server.api.uri.queryoption.search.SearchBinary;
 import nl.buildforce.olingo.server.api.uri.queryoption.search.SearchExpression;
-import nl.buildforce.olingo.server.api.uri.queryoption.search.SearchTerm;
-import nl.buildforce.olingo.server.api.uri.queryoption.search.SearchUnary;
 
 public abstract class SearchExpressionImpl implements SearchExpression {
 

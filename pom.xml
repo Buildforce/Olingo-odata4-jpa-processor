@@ -16,9 +16,22 @@
         <jackson.version>2.12.2</jackson.version>
         <jakarta-servlet.version>5.0.0</jakarta-servlet.version>
         <odata4-jpa.version>0.0.2</odata4-jpa.version>
-        <project.build.source>15</project.build.source>
+        <project.build.source>14</project.build.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>${project.build.source}</source>
+                    <target>${project.build.source}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <distributionManagement>
         <repository>

@@ -3,7 +3,7 @@ package nl.buildforce.sequoia.processor.core.api;
 import nl.buildforce.sequoia.processor.core.exception.ODataJPAProcessorException;
 import nl.buildforce.sequoia.processor.core.exception.ODataJPATransactionException;
 import nl.buildforce.olingo.commons.api.format.ContentType;
-import nl.buildforce.olingo.commons.api.http.HttpHeader;
+
 import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
 import nl.buildforce.olingo.server.api.OData;
 import nl.buildforce.olingo.server.api.ODataApplicationException;
@@ -24,6 +24,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import static com.google.common.net.HttpHeaders.CONTENT_TYPE;
 
 /**
  *
@@ -51,7 +53,7 @@ public final class JPAODataBatchProcessor implements BatchProcessor {
       throws ODataApplicationException, ODataLibraryException {
 
     // final int handle = requestContext.getDebugger().startRuntimeMeasurement(this, "processBatch");
-    final String boundary = facade.extractBoundaryFromContentType(request.getHeader(HttpHeader.CONTENT_TYPE));
+    final String boundary = facade.extractBoundaryFromContentType(request.getHeader(CONTENT_TYPE));
     final BatchOptions options = BatchOptions.with()
         .rawBaseUri(request.getRawBaseUri())
         .rawServiceResolutionUri(request.getRawServiceResolutionUri())
@@ -67,7 +69,7 @@ public final class JPAODataBatchProcessor implements BatchProcessor {
     final InputStream responseContent =
             odata.createFixedFormatSerializer().batchResponse(responseParts, responseBoundary);
 
-    response.setHeader(HttpHeader.CONTENT_TYPE, ContentType.MULTIPART_MIXED + ";boundary=" + responseBoundary);
+    response.setHeader(CONTENT_TYPE, ContentType.MULTIPART_MIXED + ";boundary=" + responseBoundary);
     response.setContent(responseContent);
     response.setStatusCode(HttpStatusCode.ACCEPTED.getStatusCode());
     // requestContext.getDebugger().stopRuntimeMeasurement(handle);

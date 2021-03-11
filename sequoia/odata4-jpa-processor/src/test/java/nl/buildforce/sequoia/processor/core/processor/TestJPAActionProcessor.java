@@ -1,23 +1,5 @@
 package nl.buildforce.sequoia.processor.core.processor;
 
-import nl.buildforce.sequoia.metadata.api.JPAEdmProvider;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAction;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAttribute;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAEntityType;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAOperationResultParameter;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAParameter;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAPath;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAServiceDocument;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAStructuredType;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
-import nl.buildforce.sequoia.processor.core.api.JPAODataCRUDContextAccess;
-import nl.buildforce.sequoia.processor.core.api.JPAODataRequestContextAccess;
-import nl.buildforce.sequoia.processor.core.serializer.JPAOperationSerializer;
-import nl.buildforce.sequoia.processor.core.testmodel.AdministrativeDivision;
-import nl.buildforce.sequoia.processor.core.testmodel.CommunicationData;
-import nl.buildforce.sequoia.processor.core.testobjects.FileAccess;
-import nl.buildforce.sequoia.processor.core.testobjects.TestJavaActionNoParameter;
-import nl.buildforce.sequoia.processor.core.testobjects.TestJavaActions;
 import nl.buildforce.olingo.commons.api.data.Annotatable;
 import nl.buildforce.olingo.commons.api.data.Parameter;
 import nl.buildforce.olingo.commons.api.data.ValueType;
@@ -47,14 +29,32 @@ import nl.buildforce.olingo.server.api.uri.UriParameter;
 import nl.buildforce.olingo.server.api.uri.UriResource;
 import nl.buildforce.olingo.server.api.uri.UriResourceAction;
 import nl.buildforce.olingo.server.api.uri.UriResourceEntitySet;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import nl.buildforce.sequoia.metadata.api.JPAEdmProvider;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAction;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAttribute;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAEntityType;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAOperationResultParameter;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAParameter;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAPath;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAServiceDocument;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAStructuredType;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
+import nl.buildforce.sequoia.processor.core.api.JPAODataCRUDContextAccess;
+import nl.buildforce.sequoia.processor.core.api.JPAODataRequestContextAccess;
+import nl.buildforce.sequoia.processor.core.serializer.JPAOperationSerializer;
+import nl.buildforce.sequoia.processor.core.testmodel.AdministrativeDivision;
+import nl.buildforce.sequoia.processor.core.testmodel.CommunicationData;
+import nl.buildforce.sequoia.processor.core.testobjects.FileAccess;
+import nl.buildforce.sequoia.processor.core.testobjects.TestJavaActionNoParameter;
+import nl.buildforce.sequoia.processor.core.testobjects.TestJavaActions;
+
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.stubbing.Answer;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.CriteriaBuilder;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -62,11 +62,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class TestJPAActionProcessor {
-
   private JPAActionRequestProcessor cut;
   private ContentType requestFormat;
   @Mock

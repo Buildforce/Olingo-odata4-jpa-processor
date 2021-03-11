@@ -1,7 +1,6 @@
 package nl.buildforce.sequoia.processor.core.api;
 
 import nl.buildforce.olingo.commons.api.format.ContentType;
-import nl.buildforce.olingo.commons.api.http.HttpHeader;
 import nl.buildforce.olingo.commons.api.http.HttpMethod;
 import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
 import nl.buildforce.olingo.server.api.OData;
@@ -14,6 +13,11 @@ import nl.buildforce.olingo.server.api.etag.ServiceMetadataETagSupport;
 import nl.buildforce.olingo.server.api.processor.DefaultProcessor;
 import nl.buildforce.olingo.server.api.processor.ServiceDocumentProcessor;
 import nl.buildforce.olingo.server.api.serializer.ODataSerializer;
+
+import static com.google.common.net.HttpHeaders.CONTENT_TYPE;
+import static com.google.common.net.HttpHeaders.ETAG;
+import static com.google.common.net.HttpHeaders.IF_MATCH;
+import static com.google.common.net.HttpHeaders.IF_NONE_MATCH;
 
 public class JPAODataServiceDocumentProcessor implements ServiceDocumentProcessor {
 
@@ -44,11 +48,11 @@ public class JPAODataServiceDocumentProcessor implements ServiceDocumentProcesso
     ServiceMetadataETagSupport eTagSupport = serviceMetadata.getServiceMetadataETagSupport();
     if (eTagSupport != null && eTagSupport.getServiceDocumentETag() != null) {
       // Set application etag at response
-      response.setHeader(HttpHeader.ETAG, eTagSupport.getServiceDocumentETag());
+      response.setHeader(ETAG, eTagSupport.getServiceDocumentETag());
       // Check if service document has been modified
       ETagHelper eTagHelper = odata.createETagHelper();
       isNotModified = eTagHelper.checkReadPreconditions(eTagSupport.getServiceDocumentETag(), request
-          .getHeaders(HttpHeader.IF_MATCH), request.getHeaders(HttpHeader.IF_NONE_MATCH));
+          .getHeaders(IF_MATCH), request.getHeaders(IF_NONE_MATCH));
     }
 
     // Send the correct response
@@ -62,7 +66,7 @@ public class JPAODataServiceDocumentProcessor implements ServiceDocumentProcesso
         ODataSerializer serializer = odata.createSerializer(requestedContentType);
         response.setContent(serializer.serviceDocument(serviceMetadata, uri).getContent());
         response.setStatusCode(HttpStatusCode.OK.getStatusCode());
-        response.setHeader(HttpHeader.CONTENT_TYPE, requestedContentType.toString());
+        response.setHeader(CONTENT_TYPE, requestedContentType.toString());
       }
     }
   }

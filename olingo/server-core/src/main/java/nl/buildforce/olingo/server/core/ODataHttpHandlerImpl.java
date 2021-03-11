@@ -12,16 +12,13 @@ import java.nio.channels.ReadableByteChannel;
 import java.nio.channels.WritableByteChannel;
 import java.util.Collections;
 import java.util.Enumeration;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import nl.buildforce.olingo.commons.api.ex.ODataRuntimeException;
-import nl.buildforce.olingo.commons.api.http.HttpHeader;
 import nl.buildforce.olingo.commons.api.http.HttpMethod;
 import nl.buildforce.olingo.server.api.OData;
 import nl.buildforce.olingo.server.api.ODataContent;
@@ -35,6 +32,8 @@ import nl.buildforce.olingo.server.api.ServiceMetadata;
 import nl.buildforce.olingo.server.api.deserializer.DeserializerException;
 import nl.buildforce.olingo.server.api.etag.CustomETagSupport;
 import nl.buildforce.olingo.server.api.processor.Processor;
+import static nl.buildforce.olingo.commons.api.http.HttpHeader.X_HTTP_METHOD;
+import static nl.buildforce.olingo.commons.api.http.HttpHeader.X_HTTP_METHOD_OVERRIDE;
 
 public class ODataHttpHandlerImpl implements ODataHttpHandler {
 
@@ -109,9 +108,11 @@ public class ODataHttpHandlerImpl implements ODataHttpHandler {
   }
 */
 
+/*
   private String getIntAsString(int number) {
     return number == 0 ? "unknown" : Integer.toString(number);
   }
+*/
 
 /*
   @Override
@@ -215,8 +216,8 @@ public class ODataHttpHandlerImpl implements ODataHttpHandler {
 	    }
 	    try {
 	      if (httpRequestMethod == HttpMethod.POST) {
-	        String xHttpMethod = httpRequest.getHeader(HttpHeader.X_HTTP_METHOD);
-	        String xHttpMethodOverride = httpRequest.getHeader(HttpHeader.X_HTTP_METHOD_OVERRIDE);
+	        String xHttpMethod = httpRequest.getHeader(X_HTTP_METHOD);
+	        String xHttpMethodOverride = httpRequest.getHeader(X_HTTP_METHOD_OVERRIDE);
 
 	        if (xHttpMethod == null && xHttpMethodOverride == null) {
 	          return httpRequestMethod;

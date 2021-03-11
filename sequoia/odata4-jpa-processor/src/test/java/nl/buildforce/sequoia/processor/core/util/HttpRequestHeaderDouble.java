@@ -5,9 +5,11 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Map;
 import java.util.Set;
-import java.util.Map.Entry;
+
+import static com.google.common.net.HttpHeaders.CONTENT_TYPE;
 
 public class HttpRequestHeaderDouble {
   private final HashMap<String, List<String>> headers;
@@ -52,7 +54,7 @@ public class HttpRequestHeaderDouble {
   public void setBatchRequest() {
     List<String> headerValue = new ArrayList<>();
     headerValue.add("multipart/mixed;boundary=abc123");
-    headers.put("content-type", headerValue);
+    headers.put(CONTENT_TYPE, headerValue);
   }
 
   public void setHeaders(Map<String, List<String>> additionalHeaders) {
@@ -99,4 +101,5 @@ public class HttpRequestHeaderDouble {
     }
 
   }
+
 }

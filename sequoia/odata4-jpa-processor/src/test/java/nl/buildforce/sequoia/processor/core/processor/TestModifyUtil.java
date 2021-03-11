@@ -1,5 +1,11 @@
 package nl.buildforce.sequoia.processor.core.processor;
 
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAssociationPath;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAttribute;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAEntityType;
@@ -8,25 +14,25 @@ import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelExc
 import nl.buildforce.sequoia.processor.core.exception.ODataJPAInvocationTargetException;
 import nl.buildforce.sequoia.processor.core.exception.ODataJPAProcessException;
 import nl.buildforce.sequoia.processor.core.exception.ODataJPAProcessorException;
-import nl.buildforce.sequoia.processor.core.testmodel.*;
+import nl.buildforce.sequoia.processor.core.testmodel.AdministrativeDivisionKey;
+import nl.buildforce.sequoia.processor.core.testmodel.BusinessPartner;
+import nl.buildforce.sequoia.processor.core.testmodel.BusinessPartnerRole;
+import nl.buildforce.sequoia.processor.core.testmodel.Organization;
+import nl.buildforce.sequoia.processor.core.testmodel.Person;
+import nl.buildforce.sequoia.processor.core.testmodel.PostalAddressData;
 import nl.buildforce.sequoia.processor.core.testobjects.BusinessPartnerRoleWithoutSetter;
 import nl.buildforce.sequoia.processor.core.testobjects.OrganizationWithoutGetter;
 import nl.buildforce.sequoia.processor.core.util.TestBase;
 import nl.buildforce.sequoia.processor.core.util.TestHelper;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.stubbing.Answer;
-
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import org.mockito.stubbing.Answer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -324,4 +330,5 @@ public class TestModifyUtil extends TestBase {
     when(et.getKey()).thenReturn(keyAttributes);
     return et;
   }
+
 }

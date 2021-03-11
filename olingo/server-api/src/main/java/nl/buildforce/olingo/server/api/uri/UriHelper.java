@@ -3,14 +3,10 @@
 */
 package nl.buildforce.olingo.server.api.uri;
 
-import java.util.List;
-
 import nl.buildforce.olingo.commons.api.data.Entity;
-import nl.buildforce.olingo.commons.api.edm.Edm;
 import nl.buildforce.olingo.commons.api.edm.EdmEntitySet;
 import nl.buildforce.olingo.commons.api.edm.EdmEntityType;
 import nl.buildforce.olingo.commons.api.edm.EdmStructuredType;
-import nl.buildforce.olingo.server.api.deserializer.DeserializerException;
 import nl.buildforce.olingo.server.api.serializer.SerializerException;
 import nl.buildforce.olingo.server.api.uri.queryoption.ExpandOption;
 import nl.buildforce.olingo.server.api.uri.queryoption.SelectOption;

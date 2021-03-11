@@ -4,7 +4,6 @@
 package nl.buildforce.olingo.server.api;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -94,13 +93,15 @@ final class HttpHeaders {
     return headers.isEmpty() ? Collections.emptyMap() : Collections.unmodifiableMap(headers);
   }
 
-  /**
-   * Gets all header names.
-   * @return all header names or an empty collection if no headers have been set
-   */
-  public Collection<String> getHeaderNames() {
-    return headers.isEmpty() ? Collections.emptySet() : Collections.unmodifiableSet(headers.keySet());
-  }
+// --Commented out by Inspection START (''21-03-10 10:04):
+//  /**
+//   * Gets all header names.
+//   * @return all header names or an empty collection if no headers have been set
+//   */
+//  public Collection<String> getHeaderNames() {
+//    return headers.isEmpty() ? Collections.emptySet() : Collections.unmodifiableSet(headers.keySet());
+//  }
+// --Commented out by Inspection STOP (''21-03-10 10:04)
 
   /**
    * The canonical form of a header name is the already-used form regarding case,
@@ -116,4 +117,5 @@ final class HttpHeaders {
     }
     return name;
   }
+
 }

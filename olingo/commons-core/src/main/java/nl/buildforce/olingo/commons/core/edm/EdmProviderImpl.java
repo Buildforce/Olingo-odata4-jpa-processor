@@ -100,7 +100,7 @@ public class EdmProviderImpl extends AbstractEdm {
       List<CsdlAnnotation> annotations) {
     if (null != annotations) {
       for (CsdlAnnotation annotation : annotations) {
-        if (!compareAnnotations(csdlEntityContainer.getAnnotations(), annotation)) {
+        if (containsNotAnnotation(csdlEntityContainer.getAnnotations(), annotation)) {
           csdlEntityContainer.getAnnotations().add(annotation);
         } 
       }
@@ -136,7 +136,7 @@ public class EdmProviderImpl extends AbstractEdm {
   private void addAnnotationsOnEnumTypes(CsdlEnumType enumType, List<CsdlAnnotation> annotations) {
     if (null != annotations) {
       for (CsdlAnnotation annotation : annotations) {
-        if (!compareAnnotations(enumType.getAnnotations(), annotation)) {
+        if (containsNotAnnotation(enumType.getAnnotations(), annotation)) {
           enumType.getAnnotations().add(annotation);
         } 
       }
@@ -172,7 +172,7 @@ public class EdmProviderImpl extends AbstractEdm {
   private void addAnnotationsOnTypeDefinitions(CsdlTypeDefinition typeDefinition, List<CsdlAnnotation> annotations) {
     if (null != annotations) {
       for (CsdlAnnotation annotation : annotations) {
-        if (!compareAnnotations(typeDefinition.getAnnotations(), annotation)) {
+        if (containsNotAnnotation(typeDefinition.getAnnotations(), annotation)) {
           typeDefinition.getAnnotations().add(annotation);
         } 
       }
@@ -209,7 +209,7 @@ public class EdmProviderImpl extends AbstractEdm {
   private void addAnnotationsOnStructuralType(CsdlStructuralType structuralType, List<CsdlAnnotation> annotations) {
     if (null != annotations && !annotations.isEmpty()) {
       for (CsdlAnnotation annotation : annotations) {
-        if (!compareAnnotations(structuralType.getAnnotations(), annotation)) {
+        if (containsNotAnnotation(structuralType.getAnnotations(), annotation)) {
           structuralType.getAnnotations().add(annotation);
         }
       }
@@ -248,7 +248,7 @@ public class EdmProviderImpl extends AbstractEdm {
         List<CsdlAnnotation> annotations = getAnnotationsMap().get(annotationGrp.getTarget());
         List<CsdlAnnotation> newAnnotations = new ArrayList<>();
         for (CsdlAnnotation annotation : annotationGrp.getAnnotations()) {
-          if (!compareAnnotations(annotations, annotation)) {
+          if (containsNotAnnotation(annotations, annotation)) {
             newAnnotations.add(annotation);
           }
         }
@@ -345,8 +345,8 @@ public class EdmProviderImpl extends AbstractEdm {
       List<CsdlAnnotation> navPropAnnotations) {
     if (null != navPropAnnotations && !navPropAnnotations.isEmpty()) {
       for (CsdlAnnotation annotation : navPropAnnotations) {
-        if (!compareAnnotations(structuralType.getNavigationProperty(
-            navProperty.getName()).getAnnotations(), annotation)) {
+        if (containsNotAnnotation(structuralType.getNavigationProperty(
+                navProperty.getName()).getAnnotations(), annotation)) {
           structuralType.getNavigationProperty(navProperty.getName()).getAnnotations().
           add(annotation);
         }
@@ -489,8 +489,8 @@ public class EdmProviderImpl extends AbstractEdm {
       List<CsdlAnnotation> propAnnotations) {
     if (null != propAnnotations && !propAnnotations.isEmpty()) {
       for (CsdlAnnotation annotation : propAnnotations) {
-        if (!compareAnnotations(structuralType.getProperty(
-            property.getName()).getAnnotations(), annotation)) {
+        if (containsNotAnnotation(structuralType.getProperty(
+                property.getName()).getAnnotations(), annotation)) {
           structuralType.getProperty(property.getName()).getAnnotations().add(annotation); 
         }
       }
@@ -647,7 +647,7 @@ public class EdmProviderImpl extends AbstractEdm {
           actionName.getFullQualifiedNameAsString() + SLASH + parameter.getName());
       if (null != annotsToParams && !annotsToParams.isEmpty()) {
         for (CsdlAnnotation annotation : annotsToParams) {
-          if (!compareAnnotations(operation.getParameter(parameter.getName()).getAnnotations(), annotation)) {
+          if (containsNotAnnotation(operation.getParameter(parameter.getName()).getAnnotations(), annotation)) {
             operation.getParameter(parameter.getName()).getAnnotations().add(annotation);
           }
         }
@@ -657,7 +657,7 @@ public class EdmProviderImpl extends AbstractEdm {
           aliasName + DOT + actionName.getName() + SLASH + parameter.getName());
       if (null != annotsToParamsOnAlias && !annotsToParamsOnAlias.isEmpty()) {
         for (CsdlAnnotation annotation : annotsToParamsOnAlias) {
-          if (!compareAnnotations(operation.getParameter(parameter.getName()).getAnnotations(), annotation)) {
+          if (containsNotAnnotation(operation.getParameter(parameter.getName()).getAnnotations(), annotation)) {
             operation.getParameter(parameter.getName()).getAnnotations().add(annotation);
           }
         }
@@ -671,7 +671,7 @@ public class EdmProviderImpl extends AbstractEdm {
    */
   private void addAnnotationsToOperations(CsdlOperation operation, List<CsdlAnnotation> annotations) {
     for (CsdlAnnotation annotation : annotations) {
-      if (!compareAnnotations(operation.getAnnotations(), annotation)) {
+      if (containsNotAnnotation(operation.getAnnotations(), annotation)) {
         operation.getAnnotations().add(annotation);
       }
     }
@@ -943,13 +943,13 @@ public class EdmProviderImpl extends AbstractEdm {
   }
 */
 
-  private boolean compareAnnotations(List<CsdlAnnotation> annotations, CsdlAnnotation annotation) {
+  private boolean containsNotAnnotation(List<CsdlAnnotation> annotations, CsdlAnnotation annotation) {
     for (CsdlAnnotation annot : annotations) {
       if (annot.equals(annotation)) {
-        return true;
+        return false;
       }
     }
-    return false;
-  }
+        return true;
+      }
 
 }

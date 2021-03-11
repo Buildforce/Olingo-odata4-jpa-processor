@@ -11,8 +11,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.google.common.net.HttpHeaders.CONTENT_TYPE;
+
 import nl.buildforce.olingo.commons.api.format.ContentType;
-import nl.buildforce.olingo.commons.api.http.HttpHeader;
 
 public class BatchLineReader {
   private static final byte CR = '\r';
@@ -80,9 +81,9 @@ public class BatchLineReader {
 
   private void updateCurrentCharset(String currentLine) {
     if (currentLine != null) {
-      if (currentLine.startsWith(HttpHeader.CONTENT_TYPE)) {
+      if (currentLine.startsWith(CONTENT_TYPE)) {
         ContentType contentType = ContentType.parse(
-            currentLine.substring(HttpHeader.CONTENT_TYPE.length() + 1, currentLine.length() - 2).trim());
+            currentLine.substring(CONTENT_TYPE.length() + 1, currentLine.length() - 2).trim());
         if (contentType != null) {
           String charsetString = contentType.getParameter(ContentType.PARAMETER_CHARSET);
           currentCharset = charsetString == null ?
@@ -194,4 +195,5 @@ public class BatchLineReader {
       return String.valueOf(state);
     }
   }
+
 }

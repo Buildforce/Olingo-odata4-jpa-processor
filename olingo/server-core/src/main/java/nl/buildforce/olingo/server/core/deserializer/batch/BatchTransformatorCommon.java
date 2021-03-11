@@ -7,9 +7,12 @@ import java.net.URI;
 import java.util.List;
 
 import nl.buildforce.olingo.commons.api.format.ContentType;
-import nl.buildforce.olingo.commons.api.http.HttpHeader;
-import nl.buildforce.olingo.server.api.deserializer.batch.BatchDeserializerException;
 import nl.buildforce.olingo.server.api.deserializer.batch.BatchDeserializerException.MessageKeys;
+import nl.buildforce.olingo.server.api.deserializer.batch.BatchDeserializerException;
+
+import static com.google.common.net.HttpHeaders.CONTENT_LENGTH;
+import static com.google.common.net.HttpHeaders.CONTENT_TYPE;
+import static com.google.common.net.HttpHeaders.HOST;
 
 public class BatchTransformatorCommon {
 
@@ -19,7 +22,7 @@ public class BatchTransformatorCommon {
 
   public static void validateContentType(Header headers, ContentType expected)
       throws BatchDeserializerException {
-    List<String> contentTypes = headers.getHeaders(HttpHeader.CONTENT_TYPE);
+    List<String> contentTypes = headers.getHeaders(CONTENT_TYPE);
 
     if (contentTypes.isEmpty()) {
       throw new BatchDeserializerException("Missing content type", MessageKeys.MISSING_CONTENT_TYPE,
@@ -42,7 +45,7 @@ public class BatchTransformatorCommon {
   }
 
   public static int getContentLength(Header headers) throws BatchDeserializerException {
-    HeaderField contentLengthField = headers.getHeaderField(HttpHeader.CONTENT_LENGTH);
+    HeaderField contentLengthField = headers.getHeaderField(CONTENT_LENGTH);
 
     if (contentLengthField != null && contentLengthField.getValues().size() == 1) {
       try {
@@ -64,7 +67,7 @@ public class BatchTransformatorCommon {
   }
 
   public static void validateHost(Header headers, String baseUri) throws BatchDeserializerException {
-    HeaderField hostField = headers.getHeaderField(HttpHeader.HOST);
+    HeaderField hostField = headers.getHeaderField(HOST);
 
     if (hostField != null &&
         (hostField.getValues().size() > 1
@@ -73,4 +76,5 @@ public class BatchTransformatorCommon {
           MessageKeys.INVALID_HOST, Integer.toString(headers.getLineNumber()));
     }
   }
+
 }

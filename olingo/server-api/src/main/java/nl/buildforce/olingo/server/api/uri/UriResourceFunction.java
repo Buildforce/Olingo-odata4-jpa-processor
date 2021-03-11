@@ -7,7 +7,6 @@ import java.util.List;
 
 import nl.buildforce.olingo.commons.api.edm.EdmFunction;
 import nl.buildforce.olingo.commons.api.edm.EdmFunctionImport;
-import nl.buildforce.olingo.commons.api.edm.EdmType;
 
 /**
  * Used to describe an function import or bound function used within an resource path

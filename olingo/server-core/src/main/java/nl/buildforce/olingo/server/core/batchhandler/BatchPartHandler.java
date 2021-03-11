@@ -3,18 +3,18 @@
 */
 package nl.buildforce.olingo.server.core.batchhandler;
 
-import nl.buildforce.olingo.commons.api.http.HttpHeader;
 import nl.buildforce.olingo.server.api.ODataApplicationException;
+import nl.buildforce.olingo.server.api.ODataHandler;
 import nl.buildforce.olingo.server.api.ODataLibraryException;
 import nl.buildforce.olingo.server.api.ODataRequest;
 import nl.buildforce.olingo.server.api.ODataResponse;
-import nl.buildforce.olingo.server.api.ODataHandler;
 import nl.buildforce.olingo.server.api.batch.BatchFacade;
 import nl.buildforce.olingo.server.api.deserializer.batch.BatchDeserializerException;
 import nl.buildforce.olingo.server.api.deserializer.batch.BatchRequestPart;
 import nl.buildforce.olingo.server.api.deserializer.batch.ODataResponsePart;
 import nl.buildforce.olingo.server.api.processor.BatchProcessor;
 import nl.buildforce.olingo.server.core.batchhandler.referenceRewriting.BatchReferenceRewriter;
+import static nl.buildforce.olingo.commons.api.http.HttpHeader.CONTENT_ID;
 
 public class BatchPartHandler {
   private final ODataHandler oDataHandler;
@@ -60,9 +60,9 @@ public class BatchPartHandler {
     }
 
     // Add content id to response
-    String contentId = request.getHeader(HttpHeader.CONTENT_ID);
+    String contentId = request.getHeader(CONTENT_ID);
     if (contentId != null) {
-      response.setHeader(HttpHeader.CONTENT_ID, contentId);
+      response.setHeader(CONTENT_ID, contentId);
     }
 
     return response;

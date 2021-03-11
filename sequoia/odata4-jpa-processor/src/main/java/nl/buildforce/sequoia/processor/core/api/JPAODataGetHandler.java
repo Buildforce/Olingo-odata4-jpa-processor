@@ -1,14 +1,13 @@
 package nl.buildforce.sequoia.processor.core.api;
 
+import nl.buildforce.olingo.server.api.OData;
+import nl.buildforce.olingo.server.api.ODataHttpHandler;
 import nl.buildforce.sequoia.metadata.api.JPAEdmProvider;
 import nl.buildforce.sequoia.metadata.api.JPAEntityManagerFactory;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAException;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import nl.buildforce.sequoia.processor.core.exception.ODataJPAFilterException;
 import nl.buildforce.sequoia.processor.core.processor.JPAODataRequestContextImpl;
-import nl.buildforce.olingo.server.api.OData;
-import nl.buildforce.olingo.server.api.ODataHttpHandler;
-// import nl.buildforce.olingo.server.api.debug.DebugSupport;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -17,8 +16,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletRequestWrapper;
 import jakarta.servlet.http.HttpServletResponse;
 
-import javax.sql.DataSource;
 import java.util.Optional;
+import javax.sql.DataSource;
 
 // import org.apache.olingo.server.core.ODataHttpHandlerImpl.REQUESTMAPPING
 
@@ -32,7 +31,7 @@ public class JPAODataGetHandler {
   final DataSource ds;
   @Deprecated
   final String namespace;
-  @Deprecated
+
   final Metamodel jpaMetamodel;
 
   /**

@@ -3,15 +3,6 @@
 */
 package nl.buildforce.olingo.server.core;
 
-import nl.buildforce.olingo.commons.api.format.AcceptCharset;
-import nl.buildforce.olingo.commons.api.format.AcceptType;
-import nl.buildforce.olingo.commons.api.format.ContentType;
-import nl.buildforce.olingo.commons.api.http.HttpHeader;
-import nl.buildforce.olingo.server.api.ODataRequest;
-import nl.buildforce.olingo.server.api.serializer.CustomContentTypeSupport;
-import nl.buildforce.olingo.server.api.serializer.RepresentationType;
-import nl.buildforce.olingo.server.api.uri.queryoption.FormatOption;
-
 import java.nio.charset.StandardCharsets;
 import java.nio.charset.UnsupportedCharsetException;
 import java.util.Collections;
@@ -19,15 +10,26 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import nl.buildforce.olingo.commons.api.format.AcceptCharset;
+import nl.buildforce.olingo.commons.api.format.AcceptType;
+import nl.buildforce.olingo.commons.api.format.ContentType;
+import nl.buildforce.olingo.server.api.ODataRequest;
+import nl.buildforce.olingo.server.api.serializer.CustomContentTypeSupport;
+import nl.buildforce.olingo.server.api.serializer.RepresentationType;
+import nl.buildforce.olingo.server.api.uri.queryoption.FormatOption;
+
+import static com.google.common.net.HttpHeaders.ACCEPT;
+import static com.google.common.net.HttpHeaders.ACCEPT_CHARSET;
+
 public final class ContentNegotiator {
 
-    private static final String ATOM = "atom";
-    private static final String JSON = ContentType.JSON;
     private static final String APPLICATION_JSON = "application/json";
-    private static final String XML = "xml";
-    private static final String METADATA = "METADATA";
-    private static final String COLON = ":";
+    private static final String ATOM = "atom";
     private static final Pattern CHARSET_PATTERN = Pattern.compile("([^,][\\w!#$%&'*+-._`|~;^]*)");
+    private static final String COLON = ":";
+    private static final String JSON = ContentType.JSON;
+    private static final String METADATA = "METADATA";
+    private static final String XML = "xml";
 
     private static final List<ContentType> DEFAULT_SUPPORTED_CONTENT_TYPES =
             List.of(ContentType.CT_JSON, ContentType.JSON_NO_METADATA, ContentType.APPLICATION_JSON, ContentType.JSON_FULL_METADATA, ContentType.APPLICATION_ATOM_XML, ContentType.APPLICATION_XML);
@@ -61,8 +63,8 @@ public final class ContentNegotiator {
             throws ContentNegotiatorException {
         List<ContentType> supportedContentTypes =
                 getSupportedContentTypes(customContentTypeSupport, representationType);
-        String acceptHeaderValue = request.getHeader(HttpHeader.ACCEPT);
-        String acceptCharset = request.getHeader(HttpHeader.ACCEPT_CHARSET);
+        String acceptHeaderValue = request.getHeader(ACCEPT);
+        String acceptCharset = request.getHeader(ACCEPT_CHARSET);
         List<AcceptCharset> charsets = null;
 
         ContentType result;

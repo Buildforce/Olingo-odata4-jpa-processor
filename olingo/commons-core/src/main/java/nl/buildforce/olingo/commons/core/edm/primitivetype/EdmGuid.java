@@ -1,7 +1,6 @@
 package nl.buildforce.olingo.commons.core.edm.primitivetype;
 
 import nl.buildforce.olingo.commons.api.edm.EdmPrimitiveTypeException;
-import org.apache.commons.lang3.ArrayUtils;
 
 import java.nio.ByteBuffer;
 import java.util.UUID;

@@ -26,7 +26,7 @@ public class HttpRequestStatusLine {
   final private String requestBaseUri;
 
   private HttpMethod method;
-  private String httpVersion;
+  // private String httpVersion;
   private final String rawServiceResolutionUri;
   private String rawQueryPath;
   private String rawODataPath;
@@ -49,7 +49,7 @@ public class HttpRequestStatusLine {
     if (parts.length == 3) {
       method = parseMethod(parts[0]);
       parseUri(parts[1], requestBaseUri);
-      httpVersion = parseHttpVersion(parts[2]);
+      /*httpVersion =*/ parseHttpVersion(parts[2]);
     } else {
       throw new BatchDeserializerException("Invalid status line", MessageKeys.INVALID_STATUS_LINE,
           Integer.toString(statusLine.getLineNumber()));
@@ -124,11 +124,11 @@ public class HttpRequestStatusLine {
   }
 
   private String parseHttpVersion(String httpVersion) throws BatchDeserializerException {
-    if (!HTTP_VERSION.equals(httpVersion.trim())) {
+    if (HTTP_VERSION.equals(httpVersion.trim())) {
+      return HTTP_VERSION;
+    } else {
       throw new BatchDeserializerException("Invalid http version", MessageKeys.INVALID_HTTP_VERSION,
           Integer.toString(statusLine.getLineNumber()));
-    } else {
-      return HTTP_VERSION;
     }
   }
 
@@ -143,16 +143,18 @@ public class HttpRequestStatusLine {
     return method;
   }
 
+/*
   public String getHttpVersion() {
     return httpVersion;
   }
 
-  public int getLineNumber() {
-    return statusLine.getLineNumber();
-  }
-
   public String getRequestBaseUri() {
     return requestBaseUri;
+  }
+*/
+
+  public int getLineNumber() {
+    return statusLine.getLineNumber();
   }
 
   public String getRawServiceResolutionUri() {

@@ -3,6 +3,21 @@
 */
 package nl.buildforce.olingo.server.core;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import nl.buildforce.olingo.commons.api.format.ContentType;
+import nl.buildforce.olingo.server.api.ODataRequest;
+import nl.buildforce.olingo.server.api.serializer.CustomContentTypeSupport;
+import nl.buildforce.olingo.server.api.serializer.RepresentationType;
+import nl.buildforce.olingo.server.api.uri.queryoption.FormatOption;
+
+import org.junit.Test;
+
+import static com.google.common.net.HttpHeaders.ACCEPT;
+import static com.google.common.net.HttpHeaders.ACCEPT_CHARSET;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -12,18 +27,6 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyListOf;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import nl.buildforce.olingo.commons.api.format.ContentType;
-import nl.buildforce.olingo.commons.api.http.HttpHeader;
-import nl.buildforce.olingo.server.api.ODataRequest;
-import nl.buildforce.olingo.server.api.serializer.CustomContentTypeSupport;
-import nl.buildforce.olingo.server.api.serializer.RepresentationType;
-import nl.buildforce.olingo.server.api.uri.queryoption.FormatOption;
-import org.junit.Test;
 
 public class ContentNegotiatorTest {
 
@@ -199,11 +202,7 @@ public class ContentNegotiatorTest {
       try {
         testContentNegotiation(useCase, RepresentationType.COLLECTION_ENTITY);
         fail("Exception expected for '" + useCase[1] + '|' + useCase[2] + '|' + useCase[3] + "'!");
-      } catch (AcceptHeaderContentNegotiatorException e) {
-        // Expected Exception
-      } catch (ContentNegotiatorException e) {
-        // Expected Exception
-      } catch (IllegalArgumentException e) {
+      } catch (ContentNegotiatorException | IllegalArgumentException e) {
         // Expected Exception
       }
     }
@@ -259,12 +258,12 @@ public class ContentNegotiatorTest {
 
     ODataRequest request = new ODataRequest();
     if (useCase[2] != null) {
-      request.addHeader(HttpHeader.ACCEPT, Collections.singletonList(useCase[2]));
+      request.addHeader(ACCEPT, Collections.singletonList(useCase[2]));
     }
 	
 	if (useCase.length > 4) {
       if (useCase[4] != null) {
-        request.addHeader(HttpHeader.ACCEPT_CHARSET, Collections.singletonList(useCase[4]));
+        request.addHeader(ACCEPT_CHARSET, Collections.singletonList(useCase[4]));
       }
     }
 
@@ -304,11 +303,7 @@ public class ContentNegotiatorTest {
       try {
         testContentNegotiation(useCase, RepresentationType.ENTITY);
         fail("Exception expected for '" + useCase[1] + '|' + useCase[2] + '|' + useCase[3] + "'!");
-      } catch (AcceptHeaderContentNegotiatorException e) {
-        // Expected Exception
-      } catch (ContentNegotiatorException e) {
-        // Expected Exception
-      } catch (IllegalArgumentException e) {
+      } catch (ContentNegotiatorException | IllegalArgumentException e) {
         // Expected Exception
       }
     }

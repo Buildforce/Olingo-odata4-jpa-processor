@@ -1,16 +1,46 @@
 package nl.buildforce.sequoia.processor.core.processor;
 
+import jakarta.persistence.EntityManager;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.Map;
+import java.util.Optional;
+
+import nl.buildforce.olingo.commons.api.data.EntityCollection;
+import nl.buildforce.olingo.commons.api.edm.Edm;
+import nl.buildforce.olingo.commons.api.edm.EdmEntityContainer;
+import nl.buildforce.olingo.commons.api.edm.EdmEntitySet;
+import nl.buildforce.olingo.commons.api.edm.EdmEntityType;
+import nl.buildforce.olingo.commons.api.edm.EdmKeyPropertyRef;
+import nl.buildforce.olingo.commons.api.edm.EdmNavigationProperty;
+import nl.buildforce.olingo.commons.api.edm.EdmNavigationPropertyBinding;
+import nl.buildforce.olingo.commons.api.edm.EdmPrimitiveType;
+import nl.buildforce.olingo.commons.api.edm.EdmPrimitiveTypeException;
+import nl.buildforce.olingo.commons.api.edm.EdmProperty;
+import nl.buildforce.olingo.commons.api.edm.FullQualifiedName;
+import nl.buildforce.olingo.commons.api.ex.ODataException;
+import nl.buildforce.olingo.commons.api.format.ContentType;
+import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
+import nl.buildforce.olingo.server.api.OData;
 import nl.buildforce.olingo.server.api.ODataApplicationException;
 import nl.buildforce.olingo.server.api.ODataLibraryException;
 import nl.buildforce.olingo.server.api.ODataRequest;
 import nl.buildforce.olingo.server.api.ODataResponse;
-import nl.buildforce.olingo.server.api.OData;
-
+import nl.buildforce.olingo.server.api.serializer.SerializerException;
+import nl.buildforce.olingo.server.api.uri.UriParameter;
+import nl.buildforce.olingo.server.api.uri.UriResourceKind;
+import nl.buildforce.olingo.server.api.uri.UriResourceNavigation;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAssociationPath;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAEntityType;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAStructuredType;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAException;
-
 import nl.buildforce.sequoia.processor.core.api.JPAAbstractCUDRequestHandler;
 import nl.buildforce.sequoia.processor.core.api.JPACUDRequestHandler;
 import nl.buildforce.sequoia.processor.core.api.JPAODataClaimProvider;
@@ -25,46 +55,29 @@ import nl.buildforce.sequoia.processor.core.testmodel.AdministrativeDivision;
 import nl.buildforce.sequoia.processor.core.testmodel.AdministrativeDivisionKey;
 import nl.buildforce.sequoia.processor.core.testmodel.BusinessPartnerRole;
 import nl.buildforce.sequoia.processor.core.testmodel.Organization;
-import nl.buildforce.olingo.commons.api.data.EntityCollection;
 
-import nl.buildforce.olingo.commons.api.edm.EdmEntityContainer;
-import nl.buildforce.olingo.commons.api.edm.EdmEntitySet;
-import nl.buildforce.olingo.commons.api.edm.EdmNavigationProperty;
-import nl.buildforce.olingo.commons.api.edm.EdmNavigationPropertyBinding;
-import nl.buildforce.olingo.commons.api.edm.EdmKeyPropertyRef;
-import nl.buildforce.olingo.commons.api.edm.EdmPrimitiveType;
-import nl.buildforce.olingo.commons.api.edm.EdmPrimitiveTypeException;
-import nl.buildforce.olingo.commons.api.edm.FullQualifiedName;
-import nl.buildforce.olingo.commons.api.edm.EdmEntityType;
-import nl.buildforce.olingo.commons.api.edm.Edm;
-import nl.buildforce.olingo.commons.api.edm.EdmProperty;
-import nl.buildforce.olingo.commons.api.ex.ODataException;
-import nl.buildforce.olingo.commons.api.format.ContentType;
-import nl.buildforce.olingo.commons.api.http.HttpHeader;
-import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
-import nl.buildforce.olingo.server.api.serializer.SerializerException;
-import nl.buildforce.olingo.server.api.uri.UriParameter;
-import nl.buildforce.olingo.server.api.uri.UriResourceKind;
-import nl.buildforce.olingo.server.api.uri.UriResourceNavigation;
-import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
-
-import jakarta.persistence.EntityManager;
 import org.mockito.Mockito;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.List;
-import java.util.Optional;
-import java.util.Map.Entry;
+import static com.google.common.net.HttpHeaders.LOCATION;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static nl.buildforce.olingo.commons.api.http.HttpHeader.ODATA_ENTITY_ID;
+import static nl.buildforce.olingo.commons.api.http.HttpHeader.PREFERENCE_APPLIED;
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class TestJPACreateProcessor extends TestJPAModifyProcessor {
 
@@ -238,7 +251,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
 
     processor.createEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON);
 
-    assertEquals(LOCATION_HEADER, response.getHeader(HttpHeader.LOCATION));
+    assertEquals(LOCATION_HEADER, response.getHeader(LOCATION));
   }
 
   @Test
@@ -251,7 +264,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
 
     processor.createEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON);
 
-    assertEquals(LOCATION_HEADER, response.getHeader(HttpHeader.ODATA_ENTITY_ID));
+    assertEquals(LOCATION_HEADER, response.getHeader(ODATA_ENTITY_ID));
   }
 
   @Test
@@ -277,7 +290,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
 
     processor.createEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON);
 
-    assertEquals("return=minimal", response.getHeader(HttpHeader.PREFERENCE_APPLIED));
+    assertEquals(RETURN_MINIMAL, response.getHeader(PREFERENCE_APPLIED));
   }
 
   @Test
@@ -336,7 +349,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
 
     processor.createEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON);
 
-    assertEquals(LOCATION_HEADER, response.getHeader(HttpHeader.LOCATION));
+    assertEquals(LOCATION_HEADER, response.getHeader(LOCATION));
   }
 
   @Test
@@ -347,7 +360,7 @@ public class TestJPACreateProcessor extends TestJPAModifyProcessor {
 
     processor.createEntity(request, response, ContentType.CT_JSON, ContentType.CT_JSON);
 
-    assertEquals(LOCATION_HEADER, response.getHeader(HttpHeader.LOCATION));
+    assertEquals(LOCATION_HEADER, response.getHeader(LOCATION));
   }
 
   @Test

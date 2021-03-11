@@ -4,14 +4,9 @@
 package nl.buildforce.olingo.commons.core.edm;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotSame;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -200,11 +195,11 @@ public class EdmImplCachingTest {
     EdmFunction function = edm.getBoundFunction(NAME1, NAME2, true, new ArrayList<>());
     assertNotNull(function);
 
-    EdmFunction cachedfunction = edm.getBoundFunction(NAME1, NAME2, true, new ArrayList<>());
-    assertNotNull(cachedfunction);
+    EdmFunction cachedFunction = edm.getBoundFunction(NAME1, NAME2, true, new ArrayList<>());
+    assertNotNull(cachedFunction);
 
-      assertSame(function, cachedfunction);
-    assertEquals(function, cachedfunction);
+      assertSame(function, cachedFunction);
+    assertEquals(function, cachedFunction);
 
     EdmFunction function2 = edm.getBoundFunction(NAME2, NAME2, true, new ArrayList<>());
     assertNotNull(function2);
@@ -223,11 +218,11 @@ public class EdmImplCachingTest {
     ArrayList<String> parameters2 = new ArrayList<>();
     parameters2.add("B");
     parameters2.add("A");
-    EdmFunction cachedfunction = edm.getBoundFunction(NAME1, NAME2, true, parameters2);
-    assertNotNull(cachedfunction);
+    EdmFunction cachedFunction = edm.getBoundFunction(NAME1, NAME2, true, parameters2);
+    assertNotNull(cachedFunction);
 
-      assertSame(function, cachedfunction);
-    assertEquals(function, cachedfunction);
+      assertSame(function, cachedFunction);
+    assertEquals(function, cachedFunction);
 
     EdmFunction function2 = edm.getBoundFunction(NAME2, NAME2, true, new ArrayList<>());
     assertNotNull(function2);

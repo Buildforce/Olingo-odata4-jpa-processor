@@ -3,12 +3,6 @@
 */
 package nl.buildforce.olingo.server.core.serializer;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -19,22 +13,30 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
-import nl.buildforce.olingo.server.api.OData;
-import nl.buildforce.olingo.server.api.ODataResponse;
-import nl.buildforce.olingo.server.api.ServiceMetadata;
-import nl.buildforce.olingo.server.api.serializer.EntityCollectionSerializerOptions;
-import org.apache.commons.io.IOUtils;
 import nl.buildforce.olingo.commons.api.data.ContextURL;
 import nl.buildforce.olingo.commons.api.data.Entity;
 import nl.buildforce.olingo.commons.api.data.EntityIterator;
 import nl.buildforce.olingo.commons.api.edm.EdmEntityType;
 import nl.buildforce.olingo.commons.api.format.ContentType;
-import nl.buildforce.olingo.commons.api.http.HttpHeader;
 import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
+import nl.buildforce.olingo.server.api.OData;
+import nl.buildforce.olingo.server.api.ODataResponse;
+import nl.buildforce.olingo.server.api.ServiceMetadata;
 import nl.buildforce.olingo.server.api.deserializer.batch.ODataResponsePart;
+import nl.buildforce.olingo.server.api.serializer.EntityCollectionSerializerOptions;
 import nl.buildforce.olingo.server.api.serializer.SerializerStreamResult;
 import nl.buildforce.olingo.server.core.deserializer.batch.BatchLineReader;
+
+import org.apache.commons.io.IOUtils;
 import org.junit.Test;
+
+import static com.google.common.net.HttpHeaders.CONTENT_TYPE;
+import static nl.buildforce.olingo.commons.api.http.HttpHeader.CONTENT_ID;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
 
 public class BatchResponseSerializerTest {
   private static final String CRLF = "\r\n";
@@ -45,13 +47,13 @@ public class BatchResponseSerializerTest {
     List<ODataResponsePart> parts = new ArrayList<>();
     ODataResponse response = new ODataResponse();
     response.setStatusCode(HttpStatusCode.OK.getStatusCode());
-    response.setHeader(HttpHeader.CONTENT_TYPE, ContentType.TEXT_PLAIN.toString());
+    response.setHeader(CONTENT_TYPE, ContentType.TEXT_PLAIN.toString());
     response.setContent(IOUtils.toInputStream("Walter Winter" + CRLF, StandardCharsets.UTF_8));
     parts.add(new ODataResponsePart(Collections.singletonList(response), false));
 
     ODataResponse changeSetResponse = new ODataResponse();
     changeSetResponse.setStatusCode(HttpStatusCode.NO_CONTENT.getStatusCode());
-    changeSetResponse.setHeader(HttpHeader.CONTENT_ID, "1");
+    changeSetResponse.setHeader(CONTENT_ID, "1");
     parts.add(new ODataResponsePart(Collections.singletonList(changeSetResponse), true));
 
     BatchResponseSerializer serializer = new BatchResponseSerializer();
@@ -95,13 +97,13 @@ public class BatchResponseSerializerTest {
 
     ODataResponse response = new ODataResponse();
     response.setStatusCode(HttpStatusCode.OK.getStatusCode());
-    response.setHeader(HttpHeader.CONTENT_TYPE, ContentType.APPLICATION_JSON.toString());
+    response.setHeader(CONTENT_TYPE, ContentType.APPLICATION_JSON.toString());
     response.setContent(IOUtils.toInputStream("{\"name\":\"Wälter Winter\"}" + CRLF, StandardCharsets.UTF_8));
     parts.add(new ODataResponsePart(Collections.singletonList(response), false));
 
     ODataResponse changeSetResponse = new ODataResponse();
     changeSetResponse.setStatusCode(HttpStatusCode.NO_CONTENT.getStatusCode());
-    changeSetResponse.setHeader(HttpHeader.CONTENT_ID, "1");
+    changeSetResponse.setHeader(CONTENT_ID, "1");
     parts.add(new ODataResponsePart(Collections.singletonList(changeSetResponse), true));
 
     BatchResponseSerializer serializer = new BatchResponseSerializer();
@@ -145,13 +147,13 @@ public class BatchResponseSerializerTest {
 
     ODataResponse response = new ODataResponse();
     response.setStatusCode(HttpStatusCode.OK.getStatusCode());
-    response.setHeader(HttpHeader.CONTENT_TYPE, new ContentType(ContentType.TEXT_PLAIN, ContentType.PARAMETER_CHARSET, StandardCharsets.UTF_8.name()).toString());
+    response.setHeader(CONTENT_TYPE, new ContentType(ContentType.TEXT_PLAIN, ContentType.PARAMETER_CHARSET, StandardCharsets.UTF_8.name()).toString());
     response.setContent(IOUtils.toInputStream("Wälter Winter" + CRLF, StandardCharsets.UTF_8));
     parts.add(new ODataResponsePart(Collections.singletonList(response), false));
 
     ODataResponse changeSetResponse = new ODataResponse();
     changeSetResponse.setStatusCode(HttpStatusCode.NO_CONTENT.getStatusCode());
-    changeSetResponse.setHeader(HttpHeader.CONTENT_ID, "1");
+    changeSetResponse.setHeader(CONTENT_ID, "1");
     changeSetResponse.setHeader("Custom-Header", new String("äüö".getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.ISO_8859_1));
     parts.add(new ODataResponsePart(Collections.singletonList(changeSetResponse), true));
 
@@ -197,13 +199,13 @@ public class BatchResponseSerializerTest {
 
     ODataResponse response = new ODataResponse();
     response.setStatusCode(HttpStatusCode.OK.getStatusCode());
-    response.setHeader(HttpHeader.CONTENT_TYPE, ContentType.APPLICATION_JSON.toString());
+    response.setHeader(CONTENT_TYPE, ContentType.APPLICATION_JSON.toString());
     response.setContent(IOUtils.toInputStream("{\"name\":\"Wälter Winter\"}" + CRLF, StandardCharsets.UTF_8));
     parts.add(new ODataResponsePart(Collections.singletonList(response), false));
 
     ODataResponse changeSetResponse = new ODataResponse();
     changeSetResponse.setStatusCode(HttpStatusCode.NO_CONTENT.getStatusCode());
-    changeSetResponse.setHeader(HttpHeader.CONTENT_ID, "1");
+    changeSetResponse.setHeader(CONTENT_ID, "1");
     changeSetResponse.setHeader("Custom-Header", "äüö");
     parts.add(new ODataResponsePart(Collections.singletonList(changeSetResponse), true));
 
@@ -227,13 +229,13 @@ public class BatchResponseSerializerTest {
 
     ODataResponse response = new ODataResponse();
     response.setStatusCode(HttpStatusCode.OK.getStatusCode());
-    response.setHeader(HttpHeader.CONTENT_TYPE, new ContentType(ContentType.TEXT_PLAIN, ContentType.PARAMETER_CHARSET, StandardCharsets.ISO_8859_1.name()).toString());
+    response.setHeader(CONTENT_TYPE, new ContentType(ContentType.TEXT_PLAIN, ContentType.PARAMETER_CHARSET, StandardCharsets.ISO_8859_1.name()).toString());
     response.setContent(new ByteArrayInputStream(("Wälter Winter" + CRLF).getBytes(StandardCharsets.ISO_8859_1)));
     parts.add(new ODataResponsePart(Collections.singletonList(response), false));
 
     ODataResponse changeSetResponse = new ODataResponse();
     changeSetResponse.setStatusCode(HttpStatusCode.NO_CONTENT.getStatusCode());
-    changeSetResponse.setHeader(HttpHeader.CONTENT_ID, "1");
+    changeSetResponse.setHeader(CONTENT_ID, "1");
     parts.add(new ODataResponsePart(Collections.singletonList(changeSetResponse), true));
 
     BatchResponseSerializer serializer = new BatchResponseSerializer();
@@ -277,13 +279,13 @@ public class BatchResponseSerializerTest {
 
     ODataResponse response = new ODataResponse();
     response.setStatusCode(HttpStatusCode.OK.getStatusCode());
-    response.setHeader(HttpHeader.CONTENT_TYPE, ContentType.TEXT_PLAIN.toString());
+    response.setHeader(CONTENT_TYPE, ContentType.TEXT_PLAIN.toString());
     response.setContent(IOUtils.toInputStream("Walter Winter",StandardCharsets.UTF_8));
     parts.add(new ODataResponsePart(Collections.singletonList(response), false));
 
     ODataResponse changeSetResponse = new ODataResponse();
     changeSetResponse.setStatusCode(HttpStatusCode.NO_CONTENT.getStatusCode());
-    changeSetResponse.setHeader(HttpHeader.CONTENT_ID, "1");
+    changeSetResponse.setHeader(CONTENT_ID, "1");
     parts.add(new ODataResponsePart(Collections.singletonList(changeSetResponse), true));
 
     BatchResponseSerializer serializer = new BatchResponseSerializer();
@@ -326,7 +328,7 @@ public class BatchResponseSerializerTest {
 
     ODataResponse response = new ODataResponse();
     response.setStatusCode(HttpStatusCode.OK.getStatusCode());
-    response.setHeader(HttpHeader.CONTENT_TYPE, ContentType.TEXT_PLAIN.toString());
+    response.setHeader(CONTENT_TYPE, ContentType.TEXT_PLAIN.toString());
     response.setContent(IOUtils.toInputStream("Walter Winter", StandardCharsets.UTF_8));
     parts.add(new ODataResponsePart(Collections.singletonList(response), false));
 
@@ -358,7 +360,7 @@ public class BatchResponseSerializerTest {
 
     ODataResponse response = new ODataResponse();
     response.setStatusCode(HttpStatusCode.OK.getStatusCode());
-    response.setHeader(HttpHeader.CONTENT_TYPE, ContentType.TEXT_PLAIN.toString());
+    response.setHeader(CONTENT_TYPE, ContentType.TEXT_PLAIN.toString());
     String bigData = generateData(10000);
     response.setContent(IOUtils.toInputStream(bigData, StandardCharsets.UTF_8));
     parts.add(new ODataResponsePart(Collections.singletonList(response), false));
@@ -390,7 +392,7 @@ public class BatchResponseSerializerTest {
     List<ODataResponsePart> parts = new ArrayList<>();
 
     ODataResponse response = new ODataResponse();
-    response.setHeader(HttpHeader.CONTENT_ID, "1");
+    response.setHeader(CONTENT_ID, "1");
     response.setStatusCode(HttpStatusCode.NO_CONTENT.getStatusCode());
     parts.add(new ODataResponsePart(Collections.singletonList(response), true));
 
@@ -425,7 +427,7 @@ public class BatchResponseSerializerTest {
   public void binaryResponse() throws Exception {
     ODataResponse response = new ODataResponse();
     response.setStatusCode(HttpStatusCode.OK.getStatusCode());
-    response.setHeader(HttpHeader.CONTENT_TYPE, ContentType.APPLICATION_OCTET_STREAM.toString());
+    response.setHeader(CONTENT_TYPE, ContentType.APPLICATION_OCTET_STREAM.toString());
     // binary content, not a valid UTF-8 representation of a string
     byte[] content = new byte[Byte.MAX_VALUE - Byte.MIN_VALUE + 1];
     for (int i = Byte.MIN_VALUE; i <= Byte.MAX_VALUE; i++) {
@@ -560,7 +562,7 @@ public class BatchResponseSerializerTest {
     ODataResponse response = new ODataResponse();
     response.setODataContent(serializerResult.getODataContent());
     response.setStatusCode(HttpStatusCode.NO_CONTENT.getStatusCode());
-    response.setHeader(HttpHeader.CONTENT_ID, "1");
+    response.setHeader(CONTENT_ID, "1");
     parts.add(new ODataResponsePart(response, true));
 
     BatchResponseSerializer serializer = new BatchResponseSerializer();
@@ -596,7 +598,7 @@ public class BatchResponseSerializerTest {
     
     ODataResponse response = new ODataResponse();
     response.setStatusCode(HttpStatusCode.OK.getStatusCode());
-    response.setHeader(HttpHeader.CONTENT_TYPE, ContentType.TEXT_PLAIN.toString());
+    response.setHeader(CONTENT_TYPE, ContentType.TEXT_PLAIN.toString());
     String bigData = generateData(10000);
     response.setContent(IOUtils.toInputStream(bigData, StandardCharsets.UTF_8));
     parts.add(new ODataResponsePart(response, false));

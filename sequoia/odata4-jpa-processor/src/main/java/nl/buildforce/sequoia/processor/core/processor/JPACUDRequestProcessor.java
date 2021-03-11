@@ -1,5 +1,30 @@
 package nl.buildforce.sequoia.processor.core.processor;
 
+import nl.buildforce.olingo.commons.api.data.Entity;
+import nl.buildforce.olingo.commons.api.data.EntityCollection;
+import nl.buildforce.olingo.commons.api.data.Link;
+import nl.buildforce.olingo.commons.api.data.Property;
+import nl.buildforce.olingo.commons.api.edm.EdmEntitySet;
+import nl.buildforce.olingo.commons.api.ex.ODataException;
+import nl.buildforce.olingo.commons.api.format.ContentType;
+import nl.buildforce.olingo.commons.api.http.HttpMethod;
+import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
+import nl.buildforce.olingo.server.api.OData;
+import nl.buildforce.olingo.server.api.ODataApplicationException;
+import nl.buildforce.olingo.server.api.ODataLibraryException;
+import nl.buildforce.olingo.server.api.ODataRequest;
+import nl.buildforce.olingo.server.api.ODataResponse;
+import nl.buildforce.olingo.server.api.ServiceMetadata;
+import nl.buildforce.olingo.server.api.prefer.Preferences.Return;
+import nl.buildforce.olingo.server.api.prefer.Preferences;
+import nl.buildforce.olingo.server.api.serializer.SerializerException;
+import nl.buildforce.olingo.server.api.uri.UriParameter;
+import nl.buildforce.olingo.server.api.uri.UriResource;
+import nl.buildforce.olingo.server.api.uri.UriResourceComplexProperty;
+import nl.buildforce.olingo.server.api.uri.UriResourceEntitySet;
+import nl.buildforce.olingo.server.api.uri.UriResourceProperty;
+import nl.buildforce.olingo.server.api.uri.UriResourceValue;
+
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAssociationPath;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAttribute;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAElement;
@@ -23,31 +48,6 @@ import nl.buildforce.sequoia.processor.core.modify.JPAUpdateResult;
 import nl.buildforce.sequoia.processor.core.query.EdmEntitySetInfo;
 import nl.buildforce.sequoia.processor.core.query.ExpressionUtil;
 import nl.buildforce.sequoia.processor.core.query.Util;
-import nl.buildforce.olingo.commons.api.data.Entity;
-import nl.buildforce.olingo.commons.api.data.EntityCollection;
-import nl.buildforce.olingo.commons.api.data.Link;
-import nl.buildforce.olingo.commons.api.data.Property;
-import nl.buildforce.olingo.commons.api.edm.EdmEntitySet;
-import nl.buildforce.olingo.commons.api.ex.ODataException;
-import nl.buildforce.olingo.commons.api.format.ContentType;
-import nl.buildforce.olingo.commons.api.http.HttpHeader;
-import nl.buildforce.olingo.commons.api.http.HttpMethod;
-import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
-import nl.buildforce.olingo.server.api.OData;
-import nl.buildforce.olingo.server.api.ODataApplicationException;
-import nl.buildforce.olingo.server.api.ODataLibraryException;
-import nl.buildforce.olingo.server.api.ODataRequest;
-import nl.buildforce.olingo.server.api.ODataResponse;
-import nl.buildforce.olingo.server.api.ServiceMetadata;
-import nl.buildforce.olingo.server.api.prefer.Preferences;
-import nl.buildforce.olingo.server.api.prefer.Preferences.Return;
-import nl.buildforce.olingo.server.api.serializer.SerializerException;
-import nl.buildforce.olingo.server.api.uri.UriParameter;
-import nl.buildforce.olingo.server.api.uri.UriResource;
-import nl.buildforce.olingo.server.api.uri.UriResourceComplexProperty;
-import nl.buildforce.olingo.server.api.uri.UriResourceEntitySet;
-import nl.buildforce.olingo.server.api.uri.UriResourceProperty;
-import nl.buildforce.olingo.server.api.uri.UriResourceValue;
 
 import jakarta.persistence.EntityManager;
 import nl.buildforce.sequoia.processor.core.converter.JPAExpandResult;
@@ -59,6 +59,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
+import static com.google.common.net.HttpHeaders.LOCATION;
+import static nl.buildforce.olingo.commons.api.http.HttpHeader.ODATA_ENTITY_ID;
+import static nl.buildforce.olingo.commons.api.http.HttpHeader.PREFER;
+import static nl.buildforce.olingo.commons.api.http.HttpHeader.PREFERENCE_APPLIED;
+import static nl.buildforce.olingo.server.core.ODataDispatcher.RETURN_MINIMAL;
 
 public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
 
@@ -483,7 +489,7 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
     // the created entity.
     //
     setSuccessStatusCode(HttpStatusCode.CREATED.getStatusCode());
-    Preferences prefer = odata.createPreferences(request.getHeaders(HttpHeader.PREFER));
+    Preferences prefer = odata.createPreferences(request.getHeaders(PREFER));
     // TODO Stream properties
 
     String location = helper.convertKeyToLocal(odata, request, edmEntitySet, et, result);
@@ -494,7 +500,7 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
       EntityCollection entities = new EntityCollection();
       entities.getEntities().add(createdEntity);
       createSuccessResponse(response, responseFormat, serializer.serialize(request, entities));
-      response.setHeader(HttpHeader.LOCATION, location);
+      response.setHeader(LOCATION, location);
     }
   }
 
@@ -579,9 +585,9 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
 
   private void createMinimalCreateResponse(final ODataResponse response, String location) {
     response.setStatusCode(HttpStatusCode.NO_CONTENT.getStatusCode());
-    response.setHeader(HttpHeader.PREFERENCE_APPLIED, "return=minimal");
-    response.setHeader(HttpHeader.LOCATION, location);
-    response.setHeader(HttpHeader.ODATA_ENTITY_ID, location);
+    response.setHeader(PREFERENCE_APPLIED, RETURN_MINIMAL);
+    response.setHeader(LOCATION, location);
+    response.setHeader(ODATA_ENTITY_ID, location);
   }
 
   private Map<JPAAssociationPath, List<JPARequestLink>> createRelationLinks(JPAEntityType et, Entity odataEntity)
@@ -649,11 +655,11 @@ public final class JPACUDRequestProcessor extends JPAAbstractRequestProcessor {
     // non-empty response body MUST be the updated media entity.
     //
     this.setSuccessStatusCode(HttpStatusCode.OK.getStatusCode());
-    Preferences prefer = odata.createPreferences(request.getHeaders(HttpHeader.PREFER));
+    Preferences prefer = odata.createPreferences(request.getHeaders(PREFER));
     // TODO Stream properties
     if (updateResult == null || prefer.getReturn() == Return.MINIMAL) {
       response.setStatusCode(HttpStatusCode.NO_CONTENT.getStatusCode());
-      response.setHeader(HttpHeader.PREFERENCE_APPLIED, "return=minimal");
+      response.setHeader(PREFERENCE_APPLIED, RETURN_MINIMAL);
     } else {
       if (updateResult.getModifiedEntity() == null)
         throw new ODataJPAProcessorException(ODataJPAProcessorException.MessageKeys.RETURN_MISSING_ENTITY, HttpStatusCode.INTERNAL_SERVER_ERROR);

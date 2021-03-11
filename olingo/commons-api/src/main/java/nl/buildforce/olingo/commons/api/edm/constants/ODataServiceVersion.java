@@ -3,7 +3,6 @@
  */
 package nl.buildforce.olingo.commons.api.edm.constants;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -116,4 +115,5 @@ public enum ODataServiceVersion {
   public String toString() {
     return version;
   }
+
 }

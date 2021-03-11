@@ -1,5 +1,8 @@
 package nl.buildforce.sequoia.processor.core.processor;
 
+import jakarta.persistence.EntityManager;
+
+import nl.buildforce.olingo.server.api.uri.UriInfo;
 import nl.buildforce.sequoia.processor.core.api.JPAODataClaimProvider;
 import nl.buildforce.sequoia.processor.core.api.JPAODataClaimsProvider;
 import nl.buildforce.sequoia.processor.core.api.JPAODataDefaultTransactionFactory;
@@ -9,14 +12,16 @@ import nl.buildforce.sequoia.processor.core.api.JPAODataPage;
 import nl.buildforce.sequoia.processor.core.api.JPAODataTransactionFactory;
 import nl.buildforce.sequoia.processor.core.exception.JPAIllegalAccessException;
 import nl.buildforce.sequoia.processor.core.serializer.JPASerializer;
-import nl.buildforce.olingo.server.api.uri.UriInfo;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import jakarta.persistence.EntityManager;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 
 public class TestJPAODataRequestContextImpl {

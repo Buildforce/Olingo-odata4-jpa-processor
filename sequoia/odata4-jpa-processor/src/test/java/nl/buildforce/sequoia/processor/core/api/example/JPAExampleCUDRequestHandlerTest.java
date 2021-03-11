@@ -10,9 +10,16 @@ import nl.buildforce.sequoia.processor.core.modify.JPAUpdateResult;
 import nl.buildforce.sequoia.processor.core.processor.JPAModifyUtil;
 import nl.buildforce.sequoia.processor.core.processor.JPARequestEntity;
 import nl.buildforce.sequoia.processor.core.processor.JPARequestLink;
-import nl.buildforce.sequoia.processor.core.testmodel.*;
+import nl.buildforce.sequoia.processor.core.testmodel.AdministrativeDivision;
+import nl.buildforce.sequoia.processor.core.testmodel.AdministrativeDivisionKey;
+import nl.buildforce.sequoia.processor.core.testmodel.Collection;
+import nl.buildforce.sequoia.processor.core.testmodel.InhouseAddress;
+import nl.buildforce.sequoia.processor.core.testmodel.Organization;
+import nl.buildforce.sequoia.processor.core.testmodel.Person;
+import nl.buildforce.sequoia.processor.core.testmodel.PostalAddressData;
 import nl.buildforce.sequoia.processor.core.util.TestBase;
 import nl.buildforce.sequoia.processor.core.util.TestHelper;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,8 +34,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.doReturn;
+
+
+
 
 public class JPAExampleCUDRequestHandlerTest extends TestBase {
   private JPAExampleCUDRequestHandler cut;

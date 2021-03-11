@@ -1,26 +1,13 @@
 package nl.buildforce.sequoia.processor.core.processor;
 
-import nl.buildforce.sequoia.metadata.api.JPAEdmMetadataPostProcessor;
-import nl.buildforce.sequoia.metadata.api.JPAEdmProvider;
-import nl.buildforce.sequoia.metadata.api.JPAEntityManagerFactory;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAEntityType;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAException;
-import nl.buildforce.sequoia.processor.core.api.JPAODataCRUDContextAccess;
-import nl.buildforce.sequoia.processor.core.api.JPAODataRequestContextAccess;
-import nl.buildforce.sequoia.processor.core.api.JPAODataTransactionFactory;
-import nl.buildforce.sequoia.processor.core.api.JPAAbstractCUDRequestHandler;
-import nl.buildforce.sequoia.processor.core.api.JPAODataTransactionFactory.JPAODataTransaction;
-// import nl.buildforce.sequoia.processor.core.api.JPAServiceDebugger;
-import nl.buildforce.sequoia.processor.core.exception.ODataJPAProcessorException;
-import nl.buildforce.sequoia.processor.core.exception.ODataJPASerializerException;
-import nl.buildforce.sequoia.processor.core.modify.JPAConversionHelper;
-import nl.buildforce.sequoia.processor.core.query.EdmEntitySetInfo;
-import nl.buildforce.sequoia.processor.core.serializer.JPASerializer;
-import nl.buildforce.sequoia.processor.core.testmodel.AdministrativeDivision;
-import nl.buildforce.sequoia.processor.core.testmodel.AdministrativeDivisionKey;
-import nl.buildforce.sequoia.processor.core.testmodel.DataSourceHelper;
-import nl.buildforce.sequoia.processor.core.testmodel.Organization;
-import nl.buildforce.sequoia.processor.core.util.TestBase;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import java.io.ByteArrayInputStream;
+import java.util.ArrayList;
+import java.util.List;
+import javax.sql.DataSource;
+
 import nl.buildforce.olingo.commons.api.data.Entity;
 import nl.buildforce.olingo.commons.api.data.EntityCollection;
 import nl.buildforce.olingo.commons.api.edm.Edm;
@@ -31,7 +18,6 @@ import nl.buildforce.olingo.commons.api.edm.EdmPrimitiveType;
 import nl.buildforce.olingo.commons.api.edm.EdmProperty;
 import nl.buildforce.olingo.commons.api.edm.FullQualifiedName;
 import nl.buildforce.olingo.commons.api.format.ContentType;
-import nl.buildforce.olingo.commons.api.http.HttpHeader;
 import nl.buildforce.olingo.commons.core.edm.primitivetype.EdmString;
 import nl.buildforce.olingo.server.api.OData;
 import nl.buildforce.olingo.server.api.ODataRequest;
@@ -43,18 +29,33 @@ import nl.buildforce.olingo.server.api.uri.UriParameter;
 import nl.buildforce.olingo.server.api.uri.UriResource;
 import nl.buildforce.olingo.server.api.uri.UriResourceEntitySet;
 import nl.buildforce.olingo.server.api.uri.UriResourceKind;
+import static nl.buildforce.olingo.commons.api.http.HttpHeader.PREFER;
+
+import nl.buildforce.sequoia.metadata.api.JPAEdmMetadataPostProcessor;
+import nl.buildforce.sequoia.metadata.api.JPAEdmProvider;
+import nl.buildforce.sequoia.metadata.api.JPAEntityManagerFactory;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAEntityType;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAException;
+import nl.buildforce.sequoia.processor.core.api.JPAAbstractCUDRequestHandler;
+import nl.buildforce.sequoia.processor.core.api.JPAODataCRUDContextAccess;
+import nl.buildforce.sequoia.processor.core.api.JPAODataRequestContextAccess;
+import nl.buildforce.sequoia.processor.core.api.JPAODataTransactionFactory.JPAODataTransaction;
+import nl.buildforce.sequoia.processor.core.api.JPAODataTransactionFactory;
+import nl.buildforce.sequoia.processor.core.exception.ODataJPAProcessorException;
+import nl.buildforce.sequoia.processor.core.exception.ODataJPASerializerException;
+import nl.buildforce.sequoia.processor.core.modify.JPAConversionHelper;
+import nl.buildforce.sequoia.processor.core.query.EdmEntitySetInfo;
+import nl.buildforce.sequoia.processor.core.serializer.JPASerializer;
+import nl.buildforce.sequoia.processor.core.testmodel.AdministrativeDivision;
+import nl.buildforce.sequoia.processor.core.testmodel.AdministrativeDivisionKey;
+import nl.buildforce.sequoia.processor.core.testmodel.DataSourceHelper;
+import nl.buildforce.sequoia.processor.core.testmodel.Organization;
+import nl.buildforce.sequoia.processor.core.util.TestBase;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+
 import org.mockito.ArgumentMatchers;
-
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.EntityTransaction;
-import javax.sql.DataSource;
-import java.io.ByteArrayInputStream;
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.same;
 import static org.mockito.Mockito.mock;
@@ -62,7 +63,7 @@ import static org.mockito.Mockito.when;
 
 public abstract class TestJPAModifyProcessor {
   protected static final String LOCATION_HEADER = "Organization('35')";
-  protected static final String PREFERENCE_APPLIED = "return=minimal";
+  protected static final String RETURN_MINIMAL = "return=minimal";
   protected static final String PUNIT_NAME = "nl.buildforce.sequoia";
   protected static EntityManagerFactory emf;
   protected static JPAEdmProvider jpaEdm;
@@ -229,7 +230,7 @@ public abstract class TestJPAModifyProcessor {
 
   protected ODataRequest prepareSimpleRequest() throws ODataJPAException, SerializerException, ODataJPAProcessorException {
 
-    return prepareSimpleRequest("return=minimal");
+    return prepareSimpleRequest(RETURN_MINIMAL);
   }
 
   @SuppressWarnings("unchecked")
@@ -239,7 +240,7 @@ public abstract class TestJPAModifyProcessor {
     when(em.getTransaction()).thenReturn(transaction);
 
     final ODataRequest request = mock(ODataRequest.class);
-    when(request.getHeaders(HttpHeader.PREFER)).thenReturn(header);
+    when(request.getHeaders(PREFER)).thenReturn(header);
     when(sessionContext.getEdmProvider()).thenReturn(jpaEdm);
     when(etsInfo.getEdmEntitySet()).thenReturn(ets);
     header.add(content);

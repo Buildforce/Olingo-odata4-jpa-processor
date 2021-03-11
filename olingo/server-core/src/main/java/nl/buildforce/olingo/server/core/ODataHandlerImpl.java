@@ -9,7 +9,6 @@ import java.util.List;
 import nl.buildforce.olingo.commons.api.edm.constants.ODataServiceVersion;
 import nl.buildforce.olingo.commons.api.ex.ODataRuntimeException;
 import nl.buildforce.olingo.commons.api.format.ContentType;
-import nl.buildforce.olingo.commons.api.http.HttpHeader;
 import nl.buildforce.olingo.commons.api.http.HttpMethod;
 import nl.buildforce.olingo.server.api.OData;
 import nl.buildforce.olingo.server.api.ODataApplicationException;
@@ -32,7 +31,6 @@ import nl.buildforce.olingo.server.api.serializer.SerializerException;
 import nl.buildforce.olingo.server.api.uri.UriInfo;
 import nl.buildforce.olingo.server.api.uri.queryoption.FormatOption;
 import nl.buildforce.olingo.server.api.uri.queryoption.SystemQueryOptionKind;
-// import nl.buildforce.olingo.server.core.debug.ServerCoreDebugger;
 import nl.buildforce.olingo.server.core.uri.parser.Parser;
 import nl.buildforce.olingo.server.core.uri.parser.UriParserException;
 import nl.buildforce.olingo.server.core.uri.parser.UriParserSemanticException;
@@ -41,20 +39,21 @@ import nl.buildforce.olingo.server.core.uri.queryoption.FormatOptionImpl;
 import nl.buildforce.olingo.server.core.uri.validator.UriValidationException;
 import nl.buildforce.olingo.server.core.uri.validator.UriValidator;
 
+import static nl.buildforce.olingo.commons.api.http.HttpHeader.ODATA_MAX_VERSION;
+import static nl.buildforce.olingo.commons.api.http.HttpHeader.ODATA_VERSION;
+
 public class ODataHandlerImpl implements ODataHandler {
 
   private final OData odata;
-  private final ServiceMetadata serviceMetadata;
   private final List<Processor> processors = new LinkedList<>();
-//  private final ServerCoreDebugger debugger;
+  private final ServiceMetadata serviceMetadata;
 
   private CustomContentTypeSupport customContentTypeSupport;
   private CustomETagSupport customETagSupport;
 
   private UriInfo uriInfo;
-  private Exception lastThrownException;
 
-  public ODataHandlerImpl(OData odata, ServiceMetadata serviceMetadata/*, ServerCoreDebugger debugger*/) {
+  public ODataHandlerImpl(OData odata, ServiceMetadata serviceMetadata) {
     this.odata = odata;
     this.serviceMetadata = serviceMetadata;
 //    this.debugger = debugger;
@@ -113,7 +112,7 @@ public class ODataHandlerImpl implements ODataHandler {
       throws ODataApplicationException, ODataLibraryException {
     // int measurementHandle = debugger.startRuntimeMeasurement("ODataHandler", "processInternal");
 
-    response.setHeader(HttpHeader.ODATA_VERSION, ODataServiceVersion.V40.toString());
+    response.setHeader(ODATA_VERSION, ODataServiceVersion.V40.toString());
 
     validateODataVersion(request);
 
@@ -134,7 +133,6 @@ public class ODataHandlerImpl implements ODataHandler {
   public void handleException(ODataRequest request, ODataResponse response,
                               ODataServerError serverError, Exception exception) {
     // int measurementHandle = debugger.startRuntimeMeasurement("ODataHandler", "handleException");
-    lastThrownException = exception;
     ErrorProcessor exceptionProcessor;
     try {
       exceptionProcessor = selectProcessor(ErrorProcessor.class);
@@ -188,13 +186,13 @@ public class ODataHandlerImpl implements ODataHandler {
   }
 
   private void validateODataVersion(ODataRequest request) throws ODataHandlerException {
-    String odataVersion = request.getHeader(HttpHeader.ODATA_VERSION);
+    String odataVersion = request.getHeader(ODATA_VERSION);
    if (odataVersion != null && !ODataServiceVersion.isValidODataVersion(odataVersion)) {
       throw new ODataHandlerException("ODataVersion not supported: " + odataVersion,
           ODataHandlerException.MessageKeys.ODATA_VERSION_NOT_SUPPORTED, odataVersion);
     }
     
-    String maxVersion = request.getHeader(HttpHeader.ODATA_MAX_VERSION);
+    String maxVersion = request.getHeader(ODATA_MAX_VERSION);
     if (maxVersion != null && !ODataServiceVersion.isValidMaxODataVersion(maxVersion)) {
         throw new ODataHandlerException("ODataVersion not supported: " + maxVersion,
             ODataHandlerException.MessageKeys.ODATA_VERSION_NOT_SUPPORTED, maxVersion);

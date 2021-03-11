@@ -1,12 +1,11 @@
 package nl.buildforce.sequoia.processor.core.database;
 
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPADataBaseFunction;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAOperationResultParameter;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAParameter;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
-import nl.buildforce.sequoia.processor.core.api.JPAODataDatabaseProcessor;
-import nl.buildforce.sequoia.processor.core.testmodel.BusinessPartner;
-import nl.buildforce.sequoia.processor.core.testmodel.Organization;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import nl.buildforce.olingo.commons.api.edm.EdmEntityType;
 import nl.buildforce.olingo.commons.api.edm.EdmFunction;
 import nl.buildforce.olingo.commons.api.edm.EdmParameter;
@@ -21,18 +20,28 @@ import nl.buildforce.olingo.server.api.uri.UriResourceCount;
 import nl.buildforce.olingo.server.api.uri.UriResourceEntitySet;
 import nl.buildforce.olingo.server.api.uri.UriResourceFunction;
 import nl.buildforce.olingo.server.api.uri.UriResourceKind;
-import org.junit.jupiter.api.Test;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPADataBaseFunction;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAOperationResultParameter;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAParameter;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
+import nl.buildforce.sequoia.processor.core.api.JPAODataDatabaseProcessor;
+import nl.buildforce.sequoia.processor.core.testmodel.BusinessPartner;
+import nl.buildforce.sequoia.processor.core.testmodel.Organization;
+
 import org.mockito.internal.matchers.Equals;
 import org.mockito.stubbing.Answer;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.Query;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.argThat;
+import static org.mockito.Mockito.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public abstract class TestJPA_XXX_DatabaseProcessor {
 

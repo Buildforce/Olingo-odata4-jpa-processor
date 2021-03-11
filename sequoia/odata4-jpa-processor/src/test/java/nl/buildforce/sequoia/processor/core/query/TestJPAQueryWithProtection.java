@@ -2,8 +2,32 @@ package nl.buildforce.sequoia.processor.core.query;
 
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ValueNode;
+
+import jakarta.persistence.criteria.Expression;
+import jakarta.persistence.criteria.Predicate.BooleanOperator;
+import jakarta.persistence.criteria.Predicate;
+
+import java.io.IOException;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
+import nl.buildforce.olingo.commons.api.edm.EdmType;
+import nl.buildforce.olingo.commons.api.ex.ODataException;
+import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
+import nl.buildforce.olingo.server.api.ODataApplicationException;
+import nl.buildforce.olingo.server.api.uri.UriResourceEntitySet;
 import nl.buildforce.sequoia.metadata.api.JPAEdmProvider;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.*;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAttribute;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAElement;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAEntityType;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAPath;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAProtectionInfo;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAServiceDocument;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAException;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import nl.buildforce.sequoia.processor.core.api.JPAClaimsPair;
@@ -15,32 +39,21 @@ import nl.buildforce.sequoia.processor.core.processor.JPAODataRequestContextImpl
 import nl.buildforce.sequoia.processor.core.util.IntegrationTestHelper;
 import nl.buildforce.sequoia.processor.core.util.JPAEntityTypeDouble;
 import nl.buildforce.sequoia.processor.core.util.TestQueryBase;
-import nl.buildforce.olingo.commons.api.edm.EdmType;
-import nl.buildforce.olingo.commons.api.ex.ODataException;
-import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
-import nl.buildforce.olingo.server.api.ODataApplicationException;
-import nl.buildforce.olingo.server.api.uri.UriResourceEntitySet;
+
 import org.eclipse.persistence.internal.jpa.querydef.CompoundExpressionImpl;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+
 import org.junit.jupiter.params.provider.ValueSource;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import org.mockito.Mockito;
-
-import jakarta.persistence.criteria.Expression;
-import jakarta.persistence.criteria.Predicate;
-import jakarta.persistence.criteria.Predicate.BooleanOperator;
-import java.io.IOException;
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.when;
 

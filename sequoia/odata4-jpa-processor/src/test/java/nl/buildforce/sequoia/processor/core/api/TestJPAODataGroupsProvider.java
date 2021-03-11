@@ -1,11 +1,12 @@
 package nl.buildforce.sequoia.processor.core.api;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestJPAODataGroupsProvider {
   private JPAODataGroupsProvider cut;
@@ -60,4 +61,5 @@ public class TestJPAODataGroupsProvider {
     assertTrue(cut.getGroups().contains("Willi"));
     assertTrue(cut.getGroups().contains("Hugo"));
   }
+
 }

@@ -6,7 +6,6 @@ package nl.buildforce.olingo.server.api;
 import java.util.List;
 
 import nl.buildforce.olingo.commons.api.edm.Edm;
-import nl.buildforce.olingo.commons.api.edm.constants.ODataServiceVersion;
 import nl.buildforce.olingo.commons.api.edmx.EdmxReference;
 import nl.buildforce.olingo.server.api.etag.ServiceMetadataETagSupport;
 

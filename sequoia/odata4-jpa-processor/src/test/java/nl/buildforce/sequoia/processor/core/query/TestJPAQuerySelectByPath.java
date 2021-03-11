@@ -3,17 +3,23 @@ package nl.buildforce.sequoia.processor.core.query;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+
+import java.io.IOException;
+
+import nl.buildforce.olingo.commons.api.ex.ODataException;
+import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
 import nl.buildforce.sequoia.processor.core.api.JPAODataGroupsProvider;
 import nl.buildforce.sequoia.processor.core.testmodel.ImageLoader;
 import nl.buildforce.sequoia.processor.core.util.IntegrationTestHelper;
 import nl.buildforce.sequoia.processor.core.util.TestBase;
-import nl.buildforce.olingo.commons.api.ex.ODataException;
-import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
+
 import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class TestJPAQuerySelectByPath extends TestBase {
 

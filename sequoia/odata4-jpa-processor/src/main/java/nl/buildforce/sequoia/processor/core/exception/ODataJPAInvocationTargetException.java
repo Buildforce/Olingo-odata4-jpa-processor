@@ -1,6 +1,5 @@
 package nl.buildforce.sequoia.processor.core.exception;
 
-import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAMessageKey;
 import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
 
 /*
@@ -8,26 +7,22 @@ import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
  */
 public class ODataJPAInvocationTargetException extends ODataJPAProcessException {
 
-  //     private static final long serialVersionUID = 2410838419178517426L;
   private static final String BUNDLE_NAME = "processor-exceptions-i18n";
   private final String path;
-
-/*
-  enum MessageKeys implements ODataJPAMessageKey {
-    WRONG_VALUE;
-    @Override
-    public String getKey() {
-      return name();
-    }
-  }
-*/
 
   public ODataJPAInvocationTargetException(Throwable e, final String path) {
     super(e, HttpStatusCode.BAD_REQUEST);
     this.path = path;
   }
 
-/*
+/*  enum MessageKeys implements ODataJPAMessageKey {
+    WRONG_VALUE;
+    @Override
+    public String getKey() {
+      return name();
+    }
+  }
+
   public ODataJPAInvocationTargetException(Throwable e) {
     super(e, HttpStatusCode.BAD_REQUEST);
     this.path = null;
@@ -38,6 +33,5 @@ public class ODataJPAInvocationTargetException extends ODataJPAProcessException 
   protected String getBundleName() { return BUNDLE_NAME; }
 
   public String getPath() { return path; }
-
 
 }

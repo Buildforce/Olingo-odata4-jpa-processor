@@ -1,9 +1,13 @@
 package nl.buildforce.sequoia.jpa.processor.test;
 
-import nl.buildforce.sequoia.processor.core.testmodel.*;
-import org.eclipse.persistence.internal.jpa.EJBQueryImpl;
-import org.eclipse.persistence.queries.DatabaseQuery;
-import org.junit.jupiter.api.*;
+import nl.buildforce.sequoia.processor.core.testmodel.AdministrativeDivision;
+import nl.buildforce.sequoia.processor.core.testmodel.AdministrativeDivisionDescription;
+import nl.buildforce.sequoia.processor.core.testmodel.AdministrativeDivisionDescriptionKey;
+import nl.buildforce.sequoia.processor.core.testmodel.BusinessPartner;
+import nl.buildforce.sequoia.processor.core.testmodel.BusinessPartnerRole;
+import nl.buildforce.sequoia.processor.core.testmodel.DataSourceHelper;
+import nl.buildforce.sequoia.processor.core.testmodel.Organization;
+import nl.buildforce.sequoia.processor.core.testmodel.Person;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -19,14 +23,25 @@ import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import jakarta.persistence.criteria.Subquery;
 
+import org.eclipse.persistence.internal.jpa.EJBQueryImpl;
+import org.eclipse.persistence.queries.DatabaseQuery;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Disabled;
+
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import static org.eclipse.persistence.config.EntityManagerProperties.NON_JTA_DATASOURCE;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class TestCriteriaBuilder {
   protected static final String PUNIT_NAME = "nl.buildforce.sequoia";
@@ -234,14 +249,14 @@ public class TestCriteriaBuilder {
     System.out.println(dq.getSQLString());
     List<Tuple> act = tq.getResultList();
     System.out.println(dq.getSQLString());
-    Assertions.assertEquals(1, act.size());
+    assertEquals(1, act.size());
   }
 
   @Test
   public void testEntityTransaction() {
-    Assertions.assertFalse(em.getTransaction().isActive());
+    assertFalse(em.getTransaction().isActive());
     em.getTransaction().begin();
-    Assertions.assertTrue(em.getTransaction().isActive());
+    assertTrue(em.getTransaction().isActive());
   }
 
   // @Disabled
@@ -266,7 +281,7 @@ public class TestCriteriaBuilder {
     // DatabaseQuery dq = ((EJBQueryImpl<Tuple>) tq).getDatabaseQuery();
     final List<Tuple> act = tq.getResultList();
     // Ensure EclipseLink problem still exists: ("WHERE ((NULL, NULL, NULL, NULL) IN "));
-    Assertions.assertEquals(0, act.size());
+    assertEquals(0, act.size());
   }
 
   private Expression<Boolean> createParentAdmin(Root<AdministrativeDivision> subQuery,

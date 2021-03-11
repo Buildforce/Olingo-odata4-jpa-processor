@@ -3,12 +3,6 @@
 */
 package nl.buildforce.olingo.server.core.batchhandler;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -21,10 +15,8 @@ import java.util.UUID;
 
 import nl.buildforce.olingo.commons.api.ex.ODataException;
 import nl.buildforce.olingo.commons.api.format.ContentType;
-import nl.buildforce.olingo.commons.api.http.HttpHeader;
 import nl.buildforce.olingo.commons.api.http.HttpMethod;
 import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
-import nl.buildforce.olingo.server.core.ODataHandlerImpl;
 import nl.buildforce.olingo.server.api.OData;
 import nl.buildforce.olingo.server.api.ODataApplicationException;
 import nl.buildforce.olingo.server.api.ODataLibraryException;
@@ -37,22 +29,33 @@ import nl.buildforce.olingo.server.api.deserializer.batch.BatchOptions;
 import nl.buildforce.olingo.server.api.deserializer.batch.BatchRequestPart;
 import nl.buildforce.olingo.server.api.deserializer.batch.ODataResponsePart;
 import nl.buildforce.olingo.server.api.processor.BatchProcessor;
+import nl.buildforce.olingo.server.core.ODataHandlerImpl;
 import nl.buildforce.olingo.server.core.deserializer.batch.BatchLineReader;
 import nl.buildforce.olingo.server.core.deserializer.batch.BatchParserCommon;
+import static nl.buildforce.olingo.commons.api.http.HttpHeader.CONTENT_ID;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.stubbing.Answer;
 
+import static com.google.common.net.HttpHeaders.CONTENT_TYPE;
+import static com.google.common.net.HttpHeaders.LOCATION;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 public class MockedBatchHandlerTest {
 
+  private BatchHandler batchHandler;
+  private ODataHandlerImpl oDataHandler;
+  private int entityCounter = 1;
+  private static final String BASE_URI = "http://localhost:8080/odata";
   private static final String BATCH_CONTENT_TYPE = "multipart/mixed;boundary=batch_12345";
   private static final String BATCH_ODATA_PATH = "/$batch";
   private static final String BATCH_REQUEST_URI = "http://localhost:8080/odata/$batch";
-  private static final String BASE_URI = "http://localhost:8080/odata";
   private static final String CRLF = "\r\n";
-  private ODataHandlerImpl oDataHandler;
-  private BatchHandler batchHandler;
-  private int entityCounter = 1;
 
   @Before
   public void setup() {
@@ -503,7 +506,7 @@ public class MockedBatchHandlerTest {
         + "--batch_12345--";
 
     Map<String, List<String>> header = new HashMap<>();
-    header.put(HttpHeader.CONTENT_TYPE, Collections.singletonList("application/http"));
+    header.put(CONTENT_TYPE, Collections.singletonList("application/http"));
     ODataResponse response = new ODataResponse();
     ODataRequest request = buildODataRequest(content, header);
 
@@ -530,7 +533,7 @@ public class MockedBatchHandlerTest {
   }
 
   private Map<String, List<String>> getMimeHeader() {
-    return Collections.singletonMap(HttpHeader.CONTENT_TYPE, Collections.singletonList(BATCH_CONTENT_TYPE));
+    return Collections.singletonMap(CONTENT_TYPE, Collections.singletonList(BATCH_CONTENT_TYPE));
   }
 
   private ODataRequest buildODataRequest(String content, Map<String, List<String>> header) {
@@ -582,7 +585,7 @@ public class MockedBatchHandlerTest {
     @Override
     public void processBatch(BatchFacade fascade, ODataRequest request, ODataResponse response)
         throws ODataApplicationException, ODataLibraryException {
-      String boundary = getBoundary(request.getHeader(HttpHeader.CONTENT_TYPE));
+      String boundary = getBoundary(request.getHeader(CONTENT_TYPE));
       BatchOptions options = BatchOptions.with().isStrict(true).rawBaseUri(BASE_URI).build();
       List<BatchRequestPart> parts =
           odata.createFixedFormatDeserializer().parseBatchRequest(request.getBody(), boundary, options);
@@ -606,7 +609,7 @@ public class MockedBatchHandlerTest {
           odata.createFixedFormatSerializer().batchResponse(responseParts, responeBoundary);
 
       response.setStatusCode(HttpStatusCode.ACCEPTED.getStatusCode());
-      response.setHeader(HttpHeader.CONTENT_TYPE, ContentType.MULTIPART_MIXED + ";boundary=" + responeBoundary);
+      response.setHeader(CONTENT_TYPE, ContentType.MULTIPART_MIXED + ";boundary=" + responeBoundary);
       response.setContent(responseStream);
     }
 
@@ -620,14 +623,14 @@ public class MockedBatchHandlerTest {
 
     if (request.getMethod() == HttpMethod.POST) {
       oDataResponse.setStatusCode(HttpStatusCode.CREATED.getStatusCode());
-      oDataResponse.setHeader(HttpHeader.LOCATION, createResourceUri(request));
+      oDataResponse.setHeader(LOCATION, createResourceUri(request));
     } else {
       oDataResponse.setStatusCode(HttpStatusCode.OK.getStatusCode());
     }
 
-    String contentId = request.getHeader(HttpHeader.CONTENT_ID);
+    String contentId = request.getHeader(CONTENT_ID);
     if (contentId != null) {
-      oDataResponse.setHeader(HttpHeader.CONTENT_ID, contentId);
+      oDataResponse.setHeader(CONTENT_ID, contentId);
     }
 
     return oDataResponse;
@@ -657,4 +660,5 @@ public class MockedBatchHandlerTest {
 
     return BASE_URI + "/" + oDataPath + "(" + entityCounter++ + ")";
   }
+
 }

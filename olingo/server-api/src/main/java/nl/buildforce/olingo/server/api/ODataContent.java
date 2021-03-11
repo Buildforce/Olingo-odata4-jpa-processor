@@ -3,7 +3,6 @@
 */
 package nl.buildforce.olingo.server.api;
 
-import java.io.OutputStream;
 import java.nio.channels.WritableByteChannel;
 
 /**

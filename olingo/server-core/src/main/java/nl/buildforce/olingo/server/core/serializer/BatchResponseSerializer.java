@@ -16,16 +16,20 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+
 import nl.buildforce.olingo.commons.api.ex.ODataRuntimeException;
 import nl.buildforce.olingo.commons.api.format.ContentType;
-import nl.buildforce.olingo.commons.api.http.HttpHeader;
 import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
-import nl.buildforce.olingo.server.api.ODataResponse;
 import nl.buildforce.olingo.server.api.ODataContent;
+import nl.buildforce.olingo.server.api.ODataResponse;
 import nl.buildforce.olingo.server.api.deserializer.batch.ODataResponsePart;
-import nl.buildforce.olingo.server.api.serializer.BatchSerializerException;
 import nl.buildforce.olingo.server.api.serializer.BatchSerializerException.MessageKeys;
+import nl.buildforce.olingo.server.api.serializer.BatchSerializerException;
 import nl.buildforce.olingo.server.core.deserializer.batch.BatchParserCommon;
+
+import static com.google.common.net.HttpHeaders.CONTENT_LENGTH;
+import static com.google.common.net.HttpHeaders.CONTENT_TYPE;
+import static nl.buildforce.olingo.commons.api.http.HttpHeader.CONTENT_ID;
 
 public class BatchResponseSerializer {
   private static final int BUFFER_SIZE = 4096;
@@ -90,7 +94,7 @@ public class BatchResponseSerializer {
   }
 
   private void appendChangeSetHeader(BodyBuilder builder, String changeSetBoundary) {
-    appendHeader(HttpHeader.CONTENT_TYPE, ContentType.MULTIPART_MIXED
+    appendHeader(CONTENT_TYPE, ContentType.MULTIPART_MIXED
         + "; boundary=" + changeSetBoundary, builder);
   }
 
@@ -125,22 +129,22 @@ public class BatchResponseSerializer {
 
     for (Map.Entry<String, List<String>> entry : header.entrySet()) {
       // Requests never have a content id header.
-      if (!entry.getKey().equalsIgnoreCase(HttpHeader.CONTENT_ID)) {
+      if (!entry.getKey().equalsIgnoreCase(CONTENT_ID)) {
         appendHeader(entry.getKey(), entry.getValue().get(0), builder);
       }
     }
 
-    appendHeader(HttpHeader.CONTENT_LENGTH, Integer.toString(contentLength), builder);
+    appendHeader(CONTENT_LENGTH, Integer.toString(contentLength), builder);
   }
 
   private void appendBodyPartHeader(ODataResponse response, BodyBuilder builder,
                                     boolean isChangeSet) throws BatchSerializerException {
-    appendHeader(HttpHeader.CONTENT_TYPE, ContentType.APPLICATION_HTTP.toString(), builder);
+    appendHeader(CONTENT_TYPE, ContentType.APPLICATION_HTTP.toString(), builder);
     appendHeader(BatchParserCommon.CONTENT_TRANSFER_ENCODING, BatchParserCommon.BINARY_ENCODING, builder);
 
     if (isChangeSet) {
-      if (response.getHeader(HttpHeader.CONTENT_ID) != null) {
-        appendHeader(HttpHeader.CONTENT_ID, response.getHeader(HttpHeader.CONTENT_ID), builder);
+      if (response.getHeader(CONTENT_ID) != null) {
+        appendHeader(CONTENT_ID, response.getHeader(CONTENT_ID), builder);
       } else {
         throw new BatchSerializerException("Missing content id", MessageKeys.MISSING_CONTENT_ID);
       }

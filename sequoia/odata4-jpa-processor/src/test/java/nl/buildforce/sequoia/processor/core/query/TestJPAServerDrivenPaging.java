@@ -2,6 +2,13 @@ package nl.buildforce.sequoia.processor.core.query;
 
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+
 import nl.buildforce.olingo.commons.api.edm.EdmEntitySet;
 import nl.buildforce.olingo.commons.api.edm.EdmEntityType;
 import nl.buildforce.olingo.commons.api.edm.EdmPrimitiveType;
@@ -24,6 +31,7 @@ import nl.buildforce.olingo.server.api.uri.queryoption.SelectItem;
 import nl.buildforce.olingo.server.api.uri.queryoption.SelectOption;
 import nl.buildforce.olingo.server.api.uri.queryoption.SystemQueryOptionKind;
 import nl.buildforce.olingo.server.api.uri.queryoption.expression.Member;
+
 import nl.buildforce.sequoia.processor.core.api.JPAClaimsPair;
 import nl.buildforce.sequoia.processor.core.api.JPAODataClaimsProvider;
 import nl.buildforce.sequoia.processor.core.api.JPAODataPage;
@@ -31,17 +39,17 @@ import nl.buildforce.sequoia.processor.core.api.JPAODataPagingProvider;
 import nl.buildforce.sequoia.processor.core.util.CountQueryMatcher;
 import nl.buildforce.sequoia.processor.core.util.IntegrationTestHelper;
 import nl.buildforce.sequoia.processor.core.util.TestBase;
+
 import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.mockito.Mockito.*;
+
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.argThat;
+import static org.mockito.Mockito.isNotNull;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class TestJPAServerDrivenPaging extends TestBase {
   @Test

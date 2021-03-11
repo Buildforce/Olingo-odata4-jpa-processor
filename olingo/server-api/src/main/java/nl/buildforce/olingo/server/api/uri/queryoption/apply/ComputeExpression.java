@@ -3,8 +3,6 @@
 */
 package nl.buildforce.olingo.server.api.uri.queryoption.apply;
 
-import nl.buildforce.olingo.server.api.uri.queryoption.expression.Expression;
-
 /**
  * Represents a compute expression.
  * @see Compute

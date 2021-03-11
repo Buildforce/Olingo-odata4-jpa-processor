@@ -1,14 +1,42 @@
 package nl.buildforce.sequoia.processor.core.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import nl.buildforce.olingo.commons.api.edm.EdmComplexType;
 import nl.buildforce.olingo.commons.api.edm.EdmEntityType;
 import nl.buildforce.olingo.commons.api.edm.EdmProperty;
 import nl.buildforce.olingo.commons.api.edm.EdmType;
-import nl.buildforce.olingo.server.api.uri.*;
-import nl.buildforce.olingo.server.api.uri.queryoption.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import nl.buildforce.olingo.server.api.uri.UriInfo;
+import nl.buildforce.olingo.server.api.uri.UriInfoAll;
+import nl.buildforce.olingo.server.api.uri.UriInfoBatch;
+import nl.buildforce.olingo.server.api.uri.UriInfoCrossjoin;
+import nl.buildforce.olingo.server.api.uri.UriInfoEntityId;
+import nl.buildforce.olingo.server.api.uri.UriInfoKind;
+import nl.buildforce.olingo.server.api.uri.UriInfoMetadata;
+import nl.buildforce.olingo.server.api.uri.UriInfoResource;
+import nl.buildforce.olingo.server.api.uri.UriInfoService;
+import nl.buildforce.olingo.server.api.uri.UriResource;
+import nl.buildforce.olingo.server.api.uri.UriResourceComplexProperty;
+import nl.buildforce.olingo.server.api.uri.UriResourceKind;
+import nl.buildforce.olingo.server.api.uri.UriResourcePrimitiveProperty;
+import nl.buildforce.olingo.server.api.uri.UriResourceProperty;
+import nl.buildforce.olingo.server.api.uri.queryoption.AliasQueryOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.ApplyOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.CountOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.CustomQueryOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.DeltaTokenOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.ExpandOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.FilterOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.FormatOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.IdOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.OrderByOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.SearchOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.SelectOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.SkipOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.SkipTokenOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.SystemQueryOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.TopOption;
 
 import static org.junit.jupiter.api.Assertions.fail;
 

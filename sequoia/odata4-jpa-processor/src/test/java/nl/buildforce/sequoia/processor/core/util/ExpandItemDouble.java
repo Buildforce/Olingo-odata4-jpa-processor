@@ -4,7 +4,17 @@ import nl.buildforce.olingo.commons.api.edm.EdmEntityType;
 import nl.buildforce.olingo.commons.api.edm.EdmType;
 import nl.buildforce.olingo.server.api.uri.UriInfoResource;
 import nl.buildforce.olingo.server.api.uri.UriResourceNavigation;
-import nl.buildforce.olingo.server.api.uri.queryoption.*;
+import nl.buildforce.olingo.server.api.uri.queryoption.ApplyOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.CountOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.ExpandItem;
+import nl.buildforce.olingo.server.api.uri.queryoption.ExpandOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.FilterOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.LevelsExpandOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.OrderByOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.SearchOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.SelectOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.SkipOption;
+import nl.buildforce.olingo.server.api.uri.queryoption.TopOption;
 
 import static org.junit.jupiter.api.Assertions.fail;
 

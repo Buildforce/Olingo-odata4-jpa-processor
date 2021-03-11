@@ -8,7 +8,6 @@ import java.util.Collections;
 import java.util.List;
 
 import nl.buildforce.olingo.commons.api.edm.Edm;
-import nl.buildforce.olingo.commons.api.edm.constants.ODataServiceVersion;
 import nl.buildforce.olingo.commons.api.edm.provider.CsdlEdmProvider;
 import nl.buildforce.olingo.commons.api.edmx.EdmxReference;
 import nl.buildforce.olingo.commons.core.edm.EdmProviderImpl;

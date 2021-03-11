@@ -1,25 +1,37 @@
 package nl.buildforce.sequoia.metadata.core.edm.mapper.impl;
 
+
+
+
+
+import jakarta.persistence.metamodel.ManagedType;
+import jakarta.persistence.metamodel.PluralAttribute;
+import jakarta.persistence.metamodel.Type.PersistenceType;
+import jakarta.persistence.metamodel.Type;
+
+import java.util.List;
+
+import nl.buildforce.olingo.commons.api.edm.provider.CsdlAnnotation;
+import nl.buildforce.olingo.commons.api.edm.provider.annotation.CsdlConstantExpression.ConstantExpressionType;
+
 import nl.buildforce.sequoia.metadata.api.JPAEdmMetadataPostProcessor;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPACollectionAttribute;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAPath;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import nl.buildforce.sequoia.processor.core.testmodel.Organization;
 import nl.buildforce.sequoia.processor.core.testmodel.Person;
-import jakarta.persistence.metamodel.Type;
-import nl.buildforce.olingo.commons.api.edm.provider.CsdlAnnotation;
-import nl.buildforce.olingo.commons.api.edm.provider.annotation.CsdlConstantExpression.ConstantExpressionType;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.stubbing.Answer;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import jakarta.persistence.metamodel.ManagedType;
-import jakarta.persistence.metamodel.PluralAttribute;
-import jakarta.persistence.metamodel.Type.PersistenceType;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class TestIntermediateCollectionProperty extends TestMappingRoot {
   private TestHelper helper;

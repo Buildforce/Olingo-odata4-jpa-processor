@@ -143,7 +143,7 @@ public class UriValidator {
   private UriType getUriTypeForResource(List<UriResource> segments) throws UriValidationException {
     UriResource lastPathSegment = segments.get(segments.size() - 1);
 
-    UriType uriType = switch (lastPathSegment.getKind()) {
+    return switch (lastPathSegment.getKind()) {
       case count -> getUriTypeForCount(segments.get(segments.size() - 2));
       case action -> getUriTypeForAction(lastPathSegment);
       case complexProperty -> getUriTypeForComplexProperty(lastPathSegment);
@@ -156,8 +156,6 @@ public class UriValidator {
       default -> throw new UriValidationException("Unsupported uriResource kind: " + lastPathSegment.getKind(),
               UriValidationException.MessageKeys.UNSUPPORTED_URI_RESOURCE_KIND, lastPathSegment.getKind().toString());
     };
-
-    return uriType;
   }
 
   private UriType getUriTypeForValue(UriResource secondLastPathSegment) throws UriValidationException {
@@ -200,15 +198,14 @@ public class UriValidator {
     UriResourceFunction uriFunction = (UriResourceFunction) lastPathSegment;
     boolean isCollection = uriFunction.isCollection();
     EdmTypeKind typeKind = uriFunction.getFunction().getReturnType().getType().getKind();
-    UriType uriType = switch (typeKind) {
+
+    return switch (typeKind) {
       case ENTITY -> isCollection ? UriType.entitySet : UriType.entity;
       case PRIMITIVE, ENUM, DEFINITION -> isCollection ? UriType.propertyPrimitiveCollection : UriType.propertyPrimitive;
       case COMPLEX -> isCollection ? UriType.propertyComplexCollection : UriType.propertyComplex;
       default -> throw new UriValidationException("Unsupported function return type: " + typeKind,
               UriValidationException.MessageKeys.UNSUPPORTED_FUNCTION_RETURN_TYPE, typeKind.toString());
     };
-
-    return uriType;
   }
 
   private UriType getUriTypeForEntitySet(UriResource lastPathSegment) throws UriValidationException {
@@ -224,14 +221,13 @@ public class UriValidator {
     if (rt == null) {
       return UriType.none;
     }
-    UriType uriType = switch (rt.getType().getKind()) {
+    return switch (rt.getType().getKind()) {
       case ENTITY -> rt.isCollection() ? UriType.entitySet : UriType.entity;
       case PRIMITIVE, ENUM, DEFINITION -> rt.isCollection() ? UriType.propertyPrimitiveCollection : UriType.propertyPrimitive;
       case COMPLEX -> rt.isCollection() ? UriType.propertyComplexCollection : UriType.propertyComplex;
       default -> throw new UriValidationException("Unsupported action return type: " + rt.getType().getKind(),
               UriValidationException.MessageKeys.UNSUPPORTED_ACTION_RETURN_TYPE, rt.getType().getKind().toString());
     };
-    return uriType;
   }
 
   private UriType getUriTypeForCount(UriResource secondLastPathSegment) throws UriValidationException {

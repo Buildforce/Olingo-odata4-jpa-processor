@@ -41,12 +41,18 @@ import nl.buildforce.sequoia.processor.core.testmodel.PostalAddressData;
 import nl.buildforce.sequoia.processor.core.testmodel.PostalAddressDataWithGroup;
 import nl.buildforce.sequoia.processor.core.testmodel.User;
 
-import nl.buildforce.sequoia.processor.core.errormodel.*;
+import nl.buildforce.sequoia.processor.core.errormodel.CollectionAttributeProtected;
+import nl.buildforce.sequoia.processor.core.errormodel.ComplexProtectedNoPath;
+import nl.buildforce.sequoia.processor.core.errormodel.ComplexProtectedWrongPath;
+import nl.buildforce.sequoia.processor.core.errormodel.EmbeddedKeyPartOfGroup;
+import nl.buildforce.sequoia.processor.core.errormodel.KeyPartOfGroup;
+import nl.buildforce.sequoia.processor.core.errormodel.MandatoryPartOfGroup;
+import nl.buildforce.sequoia.processor.core.errormodel.NavigationAttributeProtected;
+import nl.buildforce.sequoia.processor.core.errormodel.NavigationPropertyPartOfGroup;
+import nl.buildforce.sequoia.processor.core.errormodel.PersonDeepCollectionProtected;
+import nl.buildforce.sequoia.processor.core.errormodel.Team;
+
 import org.hsqldb.jdbc.JDBCClob;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -61,7 +67,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
-
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -193,12 +202,7 @@ public class TestStandardMethodsOfTestModel {
   }
 
   private Object getExpected(final Class<?> paramType) {
-
-    long expLong = 15L;
-    int expInt = 10;
-    Integer expInteger = 20;
-    String expString = "TestString";
-    if (paramType == String.class) return expString;
+    if (paramType == String.class) return "TestString";
     else if (paramType == BigDecimal.class) return expDecimal;
     else if (paramType == BigInteger.class) return expBigInt;
     else if (paramType == Boolean.class) return expBoolean;
@@ -206,11 +210,11 @@ public class TestStandardMethodsOfTestModel {
     else if (paramType == Date.class) return expDate;
     else if (paramType == expByteArray.getClass()) return expByteArray;
     else if (paramType == expUtilDate.getClass()) return expUtilDate;
-    else if (paramType == int.class) return expInt;
-    else if (paramType == Integer.class) return expInteger;
+    else if (paramType == int.class) return (int)10;
+    else if (paramType == Integer.class) return Integer.valueOf(20);
     else if (paramType == LocalDate.class) return expLocalDate;
-    else if (paramType == Long.class) return expLong;
-    else if (paramType == long.class) return expLong;
+    else if (paramType == Long.class) return Long.valueOf(15L);
+    else if (paramType == long.class) return 15L;
     else if (paramType == Short.class) return expShort;
     else if (paramType == short.class) return expShort;
     else if (paramType == Timestamp.class) return expTimestamp;

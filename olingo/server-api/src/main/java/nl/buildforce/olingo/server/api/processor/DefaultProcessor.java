@@ -4,7 +4,6 @@
 package nl.buildforce.olingo.server.api.processor;
 
 import nl.buildforce.olingo.commons.api.format.ContentType;
-import nl.buildforce.olingo.commons.api.http.HttpHeader;
 import nl.buildforce.olingo.commons.api.http.HttpMethod;
 import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
 import nl.buildforce.olingo.server.api.OData;
@@ -19,6 +18,11 @@ import nl.buildforce.olingo.server.api.serializer.ODataSerializer;
 
 import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
+
+import static com.google.common.net.HttpHeaders.CONTENT_TYPE;
+import static com.google.common.net.HttpHeaders.ETAG;
+import static com.google.common.net.HttpHeaders.IF_MATCH;
+import static com.google.common.net.HttpHeaders.IF_NONE_MATCH;
 
 /**
  * <p>Processor implementation for handling default cases:
@@ -45,11 +49,11 @@ public class DefaultProcessor implements MetadataProcessor, ServiceDocumentProce
         ServiceMetadataETagSupport eTagSupport = serviceMetadata.getServiceMetadataETagSupport();
         if (eTagSupport != null && eTagSupport.getServiceDocumentETag() != null) {
             // Set application etag at response
-            response.setHeader(HttpHeader.ETAG, eTagSupport.getServiceDocumentETag());
+            response.setHeader(ETAG, eTagSupport.getServiceDocumentETag());
             // Check if service document has been modified
             ETagHelper eTagHelper = odata.createETagHelper();
             isNotModified = eTagHelper.checkReadPreconditions(eTagSupport.getServiceDocumentETag(), request
-                    .getHeaders(HttpHeader.IF_MATCH), request.getHeaders(HttpHeader.IF_NONE_MATCH));
+                    .getHeaders(IF_MATCH), request.getHeaders(IF_NONE_MATCH));
         }
 
         // Send the correct response
@@ -63,7 +67,7 @@ public class DefaultProcessor implements MetadataProcessor, ServiceDocumentProce
                 ODataSerializer serializer = odata.createSerializer(requestedContentType);
                 response.setContent(serializer.serviceDocument(serviceMetadata, null).getContent());
                 response.setStatusCode(HttpStatusCode.OK.getStatusCode());
-                response.setHeader(HttpHeader.CONTENT_TYPE, requestedContentType.toString());
+                response.setHeader(CONTENT_TYPE, requestedContentType.toString());
             }
         }
     }
@@ -75,11 +79,11 @@ public class DefaultProcessor implements MetadataProcessor, ServiceDocumentProce
         ServiceMetadataETagSupport eTagSupport = serviceMetadata.getServiceMetadataETagSupport();
         if (eTagSupport != null && eTagSupport.getMetadataETag() != null) {
             // Set application etag at response
-            response.setHeader(HttpHeader.ETAG, eTagSupport.getMetadataETag());
+            response.setHeader(ETAG, eTagSupport.getMetadataETag());
             // Check if metadata document has been modified
             ETagHelper eTagHelper = odata.createETagHelper();
             isNotModified = eTagHelper.checkReadPreconditions(eTagSupport.getMetadataETag(), request
-                    .getHeaders(HttpHeader.IF_MATCH), request.getHeaders(HttpHeader.IF_NONE_MATCH));
+                    .getHeaders(IF_MATCH), request.getHeaders(IF_NONE_MATCH));
         }
 
         // Send the correct response
@@ -93,7 +97,7 @@ public class DefaultProcessor implements MetadataProcessor, ServiceDocumentProce
                 ODataSerializer serializer = odata.createSerializer(requestedContentType);
                 response.setContent(serializer.metadataDocument(serviceMetadata).getContent());
                 response.setStatusCode(HttpStatusCode.OK.getStatusCode());
-                response.setHeader(HttpHeader.CONTENT_TYPE, requestedContentType.toString());
+                response.setHeader(CONTENT_TYPE, requestedContentType.toString());
             }
         }
     }
@@ -106,14 +110,14 @@ public class DefaultProcessor implements MetadataProcessor, ServiceDocumentProce
             ODataSerializer serializer = odata.createSerializer(requestedContentType);
             response.setContent(serializer.error(serverError).getContent());
             response.setStatusCode(serverError.getStatusCode());
-            response.setHeader(HttpHeader.CONTENT_TYPE, requestedContentType.toString());
+            response.setHeader(CONTENT_TYPE, requestedContentType.toString());
         } catch (Exception e) {
             // This should never happen but to be sure we have this catch here to prevent sending a stacktrace to a client.
             String responseContent =
                     "{\"error\":{\"code\":null,\"message\":\"An unexpected exception occurred during error processing\"}}";
             response.setContent(new ByteArrayInputStream(responseContent.getBytes(StandardCharsets.UTF_8)));
             response.setStatusCode(HttpStatusCode.INTERNAL_SERVER_ERROR.getStatusCode());
-            response.setHeader(HttpHeader.CONTENT_TYPE, ContentType.APPLICATION_JSON.toString());
+            response.setHeader(CONTENT_TYPE, ContentType.APPLICATION_JSON.toString());
         }
     }
 

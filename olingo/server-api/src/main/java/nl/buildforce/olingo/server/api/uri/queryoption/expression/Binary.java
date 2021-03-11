@@ -3,8 +3,6 @@
 */
 package nl.buildforce.olingo.server.api.uri.queryoption.expression;
 
-import java.util.List;
-
 /**
  * Represents a binary expression node in the expression tree
  * <br>

@@ -5,16 +5,20 @@ import com.fasterxml.jackson.databind.node.IntNode;
 import com.fasterxml.jackson.databind.node.NullNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.TextNode;
-import nl.buildforce.sequoia.processor.core.api.JPAODataGroupsProvider;
-import nl.buildforce.sequoia.processor.core.util.IntegrationTestHelper;
-import nl.buildforce.sequoia.processor.core.util.TestBase;
-import nl.buildforce.olingo.commons.api.ex.ODataException;
-import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
-import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import nl.buildforce.olingo.commons.api.ex.ODataException;
+import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
+import nl.buildforce.sequoia.processor.core.api.JPAODataGroupsProvider;
+import nl.buildforce.sequoia.processor.core.util.IntegrationTestHelper;
+import nl.buildforce.sequoia.processor.core.util.TestBase;
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class TestJPAQueryCollection extends TestBase {
 
@@ -259,4 +263,5 @@ public class TestJPAQueryCollection extends TestBase {
     assertEquals(2, act.size());
     assertEquals(2, act.get(0).get("Comment").size());
   }
+
 }

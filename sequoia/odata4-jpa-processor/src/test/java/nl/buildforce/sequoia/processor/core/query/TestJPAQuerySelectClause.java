@@ -1,18 +1,11 @@
 package nl.buildforce.sequoia.processor.core.query;
 
-import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAException;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
-import nl.buildforce.sequoia.processor.core.exception.JPAIllegalAccessException;
-import nl.buildforce.sequoia.processor.core.testmodel.TestDataConstants;
-import nl.buildforce.sequoia.processor.core.util.EdmEntityTypeDouble;
-import nl.buildforce.sequoia.processor.core.util.EdmPropertyDouble;
-import nl.buildforce.sequoia.processor.core.util.ExpandItemDouble;
-import nl.buildforce.sequoia.processor.core.util.ExpandOptionDouble;
-import nl.buildforce.sequoia.processor.core.util.SelectOptionDouble;
-import nl.buildforce.sequoia.processor.core.util.TestQueryBase;
-import nl.buildforce.sequoia.processor.core.util.UriInfoDouble;
-import nl.buildforce.sequoia.processor.core.util.UriResourceNavigationDouble;
-import nl.buildforce.sequoia.processor.core.util.UriResourcePropertyDouble;
+import jakarta.persistence.criteria.Selection;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import nl.buildforce.olingo.commons.api.edm.EdmComplexType;
 import nl.buildforce.olingo.commons.api.edm.EdmEntitySet;
 import nl.buildforce.olingo.commons.api.edm.EdmEntityType;
@@ -28,15 +21,26 @@ import nl.buildforce.olingo.server.api.uri.UriResourceValue;
 import nl.buildforce.olingo.server.api.uri.queryoption.ExpandItem;
 import nl.buildforce.olingo.server.api.uri.queryoption.ExpandOption;
 import nl.buildforce.olingo.server.api.uri.queryoption.SelectOption;
+
+import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAException;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
+import nl.buildforce.sequoia.processor.core.exception.JPAIllegalAccessException;
+import nl.buildforce.sequoia.processor.core.testmodel.TestDataConstants;
+import nl.buildforce.sequoia.processor.core.util.EdmEntityTypeDouble;
+import nl.buildforce.sequoia.processor.core.util.EdmPropertyDouble;
+import nl.buildforce.sequoia.processor.core.util.ExpandItemDouble;
+import nl.buildforce.sequoia.processor.core.util.ExpandOptionDouble;
+import nl.buildforce.sequoia.processor.core.util.SelectOptionDouble;
+import nl.buildforce.sequoia.processor.core.util.TestQueryBase;
+import nl.buildforce.sequoia.processor.core.util.UriInfoDouble;
+import nl.buildforce.sequoia.processor.core.util.UriResourceNavigationDouble;
+import nl.buildforce.sequoia.processor.core.util.UriResourcePropertyDouble;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import jakarta.persistence.criteria.Selection;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class TestJPAQuerySelectClause extends TestQueryBase {
 

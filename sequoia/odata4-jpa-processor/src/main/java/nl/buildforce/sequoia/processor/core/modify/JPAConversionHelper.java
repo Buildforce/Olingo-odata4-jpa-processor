@@ -1,19 +1,14 @@
 package nl.buildforce.sequoia.processor.core.modify;
 
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAttribute;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAEntityType;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAEnumerationAttribute;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAPath;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAServiceDocument;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAStructuredType;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
-import nl.buildforce.sequoia.processor.core.exception.ODataJPAFilterException;
-import nl.buildforce.sequoia.processor.core.exception.ODataJPAProcessException;
-import nl.buildforce.sequoia.processor.core.exception.ODataJPAProcessorException;
-import nl.buildforce.sequoia.processor.core.exception.ODataJPAProcessorException.MessageKeys;
-import nl.buildforce.sequoia.processor.core.query.EdmEntitySetInfo;
-import nl.buildforce.sequoia.processor.core.query.ExpressionUtil;
-import nl.buildforce.sequoia.processor.core.query.Util;
+import jakarta.persistence.AttributeConverter;
+import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import nl.buildforce.olingo.commons.api.data.ComplexValue;
 import nl.buildforce.olingo.commons.api.data.Entity;
 import nl.buildforce.olingo.commons.api.data.Parameter;
@@ -22,7 +17,6 @@ import nl.buildforce.olingo.commons.api.data.ValueType;
 import nl.buildforce.olingo.commons.api.edm.EdmEntitySet;
 import nl.buildforce.olingo.commons.api.edm.EdmProperty;
 import nl.buildforce.olingo.commons.api.format.ContentType;
-import nl.buildforce.olingo.commons.api.http.HttpHeader;
 import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
 import nl.buildforce.olingo.server.api.OData;
 import nl.buildforce.olingo.server.api.ODataRequest;
@@ -33,15 +27,22 @@ import nl.buildforce.olingo.server.api.uri.UriParameter;
 import nl.buildforce.olingo.server.api.uri.UriResource;
 import nl.buildforce.olingo.server.api.uri.UriResourceProperty;
 
-import jakarta.persistence.AttributeConverter;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAttribute;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAEntityType;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAEnumerationAttribute;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAPath;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAServiceDocument;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAStructuredType;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
+import nl.buildforce.sequoia.processor.core.exception.ODataJPAFilterException;
+import nl.buildforce.sequoia.processor.core.exception.ODataJPAProcessException;
+import nl.buildforce.sequoia.processor.core.exception.ODataJPAProcessorException.MessageKeys;
+import nl.buildforce.sequoia.processor.core.exception.ODataJPAProcessorException;
+import nl.buildforce.sequoia.processor.core.query.EdmEntitySetInfo;
+import nl.buildforce.sequoia.processor.core.query.ExpressionUtil;
+import nl.buildforce.sequoia.processor.core.query.Util;
 
-import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import static nl.buildforce.olingo.commons.api.http.HttpHeader.ODATA_VERSION;
 
 /**
  * Helper method for modifying requests.<p>
@@ -106,7 +107,7 @@ public class JPAConversionHelper {
     final EdmEntitySetInfo targetEntityInfo = Util.determineModifyEntitySetAndKeys(uriResourceParts);
     try {
       final ODataDeserializer deserializer = createDeserializer(odata, requestFormat,
-          request.getHeaders(HttpHeader.ODATA_VERSION));
+          request.getHeaders(ODATA_VERSION));
       final UriResource lastPart = uriResourceParts.get(uriResourceParts.size() - 1);
       if (lastPart instanceof UriResourceProperty) {
         // Convert requests on property level into request on entity level

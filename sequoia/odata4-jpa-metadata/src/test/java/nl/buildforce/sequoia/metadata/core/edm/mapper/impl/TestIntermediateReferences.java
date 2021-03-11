@@ -15,7 +15,15 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 
 public class TestIntermediateReferences extends TestMappingRoot {
   private IntermediateReferences cut;
@@ -144,4 +152,5 @@ public class TestIntermediateReferences extends TestMappingRoot {
       reference.addInclude("Org.OData.Core.V1", "Core");
     }
   }
+
 }

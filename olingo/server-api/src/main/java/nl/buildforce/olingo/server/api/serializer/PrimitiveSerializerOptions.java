@@ -4,7 +4,6 @@
 package nl.buildforce.olingo.server.api.serializer;
 
 import nl.buildforce.olingo.commons.api.data.ContextURL;
-import nl.buildforce.olingo.commons.api.edm.EdmProperty;
 
 /** Options for the OData serializer. */
 public final class PrimitiveSerializerOptions {

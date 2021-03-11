@@ -7,6 +7,7 @@ import nl.buildforce.sequoia.metadata.core.edm.mapper.extension.IntermediateEnti
 import nl.buildforce.sequoia.metadata.core.edm.mapper.extension.IntermediateNavigationPropertyAccess;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.extension.IntermediatePropertyAccess;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.extension.IntermediateReferenceList;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,7 +18,11 @@ import jakarta.persistence.metamodel.EmbeddableType;
 import java.util.List;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.mockito.Mockito.mock;
 
 public class TestIntermediateComplexType extends TestMappingRoot {

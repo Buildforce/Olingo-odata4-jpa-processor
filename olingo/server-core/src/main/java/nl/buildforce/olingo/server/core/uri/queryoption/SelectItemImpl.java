@@ -4,7 +4,6 @@
 package nl.buildforce.olingo.server.core.uri.queryoption;
 
 import nl.buildforce.olingo.commons.api.edm.EdmType;
-import nl.buildforce.olingo.commons.api.edm.FullQualifiedName;
 import nl.buildforce.olingo.server.api.uri.queryoption.SelectItem;
 import nl.buildforce.olingo.server.api.uri.UriInfoResource;
 

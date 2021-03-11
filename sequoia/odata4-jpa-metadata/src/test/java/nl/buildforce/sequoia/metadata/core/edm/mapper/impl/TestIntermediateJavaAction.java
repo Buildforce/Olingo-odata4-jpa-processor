@@ -1,5 +1,9 @@
 package nl.buildforce.sequoia.metadata.core.edm.mapper.impl;
 
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
+import java.util.List;
+
 import nl.buildforce.sequoia.metadata.core.edm.annotation.EdmAction;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAParameter;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
@@ -12,12 +16,12 @@ import nl.buildforce.sequoia.metadata.core.edm.mapper.testobjects.ExampleJavaTwo
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
-import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestIntermediateJavaAction extends TestMappingRoot {
   private TestHelper helper;

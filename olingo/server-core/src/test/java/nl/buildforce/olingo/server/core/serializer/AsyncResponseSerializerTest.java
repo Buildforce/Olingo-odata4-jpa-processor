@@ -3,6 +3,8 @@
 */
 package nl.buildforce.olingo.server.core.serializer;
 
+import static com.google.common.net.HttpHeaders.CONTENT_LENGTH;
+import static com.google.common.net.HttpHeaders.CONTENT_TYPE;
 import static org.junit.Assert.assertEquals;
 
 import java.io.InputStream;
@@ -12,7 +14,7 @@ import java.util.Random;
 import nl.buildforce.olingo.server.api.ODataResponse;
 import org.apache.commons.io.IOUtils;
 import nl.buildforce.olingo.commons.api.format.ContentType;
-import nl.buildforce.olingo.commons.api.http.HttpHeader;
+
 import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
 import org.junit.Test;
 
@@ -23,8 +25,8 @@ public class AsyncResponseSerializerTest {
   public void simpleResponse() throws Exception {
     ODataResponse response = new ODataResponse();
     response.setStatusCode(HttpStatusCode.OK.getStatusCode());
-    response.setHeader(HttpHeader.CONTENT_TYPE, ContentType.APPLICATION_JSON.toString());
-    response.setHeader(HttpHeader.CONTENT_LENGTH, String.valueOf(200));
+    response.setHeader(CONTENT_TYPE, ContentType.APPLICATION_JSON.toString());
+    response.setHeader(CONTENT_LENGTH, String.valueOf(200));
 
     response.setContent(IOUtils.toInputStream("Wälter Winter" + CRLF, StandardCharsets.UTF_8));
 
@@ -41,8 +43,8 @@ public class AsyncResponseSerializerTest {
   public void biggerResponse() throws Exception {
     ODataResponse response = new ODataResponse();
     response.setStatusCode(HttpStatusCode.ACCEPTED.getStatusCode());
-    response.setHeader(HttpHeader.CONTENT_TYPE, ContentType.APPLICATION_JSON.toString());
-    response.setHeader(HttpHeader.CONTENT_LENGTH, String.valueOf(0));
+    response.setHeader(CONTENT_TYPE, ContentType.APPLICATION_JSON.toString());
+    response.setHeader(CONTENT_LENGTH, String.valueOf(0));
 
     String testData = testData(20000);
     response.setContent(IOUtils.toInputStream(testData, StandardCharsets.UTF_8));

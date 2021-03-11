@@ -1,18 +1,14 @@
 package nl.buildforce.sequoia.processor.core.modify;
 
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAttribute;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAElement;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAPath;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAStructuredType;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
-import nl.buildforce.sequoia.processor.core.exception.ODataJPAProcessException;
-import nl.buildforce.sequoia.processor.core.exception.ODataJPAProcessorException;
-import nl.buildforce.sequoia.processor.core.query.EdmEntitySetInfo;
-import nl.buildforce.sequoia.processor.core.testmodel.AbcClassification;
-import nl.buildforce.sequoia.processor.core.testmodel.AccessRights;
-import nl.buildforce.sequoia.processor.core.testmodel.AccessRightsConverter;
-import nl.buildforce.sequoia.processor.core.testmodel.BusinessPartnerRole;
-import nl.buildforce.sequoia.processor.core.testmodel.DateConverter;
+import jakarta.persistence.AttributeConverter;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
 import nl.buildforce.olingo.commons.api.data.ComplexValue;
 import nl.buildforce.olingo.commons.api.data.Entity;
 import nl.buildforce.olingo.commons.api.data.Property;
@@ -28,7 +24,6 @@ import nl.buildforce.olingo.commons.api.edm.FullQualifiedName;
 import nl.buildforce.olingo.commons.api.edm.constants.EdmTypeKind;
 import nl.buildforce.olingo.commons.api.edm.provider.CsdlProperty;
 import nl.buildforce.olingo.commons.api.format.ContentType;
-import nl.buildforce.olingo.commons.api.http.HttpHeader;
 import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
 import nl.buildforce.olingo.server.api.OData;
 import nl.buildforce.olingo.server.api.ODataRequest;
@@ -37,29 +32,35 @@ import nl.buildforce.olingo.server.api.uri.UriResourceComplexProperty;
 import nl.buildforce.olingo.server.api.uri.UriResourceEntitySet;
 import nl.buildforce.olingo.server.api.uri.UriResourceKind;
 import nl.buildforce.olingo.server.api.uri.UriResourceProperty;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAttribute;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAElement;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAPath;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAStructuredType;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
+import nl.buildforce.sequoia.processor.core.exception.ODataJPAProcessException;
+import nl.buildforce.sequoia.processor.core.exception.ODataJPAProcessorException;
+import nl.buildforce.sequoia.processor.core.query.EdmEntitySetInfo;
+import nl.buildforce.sequoia.processor.core.testmodel.AbcClassification;
+import nl.buildforce.sequoia.processor.core.testmodel.AccessRights;
+import nl.buildforce.sequoia.processor.core.testmodel.AccessRightsConverter;
+import nl.buildforce.sequoia.processor.core.testmodel.BusinessPartnerRole;
+import nl.buildforce.sequoia.processor.core.testmodel.DateConverter;
+import static nl.buildforce.olingo.commons.api.http.HttpHeader.ODATA_VERSION;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentMatchers;
-import org.mockito.stubbing.Answer;
-
-import jakarta.persistence.AttributeConverter;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+
+import org.mockito.ArgumentMatchers;
+import org.mockito.stubbing.Answer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -187,7 +188,7 @@ public class TestJPACUDRequestHelper {
             ("{ \"@odata.context\": \"$metadata#" + nameSpace + ".Organisation\", \"@odata.type\": \"#" + nameSpace + ".Organisation\", \"ID\" : \"35\"}")
                     .getBytes(StandardCharsets.UTF_8));
     when(request.getBody()).thenReturn(is);
-    when(request.getHeaders(HttpHeader.ODATA_VERSION)).thenReturn(headers);
+    when(request.getHeaders(ODATA_VERSION)).thenReturn(headers);
 
     Entity act = cut.convertInputStream(OData.newInstance(), request, ContentType.APPLICATION_JSON, uriResourceParts);
     assertEquals("35", act.getProperty("ID").getValue());
@@ -202,7 +203,7 @@ public class TestJPACUDRequestHelper {
         ("{\"@context\": \"$metadata#" + nameSpace +".Organisation\", \"@type\": \"#" + nameSpace + ".Organisation\", \"ID\" : \"35\"}")
             .getBytes(StandardCharsets.UTF_8));
     when(request.getBody()).thenReturn(is);
-    when(request.getHeaders(HttpHeader.ODATA_VERSION)).thenReturn(headers);
+    when(request.getHeaders(ODATA_VERSION)).thenReturn(headers);
 
     Entity act = cut.convertInputStream(OData.newInstance(), request, ContentType.APPLICATION_JSON, uriResourceParts);
     assertEquals("35", act.getProperty("ID").getValue());

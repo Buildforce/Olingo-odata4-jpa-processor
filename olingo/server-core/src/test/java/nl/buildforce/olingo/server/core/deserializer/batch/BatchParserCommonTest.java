@@ -3,6 +3,9 @@
 */
 package nl.buildforce.olingo.server.core.deserializer.batch;
 
+import static com.google.common.net.HttpHeaders.ACCEPT;
+import static com.google.common.net.HttpHeaders.ACCEPT_LANGUAGE;
+import static nl.buildforce.olingo.commons.api.http.HttpHeader.CONTENT_ID;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -11,7 +14,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
-import nl.buildforce.olingo.commons.api.http.HttpHeader;
+
 import nl.buildforce.olingo.server.api.deserializer.batch.BatchDeserializerException;
 import org.junit.Assert;
 import org.junit.Test;
@@ -30,7 +33,7 @@ public class BatchParserCommonTest {
         "content-transfer-encoding: Binary" + CRLF));
     assertNotNull(header);
 
-    List<String> contentIdHeaders = header.getHeaders(HttpHeader.CONTENT_ID);
+    List<String> contentIdHeaders = header.getHeaders(CONTENT_ID);
     assertNotNull(contentIdHeaders);
     assertEquals(2, contentIdHeaders.size());
     assertEquals("1", contentIdHeaders.get(0));
@@ -46,7 +49,7 @@ public class BatchParserCommonTest {
         "content-transfer-encoding: Binary" + CRLF));
     assertNotNull(header);
 
-    List<String> contentIdHeaders = header.getHeaders(HttpHeader.CONTENT_ID);
+    List<String> contentIdHeaders = header.getHeaders(CONTENT_ID);
     assertNotNull(contentIdHeaders);
     assertEquals(1, contentIdHeaders.size());
     assertEquals("1", contentIdHeaders.get(0));
@@ -80,7 +83,7 @@ public class BatchParserCommonTest {
         "content-transfer-encoding: Binary" + CRLF));
     assertNotNull(header);
 
-    List<String> acceptHeader = header.getHeaders(HttpHeader.ACCEPT);
+    List<String> acceptHeader = header.getHeaders(ACCEPT);
     assertNotNull(acceptHeader);
     assertEquals(4, acceptHeader.size());
   }
@@ -95,7 +98,7 @@ public class BatchParserCommonTest {
         "content-transfer-encoding: Binary" + CRLF));
     assertNotNull(header);
 
-    List<String> acceptHeader = header.getHeaders(HttpHeader.ACCEPT);
+    List<String> acceptHeader = header.getHeaders(ACCEPT);
     assertNotNull(acceptHeader);
     assertEquals(3, acceptHeader.size());
   }
@@ -109,7 +112,7 @@ public class BatchParserCommonTest {
         "content-transfer-encoding: Binary" + CRLF));
     assertNotNull(header);
 
-    List<String> acceptLanguageHeader = header.getHeaders(HttpHeader.ACCEPT_LANGUAGE);
+    List<String> acceptLanguageHeader = header.getHeaders(ACCEPT_LANGUAGE);
     assertNotNull(acceptLanguageHeader);
     assertEquals(4, acceptLanguageHeader.size());
   }
@@ -123,7 +126,7 @@ public class BatchParserCommonTest {
         "content-transfer-encoding: Binary" + CRLF));
     assertNotNull(header);
 
-    List<String> acceptLanguageHeader = header.getHeaders(HttpHeader.ACCEPT_LANGUAGE);
+    List<String> acceptLanguageHeader = header.getHeaders(ACCEPT_LANGUAGE);
     assertNotNull(acceptLanguageHeader);
     assertEquals(3, acceptLanguageHeader.size());
   }
@@ -270,4 +273,5 @@ public class BatchParserCommonTest {
       Assert.assertEquals(messageKey, e.getMessageKey());
     }
   }
+
 }

@@ -7,8 +7,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 import nl.buildforce.olingo.commons.api.format.ContentType;
-import nl.buildforce.olingo.commons.api.http.HttpHeader;
 import nl.buildforce.olingo.server.api.deserializer.batch.BatchDeserializerException;
+
+import static com.google.common.net.HttpHeaders.CONTENT_TYPE;
 
 public class BatchBodyPart implements BatchPart {
   private final String boundary;
@@ -35,7 +36,7 @@ public class BatchBodyPart implements BatchPart {
   }
 
   private boolean isChangeSet(Header headers) throws BatchDeserializerException {
-    List<String> contentTypes = headers.getHeaders(HttpHeader.CONTENT_TYPE);
+    List<String> contentTypes = headers.getHeaders(CONTENT_TYPE);
 
     if (contentTypes.isEmpty()) {
       throw new BatchDeserializerException("Missing content type",
@@ -70,7 +71,7 @@ public class BatchBodyPart implements BatchPart {
 
   private List<List<Line>> splitChangeSet(List<Line> remainingMessage) throws BatchDeserializerException {
 
-    HeaderField contentTypeField = headers.getHeaderField(HttpHeader.CONTENT_TYPE);
+    HeaderField contentTypeField = headers.getHeaderField(CONTENT_TYPE);
     String changeSetBoundary = BatchParserCommon.getBoundary(contentTypeField.getValue(),
         contentTypeField.getLineNumber());
     validateChangeSetBoundary(changeSetBoundary, headers);
@@ -83,7 +84,7 @@ public class BatchBodyPart implements BatchPart {
     if (changeSetBoundary.equals(boundary)) {
       throw new BatchDeserializerException("Change set boundary is equals to batch request boundary",
           BatchDeserializerException.MessageKeys.INVALID_BOUNDARY,
-          Integer.toString(header.getHeaderField(HttpHeader.CONTENT_TYPE).getLineNumber()));
+          Integer.toString(header.getHeaderField(CONTENT_TYPE).getLineNumber()));
     }
   }
 

@@ -3,12 +3,13 @@
 */
 package nl.buildforce.olingo.server.core;
 
-import nl.buildforce.olingo.commons.api.http.HttpHeader;
 import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
 import nl.buildforce.olingo.server.api.OData;
 import nl.buildforce.olingo.server.api.ODataRequest;
 import nl.buildforce.olingo.server.api.ODataResponse;
 import nl.buildforce.olingo.server.api.ServiceMetadata;
+
+import static com.google.common.net.HttpHeaders.LOCATION;
 
 public class DefaultRedirectProcessor implements RedirectProcessor {
 
@@ -31,6 +32,6 @@ public class DefaultRedirectProcessor implements RedirectProcessor {
       location = rawUri.substring(0, rawUri.indexOf(rawQueryPath) - 1) + "/?" + rawQueryPath;
     }
 
-    response.setHeader(HttpHeader.LOCATION, location);
+    response.setHeader(LOCATION, location);
   }
 }

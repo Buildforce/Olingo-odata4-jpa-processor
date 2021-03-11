@@ -12,12 +12,21 @@ import java.util.LinkedList;
 import java.util.List;
 
 import nl.buildforce.olingo.commons.api.format.ContentType;
-import nl.buildforce.olingo.commons.api.http.HttpHeader;
 import nl.buildforce.olingo.commons.api.http.HttpMethod;
 import nl.buildforce.olingo.server.api.ODataRequest;
-import nl.buildforce.olingo.server.api.deserializer.batch.BatchDeserializerException;
 import nl.buildforce.olingo.server.api.deserializer.batch.BatchDeserializerException.MessageKeys;
+import nl.buildforce.olingo.server.api.deserializer.batch.BatchDeserializerException;
 import nl.buildforce.olingo.server.api.deserializer.batch.BatchRequestPart;
+import static nl.buildforce.olingo.commons.api.http.HttpHeader.CONTENT_ID;
+import static nl.buildforce.olingo.commons.api.http.HttpHeader.TE;
+
+import static com.google.common.net.HttpHeaders.AUTHORIZATION;
+import static com.google.common.net.HttpHeaders.CONTENT_TYPE;
+import static com.google.common.net.HttpHeaders.EXPECT;
+import static com.google.common.net.HttpHeaders.FROM;
+import static com.google.common.net.HttpHeaders.MAX_FORWARDS;
+import static com.google.common.net.HttpHeaders.RANGE;
+import static com.google.common.net.HttpHeaders.WWW_AUTHENTICATE;
 
 public class BatchRequestTransformator {
   private final String baseUri;
@@ -69,7 +78,7 @@ public class BatchRequestTransformator {
   }
 
   private HeaderField getContentId(BatchQueryOperation queryOperation) throws BatchDeserializerException {
-    HeaderField contentIdHeader = queryOperation.getHeaders().getHeaderField(HttpHeader.CONTENT_ID);
+    HeaderField contentIdHeader = queryOperation.getHeaders().getHeaderField(CONTENT_ID);
 
     if (contentIdHeader != null) {
       if (contentIdHeader.getValues().size() == 1) {
@@ -113,7 +122,7 @@ public class BatchRequestTransformator {
   }
 
   private Charset getCharset(BatchQueryOperation operation) {
-    ContentType contentType = ContentType.parse(operation.getHeaders().getHeader(HttpHeader.CONTENT_TYPE));
+    ContentType contentType = ContentType.parse(operation.getHeaders().getHeader(CONTENT_TYPE));
     if (contentType != null) {
       String charsetValue = contentType.getParameter(ContentType.PARAMETER_CHARSET);
       if (charsetValue == null) {
@@ -130,9 +139,9 @@ public class BatchRequestTransformator {
   private void validateForbiddenHeader(BatchQueryOperation operation) throws BatchDeserializerException {
     Header header = operation.getHeaders();
 
-    if (header.exists(HttpHeader.WWW_AUTHENTICATE) || header.exists(HttpHeader.AUTHORIZATION)
-        || header.exists(HttpHeader.EXPECT) || header.exists(HttpHeader.FROM) || header.exists(HttpHeader.MAX_FORWARDS)
-        || header.exists(HttpHeader.RANGE) || header.exists(HttpHeader.TE)) {
+    if (header.exists(WWW_AUTHENTICATE) || header.exists(AUTHORIZATION)
+        || header.exists(EXPECT) || header.exists(FROM) || header.exists(MAX_FORWARDS)
+        || header.exists(RANGE) || header.exists(TE)) {
       throw new BatchDeserializerException("Forbidden header", MessageKeys.FORBIDDEN_HEADER,
           Integer.toString(header.getLineNumber()));
     }
@@ -174,4 +183,5 @@ public class BatchRequestTransformator {
       BatchTransformatorCommon.validateContentType(headers, ContentType.APPLICATION_HTTP);
     }
   }
+
 }

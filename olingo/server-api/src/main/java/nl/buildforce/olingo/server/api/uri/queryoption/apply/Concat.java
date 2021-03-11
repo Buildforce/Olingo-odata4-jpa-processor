@@ -3,10 +3,7 @@
 */
 package nl.buildforce.olingo.server.api.uri.queryoption.apply;
 
-import java.util.List;
-
 import nl.buildforce.olingo.server.api.uri.queryoption.ApplyItem;
-import nl.buildforce.olingo.server.api.uri.queryoption.ApplyOption;
 
 /**
  * Represents the concat transformation.

@@ -1,17 +1,5 @@
 package nl.buildforce.olingo.server.core.deserializer.batch;
 
-import nl.buildforce.olingo.commons.api.http.HttpHeader;
-import nl.buildforce.olingo.commons.api.http.HttpMethod;
-import nl.buildforce.olingo.server.api.ODataRequest;
-import nl.buildforce.olingo.server.api.deserializer.batch.BatchDeserializerException;
-import nl.buildforce.olingo.server.api.deserializer.batch.BatchDeserializerException.MessageKeys;
-import nl.buildforce.olingo.server.api.deserializer.batch.BatchOptions;
-import nl.buildforce.olingo.server.api.deserializer.batch.BatchRequestPart;
-import org.apache.commons.io.IOUtils;
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -19,17 +7,41 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
+import nl.buildforce.olingo.commons.api.http.HttpHeader;
+import nl.buildforce.olingo.commons.api.http.HttpMethod;
+import nl.buildforce.olingo.server.api.ODataRequest;
+import nl.buildforce.olingo.server.api.deserializer.batch.BatchDeserializerException.MessageKeys;
+import nl.buildforce.olingo.server.api.deserializer.batch.BatchDeserializerException;
+import nl.buildforce.olingo.server.api.deserializer.batch.BatchOptions;
+import nl.buildforce.olingo.server.api.deserializer.batch.BatchRequestPart;
+
+import org.apache.commons.io.IOUtils;
+import org.junit.Assert;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import static com.google.common.net.HttpHeaders.ACCEPT;
+import static com.google.common.net.HttpHeaders.ACCEPT_LANGUAGE;
+import static com.google.common.net.HttpHeaders.AUTHORIZATION;
+import static com.google.common.net.HttpHeaders.CONTENT_LENGTH;
+import static com.google.common.net.HttpHeaders.CONTENT_TYPE;
+import static com.google.common.net.HttpHeaders.EXPECT;
+import static com.google.common.net.HttpHeaders.FROM;
+import static com.google.common.net.HttpHeaders.MAX_FORWARDS;
+import static com.google.common.net.HttpHeaders.RANGE;
+import static com.google.common.net.HttpHeaders.WWW_AUTHENTICATE;
+
 public class BatchRequestParserTest {
 
     private static final String CRLF = "\r\n";
     private static final String APPLICATION_JSON = "application/json";
-    private static final String ACCEPT_HEADER = HttpHeader.ACCEPT + ": " + APPLICATION_JSON + ";q=0.9, application/xml;q=0.8, application/atom+xml;q=0.8, */*;q=0.1" + CRLF;
+    private static final String ACCEPT_HEADER = ACCEPT + ": " + APPLICATION_JSON + ";q=0.9, application/xml;q=0.8, application/atom+xml;q=0.8, */*;q=0.1" + CRLF;
     private static final String APPLICATION_HTTP = "application/http";
     private static final String APPLICATION_OCTET_STREAM = "application/octet-stream";
     private static final String BOUNDARY = "batch_8194-cf13-1f56";
     private static final String CHANGESET_BOUNDARY = "changeset_f980-1cb6-94dd";
     private static final String HTTP_VERSION = " HTTP/1.1";
-    private static final String MIME_HEADERS = HttpHeader.CONTENT_TYPE + ": " + APPLICATION_HTTP + CRLF + HttpHeader.ODATA_VERSION + ": 4.0" + CRLF;
+    private static final String MIME_HEADERS = CONTENT_TYPE + ": " + APPLICATION_HTTP + CRLF + HttpHeader.ODATA_VERSION + ": 4.0" + CRLF;
     private static final String PROPERTY_URI = "ESAllPrim(32767)/PropertyString";
     private static final String GET_REQUEST = MIME_HEADERS + CRLF + HttpMethod.GET + " " + PROPERTY_URI + HTTP_VERSION + CRLF + CRLF + CRLF;
     private static final String MULTIPART_MIXED = "multipart/mixed";
@@ -40,16 +52,16 @@ public class BatchRequestParserTest {
         String batch = "--" + BOUNDARY + CRLF
                 + MIME_HEADERS + CRLF
                 + HttpMethod.GET + " " + PROPERTY_URI + "?$format=json" + HTTP_VERSION + CRLF
-                + HttpHeader.ACCEPT_LANGUAGE + ":en-US,en;q=0.7,en-GB;q=0.9" + CRLF + CRLF + CRLF
+                + ACCEPT_LANGUAGE + ":en-US,en;q=0.7,en-GB;q=0.9" + CRLF + CRLF + CRLF
                 + "--" + BOUNDARY + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + MULTIPART_MIXED + "; boundary=" + CHANGESET_BOUNDARY + CRLF + CRLF
+                + CONTENT_TYPE + ": " + MULTIPART_MIXED + "; boundary=" + CHANGESET_BOUNDARY + CRLF + CRLF
                 + "--" + CHANGESET_BOUNDARY + CRLF
                 + MIME_HEADERS
                 + HttpHeader.CONTENT_ID + ": changeRequest1" + CRLF + CRLF
                 + HttpMethod.PUT + " " + PROPERTY_URI + HTTP_VERSION + CRLF
-                + HttpHeader.CONTENT_LENGTH + ": 100000" + CRLF
+                + CONTENT_LENGTH + ": 100000" + CRLF
                 + ACCEPT_HEADER
-                + HttpHeader.CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF + CRLF
+                + CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF + CRLF
                 + "{\"value\":\"€ MODIFIED\"}" + CRLF + CRLF
                 + "--" + CHANGESET_BOUNDARY + "--" + CRLF + CRLF
                 + "--" + BOUNDARY + CRLF
@@ -69,11 +81,11 @@ public class BatchRequestParserTest {
 
             if (object.isChangeSet()) {
                 Assert.assertEquals(HttpMethod.PUT, request.getMethod());
-                Assert.assertEquals("100000", request.getHeader(HttpHeader.CONTENT_LENGTH));
-                Assert.assertEquals(APPLICATION_JSON, request.getHeader(HttpHeader.CONTENT_TYPE));
+                Assert.assertEquals("100000", request.getHeader(CONTENT_LENGTH));
+                Assert.assertEquals(APPLICATION_JSON, request.getHeader(CONTENT_TYPE));
 
-                List<String> acceptHeader = request.getHeaders(HttpHeader.ACCEPT);
-                Assert.assertEquals(4, request.getHeaders(HttpHeader.ACCEPT).size());
+                List<String> acceptHeader = request.getHeaders(ACCEPT);
+                Assert.assertEquals(4, request.getHeaders(ACCEPT).size());
                 Assert.assertEquals("application/atom+xml;q=0.8", acceptHeader.get(2));
                 Assert.assertEquals("*/*;q=0.1", acceptHeader.get(3));
 
@@ -84,8 +96,8 @@ public class BatchRequestParserTest {
             } else {
                 Assert.assertEquals(HttpMethod.GET, request.getMethod());
 
-                if (request.getHeaders(HttpHeader.ACCEPT_LANGUAGE) != null) {
-                    Assert.assertEquals(3, request.getHeaders(HttpHeader.ACCEPT_LANGUAGE).size());
+                if (request.getHeaders(ACCEPT_LANGUAGE) != null) {
+                    Assert.assertEquals(3, request.getHeaders(ACCEPT_LANGUAGE).size());
                 }
 
                 Assert.assertEquals(SERVICE_ROOT + "/" + PROPERTY_URI + "?$format=json", request.getRawRequestUri());
@@ -99,7 +111,7 @@ public class BatchRequestParserTest {
     @Test
     public void imageInContent() throws Exception {
         String content = IOUtils.toString(readFile("/batchWithContent.batch"), StandardCharsets.UTF_8);
-        String batch = "--" + BOUNDARY + CRLF + GET_REQUEST + "--" + BOUNDARY + CRLF + HttpHeader.CONTENT_TYPE + ": " + MULTIPART_MIXED + "; boundary=" + CHANGESET_BOUNDARY + CRLF + CRLF + "--" + CHANGESET_BOUNDARY + CRLF + MIME_HEADERS + HttpHeader.CONTENT_ID + ": 1" + CRLF + CRLF + HttpMethod.POST + " ESMedia" + HTTP_VERSION + CRLF + HttpHeader.CONTENT_LENGTH + ": 100000" + CRLF + HttpHeader.CONTENT_TYPE + ": image/jpeg" + CRLF + "Content-Transfer-Encoding: base64" + CRLF + CRLF + content + CRLF + "--" + CHANGESET_BOUNDARY + "--" + CRLF + "--" + BOUNDARY + "--";
+        String batch = "--" + BOUNDARY + CRLF + GET_REQUEST + "--" + BOUNDARY + CRLF + CONTENT_TYPE + ": " + MULTIPART_MIXED + "; boundary=" + CHANGESET_BOUNDARY + CRLF + CRLF + "--" + CHANGESET_BOUNDARY + CRLF + MIME_HEADERS + HttpHeader.CONTENT_ID + ": 1" + CRLF + CRLF + HttpMethod.POST + " ESMedia" + HTTP_VERSION + CRLF + CONTENT_LENGTH + ": 100000" + CRLF + CONTENT_TYPE + ": image/jpeg" + CRLF + "Content-Transfer-Encoding: base64" + CRLF + CRLF + content + CRLF + "--" + CHANGESET_BOUNDARY + "--" + CRLF + "--" + BOUNDARY + "--";
         List<BatchRequestPart> BatchRequestParts = parse(batch);
 
         for (BatchRequestPart part : BatchRequestParts) {
@@ -112,9 +124,9 @@ public class BatchRequestParserTest {
                 Assert.assertEquals("/" + PROPERTY_URI, request.getRawODataPath());
             } else {
                 Assert.assertEquals(HttpMethod.POST, request.getMethod());
-                Assert.assertEquals("100000", request.getHeader(HttpHeader.CONTENT_LENGTH));
+                Assert.assertEquals("100000", request.getHeader(CONTENT_LENGTH));
                 Assert.assertEquals("1", request.getHeader(HttpHeader.CONTENT_ID));
-                Assert.assertEquals("image/jpeg", request.getHeader(HttpHeader.CONTENT_TYPE));
+                Assert.assertEquals("image/jpeg", request.getHeader(CONTENT_TYPE));
                 Assert.assertEquals(content, IOUtils.toString(request.getBody(), StandardCharsets.UTF_8));
             }
         }
@@ -131,8 +143,8 @@ public class BatchRequestParserTest {
         out.write(("--" + BOUNDARY + CRLF
                 + MIME_HEADERS + CRLF
                 + HttpMethod.POST + " ESMedia" + HTTP_VERSION + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + APPLICATION_OCTET_STREAM + CRLF
-                + HttpHeader.CONTENT_LENGTH + ": " + (Byte.MAX_VALUE - Byte.MIN_VALUE + 1) + CRLF
+                + CONTENT_TYPE + ": " + APPLICATION_OCTET_STREAM + CRLF
+                + CONTENT_LENGTH + ": " + (Byte.MAX_VALUE - Byte.MIN_VALUE + 1) + CRLF
                 + CRLF).getBytes());
         out.write(content);
         out.write((CRLF + "--" + BOUNDARY + "--").getBytes());
@@ -147,13 +159,13 @@ public class BatchRequestParserTest {
     @Test
     public void postWithoutBody() throws Exception {
         String batch = "--" + BOUNDARY + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + MULTIPART_MIXED + "; boundary=" + CHANGESET_BOUNDARY + CRLF + CRLF
+                + CONTENT_TYPE + ": " + MULTIPART_MIXED + "; boundary=" + CHANGESET_BOUNDARY + CRLF + CRLF
                 + "--" + CHANGESET_BOUNDARY + CRLF
                 + MIME_HEADERS
                 + HttpHeader.CONTENT_ID + ": changeRequest1" + CRLF + CRLF
                 + HttpMethod.POST + " ESAllPrim" + HTTP_VERSION + CRLF
-                + HttpHeader.CONTENT_LENGTH + ": 100" + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + APPLICATION_OCTET_STREAM + CRLF + CRLF + CRLF
+                + CONTENT_LENGTH + ": 100" + CRLF
+                + CONTENT_TYPE + ": " + APPLICATION_OCTET_STREAM + CRLF + CRLF + CRLF
                 + "--" + CHANGESET_BOUNDARY + "--" + CRLF + CRLF
                 + "--" + BOUNDARY + "--";
         List<BatchRequestPart> batchRequestParts = parse(batch);
@@ -163,8 +175,8 @@ public class BatchRequestParserTest {
         Assert.assertEquals(1, batchRequestParts.get(0).getRequests().size());
         ODataRequest request = batchRequestParts.get(0).getRequests().get(0);
         Assert.assertEquals(HttpMethod.POST, request.getMethod());
-        Assert.assertEquals("100", request.getHeader(HttpHeader.CONTENT_LENGTH));
-        Assert.assertEquals(APPLICATION_OCTET_STREAM, request.getHeader(HttpHeader.CONTENT_TYPE));
+        Assert.assertEquals("100", request.getHeader(CONTENT_LENGTH));
+        Assert.assertEquals(APPLICATION_OCTET_STREAM, request.getHeader(CONTENT_TYPE));
         Assert.assertNotNull(request.getBody());
         Assert.assertEquals(-1, request.getBody().read());
     }
@@ -243,11 +255,11 @@ public class BatchRequestParserTest {
     @Test
     public void batchBoundaryEqualsChangeSetBoundary() throws Exception {
         String batch = "--" + BOUNDARY + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + MULTIPART_MIXED + ";boundary=" + BOUNDARY + CRLF + CRLF
+                + CONTENT_TYPE + ": " + MULTIPART_MIXED + ";boundary=" + BOUNDARY + CRLF + CRLF
                 + "--" + BOUNDARY + CRLF
                 + MIME_HEADERS + HttpHeader.CONTENT_ID + ": 1" + CRLF + CRLF
                 + HttpMethod.PUT + " " + PROPERTY_URI + HTTP_VERSION + CRLF
-                + ACCEPT_HEADER + HttpHeader.CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF + CRLF
+                + ACCEPT_HEADER + CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF + CRLF
                 + "{\"value\":\"MODIFIED\"}" + CRLF + CRLF
                 + "--" + BOUNDARY + "--" + CRLF
                 + "--" + BOUNDARY + "--";
@@ -267,7 +279,7 @@ public class BatchRequestParserTest {
     @Test
     public void mimeHeaderContentType() throws Exception {
         String batch = "--" + BOUNDARY + CRLF
-                + HttpHeader.CONTENT_TYPE + ": text/plain" + CRLF + CRLF
+                + CONTENT_TYPE + ": text/plain" + CRLF + CRLF
                 + HttpMethod.GET + " " + PROPERTY_URI + HTTP_VERSION + CRLF + CRLF + CRLF
                 + "--" + BOUNDARY + "--";
 
@@ -301,7 +313,7 @@ public class BatchRequestParserTest {
         String batch = "--" + BOUNDARY + CRLF
                 + MIME_HEADERS + CRLF
                 + HttpMethod.POST + " ESAllPrim" + HTTP_VERSION + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF + CRLF
+                + CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF + CRLF
                 + "{ \"PropertyString\": \"Foo\" }" + CRLF
                 + "--" + BOUNDARY + CRLF
                 + MIME_HEADERS + CRLF
@@ -309,12 +321,12 @@ public class BatchRequestParserTest {
                 + "--" + BOUNDARY + CRLF
                 + MIME_HEADERS + CRLF
                 + HttpMethod.PATCH + " ESAllPrim(32767)" + HTTP_VERSION + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF + CRLF
+                + CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF + CRLF
                 + "{ \"PropertyString\": \"Foo\" }" + CRLF
                 + "--" + BOUNDARY + CRLF
                 + MIME_HEADERS + CRLF
                 + HttpMethod.PUT + " ESAllPrim(32767)" + HTTP_VERSION + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF + CRLF
+                + CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF + CRLF
                 + "{ \"PropertyString\": \"Foo\" }" + CRLF
                 + "--" + BOUNDARY + CRLF
                 + MIME_HEADERS + CRLF
@@ -382,12 +394,12 @@ public class BatchRequestParserTest {
     @Test
     public void invalidMethodForChangeset() throws Exception {
         String batch = "--" + BOUNDARY + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + MULTIPART_MIXED + "; boundary=" + CHANGESET_BOUNDARY + CRLF + CRLF
+                + CONTENT_TYPE + ": " + MULTIPART_MIXED + "; boundary=" + CHANGESET_BOUNDARY + CRLF + CRLF
                 + "--" + CHANGESET_BOUNDARY + CRLF
                 + MIME_HEADERS
                 + HttpHeader.CONTENT_ID + ": 1" + CRLF + CRLF
                 + HttpMethod.GET + " " + PROPERTY_URI + HTTP_VERSION + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF + CRLF + CRLF
+                + CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF + CRLF + CRLF
                 + "--" + CHANGESET_BOUNDARY + "--" + CRLF
                 + "--" + BOUNDARY + "--";
 
@@ -397,12 +409,12 @@ public class BatchRequestParserTest {
     @Test
     public void invalidChangeSetBoundary() throws Exception {
         String batch = "--" + BOUNDARY + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + MULTIPART_MIXED + ";boundary=" + CHANGESET_BOUNDARY + CRLF + CRLF
+                + CONTENT_TYPE + ": " + MULTIPART_MIXED + ";boundary=" + CHANGESET_BOUNDARY + CRLF + CRLF
                 + "--" + CHANGESET_BOUNDARY.substring(0, CHANGESET_BOUNDARY.length() - 1) + CRLF
                 + MIME_HEADERS
                 + HttpHeader.CONTENT_ID + ": 1" + CRLF + CRLF
                 + HttpMethod.POST + " ESAllPrim" + HTTP_VERSION + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF + CRLF
+                + CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF + CRLF
                 + "--" + CHANGESET_BOUNDARY + "--" + CRLF + CRLF
                 + "--" + BOUNDARY + "--";
 
@@ -417,14 +429,14 @@ public class BatchRequestParserTest {
     @Test
     public void nestedChangeset() throws Exception {
         String batch = "--" + BOUNDARY + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + MULTIPART_MIXED + ";boundary=" + CHANGESET_BOUNDARY + CRLF + CRLF
+                + CONTENT_TYPE + ": " + MULTIPART_MIXED + ";boundary=" + CHANGESET_BOUNDARY + CRLF + CRLF
                 + "--" + CHANGESET_BOUNDARY + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + MULTIPART_MIXED + ";boundary=changeset_f980-1cb6-94dd2" + CRLF + CRLF
+                + CONTENT_TYPE + ": " + MULTIPART_MIXED + ";boundary=changeset_f980-1cb6-94dd2" + CRLF + CRLF
                 + "--changeset_f980-1cb6-94dd2" + CRLF
                 + MIME_HEADERS
                 + HttpHeader.CONTENT_ID + ": 1" + CRLF + CRLF
                 + HttpMethod.POST + " ESAllPrim" + HTTP_VERSION + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF
+                + CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF
                 + HttpHeader.CONTENT_ID + ": 2" + CRLF
                 + "--" + CHANGESET_BOUNDARY + "--" + CRLF + CRLF
                 + "--" + CHANGESET_BOUNDARY + "--" + CRLF + CRLF
@@ -436,14 +448,14 @@ public class BatchRequestParserTest {
     @Test
     public void missingContentType() throws Exception {
         String batch = "--" + BOUNDARY + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + MULTIPART_MIXED + ";boundary=" + CHANGESET_BOUNDARY + CRLF
+                + CONTENT_TYPE + ": " + MULTIPART_MIXED + ";boundary=" + CHANGESET_BOUNDARY + CRLF
                 + CRLF
                 + "--" + CHANGESET_BOUNDARY + CRLF
-                // + HttpHeader.CONTENT_TYPE + ": " + APPLICATION_HTTP + CRLF
+                // + CONTENT_TYPE + ": " + APPLICATION_HTTP + CRLF
                 + HttpHeader.CONTENT_ID + ": 1" + CRLF
                 + CRLF
                 + HttpMethod.POST + " ESAllPrim" + HTTP_VERSION + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF
+                + CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF
                 + CRLF
                 + CRLF
                 + "--" + CHANGESET_BOUNDARY + "--" + CRLF
@@ -544,15 +556,15 @@ public class BatchRequestParserTest {
     @Test
     public void negativeContentLengthChangeSet() throws Exception {
         parse("--" + BOUNDARY + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + MULTIPART_MIXED + "; boundary=" + CHANGESET_BOUNDARY + CRLF
+                + CONTENT_TYPE + ": " + MULTIPART_MIXED + "; boundary=" + CHANGESET_BOUNDARY + CRLF
                 + CRLF
                 + "--" + CHANGESET_BOUNDARY + CRLF
                 + MIME_HEADERS
                 + HttpHeader.CONTENT_ID + ": 1" + CRLF
-                + HttpHeader.CONTENT_LENGTH + ": -2" + CRLF
+                + CONTENT_LENGTH + ": -2" + CRLF
                 + CRLF
                 + HttpMethod.PATCH + " ESAllPrim(32767)" + HTTP_VERSION + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF
+                + CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF
                 + CRLF
                 + "{\"PropertyString\":\"new\"}" + CRLF
                 + "--" + CHANGESET_BOUNDARY + "--" + CRLF
@@ -563,15 +575,15 @@ public class BatchRequestParserTest {
     @Test
     public void negativeContentLengthRequest() throws Exception {
         String batch = "--" + BOUNDARY + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + MULTIPART_MIXED + "; boundary=" + CHANGESET_BOUNDARY + CRLF
+                + CONTENT_TYPE + ": " + MULTIPART_MIXED + "; boundary=" + CHANGESET_BOUNDARY + CRLF
                 + CRLF
                 + "--" + CHANGESET_BOUNDARY + CRLF
                 + MIME_HEADERS
                 + HttpHeader.CONTENT_ID + ": 1" + CRLF
                 + CRLF
                 + HttpMethod.PATCH + " ESAllPrim(32767)" + HTTP_VERSION + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF
-                + HttpHeader.CONTENT_LENGTH + ": -2" + CRLF
+                + CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF
+                + CONTENT_LENGTH + ": -2" + CRLF
                 + CRLF
                 + "{\"PropertyString\":\"new\"}" + CRLF
                 + "--" + CHANGESET_BOUNDARY + "--" + CRLF
@@ -584,15 +596,15 @@ public class BatchRequestParserTest {
     @Test
     public void contentLengthGreatherThanBodyLength() throws Exception {
         String batch = "--" + BOUNDARY + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + MULTIPART_MIXED + "; boundary=" + CHANGESET_BOUNDARY + CRLF
+                + CONTENT_TYPE + ": " + MULTIPART_MIXED + "; boundary=" + CHANGESET_BOUNDARY + CRLF
                 + CRLF
                 + "--" + CHANGESET_BOUNDARY + CRLF
                 + MIME_HEADERS
                 + HttpHeader.CONTENT_ID + ": 1" + CRLF
                 + CRLF
                 + HttpMethod.PATCH + " ESAllPrim(32767)" + HTTP_VERSION + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF
-                + HttpHeader.CONTENT_LENGTH + ": 100000" + CRLF
+                + CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF
+                + CONTENT_LENGTH + ": 100000" + CRLF
                 + CRLF
                 + "{\"PropertyString\":\"new\"}" + CRLF
                 + "--" + CHANGESET_BOUNDARY + "--" + CRLF
@@ -614,15 +626,15 @@ public class BatchRequestParserTest {
     @Test
     public void contentLengthSmallerThanBodyLength() throws Exception {
         String batch = "--" + BOUNDARY + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + MULTIPART_MIXED + "; boundary=" + CHANGESET_BOUNDARY + CRLF
+                + CONTENT_TYPE + ": " + MULTIPART_MIXED + "; boundary=" + CHANGESET_BOUNDARY + CRLF
                 + CRLF
                 + "--" + CHANGESET_BOUNDARY + CRLF
                 + MIME_HEADERS
                 + HttpHeader.CONTENT_ID + ": 1" + CRLF
                 + CRLF
                 + HttpMethod.PATCH + " ESAllPrim(32767)" + HTTP_VERSION + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF
-                + HttpHeader.CONTENT_LENGTH + ": 10" + CRLF
+                + CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF
+                + CONTENT_LENGTH + ": 10" + CRLF
                 + CRLF
                 + "{\"PropertyString\":\"new\"}" + CRLF
                 + "--" + CHANGESET_BOUNDARY + "--" + CRLF
@@ -644,15 +656,15 @@ public class BatchRequestParserTest {
     @Test
     public void nonNumericContentLength() throws Exception {
         String batch = "--" + BOUNDARY + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + MULTIPART_MIXED + "; boundary=" + CHANGESET_BOUNDARY + CRLF
+                + CONTENT_TYPE + ": " + MULTIPART_MIXED + "; boundary=" + CHANGESET_BOUNDARY + CRLF
                 + CRLF
                 + "--" + CHANGESET_BOUNDARY + CRLF
                 + MIME_HEADERS
                 + HttpHeader.CONTENT_ID + ": 1" + CRLF
                 + CRLF
                 + HttpMethod.PATCH + " ESAllPrim(32767)" + HTTP_VERSION + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF
-                + HttpHeader.CONTENT_LENGTH + ": 10abc" + CRLF
+                + CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF
+                + CONTENT_LENGTH + ": 10abc" + CRLF
                 + CRLF
                 + "{\"PropertyString\":\"new\"}" + CRLF
                 + "--" + CHANGESET_BOUNDARY + "--" + CRLF
@@ -665,13 +677,13 @@ public class BatchRequestParserTest {
     @Test
     public void nonStrictParser() throws Exception {
         String batch = "--" + BOUNDARY + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + MULTIPART_MIXED + ";boundary=" + CHANGESET_BOUNDARY + CRLF
+                + CONTENT_TYPE + ": " + MULTIPART_MIXED + ";boundary=" + CHANGESET_BOUNDARY + CRLF
                 + "--" + CHANGESET_BOUNDARY + CRLF
                 + MIME_HEADERS
                 + HttpHeader.CONTENT_ID + ": myRequest" + CRLF
                 + HttpMethod.PATCH + " ESAllPrim(32767)" + HTTP_VERSION + CRLF
                 + ACCEPT_HEADER
-                + HttpHeader.CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF
+                + CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF
                 + "{\"PropertyString\":\"new\"}" + CRLF
                 + "--" + CHANGESET_BOUNDARY + "--" + CRLF
                 + "--" + BOUNDARY + "--";
@@ -688,14 +700,14 @@ public class BatchRequestParserTest {
 
         ODataRequest changeRequest = part.getRequests().get(0);
         Assert.assertEquals("{\"PropertyString\":\"new\"}", IOUtils.toString(changeRequest.getBody(), StandardCharsets.UTF_8));
-        Assert.assertEquals(APPLICATION_JSON, changeRequest.getHeader(HttpHeader.CONTENT_TYPE));
+        Assert.assertEquals(APPLICATION_JSON, changeRequest.getHeader(CONTENT_TYPE));
         Assert.assertEquals(HttpMethod.PATCH, changeRequest.getMethod());
     }
 
     @Test
     public void nonStrictParserMoreCRLF() throws Exception {
         String batch = "--" + BOUNDARY + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + MULTIPART_MIXED + ";boundary=" + CHANGESET_BOUNDARY + CRLF
+                + CONTENT_TYPE + ": " + MULTIPART_MIXED + ";boundary=" + CHANGESET_BOUNDARY + CRLF
                 + "--" + CHANGESET_BOUNDARY + CRLF
                 + MIME_HEADERS
                 + HttpHeader.CONTENT_ID + ": 1" + CRLF
@@ -703,7 +715,7 @@ public class BatchRequestParserTest {
                 + CRLF // Only one CRLF allowed
                 + HttpMethod.PATCH + " ESAllPrim(32767)" + HTTP_VERSION + CRLF
                 + ACCEPT_HEADER
-                + HttpHeader.CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF
+                + CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF
                 + "{\"PropertyString\":\"new\"}" + CRLF
                 + "--" + CHANGESET_BOUNDARY + "--" + CRLF
                 + "--" + BOUNDARY + "--";
@@ -721,14 +733,14 @@ public class BatchRequestParserTest {
                 + HttpHeader.CONTENT_ID + ": BBB" + CRLF
                 + CRLF + CRLF
                 + "--" + BOUNDARY + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + MULTIPART_MIXED + "; boundary=" + CHANGESET_BOUNDARY + CRLF
+                + CONTENT_TYPE + ": " + MULTIPART_MIXED + "; boundary=" + CHANGESET_BOUNDARY + CRLF
                 + CRLF
                 + "--" + CHANGESET_BOUNDARY + CRLF
                 + MIME_HEADERS
                 + HttpHeader.CONTENT_ID + ": 1" + CRLF
                 + CRLF
                 + HttpMethod.POST + " ESMedia" + HTTP_VERSION + CRLF
-                + HttpHeader.CONTENT_TYPE + ": image/png" + CRLF
+                + CONTENT_TYPE + ": image/png" + CRLF
                 + "Content-Transfer-Encoding: base64" + CRLF
                 + CRLF
                 + "iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAABmJLR0QA/wD/AP+gvaeTAAAAH0lE"
@@ -738,7 +750,7 @@ public class BatchRequestParserTest {
                 + MIME_HEADERS
                 + CRLF
                 + HttpMethod.PUT + " $1/PropertyInt16" + HTTP_VERSION + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF
+                + CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF
                 + HttpHeader.CONTENT_ID + ": 2" + CRLF
                 + CRLF
                 + "{\"value\":5}" + CRLF
@@ -777,14 +789,14 @@ public class BatchRequestParserTest {
                 + CRLF
                 + CRLF
                 + "--" + BOUNDARY + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + MULTIPART_MIXED + "; boundary=" + CHANGESET_BOUNDARY + CRLF
+                + CONTENT_TYPE + ": " + MULTIPART_MIXED + "; boundary=" + CHANGESET_BOUNDARY + CRLF
                 + CRLF
                 + "--" + CHANGESET_BOUNDARY + CRLF
                 + MIME_HEADERS
                 + HttpHeader.CONTENT_ID + ": 1" + CRLF
                 + CRLF
                 + HttpMethod.POST + " ESMedia" + HTTP_VERSION + CRLF
-                + HttpHeader.CONTENT_TYPE + ": image/png" + CRLF
+                + CONTENT_TYPE + ": image/png" + CRLF
                 + "Content-Transfer-Encoding: base64" + CRLF
                 + CRLF
                 + "iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAABmJLR0QA/wD/AP+gvaeTAAAAH0lE"
@@ -795,7 +807,7 @@ public class BatchRequestParserTest {
                 + HttpHeader.CONTENT_ID + ": 1" + CRLF
                 + CRLF
                 + HttpMethod.PUT + " $1/PropertyInt16" + HTTP_VERSION + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF
+                + CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF
                 + CRLF
                 + "{\"value\":5}" + CRLF
                 + "--" + CHANGESET_BOUNDARY + "--" + CRLF
@@ -819,7 +831,7 @@ public class BatchRequestParserTest {
                 + CRLF
                 + CRLF
                 + "--" + BOUNDARY + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + MULTIPART_MIXED + "; boundary=" + CHANGESET_BOUNDARY + CRLF
+                + CONTENT_TYPE + ": " + MULTIPART_MIXED + "; boundary=" + CHANGESET_BOUNDARY + CRLF
                 + CRLF
                 + "This is a preamble and must be ignored" + CRLF
                 + CRLF
@@ -830,7 +842,7 @@ public class BatchRequestParserTest {
                 + HttpHeader.CONTENT_ID + ": 1" + CRLF
                 + CRLF
                 + HttpMethod.POST + " ESMedia" + HTTP_VERSION + CRLF
-                + HttpHeader.CONTENT_TYPE + ": image/png" + CRLF
+                + CONTENT_TYPE + ": image/png" + CRLF
                 + "Content-Transfer-Encoding: base64" + CRLF
                 + CRLF
                 + "iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAABmJLR0QA/wD/AP+gvaeTAAAAH0lE"
@@ -841,7 +853,7 @@ public class BatchRequestParserTest {
                 + HttpHeader.CONTENT_ID + ": 2" + CRLF
                 + CRLF
                 + HttpMethod.PUT + " $1/PropertyInt16" + HTTP_VERSION + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF
+                + CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF
                 + CRLF
                 + "{\"value\":5}" + CRLF
                 + "--" + CHANGESET_BOUNDARY + "--" + CRLF
@@ -869,13 +881,13 @@ public class BatchRequestParserTest {
     @Test
     public void contentTypeCaseInsensitive() throws Exception {
         String batch = "--" + BOUNDARY + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + MULTIPART_MIXED + "; boundary=" + CHANGESET_BOUNDARY + CRLF + CRLF
+                + CONTENT_TYPE + ": " + MULTIPART_MIXED + "; boundary=" + CHANGESET_BOUNDARY + CRLF + CRLF
                 + "--" + CHANGESET_BOUNDARY + CRLF
                 + MIME_HEADERS
                 + HttpHeader.CONTENT_ID + ": 1" + CRLF
-                + HttpHeader.CONTENT_LENGTH + ": 200" + CRLF + CRLF
+                + CONTENT_LENGTH + ": 200" + CRLF + CRLF
                 + HttpMethod.PATCH + " ESAllPrim(32767)" + HTTP_VERSION + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF + CRLF
+                + CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF + CRLF
                 + "{\"PropertyString\":\"new\"}" + CRLF
                 + "--" + CHANGESET_BOUNDARY + "--" + CRLF + CRLF
                 + "--" + BOUNDARY + "--";
@@ -886,12 +898,12 @@ public class BatchRequestParserTest {
     @Test
     public void contentTypeBoundaryCaseInsensitive() throws Exception {
         String batch = "--" + BOUNDARY + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + MULTIPART_MIXED + "; bOunDaRy=" + CHANGESET_BOUNDARY + CRLF + CRLF
+                + CONTENT_TYPE + ": " + MULTIPART_MIXED + "; bOunDaRy=" + CHANGESET_BOUNDARY + CRLF + CRLF
                 + "--" + CHANGESET_BOUNDARY + CRLF
                 + MIME_HEADERS
                 + HttpHeader.CONTENT_ID + ": 1" + CRLF + CRLF
                 + HttpMethod.PATCH + " ESAllPrim(32767)" + HTTP_VERSION + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF + CRLF
+                + CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF + CRLF
                 + "{\"PropertyString\":\"new\"}" + CRLF
                 + "--" + CHANGESET_BOUNDARY + "--" + CRLF + CRLF
                 + "--" + BOUNDARY + "--";
@@ -908,12 +920,12 @@ public class BatchRequestParserTest {
         String batch = "--" + BOUNDARY + CRLF
                 + GET_REQUEST
                 + "--" + BOUNDARY + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + MULTIPART_MIXED + "; boundary=" + CHANGESET_BOUNDARY + CRLF + CRLF
+                + CONTENT_TYPE + ": " + MULTIPART_MIXED + "; boundary=" + CHANGESET_BOUNDARY + CRLF + CRLF
                 + "--" + CHANGESET_BOUNDARY + CRLF
                 + MIME_HEADERS
                 + HttpHeader.CONTENT_ID + ": 1" + CRLF + CRLF
                 + HttpMethod.POST + " ESMedia" + HTTP_VERSION + CRLF
-                + HttpHeader.CONTENT_TYPE + ": image/png" + CRLF
+                + CONTENT_TYPE + ": image/png" + CRLF
                 + "Content-Transfer-Encoding: base64" + CRLF + CRLF
                 + "iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAABmJLR0QA/wD/AP+gvaeTAAAAH0lE"
                 + "QVQokWNgGHmA8S4FmpkosXngNDP+PzdANg+cZgBqiQK5mkdWWgAAAABJRU5ErkJggg==" + CRLF + CRLF
@@ -921,7 +933,7 @@ public class BatchRequestParserTest {
                 + MIME_HEADERS
                 + HttpHeader.CONTENT_ID + ": 2" + CRLF + CRLF
                 + HttpMethod.PUT + " $1/PropertyInt16" + HTTP_VERSION + CRLF
-                + HttpHeader.CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF + CRLF
+                + CONTENT_TYPE + ": " + APPLICATION_JSON + CRLF + CRLF
                 + "{\"value\":5}" + CRLF
                 + "--" + CHANGESET_BOUNDARY + "--" + CRLF + CRLF
                 + "This is an epilog and must be ignored" + CRLF + CRLF + CRLF
@@ -956,32 +968,32 @@ public class BatchRequestParserTest {
 
     @Test
     public void forbiddenHeaderWWWAuthenticate() throws Exception {
-        parseBatchWithForbiddenHeader(HttpHeader.WWW_AUTHENTICATE + ": Basic realm=\"simple\"");
+        parseBatchWithForbiddenHeader(WWW_AUTHENTICATE + ": Basic realm=\"simple\"");
     }
 
     @Test
     public void forbiddenHeaderAuthorization() throws Exception {
-        parseBatchWithForbiddenHeader(HttpHeader.AUTHORIZATION + ": Basic QWxhZdsdsddsduIHNlc2FtZQ==");
+        parseBatchWithForbiddenHeader(AUTHORIZATION + ": Basic QWxhZdsdsddsduIHNlc2FtZQ==");
     }
 
     @Test
     public void forbiddenHeaderExpect() throws Exception {
-        parseBatchWithForbiddenHeader(HttpHeader.EXPECT + ": 100-continue");
+        parseBatchWithForbiddenHeader(EXPECT + ": 100-continue");
     }
 
     @Test
     public void forbiddenHeaderFrom() throws Exception {
-        parseBatchWithForbiddenHeader(HttpHeader.FROM + ": test@test.com");
+        parseBatchWithForbiddenHeader(FROM + ": test@test.com");
     }
 
     @Test
     public void forbiddenHeaderRange() throws Exception {
-        parseBatchWithForbiddenHeader(HttpHeader.RANGE + ": 200-256");
+        parseBatchWithForbiddenHeader(RANGE + ": 200-256");
     }
 
     @Test
     public void forbiddenHeaderMaxForwards() throws Exception {
-        parseBatchWithForbiddenHeader(HttpHeader.MAX_FORWARDS + ": 3");
+        parseBatchWithForbiddenHeader(MAX_FORWARDS + ": 3");
     }
 
     @Test

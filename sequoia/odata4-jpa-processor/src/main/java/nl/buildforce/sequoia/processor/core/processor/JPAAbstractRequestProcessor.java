@@ -1,20 +1,20 @@
 package nl.buildforce.sequoia.processor.core.processor;
 
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAServiceDocument;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAException;
-import nl.buildforce.sequoia.processor.core.api.JPAODataCRUDContextAccess;
-import nl.buildforce.sequoia.processor.core.api.JPAODataRequestContextAccess;
-// import nl.buildforce.sequoia.processor.core.api.JPAServiceDebugger;
-import nl.buildforce.sequoia.processor.core.serializer.JPASerializer;
 import nl.buildforce.olingo.commons.api.format.ContentType;
-import nl.buildforce.olingo.commons.api.http.HttpHeader;
 import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
 import nl.buildforce.olingo.server.api.OData;
 import nl.buildforce.olingo.server.api.ODataResponse;
 import nl.buildforce.olingo.server.api.serializer.SerializerResult;
 import nl.buildforce.olingo.server.api.uri.UriInfoResource;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAServiceDocument;
+import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAException;
+import nl.buildforce.sequoia.processor.core.api.JPAODataCRUDContextAccess;
+import nl.buildforce.sequoia.processor.core.api.JPAODataRequestContextAccess;
+import nl.buildforce.sequoia.processor.core.serializer.JPASerializer;
 
 import jakarta.persistence.EntityManager;
+
+import static com.google.common.net.HttpHeaders.CONTENT_TYPE;
 
 abstract class JPAAbstractRequestProcessor {
 
@@ -58,7 +58,7 @@ abstract class JPAAbstractRequestProcessor {
 
     response.setContent(serializerResult.getContent());
     response.setStatusCode(successStatusCode);
-    response.setHeader(HttpHeader.CONTENT_TYPE, responseFormat.toString());
+    response.setHeader(CONTENT_TYPE, responseFormat.toString());
   }
 
 }

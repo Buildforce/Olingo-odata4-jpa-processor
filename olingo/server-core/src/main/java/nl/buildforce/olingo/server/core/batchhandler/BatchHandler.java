@@ -6,7 +6,6 @@ package nl.buildforce.olingo.server.core.batchhandler;
 import java.util.List;
 
 import nl.buildforce.olingo.commons.api.format.ContentType;
-import nl.buildforce.olingo.commons.api.http.HttpHeader;
 import nl.buildforce.olingo.commons.api.http.HttpMethod;
 import nl.buildforce.olingo.server.api.ODataApplicationException;
 import nl.buildforce.olingo.server.api.ODataLibraryException;
@@ -20,11 +19,16 @@ import nl.buildforce.olingo.server.api.processor.BatchProcessor;
 import nl.buildforce.olingo.server.core.ODataHandlerException;
 import nl.buildforce.olingo.server.core.deserializer.batch.BatchParserCommon;
 
+import static com.google.common.net.HttpHeaders.CONTENT_TYPE;
+import static nl.buildforce.olingo.commons.api.http.HttpHeader.PREFER;
+import static nl.buildforce.olingo.server.core.ODataDispatcher.RETURN_MINIMAL;
+import static nl.buildforce.olingo.server.core.ODataDispatcher.RETURN_REPRESENTATION;
+
 public class BatchHandler {
   private final BatchProcessor batchProcessor;
   private final ODataHandlerImpl oDataHandler;
-  private static final String RETURN_MINIMAL = "return=minimal";
-  private static final String RETURN_REPRESENTATION = "return=representation";
+//  private static final String RETURN_MINIMAL = "return=minimal";
+//  private static final String RETURN_REPRESENTATION = "return=representation";
 
   public BatchHandler(ODataHandlerImpl oDataHandler, BatchProcessor batchProcessor) {
 
@@ -47,7 +51,7 @@ public class BatchHandler {
    * @throws ODataHandlerException
    */
   private void validatePreferHeader(ODataRequest request) throws ODataHandlerException {
-    List<String> returnPreference = request.getHeaders(HttpHeader.PREFER);
+    List<String> returnPreference = request.getHeaders(PREFER);
     if (null != returnPreference) {
       for (String preference : returnPreference) {
         if (preference.equals(RETURN_MINIMAL) || preference.equals(RETURN_REPRESENTATION)) {
@@ -65,7 +69,7 @@ public class BatchHandler {
 
   private void validateContentType(ODataRequest request) throws BatchDeserializerException {
     // This method does validation.
-    BatchParserCommon.parseContentType(request.getHeader(HttpHeader.CONTENT_TYPE), ContentType.MULTIPART_MIXED, 0);
+    BatchParserCommon.parseContentType(request.getHeader(CONTENT_TYPE), ContentType.MULTIPART_MIXED, 0);
   }
 
   private void validateHttpMethod(ODataRequest request) throws BatchDeserializerException {

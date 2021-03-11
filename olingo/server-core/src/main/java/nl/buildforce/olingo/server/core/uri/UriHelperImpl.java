@@ -7,7 +7,6 @@ import java.util.List;
 
 import nl.buildforce.olingo.commons.api.data.Entity;
 import nl.buildforce.olingo.commons.api.data.Property;
-import nl.buildforce.olingo.commons.api.edm.Edm;
 import nl.buildforce.olingo.commons.api.edm.EdmEntitySet;
 import nl.buildforce.olingo.commons.api.edm.EdmEntityType;
 import nl.buildforce.olingo.commons.api.edm.EdmKeyPropertyRef;
@@ -16,20 +15,11 @@ import nl.buildforce.olingo.commons.api.edm.EdmPrimitiveTypeException;
 import nl.buildforce.olingo.commons.api.edm.EdmProperty;
 import nl.buildforce.olingo.commons.api.edm.EdmStructuredType;
 import nl.buildforce.olingo.commons.core.UrlEncoder;
-import nl.buildforce.olingo.server.api.ODataLibraryException;
-import nl.buildforce.olingo.server.api.deserializer.DeserializerException.MessageKeys;
-import nl.buildforce.olingo.server.api.deserializer.DeserializerException;
 import nl.buildforce.olingo.server.api.serializer.SerializerException;
 import nl.buildforce.olingo.server.api.uri.UriHelper;
-import nl.buildforce.olingo.server.api.uri.UriParameter;
-import nl.buildforce.olingo.server.api.uri.UriResource;
-import nl.buildforce.olingo.server.api.uri.UriResourceEntitySet;
-import nl.buildforce.olingo.server.api.uri.UriResourceKind;
 import nl.buildforce.olingo.server.api.uri.queryoption.ExpandOption;
 import nl.buildforce.olingo.server.api.uri.queryoption.SelectOption;
-import nl.buildforce.olingo.server.core.ODataImpl;
 import nl.buildforce.olingo.server.core.serializer.utils.ContextURLHelper;
-import nl.buildforce.olingo.server.core.uri.parser.Parser;
 
 public class UriHelperImpl implements UriHelper {
 
