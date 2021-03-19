@@ -99,12 +99,14 @@ public class CsdlFunctionImport extends CsdlOperationImport {
     return this;
   }
 
+/*
   @Override
   public CsdlFunctionImport setAnnotations(List<CsdlAnnotation> annotations) {
     this.annotations = annotations;
     return this;
   }
-  
+*/
+
   public String getTitle() {
     return title;
   }

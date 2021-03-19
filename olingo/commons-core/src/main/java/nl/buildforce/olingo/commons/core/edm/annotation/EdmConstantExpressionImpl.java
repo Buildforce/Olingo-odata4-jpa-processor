@@ -93,6 +93,7 @@ public class EdmConstantExpressionImpl extends AbstractEdmExpression implements 
       };
   }
 
+/*
   @Override
   public Object asPrimitive() {
     if (!built) {
@@ -116,5 +117,6 @@ public class EdmConstantExpressionImpl extends AbstractEdmExpression implements 
     }
     return enumTypeName;
   }
+*/
 
 }

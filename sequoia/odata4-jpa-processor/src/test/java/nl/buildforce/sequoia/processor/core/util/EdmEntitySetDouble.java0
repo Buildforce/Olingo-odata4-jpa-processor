@@ -81,4 +81,5 @@ public class EdmEntitySetDouble implements EdmEntitySet {
     fail();
     return null;
   }
+
 }

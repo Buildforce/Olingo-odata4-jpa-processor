@@ -245,10 +245,12 @@ public class CsdlProperty extends CsdlAbstractEdmItem implements CsdlNamed, Csdl
    * @param mimeType the mime type
    * @return the mime type
    */
+/*
   public CsdlProperty setMimeType(String mimeType) {
     this.mimeType = mimeType;
     return this;
   }
+*/
 
   /**
    * Gets mapping.

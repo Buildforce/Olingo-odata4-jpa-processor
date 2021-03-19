@@ -162,6 +162,7 @@ public class ServiceMetadataDouble implements ServiceMetadata {
       return null;
     }
 
+/*
     @Override
     public EdmAction getBoundActionWithBindingType(FullQualifiedName bindingParameterTypeName,
         Boolean isBindingParameterCollection) {
@@ -174,6 +175,7 @@ public class ServiceMetadataDouble implements ServiceMetadata {
       fail();
       return null;
     }
+*/
 
     @Override
     public EdmComplexType getComplexTypeWithAnnotations(FullQualifiedName arg0) {

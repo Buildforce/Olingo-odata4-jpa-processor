@@ -225,11 +225,9 @@ public interface Constants {
 */
 
   // canonical functions to be applied via dynamic annotation <tt>Apply</tt>
-  String CANONICAL_FUNCTION_CONCAT = "odata.concat";
-
-  String CANONICAL_FUNCTION_FILLURITEMPLATE = "odata.fillUriTemplate";
-
-  String CANONICAL_FUNCTION_URIENCODE = "odata.uriEncode";
+  // String CANONICAL_FUNCTION_CONCAT = "odata.concat";
+  // String CANONICAL_FUNCTION_FILLURITEMPLATE = "odata.fillUriTemplate";
+  // String CANONICAL_FUNCTION_URIENCODE = "odata.uriEncode";
 
 //  String MEDIA_EDIT_LINK_TYPE = "*/*";
   String ENTITY_NAVIGATION_LINK_TYPE = ContentType.APPLICATION_ATOM_XML_ENTRY.toString();

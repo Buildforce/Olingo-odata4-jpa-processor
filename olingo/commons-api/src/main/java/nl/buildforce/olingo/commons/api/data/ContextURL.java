@@ -158,9 +158,9 @@ public final class ContextURL {
    * Is context result a entity.
    * @return <code>true</code> for a reference, otherwise <code>false</code>
    */
-  public boolean isEntity() {
-    return suffix == Suffix.ENTITY;
-  }
+//  public boolean isEntity() {
+//    return suffix == Suffix.ENTITY;
+//  }
 
   /**
    * Is context result a reference.
@@ -174,33 +174,33 @@ public final class ContextURL {
    * Is context result a delta result.
    * @return <code>true</code> for a delta result, otherwise <code>false</code>
    */
-  public boolean isDelta() {
-    return suffix == Suffix.DELTA;
-  }
+//  public boolean isDelta() {
+//    return suffix == Suffix.DELTA;
+//  }
 
   /**
    * Is context result a delta deleted entity.
    * @return <code>true</code> for a delta deleted entity, otherwise <code>false</code>
    */
-  public boolean isDeltaDeletedEntity() {
-    return suffix == Suffix.DELTA_DELETED_ENTITY;
-  }
+//  public boolean isDeltaDeletedEntity() {
+//    return suffix == Suffix.DELTA_DELETED_ENTITY;
+//  }
 
   /**
    * Is context result a delta link.
    * @return <code>true</code> for a delta link, otherwise <code>false</code>
    */
-  public boolean isDeltaLink() {
-    return suffix == Suffix.DELTA_LINK;
-  }
+//  public boolean isDeltaLink() {
+//    return suffix == Suffix.DELTA_LINK;
+//  }
 
   /**
    * Is context result a delta deleted link.
    * @return <code>true</code> for a delta deleted link, otherwise <code>false</code>
    */
-  public boolean isDeltaDeletedLink() {
-    return suffix == Suffix.DELTA_DELETED_LINK;
-  }
+//  public boolean isDeltaDeletedLink() {
+//    return suffix == Suffix.DELTA_DELETED_LINK;
+//  }
 
   /**
    * Start building a ContextURL instance.
@@ -262,10 +262,10 @@ public final class ContextURL {
      * @param entitySetOrSingletonOrType the entity set / singleton / type name
      * @return Builder
      */
-    public Builder entitySetOrSingletonOrType(String entitySetOrSingletonOrType) {
-      contextURL.entitySetOrSingletonOrType = entitySetOrSingletonOrType;
-      return this;
-    }
+//    public Builder entitySetOrSingletonOrType(String entitySetOrSingletonOrType) {
+//      contextURL.entitySetOrSingletonOrType = entitySetOrSingletonOrType;
+//      return this;
+//    }
 
     /**
      * Set the edm entity type.
@@ -301,10 +301,10 @@ public final class ContextURL {
      * @param derivedEntity the derived entity name
      * @return Builder
      */
-    public Builder derivedEntity(String derivedEntity) {
-      contextURL.derivedEntity = derivedEntity;
-      return this;
-    }
+//    public Builder derivedEntity(String derivedEntity) {
+//      contextURL.derivedEntity = derivedEntity;
+//      return this;
+//    }
 
     /**
      * Set the navigation or property path.
@@ -344,4 +344,5 @@ public final class ContextURL {
       return contextURL;
     }
   }
+
 }

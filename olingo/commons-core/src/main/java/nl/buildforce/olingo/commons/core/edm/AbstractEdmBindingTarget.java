@@ -63,6 +63,7 @@ public abstract class AbstractEdmBindingTarget extends AbstractEdmNamed implemen
     return entityType;
   }
 
+/*
   @Override
   public EdmEntityType getEntityTypeWithAnnotations() {
     EdmEntityType entityType = ((AbstractEdm)edm).
@@ -73,7 +74,8 @@ public abstract class AbstractEdmBindingTarget extends AbstractEdmNamed implemen
     }
     return entityType;
   }
-  
+*/
+
   @Override
   public EdmBindingTarget getRelatedBindingTarget(String path) {
     if (path == null) {
@@ -126,4 +128,5 @@ public abstract class AbstractEdmBindingTarget extends AbstractEdmNamed implemen
   public EdmMapping getMapping() {
     return target.getMapping();
   }
+
 }

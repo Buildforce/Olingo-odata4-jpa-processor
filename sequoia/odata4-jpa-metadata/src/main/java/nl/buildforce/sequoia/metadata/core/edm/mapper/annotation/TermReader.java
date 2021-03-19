@@ -10,6 +10,7 @@ import java.net.URI;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class TermReader {
   final private XmlMapper xmlMapper;
@@ -35,29 +36,27 @@ public class TermReader {
 
   public Edmx readFromURI(final URI uri) throws IOException {
     return xmlMapper.readValue(uri.toURL(), Edmx.class);
-
   }
 
   private byte[] loadXML(String path) {
-
-    InputStream i = null;
     byte[] image = null;
+
     URL u = this.getClass().getClassLoader().getResource(path);
     try {
-      i = u.openStream();
+      InputStream i  = Objects.requireNonNull(u).openStream();
       image = new byte[i.available()];
       i.read(image);
-    } catch (IOException e1) {
+    } catch (IOException | NullPointerException e1) {
       e1.printStackTrace();
-    } finally {
+    } /*finally {
       try {
         i.close();
         return image;
-      } catch (IOException e) {
+      } catch (IOException | NullPointerException e) {
         e.printStackTrace();
       }
-    }
-    return null;
+    }*/
+    return image;
   }
 
   private Map<String, Map<String, CsdlTerm>> convertEDMX(Edmx edmx) {

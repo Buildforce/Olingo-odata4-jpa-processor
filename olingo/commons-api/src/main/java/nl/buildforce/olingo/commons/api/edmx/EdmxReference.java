@@ -84,14 +84,17 @@ public class EdmxReference implements CsdlAnnotatable{
     return annotations;
   }
 
-  /**
-   * Sets annotations.
-   *
-   * @param annotations the annotations
-   * @return the annotations
-   */
-  public EdmxReference setAnnotations(List<CsdlAnnotation> annotations) {
-    this.annotations = annotations;
-    return this;
-  }  
+// --Commented out by Inspection START (''21-03-11 19:51):
+//  /**
+//   * Sets annotations.
+//   *
+//   * @param annotations the annotations
+//   * @return the annotations
+//   */
+//  public EdmxReference setAnnotations(List<CsdlAnnotation> annotations) {
+//    this.annotations = annotations;
+//    return this;
+//  }
+// --Commented out by Inspection STOP (''21-03-11 19:51)
+
 }

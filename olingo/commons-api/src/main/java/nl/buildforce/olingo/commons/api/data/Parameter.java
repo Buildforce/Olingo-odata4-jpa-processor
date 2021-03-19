@@ -32,9 +32,11 @@ public class Parameter extends Valuable {
    * Checks whether this parameter value is of the value type ENTITY or COLLECTION_ENTITY.
    * @return true if the value type is ENTITY or COLLECTION_ENTITY, otherwise false
    */
+/*
   public boolean isEntity() {
     return getValueType() == ValueType.ENTITY || getValueType() == ValueType.COLLECTION_ENTITY;
   }
+*/
 
 // --Commented out by Inspection START (''21-03-09 22:31):
 //  /**

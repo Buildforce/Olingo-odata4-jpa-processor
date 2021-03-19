@@ -15,13 +15,15 @@ public abstract class AbstractODataObject extends Annotatable {
   private URI id;
   private String title;
 
-  /**
-   * Gets base URI.
-   * @return base URI
-   */
-  public URI getBaseURI() {
-    return baseURI;
-  }
+// --Commented out by Inspection START (''21-03-11 21:10):
+//  /**
+//   * Gets base URI.
+//   * @return base URI
+//   */
+//  public URI getBaseURI() {
+//    return baseURI;
+//  }
+// --Commented out by Inspection STOP (''21-03-11 21:10)
 
   /**
    * Sets base URI.
@@ -92,4 +94,5 @@ public abstract class AbstractODataObject extends Annotatable {
     result = 31 * result + (title == null ? 0 : title.hashCode());
     return result;
   }
+
 }

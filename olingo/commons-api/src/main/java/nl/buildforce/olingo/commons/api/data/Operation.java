@@ -28,7 +28,7 @@ public class Operation {
         return metadataAnchor;
     }
 
-/**
+/*
  * Sets metadata anchor.
  *
  * @param metadataAnchor metadata anchor.
@@ -46,7 +46,7 @@ public class Operation {
         return title;
     }
 
-    /**
+    /*
      * Sets title.
      *
      * @param title title.

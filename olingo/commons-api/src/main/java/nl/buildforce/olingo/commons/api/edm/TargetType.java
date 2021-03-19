@@ -70,14 +70,8 @@ public enum TargetType {
   Lt(EdmLt.class),
   Le(EdmLe.class);
 
-  private final Class<?> edmClass;
+  TargetType(Class<?> edmClass) { }
 
-  TargetType(Class<?> edmClass) {
-    this.edmClass = edmClass;
-  }
-
-  public Class<?> getEdmClass() {
-    return edmClass;
-  }
+  // public Class<?> getEdmClass() { return edmClass; }
 
 }

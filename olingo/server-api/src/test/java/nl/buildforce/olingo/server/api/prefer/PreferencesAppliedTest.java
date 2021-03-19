@@ -3,6 +3,7 @@
 */
 package nl.buildforce.olingo.server.api.prefer;
 
+import static nl.buildforce.olingo.commons.api.format.PreferenceName.INCLUDE_ANNOTATIONS;
 import static org.junit.Assert.assertEquals;
 
 import nl.buildforce.olingo.server.api.prefer.Preferences.Return;
@@ -21,7 +22,7 @@ public class PreferencesAppliedTest {
         + " odata.continue-on-error, odata.include-annotations=\"*\", odata.maxpagesize=42,"
         + " odata.track-changes, return=representation, respond-async, wait=12345",
         PreferencesApplied.with().allowEntityReferences().callback().continueOnError()
-        .preference("odata.include-annotations", "*").maxPageSize(42).trackChanges()
+        .preference(INCLUDE_ANNOTATIONS.getName()/*"odata.include-annotations"*/, "*").maxPageSize(42).trackChanges()
         .returnRepresentation(Return.REPRESENTATION).respondAsync().waitPreference(12345)
         .build().toValueString());
   }
@@ -49,4 +50,5 @@ public class PreferencesAppliedTest {
     assertEquals("strangepreference=\"x\\\\y,\\\"abc\\\"z\"",
         PreferencesApplied.with().preference("strangePreference", "x\\y,\"abc\"z").build().toValueString());
   }
+
 }

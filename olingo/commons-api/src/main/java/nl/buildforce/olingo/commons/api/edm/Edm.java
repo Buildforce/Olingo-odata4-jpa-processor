@@ -125,16 +125,18 @@ public interface Edm {
   EdmAction getBoundAction(FullQualifiedName actionName, FullQualifiedName bindingParameterTypeName,
       Boolean isBindingParameterCollection);
 
-  /**
-   * Get Action by full qualified name and binding parameter type.
-   * Note: action can not be overloaded on binding type
-   * 
-   * @param bindingParameterTypeName must not be null
-   * @param isBindingParameterCollection may be null
-   * @return {@link EdmAction}
-   */  
-  EdmAction getBoundActionWithBindingType(FullQualifiedName bindingParameterTypeName,
-      Boolean isBindingParameterCollection);
+// --Commented out by Inspection START (''21-03-11 20:27):
+//  /**
+//   * Get Action by full qualified name and binding parameter type.
+//   * Note: action can not be overloaded on binding type
+//   *
+//   * @param bindingParameterTypeName must not be null
+//   * @param isBindingParameterCollection may be null
+//   * @return {@link EdmAction}
+//   */
+//  EdmAction getBoundActionWithBindingType(FullQualifiedName bindingParameterTypeName,
+//      Boolean isBindingParameterCollection);
+// --Commented out by Inspection STOP (''21-03-11 20:27)
 
   /**
    * Get Function by full qualified name.
@@ -153,7 +155,7 @@ public interface Edm {
    */
   EdmFunction getUnboundFunction(FullQualifiedName functionName, List<String> parameterNames);
 
-  /**
+  /*
    * Get Function by full qualified name and binding parameter type and binding parameter names.
    *
    * @param functionName must not be null
@@ -165,15 +167,17 @@ public interface Edm {
   EdmFunction getBoundFunction(FullQualifiedName functionName, FullQualifiedName bindingParameterTypeName,
       Boolean isBindingParameterCollection, List<String> parameterNames);
 
-  /**
-   * Get Function by binding parameter type
-   *
-   * @param bindingParameterTypeName must not be null
-   * @param isBindingParameterCollection may be null
-   * @return {@link EdmFunction}
-   */
-  List<EdmFunction> getBoundFunctionsWithBindingType(FullQualifiedName bindingParameterTypeName,
-      Boolean isBindingParameterCollection);  
+// --Commented out by Inspection START (''21-03-11 20:27):
+//  /**
+//   * Get Function by binding parameter type
+//   *
+//   * @param bindingParameterTypeName must not be null
+//   * @param isBindingParameterCollection may be null
+//   * @return {@link EdmFunction}
+//   */
+//  List<EdmFunction> getBoundFunctionsWithBindingType(FullQualifiedName bindingParameterTypeName,
+//      Boolean isBindingParameterCollection);
+// --Commented out by Inspection STOP (''21-03-11 20:27)
 
   /**
    * Get Term full by qualified name.
@@ -191,4 +195,5 @@ public interface Edm {
    * @return {@link EdmAnnotations}
    */
   EdmAnnotations getAnnotationGroup(FullQualifiedName targetName, String qualifier);
+
 }

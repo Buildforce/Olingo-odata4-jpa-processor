@@ -288,9 +288,11 @@ public class CsdlSchema extends CsdlAbstractEdmItem implements CsdlAnnotatable {
    * @param name the name
    * @return the term
    */
+/*
   public CsdlTerm getTerm(String name) {
     return getOneByName(name, getTerms());
   }
+*/
 
   /**
    * Sets terms.
@@ -345,6 +347,7 @@ public class CsdlSchema extends CsdlAbstractEdmItem implements CsdlAnnotatable {
    * @param term the term
    * @return the annotation
    */
+/*
   public CsdlAnnotation getAnnotation(String term) {
     CsdlAnnotation result = null;
     for (CsdlAnnotation annot : getAnnotations()) {
@@ -354,6 +357,7 @@ public class CsdlSchema extends CsdlAbstractEdmItem implements CsdlAnnotatable {
     }
     return result;
   }
+*/
 
   @Override
   public List<CsdlAnnotation> getAnnotations() {
@@ -365,9 +369,11 @@ public class CsdlSchema extends CsdlAbstractEdmItem implements CsdlAnnotatable {
    * @param annotations list of annotations
    * @return this instance
    */
+/*
   public CsdlSchema setAnnotations(List<CsdlAnnotation> annotations) {
     this.annotations = annotations;
     return this;
   }
+*/
 
 }

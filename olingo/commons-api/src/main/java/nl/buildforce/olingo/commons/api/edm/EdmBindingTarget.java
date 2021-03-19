@@ -44,10 +44,13 @@ public interface EdmBindingTarget extends EdmNamed, EdmAnnotatable, EdmMappable 
    */
   EdmEntityType getEntityType();
   
-  /**
-   * Get the entity type with annotations defined in external file.
-   *
-   * @return {@link EdmEntityType}
-   */
-  EdmEntityType getEntityTypeWithAnnotations();
+// --Commented out by Inspection START (''21-03-11 20:13):
+//  /**
+//   * Get the entity type with annotations defined in external file.
+//   *
+//   * @return {@link EdmEntityType}
+//   */
+//  EdmEntityType getEntityTypeWithAnnotations();
+// --Commented out by Inspection STOP (''21-03-11 20:13)
+
 }

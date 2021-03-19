@@ -27,8 +27,7 @@ public class EdmxReferenceIncludeAnnotation {
    * @param qualifier of include annotation
    * @param targetNamespace of include annotation
    */
-  public EdmxReferenceIncludeAnnotation(String termNamespace, String qualifier,
-                                        String targetNamespace) {
+  public EdmxReferenceIncludeAnnotation(String termNamespace, String qualifier, String targetNamespace) {
     this.termNamespace = termNamespace;
     this.qualifier = qualifier;
     this.targetNamespace = targetNamespace;
@@ -49,31 +48,34 @@ public class EdmxReferenceIncludeAnnotation {
   }
 
   /**
-   * Set qualifier for this include annotation.
-   *
-   * @param qualifier for include annotation
-   * @return this include annotation
-   */
-  public EdmxReferenceIncludeAnnotation setQualifier(String qualifier) {
-    this.qualifier = qualifier;
-    return this;
-  }
-
-  /**
    * @return targetNamespace if defined; null otherwise
    */
   public String getTargetNamespace() {
     return targetNamespace;
   }
 
-  /**
-   * Set target namespace for this include annotation.
-   *
-   * @param targetNamespace for include annotation
-   * @return this include annotation
-   */
-  public EdmxReferenceIncludeAnnotation setTargetNamespace(String targetNamespace) {
-    this.targetNamespace = targetNamespace;
-    return this;
-  }
+// --Commented out by Inspection START (''21-03-11 19:40):
+//  /**
+//   * Set qualifier for this include annotation.
+//   *
+//   * @param qualifier for include annotation
+//   * @return this include annotation
+//   */
+//  public EdmxReferenceIncludeAnnotation setQualifier(String qualifier) {
+//    this.qualifier = qualifier;
+//    return this;
+//  }
+//
+//  /**
+//   * Set target namespace for this include annotation.
+//   *
+//   * @param targetNamespace for include annotation
+//   * @return this include annotation
+//   */
+//  public EdmxReferenceIncludeAnnotation setTargetNamespace(String targetNamespace) {
+//    this.targetNamespace = targetNamespace;
+//    return this;
+//  }
+// --Commented out by Inspection STOP (''21-03-11 19:40)
+
 }

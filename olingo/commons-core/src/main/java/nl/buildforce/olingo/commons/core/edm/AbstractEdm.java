@@ -486,6 +486,7 @@ public abstract class AbstractEdm implements Edm {
     annotationGroups.put(key, annotationsGroup);
   }
   
+/*
   @Override
   public EdmAction getBoundActionWithBindingType(FullQualifiedName bindingParameterTypeName,
       Boolean isBindingParameterCollection) {
@@ -520,7 +521,8 @@ public abstract class AbstractEdm implements Edm {
     }
     return functions;
   }
-  
+*/
+
   protected boolean isEntityDerivedFromES() {
     return isEntityDerivedFromES;
   }

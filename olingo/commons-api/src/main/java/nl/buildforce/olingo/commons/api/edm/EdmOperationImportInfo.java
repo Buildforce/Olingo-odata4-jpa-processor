@@ -11,6 +11,6 @@ public interface EdmOperationImportInfo {
   /**
    * @return the entity container name which contains this function import.
    */
-  String getEntityContainerName();
+  // String getEntityContainerName();
 
 }

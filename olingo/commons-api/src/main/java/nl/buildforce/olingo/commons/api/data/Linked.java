@@ -65,14 +65,16 @@ public abstract class Linked extends AbstractODataObject {
     return navigationLinks;
   }
 
-  /**
-   * Gets binding link with given name, if available, otherwise <tt>null</tt>.
-   * @param name candidate link name
-   * @return binding link with given name, if available, otherwise <tt>null</tt>
-   */
-  public Link getNavigationBinding(String name) {
-    return getOneByTitle(name, bindingLinks);
-  }
+// --Commented out by Inspection START (''21-03-11 19:38):
+//  /**
+//   * Gets binding link with given name, if available, otherwise <tt>null</tt>.
+//   * @param name candidate link name
+//   * @return binding link with given name, if available, otherwise <tt>null</tt>
+//   */
+//  public Link getNavigationBinding(String name) {
+//    return getOneByTitle(name, bindingLinks);
+//  }
+// --Commented out by Inspection STOP (''21-03-11 19:38)
 
   /**
    * Gets binding links.
@@ -99,4 +101,5 @@ public abstract class Linked extends AbstractODataObject {
     result = 31 * result + bindingLinks.hashCode();
     return result;
   }
+
 }

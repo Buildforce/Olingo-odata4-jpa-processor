@@ -23,13 +23,15 @@ public class DeltaLink extends Annotatable {
     return source;
   }
 
-  /**
-   * Set source of this link.
-   * @param source source of this link
-   */
-  public void setSource(URI source) {
-    this.source = source;
-  }
+// --Commented out by Inspection START (''21-03-11 20:28):
+//  /**
+//   * Set source of this link.
+//   * @param source source of this link
+//   */
+//  public void setSource(URI source) {
+//    this.source = source;
+//  }
+// --Commented out by Inspection STOP (''21-03-11 20:28)
 
   /**
    * Get relationship of this link.
@@ -39,13 +41,15 @@ public class DeltaLink extends Annotatable {
     return relationship;
   }
 
-  /**
-   * Set relationship of this link.
-   * @param relationship relationship of this link
-   */
-  public void setRelationship(String relationship) {
-    this.relationship = relationship;
-  }
+// --Commented out by Inspection START (''21-03-11 20:28):
+//  /**
+//   * Set relationship of this link.
+//   * @param relationship relationship of this link
+//   */
+////  public void setRelationship(String relationship) {
+////    this.relationship = relationship;
+////  }
+//// --Commented out by Inspection STOP (''21-03-11 20:28)
 
   /**
    * Get target of this link.
@@ -87,4 +91,5 @@ public class DeltaLink extends Annotatable {
     result = 31 * result + (target == null ? 0 : target.hashCode());
     return result;
   }
+
 }

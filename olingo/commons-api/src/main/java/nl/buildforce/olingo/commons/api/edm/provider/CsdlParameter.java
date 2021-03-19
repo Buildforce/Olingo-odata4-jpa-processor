@@ -220,10 +220,12 @@ public class CsdlParameter extends CsdlAbstractEdmItem implements CsdlNamed, Csd
    * @param annotations list of annotations
    * @return this instance
    */
+/*
   public CsdlParameter setAnnotations(List<CsdlAnnotation> annotations) {
     this.annotations = annotations;
     return this;
   }
+*/
 
   /**
    * Gets mapping.
@@ -244,4 +246,5 @@ public class CsdlParameter extends CsdlAbstractEdmItem implements CsdlNamed, Csd
     this.mapping = mapping;
     return this;
   }
+
 }

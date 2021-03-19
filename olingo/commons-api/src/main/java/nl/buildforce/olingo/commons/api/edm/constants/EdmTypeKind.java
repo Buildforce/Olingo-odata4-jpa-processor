@@ -30,7 +30,7 @@ public enum EdmTypeKind {
   /**
    * Navigation property type
    */
-  NAVIGATION, 
+  // NAVIGATION,
   /**
    * Action type
    */

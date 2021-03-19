@@ -18,4 +18,5 @@ public class Member extends CsdlEnumMember {
   public CsdlEnumMember setValue(final String value) {
     return super.setValue(value);
   }
+
 }

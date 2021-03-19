@@ -190,9 +190,11 @@ public class CsdlTypeDefinition extends CsdlAbstractEdmItem implements CsdlNamed
    * @param annotations list of annotations
    * @return this instance
    */
+/*
   public CsdlTypeDefinition setAnnotations(List<CsdlAnnotation> annotations) {
     this.annotations = annotations;
     return this;
   }
+*/
 
 }
