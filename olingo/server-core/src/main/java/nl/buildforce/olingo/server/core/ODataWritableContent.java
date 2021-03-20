@@ -186,7 +186,7 @@ public class ODataWritableContent implements ODataContent {
       this.exception = exception;
     }
 
-    @Override
+    /*@Override
     public Exception getException() {
       return exception;
     }
@@ -194,7 +194,7 @@ public class ODataWritableContent implements ODataContent {
     @Override
     public ODataLibraryException getODataLibraryException() {
       return exception;
-    }
+    }*/
   }
 
   public static class ODataWritableContentBuilder {

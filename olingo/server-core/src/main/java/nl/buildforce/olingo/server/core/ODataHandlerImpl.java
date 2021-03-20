@@ -69,40 +69,40 @@ public class ODataHandlerImpl implements ODataHandler {
       processInternal(request, response);
     } catch (UriValidationException e) {
       ODataServerError serverError = ODataExceptionHelper.createServerErrorObject(e, null);
-      handleException(request, response, serverError, e);
+      handleException(request, response, serverError);
     } catch (UriParserSemanticException e) {
       ODataServerError serverError = ODataExceptionHelper.createServerErrorObject(e, null);
-      handleException(request, response, serverError, e);
+      handleException(request, response, serverError);
     } catch (UriParserSyntaxException e) {
       ODataServerError serverError = ODataExceptionHelper.createServerErrorObject(e, null);
-      handleException(request, response, serverError, e);
+      handleException(request, response, serverError);
     } catch (UriParserException e) {
       ODataServerError serverError = ODataExceptionHelper.createServerErrorObject(e, null);
-      handleException(request, response, serverError, e);
+      handleException(request, response, serverError);
     } catch (AcceptHeaderContentNegotiatorException e) {
       ODataServerError serverError = ODataExceptionHelper.createServerErrorObject(e, null);
-      handleException(request, response, serverError, e);
+      handleException(request, response, serverError);
     } catch (ContentNegotiatorException e) {
       ODataServerError serverError = ODataExceptionHelper.createServerErrorObject(e, null);
-      handleException(request, response, serverError, e);
+      handleException(request, response, serverError);
     } catch (SerializerException e) {
       ODataServerError serverError = ODataExceptionHelper.createServerErrorObject(e, null);
-      handleException(request, response, serverError, e);
+      handleException(request, response, serverError);
     } catch (DeserializerException e) {
       ODataServerError serverError = ODataExceptionHelper.createServerErrorObject(e, null);
-      handleException(request, response, serverError, e);
+      handleException(request, response, serverError);
     } catch (PreconditionException e) {
       ODataServerError serverError = ODataExceptionHelper.createServerErrorObject(e, null);
-      handleException(request, response, serverError, e);
+      handleException(request, response, serverError);
     } catch (ODataHandlerException e) {
       ODataServerError serverError = ODataExceptionHelper.createServerErrorObject(e, null);
-      handleException(request, response, serverError, e);
+      handleException(request, response, serverError);
     } catch (ODataApplicationException e) {
       ODataServerError serverError = ODataExceptionHelper.createServerErrorObject(e);
-      handleException(request, response, serverError, e);
+      handleException(request, response, serverError);
     } catch (Exception e) {
       ODataServerError serverError = ODataExceptionHelper.createServerErrorObject(e);
-      handleException(request, response, serverError, e);
+      handleException(request, response, serverError);
     }
     // // debugger.stopRuntimeMeasurement(responseHandle);
     return response;
@@ -130,8 +130,7 @@ public class ODataHandlerImpl implements ODataHandler {
     new ODataDispatcher(uriInfo, this).dispatch(request, response);
   }
 
-  public void handleException(ODataRequest request, ODataResponse response,
-                              ODataServerError serverError, Exception exception) {
+  public void handleException(ODataRequest request, ODataResponse response, ODataServerError serverError) {
     // int measurementHandle = debugger.startRuntimeMeasurement("ODataHandler", "handleException");
     ErrorProcessor exceptionProcessor;
     try {

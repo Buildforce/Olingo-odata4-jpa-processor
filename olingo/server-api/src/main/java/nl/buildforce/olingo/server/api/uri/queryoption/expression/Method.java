@@ -14,11 +14,11 @@ public interface Method extends Expression {
    * @return The used method
    * @see MethodKind
    */
-  MethodKind getMethod();
+  //MethodKind getMethod();
 
   /**
    * @return The list of expression tree which form the actual method parameters
    */
-  List<Expression> getParameters();
+  // List<Expression> getParameters();
 
 }

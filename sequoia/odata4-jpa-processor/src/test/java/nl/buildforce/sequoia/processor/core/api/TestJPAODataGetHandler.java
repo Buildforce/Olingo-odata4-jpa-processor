@@ -31,7 +31,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class TestJPAODataGetHandler extends TestBase {
-  private JPAODataGetHandler cut;
+  private JPAODataHandler cut;
   private HttpServletRequestDouble request;
   private HttpServletResponseDouble response;
   private static final String PUNIT_NAME = "nl.buildforce.sequoia";
@@ -44,19 +44,19 @@ public class TestJPAODataGetHandler extends TestBase {
 
   @Test
   public void testCanCreateInstanceWithPunit() throws ODataJPAFilterException {
-      new JPAODataGetHandler(PUNIT_NAME);
+      new JPAODataHandler(PUNIT_NAME);
   }
 
   @Test
   public void testCanCreateInstanceWithPunitAndDs() throws ODataJPAFilterException {
     final DataSource ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_DERBY);
-      new JPAODataGetHandler(PUNIT_NAME, ds);
+      new JPAODataHandler(PUNIT_NAME, ds);
   }
 
   @Test
   public void testPropertiesInstanceWithPunitAndDs() throws ODataJPAFilterException {
     final DataSource ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_DERBY);
-    cut = new JPAODataGetHandler(PUNIT_NAME, ds);
+    cut = new JPAODataHandler(PUNIT_NAME, ds);
     // assertNotNull(cut.getJPAODataContext());
     assertNotNull(cut.ds);
     assertNotNull(cut.emf);
@@ -68,7 +68,7 @@ public class TestJPAODataGetHandler extends TestBase {
   /* @Test
   public void testProcessWithoutEntityManager() throws ODataJPAFilterException, ODataJPAModelException {
     final DataSource ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_DERBY);
-    cut = new JPAODataGetHandler(PUNIT_NAME, ds);
+    cut = new JPAODataHandler(PUNIT_NAME, ds);
     cut.getJPAODataContext().setTypePackage(enumPackages);
     cut.process(request, response);
     assertNotNull(cut.jpaMetamodel);
@@ -79,7 +79,7 @@ public class TestJPAODataGetHandler extends TestBase {
   public void testProcessWithEntityManager() throws ODataJPAFilterException, ODataJPAModelException {
     final DataSource ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_DERBY);
     final EntityManager em = emf.createEntityManager();
-    cut = new JPAODataGetHandler(PUNIT_NAME, ds);
+    cut = new JPAODataHandler(PUNIT_NAME, ds);
     cut.getJPAODataContext().setTypePackage(enumPackages);
     cut.process(request, response, em);
     assertNotNull(cut.jpaMetamodel);
@@ -93,7 +93,7 @@ public class TestJPAODataGetHandler extends TestBase {
     final DataSource ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_DERBY);
     final EntityManager em = emf.createEntityManager();
     final JPAODataClaimProvider claims = new JPAODataClaimsProvider();
-    cut = new JPAODataGetHandler(PUNIT_NAME, ds);
+    cut = new JPAODataHandler(PUNIT_NAME, ds);
     cut.getJPAODataContext().setTypePackage(enumPackages);
     cut.process(request, response, claims, em);
     assertNotNull(cut.jpaMetamodel);
@@ -103,27 +103,27 @@ public class TestJPAODataGetHandler extends TestBase {
 
   @Test
   public void testGetSessionContext() throws ODataJPAFilterException {
-    cut = new JPAODataGetHandler(PUNIT_NAME);
+    cut = new JPAODataHandler(PUNIT_NAME);
     assertNotNull(cut.getJPAODataContext());
   }*/
 
   @Test
   public void testGetRequestContext() throws  ODataJPAFilterException {
-    cut = new JPAODataGetHandler(PUNIT_NAME);
+    cut = new JPAODataHandler(PUNIT_NAME);
     assertNotNull(cut.getJPAODataRequestContext());
   }
 
  @Test
   public void testGetHandlerProvidingContext() throws ODataException {
     final JPAODataCRUDContextAccess context = new JPAODataServiceContext(PUNIT_NAME, ds);
-    cut = new JPAODataGetHandler(context);
+    cut = new JPAODataHandler(context);
     assertNotNull(cut);
   }
 
    @Test
   public void testGetRequestContextProvidingSessionContext() throws ODataException {
     final JPAODataCRUDContextAccess context = new JPAODataServiceContext(PUNIT_NAME, ds);
-    cut = new JPAODataGetHandler(context);
+    cut = new JPAODataHandler(context);
     assertNotNull(cut.getJPAODataRequestContext());
   }
 
@@ -131,7 +131,7 @@ public class TestJPAODataGetHandler extends TestBase {
   public void testPropertiesInstanceProvidingSessionContext() throws ODataException {
 
     final JPAODataCRUDContextAccess context = new JPAODataServiceContext(PUNIT_NAME, ds);
-    cut = new JPAODataGetHandler(context);
+    cut = new JPAODataHandler(context);
     assertNull(cut.ds);
     assertNotNull(cut.odata);
     assertNull(cut.namespace);
@@ -141,7 +141,7 @@ public class TestJPAODataGetHandler extends TestBase {
   public void testProcessOnlyProvidingSessionContext() throws ODataException {
 
     final JPAODataCRUDContextAccess context = new JPAODataServiceContext(PUNIT_NAME, ds, enumPackages);
-    new JPAODataGetHandler(context).process(request, response);
+    new JPAODataHandler(context).process(request, response);
     assertEquals(200, response.getStatus());
   }
 
@@ -149,7 +149,7 @@ public class TestJPAODataGetHandler extends TestBase {
   public void testProcessWithEntityManagerProvidingSessionContext() throws ODataException {
 
     final JPAODataCRUDContextAccess context = new JPAODataServiceContext(PUNIT_NAME, ds, enumPackages);
-    cut = new JPAODataGetHandler(context);
+    cut = new JPAODataHandler(context);
     cut.getJPAODataRequestContext().setEntityManager(emf.createEntityManager());
     cut.process(request, response);
     assertEquals(200, response.getStatus());
@@ -162,7 +162,7 @@ public class TestJPAODataGetHandler extends TestBase {
         .setPUnit(PUNIT_NAME)
         .setTypePackage(enumPackages)
         .build();
-    cut = new JPAODataGetHandler(context);
+    cut = new JPAODataHandler(context);
     cut.getJPAODataRequestContext().setEntityManager(emf.createEntityManager());
     cut.process(request, response);
     assertEquals(200, response.getStatus());
@@ -170,7 +170,7 @@ public class TestJPAODataGetHandler extends TestBase {
 
   @Test
   public void testProcessWithEm() throws ODataJPAFilterException, ODataJPAModelException {
-    cut = new JPAODataGetHandler(PUNIT_NAME);
+    cut = new JPAODataHandler(PUNIT_NAME);
     cut.getJPAODataContext().setTypePackage(enumPackages);
     cut.process(request, response, emf.createEntityManager());
     assertEquals(200, response.getStatus());
@@ -186,7 +186,7 @@ public class TestJPAODataGetHandler extends TestBase {
         .setPUnit(PUNIT_NAME)
         .setRequestMappingPath("/test")
         .build();
-    cut = new JPAODataGetHandler(context, odata);
+    cut = new JPAODataHandler(context, odata);
     cut.process(request, response);
     verify(handler, times(1)).process(isA(HttpServletRequestWrapper.class), any());
   }
@@ -197,7 +197,7 @@ public class TestJPAODataGetHandler extends TestBase {
     final ODataHttpHandler handler = mock(ODataHttpHandler.class);
     when(odata.createHandler(any())).thenReturn(handler);
     final JPAODataCRUDContextAccess context = new JPAODataServiceContext(PUNIT_NAME, ds);
-    cut = new JPAODataGetHandler(context, odata);
+    cut = new JPAODataHandler(context, odata);
     cut.process(request, response);
     verify(handler, times(1)).process(argThat(new HttpRequestMatcher()), any());
   }
@@ -212,7 +212,7 @@ public class TestJPAODataGetHandler extends TestBase {
         .setPUnit(PUNIT_NAME)
         .setRequestMappingPath("")
         .build();
-    cut = new JPAODataGetHandler(context, odata);
+    cut = new JPAODataHandler(context, odata);
     cut.process(request, response);
     verify(handler, times(1)).process(argThat(new HttpRequestMatcher()), any());
   }

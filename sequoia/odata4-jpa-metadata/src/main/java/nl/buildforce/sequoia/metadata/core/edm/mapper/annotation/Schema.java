@@ -70,9 +70,11 @@ class Schema {
     return Collections.unmodifiableList(terms);
   }
 
+/*
   void setAlias(String alias) {
     this.alias = alias;
   }
+*/
 
   @JsonSetter
   void setComplexTypes(ComplexType[] newComplexTypes) {

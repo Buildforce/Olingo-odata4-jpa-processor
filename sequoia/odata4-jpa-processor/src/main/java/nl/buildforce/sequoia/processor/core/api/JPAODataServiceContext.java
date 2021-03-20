@@ -29,7 +29,7 @@ import java.util.Optional;
  */
 public final class JPAODataServiceContext implements /*JPAODataGetContext,*/ JPAODataCRUDContextAccess {
   //@formatter:off
-  private final       JPAODataGetHandler jpaODataGetHandler;
+  private final       JPAODataHandler jpaODataGetHandler;
   // --Commented out by Inspection (''20-05-01 19:16):private           JPACUDRequestHandler jpaCUDRequestHandler;
 
   private                 ErrorProcessor errorProcessor;
@@ -53,7 +53,7 @@ public final class JPAODataServiceContext implements /*JPAODataGetContext,*/ JPA
      * instead
      */
   @Deprecated
-  JPAODataServiceContext(JPAODataGetHandler jpaODataGetHandler) throws ODataJPAFilterException {
+  JPAODataServiceContext(JPAODataHandler jpaODataGetHandler) throws ODataJPAFilterException {
     this.jpaODataGetHandler = jpaODataGetHandler;
     namespace_pUnit = jpaODataGetHandler.namespace;
     operationConverter = new JPADefaultDatabaseProcessor();

@@ -108,7 +108,7 @@ public class ODataImpl extends OData {
     return new FixedFormatSerializerImpl();
   }
 
-  @Override
+/*  @Override
   public EdmAssistedSerializer createEdmAssistedSerializer(ContentType contentType) throws SerializerException {
     if (contentType != null && contentType.isCompatible(ContentType.APPLICATION_JSON)) {
       return new EdmAssistedJsonSerializer(contentType);
@@ -118,8 +118,7 @@ public class ODataImpl extends OData {
         SerializerException.MessageKeys.UNSUPPORTED_FORMAT, 
         ((contentType != null) ? contentType.toString() : null));
   }
-  
-  
+
   @Override
   public EdmDeltaSerializer createEdmDeltaSerializer(ContentType contentType, List<String> versions)
       throws SerializerException {
@@ -135,6 +134,7 @@ public class ODataImpl extends OData {
         SerializerException.MessageKeys.UNSUPPORTED_FORMAT, 
         ((contentType != null) ? contentType.toString() : null));
   }
+*/
 
   private float getMaxVersion(List<String> versions) {
     Float[] versionValue = new Float [versions.size()];
@@ -161,8 +161,7 @@ public class ODataImpl extends OData {
 */
 
   @Override
-  public ServiceMetadata createServiceMetadata(CsdlEdmProvider edmProvider,
-                                               List<EdmxReference> references) {
+  public ServiceMetadata createServiceMetadata(CsdlEdmProvider edmProvider, List<EdmxReference> references) {
     return createServiceMetadata(edmProvider, references, null);
   }
 
@@ -196,6 +195,7 @@ public class ODataImpl extends OData {
           ((contentType != null) ? contentType.toString() : null));
     }
   }  
+/*
   @Override
   public ODataDeserializer createDeserializer(ContentType contentType,
                                               ServiceMetadata metadata) throws DeserializerException {
@@ -211,6 +211,7 @@ public class ODataImpl extends OData {
           ((contentType != null) ? contentType.toString() : null));
     }
   }
+*/
 
   @Override
   public EdmPrimitiveType createPrimitiveTypeInstance(EdmPrimitiveTypeKind kind) {
@@ -255,7 +256,7 @@ public class ODataImpl extends OData {
   
   }
 
-  @Override
+/*  @Override
   public ODataDeserializer createDeserializer(ContentType contentType, ServiceMetadata metadata, List<String> versions)
       throws DeserializerException {
     IConstants constants = new Constantsv00();
@@ -273,6 +274,6 @@ public class ODataImpl extends OData {
           DeserializerException.MessageKeys.UNSUPPORTED_FORMAT, 
           ((contentType != null) ? contentType.toString() : null));
     }
-  }
+  }*/
 
 }

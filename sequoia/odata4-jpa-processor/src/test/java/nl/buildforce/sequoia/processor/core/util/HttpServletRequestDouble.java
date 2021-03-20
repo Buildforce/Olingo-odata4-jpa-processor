@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import static nl.buildforce.sequoia.processor.core.api.JPAODataGetHandler.REQUESTMAPPING_ATTRIBUTE;
+import static nl.buildforce.sequoia.processor.core.api.JPAODataHandler.REQUESTMAPPING_ATTRIBUTE;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class HttpServletRequestDouble implements HttpServletRequest {

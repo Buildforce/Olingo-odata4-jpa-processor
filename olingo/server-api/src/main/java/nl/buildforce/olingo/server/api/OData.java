@@ -143,8 +143,8 @@ public abstract class OData {
      * @param contentType any content type supported by Olingo (XML, JSON ...)
      * @param metadata    ServiceMetada of the service
      */
-    public abstract ODataDeserializer createDeserializer(ContentType contentType,
-                                                         ServiceMetadata metadata) throws DeserializerException;
+//    public abstract ODataDeserializer createDeserializer(ContentType contentType,
+//                                                         ServiceMetadata metadata) throws DeserializerException;
 
     /**
      * Creates a new deserializer object for reading content in the specified format.
@@ -164,8 +164,8 @@ public abstract class OData {
      * @param metadata    ServiceMetada of the service
      * @param versions    version
      */
-    public abstract ODataDeserializer createDeserializer(ContentType contentType,
-                                                         ServiceMetadata metadata, List<String> versions) throws DeserializerException;
+    // public abstract ODataDeserializer createDeserializer(ContentType contentType,
+    //                                                     ServiceMetadata metadata, List<String> versions) throws DeserializerException;
 
     /**
      * Creates a primitive-type instance.
@@ -202,8 +202,10 @@ public abstract class OData {
      *
      * @param contentType a content type supported by Olingo
      */
+/*
     public abstract EdmAssistedSerializer createEdmAssistedSerializer(ContentType contentType)
             throws SerializerException;
+*/
 
     /**
      * Creates a new serializer object capable of working without EDM information
@@ -212,6 +214,7 @@ public abstract class OData {
      * @param contentType a content type supported by Olingo
      * @param versions    versions supported by Olingo
      */
-    public abstract EdmDeltaSerializer createEdmDeltaSerializer(ContentType contentType,
-                                                                List<String> versions) throws SerializerException;
+    // public abstract EdmDeltaSerializer createEdmDeltaSerializer(ContentType contentType,
+    //                                                            List<String> versions) throws SerializerException;
+
 }

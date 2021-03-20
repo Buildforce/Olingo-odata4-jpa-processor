@@ -8,8 +8,8 @@ package nl.buildforce.olingo.commons.api.edmx;
  */
 public class EdmxReferenceIncludeAnnotation {
   private final String termNamespace;
-  private String qualifier;
-  private String targetNamespace;
+  private final String qualifier;
+  private final String targetNamespace;
 
   /**
    * Create include annotation with given termNamespace and empty qualifier and targetNamespace.

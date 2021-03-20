@@ -90,7 +90,7 @@ public class MetadataDocumentJsonSerializer {
   private static final String MAX_LENGTH = DOLLAR + "MaxLength";
   private static final String PRECISION = DOLLAR + "Precision";
   private static final String SCALE = DOLLAR + "Scale";
-  private static final String SRID = DOLLAR + "SRID";
+//private static final String SRID = DOLLAR + "SRID";
   private static final String COLLECTION = DOLLAR + "Collection";
   private static final String BASE_TYPE = DOLLAR + "BaseType";
   private static final String HAS_STREAM = DOLLAR + "HasStream";

@@ -20,12 +20,7 @@ public class EdmConstantExpressionImpl extends AbstractEdmExpression implements 
 
   private final CsdlConstantExpression csdlExp;
 
-  private boolean built;
-  private Object primitive;
-  private String enumTypeName;
-  private List<String> enumMembers;
-
-  public EdmConstantExpressionImpl(Edm edm, CsdlConstantExpression constExprConstruct) {
+    public EdmConstantExpressionImpl(Edm edm, CsdlConstantExpression constExprConstruct) {
     super(edm, constExprConstruct.getType().toString());
       csdlExp = constExprConstruct;
   }
@@ -46,10 +41,10 @@ public class EdmConstantExpressionImpl extends AbstractEdmExpression implements 
         if (enumSplit.length != 2) {
           throw new EdmException("Enum expression value must consist of enumTypeName/EnumMember.");
         }
-        enumTypeName = enumSplit[0];
+          // String enumTypeName = enumSplit[0];
         localEnumValues.add(enumSplit[1]);
       }
-      enumMembers = Collections.unmodifiableList(localEnumValues);
+        // List<String> enumMembers = Collections.unmodifiableList(localEnumValues);
     } else {
       EdmPrimitiveTypeKind kind = switch (csdlExp.getType()) {
           case Binary -> EdmPrimitiveTypeKind.Binary;
@@ -66,12 +61,11 @@ public class EdmConstantExpressionImpl extends AbstractEdmExpression implements 
       };
         EdmPrimitiveType type = EdmPrimitiveTypeFactory.getInstance(kind);
       try {
-        primitive = type.valueOfString(csdlExp.getValue(), null, null, null, null, null, type.getDefaultType());
+          Object primitive = type.valueOfString(csdlExp.getValue(), null, null, null, null, null, type.getDefaultType());
       } catch (EdmPrimitiveTypeException e) {
         throw new IllegalArgumentException(e);
       }
     }
-    built = true;
   }
 
   @Override

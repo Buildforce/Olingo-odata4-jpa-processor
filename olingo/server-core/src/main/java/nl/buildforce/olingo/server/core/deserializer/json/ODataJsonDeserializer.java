@@ -111,6 +111,7 @@ public ODataJsonDeserializer(ContentType contentType, ServiceMetadata serviceMet
   }
 */
 
+/*
   private EntityCollection consumeEntityCollectionNode(EdmEntityType edmEntityType, ObjectNode tree,
                                                        ExpandTreeBuilder expandBuilder) throws DeserializerException {
     EntityCollection entitySet = new EntityCollection();
@@ -132,6 +133,7 @@ public ODataJsonDeserializer(ContentType contentType, ServiceMetadata serviceMet
 
     return entitySet;
   }
+*/
 
   private List<Entity> consumeEntitySetArray(EdmEntityType edmEntityType, JsonNode jsonNode,
                                              ExpandTreeBuilder expandBuilder) throws DeserializerException {

@@ -43,10 +43,10 @@ public final class ReferenceCollectionSerializerOptions {
     }
 
     /** Sets the $count system query option. */
-    public Builder count(CountOption count) {
+    /*public Builder count(CountOption count) {
       options.count = count;
       return this;
-    }
+    }*/
 
     /** Builds the OData serializer options. */
     public ReferenceCollectionSerializerOptions build() {

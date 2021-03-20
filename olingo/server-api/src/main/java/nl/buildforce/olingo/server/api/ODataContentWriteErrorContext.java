@@ -15,7 +15,7 @@ public interface ODataContentWriteErrorContext {
    *
    * @return the exception which caused this error (as Java exception).
    */
-  Exception getException();
+  //Exception getException();
   /**
    * Get the exception which caused this error (as ODataLibraryException exception).
    * If the cause exception is an ODataLibraryException this method will
@@ -26,5 +26,6 @@ public interface ODataContentWriteErrorContext {
    * @return the cause exception if it is an ODataLibraryException otherwise
    *          this method will return <code>NULL</code>.
    */
-  ODataLibraryException getODataLibraryException();
+  //ODataLibraryException getODataLibraryException();
+
 }

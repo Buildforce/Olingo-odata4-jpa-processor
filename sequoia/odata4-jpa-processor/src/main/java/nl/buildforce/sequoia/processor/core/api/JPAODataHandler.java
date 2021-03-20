@@ -21,7 +21,7 @@ import javax.sql.DataSource;
 
 // import org.apache.olingo.server.core.ODataHttpHandlerImpl.REQUESTMAPPING
 
-public class JPAODataGetHandler {
+public class JPAODataHandler {
   public static final String REQUESTMAPPING_ATTRIBUTE = "requestMapping";
   public final Optional<EntityManagerFactory> emf;
   private final JPAODataServiceContext serviceContext;
@@ -41,9 +41,7 @@ public class JPAODataGetHandler {
    * @throws ODataJPAException
    */
   @Deprecated
-  public JPAODataGetHandler(final String pUnit) throws ODataJPAFilterException {// NOSONAR
-    this(pUnit, null);
-  }
+  public JPAODataHandler(final String pUnit) throws ODataJPAFilterException { this(pUnit, null); }
 
   /**
    * @deprecated (Will be removed with 1.0.0, use service context builder, <code>JPAODataServiceContext.with()</code>
@@ -53,7 +51,7 @@ public class JPAODataGetHandler {
    * @throws ODataJPAFilterException
    */
   @Deprecated
-  public JPAODataGetHandler(final String pUnit, final DataSource ds) throws ODataJPAFilterException {
+  public JPAODataHandler(final String pUnit, final DataSource ds) throws ODataJPAFilterException {
     namespace = pUnit;
     this.ds = ds;
     emf = ds == null ? Optional.empty() : Optional.ofNullable(JPAEntityManagerFactory.getEntityManagerFactory(pUnit, ds));
@@ -64,7 +62,7 @@ public class JPAODataGetHandler {
   }
 
   // Used by DemoOdataJPAWebContainer
-  public JPAODataGetHandler(final JPAODataCRUDContextAccess serviceContext) {
+  public JPAODataHandler(final JPAODataCRUDContextAccess serviceContext) {
     this(serviceContext, OData.newInstance());
   }
 
@@ -73,7 +71,7 @@ public class JPAODataGetHandler {
    * @param serviceContext
    * @param odata
    */
-  JPAODataGetHandler(final JPAODataCRUDContextAccess serviceContext, final OData odata) {
+  JPAODataHandler(final JPAODataCRUDContextAccess serviceContext, final OData odata) {
     namespace = null;
     ds = null;
     emf = serviceContext.getEntityManagerFactory();

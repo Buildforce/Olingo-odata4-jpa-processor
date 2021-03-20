@@ -33,7 +33,7 @@ public class CsdlSchema extends CsdlAbstractEdmItem implements CsdlAnnotatable {
 
   private List<CsdlAnnotations> annotationGroups = new ArrayList<>();
 
-  private List<CsdlAnnotation> annotations = new ArrayList<>();
+  private final List<CsdlAnnotation> annotations = new ArrayList<>();
 
   /**
    * Gets namespace.

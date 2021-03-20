@@ -64,7 +64,7 @@ public class ODataHttpHandlerImpl implements ODataHttpHandler {
 
     // int processMethodHandle = debugger.startRuntimeMeasurement("ODataHttpHandlerImpl", "process");
     try {
-      fillODataRequest(odRequest, request, 0);
+      fillODataRequest(odRequest, request);
 
       odResponse = process(odRequest);
       // ALL future methods after process must not throw exceptions!
@@ -131,7 +131,7 @@ public class ODataHttpHandlerImpl implements ODataHttpHandler {
     } else {
       serverError = ODataExceptionHelper.createServerErrorObject(e);
     }
-    handler.handleException(odRequest, resp, serverError, e);
+    handler.handleException(odRequest, resp, serverError);
     return resp;
   }
 
@@ -189,10 +189,10 @@ public class ODataHttpHandlerImpl implements ODataHttpHandler {
     }
   }
   
-  private ODataRequest fillODataRequest(ODataRequest odRequest, HttpServletRequest httpRequest, int split) throws ODataLibraryException {
+  private ODataRequest fillODataRequest(ODataRequest odRequest, HttpServletRequest httpRequest) throws ODataLibraryException {
     try {
       odRequest.setBody(httpRequest.getInputStream());
-      odRequest.setProtocol(httpRequest.getProtocol());
+      // odRequest.setProtocol(httpRequest.getProtocol());
       odRequest.setMethod(extractMethod(httpRequest));
       // int innerHandle = debugger.startRuntimeMeasurement("ODataHttpHandlerImpl", "copyHeaders");
       copyHeaders(odRequest, httpRequest);

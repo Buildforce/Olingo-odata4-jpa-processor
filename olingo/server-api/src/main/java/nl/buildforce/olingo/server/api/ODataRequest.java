@@ -21,7 +21,7 @@ public class ODataRequest {
   private String rawODataPath;
   private String rawBaseUri;
   private String rawServiceResolutionUri;
-  private String protocol;
+  // private String protocol;
 
   /**
    * Gets the HTTP method.
@@ -204,17 +204,17 @@ public class ODataRequest {
   /**
    * @return the protocol version used e.g. HTTP/1.1
    */
-  public String getProtocol() {
+  /*public String getProtocol() {
     return protocol;
-  }
+  }*/
 
   /**
    * Sets the HTTP protocol used
    * @param protocol
    * @see #getProtocol()
    */
-  public void setProtocol(String protocol) {
-    this.protocol = protocol;
-  }
+  // public void setProtocol(String protocol) {
+  //  this.protocol = protocol;
+  //}
 
 }

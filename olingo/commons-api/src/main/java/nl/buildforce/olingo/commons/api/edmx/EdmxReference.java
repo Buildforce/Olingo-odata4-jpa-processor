@@ -19,7 +19,7 @@ public class EdmxReference implements CsdlAnnotatable{
   private final URI uri;
   private final List<EdmxReferenceInclude> edmxIncludes;
   private final List<EdmxReferenceIncludeAnnotation> edmxIncludeAnnotations;
-  private List<CsdlAnnotation> annotations = new ArrayList<>();
+  private final List<CsdlAnnotation> annotations = new ArrayList<>();
   /**
    * Create reference with given uri
    *

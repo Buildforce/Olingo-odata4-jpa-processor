@@ -17,7 +17,6 @@ import nl.buildforce.olingo.commons.api.edm.EdmEntityContainer;
 import nl.buildforce.olingo.commons.api.edm.EdmEntityType;
 import nl.buildforce.olingo.commons.api.edm.EdmEnumType;
 import nl.buildforce.olingo.commons.api.edm.EdmFunction;
-import nl.buildforce.olingo.commons.api.edm.EdmParameter;
 import nl.buildforce.olingo.commons.api.edm.EdmSchema;
 import nl.buildforce.olingo.commons.api.edm.EdmTerm;
 import nl.buildforce.olingo.commons.api.edm.EdmTypeDefinition;
@@ -153,8 +152,8 @@ public abstract class AbstractEdm implements Edm {
     return enumType;
   }
 
-  @Override
-  public EdmTypeDefinition getTypeDefinition(FullQualifiedName namespaceOrAliasFQN) {
+    @Override
+    public EdmTypeDefinition getTypeDefinition(FullQualifiedName namespaceOrAliasFQN) {
     FullQualifiedName fqn = resolvePossibleAlias(namespaceOrAliasFQN);
     EdmTypeDefinition typeDefinition = typeDefinitions.get(fqn);
     if (typeDefinition == null) {

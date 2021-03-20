@@ -58,30 +58,33 @@ public class ODataImplTest {
     odata.createDeserializer(null, versions);
   }
   
+/*
   @Test(expected=SerializerException.class)
   public void deltaSerializer() throws SerializerException {
-    List<String> versions = new ArrayList<String>();
+    List<String> versions = new ArrayList<>();
     versions.add("4.01");
     odata.createEdmDeltaSerializer(null, versions);
   }
-  
+
+
   @Test(expected=SerializerException.class)
   public void edmAssitedSerializer() throws SerializerException {    
     odata.createEdmAssistedSerializer(null);
   }
-  
+
   @Test(expected=DeserializerException.class)
   public void deserializer1() throws DeserializerException {
     List<String> versions = new ArrayList<String>();
     versions.add("4.01");
     odata.createDeserializer(null, null, versions);
   }
-  
+
   @Test(expected=DeserializerException.class)
   public void deserializer2() throws DeserializerException {
     odata.createDeserializer(null, Mockito.mock(ServiceMetadata.class));
   }
-  
+*/
+
   @Test(expected=SerializerException.class)
   public void serializerWithVersions() throws SerializerException {
     List<String> versions = new ArrayList<String>();

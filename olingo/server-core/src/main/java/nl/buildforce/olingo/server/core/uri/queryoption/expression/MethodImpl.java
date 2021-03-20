@@ -28,10 +28,19 @@ public class MethodImpl implements Method {
     this.parameters = parameters;
   }
 
+/*
   @Override
   public MethodKind getMethod() {
     return method;
   }
+
+  @Override
+  public List<Expression> getParameters() {
+    return parameters == null ?
+        Collections.emptyList() :
+        Collections.unmodifiableList(parameters);
+  }
+*/
 
   public EdmType getType() {
     EdmPrimitiveTypeKind kind = null;
@@ -92,13 +101,6 @@ public class MethodImpl implements Method {
   }
 
   @Override
-  public List<Expression> getParameters() {
-    return parameters == null ?
-        Collections.emptyList() :
-        Collections.unmodifiableList(parameters);
-  }
-
-  @Override
   public <T> T accept(ExpressionVisitor<T> visitor) throws ExpressionVisitException, ODataApplicationException {
     List<T> userParameters = new ArrayList<>();
     if (parameters != null) {
@@ -113,4 +115,5 @@ public class MethodImpl implements Method {
   public String toString() {
     return "{" + method + " " + parameters + "}";
   }
+
 }

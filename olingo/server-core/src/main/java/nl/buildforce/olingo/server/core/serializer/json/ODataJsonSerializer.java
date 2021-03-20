@@ -81,12 +81,14 @@ public class ODataJsonSerializer extends AbstractODataSerializer {
     this.constants = constants;
   }
 
+/*
   public ODataJsonSerializer(ContentType contentType) {
     isIEEE754Compatible = ContentTypeHelper.isODataIEEE754Compatible(contentType);
     isODataMetadataNone = ContentTypeHelper.isODataMetadataNone(contentType);
     isODataMetadataFull = ContentTypeHelper.isODataMetadataFull(contentType);
       constants = new Constantsv00();
   }
+*/
 
   @Override
   public SerializerResult serviceDocument(ServiceMetadata metadata, String serviceRoot)
