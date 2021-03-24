@@ -65,8 +65,7 @@ public class TestCreateRequestEntity {
 
     ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_HSQLDB);
     emf = JPAEntityManagerFactory.getEntityManagerFactory(PUNIT_NAME, ds);
-    jpaEdm = new JPAEdmProvider(PUNIT_NAME, emf.getMetamodel(), pP, TestBase.enumPackages);
-
+    jpaEdm = new JPAEdmProvider(PUNIT_NAME, emf.getMetamodel(), /*pP,*/ TestBase.enumPackages);
   }
 
   private JPACUDRequestProcessor cut;

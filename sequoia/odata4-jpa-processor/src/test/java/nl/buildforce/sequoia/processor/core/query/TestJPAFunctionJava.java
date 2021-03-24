@@ -72,7 +72,7 @@ public class TestJPAFunctionJava {
     final EntityManagerFactory emf = Persistence.createEntityManagerFactory(PUNIT_NAME, properties);
         List<UriResource> uriResources = new ArrayList<>();
     when(uriInfo.getUriResourceParts()).thenReturn(uriResources);
-    when(context.getEdmProvider()).thenReturn(new JPAEdmProvider(PUNIT_NAME, emf, null, new String[] {
+    when(context.getEdmProvider()).thenReturn(new JPAEdmProvider(PUNIT_NAME, emf, /*null,*/ new String[] {
         "nl.buildforce.sequoia.processor.core", "nl.buildforce.sequoia.processor.core.testmodel" }));
     when(requestContext.getUriInfo()).thenReturn(uriInfo);
     when(requestContext.getEntityManager()).thenReturn(em);

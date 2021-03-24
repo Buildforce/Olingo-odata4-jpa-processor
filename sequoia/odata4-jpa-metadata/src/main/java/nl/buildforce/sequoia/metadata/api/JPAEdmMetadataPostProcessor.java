@@ -29,4 +29,5 @@ public abstract class JPAEdmMetadataPostProcessor {
   public abstract void processProperty(final IntermediatePropertyAccess property, final String jpaManagedTypeClassName);
 
   public abstract void provideReferences(final IntermediateReferenceList references) throws ODataJPAModelException;
+
 }

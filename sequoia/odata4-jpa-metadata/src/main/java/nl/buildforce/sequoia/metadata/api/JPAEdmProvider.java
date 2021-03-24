@@ -37,19 +37,19 @@ public class JPAEdmProvider extends CsdlAbstractEdmProvider {
   // http://docs.oasis-open.org/odata/odata/v4.0/errata02/os/complete/part3-csdl/odata-v4.0-errata02-os-part3-csdl-complete.html#_Toc406397930
   public JPAEdmProvider(final String namespace,
                         final EntityManagerFactory emf,
-                        final JPAEdmMetadataPostProcessor postProcessor,
+                        //final JPAEdmMetadataPostProcessor postProcessor,
                         final String[] packageName) throws ODataJPAException {
-    this(namespace, emf.getMetamodel(), postProcessor, packageName);
+    this(namespace, emf.getMetamodel(), /*postProcessor, */packageName);
   }
 
   public JPAEdmProvider(final String namespace,
                         final Metamodel jpaMetamodel,
-                        final JPAEdmMetadataPostProcessor postProcessor,
+                        // final JPAEdmMetadataPostProcessor postProcessor,
                         final String[] packageName) throws ODataJPAException {
     nameBuilder = new JPADefaultEdmNameBuilder(namespace);
     // this(jpaMetamodel, postProcessor, packageName, new JPADefaultEdmNameBuilder(namespace));
     serviceDocument =
-            new JPAServiceDocumentFactory(namespace, jpaMetamodel, postProcessor, packageName).getServiceDocument();
+            new JPAServiceDocumentFactory(namespace, jpaMetamodel, /*postProcessor,*/ packageName).getServiceDocument();
   }
 
 /*  public JPAEdmProvider(final EntityManagerFactory emf,

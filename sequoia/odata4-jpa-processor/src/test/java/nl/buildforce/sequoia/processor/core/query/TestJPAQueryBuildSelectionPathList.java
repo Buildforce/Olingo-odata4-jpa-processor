@@ -51,14 +51,12 @@ public class TestJPAQueryBuildSelectionPathList extends TestBase {
     helper = new TestHelper(emf, PUNIT_NAME);
     nameBuilder = new JPADefaultEdmNameBuilder(PUNIT_NAME);
     createHeaders();
-        JPAODataCRUDContextAccess sessionContext = new JPAODataContextAccessDouble(new JPAEdmProvider(PUNIT_NAME, emf, null, TestBase.enumPackages),
-                ds,
-                null);
+        JPAODataCRUDContextAccess sessionContext = new JPAODataContextAccessDouble(
+                new JPAEdmProvider(PUNIT_NAME, emf, /*null,*/TestBase.enumPackages), ds, null);
         JPAODataRequestContextImpl requestContext = new JPAODataRequestContextImpl();
     requestContext.setEntityManager(emf.createEntityManager());
     requestContext.setUriInfo(uriInfo);
     cut = new JPAJoinQuery(null, sessionContext, headers, requestContext);
-
   }
 
   private List<UriResource> buildUriInfo(final String esName, final String etName) {

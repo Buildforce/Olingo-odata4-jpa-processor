@@ -32,14 +32,16 @@ public final class JPAODataServiceContext implements /*JPAODataGetContext,*/ JPA
   private final       JPAODataHandler jpaODataGetHandler;
   // --Commented out by Inspection (''20-05-01 19:16):private           JPACUDRequestHandler jpaCUDRequestHandler;
 
+/*
   private                 ErrorProcessor errorProcessor;
   private    JPAEdmMetadataPostProcessor postProcessor;
   private         JPAODataPagingProvider pagingProvider;
+*/
 
   private final  JPAODataDatabaseProcessor databaseProcessor;
   private   Optional<EntityManagerFactory> emf;
   private                   JPAEdmProvider jpaEdm;
-  private                           String mappingPath;
+  // private                           String mappingPath;
   private final                     String namespace_pUnit;
   private final JPAODataDatabaseOperations operationConverter;
   private                         String[] packageName;
@@ -81,7 +83,7 @@ public final class JPAODataServiceContext implements /*JPAODataGetContext,*/ JPA
 
     emf = Optional.ofNullable(JPAEntityManagerFactory.getEntityManagerFactory(namespace_pUnit, ds));
 
-    jpaEdm = new JPAEdmProvider(namespace_pUnit, emf.get().getMetamodel(), null, packageName);
+    jpaEdm = new JPAEdmProvider(namespace_pUnit, emf.get().getMetamodel(), /*null,*/ packageName);
   }
 
 /*  private JPAODataServiceContext(final Builder builder) throws ODataJPAException, ODataJPAFilterException {
@@ -125,12 +127,12 @@ public final class JPAODataServiceContext implements /*JPAODataGetContext,*/ JPA
   @Override
   public JPAEdmProvider getEdmProvider() throws ODataJPAException {
     if (jpaEdm == null && jpaODataGetHandler != null && jpaODataGetHandler.jpaMetamodel != null)
-      jpaEdm = new JPAEdmProvider(namespace_pUnit, jpaODataGetHandler.jpaMetamodel, postProcessor, packageName);
+      jpaEdm = new JPAEdmProvider(namespace_pUnit, jpaODataGetHandler.jpaMetamodel, /*null,*/ packageName);
     return jpaEdm;
   }
 
   public JPAEdmProvider getEdmProvider(final EntityManager em) throws ODataJPAException {
-    if (jpaEdm == null) jpaEdm = new JPAEdmProvider(namespace_pUnit, em.getMetamodel(), postProcessor, packageName);
+    if (jpaEdm == null) jpaEdm = new JPAEdmProvider(namespace_pUnit, em.getMetamodel(), /*null,*/ packageName);
     return jpaEdm;
   }
 
@@ -141,7 +143,7 @@ public final class JPAODataServiceContext implements /*JPAODataGetContext,*/ JPA
 
   @Override
   public ErrorProcessor getErrorProcessor() {
-    return errorProcessor == null ? new JPADefaultErrorProcessor() : errorProcessor;
+    return /*errorProcessor == null ?*/ new JPADefaultErrorProcessor(); //: errorProcessor;
   }
 
   @Override
@@ -156,7 +158,7 @@ public final class JPAODataServiceContext implements /*JPAODataGetContext,*/ JPA
 
   @Override
   public JPAODataPagingProvider getPagingProvider() {
-    return pagingProvider;
+    return null /*pagingProvider*/;
   }
 
   @Override
@@ -165,7 +167,7 @@ public final class JPAODataServiceContext implements /*JPAODataGetContext,*/ JPA
   }
 
   @Override
-  public String getMappingPath() { return mappingPath; }
+  public String getMappingPath() { return null /* mappingPath*/; }
 
   /**
    * @deprecated will be removed with 1.0.0; use newly created builder (<code>JPAODataServiceContext.with()</code>)

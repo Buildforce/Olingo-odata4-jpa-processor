@@ -22,7 +22,7 @@ public class TestHelper {
 
   public TestHelper(EntityManagerFactory emf, String namespace) throws ODataJPAException {
     this.jpaMetamodel = emf.getMetamodel();
-    edmProvider = new JPAEdmProvider(namespace, emf, null, TestBase.enumPackages);
+    edmProvider = new JPAEdmProvider(namespace, emf, /*null,*/ TestBase.enumPackages);
     sd = edmProvider.getServiceDocument();
     sd.getEdmEntityContainer();
   }

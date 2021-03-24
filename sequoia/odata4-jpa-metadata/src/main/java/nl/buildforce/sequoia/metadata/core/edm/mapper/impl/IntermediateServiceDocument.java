@@ -50,9 +50,9 @@ class IntermediateServiceDocument implements JPAServiceDocument {
   private final Reflections reflections;
 
   IntermediateServiceDocument(final String namespace, final Metamodel jpaMetamodel,
-      final JPAEdmMetadataPostProcessor postProcessor, final String[] packageName) throws ODataJPAModelException {
+      /*final JPAEdmMetadataPostProcessor postProcessor,*/ final String[] packageName) throws ODataJPAModelException {
 
-    this(new JPADefaultEdmNameBuilder(namespace), jpaMetamodel, postProcessor, packageName);
+    this(new JPADefaultEdmNameBuilder(namespace), jpaMetamodel, /*postProcessor,*/ packageName);
   }
 
   /**
@@ -63,9 +63,9 @@ class IntermediateServiceDocument implements JPAServiceDocument {
    * @throws ODataJPAModelException
    */
   IntermediateServiceDocument(final JPAEdmNameBuilder nameBuilder, final Metamodel jpaMetamodel,
-      final JPAEdmMetadataPostProcessor postProcessor, final String[] packageName) throws ODataJPAModelException {
+      /*final JPAEdmMetadataPostProcessor postProcessor,*/ final String[] packageName) throws ODataJPAModelException {
 
-    JPAEdmMetadataPostProcessor pP = postProcessor != null ? postProcessor : new DefaultEdmPostProcessor();
+    JPAEdmMetadataPostProcessor pP = /*postProcessor != null ? postProcessor :*/ new DefaultEdmPostProcessor();
     IntermediateModelElement.setPostProcessor(pP);
 
     this.reflections = createReflections(packageName);

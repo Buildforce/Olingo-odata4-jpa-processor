@@ -51,18 +51,17 @@ public class TestIntermediateServiceDocument extends TestMappingRoot {
         arguments("nl.buildforce.sequoia.AccessRights", false),
         arguments("nl.buildforce.sequoia.Dummy", true),
         arguments("Unknown.AccessRights", true));
-
   }
 
   @BeforeEach
   public void setup() throws ODataJPAModelException {
-    cut = new IntermediateServiceDocument(PUNIT_NAME, emf.getMetamodel(), null,
+    cut = new IntermediateServiceDocument(PUNIT_NAME, emf.getMetamodel(), /*null,*/
         new String[] { "nl.buildforce.sequoia.processor.core.testmodel" });
   }
 
   @Test
   public void checkServiceDocumentCanBeCreated() throws ODataJPAModelException {
-    new IntermediateServiceDocument(PUNIT_NAME, emf.getMetamodel(), null,
+    new IntermediateServiceDocument(PUNIT_NAME, emf.getMetamodel(), /*null,*/
         new String[] { "nl.buildforce.sequoia.processor.core.testmodel" });
   }
 
@@ -107,7 +106,7 @@ public class TestIntermediateServiceDocument extends TestMappingRoot {
     when(target.getEntityType()).thenReturn(et);
     when(et.getFullQualifiedName()).thenReturn(new FullQualifiedName(PUNIT_NAME, "Country"));
 
-    JPAServiceDocument svc = new IntermediateServiceDocument(PUNIT_NAME, emf.getMetamodel(), null, null);
+    JPAServiceDocument svc = new IntermediateServiceDocument(PUNIT_NAME, emf.getMetamodel(), /*null,*/ null);
     assertFalse(svc.hasETag(target));
   }
 
@@ -191,7 +190,7 @@ public class TestIntermediateServiceDocument extends TestMappingRoot {
     final EdmAction action = mock(EdmAction.class);
     when(action.getNamespace()).thenReturn("nl.buildforce.sequoia");
     when(action.getName()).thenReturn("BoundNoImport");
-    final JPAServiceDocument svc = new IntermediateServiceDocument(PUNIT_NAME, emf.getMetamodel(), null,
+    final JPAServiceDocument svc = new IntermediateServiceDocument(PUNIT_NAME, emf.getMetamodel(), /*null,*/
         new String[] { "nl.buildforce.sequoia.metadata.core.edm.mapper.testaction" });
     assertNotNull(svc.getAction(action));
   }
@@ -307,7 +306,7 @@ public class TestIntermediateServiceDocument extends TestMappingRoot {
   }
 
   private IntermediateServiceDocument createCutWithCustomNameBuilder() throws ODataJPAModelException {
-    return new IntermediateServiceDocument(new CustomJPANameBuilder(), emf.getMetamodel(), null,
+    return new IntermediateServiceDocument(new CustomJPANameBuilder(), emf.getMetamodel(), /*null,*/
         new String[] { "nl.buildforce.sequoia.processor.core.testmodel",
             "nl.buildforce.sequoia.metadata.core.edm.mapper.testaction" });
   }

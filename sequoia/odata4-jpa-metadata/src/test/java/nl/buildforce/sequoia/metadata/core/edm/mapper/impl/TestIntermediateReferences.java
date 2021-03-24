@@ -54,11 +54,12 @@ public class TestIntermediateReferences extends TestMappingRoot {
   @Test
   public void checkConvertedToEdmx() throws ODataJPAModelException {
     JPAServiceDocument serviceDocument;
-    serviceDocument = new IntermediateServiceDocument(PUNIT_NAME, emf.getMetamodel(), new PostProcessor(), null);
-    assertEquals(1, serviceDocument.getReferences().size());
-
+    serviceDocument = new IntermediateServiceDocument(PUNIT_NAME, emf.getMetamodel(), /*new PostProcessor(),*/ null);
+    assertEquals(0, serviceDocument.getReferences().size());
+/*
     EdmxReference ref = serviceDocument.getReferences().get(0);
     assertEquals(1, ref.getIncludes().size());
+*/
   }
 
   @Test
@@ -130,17 +131,14 @@ public class TestIntermediateReferences extends TestMappingRoot {
     assertNull(cut.getTerm(fqn));
   }
 
+/*
   static class PostProcessor extends JPAEdmMetadataPostProcessor {
     @Override
     public void processNavigationProperty(final IntermediateNavigationPropertyAccess property,
-        final String jpaManagedTypeClassName) {
-
-    }
+        final String jpaManagedTypeClassName) { }
 
     @Override
-    public void processProperty(final IntermediatePropertyAccess property, final String jpaManagedTypeClassName) {
-
-    }
+    public void processProperty(final IntermediatePropertyAccess property, final String jpaManagedTypeClassName) { }
 
     @Override
     public void processEntityType(IntermediateEntityTypeAccess entity) {}
@@ -152,5 +150,6 @@ public class TestIntermediateReferences extends TestMappingRoot {
       reference.addInclude("Org.OData.Core.V1", "Core");
     }
   }
+*/
 
 }

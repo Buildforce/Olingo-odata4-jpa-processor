@@ -51,8 +51,7 @@ public class TestGroupBase extends TestBase {
     nameBuilder = new JPADefaultEdmNameBuilder(PUNIT_NAME);
     jpaEntityType = helper.getJPAEntityType("BusinessPartnerWithGroupss");
     createHeaders();
-    context = new JPAODataContextAccessDouble(new JPAEdmProvider(PUNIT_NAME, emf, null, enumPackages), ds,
-        null);
+    context = new JPAODataContextAccessDouble(new JPAEdmProvider(PUNIT_NAME, emf, /*null,*/ enumPackages), ds, null);
 
     requestContext = new JPAODataRequestContextImpl();
     requestContext.setEntityManager(emf.createEntityManager());
