@@ -44,25 +44,24 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public abstract class TestJPA_XXX_DatabaseProcessor {
-
-  protected JPAODataDatabaseProcessor cut;
-  protected EntityManager em;
-  protected UriResourceEntitySet uriEntitySet;
-  protected JPADataBaseFunction jpaFunction;
-  protected UriResourceFunction uriFunction;
   protected EdmEntityType edmEntityType;
   protected EdmFunction edmFunction;
   protected EdmParameter edmElement;
-  protected List<UriResource> uriResourceParts;
-  protected List<UriParameter> uriParameters;
+  protected EntityManager em;
+  protected JPADataBaseFunction jpaFunction;
+  protected JPAODataDatabaseProcessor cut;
   protected JPAOperationResultParameter returnParameter;
-  protected List<JPAParameter> parameterList;
   protected JPAParameter firstParameter;
-  protected UriParameter firstUriParameter;
+  protected List<JPAParameter> parameterList;
+  protected List<UriParameter> uriParameters;
+  protected List<UriResource> uriResourceParts;
   protected Query functionQuery;
+  protected String countResult;
   protected String oneParameterResult;
   protected String twoParameterResult;
-  protected String countResult;
+  protected UriParameter firstUriParameter;
+  protected UriResourceEntitySet uriEntitySet;
+  protected UriResourceFunction uriFunction;
 
   public void initEach() {
     em = mock(EntityManager.class);

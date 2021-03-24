@@ -58,9 +58,11 @@ public final class JPASerializerFactory {
     return false;
   }
 
+/*
   public ServiceMetadata getServiceMetadata() {
     return serviceMetadata;
   }
+*/
 
   JPASerializer createSerializer(final ContentType responseFormat, final UriInfo uriInfo, final EdmTypeKind edmTypeKind,
       final boolean isCollection, final Optional<List<String>> responseVersion) throws SerializerException,

@@ -47,7 +47,7 @@ public class JPAExamplePagingProviderTest {
   public void testReturnDefaultTopSkipPageSize2() throws ODataApplicationException {
     final UriInfo info = buildUriInfo();
     final JPAExamplePagingProvider cut = createOrgCut(2);
-    final JPAODataPage act = cut.getFirstPage(info, null, countQuery, null);
+    final JPAODataPage act = cut.getFirstPage(info, null, countQuery /*, null*/);
 
     assertEquals(0, act.getSkip());
     assertEquals(2, act.getTop());
@@ -59,7 +59,7 @@ public class JPAExamplePagingProviderTest {
   public void testReturnDefaultTopSkipPageSize5() throws ODataApplicationException {
     final UriInfo info = buildUriInfo();
     final JPAExamplePagingProvider cut = createOrgCut(5);
-    final JPAODataPage act = cut.getFirstPage(info, null, countQuery, null);
+    final JPAODataPage act = cut.getFirstPage(info, null, countQuery /*, null*/);
 
     assertEquals(0, act.getSkip());
     assertEquals(5, act.getTop());
@@ -72,7 +72,7 @@ public class JPAExamplePagingProviderTest {
     final UriInfo info = buildUriInfo("AdministrativeDivisions", "AdministrativeDivision");
     final JPAExamplePagingProvider cut = createOrgCut(5);
     when(countQuery.countResults()).thenReturn(12L);
-    final JPAODataPage act = cut.getFirstPage(info, null, countQuery, null);
+    final JPAODataPage act = cut.getFirstPage(info, null, countQuery /*, null*/);
 
     assertEquals(0, act.getSkip());
     assertEquals(10, act.getTop());
@@ -84,7 +84,7 @@ public class JPAExamplePagingProviderTest {
   public void testReturnDefaultTopSkipPageSize5NextPage() throws ODataApplicationException {
     final UriInfo info = buildUriInfo();
     final JPAExamplePagingProvider cut = createOrgCut(5);
-    JPAODataPage act = cut.getFirstPage(info, null, countQuery, null);
+    JPAODataPage act = cut.getFirstPage(info, null, countQuery /*, null*/);
     act = cut.getNextPage(toODataString((String) act.getSkipToken()));
 
     assertEquals(5, act.getSkip());
@@ -96,7 +96,7 @@ public class JPAExamplePagingProviderTest {
   public void testReturnNullIfEntitySetIsUnknown() throws ODataApplicationException {
     final UriInfo info = buildUriInfo();
     final JPAExamplePagingProvider cut = createPersonCut(5);
-    final JPAODataPage act = cut.getFirstPage(info, null, countQuery, null);
+    final JPAODataPage act = cut.getFirstPage(info, null, countQuery /*, null*/);
 
     assertNull(act);
   }
@@ -105,7 +105,7 @@ public class JPAExamplePagingProviderTest {
   public void testReturnNullIfEntitySetIsUnknownButMaxPagesizeHeader() throws ODataApplicationException {
     final UriInfo info = buildUriInfo();
     final JPAExamplePagingProvider cut = createPersonCut(5);
-    final JPAODataPage act = cut.getFirstPage(info, 3, countQuery, null);
+    final JPAODataPage act = cut.getFirstPage(info, 3, countQuery /*, null*/);
 
     assertNull(act);
   }
@@ -114,7 +114,7 @@ public class JPAExamplePagingProviderTest {
   public void testReturnRespectMaxPagesizeHeader() throws ODataApplicationException {
     final UriInfo info = buildUriInfo();
     final JPAExamplePagingProvider cut = createOrgCut(5);
-    final JPAODataPage act = cut.getFirstPage(info, 3, countQuery, null);
+    final JPAODataPage act = cut.getFirstPage(info, 3, countQuery /*, null*/);
 
     assertEquals(0, act.getSkip());
     assertEquals(3, act.getTop());
@@ -126,7 +126,7 @@ public class JPAExamplePagingProviderTest {
   public void testReturnSkiptokenNullAtLastPage() throws ODataApplicationException {
     final UriInfo info = buildUriInfo();
     final JPAExamplePagingProvider cut = createOrgCut(5);
-    JPAODataPage act = cut.getFirstPage(info, null, countQuery, null);
+    JPAODataPage act = cut.getFirstPage(info, null, countQuery /*, null*/);
     act = cut.getNextPage(toODataString((String) act.getSkipToken()));
 
     assertNull(act.getSkipToken());
@@ -136,7 +136,7 @@ public class JPAExamplePagingProviderTest {
   public void testReturnSkiptokenNullOnlyOnePage() throws ODataApplicationException {
     final UriInfo info = buildUriInfo("AdministrativeDivisions", "AdministrativeDivision");
     final JPAExamplePagingProvider cut = createOrgCut(5);
-    JPAODataPage act = cut.getFirstPage(info, null, countQuery, null);
+    JPAODataPage act = cut.getFirstPage(info, null, countQuery /*, null*/);
 
     assertNull(act.getSkipToken());
   }
@@ -145,7 +145,7 @@ public class JPAExamplePagingProviderTest {
   public void testReturnSkiptokenIfNotLastPage() throws ODataApplicationException {
     final UriInfo info = buildUriInfo();
     final JPAExamplePagingProvider cut = createOrgCut(2);
-    JPAODataPage act = cut.getFirstPage(info, null, countQuery, null);
+    JPAODataPage act = cut.getFirstPage(info, null, countQuery /*, null*/);
     act = cut.getNextPage(toODataString((String) act.getSkipToken()));
 
     assertNotNull(toODataString((String) act.getSkipToken()));
@@ -155,7 +155,7 @@ public class JPAExamplePagingProviderTest {
   public void testReturnThirdPage() throws ODataApplicationException {
     final UriInfo info = buildUriInfo();
     final JPAExamplePagingProvider cut = createOrgCut(2);
-    JPAODataPage act = cut.getFirstPage(info, null, countQuery, null);
+    JPAODataPage act = cut.getFirstPage(info, null, countQuery /*, null*/);
     act = cut.getNextPage(toODataString((String) act.getSkipToken()));
     act = cut.getNextPage(toODataString((String) act.getSkipToken()));
 
@@ -167,7 +167,7 @@ public class JPAExamplePagingProviderTest {
     final UriInfo info = buildUriInfo();
     addTopSkipToUri(info);
     final JPAExamplePagingProvider cut = createOrgCut(10);
-    JPAODataPage act = cut.getFirstPage(info, null, countQuery, null);
+    JPAODataPage act = cut.getFirstPage(info, null, countQuery /*, null*/);
 
     assertEquals(2, act.getSkip());
     assertEquals(7, act.getTop());
@@ -178,7 +178,7 @@ public class JPAExamplePagingProviderTest {
     final UriInfo info = buildUriInfo();
     addTopSkipToUri(info);
     final JPAExamplePagingProvider cut = createOrgCut(5);
-    JPAODataPage act = cut.getFirstPage(info, null, countQuery, null);
+    JPAODataPage act = cut.getFirstPage(info, null, countQuery /*, null*/);
 
     assertEquals(2, act.getSkip());
     assertEquals(5, act.getTop());
@@ -189,7 +189,7 @@ public class JPAExamplePagingProviderTest {
     final UriInfo info = buildUriInfo();
     addTopSkipToUri(info);
     final JPAExamplePagingProvider cut = createOrgCut(5);
-    JPAODataPage act = cut.getFirstPage(info, null, countQuery, null);
+    JPAODataPage act = cut.getFirstPage(info, null, countQuery /*, null*/);
     act = cut.getNextPage(toODataString((String) act.getSkipToken()));
 
     assertEquals(7, act.getSkip());
@@ -203,7 +203,7 @@ public class JPAExamplePagingProviderTest {
     sizes.put("Organizations", 2);
 
     final JPAExamplePagingProvider cut = new JPAExamplePagingProvider(sizes, 2);
-    final JPAODataPage first = cut.getFirstPage(info, null, countQuery, null);
+    final JPAODataPage first = cut.getFirstPage(info, null, countQuery /*, null*/);
     assertNotNull(cut.getNextPage((String) first.getSkipToken()));
     final JPAODataPage second = cut.getNextPage((String) first.getSkipToken());
     assertNotNull(cut.getNextPage((String) second.getSkipToken()));
@@ -219,7 +219,7 @@ public class JPAExamplePagingProviderTest {
     sizes.put("Organizations", 2);
 
     final JPAExamplePagingProvider cut = new JPAExamplePagingProvider(sizes, 10);
-    final JPAODataPage first = cut.getFirstPage(info, null, countQuery, null);
+    final JPAODataPage first = cut.getFirstPage(info, null, countQuery /*, null*/);
     assertNotNull(cut.getNextPage((String) first.getSkipToken()));
     final JPAODataPage second = cut.getNextPage((String) first.getSkipToken());
     assertNotNull(cut.getNextPage((String) second.getSkipToken()));

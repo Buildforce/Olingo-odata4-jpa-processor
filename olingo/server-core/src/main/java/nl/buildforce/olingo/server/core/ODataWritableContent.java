@@ -180,11 +180,9 @@ public class ODataWritableContent implements ODataContent {
   }
 
   public static class WriteErrorContext implements ODataContentWriteErrorContext {
-    private final ODataLibraryException exception;
 
-    public WriteErrorContext(ODataLibraryException exception) {
-      this.exception = exception;
-    }
+      public WriteErrorContext(ODataLibraryException exception) {
+      }
 
     /*@Override
     public Exception getException() {

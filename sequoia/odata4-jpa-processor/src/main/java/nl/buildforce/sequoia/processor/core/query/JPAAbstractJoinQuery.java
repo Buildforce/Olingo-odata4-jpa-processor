@@ -437,8 +437,7 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
 
     if (uriInfo.getSearchOption() != null && uriInfo.getSearchOption().getSearchExpression() != null)
       whereCondition = addWhereClause(whereCondition,
-          context.getDatabaseProcessor().createSearchWhereClause(cb, this.cq, target, jpaEntity, uriInfo
-              .getSearchOption()));
+          context.getDatabaseProcessor().createSearchWhereClause(cb, this.cq, target, jpaEntity, uriInfo.getSearchOption()));
 
     // // debugger.stopRuntimeMeasurement(handle);
     return whereCondition;

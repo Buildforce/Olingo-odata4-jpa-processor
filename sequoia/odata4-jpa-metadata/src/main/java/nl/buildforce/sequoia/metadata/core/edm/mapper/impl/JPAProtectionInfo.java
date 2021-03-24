@@ -24,9 +24,11 @@ final class JPAProtectionInfo {
    * Returns the maintained wildcard setting.
    * @return
    */
+/*
   boolean supportsWildcards() {
     return wildcards;
   }
+*/
 
   /**
    * Returns wildcard support if the protected property it of type <i>clazz</i>

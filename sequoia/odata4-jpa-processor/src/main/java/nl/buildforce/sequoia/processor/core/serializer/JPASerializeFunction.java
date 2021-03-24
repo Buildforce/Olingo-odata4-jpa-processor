@@ -42,9 +42,11 @@ final class JPASerializeFunction implements JPAOperationSerializer {
     return serializer.serialize(annotatable, entityType, request);
   }
 
+/*
   JPASerializer getSerializer() {
     return serializer;
   }
+*/
 
   private JPASerializer createSerializer(final JPASerializerFactory jpaSerializerFactory,
       final ContentType responseFormat, final UriInfo uriInfo, final Optional<List<String>> responseVersion)

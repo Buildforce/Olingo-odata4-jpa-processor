@@ -58,7 +58,7 @@ public class JPAExamplePagingProvider implements JPAODataPagingProvider {
 
   @Override
   public JPAODataPage getFirstPage(final UriInfo uriInfo, final Integer preferredPageSize,
-      final JPACountQuery countQuery, final EntityManager em) throws ODataApplicationException {
+      final JPACountQuery countQuery/*, final EntityManager em*/) throws ODataApplicationException {
 
     final UriResource root = uriInfo.getUriResourceParts().get(0);
     // Paging will only be done for Entity Sets
