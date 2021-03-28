@@ -11,7 +11,6 @@ import java.util.Map;
  * Enumeration of all primitive type kinds.
  */
 public enum EdmPrimitiveTypeKind {
-
   Binary,
   Boolean,
   Byte,

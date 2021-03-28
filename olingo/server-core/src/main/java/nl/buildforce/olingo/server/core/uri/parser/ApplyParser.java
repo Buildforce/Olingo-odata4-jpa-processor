@@ -35,7 +35,6 @@ import nl.buildforce.olingo.server.api.uri.queryoption.apply.Aggregate;
 import nl.buildforce.olingo.server.api.uri.queryoption.apply.AggregateExpression;
 import nl.buildforce.olingo.server.api.uri.queryoption.apply.BottomTop;
 import nl.buildforce.olingo.server.api.uri.queryoption.apply.Compute;
-import nl.buildforce.olingo.server.api.uri.queryoption.apply.Concat;
 import nl.buildforce.olingo.server.api.uri.queryoption.apply.CustomFunction;
 import nl.buildforce.olingo.server.api.uri.queryoption.apply.GroupBy;
 import nl.buildforce.olingo.server.api.uri.queryoption.apply.GroupByItem;
@@ -335,7 +334,7 @@ public class ApplyParser {
     return compute;
   }
 
-  private Concat parseConcatTrafo(EdmStructuredType referencedType)
+  private ApplyItem parseConcatTrafo(EdmStructuredType referencedType)
       throws UriParserException, UriValidationException {
     ConcatImpl concat = new ConcatImpl();
     // A common type is used for all sub-transformations.

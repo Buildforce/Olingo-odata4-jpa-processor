@@ -241,8 +241,7 @@ public final class JPAODataRequestProcessor
   }
 
   @Override
-  public void updateComplex(final ODataRequest request, final ODataResponse response, final UriInfo uriInfo,
-      final ContentType requestFormat, final ContentType responseFormat)
+  public void updateComplex()
       throws ODataApplicationException {
     // ../Organizations('5')/Address
     // Not supported yet, as PATCH and PUT are allowed here

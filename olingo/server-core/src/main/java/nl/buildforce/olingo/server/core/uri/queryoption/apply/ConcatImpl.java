@@ -6,13 +6,13 @@ package nl.buildforce.olingo.server.core.uri.queryoption.apply;
 import java.util.ArrayList;
 import java.util.List;
 
+import nl.buildforce.olingo.server.api.uri.queryoption.ApplyItem;
 import nl.buildforce.olingo.server.api.uri.queryoption.ApplyOption;
-import nl.buildforce.olingo.server.api.uri.queryoption.apply.Concat;
 
 /**
  * Represents the concat transformation.
  */
-public class ConcatImpl implements Concat {
+public class ConcatImpl implements ApplyItem {
 
   private final List<ApplyOption> options = new ArrayList<>();
 

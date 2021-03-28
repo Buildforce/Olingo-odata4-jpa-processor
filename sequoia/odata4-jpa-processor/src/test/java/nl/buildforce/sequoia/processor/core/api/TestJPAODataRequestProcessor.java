@@ -47,7 +47,7 @@ public class TestJPAODataRequestProcessor {
   }
 
   static Stream<Executable> modifyComplexValueMethodsProvider() {
-    return Stream.of(() -> cut.updateComplex(null, null, null, null, null), () -> cut.deleteComplex(null, null, null));
+    return Stream.of(() -> cut.updateComplex(), () -> cut.deleteComplex(null, null, null));
   }
 
   static Stream<Executable> throwsSerializerExceptionMethodsProvider() throws SerializerException {

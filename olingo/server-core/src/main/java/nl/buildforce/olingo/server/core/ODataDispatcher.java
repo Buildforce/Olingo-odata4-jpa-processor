@@ -367,8 +367,7 @@ public class ODataDispatcher {
         handler.selectProcessor(ComplexCollectionProcessor.class)
             .updateComplexCollection(request, response, uriInfo, requestFormat, responseFormat);
       } else {
-        handler.selectProcessor(ComplexProcessor.class)
-            .updateComplex(request, response, uriInfo, requestFormat, responseFormat);
+        handler.selectProcessor(ComplexProcessor.class).updateComplex();
       }
     } else if (method == HttpMethod.DELETE) {
       validatePreferHeader(request);

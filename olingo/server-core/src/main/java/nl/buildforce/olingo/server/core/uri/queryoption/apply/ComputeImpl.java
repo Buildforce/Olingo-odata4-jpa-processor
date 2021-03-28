@@ -21,13 +21,16 @@ public class ComputeImpl implements Compute {
     return Kind.COMPUTE;
   }
 
+/*
   @Override
   public List<ComputeExpression> getExpressions() {
     return expressions;
   }
+*/
 
   public ComputeImpl addExpression(ComputeExpressionImpl expression) {
     expressions.add(expression);
     return this;
   }
+
 }

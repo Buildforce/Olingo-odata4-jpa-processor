@@ -5,7 +5,11 @@ import org.flywaydb.core.internal.jdbc.DriverDataSource;
 
 import javax.sql.DataSource;
 
-public class DataSourceHelper {
+public enum  DataSourceHelper {
+  DB_H2,
+  DB_HSQLDB,
+  DB_DERBY;
+
   private static final String DB_SCHEMA = "OLINGO";
 
   private static final String H2_URL = "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1";
@@ -20,25 +24,19 @@ public class DataSourceHelper {
 
   private static final String REMOTE_URL = "jdbc:$DBNAME$:$Host$:$Port$";
 
-  public static final int DB_H2 = 1;
-  public static final int DB_HSQLDB = 2;
-  public static final int DB_REMOTE = 3;
-  public static final int DB_DERBY = 4;
-
-  public static DataSource createDataSource(int database) {
+  public static DataSource createDataSource(DataSourceHelper database) {
     DriverDataSource ds;
     ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 
-    switch (database) {
-      case DB_H2:
-        ds = new DriverDataSource(classLoader, H2_DRIVER_CLASS_NAME, H2_URL, null, null);
-        break;
-      case DB_HSQLDB:
-        ds = new DriverDataSource(classLoader, HSQLDB_DRIVER_CLASS_NAME, HSQLDB_URL, null, null);
-        break;
-      case DB_DERBY:
-        ds = new DriverDataSource(classLoader, DERBY_DRIVER_CLASS_NAME, DERBY_URL, null, null);
-        break;
+    ds = switch (database) {
+      case DB_H2 ->
+        new DriverDataSource(classLoader, H2_DRIVER_CLASS_NAME, H2_URL, null, null);
+      case DB_HSQLDB ->
+        new DriverDataSource(classLoader, HSQLDB_DRIVER_CLASS_NAME, HSQLDB_URL, null, null);
+      case DB_DERBY ->
+        new DriverDataSource(classLoader, DERBY_DRIVER_CLASS_NAME, DERBY_URL, null, null);
+
+      default -> null;
 /*      case DB_REMOTE:
         String env = System.getenv().get("REMOTE_DB_LOGON");
         ObjectMapper mapper = new ObjectMapper();
@@ -57,9 +55,7 @@ public class DataSourceHelper {
         ds = new DriverDataSource(classLoader, driver, url, connectionInfo.get("username").asText(),
                 connectionInfo.get("password").asText(), new Properties());
         break;*/
-      default:
-        return null;
-    }
+    };
 
     Flyway flyway = Flyway.configure().dataSource(ds).schemas(DB_SCHEMA).load();
     flyway.migrate();

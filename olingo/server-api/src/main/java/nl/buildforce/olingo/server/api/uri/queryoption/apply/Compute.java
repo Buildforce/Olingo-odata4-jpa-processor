@@ -3,8 +3,6 @@
 */
 package nl.buildforce.olingo.server.api.uri.queryoption.apply;
 
-import java.util.List;
-
 import nl.buildforce.olingo.server.api.uri.queryoption.ApplyItem;
 
 /**
@@ -12,9 +10,12 @@ import nl.buildforce.olingo.server.api.uri.queryoption.ApplyItem;
  */
 public interface Compute extends ApplyItem {
 
-  /**
-   * Gets the compute expressions.
-   * @return a non-empty list of compute expressions (and never <code>null</code>)
-   */
-  List<ComputeExpression> getExpressions();
+// --Commented out by Inspection START (''21-03-28 17:38):
+//  /**
+//   * Gets the compute expressions.
+//   * @return a non-empty list of compute expressions (and never <code>null</code>)
+//   */
+//  List<ComputeExpression> getExpressions();
+// --Commented out by Inspection STOP (''21-03-28 17:38)
+
 }

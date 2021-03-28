@@ -69,11 +69,13 @@ public class ComplexSerializerOptions {
       return this;
     }
     
-    /** set the replacement string for xml 1.0 unicode controlled characters that are not allowed */
-    public Builder xml10InvalidCharReplacement(String replacement) {
-      options.xml10InvalidCharReplacement = replacement;
-      return this;
-    }
+// --Commented out by Inspection START (''21-03-28 17:38):
+//    /** set the replacement string for xml 1.0 unicode controlled characters that are not allowed */
+//    public Builder xml10InvalidCharReplacement(String replacement) {
+//      options.xml10InvalidCharReplacement = replacement;
+//      return this;
+//    }
+// --Commented out by Inspection STOP (''21-03-28 17:38)
 
     /** Builds the OData serializer options. */
     public ComplexSerializerOptions build() {

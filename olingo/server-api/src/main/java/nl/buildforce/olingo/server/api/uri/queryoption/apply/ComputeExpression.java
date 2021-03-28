@@ -5,7 +5,7 @@ package nl.buildforce.olingo.server.api.uri.queryoption.apply;
 
 /**
  * Represents a compute expression.
- * @see Compute
+ * @see ApplyItem
  */
 public interface ComputeExpression {
 
