@@ -9,9 +9,11 @@ package nl.buildforce.olingo.server.api.uri.queryoption;
  */
 public interface IdOption extends SystemQueryOption {
 
-  /**
-   * @return Value of $id
-   */
-  String getValue();
+// --Commented out by Inspection START (''21-03-24 23:30):
+//  /**
+//   * @return Value of $id
+//   */
+//  String getValue();
+// --Commented out by Inspection STOP (''21-03-24 23:30)
 
 }

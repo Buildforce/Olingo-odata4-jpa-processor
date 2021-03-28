@@ -35,7 +35,7 @@ public class TestJPA_POSTSQL_DatabaseProcessor extends TestJPA_XXX_DatabaseProce
     final SearchOption searchOption = mock(SearchOption.class);
 
     final ODataApplicationException act = assertThrows(ODataApplicationException.class,
-        () -> cut.createSearchWhereClause(cb, cq, root, entityType, searchOption));
+        () -> cut.createSearchWhereClause());
     assertEquals(HttpStatusCode.NOT_IMPLEMENTED.getStatusCode(), act.getStatusCode());
 
   }

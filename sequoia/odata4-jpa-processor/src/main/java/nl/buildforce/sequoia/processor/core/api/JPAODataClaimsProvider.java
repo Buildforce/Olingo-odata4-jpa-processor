@@ -21,9 +21,8 @@ public class JPAODataClaimsProvider implements JPAODataClaimProvider {
   }
 
   @Override
-  public List<JPAClaimsPair<?>> get(final String attributeName) { // NOSONAR
-    if (!claims.containsKey(attributeName))
-      return Collections.emptyList();
+  public List<JPAClaimsPair<?>> get(final String attributeName) {
+    if (!claims.containsKey(attributeName)) return Collections.emptyList();
     return claims.get(attributeName);
   }
 

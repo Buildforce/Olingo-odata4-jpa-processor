@@ -2,6 +2,7 @@ package nl.buildforce.sequoia.processor.core.api;
 
 import nl.buildforce.olingo.server.api.OData;
 import nl.buildforce.olingo.server.api.ODataHttpHandler;
+import nl.buildforce.olingo.server.api.processor.ErrorProcessor;
 import nl.buildforce.sequoia.metadata.api.JPAEdmProvider;
 import nl.buildforce.sequoia.metadata.api.JPAEntityManagerFactory;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAException;

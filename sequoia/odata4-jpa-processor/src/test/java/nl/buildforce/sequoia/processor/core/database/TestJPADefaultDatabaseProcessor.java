@@ -98,7 +98,7 @@ public class TestJPADefaultDatabaseProcessor extends TestJPA_XXX_DatabaseProcess
 
   @Test
   public void testNotSupportedSearch() {
-    assertThrows(ODataJPADBAdaptorException.class, () -> cut.createSearchWhereClause(null, null, null, null, null));
+    assertThrows(ODataJPADBAdaptorException.class, () -> cut.createSearchWhereClause());
   }
 
 }

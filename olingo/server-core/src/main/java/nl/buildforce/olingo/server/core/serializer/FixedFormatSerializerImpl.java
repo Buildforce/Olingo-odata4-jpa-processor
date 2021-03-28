@@ -68,11 +68,13 @@ public class FixedFormatSerializerImpl implements FixedFormatSerializer {
     }
   }
 
+/*
   @Override
   public InputStream asyncResponse(ODataResponse odataResponse) throws SerializerException {
     AsyncResponseSerializer serializer = new AsyncResponseSerializer();
     return serializer.serialize(odataResponse);
   }
+*/
 
   // TODO: Signature refactoring for writeBatchResponse
   @Override

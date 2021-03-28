@@ -36,9 +36,8 @@ public class TestJPA_DERBY_DatabaseProcessor extends TestJPA_XXX_DatabaseProcess
     final SearchOption searchOption = mock(SearchOption.class);
 
     final ODataApplicationException act = assertThrows(ODataApplicationException.class,
-        () -> cut.createSearchWhereClause(cb, cq, root, entityType, searchOption));
+        () -> cut.createSearchWhereClause());
     assertEquals(HttpStatusCode.NOT_IMPLEMENTED.getStatusCode(), act.getStatusCode());
-
   }
 
 }

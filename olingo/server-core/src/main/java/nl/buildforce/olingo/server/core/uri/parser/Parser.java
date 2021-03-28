@@ -358,7 +358,7 @@ public class Parser {
               UriParserSyntaxException.MessageKeys.WRONG_VALUE_FOR_SYSTEM_QUERY_OPTION,
               optionName, optionValue);
         }
-        systemOption = new IdOptionImpl().setValue(optionValue);
+        systemOption = new IdOptionImpl(); //.setValue(optionValue);
         break;
       case LEVELS:
         throw new UriParserSyntaxException("System query option '$levels' is allowed only inside '$expand'!",

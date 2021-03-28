@@ -55,6 +55,6 @@ public interface FixedFormatSerializer {
    * @param odataResponse the response parts
    * @return response as an input stream
    */
-  InputStream asyncResponse(ODataResponse odataResponse) throws SerializerException;
+  // InputStream asyncResponse(ODataResponse odataResponse) throws SerializerException;
 
 }

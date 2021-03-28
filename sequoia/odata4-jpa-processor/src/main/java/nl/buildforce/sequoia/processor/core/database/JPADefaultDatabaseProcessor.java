@@ -1,7 +1,6 @@
 package nl.buildforce.sequoia.processor.core.database;
 
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPADataBaseFunction;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAEntityType;
 import nl.buildforce.sequoia.processor.core.exception.ODataJPADBAdaptorException;
 import nl.buildforce.sequoia.processor.core.exception.ODataJPAFilterException;
 import nl.buildforce.sequoia.processor.core.exception.ODataJPAProcessorException;
@@ -16,14 +15,11 @@ import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
 import nl.buildforce.olingo.server.api.ODataApplicationException;
 import nl.buildforce.olingo.server.api.uri.UriResource;
 import nl.buildforce.olingo.server.api.uri.UriResourceKind;
-import nl.buildforce.olingo.server.api.uri.queryoption.SearchOption;
 import nl.buildforce.olingo.server.api.uri.queryoption.expression.BinaryOperatorKind;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Expression;
-import jakarta.persistence.criteria.From;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,8 +86,7 @@ public class JPADefaultDatabaseProcessor extends JPAAbstractDatabaseProcessor im
   }
 
   @Override
-  public Expression<Boolean> createSearchWhereClause(final CriteriaBuilder cb, final CriteriaQuery<?> cq,
-      From<?, ?> root, final JPAEntityType entityType, final SearchOption searchOption)
+  public Expression<Boolean> createSearchWhereClause()
       throws ODataApplicationException {
     throw new ODataJPADBAdaptorException(ODataJPADBAdaptorException.MessageKeys.NOT_SUPPORTED_SEARCH,
         HttpStatusCode.NOT_IMPLEMENTED);

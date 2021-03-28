@@ -428,8 +428,8 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
     // http://docs.oasis-open.org/odata/odata/v4.0/errata02/os/complete/part2-url-conventions/odata-v4.0-errata02-os-part2-url-conventions-complete.html#_Toc406398094
     // https://tools.oasis-open.org/version-control/browse/wsvn/odata/trunk/spec/ABNF/odata-abnf-construction-rules.txt
     try {
-      whereCondition = addWhereClause(whereCondition, navigationInfo.get(navigationInfo.size() - 1).getFilterCompiler()
-          .compile());
+      whereCondition =
+              addWhereClause(whereCondition, navigationInfo.get(navigationInfo.size() - 1).getFilterCompiler().compile());
     } catch (ExpressionVisitException e) {
       throw new ODataJPAQueryException(ODataJPAQueryException.MessageKeys.QUERY_PREPARATION_FILTER_ERROR,
           HttpStatusCode.BAD_REQUEST, e);
@@ -437,7 +437,7 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
 
     if (uriInfo.getSearchOption() != null && uriInfo.getSearchOption().getSearchExpression() != null)
       whereCondition = addWhereClause(whereCondition,
-          context.getDatabaseProcessor().createSearchWhereClause(cb, this.cq, target, jpaEntity, uriInfo.getSearchOption()));
+          context.getDatabaseProcessor().createSearchWhereClause());
 
     // // debugger.stopRuntimeMeasurement(handle);
     return whereCondition;
