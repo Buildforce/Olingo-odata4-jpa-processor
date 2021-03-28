@@ -14,7 +14,7 @@ import nl.buildforce.olingo.server.api.uri.queryoption.SystemQueryOption;
  * Use method {@link #getKind()} to obtain URI info kind information and to perform an appropriate cast.</p>
  */
 public interface UriInfo extends UriInfoService, UriInfoMetadata, UriInfoResource, UriInfoBatch,
-UriInfoAll, UriInfoCrossjoin, UriInfoEntityId {
+/*UriInfoAll,*/ UriInfoCrossjoin, UriInfoEntityId {
 
   /**
    * See {@link UriInfoKind} for more details which kinds are allowed.
@@ -32,7 +32,7 @@ UriInfoAll, UriInfoCrossjoin, UriInfoEntityId {
    * Convenience casting method.
    * @return this as a {@link UriInfoAll} object
    */
-  UriInfoAll asUriInfoAll();
+  // UriInfoAll asUriInfoAll();
 
   /**
    * Convenience casting method.
@@ -75,4 +75,5 @@ UriInfoAll, UriInfoCrossjoin, UriInfoEntityId {
    * @return a list of all alias definitions
    */
   List<AliasQueryOption> getAliases();
+
 }

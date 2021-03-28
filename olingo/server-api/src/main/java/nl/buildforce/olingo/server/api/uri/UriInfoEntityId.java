@@ -21,7 +21,7 @@ public interface UriInfoEntityId {
   /**
    * @return List of custom query options used in the URI (without alias definitions)
    */
-  List<CustomQueryOption> getCustomQueryOptions();
+  // List<CustomQueryOption> getCustomQueryOptions();
 
   /**
    * Behind $entity a optional type cast can be used in the URI.
@@ -38,7 +38,7 @@ public interface UriInfoEntityId {
   /**
    * @return Object containing information of the $format option
    */
-  FormatOption getFormatOption();
+  // FormatOption getFormatOption();
 
   /**
    * @return Object containing information of the $id option
@@ -49,4 +49,5 @@ public interface UriInfoEntityId {
    * @return Object containing information of the $select option
    */
   SelectOption getSelectOption();
+
 }

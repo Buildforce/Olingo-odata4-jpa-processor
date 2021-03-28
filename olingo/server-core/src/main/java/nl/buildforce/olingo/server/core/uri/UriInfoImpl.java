@@ -14,7 +14,6 @@ import nl.buildforce.olingo.commons.api.edm.EdmEntityType;
 import nl.buildforce.olingo.commons.api.ex.ODataRuntimeException;
 import nl.buildforce.olingo.server.api.uri.UriInfoEntityId;
 import nl.buildforce.olingo.server.api.uri.UriInfo;
-import nl.buildforce.olingo.server.api.uri.UriInfoAll;
 import nl.buildforce.olingo.server.api.uri.UriInfoBatch;
 import nl.buildforce.olingo.server.api.uri.UriInfoCrossjoin;
 import nl.buildforce.olingo.server.api.uri.UriInfoKind;
@@ -70,10 +69,12 @@ public class UriInfoImpl implements UriInfo {
     return kind;
   }
 
+/*
   @Override
   public UriInfoAll asUriInfoAll() {
     return this;
   }
+*/
 
   @Override
   public UriInfoBatch asUriInfoBatch() {

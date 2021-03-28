@@ -48,7 +48,7 @@ public class UriInfoImplTest {
   public void casts() {
     UriInfo uriInfo = new UriInfoImpl();
 
-    assertEquals(uriInfo, uriInfo.asUriInfoAll());
+    // assertEquals(uriInfo, uriInfo.asUriInfoAll());
     assertEquals(uriInfo, uriInfo.asUriInfoBatch());
     assertEquals(uriInfo, uriInfo.asUriInfoCrossjoin());
     assertEquals(uriInfo, uriInfo.asUriInfoEntityId());
@@ -196,4 +196,5 @@ public class UriInfoImplTest {
         .addAlias(alias)
         .addAlias(alias);
   }
+
 }

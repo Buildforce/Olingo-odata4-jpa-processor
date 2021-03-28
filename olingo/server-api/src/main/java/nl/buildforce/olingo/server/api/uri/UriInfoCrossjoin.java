@@ -41,12 +41,12 @@ public interface UriInfoCrossjoin {
   /**
    * @return Object containing information of the $format option
    */
-  FormatOption getFormatOption();
+  // FormatOption getFormatOption();
 
   /**
    * @return Object containing information of the $count option
    */
-  CountOption getCountOption();
+  // CountOption getCountOption();
 
   /**
    * @return Object containing information of the $orderby option
@@ -56,7 +56,7 @@ public interface UriInfoCrossjoin {
   /**
    * @return Object containing information of the $search option
    */
-  SearchOption getSearchOption();
+  // SearchOption getSearchOption();
 
   /**
    * @return Object containing information of the $select option
@@ -66,20 +66,21 @@ public interface UriInfoCrossjoin {
   /**
    * @return Object containing information of the $skip option
    */
-  SkipOption getSkipOption();
+  // SkipOption getSkipOption();
 
   /**
    * @return Object containing information of the $skiptoken option
    */
-  SkipTokenOption getSkipTokenOption();
+  // SkipTokenOption getSkipTokenOption();
 
   /**
    * @return Object containing information of the $top option
    */
-  TopOption getTopOption();
+  // TopOption getTopOption();
   
   /**
    * @return Object containing information of the $deltatoken option
    */
-  DeltaTokenOption getDeltaTokenOption();
+  //DeltaTokenOption getDeltaTokenOption();
+
 }
