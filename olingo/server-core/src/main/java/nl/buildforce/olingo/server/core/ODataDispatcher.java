@@ -105,7 +105,7 @@ public class ODataDispatcher {
       case batch -> {
         checkMethod(request.getMethod(), HttpMethod.POST);
         new BatchHandler(handler, handler.selectProcessor(BatchProcessor.class))
-                .process(request, response, true);
+                .process(request, response);
       }
       default -> throw new ODataHandlerException(NOT_IMPLEMENTED_MESSAGE,
               ODataHandlerException.MessageKeys.FUNCTIONALITY_NOT_IMPLEMENTED);

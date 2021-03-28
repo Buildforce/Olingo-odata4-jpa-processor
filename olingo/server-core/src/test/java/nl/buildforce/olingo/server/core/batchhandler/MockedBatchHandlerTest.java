@@ -133,7 +133,7 @@ public class MockedBatchHandlerTest {
     ODataResponse response = new ODataResponse();
     ODataRequest request = buildODataRequest(content, header);
 
-    batchHandler.process(request, response, true);
+    batchHandler.process(request, response);
 
     BatchLineReader reader =
         new BatchLineReader(response.getContent());
@@ -206,7 +206,7 @@ public class MockedBatchHandlerTest {
     ODataResponse response = new ODataResponse();
     ODataRequest request = buildODataRequest(content, header);
 
-    batchHandler.process(request, response, true);
+    batchHandler.process(request, response);
 
     BatchLineReader reader =
         new BatchLineReader(response.getContent());
@@ -285,7 +285,7 @@ public class MockedBatchHandlerTest {
     ODataResponse response = new ODataResponse();
     ODataRequest request = buildODataRequest(content, header);
 
-    batchHandler.process(request, response, true);
+    batchHandler.process(request, response);
 
     BatchLineReader reader =
         new BatchLineReader(response.getContent());
@@ -403,7 +403,7 @@ public class MockedBatchHandlerTest {
     ODataResponse response = new ODataResponse();
     ODataRequest request = buildODataRequest(content, header);
 
-    batchHandler.process(request, response, true);
+    batchHandler.process(request, response);
 
     BatchLineReader reader =
         new BatchLineReader(response.getContent());
@@ -483,7 +483,7 @@ public class MockedBatchHandlerTest {
     ODataRequest request = buildODataRequest(content, header);
     request.setMethod(HttpMethod.GET);
 
-    batchHandler.process(request, response, true);
+    batchHandler.process(request, response);
   }
 
   @Test(expected = BatchDeserializerException.class)
@@ -510,7 +510,7 @@ public class MockedBatchHandlerTest {
     ODataResponse response = new ODataResponse();
     ODataRequest request = buildODataRequest(content, header);
 
-    batchHandler.process(request, response, true);
+    batchHandler.process(request, response);
   }
 
   /*

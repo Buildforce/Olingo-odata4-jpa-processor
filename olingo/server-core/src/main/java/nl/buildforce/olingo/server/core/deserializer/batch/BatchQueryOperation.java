@@ -7,7 +7,7 @@ import java.util.List;
 
 import nl.buildforce.olingo.server.api.deserializer.batch.BatchDeserializerException;
 
-public class BatchQueryOperation implements BatchPart {
+public class BatchQueryOperation {
 
   protected final boolean isStrict;
   protected Line httpStatusLine;
@@ -51,18 +51,16 @@ public class BatchQueryOperation implements BatchPart {
     return body;
   }
 
-/*
-  public int getBodySize() {
-    return bodySize;
-  }
-*/
-
-  @Override
+  // @Override
   public Header getHeaders() {
     return headers;
   }
 
-/*
+  /*
+  public int getBodySize() {
+    return bodySize;
+  }
+
   @Override
   public boolean isStrict() {
     return isStrict;

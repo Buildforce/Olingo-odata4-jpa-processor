@@ -36,7 +36,7 @@ public class BatchHandler {
     this.oDataHandler = oDataHandler;
   }
 
-  public void process(ODataRequest request, ODataResponse response, boolean isStrict)
+  public void process(ODataRequest request, ODataResponse response)
       throws ODataApplicationException, ODataLibraryException {
     validateRequest(request);
     validatePreferHeader(request);

@@ -31,11 +31,13 @@ public class BatchRequestPart {
    * @param isChangeSet True, if this instance represents a change set
    * @param request A single {@link ODataRequest}
    */
+/*
   public BatchRequestPart(boolean isChangeSet, ODataRequest request) {
     this.isChangeSet = isChangeSet;
     requests = new ArrayList<>();
     requests.add(request);
   }
+*/
 
   /**
    * Gets the info if a BatchPart is a ChangeSet.
@@ -52,4 +54,5 @@ public class BatchRequestPart {
   public List<ODataRequest> getRequests() {
     return Collections.unmodifiableList(requests);
   }
+
 }

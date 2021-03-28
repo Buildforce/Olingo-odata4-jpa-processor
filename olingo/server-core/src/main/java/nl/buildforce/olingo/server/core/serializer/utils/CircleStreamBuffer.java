@@ -100,13 +100,15 @@ public class CircleStreamBuffer {
     }
   }
 
-  /**
-   * Closes write and read part (and hence the complete buffer).
-   */
-  public void close() {
-    closeWrite();
-    closeRead();
-  }
+// --Commented out by Inspection START (''21-03-28 11:54):
+//  /**
+//   * Closes write and read part (and hence the complete buffer).
+//   */
+//  public void close() {
+//    closeWrite();
+//    closeRead();
+//  }
+// --Commented out by Inspection STOP (''21-03-28 11:54)
 
   private int remaining() throws IOException {
     if (writeMode) {
@@ -178,24 +180,26 @@ public class CircleStreamBuffer {
     return readBuffer.get();
   }
 
-  public ByteBuffer getBuffer() throws IOException {
-    if (readClosed) {
-      throw new IOException("Tried to read from closed stream.");
-    }
-    writeMode = false;
-
-    // FIXME: mibo_160108: This is not efficient and only for test/poc reasons
-    int reqSize = 0;
-    for (ByteBuffer byteBuffer : bufferQueue) {
-      reqSize += byteBuffer.position();
-    }
-    ByteBuffer tmp = ByteBuffer.allocateDirect(reqSize);
-    for (ByteBuffer byteBuffer : bufferQueue) {
-      byteBuffer.flip();
-      tmp.put(byteBuffer);
-    }
-    return tmp;
-  }
+// --Commented out by Inspection START (''21-03-28 11:54):
+//  public ByteBuffer getBuffer() throws IOException {
+//    if (readClosed) {
+//      throw new IOException("Tried to read from closed stream.");
+//    }
+//    writeMode = false;
+//
+//    // FIXME: mibo_160108: This is not efficient and only for test/poc reasons
+//    int reqSize = 0;
+//    for (ByteBuffer byteBuffer : bufferQueue) {
+//      reqSize += byteBuffer.position();
+//    }
+//    ByteBuffer tmp = ByteBuffer.allocateDirect(reqSize);
+//    for (ByteBuffer byteBuffer : bufferQueue) {
+//      byteBuffer.flip();
+//      tmp.put(byteBuffer);
+//    }
+//    return tmp;
+//  }
+// --Commented out by Inspection STOP (''21-03-28 11:54)
 
   // #############################################
   // #
@@ -334,4 +338,5 @@ public class CircleStreamBuffer {
       outBuffer.closeWrite();
     }
   }
+
 }

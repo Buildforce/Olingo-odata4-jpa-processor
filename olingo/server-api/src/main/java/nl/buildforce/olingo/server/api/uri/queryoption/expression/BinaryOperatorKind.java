@@ -94,19 +94,21 @@ public enum BinaryOperatorKind {
     this.syntax = syntax;
   }
 
-  /**
-   * URI syntax to enumeration value
-   * @param operator Operator in the syntax used in the URI
-   * @return Operator kind which represents the given syntax
-   */
-  public static BinaryOperatorKind get(String operator) {
-    for (BinaryOperatorKind op : BinaryOperatorKind.values()) {
-      if (op.toString().equals(operator)) {
-        return op;
-      }
-    }
-    return null;
-  }
+// --Commented out by Inspection START (''21-03-28 10:49):
+//  /**
+//   * URI syntax to enumeration value
+//   * @param operator Operator in the syntax used in the URI
+//   * @return Operator kind which represents the given syntax
+//   */
+//  public static BinaryOperatorKind get(String operator) {
+//    for (BinaryOperatorKind op : BinaryOperatorKind.values()) {
+//      if (op.toString().equals(operator)) {
+//        return op;
+//      }
+//    }
+//    return null;
+//  }
+// --Commented out by Inspection STOP (''21-03-28 10:49)
 
   /**
    * @return URI syntax for that operator kind

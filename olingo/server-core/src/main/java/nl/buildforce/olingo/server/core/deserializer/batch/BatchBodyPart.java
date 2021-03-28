@@ -11,7 +11,7 @@ import nl.buildforce.olingo.server.api.deserializer.batch.BatchDeserializerExcep
 
 import static com.google.common.net.HttpHeaders.CONTENT_TYPE;
 
-public class BatchBodyPart implements BatchPart {
+public class BatchBodyPart /*implements BatchPart*/ {
   private final String boundary;
   private final boolean isStrict;
   private final List<Line> remainingMessage = new LinkedList<>();
@@ -107,7 +107,7 @@ public class BatchBodyPart implements BatchPart {
       return type.isCompatible(ContentType.MULTIPART_MIXED);
     }
 
-  @Override
+  // @Override
   public Header getHeaders() {
     return headers;
   }
