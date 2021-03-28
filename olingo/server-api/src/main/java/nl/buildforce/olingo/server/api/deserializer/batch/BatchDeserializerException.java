@@ -8,47 +8,28 @@ import nl.buildforce.olingo.server.api.deserializer.DeserializerException;
 public class BatchDeserializerException extends DeserializerException {
   public enum MessageKeys implements MessageKey {
     /** parameter: line */
-    INVALID_BOUNDARY,
-    /** parameter: line */
-    INVALID_CHANGESET_METHOD,
-    /** parameter: line */
-    INVALID_CONTENT,
-    /** parameter: line */
-    INVALID_CONTENT_LENGTH,
-    /** parameter: line */
-    INVALID_CONTENT_TRANSFER_ENCODING,
-    /** parameter: line */
-    INVALID_CONTENT_TYPE,
-    /** parameters: line, expected content type, actual content type */
-    UNEXPECTED_CONTENT_TYPE,
-    /** parameter: line */
-    INVALID_CONTENT_ID,
-    /** parameter: line */
-    INVALID_HOST,
-    /** parameter: line */
-    INVALID_HTTP_VERSION,
-    /** parameter: line */
-    INVALID_METHOD,
-    /** parameter: line */
-    INVALID_STATUS_LINE,
-    /** parameter: line */
-    INVALID_URI,
-    /** parameter: line */
-    MISSING_BLANK_LINE,
-    /** parameter: line */
-    MISSING_BOUNDARY_DELIMITER,
-    /** parameter: line */
-    MISSING_CLOSE_DELIMITER,
-    /** parameter: line */
-    MISSING_CONTENT_ID,
-    /** parameter: line */
-    MISSING_CONTENT_TYPE,
-    /** parameter: line */
-    MISSING_MANDATORY_HEADER,
-    /** parameter: line */
     FORBIDDEN_HEADER,
-    /** parameter: line */
-    INVALID_BASE_URI;
+    INVALID_BASE_URI,
+    INVALID_BOUNDARY,
+    INVALID_CHANGESET_METHOD,
+    INVALID_CONTENT,
+    INVALID_CONTENT_ID,
+    INVALID_CONTENT_LENGTH,
+    INVALID_CONTENT_TRANSFER_ENCODING,
+    INVALID_CONTENT_TYPE,
+    INVALID_HOST,
+    INVALID_HTTP_VERSION,
+    INVALID_METHOD,
+    INVALID_STATUS_LINE,
+    INVALID_URI,
+    MISSING_BLANK_LINE,
+    MISSING_BOUNDARY_DELIMITER,
+    MISSING_CLOSE_DELIMITER,
+    MISSING_CONTENT_ID,
+    MISSING_CONTENT_TYPE,
+    // MISSING_MANDATORY_HEADER,
+    /** parameters: line, expected content type, actual content type */
+    UNEXPECTED_CONTENT_TYPE;
 
     @Override
     public String getKey() {

@@ -4,13 +4,11 @@
 package nl.buildforce.olingo.server.core.uri.queryoption.apply;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import nl.buildforce.olingo.commons.api.edm.FullQualifiedName;
-import nl.buildforce.olingo.server.api.uri.queryoption.apply.AggregateExpression;
 import nl.buildforce.olingo.server.api.uri.UriInfo;
-import nl.buildforce.olingo.server.api.uri.UriResource;
+import nl.buildforce.olingo.server.api.uri.queryoption.apply.AggregateExpression;
 import nl.buildforce.olingo.server.api.uri.queryoption.expression.Expression;
 
 /**
@@ -18,41 +16,16 @@ import nl.buildforce.olingo.server.api.uri.queryoption.expression.Expression;
  */
 public class AggregateExpressionImpl implements AggregateExpression {
 
-  private UriInfo path;
-  private Expression expression;
-  private StandardMethod standardMethod;
-  private FullQualifiedName customMethod;
-  private String alias;
-  private AggregateExpression inlineAggregateExpression;
+  private String              alias;
+  private FullQualifiedName   customMethod;
+  private Expression          expression;
   private final List<AggregateExpression> from = new ArrayList<>();
+  private AggregateExpression inlineAggregateExpression;
+  private UriInfo             path;
+  private StandardMethod      standardMethod;
 
-  @Override
-  public List<UriResource> getPath() {
-    return path == null ? Collections.emptyList() : path.getUriResourceParts();
-  }
-
-  public AggregateExpressionImpl setPath(UriInfo uriInfo) {
-    path = uriInfo;
-    return this;
-  }
-
-  @Override
-  public Expression getExpression() {
-    return expression;
-  }
-
-  public AggregateExpressionImpl setExpression(Expression expression) {
-    this.expression = expression;
-    return this;
-  }
-
-  @Override
-  public StandardMethod getStandardMethod() {
-    return standardMethod;
-  }
-
-  public AggregateExpressionImpl setStandardMethod(StandardMethod standardMethod) {
-    this.standardMethod = standardMethod;
+  public AggregateExpressionImpl setAlias(String alias) {
+    this.alias = alias;
     return this;
   }
 
@@ -66,19 +39,9 @@ public class AggregateExpressionImpl implements AggregateExpression {
     return this;
   }
 
-  @Override
-  public AggregateExpression getInlineAggregateExpression() {
-    return inlineAggregateExpression;
-  }
-
-  public AggregateExpressionImpl setInlineAggregateExpression(AggregateExpression aggregateExpression) {
-    inlineAggregateExpression = aggregateExpression;
+  public AggregateExpressionImpl setExpression(Expression expression) {
+    this.expression = expression;
     return this;
-  }
-
-  @Override
-  public List<AggregateExpression> getFrom() {
-    return Collections.unmodifiableList(from);
   }
 
   public AggregateExpressionImpl addFrom(AggregateExpression from) {
@@ -86,13 +49,51 @@ public class AggregateExpressionImpl implements AggregateExpression {
     return this;
   }
 
+  public AggregateExpressionImpl setInlineAggregateExpression(AggregateExpression aggregateExpression) {
+    inlineAggregateExpression = aggregateExpression;
+    return this;
+  }
+
+  public AggregateExpressionImpl setPath(UriInfo uriInfo) {
+    path = uriInfo;
+    return this;
+  }
+
+  @Override
+  public StandardMethod getStandardMethod() {
+    return standardMethod;
+  }
+
+  public AggregateExpressionImpl setStandardMethod(StandardMethod standardMethod) {
+    this.standardMethod = standardMethod;
+    return this;
+  }
+
+/*
+  @Override
+  public List<UriResource> getPath() {
+    return path == null ? Collections.emptyList() : path.getUriResourceParts();
+  }
+
+  @Override
+  public Expression getExpression() {
+    return expression;
+  }
+
+  @Override
+  public AggregateExpression getInlineAggregateExpression() {
+    return inlineAggregateExpression;
+  }
+
+  @Override
+  public List<AggregateExpression> getFrom() {
+    return Collections.unmodifiableList(from);
+  }
+
   @Override
   public String getAlias() {
     return alias;
   }
+*/
 
-  public AggregateExpressionImpl setAlias(String alias) {
-    this.alias = alias;
-    return this;
-  }
 }

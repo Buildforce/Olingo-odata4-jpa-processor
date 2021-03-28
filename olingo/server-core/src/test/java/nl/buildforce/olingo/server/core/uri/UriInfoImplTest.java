@@ -94,20 +94,20 @@ public class UriInfoImplTest {
 
   @Test
   public void customQueryOption() {
-    QueryOption apply = new ApplyOptionImpl().setName("");
-    QueryOption expand = new ExpandOptionImpl().setName("");
-    QueryOption filter = new FilterOptionImpl().setName("");
-    QueryOption format = new FormatOptionImpl().setName("");
-    QueryOption id = new IdOptionImpl().setName("");
+    QueryOption apply       = new ApplyOptionImpl().setName("");
+    QueryOption expand      = new ExpandOptionImpl().setName("");
+    QueryOption filter      = new FilterOptionImpl().setName("");
+    QueryOption format      = new FormatOptionImpl().setName("");
+    QueryOption id          = new IdOptionImpl().setName("");
     QueryOption inlinecount = new CountOptionImpl().setName("");
-    QueryOption orderby = new OrderByOptionImpl().setName("");
-    QueryOption search = new SearchOptionImpl().setName("");
-    QueryOption select = new SelectOptionImpl().setName("");
-    QueryOption skip = new SkipOptionImpl().setName("");
-    QueryOption skipToken = new SkipTokenOptionImpl().setName("");
-    QueryOption top = new TopOptionImpl().setName("");
-    QueryOption levels = new LevelsOptionImpl().setName("");
-    QueryOption deltaToken = new DeltaTokenOptionImpl().setName("");
+    QueryOption orderby     = new OrderByOptionImpl().setName("");
+    QueryOption search      = new SearchOptionImpl().setName("");
+    QueryOption select      = new SelectOptionImpl().setName("");
+    QueryOption skip        = new SkipOptionImpl().setName("");
+    QueryOption skipToken   = new SkipTokenOptionImpl().setName("");
+    QueryOption top         = new TopOptionImpl().setName("");
+    QueryOption levels      = new LevelsOptionImpl().setName("");
+    QueryOption deltaToken  = new DeltaTokenOptionImpl().setName("");
     
     QueryOption customOption0 = new CustomQueryOptionImpl().setName("0").setText("A");
     QueryOption customOption1 = new CustomQueryOptionImpl().setName("1").setText("B");

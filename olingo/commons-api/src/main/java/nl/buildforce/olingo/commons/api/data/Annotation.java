@@ -20,13 +20,15 @@ public class Annotation extends Valuable {
     return term;
   }
 
-  /**
-   * Set term for Annotation.
-   * @param term term for Annotation.
-   */
-  public void setTerm(String term) {
-    this.term = term;
-  }
+// --Commented out by Inspection START (''21-03-28 07:14):
+//  /**
+//   * Set term for Annotation.
+//   * @param term term for Annotation.
+//   */
+//  public void setTerm(String term) {
+//    this.term = term;
+//  }
+// --Commented out by Inspection STOP (''21-03-28 07:14)
 
   @Override
   public boolean equals(Object o) {

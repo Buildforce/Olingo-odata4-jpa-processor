@@ -19,16 +19,11 @@ public interface AggregateExpression {
   enum StandardMethod { SUM, MIN, MAX, AVERAGE, COUNT_DISTINCT }
 
   /**
-   * Gets the path prefix and the path segment.
-   * @return a (potentially empty) list of path segments (and never <code>null</code>)
+   * Gets the name of the custom aggregation method if used.
+   * @return a {@link FullQualifiedName} or <code>null</code>
+   * @see #getStandardMethod()
    */
-  List<UriResource> getPath();
-
-  /**
-   * Gets the common expression to be aggregated.
-   * @return an {@link Expression} that could be <code>null</code>
-   */
-  Expression getExpression();
+  FullQualifiedName getCustomMethod();
 
   /**
    * Gets the standard aggregation method if used.
@@ -38,28 +33,33 @@ public interface AggregateExpression {
   StandardMethod getStandardMethod();
 
   /**
-   * Gets the name of the custom aggregation method if used.
-   * @return a {@link FullQualifiedName} or <code>null</code>
-   * @see #getStandardMethod()
+   * Gets the path prefix and the path segment.
+   * @return a (potentially empty) list of path segments (and never <code>null</code>)
    */
-  FullQualifiedName getCustomMethod();
+  //List<UriResource> getPath();
 
+  /**
+   * Gets the common expression to be aggregated.
+   * @return an {@link Expression} that could be <code>null</code>
+   */
+  // Expression getExpression();
   /**
    * Gets the name of the aggregate if an alias name has been set.
    * @return an identifier String or <code>null</code>
    */
-  String getAlias();
+  // String getAlias();
 
   /**
    * Gets the inline aggregation expression to be applied to the target of the path if used.
    * @return an aggregation expression or <code>null</code>
    * @see #getPath()
    */
-  AggregateExpression getInlineAggregateExpression();
+  // AggregateExpression getInlineAggregateExpression();
 
   /**
    * Gets the aggregate expressions for <code>from</code>.
    * @return a (potentially empty) list of aggregate expressions (but never <code>null</code>)
    */
-  List<AggregateExpression> getFrom();
+  //List<AggregateExpression> getFrom();
+
 }
