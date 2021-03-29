@@ -97,10 +97,12 @@ public final class PrimitiveSerializerOptions {
 // --Commented out by Inspection STOP (''21-03-09 22:42)
 
     /** Sets the precision facet. */
+/*
     public Builder precision(Integer precision) {
       options.precision = precision;
       return this;
     }
+*/
 
 // --Commented out by Inspection START (''21-03-09 22:42):
 //    /** Sets the scale facet. */
