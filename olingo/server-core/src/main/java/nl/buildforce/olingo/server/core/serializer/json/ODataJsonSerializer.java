@@ -197,12 +197,14 @@ public class ODataJsonSerializer extends AbstractODataSerializer {
     }
   }
 
+/*
   @Override
   public SerializerStreamResult entityCollectionStreamed(ServiceMetadata metadata, EdmEntityType entityType,
       EntityIterator entities, EntityCollectionSerializerOptions options) {
 
     return ODataWritableContent.with(entities, entityType, this, metadata, options).build();
   }
+*/
 
   public void entityCollectionIntoStream(ServiceMetadata metadata,
                                          EdmEntityType entityType, EntityIterator entitySet,
@@ -627,7 +629,7 @@ public class ODataJsonSerializer extends AbstractODataSerializer {
   
   private boolean isStreamProperty(EdmProperty edmProperty) {
     EdmType type = edmProperty.getType();
-    return (edmProperty.isPrimitive() && type == EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.Stream));    
+    return (edmProperty.isPrimitive() && type == EdmPrimitiveTypeFactory.getInstance(EdmPrimitiveTypeKind.Stream));
   }
 
   protected void writeProperty(ServiceMetadata metadata,

@@ -57,9 +57,9 @@ public interface ODataSerializer {
    * @param entities the data of the entity set
    * @param options options for the serializer
    */
-  SerializerStreamResult entityCollectionStreamed(ServiceMetadata metadata, EdmEntityType entityType,
+  /*SerializerStreamResult entityCollectionStreamed(ServiceMetadata metadata, EdmEntityType entityType,
       EntityIterator entities, EntityCollectionSerializerOptions options);
-
+*/
   /**
    * Writes entity data into an InputStream.
    * @param metadata metadata for the service

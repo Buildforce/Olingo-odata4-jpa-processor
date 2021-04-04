@@ -4,18 +4,12 @@
 package nl.buildforce.olingo.server.core.prefer;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 
-import java.net.URI;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Map;
 
 import nl.buildforce.olingo.server.api.prefer.Preferences;
-import nl.buildforce.olingo.server.api.prefer.Preferences.Preference;
 import nl.buildforce.olingo.server.api.prefer.Preferences.Return;
 import org.junit.Test;
 
@@ -24,14 +18,16 @@ public class PreferencesTest {
   @Test
   public void empty() {
     Preferences preferences = new PreferencesImpl(null);
+/*
     assertFalse(preferences.hasAllowEntityReferences());
     assertNull(preferences.getCallback());
     assertFalse(preferences.hasContinueOnError());
     assertNull(preferences.getMaxPageSize());
     assertFalse(preferences.hasTrackChanges());
+*/
     assertNull(preferences.getReturn());
-    assertFalse(preferences.hasRespondAsync());
-    assertNull(preferences.getWait());
+//    assertFalse(preferences.hasRespondAsync());
+//    assertNull(preferences.getWait());
   }
 
   @Test
@@ -40,6 +36,7 @@ public class PreferencesTest {
         "odata.allow-entityreferences, odata.callback;url=\"callbackURI\","
             + "odata.continue-on-error, odata.include-annotations=\"*\", odata.maxpagesize=42,"
             + "odata.track-changes, return=representation, respond-async, wait=12345"));
+/*
     assertTrue(preferences.hasAllowEntityReferences());
     assertEquals(URI.create("callbackURI"), preferences.getCallback());
     assertNotNull(preferences.getPreference("odata.callback"));
@@ -50,18 +47,19 @@ public class PreferencesTest {
     assertEquals(Integer.valueOf(42), preferences.getMaxPageSize());
     assertEquals("42", preferences.getPreference("odata.MaxPageSize").getValue());
     assertTrue(preferences.hasTrackChanges());
+*/
     assertEquals(Return.REPRESENTATION, preferences.getReturn());
-    assertTrue(preferences.hasRespondAsync());
-    assertEquals(Integer.valueOf(12345), preferences.getWait());
+    // assertTrue(preferences.hasRespondAsync());
+    // assertEquals(Integer.valueOf(12345), preferences.getWait());
   }
 
   @Test
   public void caseSensitivity() {
     Preferences preferences = new PreferencesImpl(Collections.singleton(
         "OData.Callback;URL=\"callbackURI\", return=REPRESENTATION, Wait=42"));
-    assertEquals(URI.create("callbackURI"), preferences.getCallback());
+    // assertEquals(URI.create("callbackURI"), preferences.getCallback());
     assertNull(preferences.getReturn());
-    assertEquals(Integer.valueOf(42), preferences.getWait());
+    // assertEquals(Integer.valueOf(42), preferences.getWait());
   }
 
   @Test
@@ -69,7 +67,7 @@ public class PreferencesTest {
     Preferences preferences = new PreferencesImpl(Collections.singleton(
         ",return=minimal, ,, return=representation, wait=1, wait=2, wait=3,"));
     assertEquals(Return.MINIMAL, preferences.getReturn());
-    assertEquals(Integer.valueOf(1), preferences.getWait());
+    // assertEquals(Integer.valueOf(1), preferences.getWait());
   }
 
   @Test
@@ -80,9 +78,10 @@ public class PreferencesTest {
         "return=minimal, wait=2",
         "wait=3"));
     assertEquals(Return.REPRESENTATION, preferences.getReturn());
-    assertEquals(Integer.valueOf(1), preferences.getWait());
+    //assertEquals(Integer.valueOf(1), preferences.getWait());
   }
 
+  /*
   @Test
   public void multipleParameters() {
     Preferences preferences = new PreferencesImpl(Collections.singleton(
@@ -101,6 +100,7 @@ public class PreferencesTest {
     assertEquals(Integer.valueOf(42), preferences.getWait());
   }
 
+
   @Test
   public void quotedValue() {
     Preferences preferences = new PreferencesImpl(Collections.singleton(
@@ -113,10 +113,10 @@ public class PreferencesTest {
   public void specialCharacters() {
     Preferences preferences = new PreferencesImpl(Collections.singleton(
         "!#$%&'*+-.^_`|~ = \"!#$%&'()*+,-./:;<=>?@[]^_`{|}~¡\u00FF\", wait=42"));
-    assertEquals("!#$%&'()*+,-./:;<=>?@[]^_`{|}~¡\u00FF",
-        preferences.getPreference("!#$%&'*+-.^_`|~").getValue());
+    assertEquals("!#$%&'()*+,-./:;<=>?@[]^_`{|}~¡\u00FF", preferences.getPreference("!#$%&'*+-.^_`|~").getValue());
     assertEquals(Integer.valueOf(42), preferences.getWait());
   }
+*/
 
   @Test
   public void wrongContent() {
@@ -125,17 +125,19 @@ public class PreferencesTest {
         "odata.maxpagesize=12345678901234567890",
         "return=something",
         "wait=-1"));
+/*
     assertNull(preferences.getCallback());
     assertEquals(":", preferences.getPreference("odata.callback").getParameters().get("url"));
     assertNull(preferences.getMaxPageSize());
     assertEquals("12345678901234567890", preferences.getPreference("odata.maxpagesize").getValue());
+*/
     assertNull(preferences.getReturn());
-    assertEquals("something", preferences.getPreference("return").getValue());
-    assertNull(preferences.getWait());
-    assertEquals("-1", preferences.getPreference("wait").getValue());
+    // assertEquals("something", preferences.getPreference("return").getValue());
+    // assertNull(preferences.getWait());
+    // assertEquals("-1", preferences.getPreference("wait").getValue());
   }
 
-  @Test
+/*  @Test
   public void wrongFormat() {
     Preferences preferences = new PreferencesImpl(Arrays.asList(
         "return=, wait=1",
@@ -149,5 +151,6 @@ public class PreferencesTest {
         "odata.callback;url=\"url\"parameter, wait=9",
         "wait=10"));
     assertEquals(Integer.valueOf(10), preferences.getWait());
-  }
+  }*/
+
 }

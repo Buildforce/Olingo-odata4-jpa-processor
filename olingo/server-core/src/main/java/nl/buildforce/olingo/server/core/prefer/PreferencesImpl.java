@@ -27,6 +27,7 @@ public class PreferencesImpl implements Preferences {
     preferences = PreferParser.parse(preferHeaders);
   }
 
+/*
   @Override
   public Preference getPreference(String name) {
     return preferences.get(name.toLowerCase(Locale.ROOT));
@@ -66,20 +67,6 @@ public class PreferencesImpl implements Preferences {
     return (preferences.containsKey(PreferenceName.TRACK_CHANGES.getName())
         ||preferences.containsKey(PreferenceName.TRACK_CHANGES_PREF.getName()));
   }
-
-  @Override
-  public Return getReturn() {
-    if (preferences.containsKey(PreferenceName.RETURN.getName())) {
-      String value = preferences.get(PreferenceName.RETURN.getName()).getValue();
-      if (Return.REPRESENTATION.toString().toLowerCase(Locale.ROOT).equals(value)) {
-        return Return.REPRESENTATION;
-      } else if (Return.MINIMAL.toString().toLowerCase(Locale.ROOT).equals(value)) {
-        return Return.MINIMAL;
-      }
-    }
-    return null;
-  }
-
   @Override
   public boolean hasRespondAsync() {
     return preferences.containsKey(PreferenceName.RESPOND_ASYNC.getName());
@@ -91,12 +78,26 @@ public class PreferencesImpl implements Preferences {
   }
 
   private Integer getNonNegativeIntegerPreference(String name) {
-    if (preferences.containsKey(name) && preferences.get(name).getValue() != null) {
-      try {
-        int result = Integer.parseInt(preferences.get(name).getValue());
-        return result < 0 ? null : result;
-      } catch (NumberFormatException e) {
-        return null;
+  if (preferences.containsKey(name) && preferences.get(name).getValue() != null) {
+    try {
+      int result = Integer.parseInt(preferences.get(name).getValue());
+      return result < 0 ? null : result;
+    } catch (NumberFormatException e) {
+      return null;
+    }
+  }
+  return null;
+}
+*/
+
+  @Override
+  public Return getReturn() {
+    if (preferences.containsKey(PreferenceName.RETURN.getName())) {
+      String value = preferences.get(PreferenceName.RETURN.getName()).getValue();
+      if (Return.REPRESENTATION.toString().toLowerCase().equals(value)) {
+        return Return.REPRESENTATION;
+      } else if (Return.MINIMAL.toString().toLowerCase().equals(value)) {
+        return Return.MINIMAL;
       }
     }
     return null;
