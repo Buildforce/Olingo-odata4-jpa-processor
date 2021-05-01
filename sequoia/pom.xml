@@ -42,7 +42,7 @@
         <odata4-jpa.version>0.0.3</odata4-jpa.version>
         <coveralls.version>4.3.0</coveralls.version>
         <derby.version>10.15.2.0</derby.version>
-        <eclipselink.version>3.0.0</eclipselink.version>
+        <eclipselink.version>3.0.1</eclipselink.version>
         <jacoco.version>0.8.6</jacoco.version>
         <jakarta.persistence.api>3.0.0</jakarta.persistence.api>
         <maven.compiler.version>3.8.1</maven.compiler.version>

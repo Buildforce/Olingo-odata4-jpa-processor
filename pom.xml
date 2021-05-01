@@ -13,7 +13,7 @@
         <module>sequoia</module>
     </modules>
     <properties>
-        <jackson.version>2.12.2</jackson.version>
+        <jackson.version>2.12.3</jackson.version>
         <jakarta-servlet.version>5.0.0</jakarta-servlet.version>
         <odata4-jpa.version>0.0.3</odata4-jpa.version>
         <project.build.source>14</project.build.source>

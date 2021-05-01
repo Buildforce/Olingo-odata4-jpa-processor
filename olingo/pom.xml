@@ -41,15 +41,15 @@
         <commons.codec.version>1.15</commons.codec.version>
         <commons.io.version>2.8.0</commons.io.version>
         <maven.bundle.plugin.version>5.1.1</maven.bundle.plugin.version>
-        <maven.plugin.api.version>3.6.3</maven.plugin.api.version>
-        <maven.plugin.tools.version>3.6.0</maven.plugin.tools.version>
+        <maven.plugin.api.version>3.8.1</maven.plugin.api.version>
+        <maven.plugin.tools.version>3.6.1</maven.plugin.tools.version>
     </properties>
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>30.1-jre</version>
+                <version>30.1.1-jre</version>
             </dependency>
 
             <dependency>
@@ -102,7 +102,7 @@
            <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
-                <version>3.8.0</version>
+                <version>3.9.0</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
@@ -121,11 +121,13 @@
                     <artifactId>build-helper-maven-plugin</artifactId>
                     <version>1.9</version>
                 </plugin>
+<!--
                 <plugin>
                     <groupId>com.keyboardsamurais.maven</groupId>
                     <artifactId>maven-timestamp-plugin</artifactId>
                     <version>1.0</version>
                 </plugin>
+-->
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.8.1</version>
