@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.google.common.net.HttpHeaders.ACCEPT_LANGUAGE;
+
 public class TestBase {
 
   protected static final String uriPrefix = "http://localhost:8080/Test/Olingo.svc/";
@@ -36,7 +38,7 @@ public class TestBase {
     headers = new HashMap<>();
     List<String> languageHeaders = new ArrayList<>();
     languageHeaders.add("de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4");
-    headers.put("accept-language", languageHeaders);
+    headers.put(ACCEPT_LANGUAGE, languageHeaders);
   }
 
   protected void addHeader(final String header, final String value) {

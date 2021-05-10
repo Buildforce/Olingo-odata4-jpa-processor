@@ -36,8 +36,8 @@ public enum  DataSourceHelper {
       case DB_DERBY ->
         new DriverDataSource(classLoader, DERBY_DRIVER_CLASS_NAME, DERBY_URL, null, null);
 
-      default -> null;
-/*      case DB_REMOTE:
+/*      default -> null;
+      case DB_REMOTE:
         String env = System.getenv().get("REMOTE_DB_LOGON");
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode connectionInfo;

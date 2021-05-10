@@ -74,7 +74,6 @@ public class UriInfoImpl implements UriInfo {
   public UriInfoAll asUriInfoAll() {
     return this;
   }
-*/
 
   @Override
   public UriInfoBatch asUriInfoBatch() {
@@ -105,6 +104,7 @@ public class UriInfoImpl implements UriInfo {
   public UriInfoResource asUriInfoResource() {
     return this;
   }
+*/
 
   public UriInfoImpl addEntitySetName(String entitySet) {
     entitySetNames.add(entitySet);

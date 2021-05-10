@@ -25,14 +25,13 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class TestJPAFunctionSerializer {
   protected static final String PUNIT_NAME = "nl.buildforce.sequoia";
   protected static EntityManagerFactory emf;
-  protected static DataSource ds;
+  protected static DataSource ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_HSQLDB);
 
   protected TestHelper helper;
   protected Map<String, List<String>> headers;
 
   @BeforeEach
   public void setup() {
-    ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_HSQLDB);
     Map<String, Object> properties = new HashMap<>();
     properties.put(NON_JTA_DATASOURCE, ds);
     emf = Persistence.createEntityManagerFactory(PUNIT_NAME, properties);

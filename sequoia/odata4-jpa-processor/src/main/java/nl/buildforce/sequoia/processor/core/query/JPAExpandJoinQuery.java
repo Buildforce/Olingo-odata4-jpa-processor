@@ -136,13 +136,14 @@ public final class JPAExpandJoinQuery extends JPAAbstractJoinQuery {
       try {
         final Object dbQuery = tupleQuery.getClass().getMethod("getDatabaseQuery").invoke(tupleQuery);
         return (String) dbQuery.getClass().getMethod("getSQLString").invoke(dbQuery);
-      } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
-          | InvocationTargetException e) {
+      } catch (IllegalAccessException |
+               IllegalArgumentException |
+               InvocationTargetException |
+               SecurityException |
+               NoSuchMethodException  e) {
         throw new ODataJPAQueryException(e, HttpStatusCode.INTERNAL_SERVER_ERROR);
       }
-    } else {
-      return "";
-    }
+    } else return "";
   }
 
   @Override

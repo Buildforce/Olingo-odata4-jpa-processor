@@ -33,8 +33,8 @@ public final class EdmDecimal extends SingletonPrimitiveType {
     private static boolean validatePrecisionAndScale(String value, Integer precision, Integer scale) {
 
         var significantIntegerDigitsDecimals = significantIntegerDigits_decimals(value);
-        int significantIntegerDigits = (int) significantIntegerDigitsDecimals.left;
-        int decimals = (int) significantIntegerDigitsDecimals.right;
+        int significantIntegerDigits = significantIntegerDigitsDecimals.left;
+        int decimals = significantIntegerDigitsDecimals.right;
 
         return (precision == null || significantIntegerDigits <= precision - (scale == null ? 0 : scale)) && decimals <= (scale == null ? 0 : scale);
     }
@@ -125,8 +125,8 @@ public final class EdmDecimal extends SingletonPrimitiveType {
 
     private boolean validatePrecisionAndScale(String value, Integer precision, String scale) {
         var significantIntegerDigitsDecimals = significantIntegerDigits_decimals(value);
-        int significantIntegerDigits = (int)significantIntegerDigitsDecimals.left;
-        int decimals = (int) significantIntegerDigitsDecimals.right;
+        int significantIntegerDigits = significantIntegerDigitsDecimals.left;
+        int decimals = significantIntegerDigitsDecimals.right;
 
 
         try {

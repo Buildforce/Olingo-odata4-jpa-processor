@@ -47,14 +47,15 @@ public class UriInfoImplTest {
   @Test
   public void casts() {
     UriInfo uriInfo = new UriInfoImpl();
-
-    // assertEquals(uriInfo, uriInfo.asUriInfoAll());
+/*
+    assertEquals(uriInfo, uriInfo.asUriInfoAll());
     assertEquals(uriInfo, uriInfo.asUriInfoBatch());
     assertEquals(uriInfo, uriInfo.asUriInfoCrossjoin());
     assertEquals(uriInfo, uriInfo.asUriInfoEntityId());
     assertEquals(uriInfo, uriInfo.asUriInfoMetadata());
     assertEquals(uriInfo, uriInfo.asUriInfoResource());
     assertEquals(uriInfo, uriInfo.asUriInfoService());
+*/
   }
 
   @Test

@@ -34,16 +34,14 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class TestFunctions {
   protected static final String PUNIT_NAME = "nl.buildforce.sequoia";
   private static EntityManagerFactory emf;
-  private static DataSource ds;
+  private static DataSource ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_HSQLDB);
 
   @BeforeAll
   public static void setupClass() {
 
     Map<String, Object> properties = new HashMap<>();
 
-    ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_HSQLDB);
-
-    properties.put(NON_JTA_DATASOURCE, ds);
+      properties.put(NON_JTA_DATASOURCE, ds);
     emf = Persistence.createEntityManagerFactory(PUNIT_NAME, properties);
   }
 

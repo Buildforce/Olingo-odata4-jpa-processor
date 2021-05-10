@@ -304,6 +304,7 @@ public class EdmImplCallCreateTest {
       return null;
     }
   }
+
   @Test
   public void callCreateComplexTypeWithAnnotations() {
     EdmComplexType complexType = edm.getComplexTypeWithAnnotations(FQN);
@@ -345,4 +346,5 @@ public class EdmImplCallCreateTest {
 
     assertNull(edm.getEntityType(WRONG_FQN));
   }
+
 }

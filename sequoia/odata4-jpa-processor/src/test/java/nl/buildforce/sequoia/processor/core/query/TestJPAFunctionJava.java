@@ -66,9 +66,8 @@ public class TestJPAFunctionJava {
     JPAOperationSerializer serializer = mock(JPAOperationSerializer.class);
     SerializerResult serializerResult = mock(SerializerResult.class);
 
-    DataSource ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_HSQLDB);
     Map<String, Object> properties = new HashMap<>();
-    properties.put(NON_JTA_DATASOURCE, ds);
+    properties.put(NON_JTA_DATASOURCE, DataSourceHelper.createDataSource(DataSourceHelper.DB_HSQLDB));
     final EntityManagerFactory emf = Persistence.createEntityManagerFactory(PUNIT_NAME, properties);
         List<UriResource> uriResources = new ArrayList<>();
     when(uriInfo.getUriResourceParts()).thenReturn(uriResources);

@@ -9,38 +9,28 @@ import java.util.Map.Entry;
 import java.util.Map;
 import java.util.Set;
 
+import static com.google.common.net.HttpHeaders.ACCEPT;
+import static com.google.common.net.HttpHeaders.ACCEPT_ENCODING;
+import static com.google.common.net.HttpHeaders.ACCEPT_LANGUAGE;
+import static com.google.common.net.HttpHeaders.CACHE_CONTROL;
+import static com.google.common.net.HttpHeaders.CONNECTION;
 import static com.google.common.net.HttpHeaders.CONTENT_TYPE;
+import static com.google.common.net.HttpHeaders.HOST;
 
 public class HttpRequestHeaderDouble {
-  private final HashMap<String, List<String>> headers;
+  private final HashMap<String, List<String>> headers = new HashMap<>();
+
+  private void addHeader(String name, String value) {
+    headers.put(name, new ArrayList<>() {{ add(value);}});
+  }
 
   public HttpRequestHeaderDouble() {
-    headers = new HashMap<>();
-    List<String> headerValue;
-    headerValue = new ArrayList<>();
-    headerValue.add("localhost:8090");
-    headers.put("host", headerValue);
-
-    headerValue = new ArrayList<>();
-    headerValue.add("keep-alive");
-    headers.put("connection", headerValue);
-
-    headerValue = new ArrayList<>();
-    headerValue.add("max-age=0");
-    headers.put("cache-control", headerValue);
-
-    headerValue = new ArrayList<>();
-    headerValue.add("text/html,application/json,application/xml;q=0.9,image/webp,*/*;q=0.8");
-    headers.put("accept", headerValue);
-
-    headerValue = new ArrayList<>();
-    headerValue.add("gzip, deflate, sdch");
-    headers.put("accept-encoding", headerValue);
-
-    headerValue = new ArrayList<>();
-    headerValue.add("de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4");
-    headers.put("accept-language", headerValue);
-
+    addHeader(ACCEPT,"text/html,application/json,application/xml;q=0.9,image/webp,*/*;q=0.8");
+    addHeader(ACCEPT_ENCODING,"gzip, deflate, sdch");
+    addHeader(ACCEPT_LANGUAGE, "de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4");
+    addHeader(CACHE_CONTROL, "max-age=0");
+    addHeader(CONNECTION, "keep-alive");
+    addHeader(HOST,"localhost:8090");
   }
 
   public Enumeration<String> get(String headerName) {
@@ -61,7 +51,6 @@ public class HttpRequestHeaderDouble {
     if (additionalHeaders != null)
       for (Entry<String, List<String>> header : additionalHeaders.entrySet())
       headers.put(header.getKey(), header.getValue());
-
   }
 
   static class HeaderEnumerator implements Enumeration<String> {
@@ -99,7 +88,6 @@ public class HttpRequestHeaderDouble {
     public String nextElement() {
       return keys.next();
     }
-
   }
 
 }

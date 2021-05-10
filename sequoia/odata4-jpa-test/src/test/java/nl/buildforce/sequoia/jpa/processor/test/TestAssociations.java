@@ -36,8 +36,7 @@ public class TestAssociations {
   @BeforeAll
   public static void setupClass() {
     Map<String, Object> properties = new HashMap<>();
-    properties.put(NON_JTA_DATASOURCE, DataSourceHelper.createDataSource(
-        DataSourceHelper.DB_HSQLDB));
+    properties.put(NON_JTA_DATASOURCE, DataSourceHelper.createDataSource(DataSourceHelper.DB_HSQLDB));
     emf = Persistence.createEntityManagerFactory(PUNIT_NAME, properties);
   }
 

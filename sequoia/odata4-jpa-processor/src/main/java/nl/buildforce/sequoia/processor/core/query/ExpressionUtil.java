@@ -24,9 +24,12 @@ import jakarta.persistence.criteria.Expression;
 import jakarta.persistence.criteria.From;
 import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Path;
+
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
+import static com.google.common.net.HttpHeaders.ACCEPT_LANGUAGE;
 
 public final class ExpressionUtil {
   public static final int CONTAINY_ONLY_LANGU = 1;
@@ -130,7 +133,7 @@ public final class ExpressionUtil {
     // TODO Make this replaceable so the default can be overwritten
     // http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html (14.4 accept language header
     // example: Accept-Language: da, en-gb;q=0.8, en;q=0.7)
-    final List<String> languageHeaders = headers.get("accept-language");
+    final List<String> languageHeaders = headers.get(ACCEPT_LANGUAGE);
     if (languageHeaders != null) {
       final String languageHeader = languageHeaders.get(0);
       if (languageHeader != null) {

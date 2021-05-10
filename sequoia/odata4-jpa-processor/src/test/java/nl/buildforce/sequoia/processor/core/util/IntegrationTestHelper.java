@@ -113,8 +113,7 @@ public class IntegrationTestHelper {
     if (functionPackage != null) packages = ArrayUtils.add(packages, functionPackage);
 
     final JPAODataCRUDContextAccess sessionContext = new JPAODataContextAccessDouble(
-            new JPAEdmProvider(PUNIT_NAME, localEmf, /*null,*/ packages),
-            ds, provider, functionPackage);
+            new JPAEdmProvider(PUNIT_NAME, localEmf, /*null,*/ packages), ds, provider, functionPackage);
 
     final ODataHttpHandler handler = odata.createHandler(
             odata.createServiceMetadata(sessionContext.getEdmProvider(), new ArrayList<>()));

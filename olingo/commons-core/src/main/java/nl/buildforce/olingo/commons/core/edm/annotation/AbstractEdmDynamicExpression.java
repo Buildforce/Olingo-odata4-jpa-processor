@@ -44,7 +44,6 @@ public abstract class AbstractEdmDynamicExpression extends AbstractEdmExpression
   @Override
   public EdmNot asNot() {
     return isNot() ? (EdmNot) this : null;
-
   }
 
   @Override

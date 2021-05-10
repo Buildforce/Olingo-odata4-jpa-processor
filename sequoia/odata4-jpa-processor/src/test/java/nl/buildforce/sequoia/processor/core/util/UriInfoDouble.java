@@ -8,13 +8,8 @@ import nl.buildforce.olingo.commons.api.edm.EdmEntityType;
 import nl.buildforce.olingo.commons.api.edm.EdmProperty;
 import nl.buildforce.olingo.commons.api.edm.EdmType;
 import nl.buildforce.olingo.server.api.uri.UriInfo;
-import nl.buildforce.olingo.server.api.uri.UriInfoBatch;
-import nl.buildforce.olingo.server.api.uri.UriInfoCrossjoin;
-import nl.buildforce.olingo.server.api.uri.UriInfoEntityId;
 import nl.buildforce.olingo.server.api.uri.UriInfoKind;
-import nl.buildforce.olingo.server.api.uri.UriInfoMetadata;
 import nl.buildforce.olingo.server.api.uri.UriInfoResource;
-import nl.buildforce.olingo.server.api.uri.UriInfoService;
 import nl.buildforce.olingo.server.api.uri.UriResource;
 import nl.buildforce.olingo.server.api.uri.UriResourceComplexProperty;
 import nl.buildforce.olingo.server.api.uri.UriResourceKind;
@@ -160,19 +155,18 @@ public class UriInfoDouble implements UriInfo {
     return null;
   }
 
+/*
   @Override
   public UriInfoService asUriInfoService() {
     fail();
     return null;
   }
 
-/*
   @Override
   public UriInfoAll asUriInfoAll() {
     fail();
     return null;
   }
-*/
 
   @Override
   public UriInfoBatch asUriInfoBatch() {
@@ -203,6 +197,7 @@ public class UriInfoDouble implements UriInfo {
     fail();
     return null;
   }
+*/
 
   @Override
   public List<SystemQueryOption> getSystemQueryOptions() {
