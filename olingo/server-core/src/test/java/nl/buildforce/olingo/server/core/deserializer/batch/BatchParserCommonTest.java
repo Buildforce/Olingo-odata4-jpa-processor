@@ -23,6 +23,7 @@ public class BatchParserCommonTest {
 
   private static final String CRLF = "\r\n";
   private static final String MULTIPART_MIXED = "multipart/mixed";
+  private static final String ACCEPTLANG_EN = ACCEPT_LANGUAGE + ":en-US,en;q=0.7,en-UK;q=0.9";
 
   @Test
   public void multipleHeaders() throws Exception {
@@ -74,11 +75,11 @@ public class BatchParserCommonTest {
   }
 
   @Test
-  public void multipleAcceptHeaders() throws Exception {
+  public void multipleAcceptHeaders() /*throws Exception*/ {
     Header header = BatchParserCommon.consumeHeaders(toLineList(
         "Accept: application/atomsvc+xml;q=0.8, application/json;odata=verbose;q=0.5, */*;q=0.1" + CRLF,
         "Accept: text/plain;q=0.3" + CRLF,
-        "Accept-Language:en-US,en;q=0.7,en-UK;q=0.9" + CRLF,
+        ACCEPTLANG_EN + CRLF,
         "content-type: Application/http" + CRLF,
         "content-transfer-encoding: Binary" + CRLF));
     assertNotNull(header);
@@ -93,7 +94,7 @@ public class BatchParserCommonTest {
     Header header = BatchParserCommon.consumeHeaders(toLineList(
         "Accept: application/atomsvc+xml;q=0.8, application/json;odata=verbose;q=0.5, */*;q=0.1" + CRLF,
         "Accept: application/atomsvc+xml;q=0.8" + CRLF,
-        "Accept-Language:en-US,en;q=0.7,en-UK;q=0.9" + CRLF,
+        ACCEPTLANG_EN + CRLF,
         "content-type: Application/http" + CRLF,
         "content-transfer-encoding: Binary" + CRLF));
     assertNotNull(header);
@@ -106,7 +107,7 @@ public class BatchParserCommonTest {
   @Test
   public void multipleAcceptLanguageHeaders() throws Exception {
     Header header = BatchParserCommon.consumeHeaders(toLineList(
-        "Accept-Language:en-US,en;q=0.7,en-UK;q=0.9" + CRLF,
+        ACCEPTLANG_EN + CRLF,
         "Accept-Language: de-DE;q=0.3" + CRLF,
         "content-type: Application/http" + CRLF,
         "content-transfer-encoding: Binary" + CRLF));
@@ -120,7 +121,7 @@ public class BatchParserCommonTest {
   @Test
   public void multipleAcceptLanguageHeadersSameValue() throws Exception {
     Header header = BatchParserCommon.consumeHeaders(toLineList(
-        "Accept-Language:en-US,en;q=0.7,en-UK;q=0.9" + CRLF,
+        ACCEPTLANG_EN + CRLF,
         "Accept-Language:en-US,en;q=0.7" + CRLF,
         "content-type: Application/http" + CRLF,
         "content-transfer-encoding: Binary" + CRLF));
