@@ -170,7 +170,7 @@ public class TestJPAServerDrivenPaging extends TestBase {
   @Test
   public void testMaxPageSizeHeaderProvided() throws IOException, ODataException {
 
-    headers = new HashMap<>();
+    // headers = new HashMap<>();
     final List<String> headerValues = new ArrayList<>(0);
     final JPAODataPagingProvider provider = mock(JPAODataPagingProvider.class);
 
@@ -187,7 +187,7 @@ public class TestJPAServerDrivenPaging extends TestBase {
 
   @Test
   public void testMaxPageSizeHeaderProvidedInLowerCase() throws IOException, ODataException {
-    headers = new HashMap<>();
+    // headers = new HashMap<>();
     final List<String> headerValues = new ArrayList<>(0);
     final JPAODataPagingProvider provider = mock(JPAODataPagingProvider.class);
     when(provider.getFirstPage(any(), any(), any() /*, any()*/)).thenAnswer(i -> new JPAODataPage((UriInfo) i
@@ -218,7 +218,7 @@ public class TestJPAServerDrivenPaging extends TestBase {
   @Test
   public void testMaxPageSiteHeaderNotANumber() throws IOException, ODataException {
 
-    headers = new HashMap<>();
+    // headers = new HashMap<>();
     final List<String> headerValues = new ArrayList<>(0);
     final JPAODataPagingProvider provider = mock(JPAODataPagingProvider.class);
 

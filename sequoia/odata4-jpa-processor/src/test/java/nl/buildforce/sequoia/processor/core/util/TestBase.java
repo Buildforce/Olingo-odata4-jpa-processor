@@ -23,7 +23,7 @@ public class TestBase {
   public static final String[] enumPackages = { "nl.buildforce.sequoia.processor.core.testmodel" };
   protected static EntityManagerFactory emf;
   protected TestHelper helper;
-  protected Map<String, List<String>> headers;
+  protected final HashMap<String, List<String>> headers = new HashMap<>();
   protected static JPAEdmNameBuilder nameBuilder;
   protected static DataSource ds;
 
@@ -32,13 +32,6 @@ public class TestBase {
     ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_DERBY);
     emf = JPAEntityManagerFactory.getEntityManagerFactory(PUNIT_NAME, ds);
     nameBuilder = new JPADefaultEdmNameBuilder(PUNIT_NAME);
-  }
-
-  protected void createHeaders() {
-    headers = new HashMap<>();
-    List<String> languageHeaders = new ArrayList<>();
-    languageHeaders.add("de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4");
-    headers.put(ACCEPT_LANGUAGE, languageHeaders);
   }
 
   protected void addHeader(final String header, final String value) {

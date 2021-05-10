@@ -50,7 +50,7 @@ public class TestJPAQueryBuildSelectionPathList extends TestBase {
 
     helper = new TestHelper(emf, PUNIT_NAME);
     nameBuilder = new JPADefaultEdmNameBuilder(PUNIT_NAME);
-    createHeaders();
+    // createHeaders();
         JPAODataCRUDContextAccess sessionContext = new JPAODataContextAccessDouble(
                 new JPAEdmProvider(PUNIT_NAME, emf, /*null,*/TestBase.enumPackages), ds, null);
         JPAODataRequestContextImpl requestContext = new JPAODataRequestContextImpl();

@@ -50,7 +50,7 @@ public class TestQueryBase extends TestBase {
     helper = new TestHelper(emf, PUNIT_NAME);
     nameBuilder = new JPADefaultEdmNameBuilder(PUNIT_NAME);
     jpaEntityType = helper.getJPAEntityType("BusinessPartners");
-    createHeaders();
+    // createHeaders();
     context = new JPAODataContextAccessDouble(new JPAEdmProvider(PUNIT_NAME, emf, /*null,*/ enumPackages), ds, null);
 
     requestContext = new JPAODataRequestContextImpl();

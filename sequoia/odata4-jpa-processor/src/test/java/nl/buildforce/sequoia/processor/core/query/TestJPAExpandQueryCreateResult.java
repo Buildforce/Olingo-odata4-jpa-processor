@@ -36,7 +36,7 @@ public class TestJPAExpandQueryCreateResult extends TestBase {
   @BeforeEach
   public void setup() throws ODataJPAException, JPAIllegalAccessException {
     helper = new TestHelper(emf, PUNIT_NAME);
-    createHeaders();
+    // createHeaders();
     EdmEntityType targetEntity = new EdmEntityTypeDouble(nameBuilder, "BusinessPartnerRole");
     context = new JPAODataContextAccessDouble(new JPAEdmProvider(PUNIT_NAME, emf,/* null,*/ TestBase.enumPackages), ds, null);
 

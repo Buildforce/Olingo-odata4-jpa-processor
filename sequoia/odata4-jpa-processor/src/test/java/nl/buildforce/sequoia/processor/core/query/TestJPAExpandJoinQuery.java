@@ -49,7 +49,7 @@ public class TestJPAExpandJoinQuery extends TestBase {
 
   @BeforeEach
   public void setup() throws ODataJPAException {
-    createHeaders();
+    // createHeaders();
     helper = new TestHelper(emf, PUNIT_NAME);
     EntityManager em = emf.createEntityManager();
     sessionContext = mock(JPAODataCRUDContextAccess.class);
