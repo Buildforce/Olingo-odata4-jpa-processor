@@ -123,7 +123,6 @@ public class IntegrationTestHelper {
     handler.register(new JPAODataRequestProcessor(sessionContext, requestContext));
     handler.register(new JPAODataBatchProcessor(requestContext));
     handler.process(req, resp);
-
   }
 
   public int getStatus() {
@@ -160,8 +159,7 @@ public class IntegrationTestHelper {
   public ArrayNode getValues() throws IOException {
     ObjectMapper mapper = new ObjectMapper();
     JsonNode node = mapper.readTree(getRawResult());
-    if (!(node.get("value") instanceof ArrayNode))
-      fail("Wrong result type; ArrayNode expected");
+    if (!(node.get("value") instanceof ArrayNode)) fail("Wrong result type; ArrayNode expected");
     return (ArrayNode) node.get("value");
   }
 

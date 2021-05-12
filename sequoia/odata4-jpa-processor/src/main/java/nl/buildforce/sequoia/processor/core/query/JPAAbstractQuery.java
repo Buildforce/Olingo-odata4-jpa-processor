@@ -46,7 +46,7 @@ import static nl.buildforce.sequoia.processor.core.exception.ODataJPAQueryExcept
 import static nl.buildforce.sequoia.processor.core.exception.ODataJPAQueryException.MessageKeys.WILDCARD_UPPER_NOT_SUPPORTED;
 
 public abstract class JPAAbstractQuery {
-  protected Locale locale;
+  protected Locale locale = null;
   protected final CriteriaBuilder cb;
   protected final EntityManager em;
   protected final JPAEntityType jpaEntity;
