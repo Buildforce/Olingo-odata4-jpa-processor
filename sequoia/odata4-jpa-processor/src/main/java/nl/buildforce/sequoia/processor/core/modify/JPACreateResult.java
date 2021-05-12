@@ -36,7 +36,7 @@ abstract class JPACreateResult implements JPAExpandResult {
     this.helper = new JPAConversionHelper();
     children = new HashMap<>();
     this.pathList = et.getPathList();
-    this.locale = ExpressionUtil.determineLocale(requestHeaders);
+    // this.locale = ExpressionUtil.determineLocale(requestHeaders);
     this.requestHeaders = requestHeaders;
   }
 
@@ -80,12 +80,14 @@ abstract class JPACreateResult implements JPAExpandResult {
           final Map<String, Object> descGetterMap = entryAsMap(entry);
           final JPADescriptionAttribute jpaAttribute = (JPADescriptionAttribute) path.getPath().get(index);
           final String providedLocale = determineLocale(descGetterMap, jpaAttribute);
+/*
           if (locale.getLanguage().equals(providedLocale)
               || locale.toString().equals(providedLocale)) {
             final Object description = descGetterMap.get(jpaAttribute.getDescriptionAttribute().getInternalName());
             tuple.addElement(path.getAlias(), path.getLeaf().getType(), description);
             break;
           }
+*/
         }
       } else {
         tuple.addElement(path.getAlias(), path.getLeaf().getType(), null);
