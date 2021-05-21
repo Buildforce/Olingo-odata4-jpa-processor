@@ -56,8 +56,7 @@
                 <configuration>
                     <instructions>
                         <Export-Package>
-                            nl.buildforce.olingo.server.api*,
-                            nl.buildforce.olingo.netty.server.api*
+                            nl.buildforce.olingo.server.api*
                         </Export-Package>
                         <Import-Package>
                             *
