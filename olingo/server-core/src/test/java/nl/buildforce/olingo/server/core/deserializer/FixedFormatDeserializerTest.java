@@ -14,6 +14,8 @@ import nl.buildforce.olingo.commons.api.edm.EdmProperty;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import java.nio.charset.StandardCharsets;
+
 public class FixedFormatDeserializerTest {
 
   private static final OData oData = OData.newInstance();
@@ -22,7 +24,7 @@ public class FixedFormatDeserializerTest {
   @Test
   public void binary() throws Exception {
     assertArrayEquals(new byte[] { 0x41, 0x42, 0x43 },
-        deserializer.binary(IOUtils.toInputStream("ABC")));
+        deserializer.binary(IOUtils.toInputStream("ABC", StandardCharsets.UTF_8)));
   }
 
   @Test
@@ -32,7 +34,8 @@ public class FixedFormatDeserializerTest {
             "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 + "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 + "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                + "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ")).length);
+                + "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ",
+                StandardCharsets.UTF_8)).length);
   }
 
   @Test
@@ -40,7 +43,7 @@ public class FixedFormatDeserializerTest {
     EdmProperty property = Mockito.mock(EdmProperty.class);
     Mockito.when(property.getType()).thenReturn(oData.createPrimitiveTypeInstance(EdmPrimitiveTypeKind.Int64));
     Mockito.when(property.isPrimitive()).thenReturn(true);
-    assertEquals(42L, deserializer.primitiveValue(IOUtils.toInputStream("42"), property));
+    assertEquals(42L, deserializer.primitiveValue(IOUtils.toInputStream("42", StandardCharsets.UTF_8), property));
   }
 
   @Test
@@ -53,6 +56,6 @@ public class FixedFormatDeserializerTest {
     String value = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ\n"
         + "ÄÖÜ€\uFDFC\n"
         + String.valueOf(Character.toChars(0x1F603));
-    assertEquals(value, deserializer.primitiveValue(IOUtils.toInputStream(value), property));
+    assertEquals(value, deserializer.primitiveValue(IOUtils.toInputStream(value, StandardCharsets.UTF_8), property));
   }
 }

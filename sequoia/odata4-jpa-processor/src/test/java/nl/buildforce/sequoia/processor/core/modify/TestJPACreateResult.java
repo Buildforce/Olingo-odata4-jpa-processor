@@ -99,7 +99,7 @@ public abstract class TestJPACreateResult extends TestBase {
     }
   }
 
-  @Test
+  /*@Test
   public void testGetResultWithDescriptionProperty() throws ODataJPAModelException, ODataApplicationException {
 
     createCutGetResultWithDescriptionProperty();
@@ -107,8 +107,8 @@ public abstract class TestJPACreateResult extends TestBase {
     assertEquals(1, act.size());
     final Tuple actResult = act.get(0);
     assertEquals(7L, actResult.get("ETag"));
-    //assertEquals("MyDivision", actResult.get("LocationName"));
-  }
+    assertEquals("MyDivision", actResult.get("LocationName"));
+  }*/
 
   @Test
   public void testGetResultWithTwoLinked() throws ODataJPAModelException, ODataApplicationException {
@@ -276,8 +276,10 @@ public abstract class TestJPACreateResult extends TestBase {
   protected abstract void createCutGetResultWithWithOneLinked() throws ODataJPAModelException,
       ODataApplicationException;
 
+/*
   protected abstract void createCutGetResultWithDescriptionProperty() throws ODataJPAModelException,
       ODataApplicationException;
+*/
 
   protected abstract void createCutGetResultSimpleEntity() throws ODataJPAModelException, ODataApplicationException;
 

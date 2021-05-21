@@ -3,7 +3,7 @@ package nl.buildforce.sequoia.processor.core.filter;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAssociationPath;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAttribute;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPACollectionAttribute;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPADescriptionAttribute;
+// import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPADescriptionAttribute;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAElement;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAEntityType;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAPath;
@@ -80,9 +80,9 @@ public class JPAMemberOperator implements JPAOperator {
     Path<?> p = root;
 
     for (final JPAElement jpaPathElement : selectItemPath.getPath()) {
-      if (jpaPathElement instanceof JPADescriptionAttribute) {
+      /*if (jpaPathElement instanceof JPADescriptionAttribute) {
         p = determineDescriptionCriteriaPath(selectItemPath, p, jpaPathElement);
-      } else if (jpaPathElement instanceof JPACollectionAttribute) {
+      } else*/ if (jpaPathElement instanceof JPACollectionAttribute) {
         if (!((JPACollectionAttribute) jpaPathElement).isComplex()) try {
           p = p.get(((JPACollectionAttribute) jpaPathElement).getTargetAttribute().getInternalName());
         } catch (ODataJPAModelException e) {
@@ -95,7 +95,7 @@ public class JPAMemberOperator implements JPAOperator {
     return p;
   }
 
-  private Path<?> determineDescriptionCriteriaPath(final JPAPath selectItemPath, Path<?> p,
+  /*private Path<?> determineDescriptionCriteriaPath(final JPAPath selectItemPath, Path<?> p,
       final JPAElement jpaPathElement) {
     final Set<?> allJoins = root.getJoins();
 
@@ -116,7 +116,7 @@ public class JPAMemberOperator implements JPAOperator {
       }
     }
     return p;
-  }
+  }*/
 
   private void checkGroup(final JPAPath path, final List<String> groups) throws ODataJPAFilterException {
     JPAPath orgPath = path;

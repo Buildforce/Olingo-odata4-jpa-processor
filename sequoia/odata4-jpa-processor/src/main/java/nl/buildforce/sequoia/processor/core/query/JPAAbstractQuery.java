@@ -1,6 +1,6 @@
 package nl.buildforce.sequoia.processor.core.query;
 
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPADescriptionAttribute;
+//import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPADescriptionAttribute;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAElement;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAEntityType;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAPath;
@@ -46,7 +46,7 @@ import static nl.buildforce.sequoia.processor.core.exception.ODataJPAQueryExcept
 import static nl.buildforce.sequoia.processor.core.exception.ODataJPAQueryException.MessageKeys.WILDCARD_UPPER_NOT_SUPPORTED;
 
 public abstract class JPAAbstractQuery {
-  protected Locale locale = null;
+  // protected Locale locale = null;
   protected final CriteriaBuilder cb;
   protected final EntityManager em;
   protected final JPAEntityType jpaEntity;
@@ -135,10 +135,11 @@ public abstract class JPAAbstractQuery {
   public JPAServiceDebugger getDebugger() {
     return debugger;
   }
-*/
 
   protected abstract Locale getLocale();
+*/
 
+/*
   protected void generateDescriptionJoin(final HashMap<String, From<?, ?>> joinTables, final Set<JPAPath> pathSet,
       final From<?, ?> target) {
 
@@ -153,6 +154,7 @@ public abstract class JPAAbstractQuery {
       joinTables.put(descriptionField.getInternalName(), join);
     }
   }
+*/
 
   protected <T, S> Join<T, S> createJoinFromPath(final String alias, final List<JPAElement> pathList,
       final From<T, S> root, final JoinType finalJoinType) {
@@ -172,6 +174,7 @@ public abstract class JPAAbstractQuery {
     return join;
   }
 
+/*
   private Expression<Boolean> createOnCondition(Join<?, ?> join, JPADescriptionAttribute descriptionField,
       String localValue) {
 
@@ -182,6 +185,7 @@ public abstract class JPAAbstractQuery {
     }
     return result;
   }
+*/
 
   private Expression<?> determineLocalePath(final Join<?, ?> join,
       final JPAPath jpaPath) {

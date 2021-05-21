@@ -1,6 +1,6 @@
 package nl.buildforce.sequoia.metadata.core.edm.mapper.impl;
 
-import nl.buildforce.sequoia.metadata.core.edm.annotation.EdmDescriptionAssociation;
+// import nl.buildforce.sequoia.metadata.core.edm.annotation.EdmDescriptionAssociation;
 import nl.buildforce.sequoia.metadata.core.edm.annotation.EdmIgnore;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAssociationAttribute;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAssociationPath;
@@ -250,17 +250,18 @@ abstract class IntermediateStructuredType extends IntermediateModelElement imple
         case ONE_TO_ONE:
         case MANY_TO_MANY:
         case MANY_TO_ONE:
-          if (jpaAttribute.getJavaMember() instanceof AnnotatedElement) {
+/*          if (jpaAttribute.getJavaMember() instanceof AnnotatedElement) {
+
             final EdmDescriptionAssociation jpaDescription = ((AnnotatedElement) jpaAttribute.getJavaMember())
-                .getAnnotation(
-                    EdmDescriptionAssociation.class);
+                .getAnnotation(EdmDescriptionAssociation.class);
+
             if (jpaDescription != null) {
               final IntermediateDescriptionProperty descProperty = new IntermediateDescriptionProperty(nameBuilder,
                   jpaAttribute, schema);
               declaredPropertiesList.put(descProperty.internalName, descProperty);
               break;
             }
-          }
+          }*/
           final IntermediateNavigationProperty navProp = new IntermediateNavigationProperty(nameBuilder, this,
               jpaAttribute,
               schema);

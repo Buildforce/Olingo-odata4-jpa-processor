@@ -19,7 +19,7 @@ import jakarta.persistence.Version;
 import nl.buildforce.olingo.commons.api.edm.provider.annotation.CsdlConstantExpression.ConstantExpressionType;
 
 import nl.buildforce.sequoia.metadata.core.edm.annotation.EdmAnnotation;
-import nl.buildforce.sequoia.metadata.core.edm.annotation.EdmDescriptionAssociation;
+//import nl.buildforce.sequoia.metadata.core.edm.annotation.EdmDescriptionAssociation;
 import nl.buildforce.sequoia.metadata.core.edm.annotation.EdmFunction;
 import nl.buildforce.sequoia.metadata.core.edm.annotation.EdmFunctions;
 import nl.buildforce.sequoia.metadata.core.edm.annotation.EdmIgnore;
@@ -97,10 +97,12 @@ public abstract class BusinessPartner implements KeyAccess {
 
   @EdmAnnotation(term = "Core.IsLanguageDependent",
           constantExpression = @EdmAnnotation.ConstantExpression(type = ConstantExpressionType.Bool, value = "true"))
+/*
   @EdmDescriptionAssociation(languageAttribute = "key/language", descriptionAttribute = "name",
       valueAssignments = {
           @EdmDescriptionAssociation.valueAssignment(attribute = "key/codePublisher", value = "ISO"),
           @EdmDescriptionAssociation.valueAssignment(attribute = "key/codeID", value = "3166-1") })
+*/
 
   @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @JoinColumn(name = "\"DivisionCode\"", referencedColumnName = "\"Country\"")

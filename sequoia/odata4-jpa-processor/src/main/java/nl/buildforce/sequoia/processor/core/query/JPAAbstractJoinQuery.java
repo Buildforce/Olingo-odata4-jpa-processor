@@ -4,7 +4,7 @@ import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAssociationAttribut
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAssociationPath;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAttribute;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPACollectionAttribute;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPADescriptionAttribute;
+// import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPADescriptionAttribute;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAElement;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAEntityType;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAPath;
@@ -99,7 +99,7 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
 
     super(odata, sessionContext.getEdmProvider().getServiceDocument(), jpaEntityType, requestContext);
     this.requestContext = requestContext;
-    this.locale = ExpressionUtil.determineLocale(requestHeaders);
+    // this.locale = ExpressionUtil.determineLocale(requestHeaders);
     this.uriResource = uriInfo;
     this.cq = cb.createTupleQuery();
     this.context = sessionContext;
@@ -258,7 +258,7 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
     // 2. OrderBy navigation property
     createFromClauseOrderBy(orderByTarget, joinTables);
     // 3. Description Join determine
-    createFromClauseDescriptionFields(selectionPath, joinTables);
+    // createFromClauseDescriptionFields(selectionPath, joinTables);
     // 4. Collection Attribute Joins
     generateCollectionAttributeJoin(joinTables, selectionPath, lastInfo);
 
@@ -488,14 +488,15 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
     }
   }
 
+/*
   protected List<JPAPath> extractDescriptionAttributes(final Collection<JPAPath> jpaPathList) {
 
     final List<JPAPath> result = new ArrayList<>();
     for (final JPAPath p : jpaPathList)
-      if (p.getLeaf() instanceof JPADescriptionAttribute)
-        result.add(p);
+      if (p.getLeaf() instanceof JPADescriptionAttribute) result.add(p);
     return result;
   }
+*/
 
   /*
    * Create the join condition for a collection property. This attribute can be part of structure type, therefore the
@@ -513,10 +514,12 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
     }
   }
 
+/*
   @Override
   protected Locale getLocale() {
     return locale;
   }
+*/
 
   @Override
   JPAODataCRUDContextAccess getContext() {
@@ -716,7 +719,7 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
     lastInfo.setFromClause(target);
   }
 
-  private void createFromClauseDescriptionFields(final Collection<JPAPath> selectionPath,
+/*  private void createFromClauseDescriptionFields(final Collection<JPAPath> selectionPath,
       final HashMap<String, From<?, ?>> joinTables) throws ODataApplicationException {
     final List<JPAPath> descriptionFields = extractDescriptionAttributes(selectionPath);
     for (JPANavigationPropertyInfo info : this.navigationInfo) {
@@ -726,7 +729,7 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
                 info.getFilterCompiler()), info.getFromClause());
       }
     }
-  }
+  }*/
 
   /**
    * Completes NavigationInfo and add Joins for navigation parts e.g. from <code>../Organizations('3')/Roles</code>
@@ -787,6 +790,7 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
     joinTables.put(sourceEt.getExternalFQN().getFullQualifiedNameAsString(), root);
   }
 
+/*
   private Set<JPAPath> determineAllDescriptionPath(List<JPAPath> descriptionFields, JPAFilterCompiler filter)
       throws ODataApplicationException {
 
@@ -797,6 +801,7 @@ public abstract class JPAAbstractJoinQuery extends JPAAbstractQuery implements J
     }
     return allPath;
   }
+*/
 
   private JPAElement findCollection(final JPANavigationPropertyInfo lastInfo, final JPAPath path)
       throws ODataJPAProcessorException, JPANoSelectionException {

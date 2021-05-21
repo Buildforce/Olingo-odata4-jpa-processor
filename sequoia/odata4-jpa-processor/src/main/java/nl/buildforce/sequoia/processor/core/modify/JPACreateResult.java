@@ -2,7 +2,7 @@ package nl.buildforce.sequoia.processor.core.modify;
 
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAssociationPath;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAttribute;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPADescriptionAttribute;
+// import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPADescriptionAttribute;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAElement;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAEntityType;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAPath;
@@ -36,7 +36,7 @@ abstract class JPACreateResult implements JPAExpandResult {
     this.helper = new JPAConversionHelper();
     children = new HashMap<>();
     this.pathList = et.getPathList();
-    // this.locale = ExpressionUtil.determineLocale(requestHeaders);
+    this.locale = ExpressionUtil.determineLocale(requestHeaders);
     this.requestHeaders = requestHeaders;
   }
 
@@ -71,8 +71,8 @@ abstract class JPACreateResult implements JPAExpandResult {
   }
 
   protected void addValueToTuple(final JPATuple tuple, final JPAPath path, final int index, Object value)
-      throws ODataJPAProcessorException {
-    if (path.getPath().get(index) instanceof JPADescriptionAttribute) {
+      /*throws ODataJPAProcessorException*/ {
+    /*if (path.getPath().get(index) instanceof JPADescriptionAttribute) {
       @SuppressWarnings("unchecked")
       Collection<Object> desc = (Collection<Object>) value;
       if (desc != null) {
@@ -80,19 +80,17 @@ abstract class JPACreateResult implements JPAExpandResult {
           final Map<String, Object> descGetterMap = entryAsMap(entry);
           final JPADescriptionAttribute jpaAttribute = (JPADescriptionAttribute) path.getPath().get(index);
           final String providedLocale = determineLocale(descGetterMap, jpaAttribute);
-/*
           if (locale.getLanguage().equals(providedLocale)
               || locale.toString().equals(providedLocale)) {
             final Object description = descGetterMap.get(jpaAttribute.getDescriptionAttribute().getInternalName());
             tuple.addElement(path.getAlias(), path.getLeaf().getType(), description);
             break;
           }
-*/
         }
       } else {
         tuple.addElement(path.getAlias(), path.getLeaf().getType(), null);
       }
-    } else {
+    } else*/ {
       tuple.addElement(path.getAlias(), path.getLeaf().getType(), value);
     }
   }
@@ -121,8 +119,8 @@ abstract class JPACreateResult implements JPAExpandResult {
     return true;
   }
 
-  private String determineLocale(final Map<String, Object> descGetterMap,
+/*  private String determineLocale(final Map<String, Object> descGetterMap,
       final JPADescriptionAttribute descAttribute) throws ODataJPAProcessorException {
     return determineLocale(descGetterMap, descAttribute.getLocaleFieldName(), 0);
-  }
+  }*/
 }

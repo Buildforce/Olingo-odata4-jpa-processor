@@ -14,6 +14,7 @@ import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import java.io.ByteArrayOutputStream;
+import java.nio.charset.StandardCharsets;
 
 import nl.buildforce.olingo.server.api.OData;
 import nl.buildforce.olingo.server.api.serializer.FixedFormatSerializer;
@@ -36,19 +37,19 @@ public class FixedFormatSerializerTest {
 
   @Test
   public void binary() throws Exception {
-    assertEquals("ABC", IOUtils.toString(serializer.binary(new byte[] { 0x41, 0x42, 0x43 })));
+    assertEquals("ABC", IOUtils.toString(serializer.binary(new byte[] { 0x41, 0x42, 0x43 }), StandardCharsets.UTF_8));
   }
 
   @Test
   public void count() throws Exception {
-    assertEquals("42", IOUtils.toString(serializer.count(42)));
+    assertEquals("42", IOUtils.toString(serializer.count(42), StandardCharsets.UTF_8));
   }
 
   @Test
   public void primitiveValue() throws Exception {
     EdmPrimitiveType type = OData.newInstance().createPrimitiveTypeInstance(EdmPrimitiveTypeKind.Int32);
     assertEquals("42", IOUtils.toString(serializer.primitiveValue(type, 42,
-        PrimitiveValueSerializerOptions.with().nullable(true).build())));
+        PrimitiveValueSerializerOptions.with().nullable(true).build()), StandardCharsets.UTF_8));
   }
   
   @Test

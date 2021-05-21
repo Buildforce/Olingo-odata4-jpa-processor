@@ -33,6 +33,7 @@ public class TestJPAQueryWhereClause extends TestBase {
     assertEquals("3", orgs.get(0).get("ID").asText());
   }
 
+  @Disabled
   @Test
   public void testFilterOneDescriptionEquals() throws IOException, ODataException {
 
@@ -45,6 +46,7 @@ public class TestJPAQueryWhereClause extends TestBase {
     assertEquals("10", orgs.get(0).get("ID").asText());
   }
 
+  @Disabled
   @Test
   public void testFilterOneDescriptionEqualsFieldNotSelected() throws IOException, ODataException {
 
@@ -763,6 +765,7 @@ public class TestJPAQueryWhereClause extends TestBase {
     assertEquals(8, orgs.size());
   }
 
+  @Disabled
   @Test
   public void testFilterNavigationPropertyDescriptionViaComplexTypeWOSubselectSelectAll() throws IOException,
       ODataException {
@@ -775,6 +778,7 @@ public class TestJPAQueryWhereClause extends TestBase {
     assertEquals(3, orgs.size());
   }
 
+  @Disabled
   @Test
   public void testFilterNavigationPropertyDescriptionViaComplexTypeWOSubselectSelectId() throws IOException,
       ODataException {
@@ -787,6 +791,7 @@ public class TestJPAQueryWhereClause extends TestBase {
     assertEquals(3, orgs.size());
   }
 
+  @Disabled
   @Test
   public void testFilterNavigationPropertyDescriptionToOneValueViaComplexTypeWSubselect1() throws IOException,
       ODataException {
@@ -829,6 +834,7 @@ public class TestJPAQueryWhereClause extends TestBase {
     assertEquals(3, orgs.size());
   }
 
+  @Disabled
   @Test
   public void testFilterNavigationPropertyDescriptionToOneValueViaComplexTypeWSubselect2() throws IOException,
       ODataException {

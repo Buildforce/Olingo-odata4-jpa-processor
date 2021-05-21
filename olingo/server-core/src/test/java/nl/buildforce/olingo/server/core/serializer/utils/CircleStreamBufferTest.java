@@ -207,7 +207,7 @@ public class CircleStreamBufferTest {
 
     String testData = createTestString(signs);
     testData = "äüöÄÜÖ" + testData + "äüöÄÜÖ";
-    outStream.write(testData.getBytes("iso-8859-1"));
+    outStream.write(testData.getBytes(StandardCharsets.ISO_8859_1));
     String result = readFrom(inStream, "iso-8859-1");
 
     assertEquals(testData.length(), result.length());

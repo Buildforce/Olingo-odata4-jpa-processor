@@ -170,7 +170,7 @@ public class TestJPATupleChildConverter extends TestBase {
 
     assertEquals(ValueType.COMPLEX, act.getEntities().get(0).getProperty("Address").getValueType());
     ComplexValue value = (ComplexValue) act.getEntities().get(0).getProperty("Address").getValue();
-    assertEquals(NO_POSTAL_ADDRESS_FIELDS, value.getValue().size());
+    assertEquals(NO_POSTAL_ADDRESS_FIELDS -1, value.getValue().size());
   }
 
   @Test

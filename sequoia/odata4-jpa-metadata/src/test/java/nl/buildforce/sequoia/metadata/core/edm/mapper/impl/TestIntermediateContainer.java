@@ -113,7 +113,7 @@ public class TestIntermediateContainer extends TestMappingRoot {
     List<CsdlEntitySet> entitySets = container.getEdmItem().getEntitySets();
     for (CsdlEntitySet entitySet : entitySets) {
       if (entitySet.getName().equals("BusinessPartners")) {
-        assertEquals(4, entitySet.getNavigationPropertyBindings().size());
+        assertEquals(/*4*/ 7, entitySet.getNavigationPropertyBindings().size());
         return;
       }
     }

@@ -80,14 +80,14 @@ public class TestJPAQueryBuildSelectionPathList extends TestBase {
   @Test
   public void checkSelectAllAsNoSelectionGiven() throws ODataApplicationException {
     final Collection<JPAPath> act = cut.buildSelectionPathList(uriInfo);
-    assertEquals(23, act.size());
+    assertEquals(/*23*/ 20, act.size());
   }
 
   @Test
   public void checkSelectAllAsStarGiven() throws ODataApplicationException {
 
     final Collection<JPAPath> act = cut.buildSelectionPathList(new UriInfoDouble(new SelectOptionDouble("*")));
-    assertEquals(23, act.size());
+    assertEquals(/*23*/ 20, act.size());
   }
 
   @Test
@@ -99,7 +99,7 @@ public class TestJPAQueryBuildSelectionPathList extends TestBase {
   @Test
   public void checkSelectAllFromComplexWithKey() throws ODataApplicationException {
     final Collection<JPAPath> act = cut.buildSelectionPathList(new UriInfoDouble(new SelectOptionDouble("Address")));
-    assertEquals(11, act.size());
+    assertEquals(/*11*/ 9, act.size());
   }
 
   @Test
@@ -126,7 +126,7 @@ public class TestJPAQueryBuildSelectionPathList extends TestBase {
   public void checkSelectAllFromComplexAndOnePrimitiveWithKey() throws ODataApplicationException {
     final Collection<JPAPath> act = cut.buildSelectionPathList(new UriInfoDouble(new SelectOptionDouble(
         "Address,ETag")));
-    assertEquals(11, act.size());
+    assertEquals(/*11*/ 9, act.size());
   }
 
   @Test

@@ -2,7 +2,7 @@ package nl.buildforce.sequoia.processor.core.query;
 
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAttribute;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPACollectionAttribute;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPADescriptionAttribute;
+// import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPADescriptionAttribute;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAElement;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAEntityType;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAParameterFacet;
@@ -60,10 +60,10 @@ public final class ExpressionUtil {
       final List<JPAElement> jpaPath) {
     Path<?> p = root;
     for (final JPAElement jpaPathElement : jpaPath)
-      if (jpaPathElement instanceof JPADescriptionAttribute) {
+      /*if (jpaPathElement instanceof JPADescriptionAttribute) {
         final Join<?, ?> join = (Join<?, ?>) joinTables.get(jpaPathElement.getInternalName());
         p = join.get(((JPADescriptionAttribute) jpaPathElement).getDescriptionAttribute().getInternalName());
-      } else if (jpaPathElement instanceof JPACollectionAttribute) {
+      } else*/ if (jpaPathElement instanceof JPACollectionAttribute) {
         p = joinTables.get(jpaPathElement.getExternalName());
       } else {
         p = p.get(jpaPathElement.getInternalName());

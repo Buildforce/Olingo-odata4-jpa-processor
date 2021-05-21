@@ -1,7 +1,7 @@
 package nl.buildforce.sequoia.processor.core.query;
 
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAssociationPath;
-import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPADescriptionAttribute;
+// import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPADescriptionAttribute;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAOnConditionItem;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAPath;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAServiceDocument;
@@ -42,7 +42,7 @@ public final class JPANavigationFilterQuery extends JPANavigationQuery {
     this.keyPredicates = Util.determineKeyPredicates(uriResourceItem);
     this.subQuery = parent.getQuery().subquery(this.jpaEntity.getKeyType());
 
-    this.locale = parent.getLocale();
+    // this.locale = parent.getLocale();
     this.filterCompiler = null;
     this.aggregationType = null;
     createRoots(association);
@@ -59,13 +59,13 @@ public final class JPANavigationFilterQuery extends JPANavigationQuery {
     this.keyPredicates = Util.determineKeyPredicates(uriResourceItem);
     this.subQuery = parent.getQuery().subquery(this.jpaEntity.getKeyType());
 
-    this.locale = parent.getLocale();
+    // this.locale = parent.getLocale();
 
     this.filterCompiler = new JPAFilterElementCompiler(odata, sd, em, jpaEntity, new JPAOperationConverter(cb,
         getContext().getOperationConverter()), null, this, expression, null, groups);
     this.aggregationType = getAggregationType(this.filterCompiler.getExpressionMember());
     createRoots(association);
-    createDescriptionJoin();
+    // createDescriptionJoin();
   }
 
   /*
@@ -104,10 +104,10 @@ public final class JPANavigationFilterQuery extends JPANavigationQuery {
     return query;
   }
 
-  private void createDescriptionJoin() throws ODataApplicationException {
+  /*private void createDescriptionJoin() throws ODataApplicationException {
     final HashMap<String, From<?, ?>> joinTables = new HashMap<>();
     generateDescriptionJoin(joinTables, determineAllDescriptionPath(), getRoot());
-  }
+  }*/
 
   private <T> void createSubQueryAggregation(final Subquery<?> childQuery, final Subquery<T> query)
       throws ODataApplicationException {
@@ -130,12 +130,12 @@ public final class JPANavigationFilterQuery extends JPANavigationQuery {
 
   private Set<JPAPath> determineAllDescriptionPath() throws ODataApplicationException {
     Set<JPAPath> allPath = new HashSet<>();
-    if (filterCompiler != null) {
-      for (JPAPath path : filterCompiler.getMember()) {
-        if (path.getLeaf() instanceof JPADescriptionAttribute)
-          allPath.add(path);
-      }
-    }
+//    if (filterCompiler != null) {
+//      for (JPAPath path : filterCompiler.getMember()) {
+//        if (path.getLeaf() instanceof JPADescriptionAttribute)
+//          allPath.add(path);
+//      }
+//    }
     return allPath;
   }
 

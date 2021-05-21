@@ -1,6 +1,6 @@
 package nl.buildforce.sequoia.processor.core.testmodel;
 
-import nl.buildforce.sequoia.metadata.core.edm.annotation.EdmDescriptionAssociation;
+//import nl.buildforce.sequoia.metadata.core.edm.annotation.EdmDescriptionAssociation;
 import nl.buildforce.sequoia.metadata.core.edm.annotation.EdmIgnore;
 
 import jakarta.persistence.Column;
@@ -35,12 +35,12 @@ public class PostalAddressData {
   @Column(name = "\"Address.Region\"")
   private String region;
 
-  @EdmDescriptionAssociation(languageAttribute = "language", descriptionAttribute = "name")
+  // @EdmDescriptionAssociation(languageAttribute = "language", descriptionAttribute = "name")
   @OneToMany(fetch = FetchType.LAZY)
   @JoinColumn(name = "\"ISOCode\"", referencedColumnName = "\"Address.Country\"", insertable = false, updatable = false)
   private Collection<Country> countryName;
 
-  @EdmDescriptionAssociation(languageAttribute = "key/language", descriptionAttribute = "name")
+  // @EdmDescriptionAssociation(languageAttribute = "key/language", descriptionAttribute = "name")
   @OneToMany(fetch = FetchType.LAZY)
   @JoinColumns({
       @JoinColumn(name = "\"CodePublisher\"", referencedColumnName = "\"Address.RegionCodePublisher\"",

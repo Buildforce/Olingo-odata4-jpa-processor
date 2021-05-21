@@ -27,6 +27,7 @@ import nl.buildforce.olingo.server.api.uri.UriResourceEntitySet;
 import nl.buildforce.olingo.server.api.uri.UriResourceKind;
 import nl.buildforce.olingo.server.api.uri.UriResourcePrimitiveProperty;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -133,6 +134,7 @@ public class TestJPAQueryFromClause extends TestBase {
     }
   }
 
+  @Disabled
   @Test
   public void checkFromListDescriptionAssociationAllFields() throws ODataApplicationException, ODataJPAModelException,
       JPANoSelectionException {
@@ -149,6 +151,7 @@ public class TestJPAQueryFromClause extends TestBase {
     assertNotNull(act.get(exp.getInternalName()));
   }
 
+  @Disabled
   @Test
   public void checkFromListDescriptionAssociationAllFields2() throws ODataApplicationException, ODataJPAModelException,
       JPANoSelectionException {

@@ -14,6 +14,7 @@ import nl.buildforce.olingo.server.api.serializer.RepresentationType;
 import nl.buildforce.olingo.server.api.uri.queryoption.FormatOption;
 
 import org.junit.Test;
+import org.mockito.ArgumentMatchers;
 
 import static com.google.common.net.HttpHeaders.ACCEPT;
 import static com.google.common.net.HttpHeaders.ACCEPT_CHARSET;
@@ -23,8 +24,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyListOf;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -285,7 +285,8 @@ public class ContentNegotiatorTest {
 
     CustomContentTypeSupport customContentTypeSupport = mock(CustomContentTypeSupport.class);
     when(customContentTypeSupport.modifySupportedContentTypes(
-        anyListOf(ContentType.class), any(RepresentationType.class)))
+            ArgumentMatchers.<ContentType>anyList()
+        , any(RepresentationType.class)))
         .thenReturn(types);
     return customContentTypeSupport;
   }

@@ -428,6 +428,7 @@ public class TestJPAProcessorExpand extends TestBase {
     assertEquals("BE252", firstChild.get("DivisionCode").asText());
   }
 
+  @Disabled
   @Test
   public void testFilterExpandWithFilterOnParentDescription() throws IOException, ODataException {
     final IntegrationTestHelper helper = new IntegrationTestHelper(emf,

@@ -3,6 +3,7 @@ package nl.buildforce.sequoia.processor.core.query;
 import nl.buildforce.sequoia.processor.core.util.IntegrationTestHelper;
 import nl.buildforce.sequoia.processor.core.util.TestBase;
 import nl.buildforce.olingo.commons.api.ex.ODataException;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -39,6 +40,7 @@ public class TestJPAQueryNavigationCount extends TestBase {
     assertEquals("7", helper.getRawResult());
   }
 
+  @Disabled
   @Test
   public void testEntitySetCountWithFilterOnDescription() throws IOException, ODataException {
 

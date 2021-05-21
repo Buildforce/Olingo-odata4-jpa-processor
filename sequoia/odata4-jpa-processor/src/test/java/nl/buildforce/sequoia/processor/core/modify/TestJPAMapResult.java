@@ -91,6 +91,7 @@ public class TestJPAMapResult extends TestJPACreateResult {
     cut = new JPAMapResult(et, (Map<String, Object>) jpaEntity, headers, converter);
   }
 
+/*
   @SuppressWarnings("unchecked")
   @Override
   protected void createCutGetResultWithDescriptionProperty() throws ODataJPAModelException, ODataApplicationException {
@@ -113,6 +114,7 @@ public class TestJPAMapResult extends TestJPACreateResult {
     ((Map<String, Object>) jpaEntity).put("locationName", Collections.singletonList(description));
     cut = new JPAMapResult(et, (Map<String, Object>) jpaEntity, headers, converter);
   }
+*/
 
   @SuppressWarnings("unchecked")
   @Override

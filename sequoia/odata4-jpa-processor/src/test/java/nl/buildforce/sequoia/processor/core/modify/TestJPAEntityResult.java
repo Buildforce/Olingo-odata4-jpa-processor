@@ -76,7 +76,7 @@ public class TestJPAEntityResult extends TestJPACreateResult {
     cut = new JPAEntityResult(et, jpaEntity, headers, converter);
   }
 
-  @Override
+/*  @Override
   protected void createCutGetResultWithDescriptionProperty() throws ODataJPAModelException, ODataApplicationException {
     et = helper.getJPAEntityType("Organizations");
     jpaEntity = new Organization();
@@ -88,7 +88,7 @@ public class TestJPAEntityResult extends TestJPACreateResult {
     ((BusinessPartner) jpaEntity).setID("Willi");
     ((BusinessPartner) jpaEntity).setETag(7L);
     cut = new JPAEntityResult(et, jpaEntity, headers, converter);
-  }
+  }*/
 
   @Override
   protected void createCutGetResultWithWithOneLinked() throws ODataJPAModelException, ODataApplicationException {

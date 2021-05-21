@@ -1,7 +1,7 @@
 package nl.buildforce.sequoia.processor.core.testmodel;
 
 import nl.buildforce.sequoia.metadata.core.edm.annotation.EdmAnnotation;
-import nl.buildforce.sequoia.metadata.core.edm.annotation.EdmDescriptionAssociation;
+// import nl.buildforce.sequoia.metadata.core.edm.annotation.EdmDescriptionAssociation;
 import nl.buildforce.sequoia.metadata.core.edm.annotation.EdmIgnore;
 import nl.buildforce.sequoia.metadata.core.edm.annotation.EdmVisibleFor;
 import nl.buildforce.olingo.commons.api.edm.provider.annotation.CsdlConstantExpression.ConstantExpressionType;
@@ -81,10 +81,10 @@ public class BusinessPartnerWithGroups implements KeyAccess {
 
   @EdmAnnotation(term = "Core.IsLanguageDependent", constantExpression = @EdmAnnotation.ConstantExpression(
       type = ConstantExpressionType.Bool, value = "true"))
-  @EdmDescriptionAssociation(languageAttribute = "key/language", descriptionAttribute = "name",
+  /*@EdmDescriptionAssociation(languageAttribute = "key/language", descriptionAttribute = "name",
       valueAssignments = {
           @EdmDescriptionAssociation.valueAssignment(attribute = "key/codePublisher", value = "ISO"),
-          @EdmDescriptionAssociation.valueAssignment(attribute = "key/codeID", value = "3166-1") })
+          @EdmDescriptionAssociation.valueAssignment(attribute = "key/codeID", value = "3166-1") })*/
   @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @JoinColumn(name = "\"DivisionCode\"", referencedColumnName = "\"Country\"")
   private Collection<AdministrativeDivisionDescription> locationName;

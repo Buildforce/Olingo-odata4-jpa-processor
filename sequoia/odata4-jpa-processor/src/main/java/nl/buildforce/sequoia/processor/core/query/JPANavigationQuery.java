@@ -84,10 +84,12 @@ public abstract class JPANavigationQuery extends JPAAbstractQuery {
     return subQuery;
   }
 
+/*
   @Override
   protected Locale getLocale() {
     return locale;
   }
+*/
 
   @Override
   JPAODataCRUDContextAccess getContext() {

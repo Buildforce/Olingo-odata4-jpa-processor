@@ -6,6 +6,7 @@ import nl.buildforce.sequoia.processor.core.util.IntegrationTestHelper;
 import nl.buildforce.sequoia.processor.core.util.TestBase;
 import nl.buildforce.olingo.commons.api.ex.ODataException;
 import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -86,6 +87,7 @@ public class TestJPAQueryOrderByClause extends TestBase {
     assertEquals("2", orgs.get(1).get("ID").asText());
   }
 
+  @Disabled
   @Test
   public void testOrderBy$CountAndSelectAsc() throws IOException, ODataException {
 
