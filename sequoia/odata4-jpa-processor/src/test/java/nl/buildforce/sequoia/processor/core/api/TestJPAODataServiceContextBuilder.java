@@ -220,11 +220,6 @@ public class TestJPAODataServiceContextBuilder {
     }
 
     @Override
-    public void provideReferences(final IntermediateReferenceList references) {
-      // Default shall do nothing
-    }
-
-    @Override
     public void processEntityType(final IntermediateEntityTypeAccess entity) {
       if (entity.getExternalName().equals("BusinessPartner"))
         entity.setExternalName("Test");

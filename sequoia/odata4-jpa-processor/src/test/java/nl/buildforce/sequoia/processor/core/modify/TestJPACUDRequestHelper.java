@@ -753,7 +753,7 @@ public class TestJPACUDRequestHelper {
     when(edmType.getName()).thenReturn(propertyType.getFullQualifiedName().getName());
     when(edmType.getDefaultType()).thenAnswer((Answer<Class<?>>) invocation -> defaultJavaType);
     when(edmType.valueOfString(value.toString(), true, 0, 0, 0, true, defaultJavaType)).thenAnswer(
-            (Answer<Object>) invocation -> value);
+            invocation -> value);
     when(edmProperty.getName()).thenReturn(propertyName);
     when(edmProperty.getType()).thenReturn(edmType);
     when(edmProperty.isUnicode()).thenReturn(true);

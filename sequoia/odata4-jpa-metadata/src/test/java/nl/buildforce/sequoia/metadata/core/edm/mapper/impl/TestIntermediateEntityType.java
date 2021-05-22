@@ -72,7 +72,9 @@ public class TestIntermediateEntityType extends TestMappingRoot {
   public void checkGetAllProperties() throws ODataJPAModelException {
     IntermediateStructuredType et = new IntermediateEntityType(new JPADefaultEdmNameBuilder(PUNIT_NAME), getEntityType(
         "BusinessPartner"), schema);
-    assertEquals(TestDataConstants.NO_DEC_ATTRIBUTES_BUSINESS_PARTNER, et.getEdmItem().getProperties().size(), "Wrong number of entities");
+    assertEquals(TestDataConstants.NO_DEC_ATTRIBUTES_BUSINESS_PARTNER, et.getEdmItem()
+        .getProperties()
+        .size(), "Wrong number of entities");
   }
 
   @Test
@@ -615,8 +617,6 @@ public class TestIntermediateEntityType extends TestMappingRoot {
       }
     }
 
-    @Override
-    public void provideReferences(IntermediateReferenceList references) {}
   }
 
   private EntityType<?> getEntityType(String typeName) {

@@ -293,9 +293,6 @@ public class TestIntermediateContainer extends TestMappingRoot {
     public void processEntityType(IntermediateEntityTypeAccess entity) {}
 
     @Override
-    public void provideReferences(IntermediateReferenceList references) {}
-
-    @Override
     public void processEntityContainer(IntermediateEntityContainerAccess container) {
 
       CsdlConstantExpression mimeType = new CsdlConstantExpression(ConstantExpressionType.Bool, "false");

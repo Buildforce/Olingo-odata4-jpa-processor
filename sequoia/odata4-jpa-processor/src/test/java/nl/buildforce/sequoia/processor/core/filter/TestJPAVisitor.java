@@ -46,7 +46,7 @@ public class TestJPAVisitor {
 //return new JPAFunctionOperator(jpaFunction, odataParams, this.jpaCompiler.getParent().getRoot(), jpaCompiler.getConverter().cb);
 
   @Test
-  public void createFunctionOperation() throws ExpressionVisitException, ODataApplicationException {
+  public void createFunctionOperation() throws ODataApplicationException {
 
 //  final UriResource resource = member.getResourcePath().getUriResourceParts().get(0);
     Member member = mock(Member.class);

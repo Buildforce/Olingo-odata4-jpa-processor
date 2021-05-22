@@ -150,7 +150,7 @@ public class ContextURLBuilderTest {
   }
 
   @Test
-  public void buildComplexType() throws Exception {
+  public void buildComplexType() {
     EdmComplexType baseType = mock(EdmComplexType.class);
     when(baseType.getFullQualifiedName()).thenReturn(new FullQualifiedName("namespace", "BaseTypeName"));
 

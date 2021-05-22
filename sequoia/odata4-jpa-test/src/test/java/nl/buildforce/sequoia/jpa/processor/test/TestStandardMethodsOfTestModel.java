@@ -210,7 +210,7 @@ public class TestStandardMethodsOfTestModel {
     else if (paramType == Date.class) return expDate;
     else if (paramType == expByteArray.getClass()) return expByteArray;
     else if (paramType == expUtilDate.getClass()) return expUtilDate;
-    else if (paramType == int.class) return (int)10;
+    else if (paramType == int.class) return 10;
     else if (paramType == Integer.class) return Integer.valueOf(20);
     else if (paramType == LocalDate.class) return expLocalDate;
     else if (paramType == Long.class) return Long.valueOf(15L);

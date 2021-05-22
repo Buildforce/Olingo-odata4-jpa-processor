@@ -285,7 +285,7 @@ public class ContentNegotiatorTest {
 
     CustomContentTypeSupport customContentTypeSupport = mock(CustomContentTypeSupport.class);
     when(customContentTypeSupport.modifySupportedContentTypes(
-            ArgumentMatchers.<ContentType>anyList()
+            ArgumentMatchers.anyList()
         , any(RepresentationType.class)))
         .thenReturn(types);
     return customContentTypeSupport;

@@ -128,7 +128,8 @@ public final class JPANavigationFilterQuery extends JPANavigationQuery {
     handleAggregation(query, queryRoot, conditionItems);
   }
 
-  private Set<JPAPath> determineAllDescriptionPath() throws ODataApplicationException {
+/*
+  private Set<JPAPath> determineAllDescriptionPath() {
     Set<JPAPath> allPath = new HashSet<>();
 //    if (filterCompiler != null) {
 //      for (JPAPath path : filterCompiler.getMember()) {
@@ -138,6 +139,7 @@ public final class JPANavigationFilterQuery extends JPANavigationQuery {
 //    }
     return allPath;
   }
+*/
 
   private List<JPAOnConditionItem> determineJoinColumns() throws ODataJPAQueryException {
 

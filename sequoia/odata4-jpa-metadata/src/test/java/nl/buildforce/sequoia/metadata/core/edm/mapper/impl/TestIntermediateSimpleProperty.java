@@ -589,9 +589,6 @@ public class TestIntermediateSimpleProperty extends TestMappingRoot {
                                           String jpaManagedTypeClassName) {}
 
     @Override
-    public void provideReferences(IntermediateReferenceList references) {}
-
-    @Override
     public void processEntityType(IntermediateEntityTypeAccess entity) {}
   }
 

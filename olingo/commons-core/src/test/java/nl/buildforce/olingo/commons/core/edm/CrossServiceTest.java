@@ -95,7 +95,7 @@ package nl.buildforce.olingo.commons.core.edm;
     }
 
     @Override
-    public CsdlEntityContainer getEntityContainer() throws ODataException {
+    public CsdlEntityContainer getEntityContainer() {
       return new CsdlEntityContainer().setName(CONTAINER_PREFIX + name)
           .setEntitySets(Collections.singletonList(entitySet));
     }
@@ -133,7 +133,7 @@ package nl.buildforce.olingo.commons.core.edm;
   }
 
   @Test
-  public void entityType() throws Exception {
+  public void entityType() {
     FullQualifiedName typeName = new FullQualifiedName("Namespace.One", "EntityTypeOne");
     EdmEntityType entityType = edm1.getEntityType(typeName);
     Assert.assertNotNull(entityType);
@@ -171,7 +171,7 @@ package nl.buildforce.olingo.commons.core.edm;
   }
 
   @Test
-  public void entityContainer() throws Exception {
+  public void entityContainer() {
     Assert.assertNotNull(edm1.getEntityContainer());
     Assert.assertNotNull(edm1.getEntityContainer(new FullQualifiedName("Namespace.One", "ContainerOne")));
     Assert.assertEquals(edm1.getEntityContainer(),
@@ -186,7 +186,7 @@ package nl.buildforce.olingo.commons.core.edm;
   }
 
   @Test
-  public void entitySet() throws Exception {
+  public void entitySet() {
     EdmEntitySet entitySet = edm1.getEntityContainer(new FullQualifiedName("AliasTwo", "ContainerTwo"))
         .getEntitySet("EntitySetTwo");
     Assert.assertNotNull(entitySet);
@@ -201,7 +201,7 @@ package nl.buildforce.olingo.commons.core.edm;
   }
 
   @Test
-  public void schema() throws Exception {
+  public void schema() {
     Assert.assertNotNull(edm1.getSchemas());
     Assert.assertEquals(1, edm1.getSchemas().size());
     Assert.assertEquals("AliasOne", edm1.getSchemas().get(0).getAlias());
@@ -212,7 +212,7 @@ package nl.buildforce.olingo.commons.core.edm;
   }
 
   @Test
-  public void entitySets() throws Exception {
+  public void entitySets() {
     Assert.assertNotNull(edm1.getEntityContainer());
     Assert.assertNotNull(edm1.getEntityContainer().getEntitySets());
     Assert.assertEquals(1, edm1.getEntityContainer().getEntitySets().size());

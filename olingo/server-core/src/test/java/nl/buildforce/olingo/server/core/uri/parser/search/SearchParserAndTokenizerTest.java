@@ -213,7 +213,7 @@ public class SearchParserAndTokenizerTest {
     }
 
     private void resultsIn(String expectedSearchExpression)
-        throws SearchTokenizerException, SearchParserException {
+        throws SearchParserException {
       SearchOption result = new SearchParser().parse(searchQuery);
       Assert.assertNotNull(result);
       SearchExpression searchExpression = result.getSearchExpression();

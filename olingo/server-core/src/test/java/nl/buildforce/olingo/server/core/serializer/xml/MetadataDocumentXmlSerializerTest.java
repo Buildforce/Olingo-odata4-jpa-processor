@@ -746,7 +746,7 @@ public class MetadataDocumentXmlSerializerTest {
     }
 
     @Override
-    public CsdlEntityContainer getEntityContainer() throws ODataException {
+    public CsdlEntityContainer getEntityContainer() {
       CsdlEntityContainer container = new CsdlEntityContainer();
       container.setName("container");
       
@@ -770,7 +770,7 @@ public class MetadataDocumentXmlSerializerTest {
       return container;
     }
 
-    public CsdlEntityContainer getEntityContainer1() throws ODataException {
+    public CsdlEntityContainer getEntityContainer1() {
       CsdlEntityContainer container = new CsdlEntityContainer();
       container.setName("container1");
       

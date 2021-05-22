@@ -137,7 +137,7 @@ public class TestJPAActionProcessor {
     when(resource.getAction()).thenReturn(edmAction);
     when(edmAction.isBound()).thenReturn(Boolean.FALSE);
     when(sd.getAction(edmAction)).thenReturn(action);
-    when(odata.createDeserializer((ContentType) any())).thenReturn(deserializer);
+    when(odata.createDeserializer(any())).thenReturn(deserializer);
 
     when(deserializer.actionParameters(request.getBody(), resource.getAction())).thenReturn(dResult);
     when(dResult.getActionParameters()).thenReturn(actionParameter);
@@ -238,7 +238,7 @@ public class TestJPAActionProcessor {
     when(type.getKind()).thenReturn(EdmTypeKind.COMPLEX);
 
     JPAStructuredType st = mock(JPAStructuredType.class);
-    when(sd.getComplexType((EdmComplexType) any())).thenReturn(st);
+    when(sd.getComplexType(any())).thenReturn(st);
     when(st.getTypeClass()).thenAnswer((Answer<Class<?>>) invocation -> CommunicationData.class);
 
     cut.performAction(request, response, requestFormat);

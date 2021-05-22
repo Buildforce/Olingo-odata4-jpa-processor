@@ -20,11 +20,6 @@ final class DefaultEdmPostProcessor extends JPAEdmMetadataPostProcessor {
   }
 
   @Override
-  public void provideReferences(IntermediateReferenceList references) {
-    // Default shall do nothing
-  }
-
-  @Override
   public void processEntityType(IntermediateEntityTypeAccess entity) {
     // Default shall do nothing
   }

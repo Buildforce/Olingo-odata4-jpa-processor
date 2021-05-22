@@ -827,7 +827,7 @@ public class MetadataDocumentJsonSerializerTest {
     }
 
     @Override
-    public List<CsdlSchema> getSchemas() throws ODataException {
+    public List<CsdlSchema> getSchemas() {
       List<CsdlSchema> schemas = new ArrayList<>();
       CsdlSchema schema1 = new CsdlSchema();
       schema1.setNamespace(nameSpace1);

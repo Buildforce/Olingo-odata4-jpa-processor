@@ -203,7 +203,7 @@ public class BatchRequestParserTest {
     }
 
     @Test
-    public void missingHttpVersion() throws Exception {
+    public void missingHttpVersion() {
         String batch = "--" + BOUNDARY + CRLF
                 + MIME_HEADERS + CRLF
                 + HttpMethod.GET + " ESAllPrim?$format=json" + CRLF + CRLF + CRLF
@@ -213,7 +213,7 @@ public class BatchRequestParserTest {
     }
 
     @Test
-    public void missingHttpVersion2() throws Exception {
+    public void missingHttpVersion2() {
         String batch = "--" + BOUNDARY + CRLF
                 + MIME_HEADERS + CRLF
                 + HttpMethod.GET + " ESAllPrim?$format=json " + CRLF + CRLF + CRLF
@@ -223,7 +223,7 @@ public class BatchRequestParserTest {
     }
 
     @Test
-    public void missingHttpVersion3() throws Exception {
+    public void missingHttpVersion3() {
         String batch = "--" + BOUNDARY + CRLF
                 + MIME_HEADERS + CRLF
                 + HttpMethod.GET + " ESAllPrim?$format=json SMTP:3.1" + CRLF + CRLF + CRLF
@@ -233,7 +233,7 @@ public class BatchRequestParserTest {
     }
 
     @Test
-    public void boundaryWithoutHyphen() throws Exception {
+    public void boundaryWithoutHyphen() {
         String batch = "--" + BOUNDARY + CRLF
                 + GET_REQUEST + BOUNDARY + CRLF
                 + GET_REQUEST + "--" + BOUNDARY + "--";
@@ -242,7 +242,7 @@ public class BatchRequestParserTest {
     }
 
     @Test
-    public void noBoundaryString() throws Exception {
+    public void noBoundaryString() {
         String batch = "--" + BOUNDARY + CRLF
                 + GET_REQUEST
                 // + no boundary string
@@ -253,7 +253,7 @@ public class BatchRequestParserTest {
     }
 
     @Test
-    public void batchBoundaryEqualsChangeSetBoundary() throws Exception {
+    public void batchBoundaryEqualsChangeSetBoundary() {
         String batch = "--" + BOUNDARY + CRLF
                 + CONTENT_TYPE + ": " + MULTIPART_MIXED + ";boundary=" + BOUNDARY + CRLF + CRLF
                 + "--" + BOUNDARY + CRLF
@@ -268,7 +268,7 @@ public class BatchRequestParserTest {
     }
 
     @Test
-    public void noContentType() throws Exception {
+    public void noContentType() {
         String batch = "--" + BOUNDARY + CRLF
                 + HttpHeader.ODATA_VERSION + ": 4.0" + CRLF + CRLF
                 + HttpMethod.GET + " " + PROPERTY_URI + HTTP_VERSION + CRLF + CRLF + "--" + BOUNDARY + "--";
@@ -277,7 +277,7 @@ public class BatchRequestParserTest {
     }
 
     @Test
-    public void mimeHeaderContentType() throws Exception {
+    public void mimeHeaderContentType() {
         String batch = "--" + BOUNDARY + CRLF
                 + CONTENT_TYPE + ": text/plain" + CRLF + CRLF
                 + HttpMethod.GET + " " + PROPERTY_URI + HTTP_VERSION + CRLF + CRLF + CRLF
@@ -287,7 +287,7 @@ public class BatchRequestParserTest {
     }
 
     @Test
-    public void mimeHeaderEncoding() throws Exception {
+    public void mimeHeaderEncoding() {
         String batch = "--" + BOUNDARY + CRLF
                 + MIME_HEADERS
                 + "Content-Transfer-Encoding: 8bit" + CRLF + CRLF
@@ -298,7 +298,7 @@ public class BatchRequestParserTest {
     }
 
     @Test
-    public void getRequestMissingCRLF() throws Exception {
+    public void getRequestMissingCRLF() {
         String batch = "--" + BOUNDARY + CRLF
                 + MIME_HEADERS + HttpHeader.CONTENT_ID + ": 1" + CRLF + CRLF
                 + HttpMethod.GET + " " + PROPERTY_URI + HTTP_VERSION + CRLF
@@ -359,7 +359,7 @@ public class BatchRequestParserTest {
     }
 
     @Test
-    public void noBoundaryFound() throws Exception {
+    public void noBoundaryFound() {
         String batch = BOUNDARY + CRLF
                 + MIME_HEADERS + CRLF
                 + HttpMethod.POST + " ESAllPrim" + HTTP_VERSION + CRLF + CRLF;
@@ -375,14 +375,14 @@ public class BatchRequestParserTest {
     }
 
     @Test
-    public void badRequest() throws Exception {
+    public void badRequest() {
         final String batch = "This is a bad request. There is no syntax and also no semantic";
 
         parseInvalidBatchBody(batch, BatchDeserializerException.MessageKeys.MISSING_CLOSE_DELIMITER);
     }
 
     @Test
-    public void noMethod() throws Exception {
+    public void noMethod() {
         final String batch = "--" + BOUNDARY + CRLF
                 + MIME_HEADERS + CRLF
                 + /* HttpMethod.GET + " " + */ PROPERTY_URI + HTTP_VERSION + CRLF + CRLF + CRLF
@@ -392,7 +392,7 @@ public class BatchRequestParserTest {
     }
 
     @Test
-    public void invalidMethodForChangeset() throws Exception {
+    public void invalidMethodForChangeset() {
         String batch = "--" + BOUNDARY + CRLF
                 + CONTENT_TYPE + ": " + MULTIPART_MIXED + "; boundary=" + CHANGESET_BOUNDARY + CRLF + CRLF
                 + "--" + CHANGESET_BOUNDARY + CRLF
@@ -427,7 +427,7 @@ public class BatchRequestParserTest {
     }
 
     @Test
-    public void nestedChangeset() throws Exception {
+    public void nestedChangeset() {
         String batch = "--" + BOUNDARY + CRLF
                 + CONTENT_TYPE + ": " + MULTIPART_MIXED + ";boundary=" + CHANGESET_BOUNDARY + CRLF + CRLF
                 + "--" + CHANGESET_BOUNDARY + CRLF
@@ -446,7 +446,7 @@ public class BatchRequestParserTest {
     }
 
     @Test
-    public void missingContentType() throws Exception {
+    public void missingContentType() {
         String batch = "--" + BOUNDARY + CRLF
                 + CONTENT_TYPE + ": " + MULTIPART_MIXED + ";boundary=" + CHANGESET_BOUNDARY + CRLF
                 + CRLF
@@ -465,7 +465,7 @@ public class BatchRequestParserTest {
     }
 
     @Test
-    public void noCloseDelimiter() throws Exception {
+    public void noCloseDelimiter() {
         String batch = "--" + BOUNDARY + CRLF
                 + GET_REQUEST;
 
@@ -473,7 +473,7 @@ public class BatchRequestParserTest {
     }
 
     @Test
-    public void noCloseDelimiter2() throws Exception {
+    public void noCloseDelimiter2() {
         String batch = "--" + BOUNDARY + CRLF
                 + GET_REQUEST;
 
@@ -481,7 +481,7 @@ public class BatchRequestParserTest {
     }
 
     @Test
-    public void noCloseDelimiter3() throws Exception {
+    public void noCloseDelimiter3() {
         String batch = "--" + BOUNDARY + CRLF
                 + GET_REQUEST
                 + "--" + BOUNDARY + "-"/* no hyphen */;
@@ -529,26 +529,26 @@ public class BatchRequestParserTest {
     }
 
     @Test
-    public void uriWithAbsolutePathTwoHostHeaders() throws Exception {
+    public void uriWithAbsolutePathTwoHostHeaders() {
         parseInvalidBatchBody(createBatchWithGetRequest("/odata/" + PROPERTY_URI,
                 "Host: localhost" + CRLF + "Host: localhost:80"),
                 BatchDeserializerException.MessageKeys.INVALID_HOST);
     }
 
     @Test
-    public void uriWithAbsolutePathOtherHost() throws Exception {
+    public void uriWithAbsolutePathOtherHost() {
         parseInvalidBatchBody(createBatchWithGetRequest("/odata/" + PROPERTY_URI, "Host: localhost2"),
                 BatchDeserializerException.MessageKeys.INVALID_HOST);
     }
 
     @Test
-    public void uriWithAbsolutePathOtherPort() throws Exception {
+    public void uriWithAbsolutePathOtherPort() {
         parseInvalidBatchBody(createBatchWithGetRequest("/odata/" + PROPERTY_URI, "Host: localhost:90"),
                 BatchDeserializerException.MessageKeys.INVALID_HOST);
     }
 
     @Test
-    public void uriWithWrongAbsolutePath() throws Exception {
+    public void uriWithWrongAbsolutePath() {
         parseInvalidBatchBody(createBatchWithGetRequest("/myservice/" + PROPERTY_URI, "Host: localhost"),
                 BatchDeserializerException.MessageKeys.INVALID_URI);
     }
@@ -573,7 +573,7 @@ public class BatchRequestParserTest {
     }
 
     @Test
-    public void negativeContentLengthRequest() throws Exception {
+    public void negativeContentLengthRequest() {
         String batch = "--" + BOUNDARY + CRLF
                 + CONTENT_TYPE + ": " + MULTIPART_MIXED + "; boundary=" + CHANGESET_BOUNDARY + CRLF
                 + CRLF
@@ -654,7 +654,7 @@ public class BatchRequestParserTest {
     }
 
     @Test
-    public void nonNumericContentLength() throws Exception {
+    public void nonNumericContentLength() {
         String batch = "--" + BOUNDARY + CRLF
                 + CONTENT_TYPE + ": " + MULTIPART_MIXED + "; boundary=" + CHANGESET_BOUNDARY + CRLF
                 + CRLF
@@ -705,7 +705,7 @@ public class BatchRequestParserTest {
     }
 
     @Test
-    public void nonStrictParserMoreCRLF() throws Exception {
+    public void nonStrictParserMoreCRLF() {
         String batch = "--" + BOUNDARY + CRLF
                 + CONTENT_TYPE + ": " + MULTIPART_MIXED + ";boundary=" + CHANGESET_BOUNDARY + CRLF
                 + "--" + CHANGESET_BOUNDARY + CRLF
@@ -967,37 +967,37 @@ public class BatchRequestParserTest {
     }
 
     @Test
-    public void forbiddenHeaderWWWAuthenticate() throws Exception {
+    public void forbiddenHeaderWWWAuthenticate() {
         parseBatchWithForbiddenHeader(WWW_AUTHENTICATE + ": Basic realm=\"simple\"");
     }
 
     @Test
-    public void forbiddenHeaderAuthorization() throws Exception {
+    public void forbiddenHeaderAuthorization() {
         parseBatchWithForbiddenHeader(AUTHORIZATION + ": Basic QWxhZdsdsddsduIHNlc2FtZQ==");
     }
 
     @Test
-    public void forbiddenHeaderExpect() throws Exception {
+    public void forbiddenHeaderExpect() {
         parseBatchWithForbiddenHeader(EXPECT + ": 100-continue");
     }
 
     @Test
-    public void forbiddenHeaderFrom() throws Exception {
+    public void forbiddenHeaderFrom() {
         parseBatchWithForbiddenHeader(FROM + ": test@test.com");
     }
 
     @Test
-    public void forbiddenHeaderRange() throws Exception {
+    public void forbiddenHeaderRange() {
         parseBatchWithForbiddenHeader(RANGE + ": 200-256");
     }
 
     @Test
-    public void forbiddenHeaderMaxForwards() throws Exception {
+    public void forbiddenHeaderMaxForwards() {
         parseBatchWithForbiddenHeader(MAX_FORWARDS + ": 3");
     }
 
     @Test
-    public void forbiddenHeaderTE() throws Exception {
+    public void forbiddenHeaderTE() {
         parseBatchWithForbiddenHeader(HttpHeader.TE + ": deflate");
     }
 

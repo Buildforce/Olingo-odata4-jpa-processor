@@ -2,7 +2,6 @@ package nl.buildforce.sequoia.processor.core.query;
 
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAAttribute;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPACollectionAttribute;
-// import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPADescriptionAttribute;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAElement;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAEntityType;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAParameterFacet;
@@ -26,10 +25,7 @@ import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Path;
 
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
-
-import static com.google.common.net.HttpHeaders.ACCEPT_LANGUAGE;
 
 public final class ExpressionUtil {
   public static final int CONTAINY_ONLY_LANGU = 1;
@@ -129,7 +125,7 @@ public final class ExpressionUtil {
     }
   }
 
-  public static Locale determineLocale(final Map<String, List<String>> headers) {
+/*  public static Locale determineLocale(final Map<String, List<String>> headers) {
     // TODO Make this replaceable so the default can be overwritten
     // http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html (14.4 accept language header
     // example: Accept-Language: da, en-gb;q=0.8, en;q=0.7)
@@ -149,6 +145,6 @@ public final class ExpressionUtil {
       }
     }
     return Locale.ENGLISH;
-  }
+  }*/
 
 }

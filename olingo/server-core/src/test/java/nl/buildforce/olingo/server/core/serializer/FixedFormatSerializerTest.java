@@ -62,7 +62,7 @@ public class FixedFormatSerializerTest {
   }
   
   @Test
-  public void mediaEntityStreamed() throws Exception {
+  public void mediaEntityStreamed() {
 	  EntityMediaObject mediaObject = new EntityMediaObject();
 	  mediaObject.setBytes(new byte[] { 0x41, 0x42, 0x43 });
 	  SerializerStreamResult result = serializer.mediaEntityStreamed(mediaObject);

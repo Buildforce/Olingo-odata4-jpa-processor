@@ -25,7 +25,6 @@ abstract class JPACreateResult implements JPAExpandResult {
   protected final JPAEntityType et;
   protected final Map<JPAAssociationPath, JPAExpandResult> children;
   protected final List<JPAPath> pathList;
-  protected Locale locale;
   protected final JPAConversionHelper helper;
   protected final Map<String, List<String>> requestHeaders;
 
@@ -34,9 +33,8 @@ abstract class JPACreateResult implements JPAExpandResult {
 
     this.et = et;
     this.helper = new JPAConversionHelper();
-    children = new HashMap<>();
+    children = new HashMap<>(0);
     this.pathList = et.getPathList();
-    this.locale = ExpressionUtil.determineLocale(requestHeaders);
     this.requestHeaders = requestHeaders;
   }
 

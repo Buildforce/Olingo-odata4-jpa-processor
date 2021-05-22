@@ -70,7 +70,6 @@ class IntermediateServiceDocument implements JPAServiceDocument {
 
     this.reflections = createReflections(packageName);
     this.references = new IntermediateReferences();
-    pP.provideReferences(this.references);
     this.nameBuilder = nameBuilder;
     this.jpaMetamodel = jpaMetamodel;
     this.schemaListInternalKey = new HashMap<>();

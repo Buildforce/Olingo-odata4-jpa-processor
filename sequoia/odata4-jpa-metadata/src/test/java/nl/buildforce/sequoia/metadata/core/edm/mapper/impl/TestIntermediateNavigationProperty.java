@@ -541,8 +541,6 @@ public class TestIntermediateNavigationProperty extends TestMappingRoot {
     @Override
     public void processEntityType(IntermediateEntityTypeAccess entity) {}
 
-    @Override
-    public void provideReferences(IntermediateReferenceList references) {}
   }
 
   private static class PostProcessorOneDelete extends JPAEdmMetadataPostProcessor {
@@ -564,8 +562,6 @@ public class TestIntermediateNavigationProperty extends TestMappingRoot {
     @Override
     public void processEntityType(IntermediateEntityTypeAccess entity) {}
 
-    @Override
-    public void provideReferences(IntermediateReferenceList references) {}
   }
 
 }

@@ -291,9 +291,6 @@ public class TestIntermediateComplexType extends TestMappingRoot {
     }
 
     @Override
-    public void provideReferences(IntermediateReferenceList references) {}
-
-    @Override
     public void processEntityType(IntermediateEntityTypeAccess entity) {}
   }
 

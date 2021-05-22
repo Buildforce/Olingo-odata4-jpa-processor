@@ -259,7 +259,7 @@ public class SearchTokenizerTest {
   }
 
   @Test
-  public void tokenizeInvalid() throws SearchTokenizerException {
+  public void tokenizeInvalid() {
     //
     assertQuery("(  abc AND) OR something").resultsIn(SearchTokenizerException.MessageKeys.FORBIDDEN_CHARACTER);
 

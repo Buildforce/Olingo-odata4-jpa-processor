@@ -26,7 +26,7 @@ public class BatchParserCommonTest {
   private static final String ACCEPTLANG_EN = ACCEPT_LANGUAGE + ":en-US,en;q=0.7,en-UK;q=0.9";
 
   @Test
-  public void multipleHeaders() throws Exception {
+  public void multipleHeaders() {
     Header header = BatchParserCommon.consumeHeaders(toLineList(
         "Content-Id: 1" + CRLF,
         "Content-Id: 2" + CRLF,
@@ -42,7 +42,7 @@ public class BatchParserCommonTest {
   }
 
   @Test
-  public void multipleHeadersSameValue() throws Exception {
+  public void multipleHeadersSameValue() {
     Header header = BatchParserCommon.consumeHeaders(toLineList(
         "Content-Id: 1" + CRLF,
         "Content-Id: 1" + CRLF,
@@ -57,7 +57,7 @@ public class BatchParserCommonTest {
   }
 
   @Test
-  public void headersSeparatedByComma() throws Exception {
+  public void headersSeparatedByComma() {
     Header header = BatchParserCommon.consumeHeaders(toLineList(
         "Content-Id: 1" + CRLF,
         "Upgrade: HTTP/2.0, SHTTP/1.3, IRC/6.9, RTA/x11" + CRLF,
@@ -90,7 +90,7 @@ public class BatchParserCommonTest {
   }
 
   @Test
-  public void multipleAcceptHeadersSameValue() throws Exception {
+  public void multipleAcceptHeadersSameValue() {
     Header header = BatchParserCommon.consumeHeaders(toLineList(
         "Accept: application/atomsvc+xml;q=0.8, application/json;odata=verbose;q=0.5, */*;q=0.1" + CRLF,
         "Accept: application/atomsvc+xml;q=0.8" + CRLF,
@@ -105,7 +105,7 @@ public class BatchParserCommonTest {
   }
 
   @Test
-  public void multipleAcceptLanguageHeaders() throws Exception {
+  public void multipleAcceptLanguageHeaders() {
     Header header = BatchParserCommon.consumeHeaders(toLineList(
         ACCEPTLANG_EN + CRLF,
         "Accept-Language: de-DE;q=0.3" + CRLF,
@@ -119,7 +119,7 @@ public class BatchParserCommonTest {
   }
 
   @Test
-  public void multipleAcceptLanguageHeadersSameValue() throws Exception {
+  public void multipleAcceptLanguageHeadersSameValue() {
     Header header = BatchParserCommon.consumeHeaders(toLineList(
         ACCEPTLANG_EN + CRLF,
         "Accept-Language:en-US,en;q=0.7" + CRLF,
@@ -133,7 +133,7 @@ public class BatchParserCommonTest {
   }
 
   @Test
-  public void headersWithSpecialNames() throws Exception {
+  public void headersWithSpecialNames() {
     Header header = BatchParserCommon.consumeHeaders(toLineList(
         "Test0123456789: 42" + CRLF,
         "a_b: c/d" + CRLF,
@@ -146,7 +146,7 @@ public class BatchParserCommonTest {
   }
 
   @Test
-  public void headerWithWrongName() throws Exception {
+  public void headerWithWrongName() {
     Header header = BatchParserCommon.consumeHeaders(toLineList("a,b: c/d" + CRLF));
     assertNotNull(header);
     assertFalse(header.iterator().hasNext());
@@ -174,7 +174,7 @@ public class BatchParserCommonTest {
   }
 
   @Test
-  public void invalidContentType() throws Exception {
+  public void invalidContentType() {
     invalidBoundary("multipart;boundary=BOUNDARY", BatchDeserializerException.MessageKeys.INVALID_CONTENT_TYPE);
   }
 
@@ -186,23 +186,23 @@ public class BatchParserCommonTest {
   }
 
   @Test
-  public void withoutBoundaryParameter() throws Exception {
+  public void withoutBoundaryParameter() {
     invalidBoundary(MULTIPART_MIXED, BatchDeserializerException.MessageKeys.MISSING_BOUNDARY_DELIMITER);
   }
 
   @Test
-  public void boundaryParameterWithoutQuote() throws Exception {
+  public void boundaryParameterWithoutQuote() {
     invalidBoundary(MULTIPART_MIXED + ";boundary=batch_1740-bb:84-2f7f",
         BatchDeserializerException.MessageKeys.INVALID_BOUNDARY);
   }
 
   @Test
-  public void boundaryEmpty() throws Exception {
+  public void boundaryEmpty() {
     invalidBoundary(MULTIPART_MIXED + ";boundary=\"\"", BatchDeserializerException.MessageKeys.INVALID_BOUNDARY);
   }
 
   @Test
-  public void boundarySpace() throws Exception {
+  public void boundarySpace() {
     invalidBoundary(MULTIPART_MIXED + ";boundary=\" \"", BatchDeserializerException.MessageKeys.INVALID_BOUNDARY);
   }
 

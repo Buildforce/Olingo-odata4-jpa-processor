@@ -241,31 +241,31 @@ public class LexerTest {
     test.run("'%20%20%20ABC'").has(TokenKind.StringValue).isInput();
   }
 
-  @Test
+/*  @Test
   public void delims() {
     // The last two chars are not in cPCT_ENCODED_UNESCAPED.
-//    final String cPCT_ENCODED = "%45%46%47" + "%22" + "%5C";
-//    final String cUNRESERVED = "ABCabc123-._~";
-//    final String cOTHER_DELIMS = "!()*+,;";
-//    final String cSUB_DELIMS = "$&'=" + cOTHER_DELIMS;
+    final String cPCT_ENCODED = "%45%46%47" + "%22" + "%5C";
+    final String cUNRESERVED = "ABCabc123-._~";
+    final String cOTHER_DELIMS = "!()*+,;";
+    final String cSUB_DELIMS = "$&'=" + cOTHER_DELIMS;
 
-//    private static final String cPCHAR = cUNRESERVED + cPCT_ENCODED + cSUB_DELIMS + ":@";
-//    final String reserved = "/";
-    // Test lexer rule UNRESERVED
-//    test.run("$format=A/" + cUNRESERVED).has(TokenKind.FORMAT).isInput();
-//    test.run("$format=A/" + cUNRESERVED + reserved).has(TokenKind.FORMAT).isText(cUNRESERVED);
-    // Test lexer rule PCT_ENCODED
-//    test.run("$format=A/" + cPCT_ENCODED).has(TokenKind.FORMAT).isInput();
-//    test.run("$format=A/" + cPCT_ENCODED + reserved).has(TokenKind.FORMAT).isText(cPCT_ENCODED);
-    // Test lexer rule SUB_DELIMS
-//    test.run("$format=A/" + cSUB_DELIMS).has(TokenKind.FORMAT).isInput();
-//    test.run("$format=A/" + cSUB_DELIMS + reserved).has(TokenKind.FORMAT).isText("$");
-    // Test lexer rule PCHAR rest
-//    test.run("$format=A/:@").has(TokenKind.FORMAT).isInput();
-//    test.run("$format=A/:@" + reserved).has(TokenKind.FORMAT).isText(":@");
-    // Test lexer rule PCHAR all
-//    test.run("$format=" + cPCHAR + "/" + cPCHAR).has(TokenKind.FORMAT).isInput();
-  }
+    private static final String cPCHAR = cUNRESERVED + cPCT_ENCODED + cSUB_DELIMS + ":@";
+    final String reserved = "/";
+      // Test lexer rule UNRESERVED
+    test.run("$format=A/" + cUNRESERVED).has(TokenKind.FORMAT).isInput();
+    test.run("$format=A/" + cUNRESERVED + reserved).has(TokenKind.FORMAT).isText(cUNRESERVED);
+      // Test lexer rule PCT_ENCODED
+    test.run("$format=A/" + cPCT_ENCODED).has(TokenKind.FORMAT).isInput();
+    test.run("$format=A/" + cPCT_ENCODED + reserved).has(TokenKind.FORMAT).isText(cPCT_ENCODED);
+      // Test lexer rule SUB_DELIMS
+    test.run("$format=A/" + cSUB_DELIMS).has(TokenKind.FORMAT).isInput();
+    test.run("$format=A/" + cSUB_DELIMS + reserved).has(TokenKind.FORMAT).isText("$");
+      // Test lexer rule PCHAR rest
+    test.run("$format=A/:@").has(TokenKind.FORMAT).isInput();
+    test.run("$format=A/:@" + reserved).has(TokenKind.FORMAT).isText(":@");
+      // Test lexer rule PCHAR all
+    test.run("$format=" + cPCHAR + "/" + cPCHAR).has(TokenKind.FORMAT).isInput();
+  }*/
 
   public static class TokenValidator {
 
