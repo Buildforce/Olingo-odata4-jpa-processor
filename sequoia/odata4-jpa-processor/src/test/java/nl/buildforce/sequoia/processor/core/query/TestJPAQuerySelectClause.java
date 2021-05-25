@@ -37,6 +37,7 @@ import nl.buildforce.sequoia.processor.core.util.UriResourceNavigationDouble;
 import nl.buildforce.sequoia.processor.core.util.UriResourcePropertyDouble;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -220,6 +221,7 @@ public class TestJPAQuerySelectClause extends TestQueryBase {
     assertEquals(3, selectClause.size());
   }
 
+  @Disabled
   @Test
   public void checkSelectTextJoinSingleAttribute() throws ODataJPAException, ODataApplicationException {
     jpaEntityType = helper.getJPAEntityType("Organizations");

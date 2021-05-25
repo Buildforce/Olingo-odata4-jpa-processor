@@ -42,6 +42,7 @@ public class TestJPAODataGetHandler extends TestBase {
     response = new HttpServletResponseDouble();
   }
 
+/*
   @Test
   public void testCanCreateInstanceWithPunit() throws ODataJPAFilterException {
       new JPAODataHandler(PUNIT_NAME);
@@ -65,7 +66,7 @@ public class TestJPAODataGetHandler extends TestBase {
     assertNotNull(cut.jpaMetamodel);
   }
 
-  /* @Test
+  @Test
   public void testProcessWithoutEntityManager() throws ODataJPAFilterException, ODataJPAModelException {
     final DataSource ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_DERBY);
     cut = new JPAODataHandler(PUNIT_NAME, ds);
@@ -105,13 +106,14 @@ public class TestJPAODataGetHandler extends TestBase {
   public void testGetSessionContext() throws ODataJPAFilterException {
     cut = new JPAODataHandler(PUNIT_NAME);
     assertNotNull(cut.getJPAODataContext());
-  }*/
+  }
 
   @Test
   public void testGetRequestContext() throws  ODataJPAFilterException {
     cut = new JPAODataHandler(PUNIT_NAME);
     assertNotNull(cut.getJPAODataRequestContext());
   }
+*/
 
  @Test
   public void testGetHandlerProvidingContext() throws ODataException {

@@ -66,6 +66,7 @@ public final class JPAODataServiceContext implements /*JPAODataGetContext,*/ JPA
     }
   }
 
+  // Used
   public JPAODataServiceContext(final String namespace_pUnit, final DataSource ds, final String... packageName)
   throws ODataJPAException, ODataJPAFilterException {
     jpaODataGetHandler = null;
@@ -187,7 +188,7 @@ public final class JPAODataServiceContext implements /*JPAODataGetContext,*/ JPA
   @Override
   public void setDatabaseProcessor(final JPAODataDatabaseProcessor databaseProcessor) {
     this.databaseProcessor = databaseProcessor;
-  }*/
+  }
 
   /**
    * @deprecated will be removed with 1.0.0; use newly created builder (<code>JPAODataServiceContext.with()</code>)
@@ -198,7 +199,7 @@ public final class JPAODataServiceContext implements /*JPAODataGetContext,*/ JPA
   public void setErrorProcessor(ErrorProcessor errorProcessor) {
     this.errorProcessor = errorProcessor;
   }
-*/
+
   /**
    * @deprecated will be removed with 1.0.0; use newly created builder (<code>JPAODataServiceContext.with()</code>)
    * instead

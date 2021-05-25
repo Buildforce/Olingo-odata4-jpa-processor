@@ -2,9 +2,7 @@ package nl.buildforce.sequoia.processor.core.api;
 
 import nl.buildforce.olingo.server.api.OData;
 import nl.buildforce.olingo.server.api.ODataHttpHandler;
-import nl.buildforce.olingo.server.api.processor.ErrorProcessor;
 import nl.buildforce.sequoia.metadata.api.JPAEdmProvider;
-import nl.buildforce.sequoia.metadata.api.JPAEntityManagerFactory;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAException;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import nl.buildforce.sequoia.processor.core.exception.ODataJPAFilterException;
@@ -40,9 +38,10 @@ public class JPAODataHandler {
    * instead
    * @param pUnit
    * @throws ODataJPAException
-   */
+
   @Deprecated
   public JPAODataHandler(final String pUnit) throws ODataJPAFilterException { this(pUnit, null); }
+   */
 
   /**
    * @deprecated (Will be removed with 1.0.0, use service context builder, <code>JPAODataServiceContext.with()</code>
@@ -50,7 +49,7 @@ public class JPAODataHandler {
    * @param pUnit
    * @param ds
    * @throws ODataJPAFilterException
-   */
+
   @Deprecated
   public JPAODataHandler(final String pUnit, final DataSource ds) throws ODataJPAFilterException {
     namespace = pUnit;
@@ -61,6 +60,7 @@ public class JPAODataHandler {
     requestContext = new JPAODataRequestContextImpl();
     odata = OData.newInstance();
   }
+*/
 
   // Used by DemoOdataJPAWebContainer
   public JPAODataHandler(final JPAODataCRUDContextAccess serviceContext) {
