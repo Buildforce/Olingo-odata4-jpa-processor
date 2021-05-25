@@ -16,7 +16,7 @@ import jakarta.persistence.metamodel.Metamodel;
 import jakarta.persistence.metamodel.PluralAttribute;
 import jakarta.persistence.metamodel.SingularAttribute;
 
-import org.reflections.Reflections;
+import org.reflections8.Reflections;
 
 import java.lang.reflect.AnnotatedElement;
 import java.util.Arrays;

@@ -15,7 +15,7 @@ import nl.buildforce.olingo.commons.api.edm.provider.CsdlEntityType;
 import nl.buildforce.olingo.commons.api.edm.provider.CsdlEnumType;
 import nl.buildforce.olingo.commons.api.edm.provider.CsdlFunction;
 import nl.buildforce.olingo.commons.api.edm.provider.CsdlSchema;
-import org.reflections.Reflections;
+import org.reflections8.Reflections;
 
 import jakarta.persistence.metamodel.Attribute;
 import jakarta.persistence.metamodel.EmbeddableType;

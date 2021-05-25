@@ -16,7 +16,7 @@ import nl.buildforce.olingo.commons.api.edm.provider.annotation.CsdlConstantExpr
 import nl.buildforce.olingo.commons.api.edm.provider.annotation.CsdlConstantExpression.ConstantExpressionType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.reflections.Reflections;
+import org.reflections8.Reflections;
 
 import jakarta.persistence.metamodel.EntityType;
 

@@ -5,7 +5,7 @@ import nl.buildforce.sequoia.metadata.core.edm.annotation.EdmFunctions;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAEdmNameBuilder;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.extension.ODataFunction;
-import org.reflections.Reflections;
+import org.reflections8.Reflections;
 
 import jakarta.persistence.metamodel.EntityType;
 import java.lang.reflect.AnnotatedElement;

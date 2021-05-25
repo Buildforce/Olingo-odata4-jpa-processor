@@ -7,7 +7,7 @@ import nl.buildforce.sequoia.processor.core.testmodel.AccessRights;
 import nl.buildforce.sequoia.processor.core.testmodel.TestDataConstants;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.reflections.Reflections;
+import org.reflections8.Reflections;
 
 import java.util.Arrays;
 import java.util.HashSet;

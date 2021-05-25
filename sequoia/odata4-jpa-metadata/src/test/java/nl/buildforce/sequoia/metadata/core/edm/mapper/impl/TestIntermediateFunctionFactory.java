@@ -6,7 +6,7 @@ import nl.buildforce.sequoia.metadata.core.edm.mapper.testobjects.ExampleJavaOne
 import nl.buildforce.sequoia.metadata.core.edm.mapper.testobjects.ExampleJavaTwoFunctions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.reflections.Reflections;
+import org.reflections8.Reflections;
 
 import java.util.HashSet;
 import java.util.Map;

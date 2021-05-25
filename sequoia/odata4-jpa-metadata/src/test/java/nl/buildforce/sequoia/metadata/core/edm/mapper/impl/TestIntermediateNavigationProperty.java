@@ -24,7 +24,7 @@ import nl.buildforce.olingo.commons.api.edm.provider.CsdlReferentialConstraint;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.stubbing.Answer;
-import org.reflections.Reflections;
+import org.reflections8.Reflections;
 
 import jakarta.persistence.metamodel.Attribute;
 import jakarta.persistence.metamodel.EmbeddableType;

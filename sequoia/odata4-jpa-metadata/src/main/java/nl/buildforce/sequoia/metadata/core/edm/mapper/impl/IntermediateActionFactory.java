@@ -4,7 +4,7 @@ import nl.buildforce.sequoia.metadata.core.edm.annotation.EdmAction;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.api.JPAEdmNameBuilder;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.exception.ODataJPAModelException;
 import nl.buildforce.sequoia.metadata.core.edm.mapper.extension.ODataAction;
-import org.reflections.Reflections;
+import org.reflections8.Reflections;
 
 import java.lang.reflect.Method;
 import java.util.Map;

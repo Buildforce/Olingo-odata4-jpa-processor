@@ -17,11 +17,11 @@ import nl.buildforce.olingo.commons.api.edm.provider.annotation.CsdlConstantExpr
 import nl.buildforce.olingo.commons.api.edm.provider.annotation.CsdlConstantExpression.ConstantExpressionType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.reflections.Reflections;
-import org.reflections.scanners.SubTypesScanner;
-import org.reflections.scanners.TypeAnnotationsScanner;
-import org.reflections.util.ConfigurationBuilder;
-import org.reflections.util.FilterBuilder;
+import org.reflections8.Reflections;
+import org.reflections8.scanners.SubTypesScanner;
+import org.reflections8.scanners.TypeAnnotationsScanner;
+import org.reflections8.util.ConfigurationBuilder;
+import org.reflections8.util.FilterBuilder;
 
 import jakarta.persistence.metamodel.EntityType;
 import java.util.ArrayList;
