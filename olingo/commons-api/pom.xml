@@ -5,12 +5,12 @@
     <parent>
         <groupId>nl.buildforce.olingo</groupId>
         <artifactId>Olingo-parent</artifactId>
-        <version>0.0.3</version>
+        <version>0.0.4</version>
     </parent>
 
     <artifactId>odata-commons-api</artifactId>
     <name>${project.artifactId}</name>
-    <version>0.0.3</version>
+    <version>0.0.4</version>
     <packaging>bundle</packaging>
 
     <description>Contains all OData commons classes which are not more specific (e.g. Constants which can be used in every context).</description>

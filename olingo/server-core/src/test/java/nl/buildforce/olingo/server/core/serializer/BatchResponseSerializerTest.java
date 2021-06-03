@@ -41,7 +41,7 @@ import static org.mockito.Mockito.mock;
 
 public class BatchResponseSerializerTest {
   private static final String CRLF = "\r\n";
-  private static final String BOUNDARY = "batch_" + UUID.randomUUID().toString();
+  private static final String BOUNDARY = "batch_" + UUID.randomUUID();
 
   @Test
   public void batchResponse() throws Exception {
@@ -490,17 +490,17 @@ public class BatchResponseSerializerTest {
     ServiceMetadata serviceMetadata = mock(ServiceMetadata.class);
     EdmEntityType edmEntityType = mock(EdmEntityType.class);
     EntityIterator entityCollection = new EntityIterator() {
-      
+
       @Override
       public Entity next() {
         return null;
       }
-      
+
       @Override
       public boolean hasNext() {
         return false;
       }
-    };  
+    };
 
 /*
     SerializerStreamResult serializerResult = OData.newInstance().
@@ -545,17 +545,17 @@ public class BatchResponseSerializerTest {
     ServiceMetadata serviceMetadata = mock(ServiceMetadata.class);
     EdmEntityType edmEntityType = mock(EdmEntityType.class);
     EntityIterator entityCollection = new EntityIterator() {
-      
+
       @Override
       public Entity next() {
         return null;
       }
-      
+
       @Override
       public boolean hasNext() {
         return false;
       }
-    };  
+    };
 
     /*SerializerStreamResult serializerResult = OData.newInstance().
         createSerializer(ContentType.APPLICATION_JSON).entityCollectionStreamed(
@@ -601,28 +601,28 @@ public class BatchResponseSerializerTest {
   @Test
   public void testODataContentWithODataResponse() throws Exception {
     List<ODataResponsePart> parts = new ArrayList<>();
-    
+
     ODataResponse response = new ODataResponse();
     response.setStatusCode(HttpStatusCode.OK.getStatusCode());
     response.setHeader(CONTENT_TYPE, ContentType.TEXT_PLAIN.toString());
     String bigData = generateData(10000);
     response.setContent(IOUtils.toInputStream(bigData, StandardCharsets.UTF_8));
     parts.add(new ODataResponsePart(response, false));
-    
+
     ServiceMetadata serviceMetadata = mock(ServiceMetadata.class);
     EdmEntityType edmEntityType = mock(EdmEntityType.class);
     EntityIterator entityCollection = new EntityIterator() {
-      
+
       @Override
       public Entity next() {
         return null;
       }
-      
+
       @Override
       public boolean hasNext() {
         return false;
       }
-    };  
+    };
 
 /*
     SerializerStreamResult serializerResult = OData.newInstance().

@@ -19,7 +19,7 @@ public class TranslatedExceptionsTest {
   private static class TestException extends ODataLibraryException {
     //     private static final long serialVersionUID = -7199975861656921724L;
 
-    public static enum Keys implements MessageKey {
+    public enum Keys implements MessageKey {
       BASIC, ONEPARAM, TWOPARAM, NOMESSAGE, ONLY_ROOT, ONLY_GERMAN;
       @Override
       public String getKey() {
@@ -143,17 +143,17 @@ public class TranslatedExceptionsTest {
     assertEquals(expectedText, translatedMessage.getMessage());
     assertEquals(expectedLocale, translatedMessage.getLocale());
   }
-  
+
   @Test
   public void testODataApplicationException1() {
     ODataApplicationException exp = new ODataApplicationException("Exception", 500,
         Locale.ENGLISH, new RuntimeException("Error"));
     assertNotNull(exp);
   }
-  
+
   @Test
   public void testODataApplicationException2() {
-    ODataApplicationException exp = new ODataApplicationException("Exception", 
+    ODataApplicationException exp = new ODataApplicationException("Exception",
         500, Locale.ENGLISH, new RuntimeException("Error"), "500");
     assertNotNull(exp);
   }

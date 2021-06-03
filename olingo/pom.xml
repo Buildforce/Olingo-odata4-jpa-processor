@@ -5,12 +5,12 @@
     <parent>
         <groupId>nl.buildforce.odata4-jpa</groupId>
         <artifactId>OData4-jpa-parent</artifactId>
-        <version>0.0.3</version>
+        <version>0.0.4</version>
     </parent>
 
     <groupId>nl.buildforce.olingo</groupId>
     <artifactId>Olingo-parent</artifactId>
-    <version>0.0.3</version>
+    <version>0.0.4</version>
     <packaging>pom</packaging>
     <name>Olingo-ODataV4 CapSelUI5</name>
 
@@ -39,7 +39,7 @@
 
     <properties>
         <commons.codec.version>1.15</commons.codec.version>
-        <commons.io.version>2.8.0</commons.io.version>
+        <commons.io.version>2.9.0</commons.io.version>
         <maven.bundle.plugin.version>5.1.2</maven.bundle.plugin.version>
         <maven.plugin.api.version>3.8.1</maven.plugin.api.version>
         <maven.plugin.tools.version>3.6.1</maven.plugin.tools.version>

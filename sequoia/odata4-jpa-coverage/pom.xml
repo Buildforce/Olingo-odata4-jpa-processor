@@ -4,13 +4,13 @@
     <parent>
         <groupId>nl.buildforce.sequoia</groupId>
         <artifactId>Sequoia-parent</artifactId>
-        <version>0.0.3</version>
+        <version>0.0.4</version>
     </parent>
 
     <artifactId>odata4-jpa-coverage</artifactId>
     <name>${project.artifactId}</name>
     <packaging>pom</packaging>
-    <version>0.0.3</version>
+    <version>0.0.4</version>
 
 
     <dependencies>

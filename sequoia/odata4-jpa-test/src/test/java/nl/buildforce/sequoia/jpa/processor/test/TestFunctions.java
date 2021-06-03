@@ -34,7 +34,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class TestFunctions {
   protected static final String PUNIT_NAME = "nl.buildforce.sequoia";
   private static EntityManagerFactory emf;
-  private static DataSource ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_HSQLDB);
+  private static final DataSource ds = DataSourceHelper.createDataSource(DataSourceHelper.DB_HSQLDB);
 
   @BeforeAll
   public static void setupClass() {

@@ -5,7 +5,7 @@
     <groupId>nl.buildforce.odata4-jpa</groupId>
     <artifactId>OData4-jpa-parent</artifactId>
     <name>Root OData4 JPA Project</name>
-    <version>0.0.3</version>
+    <version>0.0.4</version>
     <packaging>pom</packaging>
 
     <modules>
@@ -15,7 +15,7 @@
     <properties>
         <jackson.version>2.12.3</jackson.version>
         <jakarta-servlet.version>5.0.0</jakarta-servlet.version>
-        <odata4-jpa.version>0.0.3</odata4-jpa.version>
+        <odata4-jpa.version>0.0.4</odata4-jpa.version>
         <project.build.source>14</project.build.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>

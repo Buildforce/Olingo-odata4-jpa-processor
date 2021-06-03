@@ -15,8 +15,8 @@ public class HttpRequestStatusLineTest {
 
   private static final String HTTP_VERSION = "HTTP/1.1";
   private static final String SPACE = " ";
-  private String baseUri = "http://localhost/odata";
-  private String serviceResolutionUri = "";
+  private final String baseUri = "http://localhost/odata";
+  private final String serviceResolutionUri = "";
 
   @Test
   public void absolute() throws BatchDeserializerException {

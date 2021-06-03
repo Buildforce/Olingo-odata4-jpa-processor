@@ -604,7 +604,7 @@ public class MockedBatchHandlerTest {
         responseParts.add(fascade.handleBatchRequest(part));
       }
 
-      String responeBoundary = "batch_" + UUID.randomUUID().toString();
+      String responeBoundary = "batch_" + UUID.randomUUID();
       InputStream responseStream =
           odata.createFixedFormatSerializer().batchResponse(responseParts, responeBoundary);
 

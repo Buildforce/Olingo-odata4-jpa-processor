@@ -14,7 +14,7 @@ import org.junit.Test;
  */
 public class LexerTest {
 
-  private TokenValidator test = new TokenValidator();
+  private final TokenValidator test = new TokenValidator();
 
   @Test
   public void unary() {
