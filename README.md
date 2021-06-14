@@ -9,3 +9,7 @@ The main module contains two Maven submodules:
 * Sequoia, a library to construct a project Eclipse EE4J, subproject Jakarta Persistence, Jakarta Servlet.
 
 For testing purpose EclipseLink is used as well as the Derby (directory "..\sequoia\odata4-jpa-processor\testdb") and HSQLDB (HyperSQL DataBase) (in memory) databases.
+
+About Functions in SAP tutorial:
+* [Functions](https://github.com/SAP/olingo-jpa-processor-v4/blob/develop/jpa-tutorial/Tutorials/Metadata/1-8-Functions.md)
+* [Using Functions](https://github.com/SAP/olingo-jpa-processor-v4/blob/develop/jpa-tutorial/Tutorials/RetrieveData/2-3-UsingFunctions.md)
