@@ -41,7 +41,7 @@
     <properties>
         <coveralls.version>4.3.0</coveralls.version>
         <derby.version>10.15.2.0</derby.version>
-        <eclipselink.version>3.0.1</eclipselink.version>
+        <eclipselink.version>3.0.2-RC1</eclipselink.version>
         <jacoco.version>0.8.7</jacoco.version>
         <jakarta.persistence.api>3.0.0</jakarta.persistence.api>
         <maven.compiler.version>3.8.1</maven.compiler.version>
