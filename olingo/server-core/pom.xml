@@ -9,7 +9,7 @@
 
     <parent>
         <groupId>nl.buildforce.olingo</groupId>
-        <artifactId>Olingo-parent</artifactId>
+        <artifactId>olingo-parent</artifactId>
         <version>0.0.4</version>
     </parent>
 
