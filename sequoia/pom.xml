@@ -11,12 +11,12 @@
 
     <parent>
         <groupId>nl.buildforce.odata4-jpa</groupId>
-        <artifactId>OData4-jpa-parent</artifactId>
+        <artifactId>odata4-jpa-parent</artifactId>
         <version>0.0.4</version>
     </parent>
 
     <groupId>nl.buildforce.sequoia</groupId>
-    <artifactId>Sequoia-parent</artifactId>
+    <artifactId>sequoia-parent</artifactId>
     <version>0.0.4</version>
     <packaging>pom</packaging>
     <name>Sequoia JPA processor</name>
@@ -32,9 +32,9 @@
 
     <distributionManagement>
         <repository>
-            <id>bintray-serioussoftware-repo</id>
-            <name>serioussoftware-maven3</name>
-            <url>https://api.bintray.com/maven/serioussoftware/repo1/OData4-JPA/;publish=1</url>
+            <id>github</id>
+            <name>GitHub Buildforce Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/Buildforce/Olingo-odata4-jpa-processor</url>
         </repository>
     </distributionManagement>
 
