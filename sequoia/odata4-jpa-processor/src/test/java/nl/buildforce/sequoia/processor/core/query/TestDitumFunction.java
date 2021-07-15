@@ -7,11 +7,14 @@ import nl.buildforce.olingo.commons.api.ex.ODataException;
 import nl.buildforce.olingo.commons.api.http.HttpStatusCode;
 import nl.buildforce.sequoia.processor.core.testmodel.DataSourceHelper;
 import nl.buildforce.sequoia.processor.core.util.IntegrationTestHelper;
+import org.apache.commons.lang3.time.DateUtils;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.sql.DataSource;
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,6 +46,66 @@ public class TestDitumFunction {
     assertNotNull(r);
     assertNotNull(r.get("value"));
     assertEquals(60, r.get("value").asInt());
+  }
+
+//  @Test
+  public void testGetUTCDateTime() throws IOException, ODataException {
+
+    IntegrationTestHelper helper = new IntegrationTestHelper(emf, ds, "GetUTCDateTime(ICCID=DUMMY123,SerialNr=SERIAL123)",
+            "nl.buildforce.sequoia.processor.core.testobjects");
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
+    ObjectNode r = helper.getValue();
+    assertNotNull(r);
+    assertNotNull(r.get("value"));
+    assertEquals(r.get("value"), r.get("value").asToken().asString());
+  }
+
+  @Test
+  public void testCardValidation() throws IOException, ODataException {
+
+    JSONObject jsonpObject = new JSONObject();
+    int evaluationCode = 1;
+    Date expirationDate = DateUtils.addYears(new Date(),1);
+    String encryptedPassword = "PW";
+    String name = "John Doe";
+    jsonpObject.put("evaluationCode",evaluationCode);
+    jsonpObject.put("expirationDate",expirationDate);
+    jsonpObject.put("encryptedPassword",encryptedPassword);
+    jsonpObject.put("name",name);
+
+    IntegrationTestHelper helper = new IntegrationTestHelper(emf, ds, "CardValidation(CardID=CARD123,ICCID=DUMMY123,SerialNr=SERIAL123)",
+            "nl.buildforce.sequoia.processor.core.testobjects");
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
+    ObjectNode r = helper.getValue();
+    assertNotNull(r);
+    assertNotNull(r.get("value"));
+    assertEquals(jsonpObject.toString(), r.get("value").asToken().asString());
+  }
+
+  @Test
+  public void testCardValidationWCredintentials() throws IOException, ODataException {
+
+    IntegrationTestHelper helper = new IntegrationTestHelper(emf, ds, "CardValidationWCredintentials(ICCID=DUMMY123,SerialNr=SERIAL123)",
+            "nl.buildforce.sequoia.processor.core.testobjects");
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
+    ObjectNode r = helper.getValue();
+    assertNotNull(r);
+    assertNotNull(r.get("value"));
+    assertEquals("qwtrruyiuyoiu5467tre232311@#87", r.get("value").asToken().asString());
+  }
+
+  @Test
+  public void testWorkedHoursDeclaration() throws IOException, ODataException {
+
+    Date expirationDate = DateUtils.addYears(new Date(),1);
+
+    IntegrationTestHelper helper = new IntegrationTestHelper(emf, ds, "WorkedHoursDeclaration(ICCID=DUMMY123,SerialNr=SERIAL123)",
+            "nl.buildforce.sequoia.processor.core.testobjects");
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
+    ObjectNode r = helper.getValue();
+    assertNotNull(r);
+    assertNotNull(r.get("value"));
+    assertEquals(String.valueOf(expirationDate), r.get("value").asToken().asString());
   }
 
 }
