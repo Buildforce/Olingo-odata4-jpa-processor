@@ -14,6 +14,11 @@ import org.junit.jupiter.api.Test;
 
 import javax.sql.DataSource;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -48,16 +53,18 @@ public class TestDitumFunction {
     assertEquals(60, r.get("value").asInt());
   }
 
-//  @Test
+  @Test
   public void testGetUTCDateTime() throws IOException, ODataException {
 
-    IntegrationTestHelper helper = new IntegrationTestHelper(emf, ds, "GetUTCDateTime(ICCID=DUMMY123,SerialNr=SERIAL123)",
+    String uTCDateTime = LocalDateTime.now(ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm"));
+
+    IntegrationTestHelper helper = new IntegrationTestHelper(emf, ds, "GetUTCDateTime(ICCID='DUMMY123',SerialNr='SERIAL123')",
             "nl.buildforce.sequoia.processor.core.testobjects");
     helper.assertStatus(HttpStatusCode.OK.getStatusCode());
     ObjectNode r = helper.getValue();
     assertNotNull(r);
     assertNotNull(r.get("value"));
-    assertEquals(r.get("value"), r.get("value").asToken().asString());
+    assertEquals(uTCDateTime, r.get("value").asText());
   }
 
   @Test
@@ -65,7 +72,7 @@ public class TestDitumFunction {
 
     JSONObject jsonpObject = new JSONObject();
     int evaluationCode = 1;
-    Date expirationDate = DateUtils.addYears(new Date(),1);
+    String expirationDate = new SimpleDateFormat("YYYY-MM-dd").format(DateUtils.addYears(new Date(),1));
     String encryptedPassword = "PW";
     String name = "John Doe";
     jsonpObject.put("evaluationCode",evaluationCode);
@@ -73,39 +80,39 @@ public class TestDitumFunction {
     jsonpObject.put("encryptedPassword",encryptedPassword);
     jsonpObject.put("name",name);
 
-    IntegrationTestHelper helper = new IntegrationTestHelper(emf, ds, "CardValidation(CardID=CARD123,ICCID=DUMMY123,SerialNr=SERIAL123)",
+    IntegrationTestHelper helper = new IntegrationTestHelper(emf, ds, "CardValidation(CardID='CARD123',ICCID='DUMMY123',SerialNr='SERIAL123')",
             "nl.buildforce.sequoia.processor.core.testobjects");
     helper.assertStatus(HttpStatusCode.OK.getStatusCode());
     ObjectNode r = helper.getValue();
     assertNotNull(r);
     assertNotNull(r.get("value"));
-    assertEquals(jsonpObject.toString(), r.get("value").asToken().asString());
+    assertEquals(jsonpObject.toString(), r.get("value").asText());
   }
 
   @Test
   public void testCardValidationWCredintentials() throws IOException, ODataException {
 
-    IntegrationTestHelper helper = new IntegrationTestHelper(emf, ds, "CardValidationWCredintentials(ICCID=DUMMY123,SerialNr=SERIAL123)",
+    IntegrationTestHelper helper = new IntegrationTestHelper(emf, ds, "CardValidationWCredintentials(ICCID='DUMMY123',SerialNr='SERIAL123')",
             "nl.buildforce.sequoia.processor.core.testobjects");
     helper.assertStatus(HttpStatusCode.OK.getStatusCode());
     ObjectNode r = helper.getValue();
     assertNotNull(r);
     assertNotNull(r.get("value"));
-    assertEquals("qwtrruyiuyoiu5467tre232311@#87", r.get("value").asToken().asString());
+    assertEquals("qwtrruyiuyoiu5467tre232311@#87", r.get("value").asText());
   }
 
   @Test
   public void testWorkedHoursDeclaration() throws IOException, ODataException {
 
-    Date expirationDate = DateUtils.addYears(new Date(),1);
+    String expirationDate = new SimpleDateFormat("YYYY-MM-dd").format(DateUtils.addYears(new Date(),1));
 
-    IntegrationTestHelper helper = new IntegrationTestHelper(emf, ds, "WorkedHoursDeclaration(ICCID=DUMMY123,SerialNr=SERIAL123)",
+    IntegrationTestHelper helper = new IntegrationTestHelper(emf, ds, "WorkedHoursDeclaration(CardID='CARD123',ICCID='DUMMY123',SerialNr='SERIAL123',WorkedMinutes=120)",
             "nl.buildforce.sequoia.processor.core.testobjects");
     helper.assertStatus(HttpStatusCode.OK.getStatusCode());
     ObjectNode r = helper.getValue();
     assertNotNull(r);
     assertNotNull(r.get("value"));
-    assertEquals(String.valueOf(expirationDate), r.get("value").asToken().asString());
+    assertEquals(expirationDate, r.get("value").asText());
   }
 
 }

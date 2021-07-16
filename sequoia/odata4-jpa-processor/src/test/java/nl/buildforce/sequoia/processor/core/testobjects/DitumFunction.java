@@ -1,6 +1,5 @@
 package nl.buildforce.sequoia.processor.core.testobjects;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import jakarta.persistence.EntityManager;
 import nl.buildforce.sequoia.metadata.core.edm.annotation.EdmFunction;
 import nl.buildforce.sequoia.metadata.core.edm.annotation.EdmFunction.ReturnType;
@@ -9,7 +8,10 @@ import nl.buildforce.sequoia.metadata.core.edm.mapper.extension.ODataFunction;
 import org.apache.commons.lang3.time.DateUtils;
 import org.json.JSONObject;
 
-import java.time.Instant;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class DitumFunction implements ODataFunction {
@@ -30,17 +32,18 @@ public class DitumFunction implements ODataFunction {
   public String getUTCDateTime(@EdmParameter(name = "ICCID") String iCCID, @EdmParameter(name = "SerialNr") String serialNr) {
     if (iCCID == null || serialNr == null)
       return "";
-    return String.valueOf(Instant.now());
+    String uTCDateTime = LocalDateTime.now(ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm"));
+    return uTCDateTime;
   }
 
   @EdmFunction(name = "CardValidation", returnType = @ReturnType)
-  public String cardValidation(@EdmParameter(name = "cardID") String cardID, @EdmParameter(name = "ICCID") String iCCID, @EdmParameter(name = "SerialNr") String serialNr) {
+  public String cardValidation(@EdmParameter(name = "CardID") String cardID, @EdmParameter(name = "ICCID") String iCCID, @EdmParameter(name = "SerialNr") String serialNr) {
     if (cardID == null || iCCID == null || serialNr == null)
       return "";
 
     JSONObject jsonpObject = new JSONObject();
     int evaluationCode = 1;
-    Date expirationDate = DateUtils.addYears(new Date(),1);
+    String expirationDate = new SimpleDateFormat("YYYY-MM-dd").format(DateUtils.addYears(new Date(),1));
     String encryptedPassword = "PW";
     String name = "John Doe";
     jsonpObject.put("evaluationCode",evaluationCode);
@@ -51,7 +54,7 @@ public class DitumFunction implements ODataFunction {
     return jsonpObject.toString();
   }
 
-  @EdmFunction(name = "CardValidationWCredintentials ", returnType = @ReturnType)
+  @EdmFunction(name = "CardValidationWCredintentials", returnType = @ReturnType)
   public String cardValidationWCredintentials(@EdmParameter(name = "ICCID") String iCCID, @EdmParameter(name = "SerialNr") String serialNr)  {
     if (iCCID == null || serialNr == null)
       return "";
@@ -61,12 +64,11 @@ public class DitumFunction implements ODataFunction {
   }
 
   @EdmFunction(name = "WorkedHoursDeclaration", returnType = @ReturnType)
-  public String workedHoursDeclaration(@EdmParameter(name = "cardID") String cardID, @EdmParameter(name = "ICCID") String iCCID, @EdmParameter(name = "SerialNr") String serialNr) {
-    if (cardID == null || iCCID == null || serialNr == null)
+  public String workedHoursDeclaration(@EdmParameter(name = "CardID") String cardID, @EdmParameter(name = "ICCID") String iCCID, @EdmParameter(name = "SerialNr") String serialNr, @EdmParameter(name = "WorkedMinutes") short workedMinutes) {
+    if (cardID == null || iCCID == null || serialNr == null  || workedMinutes == 0 )
       return "";
 
-    Date expirationDate = DateUtils.addYears(new Date(),1);
-    return String.valueOf(expirationDate);
+    return new SimpleDateFormat("YYYY-MM-dd").format(DateUtils.addYears(new Date(),1));
   }
 
 }
