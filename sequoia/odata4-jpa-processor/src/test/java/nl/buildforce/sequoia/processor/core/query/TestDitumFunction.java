@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
@@ -67,6 +68,20 @@ public class TestDitumFunction {
   }
 
   @Test
+  public void testGetUTCDateTimeReturnDateTime() throws IOException, ODataException {
+
+    String uTCDateTime = LocalDateTime.now(ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm"));
+
+    IntegrationTestHelper helper = new IntegrationTestHelper(emf, ds, "GetUTCDateTimeReturnDateTime(ICCID='DUMMY123',SerialNr='SERIAL123')",
+            "nl.buildforce.sequoia.processor.core.testobjects");
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
+    ObjectNode r = helper.getValue();
+    assertNotNull(r);
+    assertNotNull(r.get("value"));
+    assertEquals(uTCDateTime, r.get("value").asText());
+  }
+
+  @Test
   public void testCardValidation() throws IOException, ODataException {
 
     JSONObject jsonpObject = new JSONObject();
@@ -101,6 +116,18 @@ public class TestDitumFunction {
   }
 
   @Test
+  public void testCardValidationWCredintentialsReturnLong() throws IOException, ODataException {
+
+    IntegrationTestHelper helper = new IntegrationTestHelper(emf, ds, "CardValidationWCredintentialsReturnLong(ICCID='DUMMY123',SerialNr='SERIAL123')",
+            "nl.buildforce.sequoia.processor.core.testobjects");
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
+    ObjectNode r = helper.getValue();
+    assertNotNull(r);
+    assertNotNull(r.get("value"));
+    assertEquals(Long.parseLong("12345677890"), r.get("value").asLong());
+  }
+
+  @Test
   public void testWorkedHoursDeclaration() throws IOException, ODataException {
 
     String expirationDate = new SimpleDateFormat("YYYY-MM-dd").format(DateUtils.addYears(new Date(),1));
@@ -112,6 +139,21 @@ public class TestDitumFunction {
     assertNotNull(r);
     assertNotNull(r.get("value"));
     assertEquals(expirationDate, r.get("value").asText());
+  }
+
+  @Test
+  public void testWorkedHoursDeclarationReturnDate() throws IOException, ODataException {
+
+    String expirationDate = new SimpleDateFormat("YYYY-MM-dd").format(DateUtils.addYears(new Date(),1));
+
+    IntegrationTestHelper helper = new IntegrationTestHelper(emf, ds, "WorkedHoursDeclarationReturnDate(CardID='CARD123',ICCID='DUMMY123',SerialNr='SERIAL123',WorkedMinutes=120)",
+            "nl.buildforce.sequoia.processor.core.testobjects");
+    helper.assertStatus(HttpStatusCode.OK.getStatusCode());
+    ObjectNode r = helper.getValue();
+    assertNotNull(r);
+    assertNotNull(r.get("value"));
+
+    assertEquals(expirationDate, new SimpleDateFormat("YYYY-MM-dd").format(Date.from(Instant.parse(r.get("value").asText()))));
   }
 
 }
