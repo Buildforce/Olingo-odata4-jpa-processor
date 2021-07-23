@@ -20,6 +20,13 @@
         </dependency>
 
         <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>${json.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
             <groupId>nl.buildforce.olingo</groupId>
             <artifactId>odata-server-api</artifactId>
             <version>${odata4-jpa.version}</version>
